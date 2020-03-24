@@ -2,6 +2,8 @@ import "package:appwrite/service.dart";
 import "package:appwrite/client.dart";
 import 'package:dio/dio.dart';
 
+import '../enums.dart';
+
 class Storage extends Service {
      
      Storage(Client client): super(client);
@@ -9,17 +11,17 @@ class Storage extends Service {
      /// Get a list of all the user files. You can use the query params to filter
      /// your results. On admin mode, this endpoint will return a list of all of the
      /// project files. [Learn more about different API modes](/docs/admin).
-    Future<Response> listFiles({search = null, limit = 25, offset = null, orderType = 'ASC'}) async {
+    Future<Response> listFiles({search = null, limit = 25, offset = null, OrderType orderType = OrderType.asc}) async {
        String path = '/storage/files';
 
        Map<String, dynamic> params = {
          'search': search,
          'limit': limit,
          'offset': offset,
-         'orderType': orderType,
+         'orderType': orderType.name(),
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// Create a new file. The user who creates the file will automatically be
      /// assigned to read and write access unless he has passed custom values for
@@ -33,7 +35,7 @@ class Storage extends Service {
          'write': write,
        };
 
-       return await this.client.call('post', path: path, params: params);
+       return await this.client.call(HttpMethod.post, path: path, params: params);
     }
      /// Get file by its unique ID. This endpoint response returns a JSON object
      /// with the file metadata.
@@ -43,7 +45,7 @@ class Storage extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// Update file by its unique ID. Only users with write permissions have access
      /// to update this resource.
@@ -55,7 +57,7 @@ class Storage extends Service {
          'write': write,
        };
 
-       return await this.client.call('put', path: path, params: params);
+       return await this.client.call(HttpMethod.put, path: path, params: params);
     }
      /// Delete a file by its unique ID. Only users with write permissions have
      /// access to delete this resource.
@@ -65,7 +67,7 @@ class Storage extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('delete', path: path, params: params);
+       return await this.client.call(HttpMethod.delete, path: path, params: params);
     }
      /// Get file content by its unique ID. The endpoint response return with a
      /// 'Content-Disposition: attachment' header that tells the browser to start
@@ -76,7 +78,7 @@ class Storage extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// Get a file preview image. Currently, this method supports preview for image
      /// files (jpg, png, and gif), other supported formats, like pdf, docs, slides,
@@ -93,7 +95,7 @@ class Storage extends Service {
          'output': output,
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// Get file content by its unique ID. This endpoint is similar to the download
      /// method but returns with no  'Content-Disposition: attachment' header.
@@ -104,6 +106,6 @@ class Storage extends Service {
          'as': as,
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
 }

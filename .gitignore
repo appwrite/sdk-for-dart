@@ -1,0 +1,12 @@
+# General
+.DS_Store
+
+# JetBrains template
+.idea
+
+# Dart template
+.dart_tool/
+.packages
+build
+pubspec.lock
+

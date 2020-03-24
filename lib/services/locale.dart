@@ -2,6 +2,8 @@ import "package:appwrite/service.dart";
 import "package:appwrite/client.dart";
 import 'package:dio/dio.dart';
 
+import '../enums.dart';
+
 class Locale extends Service {
      
      Locale(Client client): super(client);
@@ -18,7 +20,7 @@ class Locale extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// List of all continents. You can use the locale header to get the data in a
      /// supported language.
@@ -28,7 +30,7 @@ class Locale extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// List of all countries. You can use the locale header to get the data in a
      /// supported language.
@@ -38,7 +40,7 @@ class Locale extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// List of all countries that are currently members of the EU. You can use the
      /// locale header to get the data in a supported language.
@@ -48,7 +50,7 @@ class Locale extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// List of all countries phone codes. You can use the locale header to get the
      /// data in a supported language.
@@ -58,7 +60,7 @@ class Locale extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
      /// List of all currencies, including currency symol, name, plural, and decimal
      /// digits for all major and minor currencies. You can use the locale header to
@@ -69,6 +71,6 @@ class Locale extends Service {
        Map<String, dynamic> params = {
        };
 
-       return await this.client.call('get', path: path, params: params);
+       return await this.client.call(HttpMethod.get, path: path, params: params);
     }
 }
