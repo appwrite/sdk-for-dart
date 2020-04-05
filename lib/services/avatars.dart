@@ -82,7 +82,7 @@ class Avatars extends Service {
     }
      /// Converts a given plain text to a QR code image. You can use the query
      /// parameters to change the size and style of the resulting image.
-    Future<Response> getQR({@required String text, int size = 400, int margin = 1, int download = null}) {
+    Future<Response> getQR({@required String text, int size = 400, int margin = 1, int download = 0}) {
         final String path = '/avatars/qr';
 
         final Map<String, dynamic> params = {

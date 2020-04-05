@@ -13,7 +13,7 @@ class Teams extends Service {
      /// Get a list of all the current user teams. You can use the query params to
      /// filter your results. On admin mode, this endpoint will return a list of all
      /// of the project teams. [Learn more about different API modes](/docs/admin).
-    Future<Response> list({String search = null, int limit = 25, int offset = null, OrderType orderType = OrderType.asc}) {
+    Future<Response> list({String search = , int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
         final String path = '/teams';
 
         final Map<String, dynamic> params = {
@@ -93,7 +93,7 @@ class Teams extends Service {
      /// Attacks](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
      /// the only valid redirect URL's are the once from domains you have set when
      /// added your platforms in the console interface.
-    Future<Response> createMembership({@required String teamId, @required String email, @required List roles, @required String url, String name = null}) {
+    Future<Response> createMembership({@required String teamId, @required String email, @required List roles, @required String url, String name = }) {
         final String path = '/teams/{teamId}/memberships'.replaceAll(RegExp('{teamId}'), teamId);
 
         final Map<String, dynamic> params = {

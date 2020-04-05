@@ -25,7 +25,7 @@ class Account extends Service {
      /// verifying the user email address. To allow your new user to login to his
      /// new account, you need to create a new [account
      /// session](/docs/account#createSession).
-    Future<Response> create({@required String email, @required String password, String name = null}) {
+    Future<Response> create({@required String email, @required String password, String name = }) {
         final String path = '/account';
 
         final Map<String, dynamic> params = {

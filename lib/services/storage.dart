@@ -13,7 +13,7 @@ class Storage extends Service {
      /// Get a list of all the user files. You can use the query params to filter
      /// your results. On admin mode, this endpoint will return a list of all of the
      /// project files. [Learn more about different API modes](/docs/admin).
-    Future<Response> listFiles({String search = null, int limit = 25, int offset = null, OrderType orderType = OrderType.asc}) {
+    Future<Response> listFiles({String search = , int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
         final String path = '/storage/files';
 
         final Map<String, dynamic> params = {
@@ -86,7 +86,7 @@ class Storage extends Service {
      /// files (jpg, png, and gif), other supported formats, like pdf, docs, slides,
      /// and spreadsheets, will return the file icon image. You can also pass query
      /// string arguments for cutting and resizing your preview image.
-    Future<Response> getFilePreview({@required String fileId, int width = null, int height = null, int quality = 100, String background = null, String output = null}) {
+    Future<Response> getFilePreview({@required String fileId, int width = 0, int height = 0, int quality = 100, String background = , String output = }) {
         final String path = '/storage/files/{fileId}/preview'.replaceAll(RegExp('{fileId}'), fileId);
 
         final Map<String, dynamic> params = {
@@ -101,7 +101,7 @@ class Storage extends Service {
     }
      /// Get file content by its unique ID. This endpoint is similar to the download
      /// method but returns with no  'Content-Disposition: attachment' header.
-    Future<Response> getFileView({@required String fileId, String as = null}) {
+    Future<Response> getFileView({@required String fileId, String as = }) {
         final String path = '/storage/files/{fileId}/view'.replaceAll(RegExp('{fileId}'), fileId);
 
         final Map<String, dynamic> params = {
