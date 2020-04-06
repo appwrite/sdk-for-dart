@@ -7,7 +7,6 @@ import '../enums.dart';
 import "../service.dart";
 
 class Teams extends Service {
-     
     Teams(Client client): super(client);
 
      /// Get a list of all the current user teams. You can use the query params to
@@ -23,7 +22,7 @@ class Teams extends Service {
             'orderType': orderType.name(),
         };
 
-        return this.client.call(HttpMethod.get, path: path, params: params);
+        return client.call(HttpMethod.get, path: path, params: params);
     }
      /// Create a new team. The user who creates the team will automatically be
      /// assigned as the owner of the team. The team owner can invite new members,
@@ -37,7 +36,7 @@ class Teams extends Service {
             'roles': roles,
         };
 
-        return this.client.call(HttpMethod.post, path: path, params: params);
+        return client.call(HttpMethod.post, path: path, params: params);
     }
      /// Get team by its unique ID. All team members have read access for this
      /// resource.
@@ -47,7 +46,7 @@ class Teams extends Service {
         final Map<String, dynamic> params = {
         };
 
-        return this.client.call(HttpMethod.get, path: path, params: params);
+        return client.call(HttpMethod.get, path: path, params: params);
     }
      /// Update team by its unique ID. Only team owners have write access for this
      /// resource.
@@ -58,7 +57,7 @@ class Teams extends Service {
             'name': name,
         };
 
-        return this.client.call(HttpMethod.put, path: path, params: params);
+        return client.call(HttpMethod.put, path: path, params: params);
     }
      /// Delete team by its unique ID. Only team owners have write access for this
      /// resource.
@@ -68,7 +67,7 @@ class Teams extends Service {
         final Map<String, dynamic> params = {
         };
 
-        return this.client.call(HttpMethod.delete, path: path, params: params);
+        return client.call(HttpMethod.delete, path: path, params: params);
     }
      /// Get team members by the team unique ID. All team members have read access
      /// for this list of resources.
@@ -78,7 +77,7 @@ class Teams extends Service {
         final Map<String, dynamic> params = {
         };
 
-        return this.client.call(HttpMethod.get, path: path, params: params);
+        return client.call(HttpMethod.get, path: path, params: params);
     }
      /// Use this endpoint to invite a new member to join your team. An email with a
      /// link to join the team will be sent to the new member email address if the
@@ -103,7 +102,7 @@ class Teams extends Service {
             'url': url,
         };
 
-        return this.client.call(HttpMethod.post, path: path, params: params);
+        return client.call(HttpMethod.post, path: path, params: params);
     }
      /// This endpoint allows a user to leave a team or for a team owner to delete
      /// the membership of any other team member. You can also use this endpoint to
@@ -114,7 +113,7 @@ class Teams extends Service {
         final Map<String, dynamic> params = {
         };
 
-        return this.client.call(HttpMethod.delete, path: path, params: params);
+        return client.call(HttpMethod.delete, path: path, params: params);
     }
      /// Use this endpoint to allow a user to accept an invitation to join a team
      /// after he is being redirected back to your app from the invitation email he
@@ -127,6 +126,6 @@ class Teams extends Service {
             'secret': secret,
         };
 
-        return this.client.call(HttpMethod.patch, path: path, params: params);
+        return client.call(HttpMethod.patch, path: path, params: params);
     }
 }

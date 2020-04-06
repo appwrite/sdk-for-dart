@@ -7,7 +7,6 @@ import '../enums.dart';
 import "../service.dart";
 
 class Database extends Service {
-     
     Database(Client client): super(client);
 
      /// Get a list of all the user documents. You can use the query params to
@@ -29,7 +28,7 @@ class Database extends Service {
             'last': last,
         };
 
-        return this.client.call(HttpMethod.get, path: path, params: params);
+        return client.call(HttpMethod.get, path: path, params: params);
     }
      /// Create a new Document.
     Future<Response> createDocument({@required String collectionId, @required dynamic data, @required List read, @required List write, String parentDocument = '', String parentProperty = '', String parentPropertyType = 'assign'}) {
@@ -44,7 +43,7 @@ class Database extends Service {
             'parentPropertyType': parentPropertyType,
         };
 
-        return this.client.call(HttpMethod.post, path: path, params: params);
+        return client.call(HttpMethod.post, path: path, params: params);
     }
      /// Get document by its unique ID. This endpoint response returns a JSON object
      /// with the document data.
@@ -54,7 +53,7 @@ class Database extends Service {
         final Map<String, dynamic> params = {
         };
 
-        return this.client.call(HttpMethod.get, path: path, params: params);
+        return client.call(HttpMethod.get, path: path, params: params);
     }
     Future<Response> updateDocument({@required String collectionId, @required String documentId, @required dynamic data, @required List read, @required List write}) {
         final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
@@ -65,7 +64,7 @@ class Database extends Service {
             'write': write,
         };
 
-        return this.client.call(HttpMethod.patch, path: path, params: params);
+        return client.call(HttpMethod.patch, path: path, params: params);
     }
      /// Delete document by its unique ID. This endpoint deletes only the parent
      /// documents, his attributes and relations to other documents. Child documents
@@ -76,6 +75,6 @@ class Database extends Service {
         final Map<String, dynamic> params = {
         };
 
-        return this.client.call(HttpMethod.delete, path: path, params: params);
+        return client.call(HttpMethod.delete, path: path, params: params);
     }
 }
