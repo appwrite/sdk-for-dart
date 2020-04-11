@@ -1,3 +1,7 @@
+## 0.0.13
+
+- Fix for file upload method
+
 ## 0.0.12
 
 - Added file upload support for storage service
