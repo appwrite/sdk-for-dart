@@ -30,7 +30,7 @@ class Client {
         
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.0.11',
+            'x-sdk-version': 'appwrite:dart:0.0.12',
         };
 
         this.config = {};
@@ -119,6 +119,10 @@ class Client {
             headers: {...this.headers, ...headers},
             method: method.name(),
         );
+
+        if(headers['content-type'] == 'multipart/form-data') {
+            FormData data = FormData.fromMap(params);
+        }
 
         if (method == HttpMethod.get) {
             return http.get(path, queryParameters: params, options: options);
