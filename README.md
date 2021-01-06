@@ -1,6 +1,6 @@
 # Appwrite Dart SDK
 
-[![pub package](https://img.shields.io/pub/v/appwrite.svg)](https://pub.dartlang.org/packages/appwrite)
+[![pub package](https://img.shields.io/pub/v/dart_appwrite.svg)](https://pub.dartlang.org/packages/dart_appwrite)
 ![License](https://img.shields.io/github/license/appwrite/sdk-for-dart.svg?v=1)
 ![Version](https://img.shields.io/badge/api%20version-0.6.2-blue.svg?v=1)
 
