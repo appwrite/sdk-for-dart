@@ -10,8 +10,8 @@ class Users extends Service {
 
      /// List Users
      ///
-     /// Get a list of all the project users. You can use the query params to filter
-     /// your results.
+     /// Get a list of all the project's users. You can use the query params to
+     /// filter your results.
      ///
     Future<Response> list({String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
         final String path = '/users';
@@ -52,7 +52,7 @@ class Users extends Service {
 
      /// Get User
      ///
-     /// Get user by its unique ID.
+     /// Get a user by its unique ID.
      ///
     Future<Response> get({@required String userId}) {
         final String path = '/users/{userId}'.replaceAll(RegExp('{userId}'), userId);
@@ -67,9 +67,26 @@ class Users extends Service {
         return client.call(HttpMethod.get, path: path, params: params, headers: headers);
     }
 
+     /// Delete User
+     ///
+     /// Delete a user by its unique ID.
+     ///
+    Future<Response> deleteUser({@required String userId}) {
+        final String path = '/users/{userId}'.replaceAll(RegExp('{userId}'), userId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+        return client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+    }
+
      /// Get User Logs
      ///
-     /// Get user activity logs list by its unique ID.
+     /// Get a user activity logs list by its unique ID.
      ///
     Future<Response> getLogs({@required String userId}) {
         final String path = '/users/{userId}/logs'.replaceAll(RegExp('{userId}'), userId);
@@ -86,7 +103,7 @@ class Users extends Service {
 
      /// Get User Preferences
      ///
-     /// Get user preferences by its unique ID.
+     /// Get the user preferences by its unique ID.
      ///
     Future<Response> getPrefs({@required String userId}) {
         final String path = '/users/{userId}/prefs'.replaceAll(RegExp('{userId}'), userId);
@@ -103,8 +120,8 @@ class Users extends Service {
 
      /// Update User Preferences
      ///
-     /// Update user preferences by its unique ID. You can pass only the specific
-     /// settings you wish to update.
+     /// Update the user preferences by its unique ID. You can pass only the
+     /// specific settings you wish to update.
      ///
     Future<Response> updatePrefs({@required String userId, @required Map prefs}) {
         final String path = '/users/{userId}/prefs'.replaceAll(RegExp('{userId}'), userId);
@@ -122,7 +139,7 @@ class Users extends Service {
 
      /// Get User Sessions
      ///
-     /// Get user sessions list by its unique ID.
+     /// Get the user sessions list by its unique ID.
      ///
     Future<Response> getSessions({@required String userId}) {
         final String path = '/users/{userId}/sessions'.replaceAll(RegExp('{userId}'), userId);
@@ -139,7 +156,7 @@ class Users extends Service {
 
      /// Delete User Sessions
      ///
-     /// Delete all user sessions by its unique ID.
+     /// Delete all user's sessions by using the user's unique ID.
      ///
     Future<Response> deleteSessions({@required String userId}) {
         final String path = '/users/{userId}/sessions'.replaceAll(RegExp('{userId}'), userId);
@@ -156,7 +173,7 @@ class Users extends Service {
 
      /// Delete User Session
      ///
-     /// Delete user sessions by its unique ID.
+     /// Delete a user sessions by its unique ID.
      ///
     Future<Response> deleteSession({@required String userId, @required String sessionId}) {
         final String path = '/users/{userId}/sessions/{sessionId}'.replaceAll(RegExp('{userId}'), userId).replaceAll(RegExp('{sessionId}'), sessionId);
@@ -173,7 +190,7 @@ class Users extends Service {
 
      /// Update User Status
      ///
-     /// Update user status by its unique ID.
+     /// Update the user status by its unique ID.
      ///
     Future<Response> updateStatus({@required String userId, @required String status}) {
         final String path = '/users/{userId}/status'.replaceAll(RegExp('{userId}'), userId);
