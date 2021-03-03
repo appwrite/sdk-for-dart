@@ -13,7 +13,7 @@ class Client {
         
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.3.0',
+            'x-sdk-version': 'appwrite:dart:0.3.1',
         };
 
         this.config = {};
@@ -86,7 +86,7 @@ class Client {
         try {
 
             if(headers['content-type'] == 'multipart/form-data') {
-                return http.request(path, data: FormData.fromMap(params), options: options);
+                return await http.request(path, data: FormData.fromMap(params), options: options);
             }
 
             if (method == HttpMethod.get) {
@@ -94,9 +94,9 @@ class Client {
                 params[key] = params[key].toString();
                 }});
                 
-                return http.get(path, queryParameters: params, options: options);
+                return await http.get(path, queryParameters: params, options: options);
             } else {
-                return http.request(path, data: params, options: options);
+                return await http.request(path, data: params, options: options);
             }
         } on DioError catch(e) {
           if(e.response == null) {
