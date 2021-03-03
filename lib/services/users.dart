@@ -1,9 +1,5 @@
+part of dart_appwrite;
 
-import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
-import "../client.dart";
-import '../enums.dart';
-import "../service.dart";
 
 class Users extends Service {
     Users(Client client): super(client);

@@ -1,8 +1,4 @@
-import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:dio/adapter.dart';
-
-import 'enums.dart';
+part of dart_appwrite;
 
 class Client {
     String endPoint;
@@ -17,7 +13,7 @@ class Client {
         
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.2.0',
+            'x-sdk-version': 'appwrite:dart:0.3.0',
         };
 
         this.config = {};
@@ -70,7 +66,7 @@ class Client {
         }
     }
 
-    Future<Response> call(HttpMethod method, {String path = '', Map<String, String> headers = const {}, Map<String, dynamic> params = const {}}) async {
+    Future<Response> call(HttpMethod method, {String path = '', Map<String, String> headers = const {}, Map<String, dynamic> params = const {}, ResponseType responseType}) async {
         if(selfSigned) {
             // Allow self signed requests
             (http.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
@@ -85,20 +81,30 @@ class Client {
         Options options = Options(
             headers: {...this.headers, ...headers},
             method: method.name(),
+            responseType: responseType
         );
+        try {
 
-        if(headers['content-type'] == 'multipart/form-data') {
-            return http.request(path, data: FormData.fromMap(params), options: options);
-        }
+            if(headers['content-type'] == 'multipart/form-data') {
+                return http.request(path, data: FormData.fromMap(params), options: options);
+            }
 
-        if (method == HttpMethod.get) {
-            params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-              params[key] = params[key].toString();
-            }});
-            
-            return http.get(path, queryParameters: params, options: options);
-        } else {
-            return http.request(path, data: params, options: options);
+            if (method == HttpMethod.get) {
+                params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
+                params[key] = params[key].toString();
+                }});
+                
+                return http.get(path, queryParameters: params, options: options);
+            } else {
+                return http.request(path, data: params, options: options);
+            }
+        } on DioError catch(e) {
+          if(e.response == null) {
+            throw AppwriteException(e.message);
+          }
+          throw AppwriteException(e.response.data['message'],e.response.data['code'], e.response.data);
+        } catch(e) {
+          throw AppwriteException(e.message);
         }
     }
 }

@@ -1,4 +1,4 @@
-import 'client.dart';
+part of dart_appwrite;
 
 class Service {
   final Client client;
