@@ -13,7 +13,7 @@ class Client {
         
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.3.1',
+            'x-sdk-version': 'appwrite:dart:0.4.0',
         };
 
         this.config = {};
@@ -101,6 +101,14 @@ class Client {
         } on DioError catch(e) {
           if(e.response == null) {
             throw AppwriteException(e.message);
+          }
+          if(responseType == ResponseType.bytes) {
+            if(e.response.headers['content-type'].contains('application/json')) {
+              final res = json.decode(utf8.decode(e.response.data));
+              throw AppwriteException(res['message'],res['code'], e.response);
+            } else {
+              throw AppwriteException(e.message);
+            }
           }
           throw AppwriteException(e.response.data['message'],e.response.data['code'], e.response.data);
         } catch(e) {

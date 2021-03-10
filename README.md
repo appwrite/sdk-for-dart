@@ -23,7 +23,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  dart_appwrite: ^0.3.1
+  dart_appwrite: ^0.4.0
 ```
 
 You can install packages from the command line:
@@ -31,6 +31,7 @@ You can install packages from the command line:
 ```bash
 pub get dart_appwrite
 ```
+
 
 ## Contribution
 

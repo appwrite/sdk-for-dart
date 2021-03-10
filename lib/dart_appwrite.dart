@@ -1,6 +1,7 @@
 library dart_appwrite;
 
 import 'dart:io';
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:dio/adapter.dart';
