@@ -1,13 +1,14 @@
 # Appwrite Dart SDK
 
-[![pub package](https://img.shields.io/pub/v/dart_appwrite.svg)](https://pub.dartlang.org/packages/dart_appwrite)
-![License](https://img.shields.io/github/license/appwrite/sdk-for-dart.svg?v=1)
-![Version](https://img.shields.io/badge/api%20version-0.7.0-blue.svg?v=1)
+[![pub package](https://img.shields.io/pub/v/dart_appwrite.svg?style=flat-square)](https://pub.dartlang.org/packages/dart_appwrite)
+![License](https://img.shields.io/github/license/appwrite/sdk-for-dart.svg?style=flat-square)
+![Version](https://img.shields.io/badge/api%20version-0.7.0-blue.svg?style=flat-square)
+[![Twitter Account](https://img.shields.io/twitter/follow/appwrite_io?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite_io)
+[![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
-**This SDK is compatible with Appwrite server version 0.7.0. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-dart/releases).**
+**This SDK is compatible with Appwrite server version 0.7.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-dart/releases).**
 
- > This is the Dart SDK for integrating with Appwrite from your Dart server-side code.
-                            If you're looking for the Flutter SDK you should check [appwrite/sdk-for-flutter](https://github.com/appwrite/sdk-for-flutter)
+ > This is the Dart SDK for integrating with Appwrite from your Dart server-side code. If you're looking for the Flutter SDK you should check [appwrite/sdk-for-flutter](https://github.com/appwrite/sdk-for-flutter)
 
 Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way.
                         Use the Dart SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools.
@@ -23,7 +24,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  dart_appwrite: ^0.4.0
+  dart_appwrite: ^0.5.0-dev.1
 ```
 
 You can install packages from the command line:
@@ -31,6 +32,39 @@ You can install packages from the command line:
 ```bash
 pub get dart_appwrite
 ```
+
+
+## Getting Started
+
+### Initialize & Make API Request
+Once you add the dependencies, its extremely easy to get started with the SDK; All you need to do is import the package in your code, set your Appwrite credentials, and start making API calls. Below is a simple example:
+
+```dart
+import 'package:dart_appwrite/dart_appwrite.dart';
+
+void main() async {
+  Client client = Client();
+    .setEndpoint('http://[HOSTNAME_OR_IP]/v1') // Make sure your endpoint is accessible
+    .setProject('5ff3379a01d25') // Your project ID
+    .setKey('cd868c7af8bdc893b4...93b7535db89')
+
+  Users users = Users(client);
+
+  try {
+    final response = await users.create(email: ‘email@example.com’,password: ‘password’, name: ‘name’);
+    print(response.data);
+  } on AppwriteException catch(e) {
+    print(e.message);
+  }
+}
+```
+
+### Learn more
+You can use followng resources to learn more and get help
+- 🚀 [Getting Started Tutorial](https://appwrite.io/docs/getting-started-for-server)
+- 📜 [Appwrite Docs](https://appwrite.io/docs)
+- 💬 [Discord Community](https://appwrite.io/discord)
+- 🚂 [Appwrite Dart Playground](https://github.com/appwrite/playground-for-dart)
 
 
 ## Contribution
