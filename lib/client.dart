@@ -13,7 +13,8 @@ class Client {
         
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.5.0-dev.1',
+            'x-sdk-version': 'appwrite:dart:0.6.0',
+            'X-Appwrite-Response-Format':'0.8.0',
         };
 
         this.config = {};
@@ -34,6 +35,13 @@ class Client {
     Client setKey(value) {
         config['key'] = value;
         addHeader('X-Appwrite-Key', value);
+        return this;
+    }
+
+     /// Your secret JSON Web Token
+    Client setJWT(value) {
+        config['jWT'] = value;
+        addHeader('X-Appwrite-JWT', value);
         return this;
     }
 
@@ -101,14 +109,18 @@ class Client {
             throw AppwriteException(e.message);
           }
           if(responseType == ResponseType.bytes) {
-            if(e.response!.headers['content-type']?.contains('application/json') ?? false) {
+            if ((e.response!.headers.value('content-type') ?? '').contains('application/json')) {
               final res = json.decode(utf8.decode(e.response!.data));
               throw AppwriteException(res['message'],res['code'], res);
             } else {
               throw AppwriteException(e.message);
             }
           }
-          throw AppwriteException(e.response?.data['message'],e.response?.data['code'], e.response?.data);
+          if ((e.response!.headers.value('content-type') ?? '').contains('application/json')) {
+            throw AppwriteException(e.response!.data['message'],e.response!.data['code'], e.response!.data);
+          } else {
+            throw AppwriteException(e.response!.data,e.response!.statusCode, e.response!.data);
+          }
         } catch(e) {
           throw AppwriteException(e.toString());
         }

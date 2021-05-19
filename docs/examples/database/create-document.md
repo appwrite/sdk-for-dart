@@ -13,8 +13,6 @@ void main() { // Init SDK
   Future result = database.createDocument(
     collectionId: '[COLLECTION_ID]',
     data: {},
-    read: [],
-    write: [],
   );
 
   result

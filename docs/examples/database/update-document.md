@@ -14,8 +14,6 @@ void main() { // Init SDK
     collectionId: '[COLLECTION_ID]',
     documentId: '[DOCUMENT_ID]',
     data: {},
-    read: [],
-    write: [],
   );
 
   result

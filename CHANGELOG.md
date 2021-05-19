@@ -1,3 +1,13 @@
+## 0.6.0
+
+- Upgraded to Null-safety, minimum Dart SDK required 2.12.0
+- Upgraded all underlying dependencies to null safe version
+- BREAKING Renamed users.deleteUser to users.delete
+- BREAKING Renamed parameter inviteId to membershipId on teams.updateMembershipStatus, teams.deleteMembership
+- JWT Support client.setJWT(&#039;JWT_GENERATED_IN_CLIENT&#039;)
+- [Update membership roles](https://appwrite.io/docs/client/teams?sdk=dart#teamsUpdateMembershipRoles)
+- New awesome image preview features, supports borderRadius, borderColor, borderWidth 
+
 ## 0.5.0-dev.1
 
 - Upgraded to Null-safety, minimum Dart SDK required 2.12.0

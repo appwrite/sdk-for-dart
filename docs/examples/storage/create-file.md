@@ -13,8 +13,6 @@ void main() { // Init SDK
 
   Future result = storage.createFile(
     file: await MultipartFile.fromFile('./path-to-files/image.jpg', 'image.jpg'),
-    read: [],
-    write: [],
   );
 
   result

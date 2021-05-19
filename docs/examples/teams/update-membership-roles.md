@@ -10,9 +10,10 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = teams.deleteMembership(
+  Future result = teams.updateMembershipRoles(
     teamId: '[TEAM_ID]',
     membershipId: '[MEMBERSHIP_ID]',
+    roles: [],
   );
 
   result

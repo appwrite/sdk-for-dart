@@ -13,8 +13,6 @@ void main() { // Init SDK
   Future result = database.updateCollection(
     collectionId: '[COLLECTION_ID]',
     name: '[NAME]',
-    read: [],
-    write: [],
   );
 
   result
