@@ -1,7 +1,3 @@
-## 0.6.1
-
-- Fix for image preview param types
-
 ## 0.6.0
 
 - Upgraded to Null-safety, minimum Dart SDK required 2.12.0
