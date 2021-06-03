@@ -9,14 +9,14 @@ class Functions extends Service {
      /// Get a list of all the project's functions. You can use the query params to
      /// filter your results.
      ///
-    Future<Response> list({String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> list({String? search, int? limit, int? offset, OrderType? orderType}) {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'orderType': orderType.name(),
+            'orderType': orderType?.name(),
         };
 
         final Map<String, String> headers = {
@@ -32,7 +32,7 @@ class Functions extends Service {
      /// [permissions](/docs/permissions) to allow different project users or team
      /// with access to execute the function using the client API.
      ///
-    Future<Response> create({required String name, required List execute, required String env, Map vars = const {}, List events = const [], String schedule = '', int timeout = 15}) {
+    Future<Response> create({required String name, required List execute, required String env, Map? vars, List? events, String? schedule, int? timeout}) {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -73,7 +73,7 @@ class Functions extends Service {
      ///
      /// Update function by its unique ID.
      ///
-    Future<Response> update({required String functionId, required String name, required List execute, Map vars = const {}, List events = const [], String schedule = '', int timeout = 15}) {
+    Future<Response> update({required String functionId, required String name, required List execute, Map? vars, List? events, String? schedule, int? timeout}) {
         final String path = '/functions/{functionId}'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -116,14 +116,14 @@ class Functions extends Service {
      /// return a list of all of the project's executions. [Learn more about
      /// different API modes](/docs/admin).
      ///
-    Future<Response> listExecutions({required String functionId, String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> listExecutions({required String functionId, String? search, int? limit, int? offset, OrderType? orderType}) {
         final String path = '/functions/{functionId}/executions'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'orderType': orderType.name(),
+            'orderType': orderType?.name(),
         };
 
         final Map<String, String> headers = {
@@ -140,7 +140,7 @@ class Functions extends Service {
      /// updates on the current execution status. Once this endpoint is called, your
      /// function execution process will start asynchronously.
      ///
-    Future<Response> createExecution({required String functionId, String data = ''}) {
+    Future<Response> createExecution({required String functionId, String? data}) {
         final String path = '/functions/{functionId}/executions'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
@@ -196,14 +196,14 @@ class Functions extends Service {
      /// Get a list of all the project's code tags. You can use the query params to
      /// filter your results.
      ///
-    Future<Response> listTags({required String functionId, String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> listTags({required String functionId, String? search, int? limit, int? offset, OrderType? orderType}) {
         final String path = '/functions/{functionId}/tags'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'orderType': orderType.name(),
+            'orderType': orderType?.name(),
         };
 
         final Map<String, String> headers = {

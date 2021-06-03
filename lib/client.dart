@@ -82,6 +82,12 @@ class Client {
             };
         }
 
+        params.keys.forEach((key) {
+          if (params[key] == null) {
+            params.remove(key);
+          }
+        });
+
         // Origin is hardcoded for testing
         Options options = Options(
             headers: {...this.headers!, ...headers},

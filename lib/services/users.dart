@@ -9,14 +9,14 @@ class Users extends Service {
      /// Get a list of all the project's users. You can use the query params to
      /// filter your results.
      ///
-    Future<Response> list({String search = '', int limit = 25, int offset = 0, OrderType orderType = OrderType.asc}) {
+    Future<Response> list({String? search, int? limit, int? offset, OrderType? orderType}) {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'orderType': orderType.name(),
+            'orderType': orderType?.name(),
         };
 
         final Map<String, String> headers = {
@@ -30,7 +30,7 @@ class Users extends Service {
      ///
      /// Create a new user.
      ///
-    Future<Response> create({required String email, required String password, String name = ''}) {
+    Future<Response> create({required String email, required String password, String? name}) {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
