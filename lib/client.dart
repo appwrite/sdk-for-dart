@@ -13,8 +13,8 @@ class Client {
         
         this.headers = {
             'content-type': 'application/json',
-            'x-sdk-version': 'appwrite:dart:0.6.3',
-            'X-Appwrite-Response-Format':'0.8.0',
+            'x-sdk-version': 'appwrite:dart:0.7.0',
+            'X-Appwrite-Response-Format':'0.9.0',
         };
 
         this.config = {};
@@ -82,7 +82,9 @@ class Client {
             };
         }
 
-        params.removeWhere((key,value) => value == null);
+        if(params.isNotEmpty) {
+            params.removeWhere((key,value) => value == null);
+        }
 
         // Origin is hardcoded for testing
         Options options = Options(

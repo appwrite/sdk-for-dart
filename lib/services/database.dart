@@ -11,7 +11,11 @@ class Database extends Service {
      /// of the project's collections. [Learn more about different API
      /// modes](/docs/admin).
      ///
-    Future<Response> listCollections({String? search, int? limit, int? offset, OrderType? orderType}) {
+    Future<Response> listCollections({String? search
+, int? limit
+, int? offset
+, String? orderType
+}) {
         final String path = '/database/collections';
 
         final Map<String, dynamic> params = {
@@ -32,7 +36,11 @@ class Database extends Service {
      ///
      /// Create a new Collection.
      ///
-    Future<Response> createCollection({required String name, required List read, required List write, required List rules}) {
+    Future<Response> createCollection({required String name
+, required List read
+, required List write
+, required List rules
+}) {
         final String path = '/database/collections';
 
         final Map<String, dynamic> params = {
@@ -54,7 +62,8 @@ class Database extends Service {
      /// Get a collection by its unique ID. This endpoint response returns a JSON
      /// object with the collection metadata.
      ///
-    Future<Response> getCollection({required String collectionId}) {
+    Future<Response> getCollection({required String collectionId
+}) {
         final String path = '/database/collections/{collectionId}'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -71,7 +80,12 @@ class Database extends Service {
      ///
      /// Update a collection by its unique ID.
      ///
-    Future<Response> updateCollection({required String collectionId, required String name, List? read, List? write, List? rules}) {
+    Future<Response> updateCollection({required String collectionId
+, required String name
+, List? read
+, List? write
+, List? rules
+}) {
         final String path = '/database/collections/{collectionId}'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -93,7 +107,8 @@ class Database extends Service {
      /// Delete a collection by its unique ID. Only users with write permissions
      /// have access to delete this resource.
      ///
-    Future<Response> deleteCollection({required String collectionId}) {
+    Future<Response> deleteCollection({required String collectionId
+}) {
         final String path = '/database/collections/{collectionId}'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -113,7 +128,15 @@ class Database extends Service {
      /// of the project's documents. [Learn more about different API
      /// modes](/docs/admin).
      ///
-    Future<Response> listDocuments({required String collectionId, List? filters, int? limit, int? offset, String? orderField, OrderType? orderType, String? orderCast, String? search}) {
+    Future<Response> listDocuments({required String collectionId
+, List? filters
+, int? limit
+, int? offset
+, String? orderField
+, String? orderType
+, String? orderCast
+, String? search
+}) {
         final String path = '/database/collections/{collectionId}/documents'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -140,7 +163,14 @@ class Database extends Service {
      /// integration](/docs/server/database#databaseCreateCollection) API or
      /// directly from your database console.
      ///
-    Future<Response> createDocument({required String collectionId, required Map data, List? read, List? write, String? parentDocument, String? parentProperty, String? parentPropertyType}) {
+    Future<Response> createDocument({required String collectionId
+, required Map data
+, List? read
+, List? write
+, String? parentDocument
+, String? parentProperty
+, String? parentPropertyType
+}) {
         final String path = '/database/collections/{collectionId}/documents'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
@@ -164,7 +194,9 @@ class Database extends Service {
      /// Get a document by its unique ID. This endpoint response returns a JSON
      /// object with the document data.
      ///
-    Future<Response> getDocument({required String collectionId, required String documentId}) {
+    Future<Response> getDocument({required String collectionId
+, required String documentId
+}) {
         final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
 
         final Map<String, dynamic> params = {
@@ -182,7 +214,12 @@ class Database extends Service {
      /// Update a document by its unique ID. Using the patch method you can pass
      /// only specific fields that will get updated.
      ///
-    Future<Response> updateDocument({required String collectionId, required String documentId, required Map data, List? read, List? write}) {
+    Future<Response> updateDocument({required String collectionId
+, required String documentId
+, required Map data
+, List? read
+, List? write
+}) {
         final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
 
         final Map<String, dynamic> params = {
@@ -204,7 +241,9 @@ class Database extends Service {
      /// documents, its attributes and relations to other documents. Child documents
      /// **will not** be deleted.
      ///
-    Future<Response> deleteDocument({required String collectionId, required String documentId}) {
+    Future<Response> deleteDocument({required String collectionId
+, required String documentId
+}) {
         final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
 
         final Map<String, dynamic> params = {
