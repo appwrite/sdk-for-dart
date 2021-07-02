@@ -18,7 +18,7 @@ class Database extends Service {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'orderType': orderType?.name(),
+            'orderType': orderType,
         };
 
         final Map<String, String> headers = {
@@ -121,7 +121,7 @@ class Database extends Service {
             'limit': limit,
             'offset': offset,
             'orderField': orderField,
-            'orderType': orderType?.name(),
+            'orderType': orderType,
             'orderCast': orderCast,
             'search': search,
         };
