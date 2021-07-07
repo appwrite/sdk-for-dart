@@ -9,14 +9,14 @@ class Users extends Service {
      /// Get a list of all the project's users. You can use the query params to
      /// filter your results.
      ///
-    Future<Response> list({String? search, int? limit, int? offset, OrderType? orderType}) {
+    Future<Response> list({String? search, int? limit, int? offset, String? orderType}) {
         final String path = '/users';
 
         final Map<String, dynamic> params = {
             'search': search,
             'limit': limit,
             'offset': offset,
-            'orderType': orderType?.name(),
+            'orderType': orderType,
         };
 
         final Map<String, String> headers = {
@@ -193,6 +193,24 @@ class Users extends Service {
 
         final Map<String, dynamic> params = {
             'status': status,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+        return client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+    }
+
+     /// Update Email Verification
+     ///
+     /// Update the user email verification status by its unique ID.
+     ///
+    Future<Response> updateVerification({required String userId, required bool emailVerification}) {
+        final String path = '/users/{userId}/verification'.replaceAll(RegExp('{userId}'), userId);
+
+        final Map<String, dynamic> params = {
+            'emailVerification': emailVerification,
         };
 
         final Map<String, String> headers = {

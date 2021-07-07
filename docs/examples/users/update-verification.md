@@ -2,7 +2,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 
 void main() { // Init SDK
   Client client = Client();
-  Functions functions = Functions(client);
+  Users users = Users(client);
 
   client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -10,10 +10,9 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = functions.create(
-    name: '[NAME]',
-    execute: [],
-    runtime: 'java-11.0',
+  Future result = users.updateVerification(
+    userId: '[USER_ID]',
+    emailVerification: false,
   );
 
   result

@@ -250,6 +250,24 @@ class Account extends Service {
         return client.call(HttpMethod.delete, path: path, params: params, headers: headers);
     }
 
+     /// Get Session By ID
+     ///
+     /// Use this endpoint to get a logged in user's session using a Session ID.
+     /// Inputting 'current' will return the current session being used.
+     ///
+    Future<Response> getSession({required String sessionId}) {
+        final String path = '/account/sessions/{sessionId}'.replaceAll(RegExp('{sessionId}'), sessionId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+    }
+
      /// Delete Account Session
      ///
      /// Use this endpoint to log out the currently logged in user from all their
