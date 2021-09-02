@@ -1,3 +1,10 @@
+## 1.0.0
+- Support for Appwrite 0.10
+- Refactored for better cross platform support
+- Exception implements `toString()` to get proper error message for unhandled exceptions
+- **Breaking** - Signature for `MultipartFile` has changed as we have dropped Dio in favor of [http](https://pub.dev/packages/http) package. [Here is the new signature for MultipartFile](https://pub.dev/documentation/http/latest/http/MultipartFile-class.html)
+- **Breaking** - Signature for `Response` has changed, now it only exposes the data.
+
 ## 0.7.0
 - Support for Appwrite 0.9
 - Breaking - removed order type enum, now you should pass string &#039;ASC&#039; or &#039;DESC&#039;
