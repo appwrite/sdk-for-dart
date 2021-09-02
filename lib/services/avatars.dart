@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Avatars extends Service {
     Avatars(Client client): super(client);
 

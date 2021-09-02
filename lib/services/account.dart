@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Account extends Service {
     Account(Client client): super(client);
 
@@ -185,7 +184,7 @@ class Account extends Service {
         return client.call(HttpMethod.post, path: path, params: params, headers: headers);
     }
 
-     /// Complete Password Recovery
+     /// Create Password Recovery (confirmation)
      ///
      /// Use this endpoint to complete the user account password reset. Both the
      /// **userId** and **secret** arguments will be passed as query parameters to
@@ -319,7 +318,7 @@ class Account extends Service {
         return client.call(HttpMethod.post, path: path, params: params, headers: headers);
     }
 
-     /// Complete Email Verification
+     /// Create Email Verification (confirmation)
      ///
      /// Use this endpoint to complete the user email verification process. Use both
      /// the **userId** and **secret** parameters that were attached to your app URL

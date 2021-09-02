@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Locale extends Service {
     Locale(Client client): super(client);
 

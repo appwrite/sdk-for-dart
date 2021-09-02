@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Health extends Service {
     Health(Client client): super(client);
 

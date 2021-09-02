@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Functions extends Service {
     Functions(Client client): super(client);
 
@@ -226,7 +225,7 @@ class Functions extends Service {
      /// 
      /// Use the "command" param to set the entry point used to execute your code.
      ///
-    Future<Response> createTag({required String functionId, required String command, required MultipartFile code}) {
+    Future<Response> createTag({required String functionId, required String command, required http.MultipartFile code}) {
         final String path = '/functions/{functionId}/tags'.replaceAll(RegExp('{functionId}'), functionId);
 
         final Map<String, dynamic> params = {

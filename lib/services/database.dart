@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Database extends Service {
     Database(Client client): super(client);
 

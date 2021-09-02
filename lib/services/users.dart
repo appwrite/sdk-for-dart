@@ -1,6 +1,5 @@
 part of dart_appwrite;
 
-
 class Users extends Service {
     Users(Client client): super(client);
 
@@ -80,6 +79,24 @@ class Users extends Service {
         return client.call(HttpMethod.delete, path: path, params: params, headers: headers);
     }
 
+     /// Update Email
+     ///
+     /// Update the user email by its unique ID.
+     ///
+    Future<Response> updateEmail({required String userId, required String email}) {
+        final String path = '/users/{userId}/email'.replaceAll(RegExp('{userId}'), userId);
+
+        final Map<String, dynamic> params = {
+            'email': email,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+        return client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+    }
+
      /// Get User Logs
      ///
      /// Get a user activity logs list by its unique ID.
@@ -95,6 +112,42 @@ class Users extends Service {
         };
 
         return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+    }
+
+     /// Update Name
+     ///
+     /// Update the user name by its unique ID.
+     ///
+    Future<Response> updateName({required String userId, required String name}) {
+        final String path = '/users/{userId}/name'.replaceAll(RegExp('{userId}'), userId);
+
+        final Map<String, dynamic> params = {
+            'name': name,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+        return client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+    }
+
+     /// Update Password
+     ///
+     /// Update the user password by its unique ID.
+     ///
+    Future<Response> updatePassword({required String userId, required String password}) {
+        final String path = '/users/{userId}/password'.replaceAll(RegExp('{userId}'), userId);
+
+        final Map<String, dynamic> params = {
+            'password': password,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+        return client.call(HttpMethod.patch, path: path, params: params, headers: headers);
     }
 
      /// Get User Preferences
