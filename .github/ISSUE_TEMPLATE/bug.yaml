@@ -32,18 +32,16 @@ body:
       description: "What did actually happen? Add screenshots, if applicable."
       placeholder: "It actually ..."
   - type: dropdown
-    id: sdk-dart-version
+    id: appwrite-version
     attributes:
-      label: "🎲 Appwrite Dart SDK version"
-      description: "What version of Appwrite Dart SDK are you running?"
+      label: "🎲 Appwrite version"
+      description: "What version of Appwrite are you running?"
       options:
-        - Version 1.0.x
+        - Version 0.10.x
+        - Version 0.9.x
+        - Version 0.8.x
         - Version 0.7.x
         - Version 0.6.x
-        - Version 0.5.x
-        - Version 0.4.x
-        - Version 0.3.x
-        - Version 0.2.x
         - Different version (specify in environment)
     validations:
       required: true
