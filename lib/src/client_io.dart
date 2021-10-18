@@ -36,7 +36,7 @@ class ClientIO extends ClientBase with ClientMixin {
     this._headers = {
       'content-type': 'application/json',
       'x-sdk-version': 'appwrite:dart:1.0.2',
-      'X-Appwrite-Response-Format' : '0.10.0',
+      'X-Appwrite-Response-Format' : '0.11.0',
     };
 
     this.config = {};
