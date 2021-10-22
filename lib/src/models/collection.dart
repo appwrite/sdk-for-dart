@@ -26,9 +26,9 @@ class Collection {
 
     factory Collection.fromMap(Map<String, dynamic> map) {
         return Collection(
-            $id: map['\$id'],
+            $id: map['\$id'].toString(),
             $permissions: Permissions.fromMap(map['\$permissions']),
-            name: map['name'],
+            name: map['name'].toString(),
             dateCreated: map['dateCreated'],
             dateUpdated: map['dateUpdated'],
             rules: List<Rule>.from(map['rules'].map((p) => Rule.fromMap(p))),

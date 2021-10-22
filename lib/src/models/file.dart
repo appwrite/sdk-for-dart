@@ -29,12 +29,12 @@ class File {
 
     factory File.fromMap(Map<String, dynamic> map) {
         return File(
-            $id: map['\$id'],
+            $id: map['\$id'].toString(),
             $permissions: Permissions.fromMap(map['\$permissions']),
-            name: map['name'],
+            name: map['name'].toString(),
             dateCreated: map['dateCreated'],
-            signature: map['signature'],
-            mimeType: map['mimeType'],
+            signature: map['signature'].toString(),
+            mimeType: map['mimeType'].toString(),
             sizeOriginal: map['sizeOriginal'],
         );
     }

@@ -19,8 +19,8 @@ class Document {
 
     factory Document.fromMap(Map<String, dynamic> map) {
         return Document(
-            $id: map['\$id'],
-            $collection: map['\$collection'],
+            $id: map['\$id'].toString(),
+            $collection: map['\$collection'].toString(),
             $permissions: Permissions.fromMap(map['\$permissions']),
             data: map,
         );

@@ -5,7 +5,7 @@ class XFunction {
     /// Function ID.
     final String $id;
     /// Function permissions.
-    final Permissions $permissions;
+    final FuncPermissions $permissions;
     /// Function name.
     final String name;
     /// Function creation date in Unix timestamp.
@@ -50,17 +50,17 @@ class XFunction {
 
     factory XFunction.fromMap(Map<String, dynamic> map) {
         return XFunction(
-            $id: map['\$id'],
-            $permissions: Permissions.fromMap(map['\$permissions']),
-            name: map['name'],
+            $id: map['\$id'].toString(),
+            $permissions: FuncPermissions.fromMap(map['\$permissions']),
+            name: map['name'].toString(),
             dateCreated: map['dateCreated'],
             dateUpdated: map['dateUpdated'],
-            status: map['status'],
-            runtime: map['runtime'],
-            tag: map['tag'],
-            vars: map['vars'],
+            status: map['status'].toString(),
+            runtime: map['runtime'].toString(),
+            tag: map['tag'].toString(),
+            vars: map['vars'].toString(),
             events: map['events'],
-            schedule: map['schedule'],
+            schedule: map['schedule'].toString(),
             scheduleNext: map['scheduleNext'],
             schedulePrevious: map['schedulePrevious'],
             timeout: map['timeout'],

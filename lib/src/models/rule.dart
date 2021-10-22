@@ -35,12 +35,12 @@ class Rule {
 
     factory Rule.fromMap(Map<String, dynamic> map) {
         return Rule(
-            $id: map['\$id'],
-            $collection: map['\$collection'],
-            type: map['type'],
-            key: map['key'],
-            label: map['label'],
-            xdefault: map['default'],
+            $id: map['\$id'].toString(),
+            $collection: map['\$collection'].toString(),
+            type: map['type'].toString(),
+            key: map['key'].toString(),
+            label: map['label'].toString(),
+            xdefault: map['default'].toString(),
             array: map['array'],
             xrequired: map['required'],
             list: map['list'],

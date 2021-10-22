@@ -37,3 +37,4 @@ part 'src/models/continent.dart';
 part 'src/models/language.dart';
 part 'src/models/currency.dart';
 part 'src/models/phone.dart';
+part 'src/models/func_permissions.dart';
