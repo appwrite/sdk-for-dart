@@ -25,7 +25,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     _httpClient = BrowserClient();
     _headers = {
       'content-type': 'application/json',
-      'x-sdk-version': 'appwrite:dart:1.0.2',
+      'x-sdk-version': 'appwrite:dart:2.0.0',
       'X-Appwrite-Response-Format' : '0.11.0',
     };
 
