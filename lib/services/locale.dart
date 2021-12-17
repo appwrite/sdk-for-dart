@@ -12,7 +12,7 @@ class Locale extends Service {
      /// 
      /// ([IP Geolocation by DB-IP](https://db-ip.com))
      ///
-    Future<Response> get() {
+     Future<models.Locale> get() async {
         final String path = '/locale';
 
         final Map<String, dynamic> params = {
@@ -22,7 +22,8 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.Locale.fromMap(res.data);
     }
 
      /// List Continents
@@ -30,7 +31,7 @@ class Locale extends Service {
      /// List of all continents. You can use the locale header to get the data in a
      /// supported language.
      ///
-    Future<Response> getContinents() {
+     Future<models.ContinentList> getContinents() async {
         final String path = '/locale/continents';
 
         final Map<String, dynamic> params = {
@@ -40,7 +41,8 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.ContinentList.fromMap(res.data);
     }
 
      /// List Countries
@@ -48,7 +50,7 @@ class Locale extends Service {
      /// List of all countries. You can use the locale header to get the data in a
      /// supported language.
      ///
-    Future<Response> getCountries() {
+     Future<models.CountryList> getCountries() async {
         final String path = '/locale/countries';
 
         final Map<String, dynamic> params = {
@@ -58,7 +60,8 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.CountryList.fromMap(res.data);
     }
 
      /// List EU Countries
@@ -66,7 +69,7 @@ class Locale extends Service {
      /// List of all countries that are currently members of the EU. You can use the
      /// locale header to get the data in a supported language.
      ///
-    Future<Response> getCountriesEU() {
+     Future<models.CountryList> getCountriesEU() async {
         final String path = '/locale/countries/eu';
 
         final Map<String, dynamic> params = {
@@ -76,7 +79,8 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.CountryList.fromMap(res.data);
     }
 
      /// List Countries Phone Codes
@@ -84,7 +88,7 @@ class Locale extends Service {
      /// List of all countries phone codes. You can use the locale header to get the
      /// data in a supported language.
      ///
-    Future<Response> getCountriesPhones() {
+     Future<models.PhoneList> getCountriesPhones() async {
         final String path = '/locale/countries/phones';
 
         final Map<String, dynamic> params = {
@@ -94,7 +98,8 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.PhoneList.fromMap(res.data);
     }
 
      /// List Currencies
@@ -103,7 +108,7 @@ class Locale extends Service {
      /// decimal digits for all major and minor currencies. You can use the locale
      /// header to get the data in a supported language.
      ///
-    Future<Response> getCurrencies() {
+     Future<models.CurrencyList> getCurrencies() async {
         final String path = '/locale/currencies';
 
         final Map<String, dynamic> params = {
@@ -113,7 +118,8 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.CurrencyList.fromMap(res.data);
     }
 
      /// List Languages
@@ -121,7 +127,7 @@ class Locale extends Service {
      /// List of all languages classified by ISO 639-1 including 2-letter code, name
      /// in English, and name in the respective language.
      ///
-    Future<Response> getLanguages() {
+     Future<models.LanguageList> getLanguages() async {
         final String path = '/locale/languages';
 
         final Map<String, dynamic> params = {
@@ -131,6 +137,7 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
-        return client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.LanguageList.fromMap(res.data);
     }
 }
