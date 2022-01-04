@@ -2,7 +2,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 
 void main() { // Init SDK
   Client client = Client();
-  Health health = Health(client);
+  Database database = Database(client);
 
   client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -10,7 +10,11 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = health.getQueueTasks();
+  Future result = database.createIntegerAttribute(
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    required: false,
+  );
 
   result
     .then((response) {

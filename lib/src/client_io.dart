@@ -25,7 +25,7 @@ class ClientIO extends ClientBase with ClientMixin {
   late HttpClient _nativeClient;
 
   ClientIO({
-    String endPoint = 'https://appwrite.io/v1',
+    String endPoint = 'https://HOSTNAME/v1',
     bool selfSigned = false,
   }) : _endPoint = endPoint {
     _nativeClient = new HttpClient()
@@ -36,7 +36,7 @@ class ClientIO extends ClientBase with ClientMixin {
     this._headers = {
       'content-type': 'application/json',
       'x-sdk-version': 'appwrite:dart:2.0.0',
-      'X-Appwrite-Response-Format' : '0.11.0',
+      'X-Appwrite-Response-Format' : '0.12.0',
     };
 
     this.config = {};

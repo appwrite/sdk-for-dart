@@ -8,8 +8,8 @@ class User {
     final String name;
     /// User registration date in Unix timestamp.
     final int registration;
-    /// User status. 0 for Unactivated, 1 for active and 2 is blocked.
-    final int status;
+    /// User status. Pass `true` for enabled and `false` for disabled.
+    final bool status;
     /// Unix timestamp of the most recent password update
     final int passwordUpdate;
     /// User email address.

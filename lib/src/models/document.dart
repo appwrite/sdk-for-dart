@@ -6,14 +6,17 @@ class Document {
     final String $id;
     /// Collection ID.
     final String $collection;
-    /// Document permissions.
-    final Permissions $permissions;
+    /// Document read permissions.
+    final List $read;
+    /// Document write permissions.
+    final List $write;
     final Map<String, dynamic> data;
 
     Document({
         required this.$id,
         required this.$collection,
-        required this.$permissions,
+        required this.$read,
+        required this.$write,
         required this.data,
     });
 
@@ -21,7 +24,8 @@ class Document {
         return Document(
             $id: map['\$id'].toString(),
             $collection: map['\$collection'].toString(),
-            $permissions: Permissions.fromMap(map['\$permissions']),
+            $read: map['\$read'],
+            $write: map['\$write'],
             data: map,
         );
     }
@@ -30,7 +34,8 @@ class Document {
         return {
             "\$id": $id,
             "\$collection": $collection,
-            "\$permissions": $permissions.toMap(),
+            "\$read": $read,
+            "\$write": $write,
             "data": data,
         };
     }
