@@ -55,7 +55,7 @@ class Users extends Service {
      /// Get a user by its unique ID.
      ///
      Future<models.User> get({required String userId}) async {
-        final String path = '/users/{userId}'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
         };
@@ -73,7 +73,7 @@ class Users extends Service {
      /// Delete a user by its unique ID.
      ///
      Future delete({required String userId}) async {
-        final String path = '/users/{userId}'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
         };
@@ -91,7 +91,7 @@ class Users extends Service {
      /// Update the user email by its unique ID.
      ///
      Future<models.User> updateEmail({required String userId, required String email}) async {
-        final String path = '/users/{userId}/email'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/email'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
             'email': email,
@@ -110,7 +110,7 @@ class Users extends Service {
      /// Get the user activity logs list by its unique ID.
      ///
      Future<models.LogList> getLogs({required String userId, int? limit, int? offset}) async {
-        final String path = '/users/{userId}/logs'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/logs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
             'limit': limit,
@@ -130,7 +130,7 @@ class Users extends Service {
      /// Update the user name by its unique ID.
      ///
      Future<models.User> updateName({required String userId, required String name}) async {
-        final String path = '/users/{userId}/name'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/name'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
             'name': name,
@@ -149,7 +149,7 @@ class Users extends Service {
      /// Update the user password by its unique ID.
      ///
      Future<models.User> updatePassword({required String userId, required String password}) async {
-        final String path = '/users/{userId}/password'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/password'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
             'password': password,
@@ -168,7 +168,7 @@ class Users extends Service {
      /// Get the user preferences by its unique ID.
      ///
      Future<models.Preferences> getPrefs({required String userId}) async {
-        final String path = '/users/{userId}/prefs'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/prefs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
         };
@@ -187,7 +187,7 @@ class Users extends Service {
      /// specific settings you wish to update.
      ///
      Future<models.Preferences> updatePrefs({required String userId, required Map prefs}) async {
-        final String path = '/users/{userId}/prefs'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/prefs'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
             'prefs': prefs,
@@ -206,7 +206,7 @@ class Users extends Service {
      /// Get the user sessions list by its unique ID.
      ///
      Future<models.SessionList> getSessions({required String userId}) async {
-        final String path = '/users/{userId}/sessions'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/sessions'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
         };
@@ -224,7 +224,7 @@ class Users extends Service {
      /// Delete all user's sessions by using the user's unique ID.
      ///
      Future deleteSessions({required String userId}) async {
-        final String path = '/users/{userId}/sessions'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/sessions'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
         };
@@ -242,7 +242,7 @@ class Users extends Service {
      /// Delete a user sessions by its unique ID.
      ///
      Future deleteSession({required String userId, required String sessionId}) async {
-        final String path = '/users/{userId}/sessions/{sessionId}'.replaceAll('{userId}', userId).replaceAll('{sessionId}', sessionId);
+        final String path = '/users/{userId}/sessions/{sessionId}'.replaceAll(RegExp('{userId}'), userId).replaceAll(RegExp('{sessionId}'), sessionId);
 
         final Map<String, dynamic> params = {
         };
@@ -260,7 +260,7 @@ class Users extends Service {
      /// Update the user status by its unique ID.
      ///
      Future<models.User> updateStatus({required String userId, required bool status}) async {
-        final String path = '/users/{userId}/status'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/status'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
             'status': status,
@@ -279,7 +279,7 @@ class Users extends Service {
      /// Update the user email verification status by its unique ID.
      ///
      Future<models.User> updateVerification({required String userId, required bool emailVerification}) async {
-        final String path = '/users/{userId}/verification'.replaceAll('{userId}', userId);
+        final String path = '/users/{userId}/verification'.replaceAll(RegExp('{userId}'), userId);
 
         final Map<String, dynamic> params = {
             'emailVerification': emailVerification,

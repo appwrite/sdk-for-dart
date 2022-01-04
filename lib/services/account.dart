@@ -271,7 +271,7 @@ class Account extends Service {
      /// Inputting 'current' will return the current session being used.
      ///
      Future<models.Session> getSession({required String sessionId}) async {
-        final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
+        final String path = '/account/sessions/{sessionId}'.replaceAll(RegExp('{sessionId}'), sessionId);
 
         final Map<String, dynamic> params = {
         };
@@ -291,7 +291,7 @@ class Account extends Service {
      /// option id argument, only the session unique ID provider will be deleted.
      ///
      Future deleteSession({required String sessionId}) async {
-        final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
+        final String path = '/account/sessions/{sessionId}'.replaceAll(RegExp('{sessionId}'), sessionId);
 
         final Map<String, dynamic> params = {
         };

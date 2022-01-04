@@ -11,7 +11,7 @@ class Avatars extends Service {
      /// change the output settings.
      ///
      Future<Uint8List>  getBrowser({required String code, int? width, int? height, int? quality}) async {
-        final String path = '/avatars/browsers/{code}'.replaceAll('{code}', code);
+        final String path = '/avatars/browsers/{code}'.replaceAll(RegExp('{code}'), code);
 
         final Map<String, dynamic> params = {
             'width': width,
@@ -36,7 +36,7 @@ class Avatars extends Service {
      /// output settings.
      ///
      Future<Uint8List>  getCreditCard({required String code, int? width, int? height, int? quality}) async {
-        final String path = '/avatars/credit-cards/{code}'.replaceAll('{code}', code);
+        final String path = '/avatars/credit-cards/{code}'.replaceAll(RegExp('{code}'), code);
 
         final Map<String, dynamic> params = {
             'width': width,
@@ -84,7 +84,7 @@ class Avatars extends Service {
      /// height and quality arguments to change the output settings.
      ///
      Future<Uint8List>  getFlag({required String code, int? width, int? height, int? quality}) async {
-        final String path = '/avatars/flags/{code}'.replaceAll('{code}', code);
+        final String path = '/avatars/flags/{code}'.replaceAll(RegExp('{code}'), code);
 
         final Map<String, dynamic> params = {
             'width': width,

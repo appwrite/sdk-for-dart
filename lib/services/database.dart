@@ -59,7 +59,7 @@ class Database extends Service {
      /// object with the collection metadata.
      ///
      Future<models.Collection> getCollection({required String collectionId}) async {
-        final String path = '/database/collections/{collectionId}'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
         };
@@ -77,7 +77,7 @@ class Database extends Service {
      /// Update a collection by its unique ID.
      ///
      Future<models.Collection> updateCollection({required String collectionId, required String name, required String permission, List? read, List? write, bool? enabled}) async {
-        final String path = '/database/collections/{collectionId}'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'name': name,
@@ -101,7 +101,7 @@ class Database extends Service {
      /// have access to delete this resource.
      ///
      Future deleteCollection({required String collectionId}) async {
-        final String path = '/database/collections/{collectionId}'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
         };
@@ -116,7 +116,7 @@ class Database extends Service {
 
      /// List Attributes
      Future<models.AttributeList> listAttributes({required String collectionId}) async {
-        final String path = '/database/collections/{collectionId}/attributes'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
         };
@@ -135,7 +135,7 @@ class Database extends Service {
      /// 
      ///
      Future<models.AttributeBoolean> createBooleanAttribute({required String collectionId, required String key, required bool xrequired, bool? xdefault, bool? array}) async {
-        final String path = '/database/collections/{collectionId}/attributes/boolean'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes/boolean'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -158,7 +158,7 @@ class Database extends Service {
      /// 
      ///
      Future<models.AttributeEmail> createEmailAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
-        final String path = '/database/collections/{collectionId}/attributes/email'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes/email'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -177,7 +177,7 @@ class Database extends Service {
 
      /// Create Enum Attribute
      Future<models.AttributeEnum> createEnumAttribute({required String collectionId, required String key, required List elements, required bool xrequired, String? xdefault, bool? array}) async {
-        final String path = '/database/collections/{collectionId}/attributes/enum'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes/enum'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -202,7 +202,7 @@ class Database extends Service {
      /// 
      ///
      Future<models.AttributeFloat> createFloatAttribute({required String collectionId, required String key, required bool xrequired, String? min, String? max, String? xdefault, bool? array}) async {
-        final String path = '/database/collections/{collectionId}/attributes/float'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes/float'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -228,7 +228,7 @@ class Database extends Service {
      /// 
      ///
      Future<models.AttributeInteger> createIntegerAttribute({required String collectionId, required String key, required bool xrequired, int? min, int? max, int? xdefault, bool? array}) async {
-        final String path = '/database/collections/{collectionId}/attributes/integer'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes/integer'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -253,7 +253,7 @@ class Database extends Service {
      /// 
      ///
      Future<models.AttributeIp> createIpAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
-        final String path = '/database/collections/{collectionId}/attributes/ip'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes/ip'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -276,7 +276,7 @@ class Database extends Service {
      /// 
      ///
      Future<models.AttributeString> createStringAttribute({required String collectionId, required String key, required int size, required bool xrequired, String? xdefault, bool? array}) async {
-        final String path = '/database/collections/{collectionId}/attributes/string'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes/string'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -300,7 +300,7 @@ class Database extends Service {
      /// 
      ///
      Future<models.AttributeUrl> createUrlAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
-        final String path = '/database/collections/{collectionId}/attributes/url'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/attributes/url'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -319,7 +319,7 @@ class Database extends Service {
 
      /// Get Attribute
      Future getAttribute({required String collectionId, required String key}) async {
-        final String path = '/database/collections/{collectionId}/attributes/{key}'.replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+        final String path = '/database/collections/{collectionId}/attributes/{key}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{key}'), key);
 
         final Map<String, dynamic> params = {
         };
@@ -334,7 +334,7 @@ class Database extends Service {
 
      /// Delete Attribute
      Future deleteAttribute({required String collectionId, required String key}) async {
-        final String path = '/database/collections/{collectionId}/attributes/{key}'.replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+        final String path = '/database/collections/{collectionId}/attributes/{key}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{key}'), key);
 
         final Map<String, dynamic> params = {
         };
@@ -355,7 +355,7 @@ class Database extends Service {
      /// modes](/docs/admin).
      ///
      Future<models.DocumentList> listDocuments({required String collectionId, List? queries, int? limit, int? offset, String? cursor, String? cursorDirection, List? orderAttributes, List? orderTypes}) async {
-        final String path = '/database/collections/{collectionId}/documents'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/documents'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'queries': queries,
@@ -383,7 +383,7 @@ class Database extends Service {
      /// directly from your database console.
      ///
      Future<models.Document> createDocument({required String collectionId, required String documentId, required Map data, List? read, List? write}) async {
-        final String path = '/database/collections/{collectionId}/documents'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/documents'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'documentId': documentId,
@@ -406,7 +406,7 @@ class Database extends Service {
      /// object with the document data.
      ///
      Future<models.Document> getDocument({required String collectionId, required String documentId}) async {
-        final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
+        final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
 
         final Map<String, dynamic> params = {
         };
@@ -425,7 +425,7 @@ class Database extends Service {
      /// only specific fields that will get updated.
      ///
      Future<models.Document> updateDocument({required String collectionId, required String documentId, required Map data, List? read, List? write}) async {
-        final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
+        final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
 
         final Map<String, dynamic> params = {
             'data': data,
@@ -448,7 +448,7 @@ class Database extends Service {
      /// **will not** be deleted.
      ///
      Future deleteDocument({required String collectionId, required String documentId}) async {
-        final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
+        final String path = '/database/collections/{collectionId}/documents/{documentId}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{documentId}'), documentId);
 
         final Map<String, dynamic> params = {
         };
@@ -463,7 +463,7 @@ class Database extends Service {
 
      /// List Indexes
      Future<models.IndexList> listIndexes({required String collectionId}) async {
-        final String path = '/database/collections/{collectionId}/indexes'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/indexes'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
         };
@@ -478,7 +478,7 @@ class Database extends Service {
 
      /// Create Index
      Future<models.Index> createIndex({required String collectionId, required String key, required String type, required List attributes, List? orders}) async {
-        final String path = '/database/collections/{collectionId}/indexes'.replaceAll('{collectionId}', collectionId);
+        final String path = '/database/collections/{collectionId}/indexes'.replaceAll(RegExp('{collectionId}'), collectionId);
 
         final Map<String, dynamic> params = {
             'key': key,
@@ -497,7 +497,7 @@ class Database extends Service {
 
      /// Get Index
      Future<models.Index> getIndex({required String collectionId, required String key}) async {
-        final String path = '/database/collections/{collectionId}/indexes/{key}'.replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+        final String path = '/database/collections/{collectionId}/indexes/{key}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{key}'), key);
 
         final Map<String, dynamic> params = {
         };
@@ -512,7 +512,7 @@ class Database extends Service {
 
      /// Delete Index
      Future deleteIndex({required String collectionId, required String key}) async {
-        final String path = '/database/collections/{collectionId}/indexes/{key}'.replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+        final String path = '/database/collections/{collectionId}/indexes/{key}'.replaceAll(RegExp('{collectionId}'), collectionId).replaceAll(RegExp('{key}'), key);
 
         final Map<String, dynamic> params = {
         };
