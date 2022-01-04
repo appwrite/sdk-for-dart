@@ -51,7 +51,7 @@ void main() async {
   Users users = Users(client);
 
   try {
-    final response = await users.create(email: ‘email@example.com’,password: ‘password’, name: ‘name’);
+    final response = await users.create(userId: '[USER_ID]', email: ‘email@example.com’,password: ‘password’, name: ‘name’);
     print(response.data);
   } on AppwriteException catch(e) {
     print(e.message);
@@ -66,7 +66,7 @@ The Appwrite Dart SDK raises `AppwriteException` object with `message`, `code` a
 Users users = Users(client);
 
 try {
-  final response = await users.create(email: ‘email@example.com’,password: ‘password’, name: ‘name’);
+  final response = await users.create(userId: '[USER_ID]', email: ‘email@example.com’,password: ‘password’, name: ‘name’);
   print(response.data);
 } on AppwriteException catch(e) {
   //show message to user or do other operation based on error as required
