@@ -1,3 +1,6 @@
+## 3.0.2
+- Fix Function model name on the functions services
+
 ## 3.0.1
 - Export Query Builder
 
