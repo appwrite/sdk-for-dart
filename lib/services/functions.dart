@@ -34,7 +34,7 @@ class Functions extends Service {
      /// [permissions](/docs/permissions) to allow different project users or team
      /// with access to execute the function using the client API.
      ///
-     Future<models.XFunction> create({required String functionId, required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
+     Future<models.Func> create({required String functionId, required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -78,7 +78,7 @@ class Functions extends Service {
      ///
      /// Get a function by its unique ID.
      ///
-     Future<models.XFunction> get({required String functionId}) async {
+     Future<models.Func> get({required String functionId}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -96,7 +96,7 @@ class Functions extends Service {
      ///
      /// Update function by its unique ID.
      ///
-     Future<models.XFunction> update({required String functionId, required String name, required List execute, Map? vars, List? events, String? schedule, int? timeout}) async {
+     Future<models.Func> update({required String functionId, required String name, required List execute, Map? vars, List? events, String? schedule, int? timeout}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -206,7 +206,7 @@ class Functions extends Service {
      /// endpoint to switch the code tag that should be executed by the execution
      /// endpoint.
      ///
-     Future<models.XFunction> updateTag({required String functionId, required String tag}) async {
+     Future<models.Func> updateTag({required String functionId, required String tag}) async {
         final String path = '/functions/{functionId}/tag'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
