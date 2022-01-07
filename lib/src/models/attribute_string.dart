@@ -13,7 +13,7 @@ class AttributeString {
     /// Is attribute an array?
     final bool? array;
     /// Attribute size.
-    final String size;
+    final int size;
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
@@ -34,7 +34,7 @@ this.xdefault,
             status: map['status'].toString(),
             xrequired: map['required'],
             array: map['array'],
-            size: map['size'].toString(),
+            size: map['size'],
             xdefault: map['default'].toString(),
         );
     }

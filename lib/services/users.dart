@@ -183,8 +183,9 @@ class Users extends Service {
 
      /// Update User Preferences
      ///
-     /// Update the user preferences by its unique ID. You can pass only the
-     /// specific settings you wish to update.
+     /// Update the user preferences by its unique ID. The object you pass is stored
+     /// as is, and replaces any previous value. The maximum allowed prefs size is
+     /// 64kB and throws error if exceeded.
      ///
      Future<models.Preferences> updatePrefs({required String userId, required Map prefs}) async {
         final String path = '/users/{userId}/prefs'.replaceAll('{userId}', userId);
