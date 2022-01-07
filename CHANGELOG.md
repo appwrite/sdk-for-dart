@@ -1,5 +1,6 @@
 ## 3.0.2
 - String Attribute Type got fixed
+
 ## 3.0.1
 - Export Query Builder
 
