@@ -1,31 +1,21 @@
 part of dart_appwrite.models;
 
 /// AttributeIP
-class AttributeIp {
-    /// Attribute Key.
-    final String key;
-    /// Attribute type.
-    final String type;
-    /// Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
-    final String status;
-    /// Is attribute required?
-    final bool xrequired;
-    /// Is attribute an array?
-    final bool? array;
+class AttributeIp extends AbstractAttribute {
     /// String format.
     final String format;
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
     AttributeIp({
-        required this.key,
-        required this.type,
-        required this.status,
-        required this.xrequired,
-this.array,
+        required String key,
+        required String type,
+        required String status,
+        required bool xrequired,
+        bool? array,
         required this.format,
-this.xdefault,
-    });
+        this.xdefault,
+    }) : super(key: key, type: type, status: status, xrequired: xrequired, array: array);
 
     factory AttributeIp.fromMap(Map<String, dynamic> map) {
         return AttributeIp(
@@ -35,10 +25,11 @@ this.xdefault,
             xrequired: map['required'],
             array: map['array'],
             format: map['format'].toString(),
-            xdefault: map['default'].toString(),
+            xdefault: map['default']?.toString(),
         );
     }
 
+    @override
     Map<String, dynamic> toMap() {
         return {
             "key": key,

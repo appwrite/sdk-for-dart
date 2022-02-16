@@ -15,7 +15,7 @@ class Collection {
     /// Collection permission model. Possible values: `document` or `collection`
     final String permission;
     /// Collection attributes.
-    final List attributes;
+    final List<AbstractAttribute> attributes;
     /// Collection indexes.
     final List<Index> indexes;
 

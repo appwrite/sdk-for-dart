@@ -1,17 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeFloat
-class AttributeFloat {
-    /// Attribute Key.
-    final String key;
-    /// Attribute type.
-    final String type;
-    /// Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
-    final String status;
-    /// Is attribute required?
-    final bool xrequired;
-    /// Is attribute an array?
-    final bool? array;
+class AttributeFloat extends AbstractAttribute {
     /// Minimum value to enforce for new documents.
     final double? min;
     /// Maximum value to enforce for new documents.
@@ -20,15 +10,15 @@ class AttributeFloat {
     final double? xdefault;
 
     AttributeFloat({
-        required this.key,
-        required this.type,
-        required this.status,
-        required this.xrequired,
-this.array,
-this.min,
-this.max,
-this.xdefault,
-    });
+        required String key,
+        required String type,
+        required String status,
+        required bool xrequired,
+        bool? array,
+        this.min,
+        this.max,
+        this.xdefault,
+    }) : super(key: key, type: type, status: status, xrequired: xrequired, array: array);
 
     factory AttributeFloat.fromMap(Map<String, dynamic> map) {
         return AttributeFloat(
@@ -39,10 +29,11 @@ this.xdefault,
             array: map['array'],
             min: map['min'].toDouble(),
             max: map['max'].toDouble(),
-            xdefault: map['default'].toDouble(),
+            xdefault: map['default']?.toDouble(),
         );
     }
 
+    @override
     Map<String, dynamic> toMap() {
         return {
             "key": key,

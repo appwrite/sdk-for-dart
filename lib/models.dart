@@ -19,6 +19,7 @@ part 'src/models/language_list.dart';
 part 'src/models/currency_list.dart';
 part 'src/models/phone_list.dart';
 part 'src/models/collection.dart';
+part 'src/models/abstract_attribute.dart';
 part 'src/models/attribute_list.dart';
 part 'src/models/attribute_string.dart';
 part 'src/models/attribute_integer.dart';

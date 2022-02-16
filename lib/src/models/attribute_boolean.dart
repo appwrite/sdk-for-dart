@@ -1,28 +1,18 @@
 part of dart_appwrite.models;
 
 /// AttributeBoolean
-class AttributeBoolean {
-    /// Attribute Key.
-    final String key;
-    /// Attribute type.
-    final String type;
-    /// Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
-    final String status;
-    /// Is attribute required?
-    final bool xrequired;
-    /// Is attribute an array?
-    final bool? array;
+class AttributeBoolean extends AbstractAttribute {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final bool? xdefault;
 
     AttributeBoolean({
-        required this.key,
-        required this.type,
-        required this.status,
-        required this.xrequired,
-this.array,
-this.xdefault,
-    });
+        required String key,
+        required String type,
+        required String status,
+        required bool xrequired,
+        bool? array,
+        this.xdefault,
+    }):super(key: key, type: type, status: status, xrequired: xrequired, array: array);
 
     factory AttributeBoolean.fromMap(Map<String, dynamic> map) {
         return AttributeBoolean(
@@ -35,6 +25,7 @@ this.xdefault,
         );
     }
 
+    @override
     Map<String, dynamic> toMap() {
         return {
             "key": key,

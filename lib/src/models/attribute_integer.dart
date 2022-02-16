@@ -1,17 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeInteger
-class AttributeInteger {
-    /// Attribute Key.
-    final String key;
-    /// Attribute type.
-    final String type;
-    /// Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
-    final String status;
-    /// Is attribute required?
-    final bool xrequired;
-    /// Is attribute an array?
-    final bool? array;
+class AttributeInteger extends AbstractAttribute {
     /// Minimum value to enforce for new documents.
     final int? min;
     /// Maximum value to enforce for new documents.
@@ -20,15 +10,15 @@ class AttributeInteger {
     final int? xdefault;
 
     AttributeInteger({
-        required this.key,
-        required this.type,
-        required this.status,
-        required this.xrequired,
-this.array,
-this.min,
-this.max,
-this.xdefault,
-    });
+        required String key,
+        required String type,
+        required String status,
+        required bool xrequired,
+        bool? array,
+        this.min,
+        this.max,
+        this.xdefault,
+    }) : super(key: key, type: type, status: status, xrequired: xrequired, array: array);
 
     factory AttributeInteger.fromMap(Map<String, dynamic> map) {
         return AttributeInteger(
@@ -43,6 +33,7 @@ this.xdefault,
         );
     }
 
+    @override
     Map<String, dynamic> toMap() {
         return {
             "key": key,
