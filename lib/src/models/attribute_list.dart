@@ -15,7 +15,7 @@ class AttributeList {
     factory AttributeList.fromMap(Map<String, dynamic> map) {
         return AttributeList(
             sum: map['sum'],
-            attributes: AttributesFromMap(map['attributes'] as Map<String, dynamic>),
+            attributes: AttributesFromMap(map['attributes']),
         );
     }
 
@@ -27,9 +27,9 @@ class AttributeList {
     }
 }
 
-List<AbstractAttribute> AttributesFromMap(Map<String,dynamic> map) {
-    List<AbstractAttribute> list = [];
-    for(MapEntry<String,dynamic> entry in map.entries) {
+List<AbstractAttribute> AttributesFromMap(List<dynamic> rawAttributes) {
+    List<AbstractAttribute> attributeList = [];
+    for(Map<String,dynamic> map in rawAttributes) {
         AbstractAttribute attribute;
         switch(map['type'] as String) {
             case 'string':
@@ -66,7 +66,7 @@ List<AbstractAttribute> AttributesFromMap(Map<String,dynamic> map) {
             default:
                 throw Exception('Unknown type: Cannot create Attribute of type ${map['type']}');
         }
-        list.add(attribute);
+        attributeList.add(attribute);
     }
-    return list;
+    return attributeList;
 }

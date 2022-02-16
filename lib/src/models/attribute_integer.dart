@@ -27,8 +27,8 @@ class AttributeInteger extends AbstractAttribute {
             status: map['status'].toString(),
             xrequired: map['required'],
             array: map['array'],
-            min: map['min'],
-            max: map['max'],
+            min: map['min'].toInt(),
+            max: map['max'].toInt(),
             xdefault: map['default'],
         );
     }
