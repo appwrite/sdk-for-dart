@@ -38,7 +38,7 @@ class Collection {
             name: map['name'].toString(),
             enabled: map['enabled'],
             permission: map['permission'].toString(),
-            attributes: map['attributes'],
+            attributes: AttributesFromMap(map['attributes']),
             indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );
     }
