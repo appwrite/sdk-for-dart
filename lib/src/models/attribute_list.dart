@@ -15,7 +15,7 @@ class AttributeList {
     factory AttributeList.fromMap(Map<String, dynamic> map) {
         return AttributeList(
             sum: map['sum'],
-            attributes: _$AbstractAttributesFromMap(map['attributes'] as Map<String, dynamic>),
+            attributes: AttributesFromMap(map['attributes'] as Map<String, dynamic>),
         );
     }
 
@@ -27,7 +27,7 @@ class AttributeList {
     }
 }
 
-List<AbstractAttribute> _$AbstractAttributesFromMap(Map<String,dynamic> map) {
+List<AbstractAttribute> AttributesFromMap(Map<String,dynamic> map) {
     List<AbstractAttribute> list = [];
     for(MapEntry<String,dynamic> entry in map.entries) {
         AbstractAttribute attribute;
