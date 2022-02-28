@@ -207,9 +207,9 @@ class Database extends Service {
         final Map<String, dynamic> params = {
             'key': key,
             'required': xrequired,
-            'min': min,
-            'max': max,
-            'default': xdefault,
+            'min': double.tryParse(min??""),
+            'max': double.tryParse(max??""),
+            'default': double.tryParse(xdefault??""),
             'array': array,
         };
 
