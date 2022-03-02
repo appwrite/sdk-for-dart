@@ -2,26 +2,26 @@ part of dart_appwrite.models;
 
 /// Attributes List
 class AttributeList {
-    /// Total sum of items in the list.
-    final int sum;
+    /// Total number of attributes in the given collection.
+    final int total;
     /// List of attributes.
     final List attributes;
 
     AttributeList({
-        required this.sum,
+        required this.total,
         required this.attributes,
     });
 
     factory AttributeList.fromMap(Map<String, dynamic> map) {
         return AttributeList(
-            sum: map['sum'],
+            total: map['total'],
             attributes: map['attributes'],
         );
     }
 
     Map<String, dynamic> toMap() {
         return {
-            "sum": sum,
+            "total": total,
             "attributes": attributes,
         };
     }

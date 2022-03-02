@@ -17,6 +17,7 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthStatus.fromMap(res.data);
     }
@@ -34,6 +35,7 @@ class Health extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthAntivirus.fromMap(res.data);
@@ -54,6 +56,7 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthStatus.fromMap(res.data);
     }
@@ -71,6 +74,7 @@ class Health extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthStatus.fromMap(res.data);
@@ -92,6 +96,7 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthQueue.fromMap(res.data);
     }
@@ -106,6 +111,7 @@ class Health extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthQueue.fromMap(res.data);
@@ -126,6 +132,7 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthQueue.fromMap(res.data);
     }
@@ -144,6 +151,7 @@ class Health extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthQueue.fromMap(res.data);
@@ -164,6 +172,7 @@ class Health extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthQueue.fromMap(res.data);
     }
@@ -181,6 +190,7 @@ class Health extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthStatus.fromMap(res.data);
@@ -205,6 +215,7 @@ class Health extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.HealthTime.fromMap(res.data);

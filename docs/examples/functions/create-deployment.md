@@ -10,8 +10,11 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = functions.listTags(
+  Future result = functions.createDeployment(
     functionId: '[FUNCTION_ID]',
+    entrypoint: '[ENTRYPOINT]',
+    code: await MultipartFile.fromPath('code', './path-to-files/image.jpg', 'image.jpg'),
+    activate: false,
   );
 
   result

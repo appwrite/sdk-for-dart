@@ -2,26 +2,26 @@ part of dart_appwrite.models;
 
 /// Indexes List
 class IndexList {
-    /// Total number of items available on the server.
-    final int sum;
+    /// Total number of indexes documents that matched your query.
+    final int total;
     /// List of indexes.
     final List<Index> indexes;
 
     IndexList({
-        required this.sum,
+        required this.total,
         required this.indexes,
     });
 
     factory IndexList.fromMap(Map<String, dynamic> map) {
         return IndexList(
-            sum: map['sum'],
+            total: map['total'],
             indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );
     }
 
     Map<String, dynamic> toMap() {
         return {
-            "sum": sum,
+            "total": total,
             "indexes": indexes.map((p) => p.toMap()),
         };
     }

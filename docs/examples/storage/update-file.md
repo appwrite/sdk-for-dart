@@ -11,9 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = storage.updateFile(
+    bucketId: '[BUCKET_ID]',
     fileId: '[FILE_ID]',
-    read: [],
-    write: [],
   );
 
   result

@@ -24,6 +24,7 @@ class Functions extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.FunctionList.fromMap(res.data);
     }
@@ -52,6 +53,7 @@ class Functions extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Func.fromMap(res.data);
     }
@@ -70,6 +72,7 @@ class Functions extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.RuntimeList.fromMap(res.data);
     }
@@ -87,6 +90,7 @@ class Functions extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Func.fromMap(res.data);
@@ -112,6 +116,7 @@ class Functions extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
         return models.Func.fromMap(res.data);
     }
@@ -130,7 +135,156 @@ class Functions extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+        return  res.data;
+    }
+
+     /// List Deployments
+     ///
+     /// Get a list of all the project's code deployments. You can use the query
+     /// params to filter your results.
+     ///
+     Future<models.DeploymentList> listDeployments({required String functionId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+        final String path = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
+
+        final Map<String, dynamic> params = {
+            'search': search,
+            'limit': limit,
+            'offset': offset,
+            'cursor': cursor,
+            'cursorDirection': cursorDirection,
+            'orderType': orderType,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.DeploymentList.fromMap(res.data);
+    }
+
+     /// Create Deployment
+     ///
+     /// Create a new function code deployment. Use this endpoint to upload a new
+     /// version of your code function. To execute your newly uploaded code, you'll
+     /// need to update the function's deployment to use your new deployment UID.
+     /// 
+     /// This endpoint accepts a tar.gz file compressed with your code. Make sure to
+     /// include any dependencies your code has within the compressed file. You can
+     /// learn more about code packaging in the [Appwrite Cloud Functions
+     /// tutorial](/docs/functions).
+     /// 
+     /// Use the "command" param to set the entry point used to execute your code.
+     ///
+     Future<models.Deployment> createDeployment({required String functionId, required String entrypoint, required InputFile code, required bool activate, Function(UploadProgress)? onProgress}) async {
+        final String path = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
+
+        final Map<String, dynamic> params = {
+            'entrypoint': entrypoint,
+            'code': code,
+            'activate': activate,
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'multipart/form-data',
+        };
+
+
+        dynamic res;
+        if(identical(0, 0.0)) {
+          params['code'] = code.file;
+          res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+        } else {
+          String idParamName = '';
+          final paramName = 'code';
+          res = await chunkedUpload(
+            client: client,
+            path: path,
+            params: params,
+            paramName: paramName,
+            idParamName: idParamName,
+            headers: headers,
+            onProgress: onProgress,
+          );
+        }
+        return models.Deployment.fromMap(res.data);
+    }
+
+     /// Get Deployment
+     ///
+     /// Get a code deployment by its unique ID.
+     ///
+     Future<models.DeploymentList> getDeployment({required String functionId, required String deploymentId}) async {
+        final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.DeploymentList.fromMap(res.data);
+    }
+
+     /// Update Function Deployment
+     ///
+     /// Update the function code deployment ID using the unique function ID. Use
+     /// this endpoint to switch the code deployment that should be executed by the
+     /// execution endpoint.
+     ///
+     Future<models.Func> updateDeployment({required String functionId, required String deploymentId}) async {
+        final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+        return models.Func.fromMap(res.data);
+    }
+
+     /// Delete Deployment
+     ///
+     /// Delete a code deployment by its unique ID.
+     ///
+     Future deleteDeployment({required String functionId, required String deploymentId}) async {
+        final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+        return  res.data;
+    }
+
+     /// Retry Build
+     Future retryBuild({required String functionId, required String deploymentId, required String buildId}) async {
+        final String path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId).replaceAll('{buildId}', buildId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return  res.data;
     }
 
@@ -156,6 +310,7 @@ class Functions extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.ExecutionList.fromMap(res.data);
     }
@@ -167,16 +322,18 @@ class Functions extends Service {
      /// updates on the current execution status. Once this endpoint is called, your
      /// function execution process will start asynchronously.
      ///
-     Future<models.Execution> createExecution({required String functionId, String? data}) async {
+     Future<models.Execution> createExecution({required String functionId, String? data, bool? xasync}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
             'data': data,
+            'async': xasync,
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Execution.fromMap(res.data);
@@ -196,118 +353,8 @@ class Functions extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Execution.fromMap(res.data);
-    }
-
-     /// Update Function Tag
-     ///
-     /// Update the function code tag ID using the unique function ID. Use this
-     /// endpoint to switch the code tag that should be executed by the execution
-     /// endpoint.
-     ///
-     Future<models.Func> updateTag({required String functionId, required String tag}) async {
-        final String path = '/functions/{functionId}/tag'.replaceAll('{functionId}', functionId);
-
-        final Map<String, dynamic> params = {
-            'tag': tag,
-        };
-
-        final Map<String, String> headers = {
-            'content-type': 'application/json',
-        };
-
-        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
-        return models.Func.fromMap(res.data);
-    }
-
-     /// List Tags
-     ///
-     /// Get a list of all the project's code tags. You can use the query params to
-     /// filter your results.
-     ///
-     Future<models.TagList> listTags({required String functionId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
-        final String path = '/functions/{functionId}/tags'.replaceAll('{functionId}', functionId);
-
-        final Map<String, dynamic> params = {
-            'search': search,
-            'limit': limit,
-            'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
-            'orderType': orderType,
-        };
-
-        final Map<String, String> headers = {
-            'content-type': 'application/json',
-        };
-
-        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return models.TagList.fromMap(res.data);
-    }
-
-     /// Create Tag
-     ///
-     /// Create a new function code tag. Use this endpoint to upload a new version
-     /// of your code function. To execute your newly uploaded code, you'll need to
-     /// update the function's tag to use your new tag UID.
-     /// 
-     /// This endpoint accepts a tar.gz file compressed with your code. Make sure to
-     /// include any dependencies your code has within the compressed file. You can
-     /// learn more about code packaging in the [Appwrite Cloud Functions
-     /// tutorial](/docs/functions).
-     /// 
-     /// Use the "command" param to set the entry point used to execute your code.
-     ///
-     Future<models.Tag> createTag({required String functionId, required String command, required http.MultipartFile code}) async {
-        final String path = '/functions/{functionId}/tags'.replaceAll('{functionId}', functionId);
-
-        final Map<String, dynamic> params = {
-            'command': command,
-            'code': code,
-        };
-
-        final Map<String, String> headers = {
-            'content-type': 'multipart/form-data',
-        };
-
-        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        return models.Tag.fromMap(res.data);
-    }
-
-     /// Get Tag
-     ///
-     /// Get a code tag by its unique ID.
-     ///
-     Future<models.Tag> getTag({required String functionId, required String tagId}) async {
-        final String path = '/functions/{functionId}/tags/{tagId}'.replaceAll('{functionId}', functionId).replaceAll('{tagId}', tagId);
-
-        final Map<String, dynamic> params = {
-        };
-
-        final Map<String, String> headers = {
-            'content-type': 'application/json',
-        };
-
-        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return models.Tag.fromMap(res.data);
-    }
-
-     /// Delete Tag
-     ///
-     /// Delete a code tag by its unique ID.
-     ///
-     Future deleteTag({required String functionId, required String tagId}) async {
-        final String path = '/functions/{functionId}/tags/{tagId}'.replaceAll('{functionId}', functionId).replaceAll('{tagId}', tagId);
-
-        final Map<String, dynamic> params = {
-        };
-
-        final Map<String, String> headers = {
-            'content-type': 'application/json',
-        };
-
-        final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
-        return  res.data;
     }
 }

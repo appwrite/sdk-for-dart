@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:dart_appwrite/dart_appwrite.dart';
 
 void main() { // Init SDK
@@ -11,10 +10,8 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = storage.createFile(
+  Future result = storage.deleteBucket(
     bucketId: '[BUCKET_ID]',
-    fileId: '[FILE_ID]',
-    file: await MultipartFile.fromPath('file', './path-to-files/image.jpg', 'image.jpg'),
   );
 
   result

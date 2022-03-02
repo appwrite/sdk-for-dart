@@ -2,26 +2,26 @@ part of dart_appwrite.models;
 
 /// Collections List
 class CollectionList {
-    /// Total number of items available on the server.
-    final int sum;
+    /// Total number of collections documents that matched your query.
+    final int total;
     /// List of collections.
     final List<Collection> collections;
 
     CollectionList({
-        required this.sum,
+        required this.total,
         required this.collections,
     });
 
     factory CollectionList.fromMap(Map<String, dynamic> map) {
         return CollectionList(
-            sum: map['sum'],
+            total: map['total'],
             collections: List<Collection>.from(map['collections'].map((p) => Collection.fromMap(p))),
         );
     }
 
     Map<String, dynamic> toMap() {
         return {
-            "sum": sum,
+            "total": total,
             "collections": collections.map((p) => p.toMap()),
         };
     }

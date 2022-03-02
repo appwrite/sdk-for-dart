@@ -5,7 +5,7 @@ class Func {
     /// Function ID.
     final String $id;
     /// Execution permissions.
-    final String execute;
+    final List execute;
     /// Function name.
     final String name;
     /// Function creation date in Unix timestamp.
@@ -16,10 +16,10 @@ class Func {
     final String status;
     /// Function execution runtime.
     final String runtime;
-    /// Function active tag ID.
-    final String tag;
+    /// Function&#039;s active deployment ID.
+    final String deployment;
     /// Function environment variables.
-    final String vars;
+    final Map<String, dynamic> vars;
     /// Function trigger events.
     final List events;
     /// Function execution schedult in CRON format.
@@ -39,7 +39,7 @@ class Func {
         required this.dateUpdated,
         required this.status,
         required this.runtime,
-        required this.tag,
+        required this.deployment,
         required this.vars,
         required this.events,
         required this.schedule,
@@ -51,14 +51,14 @@ class Func {
     factory Func.fromMap(Map<String, dynamic> map) {
         return Func(
             $id: map['\$id'].toString(),
-            execute: map['execute'].toString(),
+            execute: map['execute'],
             name: map['name'].toString(),
             dateCreated: map['dateCreated'],
             dateUpdated: map['dateUpdated'],
             status: map['status'].toString(),
             runtime: map['runtime'].toString(),
-            tag: map['tag'].toString(),
-            vars: map['vars'].toString(),
+            deployment: map['deployment'].toString(),
+            vars: map['vars'],
             events: map['events'],
             schedule: map['schedule'].toString(),
             scheduleNext: map['scheduleNext'],
@@ -76,7 +76,7 @@ class Func {
             "dateUpdated": dateUpdated,
             "status": status,
             "runtime": runtime,
-            "tag": tag,
+            "deployment": deployment,
             "vars": vars,
             "events": events,
             "schedule": schedule,

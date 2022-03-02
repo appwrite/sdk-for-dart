@@ -2,26 +2,26 @@ part of dart_appwrite.models;
 
 /// Users List
 class UserList {
-    /// Total number of items available on the server.
-    final int sum;
+    /// Total number of users documents that matched your query.
+    final int total;
     /// List of users.
     final List<User> users;
 
     UserList({
-        required this.sum,
+        required this.total,
         required this.users,
     });
 
     factory UserList.fromMap(Map<String, dynamic> map) {
         return UserList(
-            sum: map['sum'],
+            total: map['total'],
             users: List<User>.from(map['users'].map((p) => User.fromMap(p))),
         );
     }
 
     Map<String, dynamic> toMap() {
         return {
-            "sum": sum,
+            "total": total,
             "users": users.map((p) => p.toMap()),
         };
     }

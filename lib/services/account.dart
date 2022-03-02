@@ -17,6 +17,7 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
     }
@@ -38,6 +39,7 @@ class Account extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
@@ -66,6 +68,7 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
     }
@@ -87,6 +90,7 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.LogList.fromMap(res.data);
     }
@@ -105,6 +109,7 @@ class Account extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
@@ -128,6 +133,7 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
     }
@@ -145,6 +151,7 @@ class Account extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Preferences.fromMap(res.data);
@@ -166,6 +173,7 @@ class Account extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
@@ -193,6 +201,7 @@ class Account extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Token.fromMap(res.data);
@@ -224,6 +233,7 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
         return models.Token.fromMap(res.data);
     }
@@ -242,6 +252,7 @@ class Account extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.SessionList.fromMap(res.data);
@@ -262,6 +273,7 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
     }
@@ -281,7 +293,24 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.Session.fromMap(res.data);
+    }
+
+     /// Update Session (Refresh Tokens)
+     Future<models.Session> updateSession({required String sessionId}) async {
+        final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.Session.fromMap(res.data);
     }
 
@@ -289,7 +318,8 @@ class Account extends Service {
      ///
      /// Use this endpoint to log out the currently logged in user from all their
      /// account sessions across all of their different devices. When using the
-     /// option id argument, only the session unique ID provider will be deleted.
+     /// Session ID argument, only the unique session ID provided is deleted.
+     /// 
      ///
      Future deleteSession({required String sessionId}) async {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
@@ -300,6 +330,7 @@ class Account extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
@@ -334,6 +365,7 @@ class Account extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Token.fromMap(res.data);
     }
@@ -356,6 +388,7 @@ class Account extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
         return models.Token.fromMap(res.data);

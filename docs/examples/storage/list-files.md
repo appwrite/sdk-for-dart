@@ -11,6 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = storage.listFiles(
+    bucketId: '[BUCKET_ID]',
   );
 
   result

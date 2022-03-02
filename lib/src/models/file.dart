@@ -4,6 +4,8 @@ part of dart_appwrite.models;
 class File {
     /// File ID.
     final String $id;
+    /// Bucket ID.
+    final String bucketId;
     /// File read permissions.
     final List $read;
     /// File write permissions.
@@ -18,9 +20,14 @@ class File {
     final String mimeType;
     /// File original size in bytes.
     final int sizeOriginal;
+    /// Total number of chunks available
+    final int chunksTotal;
+    /// Total number of chunks uploaded
+    final int chunksUploaded;
 
     File({
         required this.$id,
+        required this.bucketId,
         required this.$read,
         required this.$write,
         required this.name,
@@ -28,11 +35,14 @@ class File {
         required this.signature,
         required this.mimeType,
         required this.sizeOriginal,
+        required this.chunksTotal,
+        required this.chunksUploaded,
     });
 
     factory File.fromMap(Map<String, dynamic> map) {
         return File(
             $id: map['\$id'].toString(),
+            bucketId: map['bucketId'].toString(),
             $read: map['\$read'],
             $write: map['\$write'],
             name: map['name'].toString(),
@@ -40,12 +50,15 @@ class File {
             signature: map['signature'].toString(),
             mimeType: map['mimeType'].toString(),
             sizeOriginal: map['sizeOriginal'],
+            chunksTotal: map['chunksTotal'],
+            chunksUploaded: map['chunksUploaded'],
         );
     }
 
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
+            "bucketId": bucketId,
             "\$read": $read,
             "\$write": $write,
             "name": name,
@@ -53,6 +66,8 @@ class File {
             "signature": signature,
             "mimeType": mimeType,
             "sizeOriginal": sizeOriginal,
+            "chunksTotal": chunksTotal,
+            "chunksUploaded": chunksUploaded,
         };
     }
 }

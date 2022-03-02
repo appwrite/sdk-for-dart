@@ -1,9 +1,8 @@
-import 'dart:io';
 import 'package:dart_appwrite/dart_appwrite.dart';
 
 void main() { // Init SDK
   Client client = Client();
-  Storage storage = Storage(client);
+  Functions functions = Functions(client);
 
   client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -11,10 +10,9 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = storage.createFile(
-    bucketId: '[BUCKET_ID]',
-    fileId: '[FILE_ID]',
-    file: await MultipartFile.fromPath('file', './path-to-files/image.jpg', 'image.jpg'),
+  Future result = functions.getDeployment(
+    functionId: '[FUNCTION_ID]',
+    deploymentId: '[DEPLOYMENT_ID]',
   );
 
   result

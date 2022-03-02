@@ -11,6 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = storage.getFileDownload(
+    bucketId: '[BUCKET_ID]',
     fileId: '[FILE_ID]',
   );
 

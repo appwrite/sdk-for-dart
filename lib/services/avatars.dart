@@ -21,10 +21,6 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-          params[key] = params[key].toString();
-        }});
-        
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
@@ -46,10 +42,6 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-          params[key] = params[key].toString();
-        }});
-        
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
@@ -69,10 +61,6 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-          params[key] = params[key].toString();
-        }});
-        
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
@@ -94,10 +82,6 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-          params[key] = params[key].toString();
-        }});
-        
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
@@ -120,10 +104,6 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-          params[key] = params[key].toString();
-        }});
-        
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
@@ -154,10 +134,6 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-          params[key] = params[key].toString();
-        }});
-        
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
@@ -179,10 +155,6 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        params.keys.forEach((key) {if (params[key] is int || params[key] is double) {
-          params[key] = params[key].toString();
-        }});
-        
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
     }

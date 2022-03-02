@@ -27,6 +27,7 @@ class Teams extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.TeamList.fromMap(res.data);
     }
@@ -50,6 +51,7 @@ class Teams extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Team.fromMap(res.data);
     }
@@ -67,6 +69,7 @@ class Teams extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Team.fromMap(res.data);
@@ -88,6 +91,7 @@ class Teams extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
         return models.Team.fromMap(res.data);
     }
@@ -106,6 +110,7 @@ class Teams extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
@@ -131,6 +136,7 @@ class Teams extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.MembershipList.fromMap(res.data);
@@ -168,6 +174,7 @@ class Teams extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Membership.fromMap(res.data);
     }
@@ -186,6 +193,7 @@ class Teams extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.MembershipList.fromMap(res.data);
@@ -208,6 +216,7 @@ class Teams extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.Membership.fromMap(res.data);
     }
@@ -228,6 +237,7 @@ class Teams extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
     }
@@ -237,6 +247,10 @@ class Teams extends Service {
      /// Use this endpoint to allow a user to accept an invitation to join a team
      /// after being redirected back to your app from the invitation email received
      /// by the user.
+     /// 
+     /// If the request is successful, a session for the user is automatically
+     /// created.
+     /// 
      ///
      Future<models.Membership> updateMembershipStatus({required String teamId, required String membershipId, required String userId, required String secret}) async {
         final String path = '/teams/{teamId}/memberships/{membershipId}/status'.replaceAll('{teamId}', teamId).replaceAll('{membershipId}', membershipId);
@@ -249,6 +263,7 @@ class Teams extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.Membership.fromMap(res.data);

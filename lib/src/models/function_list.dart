@@ -2,26 +2,26 @@ part of dart_appwrite.models;
 
 /// Functions List
 class FunctionList {
-    /// Total number of items available on the server.
-    final int sum;
+    /// Total number of functions documents that matched your query.
+    final int total;
     /// List of functions.
     final List<Func> functions;
 
     FunctionList({
-        required this.sum,
+        required this.total,
         required this.functions,
     });
 
     factory FunctionList.fromMap(Map<String, dynamic> map) {
         return FunctionList(
-            sum: map['sum'],
+            total: map['total'],
             functions: List<Func>.from(map['functions'].map((p) => Func.fromMap(p))),
         );
     }
 
     Map<String, dynamic> toMap() {
         return {
-            "sum": sum,
+            "total": total,
             "functions": functions.map((p) => p.toMap()),
         };
     }

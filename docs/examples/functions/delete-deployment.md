@@ -10,9 +10,9 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = functions.updateTag(
+  Future result = functions.deleteDeployment(
     functionId: '[FUNCTION_ID]',
-    tag: '[TAG]',
+    deploymentId: '[DEPLOYMENT_ID]',
   );
 
   result

@@ -22,6 +22,7 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Locale.fromMap(res.data);
     }
@@ -40,6 +41,7 @@ class Locale extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.ContinentList.fromMap(res.data);
@@ -60,6 +62,7 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.CountryList.fromMap(res.data);
     }
@@ -79,6 +82,7 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.CountryList.fromMap(res.data);
     }
@@ -97,6 +101,7 @@ class Locale extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.PhoneList.fromMap(res.data);
@@ -118,6 +123,7 @@ class Locale extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.CurrencyList.fromMap(res.data);
     }
@@ -136,6 +142,7 @@ class Locale extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.LanguageList.fromMap(res.data);

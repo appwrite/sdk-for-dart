@@ -24,6 +24,7 @@ class Users extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.UserList.fromMap(res.data);
     }
@@ -46,6 +47,7 @@ class Users extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
     }
@@ -63,6 +65,7 @@ class Users extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
@@ -82,6 +85,7 @@ class Users extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
     }
@@ -100,6 +104,7 @@ class Users extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
@@ -121,6 +126,7 @@ class Users extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.LogList.fromMap(res.data);
     }
@@ -139,6 +145,7 @@ class Users extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
@@ -159,6 +166,7 @@ class Users extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
     }
@@ -176,6 +184,7 @@ class Users extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Preferences.fromMap(res.data);
@@ -198,6 +207,7 @@ class Users extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.Preferences.fromMap(res.data);
     }
@@ -215,6 +225,7 @@ class Users extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.SessionList.fromMap(res.data);
@@ -234,6 +245,7 @@ class Users extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
     }
@@ -251,6 +263,7 @@ class Users extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
@@ -271,6 +284,7 @@ class Users extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);
     }
@@ -289,6 +303,7 @@ class Users extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.User.fromMap(res.data);

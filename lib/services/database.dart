@@ -26,6 +26,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.CollectionList.fromMap(res.data);
     }
@@ -49,6 +50,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Collection.fromMap(res.data);
     }
@@ -67,6 +69,7 @@ class Database extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Collection.fromMap(res.data);
@@ -91,6 +94,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
         return models.Collection.fromMap(res.data);
     }
@@ -110,6 +114,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
     }
@@ -124,6 +129,7 @@ class Database extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.AttributeList.fromMap(res.data);
@@ -148,6 +154,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.AttributeBoolean.fromMap(res.data);
     }
@@ -171,6 +178,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.AttributeEmail.fromMap(res.data);
     }
@@ -191,6 +199,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.AttributeEnum.fromMap(res.data);
     }
@@ -201,7 +210,7 @@ class Database extends Service {
      /// provided.
      /// 
      ///
-     Future<models.AttributeFloat> createFloatAttribute({required String collectionId, required String key, required bool xrequired, String? min, String? max, String? xdefault, bool? array}) async {
+     Future<models.AttributeFloat> createFloatAttribute({required String collectionId, required String key, required bool xrequired, double? min, double? max, double? xdefault, bool? array}) async {
         final String path = '/database/collections/{collectionId}/attributes/float'.replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -216,6 +225,7 @@ class Database extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.AttributeFloat.fromMap(res.data);
@@ -243,6 +253,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.AttributeInteger.fromMap(res.data);
     }
@@ -265,6 +276,7 @@ class Database extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.AttributeIp.fromMap(res.data);
@@ -290,6 +302,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.AttributeString.fromMap(res.data);
     }
@@ -313,6 +326,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.AttributeUrl.fromMap(res.data);
     }
@@ -328,6 +342,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return  res.data;
     }
@@ -342,6 +357,7 @@ class Database extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
@@ -371,6 +387,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.DocumentList.fromMap(res.data);
     }
@@ -396,6 +413,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Document.fromMap(res.data);
     }
@@ -414,6 +432,7 @@ class Database extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Document.fromMap(res.data);
@@ -437,6 +456,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
         return models.Document.fromMap(res.data);
     }
@@ -457,6 +477,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
     }
@@ -471,6 +492,7 @@ class Database extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.IndexList.fromMap(res.data);
@@ -491,6 +513,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
         return models.Index.fromMap(res.data);
     }
@@ -506,6 +529,7 @@ class Database extends Service {
             'content-type': 'application/json',
         };
 
+
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.Index.fromMap(res.data);
     }
@@ -520,6 +544,7 @@ class Database extends Service {
         final Map<String, String> headers = {
             'content-type': 'application/json',
         };
+
 
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
         return  res.data;
