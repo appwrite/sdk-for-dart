@@ -1,5 +1,6 @@
 part of dart_appwrite;
 
+     /// The Users service allows you to manage your project users.
 class Users extends Service {
     Users(Client client): super(client);
 

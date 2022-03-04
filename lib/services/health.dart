@@ -1,5 +1,7 @@
 part of dart_appwrite;
 
+     /// The Health service allows you to both validate and monitor your Appwrite
+     /// server's health.
 class Health extends Service {
     Health(Client client): super(client);
 

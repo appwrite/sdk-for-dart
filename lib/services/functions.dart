@@ -1,5 +1,7 @@
 part of dart_appwrite;
 
+     /// The Functions Service allows you view, create and manage your Cloud
+     /// Functions.
 class Functions extends Service {
     Functions(Client client): super(client);
 

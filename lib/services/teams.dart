@@ -1,5 +1,7 @@
 part of dart_appwrite;
 
+     /// The Teams service allows you to group users of your project and to enable
+     /// them to share read and write access to your project resources
 class Teams extends Service {
     Teams(Client client): super(client);
 

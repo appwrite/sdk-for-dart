@@ -1,5 +1,7 @@
 part of dart_appwrite;
 
+     /// The Avatars service aims to help you complete everyday tasks related to
+     /// your app image, icons, and avatars.
 class Avatars extends Service {
     Avatars(Client client): super(client);
 

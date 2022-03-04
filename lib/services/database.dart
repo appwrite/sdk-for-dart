@@ -1,5 +1,7 @@
 part of dart_appwrite;
 
+     /// The Database service allows you to create structured collections of
+     /// documents, query and filter lists of documents
 class Database extends Service {
     Database(Client client): super(client);
 
