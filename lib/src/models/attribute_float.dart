@@ -37,9 +37,9 @@ this.xdefault,
             status: map['status'].toString(),
             xrequired: map['required'],
             array: map['array'],
-            min: map['min'].toDouble(),
-            max: map['max'].toDouble(),
-            xdefault: map['default'].toDouble(),
+            min: double.tryParse(map['min'].toString()),
+            max: double.tryParse(map['max'].toString()),
+            xdefault: double.tryParse(map['default'].toString()),
         );
     }
 
