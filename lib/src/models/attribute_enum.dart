@@ -39,7 +39,7 @@ this.xdefault,
             array: map['array'],
             elements: map['elements'],
             format: map['format'].toString(),
-            xdefault: map['default'].toString(),
+            xdefault: map['default']?.toString(),
         );
     }
 

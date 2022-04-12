@@ -35,7 +35,7 @@ this.xdefault,
             xrequired: map['required'],
             array: map['array'],
             size: map['size'],
-            xdefault: map['default'].toString(),
+            xdefault: map['default']?.toString(),
         );
     }
 
