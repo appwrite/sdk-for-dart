@@ -139,26 +139,6 @@ class Health extends Service {
         return models.HealthQueue.fromMap(res.data);
     }
 
-     /// Get Usage Queue
-     ///
-     /// Get the number of usage stats that are waiting to be processed in the
-     /// Appwrite internal queue server.
-     ///
-     Future<models.HealthQueue> getQueueUsage() async {
-        final String path = '/health/queue/usage';
-
-        final Map<String, dynamic> params = {
-        };
-
-        final Map<String, String> headers = {
-            'content-type': 'application/json',
-        };
-
-
-        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
-        return models.HealthQueue.fromMap(res.data);
-    }
-
      /// Get Webhooks Queue
      ///
      /// Get the number of webhooks that are waiting to be processed in the Appwrite

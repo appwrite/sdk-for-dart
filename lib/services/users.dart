@@ -74,7 +74,11 @@ class Users extends Service {
 
      /// Delete User
      ///
-     /// Delete a user by its unique ID.
+     /// Delete a user by its unique ID, thereby releasing it's ID. Since ID is
+     /// released and can be reused, all user-related resources like documents or
+     /// storage files should be deleted before user deletion. If you want to keep
+     /// ID reserved, use the [updateStatus](/docs/server/users#usersUpdateStatus)
+     /// endpoint instead.
      ///
      Future delete({required String userId}) async {
         final String path = '/users/{userId}'.replaceAll('{userId}', userId);
@@ -130,6 +134,25 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
         return models.LogList.fromMap(res.data);
+    }
+
+     /// Get User Memberships
+     ///
+     /// Get the user membership list by its unique ID.
+     ///
+     Future<models.MembershipList> getMemberships({required String userId}) async {
+        final String path = '/users/{userId}/memberships'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> params = {
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+        };
+
+
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+        return models.MembershipList.fromMap(res.data);
     }
 
      /// Update Name
@@ -272,7 +295,8 @@ class Users extends Service {
 
      /// Update User Status
      ///
-     /// Update the user status by its unique ID.
+     /// Update the user status by its unique ID. Use this endpoint as an
+     /// alternative to deleting a user if you want to keep user's ID reserved.
      ///
      Future<models.User> updateStatus({required String userId, required bool status}) async {
         final String path = '/users/{userId}/status'.replaceAll('{userId}', userId);
