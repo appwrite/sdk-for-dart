@@ -4,14 +4,14 @@ part of dart_appwrite.models;
 class Func {
     /// Function ID.
     final String $id;
+    /// Function creation date in Unix timestamp.
+    final int $createdAt;
+    /// Function update date in Unix timestamp.
+    final int $updatedAt;
     /// Execution permissions.
     final List execute;
     /// Function name.
     final String name;
-    /// Function creation date in Unix timestamp.
-    final int dateCreated;
-    /// Function update date in Unix timestamp.
-    final int dateUpdated;
     /// Function status. Possible values: `disabled`, `enabled`
     final String status;
     /// Function execution runtime.
@@ -33,10 +33,10 @@ class Func {
 
     Func({
         required this.$id,
+        required this.$createdAt,
+        required this.$updatedAt,
         required this.execute,
         required this.name,
-        required this.dateCreated,
-        required this.dateUpdated,
         required this.status,
         required this.runtime,
         required this.deployment,
@@ -51,10 +51,10 @@ class Func {
     factory Func.fromMap(Map<String, dynamic> map) {
         return Func(
             $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'],
+            $updatedAt: map['\$updatedAt'],
             execute: map['execute'],
             name: map['name'].toString(),
-            dateCreated: map['dateCreated'],
-            dateUpdated: map['dateUpdated'],
             status: map['status'].toString(),
             runtime: map['runtime'].toString(),
             deployment: map['deployment'].toString(),
@@ -70,10 +70,10 @@ class Func {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
+            "\$createdAt": $createdAt,
+            "\$updatedAt": $updatedAt,
             "execute": execute,
             "name": name,
-            "dateCreated": dateCreated,
-            "dateUpdated": dateUpdated,
             "status": status,
             "runtime": runtime,
             "deployment": deployment,

@@ -12,15 +12,20 @@ class Account extends Service {
         final String path = '/account';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Update Account Email
@@ -38,17 +43,22 @@ class Account extends Service {
         final String path = '/account/email';
 
         final Map<String, dynamic> params = {
+            
             'email': email,
-            'password': password,
+'password': password,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Get Account Logs
@@ -61,16 +71,21 @@ class Account extends Service {
 
         final Map<String, dynamic> params = {
             'limit': limit,
-            'offset': offset,
+'offset': offset,
+
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.LogList.fromMap(res.data);
+
+
     }
 
      /// Update Account Name
@@ -81,16 +96,21 @@ class Account extends Service {
         final String path = '/account/name';
 
         final Map<String, dynamic> params = {
+            
             'name': name,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Update Account Password
@@ -103,17 +123,51 @@ class Account extends Service {
         final String path = '/account/password';
 
         final Map<String, dynamic> params = {
+            
             'password': password,
-            'oldPassword': oldPassword,
+'oldPassword': oldPassword,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
+        return models.User.fromMap(res.data);
+
+
+    }
+
+     /// Update Account Phone
+     ///
+     /// Update currently logged in user account phone number. After changing phone
+     /// number, the user confirmation status will get reset. A new confirmation SMS
+     /// is not sent automatically however you can use the phone confirmation
+     /// endpoint again to send the confirmation SMS.
+     ///
+     Future<models.User> updatePhone({required String number, required String password}) async {
+        final String path = '/account/phone';
+
+        final Map<String, dynamic> params = {
+            
+            'number': number,
+'password': password,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Get Account Preferences
@@ -124,15 +178,20 @@ class Account extends Service {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Preferences.fromMap(res.data);
+
+
     }
 
      /// Update Account Preferences
@@ -145,16 +204,21 @@ class Account extends Service {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
+            
             'prefs': prefs,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Create Password Recovery
@@ -172,17 +236,22 @@ class Account extends Service {
         final String path = '/account/recovery';
 
         final Map<String, dynamic> params = {
+            
             'email': email,
-            'url': url,
+'url': url,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 
      /// Create Password Recovery (confirmation)
@@ -201,19 +270,24 @@ class Account extends Service {
         final String path = '/account/recovery';
 
         final Map<String, dynamic> params = {
+            
             'userId': userId,
-            'secret': secret,
-            'password': password,
-            'passwordAgain': passwordAgain,
+'secret': secret,
+'password': password,
+'passwordAgain': passwordAgain,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 
      /// Get Account Sessions
@@ -225,15 +299,20 @@ class Account extends Service {
         final String path = '/account/sessions';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.SessionList.fromMap(res.data);
+
+
     }
 
      /// Delete All Account Sessions
@@ -245,15 +324,20 @@ class Account extends Service {
         final String path = '/account/sessions';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// Get Session By ID
@@ -265,15 +349,20 @@ class Account extends Service {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Session.fromMap(res.data);
+
+
     }
 
      /// Update Session (Refresh Tokens)
@@ -286,15 +375,20 @@ class Account extends Service {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.Session.fromMap(res.data);
+
+
     }
 
      /// Delete Account Session
@@ -308,15 +402,20 @@ class Account extends Service {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// Update Account Status
@@ -329,15 +428,20 @@ class Account extends Service {
         final String path = '/account/status';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
         return models.User.fromMap(res.data);
+
+
     }
 
      /// Create Email Verification
@@ -349,8 +453,8 @@ class Account extends Service {
      /// should redirect the user back to your app and allow you to complete the
      /// verification process by verifying both the **userId** and **secret**
      /// parameters. Learn more about how to [complete the verification
-     /// process](/docs/client/account#accountUpdateVerification). The verification
-     /// link sent to the user's email address is valid for 7 days.
+     /// process](/docs/client/account#accountUpdateEmailVerification). The
+     /// verification link sent to the user's email address is valid for 7 days.
      /// 
      /// Please note that in order to avoid a [Redirect
      /// Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -362,16 +466,21 @@ class Account extends Service {
         final String path = '/account/verification';
 
         final Map<String, dynamic> params = {
+            
             'url': url,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 
      /// Create Email Verification (confirmation)
@@ -385,16 +494,80 @@ class Account extends Service {
         final String path = '/account/verification';
 
         final Map<String, dynamic> params = {
+            
             'userId': userId,
-            'secret': secret,
+'secret': secret,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
+        final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
+        return models.Token.fromMap(res.data);
+
+
+    }
+
+     /// Create Phone Verification
+     ///
+     /// Use this endpoint to send a verification message to your user's phone
+     /// number to confirm they are the valid owners of that address. The provided
+     /// secret should allow you to complete the verification process by verifying
+     /// both the **userId** and **secret** parameters. Learn more about how to
+     /// [complete the verification
+     /// process](/docs/client/account#accountUpdatePhoneVerification). The
+     /// verification link sent to the user's phone number is valid for 15 minutes.
+     ///
+     Future<models.Token> createPhoneVerification() async {
+        final String path = '/account/verification/phone';
+
+        final Map<String, dynamic> params = {
+            
+            
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
+        return models.Token.fromMap(res.data);
+
+
+    }
+
+     /// Create Phone Verification (confirmation)
+     ///
+     /// Use this endpoint to complete the user phone verification process. Use the
+     /// **userId** and **secret** that were sent to your user's phone number to
+     /// verify the user email ownership. If confirmed this route will return a 200
+     /// status code.
+     ///
+     Future<models.Token> updatePhoneVerification({required String userId, required String secret}) async {
+        final String path = '/account/verification/phone';
+
+        final Map<String, dynamic> params = {
+            
+            'userId': userId,
+'secret': secret,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.Token.fromMap(res.data);
+
+
     }
 }

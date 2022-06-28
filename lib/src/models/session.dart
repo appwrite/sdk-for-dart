@@ -4,6 +4,8 @@ part of dart_appwrite.models;
 class Session {
     /// Session ID.
     final String $id;
+    /// Session creation date in Unix timestamp.
+    final int $createdAt;
     /// User ID.
     final String userId;
     /// Session expiration date in Unix timestamp.
@@ -53,6 +55,7 @@ class Session {
 
     Session({
         required this.$id,
+        required this.$createdAt,
         required this.userId,
         required this.expire,
         required this.provider,
@@ -81,6 +84,7 @@ class Session {
     factory Session.fromMap(Map<String, dynamic> map) {
         return Session(
             $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'],
             userId: map['userId'].toString(),
             expire: map['expire'],
             provider: map['provider'].toString(),
@@ -110,6 +114,7 @@ class Session {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
+            "\$createdAt": $createdAt,
             "userId": userId,
             "expire": expire,
             "provider": provider,

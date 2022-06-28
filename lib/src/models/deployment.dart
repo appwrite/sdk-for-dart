@@ -4,12 +4,14 @@ part of dart_appwrite.models;
 class Deployment {
     /// Deployment ID.
     final String $id;
+    /// Deployment creation date in Unix timestamp.
+    final int $createdAt;
+    /// Deployment update date in Unix timestamp.
+    final int $updatedAt;
     /// Resource ID.
     final String resourceId;
     /// Resource type.
     final String resourceType;
-    /// The deployment creation date in Unix timestamp.
-    final int dateCreated;
     /// The entrypoint file to use to execute the deployment code.
     final String entrypoint;
     /// The code size in bytes.
@@ -27,9 +29,10 @@ class Deployment {
 
     Deployment({
         required this.$id,
+        required this.$createdAt,
+        required this.$updatedAt,
         required this.resourceId,
         required this.resourceType,
-        required this.dateCreated,
         required this.entrypoint,
         required this.size,
         required this.buildId,
@@ -42,9 +45,10 @@ class Deployment {
     factory Deployment.fromMap(Map<String, dynamic> map) {
         return Deployment(
             $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'],
+            $updatedAt: map['\$updatedAt'],
             resourceId: map['resourceId'].toString(),
             resourceType: map['resourceType'].toString(),
-            dateCreated: map['dateCreated'],
             entrypoint: map['entrypoint'].toString(),
             size: map['size'],
             buildId: map['buildId'].toString(),
@@ -58,9 +62,10 @@ class Deployment {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
+            "\$createdAt": $createdAt,
+            "\$updatedAt": $updatedAt,
             "resourceId": resourceId,
             "resourceType": resourceType,
-            "dateCreated": dateCreated,
             "entrypoint": entrypoint,
             "size": size,
             "buildId": buildId,

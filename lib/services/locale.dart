@@ -18,15 +18,20 @@ class Locale extends Service {
         final String path = '/locale';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Locale.fromMap(res.data);
+
+
     }
 
      /// List Continents
@@ -38,15 +43,20 @@ class Locale extends Service {
         final String path = '/locale/continents';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.ContinentList.fromMap(res.data);
+
+
     }
 
      /// List Countries
@@ -58,15 +68,20 @@ class Locale extends Service {
         final String path = '/locale/countries';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.CountryList.fromMap(res.data);
+
+
     }
 
      /// List EU Countries
@@ -78,15 +93,20 @@ class Locale extends Service {
         final String path = '/locale/countries/eu';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.CountryList.fromMap(res.data);
+
+
     }
 
      /// List Countries Phone Codes
@@ -98,15 +118,20 @@ class Locale extends Service {
         final String path = '/locale/countries/phones';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.PhoneList.fromMap(res.data);
+
+
     }
 
      /// List Currencies
@@ -119,15 +144,20 @@ class Locale extends Service {
         final String path = '/locale/currencies';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.CurrencyList.fromMap(res.data);
+
+
     }
 
      /// List Languages
@@ -139,14 +169,19 @@ class Locale extends Service {
         final String path = '/locale/languages';
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.LanguageList.fromMap(res.data);
+
+
     }
 }

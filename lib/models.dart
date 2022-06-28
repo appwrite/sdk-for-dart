@@ -2,6 +2,7 @@ library dart_appwrite.models;
 
 part 'src/models/document_list.dart';
 part 'src/models/collection_list.dart';
+part 'src/models/database_list.dart';
 part 'src/models/index_list.dart';
 part 'src/models/user_list.dart';
 part 'src/models/session_list.dart';
@@ -19,6 +20,7 @@ part 'src/models/continent_list.dart';
 part 'src/models/language_list.dart';
 part 'src/models/currency_list.dart';
 part 'src/models/phone_list.dart';
+part 'src/models/database.dart';
 part 'src/models/collection.dart';
 part 'src/models/attribute_list.dart';
 part 'src/models/attribute_string.dart';

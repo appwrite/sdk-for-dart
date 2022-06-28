@@ -4,16 +4,16 @@ part of dart_appwrite.models;
 class Bucket {
     /// Bucket ID.
     final String $id;
+    /// Bucket creation date in Unix timestamp.
+    final int $createdAt;
+    /// Bucket update date in Unix timestamp.
+    final int $updatedAt;
     /// File read permissions.
     final List $read;
     /// File write permissions.
     final List $write;
     /// Bucket permission model. Possible values: `bucket` or `file`
     final String permission;
-    /// Bucket creation date in Unix timestamp.
-    final int dateCreated;
-    /// Bucket update date in Unix timestamp.
-    final int dateUpdated;
     /// Bucket name.
     final String name;
     /// Bucket enabled.
@@ -29,11 +29,11 @@ class Bucket {
 
     Bucket({
         required this.$id,
+        required this.$createdAt,
+        required this.$updatedAt,
         required this.$read,
         required this.$write,
         required this.permission,
-        required this.dateCreated,
-        required this.dateUpdated,
         required this.name,
         required this.enabled,
         required this.maximumFileSize,
@@ -45,11 +45,11 @@ class Bucket {
     factory Bucket.fromMap(Map<String, dynamic> map) {
         return Bucket(
             $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'],
+            $updatedAt: map['\$updatedAt'],
             $read: map['\$read'],
             $write: map['\$write'],
             permission: map['permission'].toString(),
-            dateCreated: map['dateCreated'],
-            dateUpdated: map['dateUpdated'],
             name: map['name'].toString(),
             enabled: map['enabled'],
             maximumFileSize: map['maximumFileSize'],
@@ -62,11 +62,11 @@ class Bucket {
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
+            "\$createdAt": $createdAt,
+            "\$updatedAt": $updatedAt,
             "\$read": $read,
             "\$write": $write,
             "permission": permission,
-            "dateCreated": dateCreated,
-            "dateUpdated": dateUpdated,
             "name": name,
             "enabled": enabled,
             "maximumFileSize": maximumFileSize,

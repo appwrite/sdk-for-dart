@@ -14,20 +14,25 @@ class Storage extends Service {
 
         final Map<String, dynamic> params = {
             'search': search,
-            'limit': limit,
-            'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
-            'orderType': orderType,
+'limit': limit,
+'offset': offset,
+'cursor': cursor,
+'cursorDirection': cursorDirection,
+'orderType': orderType,
+
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.BucketList.fromMap(res.data);
+
+
     }
 
      /// Create bucket
@@ -38,25 +43,30 @@ class Storage extends Service {
         final String path = '/storage/buckets';
 
         final Map<String, dynamic> params = {
+            
             'bucketId': bucketId,
-            'name': name,
-            'permission': permission,
-            'read': read,
-            'write': write,
-            'enabled': enabled,
-            'maximumFileSize': maximumFileSize,
-            'allowedFileExtensions': allowedFileExtensions,
-            'encryption': encryption,
-            'antivirus': antivirus,
+'name': name,
+'permission': permission,
+'read': read,
+'write': write,
+'enabled': enabled,
+'maximumFileSize': maximumFileSize,
+'allowedFileExtensions': allowedFileExtensions,
+'encryption': encryption,
+'antivirus': antivirus,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
         return models.Bucket.fromMap(res.data);
+
+
     }
 
      /// Get Bucket
@@ -68,15 +78,20 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.Bucket.fromMap(res.data);
+
+
     }
 
      /// Update Bucket
@@ -87,24 +102,29 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> params = {
+            
             'name': name,
-            'permission': permission,
-            'read': read,
-            'write': write,
-            'enabled': enabled,
-            'maximumFileSize': maximumFileSize,
-            'allowedFileExtensions': allowedFileExtensions,
-            'encryption': encryption,
-            'antivirus': antivirus,
+'permission': permission,
+'read': read,
+'write': write,
+'enabled': enabled,
+'maximumFileSize': maximumFileSize,
+'allowedFileExtensions': allowedFileExtensions,
+'encryption': encryption,
+'antivirus': antivirus,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.Bucket.fromMap(res.data);
+
+
     }
 
      /// Delete Bucket
@@ -115,15 +135,20 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// List Files
@@ -137,20 +162,25 @@ class Storage extends Service {
 
         final Map<String, dynamic> params = {
             'search': search,
-            'limit': limit,
-            'offset': offset,
-            'cursor': cursor,
-            'cursorDirection': cursorDirection,
-            'orderType': orderType,
+'limit': limit,
+'offset': offset,
+'cursor': cursor,
+'cursorDirection': cursorDirection,
+'orderType': orderType,
+
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.FileList.fromMap(res.data);
+
+
     }
 
      /// Create File
@@ -178,36 +208,34 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}/files'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> params = {
+            
             'fileId': fileId,
-            'file': file,
-            'read': read,
-            'write': write,
+'file': file,
+'read': read,
+'write': write,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'multipart/form-data',
+
         };
 
-
-        dynamic res;
-        if(identical(0, 0.0)) {
-          params['file'] = file.file;
-          res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
-        } else {
-          String idParamName = '';
-          idParamName = 'fileId';
-          final paramName = 'file';
-          res = await chunkedUpload(
-            client: client,
+        String idParamName = '';
+        idParamName = 'fileId';
+        final paramName = 'file';
+        final res = await client.chunkedUpload(
             path: path,
             params: params,
             paramName: paramName,
             idParamName: idParamName,
             headers: headers,
             onProgress: onProgress,
-          );
-        }
+        );
+
         return models.File.fromMap(res.data);
+
+
     }
 
      /// Get File
@@ -219,15 +247,20 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}/files/{fileId}'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
         return models.File.fromMap(res.data);
+
+
     }
 
      /// Update File
@@ -239,17 +272,22 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}/files/{fileId}'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
+            
             'read': read,
-            'write': write,
+'write': write,
+
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
         return models.File.fromMap(res.data);
+
+
     }
 
      /// Delete File
@@ -261,15 +299,20 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}/files/{fileId}'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
+            
+            
         };
 
         final Map<String, String> headers = {
             'content-type': 'application/json',
+
         };
 
-
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
         return  res.data;
+
+
     }
 
      /// Get File for Download
@@ -282,12 +325,15 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}/files/{fileId}/download'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
+            
+            
             'project': client.config['project'],
             'key': client.config['key'],
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
+
     }
 
      /// Get File Preview
@@ -303,22 +349,25 @@ class Storage extends Service {
 
         final Map<String, dynamic> params = {
             'width': width,
-            'height': height,
-            'gravity': gravity,
-            'quality': quality,
-            'borderWidth': borderWidth,
-            'borderColor': borderColor,
-            'borderRadius': borderRadius,
-            'opacity': opacity,
-            'rotation': rotation,
-            'background': background,
-            'output': output,
+'height': height,
+'gravity': gravity,
+'quality': quality,
+'borderWidth': borderWidth,
+'borderColor': borderColor,
+'borderRadius': borderRadius,
+'opacity': opacity,
+'rotation': rotation,
+'background': background,
+'output': output,
+
+            
             'project': client.config['project'],
             'key': client.config['key'],
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
+
     }
 
      /// Get File for View
@@ -331,11 +380,14 @@ class Storage extends Service {
         final String path = '/storage/buckets/{bucketId}/files/{fileId}/view'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
+            
+            
             'project': client.config['project'],
             'key': client.config['key'],
         };
 
         final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
         return res.data;
+
     }
 }
