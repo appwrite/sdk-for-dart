@@ -7,6 +7,10 @@ class Databases extends Service {
     String databaseId;
 
      /// List Databases
+     ///
+     /// Get a list of all databases from the current Appwrite project. You can use
+     /// the search parameter to filter your results.
+     ///
      Future<models.DatabaseList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/databases';
 
@@ -34,6 +38,10 @@ class Databases extends Service {
     }
 
      /// Create Database
+     ///
+     /// Create a new Database.
+     /// 
+     ///
      Future<models.Database> create({required String name}) async {
         final String path = '/databases';
 
@@ -57,7 +65,11 @@ class Databases extends Service {
     }
 
      /// Get Database
-     Future<models.Collection> get() async {
+     ///
+     /// Get a database by its unique ID. This endpoint response returns a JSON
+     /// object with the database metadata.
+     ///
+     Future<models.Database> get() async {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
@@ -72,13 +84,16 @@ class Databases extends Service {
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
-        return models.Collection.fromMap(res.data);
+        return models.Database.fromMap(res.data);
 
 
     }
 
      /// Update Database
-     Future<models.Collection> update({required String name}) async {
+     ///
+     /// Update a database by its unique ID.
+     ///
+     Future<models.Database> update({required String name}) async {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
@@ -94,12 +109,16 @@ class Databases extends Service {
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
 
-        return models.Collection.fromMap(res.data);
+        return models.Database.fromMap(res.data);
 
 
     }
 
      /// Delete Database
+     ///
+     /// Delete a database by its unique ID. Only API keys with with databases.write
+     /// scope can delete a database.
+     ///
      Future delete() async {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
@@ -121,6 +140,10 @@ class Databases extends Service {
     }
 
      /// List Collections
+     ///
+     /// Get a list of all collections that belong to the provided databaseId. You
+     /// can use the search parameter to filter your results.
+     ///
      Future<models.CollectionList> listCollections({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/databases/{databaseId}/collections'.replaceAll('{databaseId}', databaseId);
 
@@ -148,6 +171,12 @@ class Databases extends Service {
     }
 
      /// Create Collection
+     ///
+     /// Create a new Collection. Before using this route, you should create a new
+     /// database resource using either a [server
+     /// integration](/docs/server/database#databaseCreateCollection) API or
+     /// directly from your database console.
+     ///
      Future<models.Collection> createCollection({required String collectionId, required String name, required String permission, required List read, required List write}) async {
         final String path = '/databases/{databaseId}/collections'.replaceAll('{databaseId}', databaseId);
 
@@ -174,6 +203,10 @@ class Databases extends Service {
     }
 
      /// Get Collection
+     ///
+     /// Get a collection by its unique ID. This endpoint response returns a JSON
+     /// object with the collection metadata.
+     ///
      Future<models.Collection> getCollection({required String collectionId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -195,6 +228,9 @@ class Databases extends Service {
     }
 
      /// Update Collection
+     ///
+     /// Update a collection by its unique ID.
+     ///
      Future<models.Collection> updateCollection({required String collectionId, required String name, required String permission, List? read, List? write, bool? enabled}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -221,6 +257,10 @@ class Databases extends Service {
     }
 
      /// Delete Collection
+     ///
+     /// Delete a collection by its unique ID. Only users with write permissions
+     /// have access to delete this resource.
+     ///
      Future deleteCollection({required String collectionId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -263,6 +303,10 @@ class Databases extends Service {
     }
 
      /// Create Boolean Attribute
+     ///
+     /// Create a boolean attribute.
+     /// 
+     ///
      Future<models.AttributeBoolean> createBooleanAttribute({required String collectionId, required String key, required bool xrequired, bool? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -288,6 +332,10 @@ class Databases extends Service {
     }
 
      /// Create Email Attribute
+     ///
+     /// Create an email attribute.
+     /// 
+     ///
      Future<models.AttributeEmail> createEmailAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/email'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -339,6 +387,11 @@ class Databases extends Service {
     }
 
      /// Create Float Attribute
+     ///
+     /// Create a float attribute. Optionally, minimum and maximum values can be
+     /// provided.
+     /// 
+     ///
      Future<models.AttributeFloat> createFloatAttribute({required String collectionId, required String key, required bool xrequired, double? min, double? max, double? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/float'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -366,6 +419,11 @@ class Databases extends Service {
     }
 
      /// Create Integer Attribute
+     ///
+     /// Create an integer attribute. Optionally, minimum and maximum values can be
+     /// provided.
+     /// 
+     ///
      Future<models.AttributeInteger> createIntegerAttribute({required String collectionId, required String key, required bool xrequired, int? min, int? max, int? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -393,6 +451,10 @@ class Databases extends Service {
     }
 
      /// Create IP Address Attribute
+     ///
+     /// Create IP address attribute.
+     /// 
+     ///
      Future<models.AttributeIp> createIpAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -418,6 +480,10 @@ class Databases extends Service {
     }
 
      /// Create String Attribute
+     ///
+     /// Create a string attribute.
+     /// 
+     ///
      Future<models.AttributeString> createStringAttribute({required String collectionId, required String key, required int size, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/string'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -444,6 +510,10 @@ class Databases extends Service {
     }
 
      /// Create URL Attribute
+     ///
+     /// Create a URL attribute.
+     /// 
+     ///
      Future<models.AttributeUrl> createUrlAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/url'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -511,6 +581,12 @@ class Databases extends Service {
     }
 
      /// List Documents
+     ///
+     /// Get a list of all the user's documents in a given collection. You can use
+     /// the query params to filter your results. On admin mode, this endpoint will
+     /// return a list of all of documents belonging to the provided collectionId.
+     /// [Learn more about different API modes](/docs/admin).
+     ///
      Future<models.DocumentList> listDocuments({required String collectionId, List? queries, int? limit, int? offset, String? cursor, String? cursorDirection, List? orderAttributes, List? orderTypes}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -539,6 +615,12 @@ class Databases extends Service {
     }
 
      /// Create Document
+     ///
+     /// Create a new Document. Before using this route, you should create a new
+     /// collection resource using either a [server
+     /// integration](/docs/server/database#databaseCreateCollection) API or
+     /// directly from your database console.
+     ///
      Future<models.Document> createDocument({required String collectionId, required String documentId, required Map data, List? read, List? write}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -564,6 +646,10 @@ class Databases extends Service {
     }
 
      /// Get Document
+     ///
+     /// Get a document by its unique ID. This endpoint response returns a JSON
+     /// object with the document data.
+     ///
      Future<models.Document> getDocument({required String collectionId, required String documentId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
@@ -585,6 +671,10 @@ class Databases extends Service {
     }
 
      /// Update Document
+     ///
+     /// Update a document by its unique ID. Using the patch method you can pass
+     /// only specific fields that will get updated.
+     ///
      Future<models.Document> updateDocument({required String collectionId, required String documentId, Map? data, List? read, List? write}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
@@ -609,6 +699,9 @@ class Databases extends Service {
     }
 
      /// Delete Document
+     ///
+     /// Delete a document by its unique ID.
+     ///
      Future deleteDocument({required String collectionId, required String documentId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 

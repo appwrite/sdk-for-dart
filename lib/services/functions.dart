@@ -252,7 +252,7 @@ class Functions extends Service {
      ///
      /// Get a code deployment by its unique ID.
      ///
-     Future<models.DeploymentList> getDeployment({required String functionId, required String deploymentId}) async {
+     Future<models.Deployment> getDeployment({required String functionId, required String deploymentId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
         final Map<String, dynamic> params = {
@@ -267,7 +267,7 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
-        return models.DeploymentList.fromMap(res.data);
+        return models.Deployment.fromMap(res.data);
 
 
     }
