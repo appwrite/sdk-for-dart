@@ -13,7 +13,7 @@ void main() { // Init SDK
   Future result = functions.create(
     functionId: '[FUNCTION_ID]',
     name: '[NAME]',
-    execute: ["role:all"],
+    execute: [],
     runtime: 'node-14.5',
   );
 
