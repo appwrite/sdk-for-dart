@@ -5,12 +5,12 @@ part of dart_appwrite;
 class Functions extends Service {
     Functions(Client client): super(client);
 
-     /// List Functions
-     ///
+    /// List Functions
+    ///
     /// Get a list of all the project's functions. You can use the query params to
     /// filter your results.
-     ///
-     Future<models.FunctionList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    ///
+    Future<models.FunctionList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -36,13 +36,13 @@ class Functions extends Service {
 
     }
 
-     /// Create Function
-     ///
+    /// Create Function
+    ///
     /// Create a new function. You can pass a list of
     /// [permissions](/docs/permissions) to allow different project users or team
     /// with access to execute the function using the client API.
-     ///
-     Future<models.Func> create({required String functionId, required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
+    ///
+    Future<models.Func> create({required String functionId, required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -70,11 +70,11 @@ class Functions extends Service {
 
     }
 
-     /// List runtimes
-     ///
+    /// List runtimes
+    ///
     /// Get a list of all runtimes that are currently active on your instance.
-     ///
-     Future<models.RuntimeList> listRuntimes() async {
+    ///
+    Future<models.RuntimeList> listRuntimes() async {
         final String path = '/functions/runtimes';
 
         final Map<String, dynamic> params = {
@@ -94,11 +94,11 @@ class Functions extends Service {
 
     }
 
-     /// Get Function
-     ///
+    /// Get Function
+    ///
     /// Get a function by its unique ID.
-     ///
-     Future<models.Func> get({required String functionId}) async {
+    ///
+    Future<models.Func> get({required String functionId}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -118,11 +118,11 @@ class Functions extends Service {
 
     }
 
-     /// Update Function
-     ///
+    /// Update Function
+    ///
     /// Update function by its unique ID.
-     ///
-     Future<models.Func> update({required String functionId, required String name, required List execute, Map? vars, List? events, String? schedule, int? timeout}) async {
+    ///
+    Future<models.Func> update({required String functionId, required String name, required List execute, Map? vars, List? events, String? schedule, int? timeout}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -148,11 +148,11 @@ class Functions extends Service {
 
     }
 
-     /// Delete Function
-     ///
+    /// Delete Function
+    ///
     /// Delete a function by its unique ID.
-     ///
-     Future delete({required String functionId}) async {
+    ///
+    Future delete({required String functionId}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -172,12 +172,12 @@ class Functions extends Service {
 
     }
 
-     /// List Deployments
-     ///
+    /// List Deployments
+    ///
     /// Get a list of all the project's code deployments. You can use the query
     /// params to filter your results.
-     ///
-     Future<models.DeploymentList> listDeployments({required String functionId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    ///
+    Future<models.DeploymentList> listDeployments({required String functionId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
         final String path = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -203,8 +203,8 @@ class Functions extends Service {
 
     }
 
-     /// Create Deployment
-     ///
+    /// Create Deployment
+    ///
     /// Create a new function code deployment. Use this endpoint to upload a new
     /// version of your code function. To execute your newly uploaded code, you'll
     /// need to update the function's deployment to use your new deployment UID.
@@ -215,8 +215,8 @@ class Functions extends Service {
     /// tutorial](/docs/functions).
     /// 
     /// Use the "command" param to set the entry point used to execute your code.
-     ///
-     Future<models.Deployment> createDeployment({required String functionId, required String entrypoint, required InputFile code, required bool activate, Function(UploadProgress)? onProgress}) async {
+    ///
+    Future<models.Deployment> createDeployment({required String functionId, required String entrypoint, required InputFile code, required bool activate, Function(UploadProgress)? onProgress}) async {
         final String path = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -248,11 +248,11 @@ class Functions extends Service {
 
     }
 
-     /// Get Deployment
-     ///
+    /// Get Deployment
+    ///
     /// Get a code deployment by its unique ID.
-     ///
-     Future<models.DeploymentList> getDeployment({required String functionId, required String deploymentId}) async {
+    ///
+    Future<models.DeploymentList> getDeployment({required String functionId, required String deploymentId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
         final Map<String, dynamic> params = {
@@ -272,13 +272,13 @@ class Functions extends Service {
 
     }
 
-     /// Update Function Deployment
-     ///
+    /// Update Function Deployment
+    ///
     /// Update the function code deployment ID using the unique function ID. Use
     /// this endpoint to switch the code deployment that should be executed by the
     /// execution endpoint.
-     ///
-     Future<models.Func> updateDeployment({required String functionId, required String deploymentId}) async {
+    ///
+    Future<models.Func> updateDeployment({required String functionId, required String deploymentId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
         final Map<String, dynamic> params = {
@@ -298,11 +298,11 @@ class Functions extends Service {
 
     }
 
-     /// Delete Deployment
-     ///
+    /// Delete Deployment
+    ///
     /// Delete a code deployment by its unique ID.
-     ///
-     Future deleteDeployment({required String functionId, required String deploymentId}) async {
+    ///
+    Future deleteDeployment({required String functionId, required String deploymentId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
         final Map<String, dynamic> params = {
@@ -322,8 +322,8 @@ class Functions extends Service {
 
     }
 
-     /// Retry Build
-     Future retryBuild({required String functionId, required String deploymentId, required String buildId}) async {
+    /// Retry Build
+    Future retryBuild({required String functionId, required String deploymentId, required String buildId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId).replaceAll('{buildId}', buildId);
 
         final Map<String, dynamic> params = {
@@ -343,14 +343,14 @@ class Functions extends Service {
 
     }
 
-     /// List Executions
-     ///
+    /// List Executions
+    ///
     /// Get a list of all the current user function execution logs. You can use the
     /// query params to filter your results. On admin mode, this endpoint will
     /// return a list of all of the project's executions. [Learn more about
     /// different API modes](/docs/admin).
-     ///
-     Future<models.ExecutionList> listExecutions({required String functionId, int? limit, int? offset, String? search, String? cursor, String? cursorDirection}) async {
+    ///
+    Future<models.ExecutionList> listExecutions({required String functionId, int? limit, int? offset, String? search, String? cursor, String? cursorDirection}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -375,14 +375,14 @@ class Functions extends Service {
 
     }
 
-     /// Create Execution
-     ///
+    /// Create Execution
+    ///
     /// Trigger a function execution. The returned object will return you the
     /// current execution status. You can ping the `Get Execution` endpoint to get
     /// updates on the current execution status. Once this endpoint is called, your
     /// function execution process will start asynchronously.
-     ///
-     Future<models.Execution> createExecution({required String functionId, String? data, bool? xasync}) async {
+    ///
+    Future<models.Execution> createExecution({required String functionId, String? data, bool? xasync}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
@@ -404,11 +404,11 @@ class Functions extends Service {
 
     }
 
-     /// Get Execution
-     ///
+    /// Get Execution
+    ///
     /// Get a function execution log by its unique ID.
-     ///
-     Future<models.Execution> getExecution({required String functionId, required String executionId}) async {
+    ///
+    Future<models.Execution> getExecution({required String functionId, required String executionId}) async {
         final String path = '/functions/{functionId}/executions/{executionId}'.replaceAll('{functionId}', functionId).replaceAll('{executionId}', executionId);
 
         final Map<String, dynamic> params = {

@@ -5,11 +5,11 @@ part of dart_appwrite;
 class Health extends Service {
     Health(Client client): super(client);
 
-     /// Get HTTP
-     ///
+    /// Get HTTP
+    ///
     /// Check the Appwrite HTTP server is up and responsive.
-     ///
-     Future<models.HealthStatus> get() async {
+    ///
+    Future<models.HealthStatus> get() async {
         final String path = '/health';
 
         final Map<String, dynamic> params = {
@@ -29,11 +29,11 @@ class Health extends Service {
 
     }
 
-     /// Get Antivirus
-     ///
+    /// Get Antivirus
+    ///
     /// Check the Appwrite Antivirus server is up and connection is successful.
-     ///
-     Future<models.HealthAntivirus> getAntivirus() async {
+    ///
+    Future<models.HealthAntivirus> getAntivirus() async {
         final String path = '/health/anti-virus';
 
         final Map<String, dynamic> params = {
@@ -53,12 +53,12 @@ class Health extends Service {
 
     }
 
-     /// Get Cache
-     ///
+    /// Get Cache
+    ///
     /// Check the Appwrite in-memory cache server is up and connection is
     /// successful.
-     ///
-     Future<models.HealthStatus> getCache() async {
+    ///
+    Future<models.HealthStatus> getCache() async {
         final String path = '/health/cache';
 
         final Map<String, dynamic> params = {
@@ -78,11 +78,11 @@ class Health extends Service {
 
     }
 
-     /// Get DB
-     ///
+    /// Get DB
+    ///
     /// Check the Appwrite database server is up and connection is successful.
-     ///
-     Future<models.HealthStatus> getDB() async {
+    ///
+    Future<models.HealthStatus> getDB() async {
         final String path = '/health/db';
 
         final Map<String, dynamic> params = {
@@ -102,13 +102,13 @@ class Health extends Service {
 
     }
 
-     /// Get Certificates Queue
-     ///
+    /// Get Certificates Queue
+    ///
     /// Get the number of certificates that are waiting to be issued against
     /// [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
     /// server.
-     ///
-     Future<models.HealthQueue> getQueueCertificates() async {
+    ///
+    Future<models.HealthQueue> getQueueCertificates() async {
         final String path = '/health/queue/certificates';
 
         final Map<String, dynamic> params = {
@@ -128,8 +128,8 @@ class Health extends Service {
 
     }
 
-     /// Get Functions Queue
-     Future<models.HealthQueue> getQueueFunctions() async {
+    /// Get Functions Queue
+    Future<models.HealthQueue> getQueueFunctions() async {
         final String path = '/health/queue/functions';
 
         final Map<String, dynamic> params = {
@@ -149,12 +149,12 @@ class Health extends Service {
 
     }
 
-     /// Get Logs Queue
-     ///
+    /// Get Logs Queue
+    ///
     /// Get the number of logs that are waiting to be processed in the Appwrite
     /// internal queue server.
-     ///
-     Future<models.HealthQueue> getQueueLogs() async {
+    ///
+    Future<models.HealthQueue> getQueueLogs() async {
         final String path = '/health/queue/logs';
 
         final Map<String, dynamic> params = {
@@ -174,12 +174,12 @@ class Health extends Service {
 
     }
 
-     /// Get Webhooks Queue
-     ///
+    /// Get Webhooks Queue
+    ///
     /// Get the number of webhooks that are waiting to be processed in the Appwrite
     /// internal queue server.
-     ///
-     Future<models.HealthQueue> getQueueWebhooks() async {
+    ///
+    Future<models.HealthQueue> getQueueWebhooks() async {
         final String path = '/health/queue/webhooks';
 
         final Map<String, dynamic> params = {
@@ -199,11 +199,11 @@ class Health extends Service {
 
     }
 
-     /// Get Local Storage
-     ///
+    /// Get Local Storage
+    ///
     /// Check the Appwrite local storage device is up and connection is successful.
-     ///
-     Future<models.HealthStatus> getStorageLocal() async {
+    ///
+    Future<models.HealthStatus> getStorageLocal() async {
         final String path = '/health/storage/local';
 
         final Map<String, dynamic> params = {
@@ -223,8 +223,8 @@ class Health extends Service {
 
     }
 
-     /// Get Time
-     ///
+    /// Get Time
+    ///
     /// Check the Appwrite server time is synced with Google remote NTP server. We
     /// use this technology to smoothly handle leap seconds with no disruptive
     /// events. The [Network Time
@@ -232,8 +232,8 @@ class Health extends Service {
     /// used by hundreds of millions of computers and devices to synchronize their
     /// clocks over the Internet. If your computer sets its own clock, it likely
     /// uses NTP.
-     ///
-     Future<models.HealthTime> getTime() async {
+    ///
+    Future<models.HealthTime> getTime() async {
         final String path = '/health/time';
 
         final Map<String, dynamic> params = {
