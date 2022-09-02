@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Language
-class Language {
+class Language implements Model {
     /// Language name.
     final String name;
     /// Language two-character ISO 639-1 codes.
@@ -9,8 +9,7 @@ class Language {
     /// Language native name.
     final String nativeName;
 
-    Language({
-        required this.name,
+    Language({        required this.name,
         required this.code,
         required this.nativeName,
     });

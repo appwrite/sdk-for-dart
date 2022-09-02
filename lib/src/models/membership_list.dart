@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Memberships List
-class MembershipList {
+class MembershipList implements Model {
     /// Total number of memberships documents that matched your query.
     final int total;
     /// List of memberships.
     final List<Membership> memberships;
 
-    MembershipList({
-        required this.total,
+    MembershipList({        required this.total,
         required this.memberships,
     });
 

@@ -13,7 +13,7 @@ void main() { // Init SDK
   Future result = storage.createBucket(
     bucketId: '[BUCKET_ID]',
     name: '[NAME]',
-    permission: 'file',
+    fileSecurity: false,
   );
 
   result

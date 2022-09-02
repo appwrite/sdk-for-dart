@@ -3,7 +3,7 @@ part of dart_appwrite;
     /// The Teams service allows you to group users of your project and to enable
     /// them to share read and write access to your project resources
 class Teams extends Service {
-    Teams(Client client): super(client);
+    Teams(super.client);
 
     /// List Teams
     ///
@@ -13,16 +13,12 @@ class Teams extends Service {
     /// In admin mode, this endpoint returns a list of all the teams in the current
     /// project. [Learn more about different API modes](/docs/admin).
     ///
-    Future<models.TeamList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    Future<models.TeamList> list({List<String>? queries, String? search}) async {
         final String path = '/teams';
 
         final Map<String, dynamic> params = {
-            'search': search,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderType': orderType,
+            'queries': queries,
+'search': search,
 
             
         };
@@ -38,14 +34,13 @@ class Teams extends Service {
 
 
     }
-
     /// Create Team
     ///
     /// Create a new team. The user who creates the team will automatically be
     /// assigned as the owner of the team. Only the users with the owner role can
     /// invite new members, add new owners and delete or update the team.
     ///
-    Future<models.Team> create({required String teamId, required String name, List? roles}) async {
+    Future<models.Team> create({required String teamId, required String name, List<String>? roles}) async {
         final String path = '/teams';
 
         final Map<String, dynamic> params = {
@@ -67,7 +62,6 @@ class Teams extends Service {
 
 
     }
-
     /// Get Team
     ///
     /// Get a team by its ID. All team members have read access for this resource.
@@ -91,7 +85,6 @@ class Teams extends Service {
 
 
     }
-
     /// Update Team
     ///
     /// Update a team using its ID. Only members with the owner role can update the
@@ -117,7 +110,6 @@ class Teams extends Service {
 
 
     }
-
     /// Delete Team
     ///
     /// Delete a team using its ID. Only team members with the owner role can
@@ -142,22 +134,17 @@ class Teams extends Service {
 
 
     }
-
     /// Get Team Memberships
     ///
     /// Use this endpoint to list a team's members using the team's ID. All team
     /// members have read access to this endpoint.
     ///
-    Future<models.MembershipList> getMemberships({required String teamId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    Future<models.MembershipList> getMemberships({required String teamId, List<String>? queries, String? search}) async {
         final String path = '/teams/{teamId}/memberships'.replaceAll('{teamId}', teamId);
 
         final Map<String, dynamic> params = {
-            'search': search,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderType': orderType,
+            'queries': queries,
+'search': search,
 
             
         };
@@ -173,7 +160,6 @@ class Teams extends Service {
 
 
     }
-
     /// Create Team Membership
     ///
     /// Invite a new member to join your team. If initiated from the client SDK, an
@@ -192,7 +178,7 @@ class Teams extends Service {
     /// the only valid redirect URL's are the once from domains you have set when
     /// adding your platforms in the console interface.
     ///
-    Future<models.Membership> createMembership({required String teamId, required String email, required List roles, required String url, String? name}) async {
+    Future<models.Membership> createMembership({required String teamId, required String email, required List<String> roles, required String url, String? name}) async {
         final String path = '/teams/{teamId}/memberships'.replaceAll('{teamId}', teamId);
 
         final Map<String, dynamic> params = {
@@ -215,7 +201,6 @@ class Teams extends Service {
 
 
     }
-
     /// Get Team Membership
     ///
     /// Get a team member by the membership unique id. All team members have read
@@ -240,14 +225,13 @@ class Teams extends Service {
 
 
     }
-
     /// Update Membership Roles
     ///
     /// Modify the roles of a team member. Only team members with the owner role
     /// have access to this endpoint. Learn more about [roles and
     /// permissions](/docs/permissions).
     ///
-    Future<models.Membership> updateMembershipRoles({required String teamId, required String membershipId, required List roles}) async {
+    Future<models.Membership> updateMembershipRoles({required String teamId, required String membershipId, required List<String> roles}) async {
         final String path = '/teams/{teamId}/memberships/{membershipId}'.replaceAll('{teamId}', teamId).replaceAll('{membershipId}', membershipId);
 
         final Map<String, dynamic> params = {
@@ -267,7 +251,6 @@ class Teams extends Service {
 
 
     }
-
     /// Delete Team Membership
     ///
     /// This endpoint allows a user to leave a team or for a team owner to delete
@@ -293,7 +276,6 @@ class Teams extends Service {
 
 
     }
-
     /// Update Team Membership Status
     ///
     /// Use this endpoint to allow a user to accept an invitation to join a team

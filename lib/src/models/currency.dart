@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Currency
-class Currency {
+class Currency implements Model {
     /// Currency symbol.
     final String symbol;
     /// Currency name.
@@ -17,8 +17,7 @@ class Currency {
     /// Currency plural name
     final String namePlural;
 
-    Currency({
-        required this.symbol,
+    Currency({        required this.symbol,
         required this.name,
         required this.symbolNative,
         required this.decimalDigits,

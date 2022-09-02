@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeBoolean
-class AttributeBoolean {
+class AttributeBoolean implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -11,17 +11,16 @@ class AttributeBoolean {
     /// Is attribute required?
     final bool xrequired;
     /// Is attribute an array?
-    final bool? array;
+    final bool array;
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
-    final bool? xdefault;
+    final bool xdefault;
 
-    AttributeBoolean({
-        required this.key,
+    AttributeBoolean({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
-this.xdefault,
+        required this.array,
+        required this.xdefault,
     });
 
     factory AttributeBoolean.fromMap(Map<String, dynamic> map) {

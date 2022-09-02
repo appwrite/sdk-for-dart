@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Attributes List
-class AttributeList {
+class AttributeList implements Model {
     /// Total number of attributes in the given collection.
     final int total;
     /// List of attributes.
     final List attributes;
 
-    AttributeList({
-        required this.total,
+    AttributeList({        required this.total,
         required this.attributes,
     });
 

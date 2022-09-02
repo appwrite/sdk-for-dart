@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Teams List
-class TeamList {
+class TeamList implements Model {
     /// Total number of teams documents that matched your query.
     final int total;
     /// List of teams.
     final List<Team> teams;
 
-    TeamList({
-        required this.total,
+    TeamList({        required this.total,
         required this.teams,
     });
 

@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeInteger
-class AttributeInteger {
+class AttributeInteger implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -11,23 +11,22 @@ class AttributeInteger {
     /// Is attribute required?
     final bool xrequired;
     /// Is attribute an array?
-    final bool? array;
+    final bool array;
     /// Minimum value to enforce for new documents.
-    final int? min;
+    final int min;
     /// Maximum value to enforce for new documents.
-    final int? max;
+    final int max;
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
-    final int? xdefault;
+    final int xdefault;
 
-    AttributeInteger({
-        required this.key,
+    AttributeInteger({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
-this.min,
-this.max,
-this.xdefault,
+        required this.array,
+        required this.min,
+        required this.max,
+        required this.xdefault,
     });
 
     factory AttributeInteger.fromMap(Map<String, dynamic> map) {

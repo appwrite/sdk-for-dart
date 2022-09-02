@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Executions List
-class ExecutionList {
+class ExecutionList implements Model {
     /// Total number of executions documents that matched your query.
     final int total;
     /// List of executions.
     final List<Execution> executions;
 
-    ExecutionList({
-        required this.total,
+    ExecutionList({        required this.total,
         required this.executions,
     });
 

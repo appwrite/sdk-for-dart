@@ -3,20 +3,19 @@ part of dart_appwrite;
     /// The Databases service allows you to create structured collections of
     /// documents, query and filter lists of documents
 class Databases extends Service {
-    Databases(Client client, {required this.databaseId}): super(client);
-    String databaseId;
+    Databases(super.client);
 
     /// List Databases
-    Future<models.DatabaseList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    ///
+    /// Get a list of all databases from the current Appwrite project. You can use
+    /// the search parameter to filter your results.
+    ///
+    Future<models.DatabaseList> list({List<String>? queries, String? search}) async {
         final String path = '/databases';
 
         final Map<String, dynamic> params = {
-            'search': search,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderType': orderType,
+            'queries': queries,
+'search': search,
 
             
         };
@@ -32,9 +31,12 @@ class Databases extends Service {
 
 
     }
-
     /// Create Database
-    Future<models.Database> create({required String name}) async {
+    ///
+    /// Create a new Database.
+    /// 
+    ///
+    Future<models.Database> create({required String databaseId, required String name}) async {
         final String path = '/databases';
 
         final Map<String, dynamic> params = {
@@ -55,9 +57,12 @@ class Databases extends Service {
 
 
     }
-
     /// Get Database
-    Future<models.Collection> get() async {
+    ///
+    /// Get a database by its unique ID. This endpoint response returns a JSON
+    /// object with the database metadata.
+    ///
+    Future<models.Database> get({required String databaseId}) async {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
@@ -72,13 +77,15 @@ class Databases extends Service {
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
-        return models.Collection.fromMap(res.data);
+        return models.Database.fromMap(res.data);
 
 
     }
-
     /// Update Database
-    Future<models.Collection> update({required String name}) async {
+    ///
+    /// Update a database by its unique ID.
+    ///
+    Future<models.Database> update({required String databaseId, required String name}) async {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
@@ -94,13 +101,16 @@ class Databases extends Service {
 
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
 
-        return models.Collection.fromMap(res.data);
+        return models.Database.fromMap(res.data);
 
 
     }
-
     /// Delete Database
-    Future delete() async {
+    ///
+    /// Delete a database by its unique ID. Only API keys with with databases.write
+    /// scope can delete a database.
+    ///
+    Future delete({required String databaseId}) async {
         final String path = '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
@@ -119,18 +129,17 @@ class Databases extends Service {
 
 
     }
-
     /// List Collections
-    Future<models.CollectionList> listCollections({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    ///
+    /// Get a list of all collections that belong to the provided databaseId. You
+    /// can use the search parameter to filter your results.
+    ///
+    Future<models.CollectionList> listCollections({required String databaseId, List<String>? queries, String? search}) async {
         final String path = '/databases/{databaseId}/collections'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
-            'search': search,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderType': orderType,
+            'queries': queries,
+'search': search,
 
             
         };
@@ -146,18 +155,22 @@ class Databases extends Service {
 
 
     }
-
     /// Create Collection
-    Future<models.Collection> createCollection({required String collectionId, required String name, required String permission, required List read, required List write}) async {
+    ///
+    /// Create a new Collection. Before using this route, you should create a new
+    /// database resource using either a [server
+    /// integration](/docs/server/databases#databasesCreateCollection) API or
+    /// directly from your database console.
+    ///
+    Future<models.Collection> createCollection({required String databaseId, required String collectionId, required String name, required List<String> permissions, required bool documentSecurity}) async {
         final String path = '/databases/{databaseId}/collections'.replaceAll('{databaseId}', databaseId);
 
         final Map<String, dynamic> params = {
             
             'collectionId': collectionId,
 'name': name,
-'permission': permission,
-'read': read,
-'write': write,
+'permissions': permissions,
+'documentSecurity': documentSecurity,
 
         };
 
@@ -172,9 +185,12 @@ class Databases extends Service {
 
 
     }
-
     /// Get Collection
-    Future<models.Collection> getCollection({required String collectionId}) async {
+    ///
+    /// Get a collection by its unique ID. This endpoint response returns a JSON
+    /// object with the collection metadata.
+    ///
+    Future<models.Collection> getCollection({required String databaseId, required String collectionId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -193,17 +209,18 @@ class Databases extends Service {
 
 
     }
-
     /// Update Collection
-    Future<models.Collection> updateCollection({required String collectionId, required String name, required String permission, List? read, List? write, bool? enabled}) async {
+    ///
+    /// Update a collection by its unique ID.
+    ///
+    Future<models.Collection> updateCollection({required String databaseId, required String collectionId, required String name, required bool documentSecurity, List<String>? permissions, bool? enabled}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
             
             'name': name,
-'permission': permission,
-'read': read,
-'write': write,
+'permissions': permissions,
+'documentSecurity': documentSecurity,
 'enabled': enabled,
 
         };
@@ -219,9 +236,12 @@ class Databases extends Service {
 
 
     }
-
     /// Delete Collection
-    Future deleteCollection({required String collectionId}) async {
+    ///
+    /// Delete a collection by its unique ID. Only users with write permissions
+    /// have access to delete this resource.
+    ///
+    Future deleteCollection({required String databaseId, required String collectionId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -240,9 +260,8 @@ class Databases extends Service {
 
 
     }
-
     /// List Attributes
-    Future<models.AttributeList> listAttributes({required String collectionId}) async {
+    Future<models.AttributeList> listAttributes({required String databaseId, required String collectionId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -261,9 +280,12 @@ class Databases extends Service {
 
 
     }
-
     /// Create Boolean Attribute
-    Future<models.AttributeBoolean> createBooleanAttribute({required String collectionId, required String key, required bool xrequired, bool? xdefault, bool? array}) async {
+    ///
+    /// Create a boolean attribute.
+    /// 
+    ///
+    Future<models.AttributeBoolean> createBooleanAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, bool? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -286,9 +308,36 @@ class Databases extends Service {
 
 
     }
+    /// Create DateTime Attribute
+    Future<models.AttributeDatetime> createDatetimeAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
+        final Map<String, dynamic> params = {
+            
+            'key': key,
+'required': xrequired,
+'default': xdefault,
+'array': array,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
+        return models.AttributeDatetime.fromMap(res.data);
+
+
+    }
     /// Create Email Attribute
-    Future<models.AttributeEmail> createEmailAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
+    ///
+    /// Create an email attribute.
+    /// 
+    ///
+    Future<models.AttributeEmail> createEmailAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/email'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -311,9 +360,8 @@ class Databases extends Service {
 
 
     }
-
     /// Create Enum Attribute
-    Future<models.AttributeEnum> createEnumAttribute({required String collectionId, required String key, required List elements, required bool xrequired, String? xdefault, bool? array}) async {
+    Future<models.AttributeEnum> createEnumAttribute({required String databaseId, required String collectionId, required String key, required List<String> elements, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -337,9 +385,13 @@ class Databases extends Service {
 
 
     }
-
     /// Create Float Attribute
-    Future<models.AttributeFloat> createFloatAttribute({required String collectionId, required String key, required bool xrequired, double? min, double? max, double? xdefault, bool? array}) async {
+    ///
+    /// Create a float attribute. Optionally, minimum and maximum values can be
+    /// provided.
+    /// 
+    ///
+    Future<models.AttributeFloat> createFloatAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, double? min, double? max, double? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/float'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -364,9 +416,13 @@ class Databases extends Service {
 
 
     }
-
     /// Create Integer Attribute
-    Future<models.AttributeInteger> createIntegerAttribute({required String collectionId, required String key, required bool xrequired, int? min, int? max, int? xdefault, bool? array}) async {
+    ///
+    /// Create an integer attribute. Optionally, minimum and maximum values can be
+    /// provided.
+    /// 
+    ///
+    Future<models.AttributeInteger> createIntegerAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, int? min, int? max, int? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -391,9 +447,12 @@ class Databases extends Service {
 
 
     }
-
     /// Create IP Address Attribute
-    Future<models.AttributeIp> createIpAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
+    ///
+    /// Create IP address attribute.
+    /// 
+    ///
+    Future<models.AttributeIp> createIpAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -416,9 +475,12 @@ class Databases extends Service {
 
 
     }
-
     /// Create String Attribute
-    Future<models.AttributeString> createStringAttribute({required String collectionId, required String key, required int size, required bool xrequired, String? xdefault, bool? array}) async {
+    ///
+    /// Create a string attribute.
+    /// 
+    ///
+    Future<models.AttributeString> createStringAttribute({required String databaseId, required String collectionId, required String key, required int size, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/string'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -442,9 +504,12 @@ class Databases extends Service {
 
 
     }
-
     /// Create URL Attribute
-    Future<models.AttributeUrl> createUrlAttribute({required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
+    ///
+    /// Create a URL attribute.
+    /// 
+    ///
+    Future<models.AttributeUrl> createUrlAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/url'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -467,9 +532,8 @@ class Databases extends Service {
 
 
     }
-
     /// Get Attribute
-    Future getAttribute({required String collectionId, required String key}) async {
+    Future getAttribute({required String databaseId, required String collectionId, required String key}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> params = {
@@ -488,9 +552,8 @@ class Databases extends Service {
 
 
     }
-
     /// Delete Attribute
-    Future deleteAttribute({required String collectionId, required String key}) async {
+    Future deleteAttribute({required String databaseId, required String collectionId, required String key}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> params = {
@@ -509,19 +572,18 @@ class Databases extends Service {
 
 
     }
-
     /// List Documents
-    Future<models.DocumentList> listDocuments({required String collectionId, List? queries, int? limit, int? offset, String? cursor, String? cursorDirection, List? orderAttributes, List? orderTypes}) async {
+    ///
+    /// Get a list of all the user's documents in a given collection. You can use
+    /// the query params to filter your results. On admin mode, this endpoint will
+    /// return a list of all of documents belonging to the provided collectionId.
+    /// [Learn more about different API modes](/docs/admin).
+    ///
+    Future<models.DocumentList> listDocuments({required String databaseId, required String collectionId, List<String>? queries}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
             'queries': queries,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderAttributes': orderAttributes,
-'orderTypes': orderTypes,
 
             
         };
@@ -537,17 +599,21 @@ class Databases extends Service {
 
 
     }
-
     /// Create Document
-    Future<models.Document> createDocument({required String collectionId, required String documentId, required Map data, List? read, List? write}) async {
+    ///
+    /// Create a new Document. Before using this route, you should create a new
+    /// collection resource using either a [server
+    /// integration](/docs/server/databases#databasesCreateCollection) API or
+    /// directly from your database console.
+    ///
+    Future<models.Document> createDocument({required String databaseId, required String collectionId, required String documentId, required Map data, List<String>? permissions}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
             
             'documentId': documentId,
 'data': data,
-'read': read,
-'write': write,
+'permissions': permissions,
 
         };
 
@@ -562,9 +628,12 @@ class Databases extends Service {
 
 
     }
-
     /// Get Document
-    Future<models.Document> getDocument({required String collectionId, required String documentId}) async {
+    ///
+    /// Get a document by its unique ID. This endpoint response returns a JSON
+    /// object with the document data.
+    ///
+    Future<models.Document> getDocument({required String databaseId, required String collectionId, required String documentId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
         final Map<String, dynamic> params = {
@@ -583,16 +652,18 @@ class Databases extends Service {
 
 
     }
-
     /// Update Document
-    Future<models.Document> updateDocument({required String collectionId, required String documentId, Map? data, List? read, List? write}) async {
+    ///
+    /// Update a document by its unique ID. Using the patch method you can pass
+    /// only specific fields that will get updated.
+    ///
+    Future<models.Document> updateDocument({required String databaseId, required String collectionId, required String documentId, Map? data, List<String>? permissions}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
         final Map<String, dynamic> params = {
             
             'data': data,
-'read': read,
-'write': write,
+'permissions': permissions,
 
         };
 
@@ -607,9 +678,11 @@ class Databases extends Service {
 
 
     }
-
     /// Delete Document
-    Future deleteDocument({required String collectionId, required String documentId}) async {
+    ///
+    /// Delete a document by its unique ID.
+    ///
+    Future deleteDocument({required String databaseId, required String collectionId, required String documentId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
         final Map<String, dynamic> params = {
@@ -628,9 +701,8 @@ class Databases extends Service {
 
 
     }
-
     /// List Indexes
-    Future<models.IndexList> listIndexes({required String collectionId}) async {
+    Future<models.IndexList> listIndexes({required String databaseId, required String collectionId}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/indexes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -649,9 +721,8 @@ class Databases extends Service {
 
 
     }
-
     /// Create Index
-    Future<models.Index> createIndex({required String collectionId, required String key, required String type, required List attributes, List? orders}) async {
+    Future<models.Index> createIndex({required String databaseId, required String collectionId, required String key, required String type, required List<String> attributes, List<String>? orders}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/indexes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> params = {
@@ -674,9 +745,8 @@ class Databases extends Service {
 
 
     }
-
     /// Get Index
-    Future<models.Index> getIndex({required String collectionId, required String key}) async {
+    Future<models.Index> getIndex({required String databaseId, required String collectionId, required String key}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> params = {
@@ -695,9 +765,8 @@ class Databases extends Service {
 
 
     }
-
     /// Delete Index
-    Future deleteIndex({required String collectionId, required String key}) async {
+    Future deleteIndex({required String databaseId, required String collectionId, required String key}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> params = {
