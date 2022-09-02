@@ -16,6 +16,9 @@ export 'src/input_file.dart';
 export 'src/upload_progress.dart';
 
 part 'query.dart';
+part 'permission.dart';
+part 'role.dart';
+part 'id.dart';
 part 'services/account.dart';
 part 'services/avatars.dart';
 part 'services/databases.dart';

@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Languages List
-class LanguageList {
+class LanguageList implements Model {
     /// Total number of languages documents that matched your query.
     final int total;
     /// List of languages.
     final List<Language> languages;
 
-    LanguageList({
-        required this.total,
+    LanguageList({        required this.total,
         required this.languages,
     });
 

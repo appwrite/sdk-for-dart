@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Continents List
-class ContinentList {
+class ContinentList implements Model {
     /// Total number of continents documents that matched your query.
     final int total;
     /// List of continents.
     final List<Continent> continents;
 
-    ContinentList({
-        required this.total,
+    ContinentList({        required this.total,
         required this.continents,
     });
 

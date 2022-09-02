@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Logs List
-class LogList {
+class LogList implements Model {
     /// Total number of logs documents that matched your query.
     final int total;
     /// List of logs.
     final List<Log> logs;
 
-    LogList({
-        required this.total,
+    LogList({        required this.total,
         required this.logs,
     });
 

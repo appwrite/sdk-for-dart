@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Index
-class Index {
+class Index implements Model {
     /// Index Key.
     final String key;
     /// Index type.
@@ -13,8 +13,7 @@ class Index {
     /// Index orders.
     final List orders;
 
-    Index({
-        required this.key,
+    Index({        required this.key,
         required this.type,
         required this.status,
         required this.attributes,

@@ -1,13 +1,13 @@
 part of dart_appwrite.models;
 
 /// Deployment
-class Deployment {
+class Deployment implements Model {
     /// Deployment ID.
     final String $id;
-    /// Deployment creation date in Unix timestamp.
-    final int $createdAt;
-    /// Deployment update date in Unix timestamp.
-    final int $updatedAt;
+    /// Deployment creation date in Datetime
+    final String $createdAt;
+    /// Deployment update date in Datetime
+    final String $updatedAt;
     /// Resource ID.
     final String resourceId;
     /// Resource type.
@@ -20,15 +20,14 @@ class Deployment {
     final String buildId;
     /// Whether the deployment should be automatically activated.
     final bool activate;
-    /// The deployment status.
+    /// The deployment status. Possible values are &quot;processing&quot;, &quot;building&quot;, &quot;pending&quot;, &quot;ready&quot;, and &quot;failed&quot;.
     final String status;
     /// The build stdout.
     final String buildStdout;
     /// The build stderr.
     final String buildStderr;
 
-    Deployment({
-        required this.$id,
+    Deployment({        required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
         required this.resourceId,
@@ -45,8 +44,8 @@ class Deployment {
     factory Deployment.fromMap(Map<String, dynamic> map) {
         return Deployment(
             $id: map['\$id'].toString(),
-            $createdAt: map['\$createdAt'],
-            $updatedAt: map['\$updatedAt'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
             resourceId: map['resourceId'].toString(),
             resourceType: map['resourceType'].toString(),
             entrypoint: map['entrypoint'].toString(),

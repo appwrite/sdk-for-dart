@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeEnum
-class AttributeEnum {
+class AttributeEnum implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -11,23 +11,22 @@ class AttributeEnum {
     /// Is attribute required?
     final bool xrequired;
     /// Is attribute an array?
-    final bool? array;
+    final bool array;
     /// Array of elements in enumerated type.
     final List elements;
     /// String format.
     final String format;
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
-    final String? xdefault;
+    final String xdefault;
 
-    AttributeEnum({
-        required this.key,
+    AttributeEnum({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        required this.array,
         required this.elements,
         required this.format,
-this.xdefault,
+        required this.xdefault,
     });
 
     factory AttributeEnum.fromMap(Map<String, dynamic> map) {
@@ -39,7 +38,7 @@ this.xdefault,
             array: map['array'],
             elements: map['elements'],
             format: map['format'].toString(),
-            xdefault: map['default']?.toString(),
+            xdefault: map['default'].toString(),
         );
     }
 
