@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Deployments List
-class DeploymentList {
+class DeploymentList implements Model {
     /// Total number of deployments documents that matched your query.
     final int total;
     /// List of deployments.
     final List<Deployment> deployments;
 
-    DeploymentList({
-        required this.total,
+    DeploymentList({        required this.total,
         required this.deployments,
     });
 

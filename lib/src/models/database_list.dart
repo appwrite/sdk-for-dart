@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Databases List
-class DatabaseList {
+class DatabaseList implements Model {
     /// Total number of databases documents that matched your query.
     final int total;
     /// List of databases.
     final List<Database> databases;
 
-    DatabaseList({
-        required this.total,
+    DatabaseList({        required this.total,
         required this.databases,
     });
 

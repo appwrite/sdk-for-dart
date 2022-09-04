@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeIP
-class AttributeIp {
+class AttributeIp implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -17,8 +17,7 @@ class AttributeIp {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
-    AttributeIp({
-        required this.key,
+    AttributeIp({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,

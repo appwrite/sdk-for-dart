@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeURL
-class AttributeUrl {
+class AttributeUrl implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -17,8 +17,7 @@ class AttributeUrl {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
-    AttributeUrl({
-        required this.key,
+    AttributeUrl({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,

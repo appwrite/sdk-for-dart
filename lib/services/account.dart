@@ -2,13 +2,13 @@ part of dart_appwrite;
 
     /// The Account service allows you to authenticate and manage a user account.
 class Account extends Service {
-    Account(Client client): super(client);
+    Account(super.client);
 
     /// Get Account
     ///
     /// Get currently logged in user data as JSON object.
     ///
-    Future<models.User> get() async {
+    Future<models.Account> get() async {
         final String path = '/account';
 
         final Map<String, dynamic> params = {
@@ -23,11 +23,10 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
-        return models.User.fromMap(res.data);
+        return models.Account.fromMap(res.data);
 
 
     }
-
     /// Update Account Email
     ///
     /// Update currently logged in user account email address. After changing user
@@ -39,7 +38,7 @@ class Account extends Service {
     /// one, by passing an email address and a new password.
     /// 
     ///
-    Future<models.User> updateEmail({required String email, required String password}) async {
+    Future<models.Account> updateEmail({required String email, required String password}) async {
         final String path = '/account/email';
 
         final Map<String, dynamic> params = {
@@ -56,22 +55,20 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.User.fromMap(res.data);
+        return models.Account.fromMap(res.data);
 
 
     }
-
     /// Get Account Logs
     ///
     /// Get currently logged in user list of latest security activity logs. Each
     /// log returns user IP address, location and date and time of log.
     ///
-    Future<models.LogList> getLogs({int? limit, int? offset}) async {
+    Future<models.LogList> getLogs({List<String>? queries}) async {
         final String path = '/account/logs';
 
         final Map<String, dynamic> params = {
-            'limit': limit,
-'offset': offset,
+            'queries': queries,
 
             
         };
@@ -87,12 +84,11 @@ class Account extends Service {
 
 
     }
-
     /// Update Account Name
     ///
     /// Update currently logged in user account name.
     ///
-    Future<models.User> updateName({required String name}) async {
+    Future<models.Account> updateName({required String name}) async {
         final String path = '/account/name';
 
         final Map<String, dynamic> params = {
@@ -108,18 +104,17 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.User.fromMap(res.data);
+        return models.Account.fromMap(res.data);
 
 
     }
-
     /// Update Account Password
     ///
     /// Update currently logged in user password. For validation, user is required
     /// to pass in the new password, and the old password. For users created with
     /// OAuth, Team Invites and Magic URL, oldPassword is optional.
     ///
-    Future<models.User> updatePassword({required String password, String? oldPassword}) async {
+    Future<models.Account> updatePassword({required String password, String? oldPassword}) async {
         final String path = '/account/password';
 
         final Map<String, dynamic> params = {
@@ -136,11 +131,10 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.User.fromMap(res.data);
+        return models.Account.fromMap(res.data);
 
 
     }
-
     /// Update Account Phone
     ///
     /// Update the currently logged in user's phone number. After updating the
@@ -149,12 +143,12 @@ class Account extends Service {
     /// /account/verification/phone](/docs/client/account#accountCreatePhoneVerification)
     /// endpoint to send a confirmation SMS.
     ///
-    Future<models.User> updatePhone({required String number, required String password}) async {
+    Future<models.Account> updatePhone({required String phone, required String password}) async {
         final String path = '/account/phone';
 
         final Map<String, dynamic> params = {
             
-            'number': number,
+            'phone': phone,
 'password': password,
 
         };
@@ -166,11 +160,10 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.User.fromMap(res.data);
+        return models.Account.fromMap(res.data);
 
 
     }
-
     /// Get Account Preferences
     ///
     /// Get currently logged in user preferences as a key-value object.
@@ -194,14 +187,13 @@ class Account extends Service {
 
 
     }
-
     /// Update Account Preferences
     ///
     /// Update currently logged in user account preferences. The object you pass is
     /// stored as is, and replaces any previous value. The maximum allowed prefs
     /// size is 64kB and throws error if exceeded.
     ///
-    Future<models.User> updatePrefs({required Map prefs}) async {
+    Future<models.Account> updatePrefs({required Map prefs}) async {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
@@ -217,11 +209,10 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.User.fromMap(res.data);
+        return models.Account.fromMap(res.data);
 
 
     }
-
     /// Create Password Recovery
     ///
     /// Sends the user an email with a temporary secret key for password reset.
@@ -254,7 +245,6 @@ class Account extends Service {
 
 
     }
-
     /// Create Password Recovery (confirmation)
     ///
     /// Use this endpoint to complete the user account password reset. Both the
@@ -290,7 +280,6 @@ class Account extends Service {
 
 
     }
-
     /// Get Account Sessions
     ///
     /// Get currently logged in user list of active sessions across different
@@ -315,7 +304,6 @@ class Account extends Service {
 
 
     }
-
     /// Delete All Account Sessions
     ///
     /// Delete all sessions from the user account and remove any sessions cookies
@@ -340,7 +328,6 @@ class Account extends Service {
 
 
     }
-
     /// Get Session By ID
     ///
     /// Use this endpoint to get a logged in user's session using a Session ID.
@@ -365,7 +352,6 @@ class Account extends Service {
 
 
     }
-
     /// Update Session (Refresh Tokens)
     ///
     /// Access tokens have limited lifespan and expire to mitigate security risks.
@@ -391,7 +377,6 @@ class Account extends Service {
 
 
     }
-
     /// Delete Account Session
     ///
     /// Use this endpoint to log out the currently logged in user from all their
@@ -418,14 +403,13 @@ class Account extends Service {
 
 
     }
-
     /// Update Account Status
     ///
     /// Block the currently logged in user account. Behind the scene, the user
     /// record is not deleted but permanently blocked from any access. To
     /// completely delete a user, use the Users API instead.
     ///
-    Future<models.User> updateStatus() async {
+    Future<models.Account> updateStatus() async {
         final String path = '/account/status';
 
         final Map<String, dynamic> params = {
@@ -440,11 +424,10 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.User.fromMap(res.data);
+        return models.Account.fromMap(res.data);
 
 
     }
-
     /// Create Email Verification
     ///
     /// Use this endpoint to send a verification message to your user email address
@@ -483,7 +466,6 @@ class Account extends Service {
 
 
     }
-
     /// Create Email Verification (confirmation)
     ///
     /// Use this endpoint to complete the user email verification process. Use both
@@ -512,7 +494,6 @@ class Account extends Service {
 
 
     }
-
     /// Create Phone Verification
     ///
     /// Use this endpoint to send a verification SMS to the currently logged in
@@ -541,7 +522,6 @@ class Account extends Service {
 
 
     }
-
     /// Create Phone Verification (confirmation)
     ///
     /// Use this endpoint to complete the user phone verification process. Use the

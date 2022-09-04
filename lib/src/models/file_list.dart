@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Files List
-class FileList {
+class FileList implements Model {
     /// Total number of files documents that matched your query.
     final int total;
     /// List of files.
     final List<File> files;
 
-    FileList({
-        required this.total,
+    FileList({        required this.total,
         required this.files,
     });
 

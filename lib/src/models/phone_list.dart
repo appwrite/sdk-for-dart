@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Phones List
-class PhoneList {
+class PhoneList implements Model {
     /// Total number of phones documents that matched your query.
     final int total;
     /// List of phones.
     final List<Phone> phones;
 
-    PhoneList({
-        required this.total,
+    PhoneList({        required this.total,
         required this.phones,
     });
 

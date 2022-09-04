@@ -1,28 +1,24 @@
 part of dart_appwrite.models;
 
 /// Document
-class Document {
+class Document implements Model {
     /// Document ID.
     final String $id;
     /// Collection ID.
     final String $collection;
-    /// Document creation date in Unix timestamp.
-    final int $createdAt;
-    /// Document update date in Unix timestamp.
-    final int $updatedAt;
-    /// Document read permissions.
-    final List $read;
-    /// Document write permissions.
-    final List $write;
+    /// Document creation date in ISO 8601 format.
+    final String $createdAt;
+    /// Document update date in ISO 8601 format.
+    final String $updatedAt;
+    /// Document permissions. [Learn more about permissions](/docs/permissions).
+    final List $permissions;
     final Map<String, dynamic> data;
 
-    Document({
-        required this.$id,
+    Document({        required this.$id,
         required this.$collection,
         required this.$createdAt,
         required this.$updatedAt,
-        required this.$read,
-        required this.$write,
+        required this.$permissions,
         required this.data,
     });
 
@@ -30,10 +26,9 @@ class Document {
         return Document(
             $id: map['\$id'].toString(),
             $collection: map['\$collection'].toString(),
-            $createdAt: map['\$createdAt'],
-            $updatedAt: map['\$updatedAt'],
-            $read: map['\$read'],
-            $write: map['\$write'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            $permissions: map['\$permissions'],
             data: map,
         );
     }
@@ -44,8 +39,7 @@ class Document {
             "\$collection": $collection,
             "\$createdAt": $createdAt,
             "\$updatedAt": $updatedAt,
-            "\$read": $read,
-            "\$write": $write,
+            "\$permissions": $permissions,
             "data": data,
         };
     }

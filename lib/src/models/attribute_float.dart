@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeFloat
-class AttributeFloat {
+class AttributeFloat implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -19,8 +19,7 @@ class AttributeFloat {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final double? xdefault;
 
-    AttributeFloat({
-        required this.key,
+    AttributeFloat({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,

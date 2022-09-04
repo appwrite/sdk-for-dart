@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Users List
-class UserList {
+class UserList implements Model {
     /// Total number of users documents that matched your query.
     final int total;
     /// List of users.
     final List<User> users;
 
-    UserList({
-        required this.total,
+    UserList({        required this.total,
         required this.users,
     });
 

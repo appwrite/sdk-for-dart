@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Runtime
-class Runtime {
+class Runtime implements Model {
     /// Runtime ID.
     final String $id;
     /// Runtime Name.
@@ -17,8 +17,7 @@ class Runtime {
     /// List of supported architectures.
     final List supports;
 
-    Runtime({
-        required this.$id,
+    Runtime({        required this.$id,
         required this.name,
         required this.version,
         required this.base,

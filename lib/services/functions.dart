@@ -3,23 +3,19 @@ part of dart_appwrite;
     /// The Functions Service allows you view, create and manage your Cloud
     /// Functions.
 class Functions extends Service {
-    Functions(Client client): super(client);
+    Functions(super.client);
 
     /// List Functions
     ///
     /// Get a list of all the project's functions. You can use the query params to
     /// filter your results.
     ///
-    Future<models.FunctionList> list({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    Future<models.FunctionList> list({List<String>? queries, String? search}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
-            'search': search,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderType': orderType,
+            'queries': queries,
+'search': search,
 
             
         };
@@ -35,14 +31,13 @@ class Functions extends Service {
 
 
     }
-
     /// Create Function
     ///
     /// Create a new function. You can pass a list of
     /// [permissions](/docs/permissions) to allow different project users or team
     /// with access to execute the function using the client API.
     ///
-    Future<models.Func> create({required String functionId, required String name, required List execute, required String runtime, Map? vars, List? events, String? schedule, int? timeout}) async {
+    Future<models.Func> create({required String functionId, required String name, required List<String> execute, required String runtime, List<String>? events, String? schedule, int? timeout}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -51,7 +46,6 @@ class Functions extends Service {
 'name': name,
 'execute': execute,
 'runtime': runtime,
-'vars': vars,
 'events': events,
 'schedule': schedule,
 'timeout': timeout,
@@ -69,7 +63,6 @@ class Functions extends Service {
 
 
     }
-
     /// List runtimes
     ///
     /// Get a list of all runtimes that are currently active on your instance.
@@ -93,7 +86,6 @@ class Functions extends Service {
 
 
     }
-
     /// Get Function
     ///
     /// Get a function by its unique ID.
@@ -117,19 +109,17 @@ class Functions extends Service {
 
 
     }
-
     /// Update Function
     ///
     /// Update function by its unique ID.
     ///
-    Future<models.Func> update({required String functionId, required String name, required List execute, Map? vars, List? events, String? schedule, int? timeout}) async {
+    Future<models.Func> update({required String functionId, required String name, required List<String> execute, List<String>? events, String? schedule, int? timeout}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
             
             'name': name,
 'execute': execute,
-'vars': vars,
 'events': events,
 'schedule': schedule,
 'timeout': timeout,
@@ -147,7 +137,6 @@ class Functions extends Service {
 
 
     }
-
     /// Delete Function
     ///
     /// Delete a function by its unique ID.
@@ -171,22 +160,17 @@ class Functions extends Service {
 
 
     }
-
     /// List Deployments
     ///
     /// Get a list of all the project's code deployments. You can use the query
     /// params to filter your results.
     ///
-    Future<models.DeploymentList> listDeployments({required String functionId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    Future<models.DeploymentList> listDeployments({required String functionId, List<String>? queries, String? search}) async {
         final String path = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
-            'search': search,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderType': orderType,
+            'queries': queries,
+'search': search,
 
             
         };
@@ -202,7 +186,6 @@ class Functions extends Service {
 
 
     }
-
     /// Create Deployment
     ///
     /// Create a new function code deployment. Use this endpoint to upload a new
@@ -247,12 +230,11 @@ class Functions extends Service {
 
 
     }
-
     /// Get Deployment
     ///
     /// Get a code deployment by its unique ID.
     ///
-    Future<models.DeploymentList> getDeployment({required String functionId, required String deploymentId}) async {
+    Future<models.Deployment> getDeployment({required String functionId, required String deploymentId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
         final Map<String, dynamic> params = {
@@ -267,11 +249,10 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
-        return models.DeploymentList.fromMap(res.data);
+        return models.Deployment.fromMap(res.data);
 
 
     }
-
     /// Update Function Deployment
     ///
     /// Update the function code deployment ID using the unique function ID. Use
@@ -297,7 +278,6 @@ class Functions extends Service {
 
 
     }
-
     /// Delete Deployment
     ///
     /// Delete a code deployment by its unique ID.
@@ -321,7 +301,6 @@ class Functions extends Service {
 
 
     }
-
     /// Retry Build
     Future retryBuild({required String functionId, required String deploymentId, required String buildId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId).replaceAll('{buildId}', buildId);
@@ -342,7 +321,6 @@ class Functions extends Service {
 
 
     }
-
     /// List Executions
     ///
     /// Get a list of all the current user function execution logs. You can use the
@@ -350,15 +328,12 @@ class Functions extends Service {
     /// return a list of all of the project's executions. [Learn more about
     /// different API modes](/docs/admin).
     ///
-    Future<models.ExecutionList> listExecutions({required String functionId, int? limit, int? offset, String? search, String? cursor, String? cursorDirection}) async {
+    Future<models.ExecutionList> listExecutions({required String functionId, List<String>? queries, String? search}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
-            'limit': limit,
-'offset': offset,
+            'queries': queries,
 'search': search,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
 
             
         };
@@ -374,7 +349,6 @@ class Functions extends Service {
 
 
     }
-
     /// Create Execution
     ///
     /// Trigger a function execution. The returned object will return you the
@@ -403,7 +377,6 @@ class Functions extends Service {
 
 
     }
-
     /// Get Execution
     ///
     /// Get a function execution log by its unique ID.
@@ -424,6 +397,128 @@ class Functions extends Service {
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
         return models.Execution.fromMap(res.data);
+
+
+    }
+    /// List Variables
+    ///
+    /// Get a list of all variables of a specific function.
+    ///
+    Future<models.VariableList> listVariables({required String functionId, List<String>? queries, String? search}) async {
+        final String path = '/functions/{functionId}/variables'.replaceAll('{functionId}', functionId);
+
+        final Map<String, dynamic> params = {
+            'queries': queries,
+'search': search,
+
+            
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
+        return models.VariableList.fromMap(res.data);
+
+
+    }
+    /// Create Variable
+    ///
+    /// Create a new function variable. These variables can be accessed within
+    /// function in the `env` object under the request variable.
+    ///
+    Future<models.Variable> createVariable({required String functionId, required String key, required String value}) async {
+        final String path = '/functions/{functionId}/variables'.replaceAll('{functionId}', functionId);
+
+        final Map<String, dynamic> params = {
+            
+            'key': key,
+'value': value,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
+        return models.Variable.fromMap(res.data);
+
+
+    }
+    /// Get Variable
+    ///
+    /// Get a variable by its unique ID.
+    ///
+    Future<models.Variable> getVariable({required String functionId, required String variableId}) async {
+        final String path = '/functions/{functionId}/variables/{variableId}'.replaceAll('{functionId}', functionId).replaceAll('{variableId}', variableId);
+
+        final Map<String, dynamic> params = {
+            
+            
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
+
+        return models.Variable.fromMap(res.data);
+
+
+    }
+    /// Update Variable
+    ///
+    /// Update variable by its unique ID.
+    ///
+    Future<models.Variable> updateVariable({required String functionId, required String variableId, required String key, String? value}) async {
+        final String path = '/functions/{functionId}/variables/{variableId}'.replaceAll('{functionId}', functionId).replaceAll('{variableId}', variableId);
+
+        final Map<String, dynamic> params = {
+            
+            'key': key,
+'value': value,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
+
+        return models.Variable.fromMap(res.data);
+
+
+    }
+    /// Delete Variable
+    ///
+    /// Delete a variable by its unique ID.
+    ///
+    Future deleteVariable({required String functionId, required String variableId}) async {
+        final String path = '/functions/{functionId}/variables/{variableId}'.replaceAll('{functionId}', functionId).replaceAll('{variableId}', variableId);
+
+        final Map<String, dynamic> params = {
+            
+            
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
+
+        return  res.data;
 
 
     }

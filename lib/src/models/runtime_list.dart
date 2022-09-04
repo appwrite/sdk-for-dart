@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Runtimes List
-class RuntimeList {
+class RuntimeList implements Model {
     /// Total number of runtimes documents that matched your query.
     final int total;
     /// List of runtimes.
     final List<Runtime> runtimes;
 
-    RuntimeList({
-        required this.total,
+    RuntimeList({        required this.total,
         required this.runtimes,
     });
 

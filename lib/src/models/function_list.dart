@@ -1,14 +1,13 @@
 part of dart_appwrite.models;
 
 /// Functions List
-class FunctionList {
+class FunctionList implements Model {
     /// Total number of functions documents that matched your query.
     final int total;
     /// List of functions.
     final List<Func> functions;
 
-    FunctionList({
-        required this.total,
+    FunctionList({        required this.total,
         required this.functions,
     });
 

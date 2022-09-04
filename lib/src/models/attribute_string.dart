@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeString
-class AttributeString {
+class AttributeString implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -17,8 +17,7 @@ class AttributeString {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
-    AttributeString({
-        required this.key,
+    AttributeString({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,

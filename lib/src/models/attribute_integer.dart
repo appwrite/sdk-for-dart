@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeInteger
-class AttributeInteger {
+class AttributeInteger implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -19,8 +19,7 @@ class AttributeInteger {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final int? xdefault;
 
-    AttributeInteger({
-        required this.key,
+    AttributeInteger({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,

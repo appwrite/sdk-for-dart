@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeBoolean
-class AttributeBoolean {
+class AttributeBoolean implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -15,8 +15,7 @@ class AttributeBoolean {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final bool? xdefault;
 
-    AttributeBoolean({
-        required this.key,
+    AttributeBoolean({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,

@@ -1,40 +1,36 @@
 part of dart_appwrite.models;
 
 /// Collection
-class Collection {
+class Collection implements Model {
     /// Collection ID.
     final String $id;
-    /// Collection creation date in Unix timestamp.
-    final int $createdAt;
-    /// Collection update date in Unix timestamp.
-    final int $updatedAt;
-    /// Collection read permissions.
-    final List $read;
-    /// Collection write permissions.
-    final List $write;
+    /// Collection creation date in ISO 8601 format.
+    final String $createdAt;
+    /// Collection update date in ISO 8601 format.
+    final String $updatedAt;
+    /// Collection permissions. [Learn more about permissions](/docs/permissions).
+    final List $permissions;
     /// Database ID.
     final String databaseId;
     /// Collection name.
     final String name;
     /// Collection enabled.
     final bool enabled;
-    /// Collection permission model. Possible values: `document` or `collection`
-    final String permission;
+    /// Whether document-level permissions are enabled. [Learn more about permissions](/docs/permissions).
+    final bool documentSecurity;
     /// Collection attributes.
     final List attributes;
     /// Collection indexes.
     final List<Index> indexes;
 
-    Collection({
-        required this.$id,
+    Collection({        required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
-        required this.$read,
-        required this.$write,
+        required this.$permissions,
         required this.databaseId,
         required this.name,
         required this.enabled,
-        required this.permission,
+        required this.documentSecurity,
         required this.attributes,
         required this.indexes,
     });
@@ -42,14 +38,13 @@ class Collection {
     factory Collection.fromMap(Map<String, dynamic> map) {
         return Collection(
             $id: map['\$id'].toString(),
-            $createdAt: map['\$createdAt'],
-            $updatedAt: map['\$updatedAt'],
-            $read: map['\$read'],
-            $write: map['\$write'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            $permissions: map['\$permissions'],
             databaseId: map['databaseId'].toString(),
             name: map['name'].toString(),
             enabled: map['enabled'],
-            permission: map['permission'].toString(),
+            documentSecurity: map['documentSecurity'],
             attributes: map['attributes'],
             indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );
@@ -60,12 +55,11 @@ class Collection {
             "\$id": $id,
             "\$createdAt": $createdAt,
             "\$updatedAt": $updatedAt,
-            "\$read": $read,
-            "\$write": $write,
+            "\$permissions": $permissions,
             "databaseId": databaseId,
             "name": name,
             "enabled": enabled,
-            "permission": permission,
+            "documentSecurity": documentSecurity,
             "attributes": attributes,
             "indexes": indexes.map((p) => p.toMap()),
         };

@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeEnum
-class AttributeEnum {
+class AttributeEnum implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -19,8 +19,7 @@ class AttributeEnum {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
-    AttributeEnum({
-        required this.key,
+    AttributeEnum({        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,

@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Phone
-class Phone {
+class Phone implements Model {
     /// Phone code.
     final String code;
     /// Country two-character ISO 3166-1 alpha code.
@@ -9,8 +9,7 @@ class Phone {
     /// Country name.
     final String countryName;
 
-    Phone({
-        required this.code,
+    Phone({        required this.code,
         required this.countryCode,
         required this.countryName,
     });
