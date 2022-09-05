@@ -17,13 +17,14 @@ class AttributeString implements Model {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
-    AttributeString({        required this.key,
+    AttributeString({
+        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.size,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeString.fromMap(Map<String, dynamic> map) {

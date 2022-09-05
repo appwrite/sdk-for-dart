@@ -7,7 +7,8 @@ class VariableList implements Model {
     /// List of variables.
     final List<Variable> variables;
 
-    VariableList({        required this.total,
+    VariableList({
+        required this.total,
         required this.variables,
     });
 

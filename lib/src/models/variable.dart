@@ -15,7 +15,8 @@ class Variable implements Model {
     /// Function ID.
     final String functionId;
 
-    Variable({        required this.$id,
+    Variable({
+        required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
         required this.key,

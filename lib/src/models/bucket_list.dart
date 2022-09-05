@@ -7,7 +7,8 @@ class BucketList implements Model {
     /// List of buckets.
     final List<Bucket> buckets;
 
-    BucketList({        required this.total,
+    BucketList({
+        required this.total,
         required this.buckets,
     });
 

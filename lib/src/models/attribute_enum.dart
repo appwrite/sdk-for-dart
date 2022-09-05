@@ -19,14 +19,15 @@ class AttributeEnum implements Model {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
-    AttributeEnum({        required this.key,
+    AttributeEnum({
+        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.elements,
         required this.format,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeEnum.fromMap(Map<String, dynamic> map) {

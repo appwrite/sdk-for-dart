@@ -33,7 +33,8 @@ class User implements Model {
     /// User preferences as a key-value object
     final Preferences prefs;
 
-    User({        required this.$id,
+    User({
+        required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
         required this.name,

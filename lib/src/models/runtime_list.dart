@@ -7,7 +7,8 @@ class RuntimeList implements Model {
     /// List of runtimes.
     final List<Runtime> runtimes;
 
-    RuntimeList({        required this.total,
+    RuntimeList({
+        required this.total,
         required this.runtimes,
     });
 

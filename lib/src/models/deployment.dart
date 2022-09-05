@@ -27,7 +27,8 @@ class Deployment implements Model {
     /// The build stderr.
     final String buildStderr;
 
-    Deployment({        required this.$id,
+    Deployment({
+        required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
         required this.resourceId,

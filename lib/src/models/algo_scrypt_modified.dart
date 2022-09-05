@@ -9,7 +9,8 @@ class AlgoScryptModified implements Model {
     /// Key used to compute hash.
     final String signerKey;
 
-    AlgoScryptModified({        required this.salt,
+    AlgoScryptModified({
+        required this.salt,
         required this.saltSeparator,
         required this.signerKey,
     });

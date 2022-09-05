@@ -17,13 +17,14 @@ class AttributeDatetime implements Model {
     /// Default value for attribute when not provided. Only null is optional
     final String? xdefault;
 
-    AttributeDatetime({        required this.key,
+    AttributeDatetime({
+        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.format,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeDatetime.fromMap(Map<String, dynamic> map) {

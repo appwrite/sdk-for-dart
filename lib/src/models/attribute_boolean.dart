@@ -15,12 +15,13 @@ class AttributeBoolean implements Model {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final bool? xdefault;
 
-    AttributeBoolean({        required this.key,
+    AttributeBoolean({
+        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
-this.xdefault,
+        this.array,
+        this.xdefault,
     });
 
     factory AttributeBoolean.fromMap(Map<String, dynamic> map) {

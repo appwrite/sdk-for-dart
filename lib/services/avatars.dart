@@ -163,14 +163,13 @@ class Avatars extends Service {
     /// of image returned is 100x100px.
     /// 
     ///
-    Future<Uint8List> getInitials({String? name, int? width, int? height, String? color, String? background}) async {
+    Future<Uint8List> getInitials({String? name, int? width, int? height, String? background}) async {
         final String path = '/avatars/initials';
 
         final Map<String, dynamic> params = {
             'name': name,
 'width': width,
 'height': height,
-'color': color,
 'background': background,
 
             

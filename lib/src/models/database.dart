@@ -11,7 +11,8 @@ class Database implements Model {
     /// Database update date in ISO 8601 format.
     final String $updatedAt;
 
-    Database({        required this.$id,
+    Database({
+        required this.$id,
         required this.name,
         required this.$createdAt,
         required this.$updatedAt,

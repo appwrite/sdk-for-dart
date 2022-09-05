@@ -9,7 +9,8 @@ class AlgoArgon2 implements Model {
     /// Number of threads used to compute hash.
     final int threads;
 
-    AlgoArgon2({        required this.memoryCost,
+    AlgoArgon2({
+        required this.memoryCost,
         required this.timeCost,
         required this.threads,
     });

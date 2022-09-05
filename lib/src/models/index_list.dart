@@ -7,7 +7,8 @@ class IndexList implements Model {
     /// List of indexes.
     final List<Index> indexes;
 
-    IndexList({        required this.total,
+    IndexList({
+        required this.total,
         required this.indexes,
     });
 

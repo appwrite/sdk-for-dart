@@ -7,7 +7,8 @@ class UserList implements Model {
     /// List of users.
     final List<User> users;
 
-    UserList({        required this.total,
+    UserList({
+        required this.total,
         required this.users,
     });
 

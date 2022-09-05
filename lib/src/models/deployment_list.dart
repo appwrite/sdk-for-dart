@@ -7,7 +7,8 @@ class DeploymentList implements Model {
     /// List of deployments.
     final List<Deployment> deployments;
 
-    DeploymentList({        required this.total,
+    DeploymentList({
+        required this.total,
         required this.deployments,
     });
 

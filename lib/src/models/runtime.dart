@@ -17,7 +17,8 @@ class Runtime implements Model {
     /// List of supported architectures.
     final List supports;
 
-    Runtime({        required this.$id,
+    Runtime({
+        required this.$id,
         required this.name,
         required this.version,
         required this.base,

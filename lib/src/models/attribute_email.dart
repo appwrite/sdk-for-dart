@@ -17,13 +17,14 @@ class AttributeEmail implements Model {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
-    AttributeEmail({        required this.key,
+    AttributeEmail({
+        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.format,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeEmail.fromMap(Map<String, dynamic> map) {

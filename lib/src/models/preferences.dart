@@ -4,7 +4,8 @@ part of dart_appwrite.models;
 class Preferences implements Model {
     final Map<String, dynamic> data;
 
-    Preferences({        required this.data,
+    Preferences({
+        required this.data,
     });
 
     factory Preferences.fromMap(Map<String, dynamic> map) {

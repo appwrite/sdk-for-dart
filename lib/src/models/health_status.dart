@@ -7,7 +7,8 @@ class HealthStatus implements Model {
     /// Service status. Possible values can are: `pass`, `fail`
     final String status;
 
-    HealthStatus({        required this.ping,
+    HealthStatus({
+        required this.ping,
         required this.status,
     });
 

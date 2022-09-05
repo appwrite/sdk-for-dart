@@ -7,7 +7,8 @@ class AttributeList implements Model {
     /// List of attributes.
     final List attributes;
 
-    AttributeList({        required this.total,
+    AttributeList({
+        required this.total,
         required this.attributes,
     });
 

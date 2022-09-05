@@ -11,7 +11,8 @@ class AlgoScrypt implements Model {
     /// Length used to compute hash.
     final int length;
 
-    AlgoScrypt({        required this.costCpu,
+    AlgoScrypt({
+        required this.costCpu,
         required this.costMemory,
         required this.costParallel,
         required this.length,

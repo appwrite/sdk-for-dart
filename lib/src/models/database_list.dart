@@ -7,7 +7,8 @@ class DatabaseList implements Model {
     /// List of databases.
     final List<Database> databases;
 
-    DatabaseList({        required this.total,
+    DatabaseList({
+        required this.total,
         required this.databases,
     });
 

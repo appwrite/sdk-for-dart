@@ -13,11 +13,12 @@ class Index implements Model {
     /// Index orders.
     final List? orders;
 
-    Index({        required this.key,
+    Index({
+        required this.key,
         required this.type,
         required this.status,
         required this.attributes,
-this.orders,
+        this.orders,
     });
 
     factory Index.fromMap(Map<String, dynamic> map) {

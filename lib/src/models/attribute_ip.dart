@@ -17,13 +17,14 @@ class AttributeIp implements Model {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
-    AttributeIp({        required this.key,
+    AttributeIp({
+        required this.key,
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.format,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeIp.fromMap(Map<String, dynamic> map) {

@@ -31,7 +31,8 @@ class Func implements Model {
     /// Function execution timeout in seconds.
     final int timeout;
 
-    Func({        required this.$id,
+    Func({
+        required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
         required this.execute,

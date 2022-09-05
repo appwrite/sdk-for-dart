@@ -27,7 +27,8 @@ class Bucket implements Model {
     /// Virus scanning is enabled.
     final bool antivirus;
 
-    Bucket({        required this.$id,
+    Bucket({
+        required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
         required this.$permissions,

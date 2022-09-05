@@ -3,7 +3,8 @@ part of dart_appwrite.models;
 /// AlgoPHPass
 class AlgoPhpass implements Model {
 
-    AlgoPhpass(    );
+    AlgoPhpass(
+    );
 
     factory AlgoPhpass.fromMap(Map<String, dynamic> map) {
         return AlgoPhpass(

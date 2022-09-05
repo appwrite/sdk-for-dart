@@ -9,7 +9,8 @@ class HealthTime implements Model {
     /// Difference of unix remote and local timestamps in milliseconds.
     final int diff;
 
-    HealthTime({        required this.remoteTime,
+    HealthTime({
+        required this.remoteTime,
         required this.localTime,
         required this.diff,
     });

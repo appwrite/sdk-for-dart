@@ -7,7 +7,8 @@ class CollectionList implements Model {
     /// List of collections.
     final List<Collection> collections;
 
-    CollectionList({        required this.total,
+    CollectionList({
+        required this.total,
         required this.collections,
     });
 

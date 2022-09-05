@@ -23,7 +23,8 @@ class Collection implements Model {
     /// Collection indexes.
     final List<Index> indexes;
 
-    Collection({        required this.$id,
+    Collection({
+        required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
         required this.$permissions,
