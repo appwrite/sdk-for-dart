@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Health Antivirus
-class HealthAntivirus {
+class HealthAntivirus implements Model {
     /// Antivirus version.
     final String version;
     /// Antivirus status. Possible values can are: `disabled`, `offline`, `online`

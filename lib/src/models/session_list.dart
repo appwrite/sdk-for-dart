@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Sessions List
-class SessionList {
+class SessionList implements Model {
     /// Total number of sessions documents that matched your query.
     final int total;
     /// List of sessions.

@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeString
-class AttributeString {
+class AttributeString implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -22,9 +22,9 @@ class AttributeString {
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.size,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeString.fromMap(Map<String, dynamic> map) {

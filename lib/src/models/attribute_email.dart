@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeEmail
-class AttributeEmail {
+class AttributeEmail implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -22,9 +22,9 @@ class AttributeEmail {
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.format,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeEmail.fromMap(Map<String, dynamic> map) {

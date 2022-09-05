@@ -3,7 +3,7 @@ part of dart_appwrite;
     /// The Avatars service aims to help you complete everyday tasks related to
     /// your app image, icons, and avatars.
 class Avatars extends Service {
-    Avatars(Client client): super(client);
+    Avatars(super.client);
 
     /// Get Browser Icon
     ///
@@ -34,7 +34,6 @@ class Avatars extends Service {
         return res.data;
 
     }
-
     /// Get Credit Card Icon
     ///
     /// The credit card endpoint will return you the icon of the credit card
@@ -64,7 +63,6 @@ class Avatars extends Service {
         return res.data;
 
     }
-
     /// Get Favicon
     ///
     /// Use this endpoint to fetch the favorite icon (AKA favicon) of any remote
@@ -86,12 +84,12 @@ class Avatars extends Service {
         return res.data;
 
     }
-
     /// Get Country Flag
     ///
     /// You can use this endpoint to show different country flags icons to your
     /// users. The code argument receives the 2 letter country code. Use width,
-    /// height and quality arguments to change the output settings.
+    /// height and quality arguments to change the output settings. Country codes
+    /// follow the [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1) standard.
     /// 
     /// When one dimension is specified and the other is 0, the image is scaled
     /// with preserved aspect ratio. If both dimensions are 0, the API provides an
@@ -116,7 +114,6 @@ class Avatars extends Service {
         return res.data;
 
     }
-
     /// Get Image from URL
     ///
     /// Use this endpoint to fetch a remote image URL and crop it to any image size
@@ -147,7 +144,6 @@ class Avatars extends Service {
         return res.data;
 
     }
-
     /// Get User Initials
     ///
     /// Use this endpoint to show your user initials avatar icon on your website or
@@ -167,14 +163,13 @@ class Avatars extends Service {
     /// of image returned is 100x100px.
     /// 
     ///
-    Future<Uint8List> getInitials({String? name, int? width, int? height, String? color, String? background}) async {
+    Future<Uint8List> getInitials({String? name, int? width, int? height, String? background}) async {
         final String path = '/avatars/initials';
 
         final Map<String, dynamic> params = {
             'name': name,
 'width': width,
 'height': height,
-'color': color,
 'background': background,
 
             
@@ -186,7 +181,6 @@ class Avatars extends Service {
         return res.data;
 
     }
-
     /// Get QR Code
     ///
     /// Converts a given plain text to a QR code image. You can use the query

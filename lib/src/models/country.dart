@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Country
-class Country {
+class Country implements Model {
     /// Country name.
     final String name;
     /// Country two-character ISO 3166-1 alpha code.

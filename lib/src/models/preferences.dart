@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Preferences
-class Preferences {
+class Preferences implements Model {
     final Map<String, dynamic> data;
 
     Preferences({

@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Documents List
-class DocumentList {
+class DocumentList implements Model {
     /// Total number of documents documents that matched your query.
     final int total;
     /// List of documents.

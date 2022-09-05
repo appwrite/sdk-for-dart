@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Currencies List
-class CurrencyList {
+class CurrencyList implements Model {
     /// Total number of currencies documents that matched your query.
     final int total;
     /// List of currencies.

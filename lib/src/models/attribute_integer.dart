@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeInteger
-class AttributeInteger {
+class AttributeInteger implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -24,10 +24,10 @@ class AttributeInteger {
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
-this.min,
-this.max,
-this.xdefault,
+        this.array,
+        this.min,
+        this.max,
+        this.xdefault,
     });
 
     factory AttributeInteger.fromMap(Map<String, dynamic> map) {

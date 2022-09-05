@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Health Time
-class HealthTime {
+class HealthTime implements Model {
     /// Current unix timestamp on trustful remote server.
     final int remoteTime;
     /// Current unix timestamp of local server where Appwrite runs.

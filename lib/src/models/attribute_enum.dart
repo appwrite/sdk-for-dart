@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeEnum
-class AttributeEnum {
+class AttributeEnum implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -24,10 +24,10 @@ class AttributeEnum {
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.elements,
         required this.format,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeEnum.fromMap(Map<String, dynamic> map) {

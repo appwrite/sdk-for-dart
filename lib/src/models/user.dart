@@ -1,21 +1,27 @@
 part of dart_appwrite.models;
 
 /// User
-class User {
+class User implements Model {
     /// User ID.
     final String $id;
-    /// User creation date in Unix timestamp.
-    final int $createdAt;
-    /// User update date in Unix timestamp.
-    final int $updatedAt;
+    /// User creation date in ISO 8601 format.
+    final String $createdAt;
+    /// User update date in ISO 8601 format.
+    final String $updatedAt;
     /// User name.
     final String name;
-    /// User registration date in Unix timestamp.
-    final int registration;
+    /// Hashed user password.
+    final String password;
+    /// Password hashing algorithm.
+    final String hash;
+    /// Password hashing algorithm configuration.
+    final Map hashOptions;
+    /// User registration date in ISO 8601 format.
+    final String registration;
     /// User status. Pass `true` for enabled and `false` for disabled.
     final bool status;
-    /// Unix timestamp of the most recent password update
-    final int passwordUpdate;
+    /// Password update time in ISO 8601 format.
+    final String passwordUpdate;
     /// User email address.
     final String email;
     /// User phone number in E.164 format.
@@ -32,6 +38,9 @@ class User {
         required this.$createdAt,
         required this.$updatedAt,
         required this.name,
+        required this.password,
+        required this.hash,
+        required this.hashOptions,
         required this.registration,
         required this.status,
         required this.passwordUpdate,
@@ -45,12 +54,15 @@ class User {
     factory User.fromMap(Map<String, dynamic> map) {
         return User(
             $id: map['\$id'].toString(),
-            $createdAt: map['\$createdAt'],
-            $updatedAt: map['\$updatedAt'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
             name: map['name'].toString(),
-            registration: map['registration'],
+            password: map['password'].toString(),
+            hash: map['hash'].toString(),
+            hashOptions: map['hashOptions'],
+            registration: map['registration'].toString(),
             status: map['status'],
-            passwordUpdate: map['passwordUpdate'],
+            passwordUpdate: map['passwordUpdate'].toString(),
             email: map['email'].toString(),
             phone: map['phone'].toString(),
             emailVerification: map['emailVerification'],
@@ -65,6 +77,9 @@ class User {
             "\$createdAt": $createdAt,
             "\$updatedAt": $updatedAt,
             "name": name,
+            "password": password,
+            "hash": hash,
+            "hashOptions": hashOptions,
             "registration": registration,
             "status": status,
             "passwordUpdate": passwordUpdate,

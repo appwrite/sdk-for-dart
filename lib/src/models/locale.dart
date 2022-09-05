@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Locale
-class Locale {
+class Locale implements Model {
     /// User IP address.
     final String ip;
     /// Country code in [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1) two-character format

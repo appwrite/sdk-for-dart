@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeURL
-class AttributeUrl {
+class AttributeUrl implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -22,9 +22,9 @@ class AttributeUrl {
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
+        this.array,
         required this.format,
-this.xdefault,
+        this.xdefault,
     });
 
     factory AttributeUrl.fromMap(Map<String, dynamic> map) {

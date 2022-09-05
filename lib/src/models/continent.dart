@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Continent
-class Continent {
+class Continent implements Model {
     /// Continent name.
     final String name;
     /// Continent two letter code.

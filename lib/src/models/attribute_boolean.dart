@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// AttributeBoolean
-class AttributeBoolean {
+class AttributeBoolean implements Model {
     /// Attribute Key.
     final String key;
     /// Attribute type.
@@ -20,8 +20,8 @@ class AttributeBoolean {
         required this.type,
         required this.status,
         required this.xrequired,
-this.array,
-this.xdefault,
+        this.array,
+        this.xdefault,
     });
 
     factory AttributeBoolean.fromMap(Map<String, dynamic> map) {

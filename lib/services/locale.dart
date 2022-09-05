@@ -3,7 +3,7 @@ part of dart_appwrite;
     /// The Locale service allows you to customize your app based on your users'
     /// location.
 class Locale extends Service {
-    Locale(Client client): super(client);
+    Locale(super.client);
 
     /// Get User Locale
     ///
@@ -33,7 +33,6 @@ class Locale extends Service {
 
 
     }
-
     /// List Continents
     ///
     /// List of all continents. You can use the locale header to get the data in a
@@ -58,7 +57,6 @@ class Locale extends Service {
 
 
     }
-
     /// List Countries
     ///
     /// List of all countries. You can use the locale header to get the data in a
@@ -83,7 +81,6 @@ class Locale extends Service {
 
 
     }
-
     /// List EU Countries
     ///
     /// List of all countries that are currently members of the EU. You can use the
@@ -108,7 +105,6 @@ class Locale extends Service {
 
 
     }
-
     /// List Countries Phone Codes
     ///
     /// List of all countries phone codes. You can use the locale header to get the
@@ -133,7 +129,6 @@ class Locale extends Service {
 
 
     }
-
     /// List Currencies
     ///
     /// List of all currencies, including currency symbol, name, plural, and
@@ -159,7 +154,6 @@ class Locale extends Service {
 
 
     }
-
     /// List Languages
     ///
     /// List of all languages classified by ISO 639-1 including 2-letter code, name

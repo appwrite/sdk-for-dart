@@ -1,19 +1,17 @@
 part of dart_appwrite.models;
 
 /// Bucket
-class Bucket {
+class Bucket implements Model {
     /// Bucket ID.
     final String $id;
-    /// Bucket creation date in Unix timestamp.
-    final int $createdAt;
-    /// Bucket update date in Unix timestamp.
-    final int $updatedAt;
-    /// File read permissions.
-    final List $read;
-    /// File write permissions.
-    final List $write;
-    /// Bucket permission model. Possible values: `bucket` or `file`
-    final String permission;
+    /// Bucket creation time in ISO 8601 format.
+    final String $createdAt;
+    /// Bucket update date in ISO 8601 format.
+    final String $updatedAt;
+    /// Bucket permissions. [Learn more about permissions](/docs/permissions).
+    final List $permissions;
+    /// Whether file-level security is enabled. [Learn more about permissions](/docs/permissions).
+    final String fileSecurity;
     /// Bucket name.
     final String name;
     /// Bucket enabled.
@@ -22,6 +20,8 @@ class Bucket {
     final int maximumFileSize;
     /// Allowed file extensions.
     final List allowedFileExtensions;
+    /// Compression algorithm choosen for compression. Will be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd).
+    final String compression;
     /// Bucket is encrypted.
     final bool encryption;
     /// Virus scanning is enabled.
@@ -31,13 +31,13 @@ class Bucket {
         required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
-        required this.$read,
-        required this.$write,
-        required this.permission,
+        required this.$permissions,
+        required this.fileSecurity,
         required this.name,
         required this.enabled,
         required this.maximumFileSize,
         required this.allowedFileExtensions,
+        required this.compression,
         required this.encryption,
         required this.antivirus,
     });
@@ -45,15 +45,15 @@ class Bucket {
     factory Bucket.fromMap(Map<String, dynamic> map) {
         return Bucket(
             $id: map['\$id'].toString(),
-            $createdAt: map['\$createdAt'],
-            $updatedAt: map['\$updatedAt'],
-            $read: map['\$read'],
-            $write: map['\$write'],
-            permission: map['permission'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            $permissions: map['\$permissions'],
+            fileSecurity: map['fileSecurity'].toString(),
             name: map['name'].toString(),
             enabled: map['enabled'],
             maximumFileSize: map['maximumFileSize'],
             allowedFileExtensions: map['allowedFileExtensions'],
+            compression: map['compression'].toString(),
             encryption: map['encryption'],
             antivirus: map['antivirus'],
         );
@@ -64,13 +64,13 @@ class Bucket {
             "\$id": $id,
             "\$createdAt": $createdAt,
             "\$updatedAt": $updatedAt,
-            "\$read": $read,
-            "\$write": $write,
-            "permission": permission,
+            "\$permissions": $permissions,
+            "fileSecurity": fileSecurity,
             "name": name,
             "enabled": enabled,
             "maximumFileSize": maximumFileSize,
             "allowedFileExtensions": allowedFileExtensions,
+            "compression": compression,
             "encryption": encryption,
             "antivirus": antivirus,
         };

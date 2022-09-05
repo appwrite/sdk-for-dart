@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Countries List
-class CountryList {
+class CountryList implements Model {
     /// Total number of countries documents that matched your query.
     final int total;
     /// List of countries.

@@ -1,7 +1,7 @@
 part of dart_appwrite.models;
 
 /// Runtime
-class Runtime {
+class Runtime implements Model {
     /// Runtime ID.
     final String $id;
     /// Runtime Name.

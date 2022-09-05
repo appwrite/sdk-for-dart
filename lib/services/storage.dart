@@ -2,23 +2,19 @@ part of dart_appwrite;
 
     /// The Storage service allows you to manage your project files.
 class Storage extends Service {
-    Storage(Client client): super(client);
+    Storage(super.client);
 
     /// List buckets
     ///
     /// Get a list of all the storage buckets. You can use the query params to
     /// filter your results.
     ///
-    Future<models.BucketList> listBuckets({String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    Future<models.BucketList> listBuckets({List<String>? queries, String? search}) async {
         final String path = '/storage/buckets';
 
         final Map<String, dynamic> params = {
-            'search': search,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderType': orderType,
+            'queries': queries,
+'search': search,
 
             
         };
@@ -34,24 +30,23 @@ class Storage extends Service {
 
 
     }
-
     /// Create bucket
     ///
     /// Create a new storage bucket.
     ///
-    Future<models.Bucket> createBucket({required String bucketId, required String name, required String permission, List? read, List? write, bool? enabled, int? maximumFileSize, List? allowedFileExtensions, bool? encryption, bool? antivirus}) async {
+    Future<models.Bucket> createBucket({required String bucketId, required String name, List<String>? permissions, bool? fileSecurity, bool? enabled, int? maximumFileSize, List<String>? allowedFileExtensions, String? compression, bool? encryption, bool? antivirus}) async {
         final String path = '/storage/buckets';
 
         final Map<String, dynamic> params = {
             
             'bucketId': bucketId,
 'name': name,
-'permission': permission,
-'read': read,
-'write': write,
+'permissions': permissions,
+'fileSecurity': fileSecurity,
 'enabled': enabled,
 'maximumFileSize': maximumFileSize,
 'allowedFileExtensions': allowedFileExtensions,
+'compression': compression,
 'encryption': encryption,
 'antivirus': antivirus,
 
@@ -68,7 +63,6 @@ class Storage extends Service {
 
 
     }
-
     /// Get Bucket
     ///
     /// Get a storage bucket by its unique ID. This endpoint response returns a
@@ -93,23 +87,22 @@ class Storage extends Service {
 
 
     }
-
     /// Update Bucket
     ///
     /// Update a storage bucket by its unique ID.
     ///
-    Future<models.Bucket> updateBucket({required String bucketId, required String name, required String permission, List? read, List? write, bool? enabled, int? maximumFileSize, List? allowedFileExtensions, bool? encryption, bool? antivirus}) async {
+    Future<models.Bucket> updateBucket({required String bucketId, required String name, List<String>? permissions, bool? fileSecurity, bool? enabled, int? maximumFileSize, List<String>? allowedFileExtensions, String? compression, bool? encryption, bool? antivirus}) async {
         final String path = '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> params = {
             
             'name': name,
-'permission': permission,
-'read': read,
-'write': write,
+'permissions': permissions,
+'fileSecurity': fileSecurity,
 'enabled': enabled,
 'maximumFileSize': maximumFileSize,
 'allowedFileExtensions': allowedFileExtensions,
+'compression': compression,
 'encryption': encryption,
 'antivirus': antivirus,
 
@@ -126,7 +119,6 @@ class Storage extends Service {
 
 
     }
-
     /// Delete Bucket
     ///
     /// Delete a storage bucket by its unique ID.
@@ -150,23 +142,18 @@ class Storage extends Service {
 
 
     }
-
     /// List Files
     ///
     /// Get a list of all the user files. You can use the query params to filter
     /// your results. On admin mode, this endpoint will return a list of all of the
     /// project's files. [Learn more about different API modes](/docs/admin).
     ///
-    Future<models.FileList> listFiles({required String bucketId, String? search, int? limit, int? offset, String? cursor, String? cursorDirection, String? orderType}) async {
+    Future<models.FileList> listFiles({required String bucketId, List<String>? queries, String? search}) async {
         final String path = '/storage/buckets/{bucketId}/files'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> params = {
-            'search': search,
-'limit': limit,
-'offset': offset,
-'cursor': cursor,
-'cursorDirection': cursorDirection,
-'orderType': orderType,
+            'queries': queries,
+'search': search,
 
             
         };
@@ -182,13 +169,12 @@ class Storage extends Service {
 
 
     }
-
     /// Create File
     ///
     /// Create a new file. Before using this route, you should create a new bucket
     /// resource using either a [server
-    /// integration](/docs/server/database#storageCreateBucket) API or directly
-    /// from your Appwrite console.
+    /// integration](/docs/server/storage#storageCreateBucket) API or directly from
+    /// your Appwrite console.
     /// 
     /// Larger files should be uploaded using multiple requests with the
     /// [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range)
@@ -204,15 +190,14 @@ class Storage extends Service {
     /// chunking logic will be managed by the SDK internally.
     /// 
     ///
-    Future<models.File> createFile({required String bucketId, required String fileId, required InputFile file, List? read, List? write, Function(UploadProgress)? onProgress}) async {
+    Future<models.File> createFile({required String bucketId, required String fileId, required InputFile file, List<String>? permissions, Function(UploadProgress)? onProgress}) async {
         final String path = '/storage/buckets/{bucketId}/files'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> params = {
             
             'fileId': fileId,
 'file': file,
-'read': read,
-'write': write,
+'permissions': permissions,
 
         };
 
@@ -237,7 +222,6 @@ class Storage extends Service {
 
 
     }
-
     /// Get File
     ///
     /// Get a file by its unique ID. This endpoint response returns a JSON object
@@ -262,19 +246,17 @@ class Storage extends Service {
 
 
     }
-
     /// Update File
     ///
     /// Update a file by its unique ID. Only users with write permissions have
     /// access to update this resource.
     ///
-    Future<models.File> updateFile({required String bucketId, required String fileId, List? read, List? write}) async {
+    Future<models.File> updateFile({required String bucketId, required String fileId, List<String>? permissions}) async {
         final String path = '/storage/buckets/{bucketId}/files/{fileId}'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
             
-            'read': read,
-'write': write,
+            'permissions': permissions,
 
         };
 
@@ -289,7 +271,6 @@ class Storage extends Service {
 
 
     }
-
     /// Delete File
     ///
     /// Delete a file by its unique ID. Only users with write permissions have
@@ -314,7 +295,6 @@ class Storage extends Service {
 
 
     }
-
     /// Get File for Download
     ///
     /// Get a file content by its unique ID. The endpoint response return with a
@@ -335,7 +315,6 @@ class Storage extends Service {
         return res.data;
 
     }
-
     /// Get File Preview
     ///
     /// Get a file preview image. Currently, this method supports preview for image
@@ -369,7 +348,6 @@ class Storage extends Service {
         return res.data;
 
     }
-
     /// Get File for View
     ///
     /// Get a file content by its unique ID. This endpoint is similar to the

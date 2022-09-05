@@ -3,7 +3,7 @@ part of dart_appwrite;
     /// The Health service allows you to both validate and monitor your Appwrite
     /// server's health.
 class Health extends Service {
-    Health(Client client): super(client);
+    Health(super.client);
 
     /// Get HTTP
     ///
@@ -28,7 +28,6 @@ class Health extends Service {
 
 
     }
-
     /// Get Antivirus
     ///
     /// Check the Appwrite Antivirus server is up and connection is successful.
@@ -52,7 +51,6 @@ class Health extends Service {
 
 
     }
-
     /// Get Cache
     ///
     /// Check the Appwrite in-memory cache server is up and connection is
@@ -77,7 +75,6 @@ class Health extends Service {
 
 
     }
-
     /// Get DB
     ///
     /// Check the Appwrite database server is up and connection is successful.
@@ -101,7 +98,6 @@ class Health extends Service {
 
 
     }
-
     /// Get Certificates Queue
     ///
     /// Get the number of certificates that are waiting to be issued against
@@ -127,7 +123,6 @@ class Health extends Service {
 
 
     }
-
     /// Get Functions Queue
     Future<models.HealthQueue> getQueueFunctions() async {
         final String path = '/health/queue/functions';
@@ -148,7 +143,6 @@ class Health extends Service {
 
 
     }
-
     /// Get Logs Queue
     ///
     /// Get the number of logs that are waiting to be processed in the Appwrite
@@ -173,7 +167,6 @@ class Health extends Service {
 
 
     }
-
     /// Get Webhooks Queue
     ///
     /// Get the number of webhooks that are waiting to be processed in the Appwrite
@@ -198,7 +191,6 @@ class Health extends Service {
 
 
     }
-
     /// Get Local Storage
     ///
     /// Check the Appwrite local storage device is up and connection is successful.
@@ -222,7 +214,6 @@ class Health extends Service {
 
 
     }
-
     /// Get Time
     ///
     /// Check the Appwrite server time is synced with Google remote NTP server. We
