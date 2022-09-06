@@ -22,7 +22,7 @@ class BucketList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "buckets": buckets.map((p) => p.toMap()),
+            "buckets": buckets.map((p) => p.toMap()).toList(),
         };
     }
 }
