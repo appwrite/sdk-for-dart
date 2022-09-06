@@ -77,7 +77,7 @@ class Func implements Model {
             "status": status,
             "runtime": runtime,
             "deployment": deployment,
-            "vars": vars.map((p) => p.toMap()),
+            "vars": vars.map((p) => p.toMap()).toList(),
             "events": events,
             "schedule": schedule,
             "scheduleNext": scheduleNext,

@@ -22,7 +22,7 @@ class DeploymentList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "deployments": deployments.map((p) => p.toMap()),
+            "deployments": deployments.map((p) => p.toMap()).toList(),
         };
     }
 }

@@ -22,7 +22,7 @@ class IndexList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "indexes": indexes.map((p) => p.toMap()),
+            "indexes": indexes.map((p) => p.toMap()).toList(),
         };
     }
 }

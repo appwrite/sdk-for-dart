@@ -22,7 +22,7 @@ class VariableList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "variables": variables.map((p) => p.toMap()),
+            "variables": variables.map((p) => p.toMap()).toList(),
         };
     }
 }

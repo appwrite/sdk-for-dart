@@ -22,7 +22,7 @@ class FunctionList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "functions": functions.map((p) => p.toMap()),
+            "functions": functions.map((p) => p.toMap()).toList(),
         };
     }
 }

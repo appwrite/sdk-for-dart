@@ -22,7 +22,7 @@ class CollectionList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "collections": collections.map((p) => p.toMap()),
+            "collections": collections.map((p) => p.toMap()).toList(),
         };
     }
 }

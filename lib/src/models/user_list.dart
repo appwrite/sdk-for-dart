@@ -22,7 +22,7 @@ class UserList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "users": users.map((p) => p.toMap()),
+            "users": users.map((p) => p.toMap()).toList(),
         };
     }
 }

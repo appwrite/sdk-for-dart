@@ -22,7 +22,7 @@ class RuntimeList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "runtimes": runtimes.map((p) => p.toMap()),
+            "runtimes": runtimes.map((p) => p.toMap()).toList(),
         };
     }
 }

@@ -22,7 +22,7 @@ class DatabaseList implements Model {
     Map<String, dynamic> toMap() {
         return {
             "total": total,
-            "databases": databases.map((p) => p.toMap()),
+            "databases": databases.map((p) => p.toMap()).toList(),
         };
     }
 }

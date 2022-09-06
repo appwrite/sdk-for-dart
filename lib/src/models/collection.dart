@@ -62,7 +62,7 @@ class Collection implements Model {
             "enabled": enabled,
             "documentSecurity": documentSecurity,
             "attributes": attributes,
-            "indexes": indexes.map((p) => p.toMap()),
+            "indexes": indexes.map((p) => p.toMap()).toList(),
         };
     }
 }
