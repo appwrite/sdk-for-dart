@@ -59,12 +59,12 @@ class Account extends Service {
 
 
     }
-    /// Get Account Logs
+    /// List Account Logs
     ///
     /// Get currently logged in user list of latest security activity logs. Each
     /// log returns user IP address, location and date and time of log.
     ///
-    Future<models.LogList> getLogs({List<String>? queries}) async {
+    Future<models.LogList> listLogs({List<String>? queries}) async {
         final String path = '/account/logs';
 
         final Map<String, dynamic> params = {
@@ -280,12 +280,12 @@ class Account extends Service {
 
 
     }
-    /// Get Account Sessions
+    /// List Account Sessions
     ///
     /// Get currently logged in user list of active sessions across different
     /// devices.
     ///
-    Future<models.SessionList> getSessions() async {
+    Future<models.SessionList> listSessions() async {
         final String path = '/account/sessions';
 
         final Map<String, dynamic> params = {

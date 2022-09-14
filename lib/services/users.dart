@@ -351,11 +351,11 @@ class Users extends Service {
 
 
     }
-    /// Get User Logs
+    /// List User Logs
     ///
     /// Get the user activity logs list by its unique ID.
     ///
-    Future<models.LogList> getLogs({required String userId, List<String>? queries}) async {
+    Future<models.LogList> listLogs({required String userId, List<String>? queries}) async {
         final String path = '/users/{userId}/logs'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> params = {
@@ -375,11 +375,11 @@ class Users extends Service {
 
 
     }
-    /// Get User Memberships
+    /// List User Memberships
     ///
     /// Get the user membership list by its unique ID.
     ///
-    Future<models.MembershipList> getMemberships({required String userId}) async {
+    Future<models.MembershipList> listMemberships({required String userId}) async {
         final String path = '/users/{userId}/memberships'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> params = {
@@ -519,11 +519,11 @@ class Users extends Service {
 
 
     }
-    /// Get User Sessions
+    /// List User Sessions
     ///
     /// Get the user sessions list by its unique ID.
     ///
-    Future<models.SessionList> getSessions({required String userId}) async {
+    Future<models.SessionList> listSessions({required String userId}) async {
         final String path = '/users/{userId}/sessions'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> params = {

@@ -11,7 +11,7 @@ class Bucket implements Model {
     /// Bucket permissions. [Learn more about permissions](/docs/permissions).
     final List $permissions;
     /// Whether file-level security is enabled. [Learn more about permissions](/docs/permissions).
-    final String fileSecurity;
+    final bool fileSecurity;
     /// Bucket name.
     final String name;
     /// Bucket enabled.
@@ -48,7 +48,7 @@ class Bucket implements Model {
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
             $permissions: map['\$permissions'],
-            fileSecurity: map['fileSecurity'].toString(),
+            fileSecurity: map['fileSecurity'],
             name: map['name'].toString(),
             enabled: map['enabled'],
             maximumFileSize: map['maximumFileSize'],

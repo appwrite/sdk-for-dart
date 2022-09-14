@@ -12,8 +12,8 @@ class Func implements Model {
     final List execute;
     /// Function name.
     final String name;
-    /// Function status. Possible values: `disabled`, `enabled`
-    final String status;
+    /// Function enabled.
+    final bool enabled;
     /// Function execution runtime.
     final String runtime;
     /// Function&#039;s active deployment ID.
@@ -37,7 +37,7 @@ class Func implements Model {
         required this.$updatedAt,
         required this.execute,
         required this.name,
-        required this.status,
+        required this.enabled,
         required this.runtime,
         required this.deployment,
         required this.vars,
@@ -55,7 +55,7 @@ class Func implements Model {
             $updatedAt: map['\$updatedAt'].toString(),
             execute: map['execute'],
             name: map['name'].toString(),
-            status: map['status'].toString(),
+            enabled: map['enabled'],
             runtime: map['runtime'].toString(),
             deployment: map['deployment'].toString(),
             vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
@@ -74,7 +74,7 @@ class Func implements Model {
             "\$updatedAt": $updatedAt,
             "execute": execute,
             "name": name,
-            "status": status,
+            "enabled": enabled,
             "runtime": runtime,
             "deployment": deployment,
             "vars": vars.map((p) => p.toMap()).toList(),
