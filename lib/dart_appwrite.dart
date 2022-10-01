@@ -3,7 +3,6 @@ library dart_appwrite;
 import 'dart:async';
 import 'dart:typed_data';
 import 'src/enums.dart';
-import 'src/client.dart';
 import 'src/service.dart';
 import 'src/input_file.dart';
 import 'src/upload_progress.dart';
