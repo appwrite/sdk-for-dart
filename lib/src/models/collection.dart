@@ -27,7 +27,7 @@ class Collection implements Model {
         required this.$id,
         required this.$createdAt,
         required this.$updatedAt,
-        required this.$permissions,
+        // required this.$permissions,
         required this.databaseId,
         required this.name,
         required this.enabled,
