@@ -9,7 +9,7 @@ class Collection implements Model {
     /// Collection update date in ISO 8601 format.
     final String $updatedAt;
     /// Collection permissions. [Learn more about permissions](/docs/permissions).
-    final List $permissions;
+    //  final List $permissions;
     /// Database ID.
     final String databaseId;
     /// Collection name.
