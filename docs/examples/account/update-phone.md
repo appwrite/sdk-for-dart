@@ -11,7 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = account.updatePhone(
-    phone: '',
+    phone: '+12065550100',
     password: 'password',
   );
 

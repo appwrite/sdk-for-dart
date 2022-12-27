@@ -2,6 +2,8 @@ part of dart_appwrite.models;
 
 /// AlgoScrypt
 class AlgoScrypt implements Model {
+    /// Algo type.
+    final String type;
     /// CPU complexity of computed hash.
     final int costCpu;
     /// Memory complexity of computed hash.
@@ -12,6 +14,7 @@ class AlgoScrypt implements Model {
     final int length;
 
     AlgoScrypt({
+        required this.type,
         required this.costCpu,
         required this.costMemory,
         required this.costParallel,
@@ -20,6 +23,7 @@ class AlgoScrypt implements Model {
 
     factory AlgoScrypt.fromMap(Map<String, dynamic> map) {
         return AlgoScrypt(
+            type: map['type'].toString(),
             costCpu: map['costCpu'],
             costMemory: map['costMemory'],
             costParallel: map['costParallel'],
@@ -29,6 +33,7 @@ class AlgoScrypt implements Model {
 
     Map<String, dynamic> toMap() {
         return {
+            "type": type,
             "costCpu": costCpu,
             "costMemory": costMemory,
             "costParallel": costParallel,

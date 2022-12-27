@@ -33,7 +33,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '7.1.0',
+      'x-sdk-version': '7.2.0',
       'X-Appwrite-Response-Format' : '1.0.0',
     };
 
@@ -134,7 +134,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
     while (offset < size) {
       var chunk;
-      final end = min(offset + CHUNK_SIZE-1, size-1);
+      final end = min(offset + CHUNK_SIZE, size);
       chunk = file.bytes!.getRange(offset, end).toList();
       params[paramName] =
           http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);

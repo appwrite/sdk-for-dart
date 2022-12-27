@@ -2,6 +2,8 @@ part of dart_appwrite.models;
 
 /// AlgoScryptModified
 class AlgoScryptModified implements Model {
+    /// Algo type.
+    final String type;
     /// Salt used to compute hash.
     final String salt;
     /// Separator used to compute hash.
@@ -10,6 +12,7 @@ class AlgoScryptModified implements Model {
     final String signerKey;
 
     AlgoScryptModified({
+        required this.type,
         required this.salt,
         required this.saltSeparator,
         required this.signerKey,
@@ -17,6 +20,7 @@ class AlgoScryptModified implements Model {
 
     factory AlgoScryptModified.fromMap(Map<String, dynamic> map) {
         return AlgoScryptModified(
+            type: map['type'].toString(),
             salt: map['salt'].toString(),
             saltSeparator: map['saltSeparator'].toString(),
             signerKey: map['signerKey'].toString(),
@@ -25,6 +29,7 @@ class AlgoScryptModified implements Model {
 
     Map<String, dynamic> toMap() {
         return {
+            "type": type,
             "salt": salt,
             "saltSeparator": saltSeparator,
             "signerKey": signerKey,

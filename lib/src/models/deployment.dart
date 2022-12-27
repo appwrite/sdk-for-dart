@@ -26,6 +26,8 @@ class Deployment implements Model {
     final String buildStdout;
     /// The build stderr.
     final String buildStderr;
+    /// The current build time in seconds.
+    final int buildTime;
 
     Deployment({
         required this.$id,
@@ -40,6 +42,7 @@ class Deployment implements Model {
         required this.status,
         required this.buildStdout,
         required this.buildStderr,
+        required this.buildTime,
     });
 
     factory Deployment.fromMap(Map<String, dynamic> map) {
@@ -56,6 +59,7 @@ class Deployment implements Model {
             status: map['status'].toString(),
             buildStdout: map['buildStdout'].toString(),
             buildStderr: map['buildStderr'].toString(),
+            buildTime: map['buildTime'],
         );
     }
 
@@ -73,6 +77,7 @@ class Deployment implements Model {
             "status": status,
             "buildStdout": buildStdout,
             "buildStderr": buildStderr,
+            "buildTime": buildTime,
         };
     }
 }
