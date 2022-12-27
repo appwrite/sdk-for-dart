@@ -303,8 +303,8 @@ class Functions extends Service {
 
 
     }
-    /// Retry Build
-    Future retryBuild({required String functionId, required String deploymentId, required String buildId}) async {
+    /// Create Build
+    Future createBuild({required String functionId, required String deploymentId, required String buildId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId).replaceAll('{buildId}', buildId);
 
         final Map<String, dynamic> params = {
@@ -326,9 +326,7 @@ class Functions extends Service {
     /// List Executions
     ///
     /// Get a list of all the current user function execution logs. You can use the
-    /// query params to filter your results. On admin mode, this endpoint will
-    /// return a list of all of the project's executions. [Learn more about
-    /// different API modes](/docs/admin).
+    /// query params to filter your results.
     ///
     Future<models.ExecutionList> listExecutions({required String functionId, List<String>? queries, String? search}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
