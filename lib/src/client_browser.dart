@@ -99,7 +99,9 @@ class ClientBrowser extends ClientBase with ClientMixin {
     required String idParamName,
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
+    int? chunkSize,
   }) async {
+    chunkSize ??= CHUNK_SIZE;
     InputFile file = params[paramName];
     if (file.bytes == null) {
       throw AppwriteException("File bytes must be provided for Flutter web");
@@ -108,7 +110,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     int size = file.bytes!.length;
 
     late Response res;
-    if (size <= CHUNK_SIZE) {
+    if (size <= chunkSize) {
       params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!, filename: file.filename);
       return call(
         HttpMethod.post,
@@ -128,21 +130,21 @@ class ClientBrowser extends ClientBase with ClientMixin {
           headers: headers,
         );
         final int chunksUploaded = res.data['chunksUploaded'] as int;
-        offset = min(size, chunksUploaded * CHUNK_SIZE);
+        offset = min(size, chunksUploaded * chunkSize);
       } on AppwriteException catch (_) {}
     }
 
     while (offset < size) {
       var chunk;
-      final end = min(offset + CHUNK_SIZE, size);
+      final end = min(offset + chunkSize, size);
       chunk = file.bytes!.getRange(offset, end).toList();
       params[paramName] =
           http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       headers['content-range'] =
-          'bytes $offset-${min<int>(((offset + CHUNK_SIZE) - 1), size)}/$size';
+          'bytes $offset-${min<int>(((offset + chunkSize) - 1), size)}/$size';
       res = await call(HttpMethod.post,
           path: path, headers: headers, params: params);
-      offset += CHUNK_SIZE;
+      offset += chunkSize;
       if (offset < size) {
         headers['x-appwrite-id'] = res.data['\$id'];
       }

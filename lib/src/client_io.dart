@@ -110,7 +110,9 @@ class ClientIO extends ClientBase with ClientMixin {
     required String idParamName,
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
+    int ?chunkSize,
   }) async {
+    chunkSize ??= CHUNK_SIZE;
     InputFile file = params[paramName];
     if (file.path == null && file.bytes == null) {
       throw AppwriteException("File path or bytes must be provided");
@@ -129,7 +131,7 @@ class ClientIO extends ClientBase with ClientMixin {
     }
 
     late Response res;
-    if (size <= CHUNK_SIZE) {
+    if (size <= chunkSize) {
       if (file.path != null) {
         params[paramName] = await http.MultipartFile.fromPath(
             paramName, file.path!,
@@ -156,7 +158,7 @@ class ClientIO extends ClientBase with ClientMixin {
           headers: headers,
         );
         final int chunksUploaded = res.data['chunksUploaded'] as int;
-        offset = min(size, chunksUploaded * CHUNK_SIZE);
+        offset = min(size, chunksUploaded * chunkSize);
       } on AppwriteException catch (_) {}
     }
 
@@ -169,19 +171,19 @@ class ClientIO extends ClientBase with ClientMixin {
     while (offset < size) {
       var chunk;
       if (file.bytes != null) {
-        final end = min(offset + CHUNK_SIZE-1, size-1);
+        final end = min(offset + chunkSize-1, size-1);
         chunk = file.bytes!.getRange(offset, end).toList();
       } else {
         raf!.setPositionSync(offset);
-        chunk = raf.readSync(CHUNK_SIZE);
+        chunk = raf.readSync(chunkSize);
       }
       params[paramName] =
           http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       headers['content-range'] =
-          'bytes $offset-${min<int>(((offset + CHUNK_SIZE) - 1), size)}/$size';
+          'bytes $offset-${min<int>(((offset + chunkSize) - 1), size)}/$size';
       res = await call(HttpMethod.post,
           path: path, headers: headers, params: params);
-      offset += CHUNK_SIZE;
+      offset += chunkSize;
       if (offset < size) {
         headers['x-appwrite-id'] = res.data['\$id'];
       }

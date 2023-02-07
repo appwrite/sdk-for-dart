@@ -38,6 +38,7 @@ abstract class Client {
     required String idParamName,
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
+    int? chunkSize,
   });
 
   Future<Response> call(HttpMethod method, {
