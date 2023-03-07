@@ -1,3 +1,7 @@
+## 7.3.0
+
+* Update: Deprecated `InputFile` default constructor and introduced `InputFile.fromPath` and `InputFile.fromBytes` for consistency with other SDKs
+
 ## 7.2.0
 
 * Support for GraphQL
