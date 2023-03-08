@@ -1,6 +1,8 @@
 part of dart_appwrite;
 
 class Role {
+    Role._();
+    
     static String any() {
         return 'any';
     }
