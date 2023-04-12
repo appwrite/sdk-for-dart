@@ -308,6 +308,28 @@ class Databases extends Service {
 
 
     }
+    /// Update Boolean Attribute
+    Future<models.AttributeBoolean> updateBooleanAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required bool? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'required': xrequired,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
+        return models.AttributeBoolean.fromMap(res.data);
+
+
+    }
     /// Create DateTime Attribute
     Future<models.AttributeDatetime> createDatetimeAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
@@ -327,6 +349,28 @@ class Databases extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
+        return models.AttributeDatetime.fromMap(res.data);
+
+
+    }
+    /// Update DateTime Attribute
+    Future<models.AttributeDatetime> updateDatetimeAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required String? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'required': xrequired,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
         return models.AttributeDatetime.fromMap(res.data);
 
@@ -360,6 +404,33 @@ class Databases extends Service {
 
 
     }
+    /// Update Email Attribute
+    ///
+    /// Update an email attribute. Changing the `default` value will not update
+    /// already existing documents.
+    /// 
+    ///
+    Future<models.AttributeEmail> updateEmailAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required String? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'required': xrequired,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
+        return models.AttributeEmail.fromMap(res.data);
+
+
+    }
     /// Create Enum Attribute
     Future<models.AttributeEnum> createEnumAttribute({required String databaseId, required String collectionId, required String key, required List<String> elements, required bool xrequired, String? xdefault, bool? array}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
@@ -380,6 +451,34 @@ class Databases extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
+        return models.AttributeEnum.fromMap(res.data);
+
+
+    }
+    /// Update Enum Attribute
+    ///
+    /// Update an enum attribute. Changing the `default` value will not update
+    /// already existing documents.
+    /// 
+    ///
+    Future<models.AttributeEnum> updateEnumAttribute({required String databaseId, required String collectionId, required String key, required List<String> elements, required bool xrequired, required String? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'elements': elements,
+'required': xrequired,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
         return models.AttributeEnum.fromMap(res.data);
 
@@ -416,6 +515,35 @@ class Databases extends Service {
 
 
     }
+    /// Update Float Attribute
+    ///
+    /// Update a float attribute. Changing the `default` value will not update
+    /// already existing documents.
+    /// 
+    ///
+    Future<models.AttributeFloat> updateFloatAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required double min, required double max, required double? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'required': xrequired,
+'min': min,
+'max': max,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
+        return models.AttributeFloat.fromMap(res.data);
+
+
+    }
     /// Create Integer Attribute
     ///
     /// Create an integer attribute. Optionally, minimum and maximum values can be
@@ -442,6 +570,35 @@ class Databases extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
+        return models.AttributeInteger.fromMap(res.data);
+
+
+    }
+    /// Update Integer Attribute
+    ///
+    /// Update an integer attribute. Changing the `default` value will not update
+    /// already existing documents.
+    /// 
+    ///
+    Future<models.AttributeInteger> updateIntegerAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required int min, required int max, required int? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'required': xrequired,
+'min': min,
+'max': max,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
         return models.AttributeInteger.fromMap(res.data);
 
@@ -475,6 +632,64 @@ class Databases extends Service {
 
 
     }
+    /// Update IP Address Attribute
+    ///
+    /// Update an ip attribute. Changing the `default` value will not update
+    /// already existing documents.
+    /// 
+    ///
+    Future<models.AttributeIp> updateIpAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required String? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'required': xrequired,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
+        return models.AttributeIp.fromMap(res.data);
+
+
+    }
+    /// Create Relationship Attribute
+    ///
+    /// Create relationship attribute. [Learn more about relationship
+    /// attributes](docs/databases-relationships#relationship-attributes).
+    /// 
+    ///
+    Future<models.AttributeRelationship> createRelationshipAttribute({required String databaseId, required String collectionId, required String relatedCollectionId, required String type, bool? twoWay, String? key, String? twoWayKey, String? onDelete}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
+
+        final Map<String, dynamic> params = {
+            
+            'relatedCollectionId': relatedCollectionId,
+'type': type,
+'twoWay': twoWay,
+'key': key,
+'twoWayKey': twoWayKey,
+'onDelete': onDelete,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
+        return models.AttributeRelationship.fromMap(res.data);
+
+
+    }
     /// Create String Attribute
     ///
     /// Create a string attribute.
@@ -504,6 +719,33 @@ class Databases extends Service {
 
 
     }
+    /// Update String Attribute
+    ///
+    /// Update a string attribute. Changing the `default` value will not update
+    /// already existing documents.
+    /// 
+    ///
+    Future<models.AttributeString> updateStringAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required String? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'required': xrequired,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
+        return models.AttributeString.fromMap(res.data);
+
+
+    }
     /// Create URL Attribute
     ///
     /// Create a URL attribute.
@@ -527,6 +769,33 @@ class Databases extends Service {
         };
 
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
+
+        return models.AttributeUrl.fromMap(res.data);
+
+
+    }
+    /// Update URL Attribute
+    ///
+    /// Update an url attribute. Changing the `default` value will not update
+    /// already existing documents.
+    /// 
+    ///
+    Future<models.AttributeUrl> updateUrlAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required String? xdefault}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'required': xrequired,
+'default': xdefault,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
         return models.AttributeUrl.fromMap(res.data);
 
@@ -569,6 +838,32 @@ class Databases extends Service {
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
 
         return  res.data;
+
+
+    }
+    /// Update Relationship Attribute
+    ///
+    /// Update relationship attribute. [Learn more about relationship
+    /// attributes](docs/databases-relationships#relationship-attributes).
+    /// 
+    ///
+    Future<models.AttributeRelationship> updateRelationshipAttribute({required String databaseId, required String collectionId, required String key, String? onDelete}) async {
+        final String path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+        final Map<String, dynamic> params = {
+            
+            'onDelete': onDelete,
+
+        };
+
+        final Map<String, String> headers = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
+
+        return models.AttributeRelationship.fromMap(res.data);
 
 
     }
@@ -631,11 +926,12 @@ class Databases extends Service {
     /// Get a document by its unique ID. This endpoint response returns a JSON
     /// object with the document data.
     ///
-    Future<models.Document> getDocument({required String databaseId, required String collectionId, required String documentId}) async {
+    Future<models.Document> getDocument({required String databaseId, required String collectionId, required String documentId, List<String>? queries}) async {
         final String path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{documentId}', documentId);
 
         final Map<String, dynamic> params = {
-            
+            'queries': queries,
+
             
         };
 

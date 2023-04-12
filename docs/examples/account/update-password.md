@@ -11,7 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = account.updatePassword(
-    password: 'password',
+    password: '',
   );
 
   result

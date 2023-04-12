@@ -8,7 +8,7 @@ class Account extends Service {
     ///
     /// Get currently logged in user data as JSON object.
     ///
-    Future<models.Account> get() async {
+    Future<models.User> get() async {
         final String path = '/account';
 
         final Map<String, dynamic> params = {
@@ -23,7 +23,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
-        return models.Account.fromMap(res.data);
+        return models.User.fromMap(res.data);
 
 
     }
@@ -38,7 +38,7 @@ class Account extends Service {
     /// one, by passing an email address and a new password.
     /// 
     ///
-    Future<models.Account> updateEmail({required String email, required String password}) async {
+    Future<models.User> updateEmail({required String email, required String password}) async {
         final String path = '/account/email';
 
         final Map<String, dynamic> params = {
@@ -55,7 +55,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.Account.fromMap(res.data);
+        return models.User.fromMap(res.data);
 
 
     }
@@ -88,7 +88,7 @@ class Account extends Service {
     ///
     /// Update currently logged in user account name.
     ///
-    Future<models.Account> updateName({required String name}) async {
+    Future<models.User> updateName({required String name}) async {
         final String path = '/account/name';
 
         final Map<String, dynamic> params = {
@@ -104,7 +104,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.Account.fromMap(res.data);
+        return models.User.fromMap(res.data);
 
 
     }
@@ -114,7 +114,7 @@ class Account extends Service {
     /// to pass in the new password, and the old password. For users created with
     /// OAuth, Team Invites and Magic URL, oldPassword is optional.
     ///
-    Future<models.Account> updatePassword({required String password, String? oldPassword}) async {
+    Future<models.User> updatePassword({required String password, String? oldPassword}) async {
         final String path = '/account/password';
 
         final Map<String, dynamic> params = {
@@ -131,7 +131,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.Account.fromMap(res.data);
+        return models.User.fromMap(res.data);
 
 
     }
@@ -143,7 +143,7 @@ class Account extends Service {
     /// /account/verification/phone](/docs/client/account#accountCreatePhoneVerification)
     /// endpoint to send a confirmation SMS.
     ///
-    Future<models.Account> updatePhone({required String phone, required String password}) async {
+    Future<models.User> updatePhone({required String phone, required String password}) async {
         final String path = '/account/phone';
 
         final Map<String, dynamic> params = {
@@ -160,7 +160,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.Account.fromMap(res.data);
+        return models.User.fromMap(res.data);
 
 
     }
@@ -193,7 +193,7 @@ class Account extends Service {
     /// stored as is, and replaces any previous value. The maximum allowed prefs
     /// size is 64kB and throws error if exceeded.
     ///
-    Future<models.Account> updatePrefs({required Map prefs}) async {
+    Future<models.User> updatePrefs({required Map prefs}) async {
         final String path = '/account/prefs';
 
         final Map<String, dynamic> params = {
@@ -209,7 +209,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.Account.fromMap(res.data);
+        return models.User.fromMap(res.data);
 
 
     }
@@ -409,7 +409,7 @@ class Account extends Service {
     /// record is not deleted but permanently blocked from any access. To
     /// completely delete a user, use the Users API instead.
     ///
-    Future<models.Account> updateStatus() async {
+    Future<models.User> updateStatus() async {
         final String path = '/account/status';
 
         final Map<String, dynamic> params = {
@@ -424,7 +424,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: path, params: params, headers: headers);
 
-        return models.Account.fromMap(res.data);
+        return models.User.fromMap(res.data);
 
 
     }

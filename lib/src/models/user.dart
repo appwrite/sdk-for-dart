@@ -11,11 +11,11 @@ class User implements Model {
     /// User name.
     final String name;
     /// Hashed user password.
-    final String password;
+    final String? password;
     /// Password hashing algorithm.
-    final String hash;
+    final String? hash;
     /// Password hashing algorithm configuration.
-    final Map hashOptions;
+    final Map? hashOptions;
     /// User registration date in ISO 8601 format.
     final String registration;
     /// User status. Pass `true` for enabled and `false` for disabled.
@@ -38,9 +38,9 @@ class User implements Model {
         required this.$createdAt,
         required this.$updatedAt,
         required this.name,
-        required this.password,
-        required this.hash,
-        required this.hashOptions,
+        this.password,
+        this.hash,
+        this.hashOptions,
         required this.registration,
         required this.status,
         required this.passwordUpdate,
@@ -57,8 +57,8 @@ class User implements Model {
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
             name: map['name'].toString(),
-            password: map['password'].toString(),
-            hash: map['hash'].toString(),
+            password: map['password']?.toString(),
+            hash: map['hash']?.toString(),
             hashOptions: map['hashOptions'],
             registration: map['registration'].toString(),
             status: map['status'],

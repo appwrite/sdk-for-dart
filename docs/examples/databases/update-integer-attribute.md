@@ -2,7 +2,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 
 void main() { // Init SDK
   Client client = Client();
-  Users users = Users(client);
+  Databases databases = Databases(client);
 
   client
     .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your API Endpoint
@@ -10,9 +10,14 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = users.updatePassword(
-    userId: '[USER_ID]',
-    password: '',
+  Future result = databases.updateIntegerAttribute(
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    xrequired: false,
+    min: 0,
+    max: 0,
+    xdefault: 0,
   );
 
   result
