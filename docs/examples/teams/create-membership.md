@@ -12,7 +12,6 @@ void main() { // Init SDK
 
   Future result = teams.createMembership(
     teamId: '[TEAM_ID]',
-    email: 'email@example.com',
     roles: [],
     url: 'https://example.com',
   );

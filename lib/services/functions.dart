@@ -37,7 +37,7 @@ class Functions extends Service {
     /// [permissions](/docs/permissions) to allow different project users or team
     /// with access to execute the function using the client API.
     ///
-    Future<models.Func> create({required String functionId, required String name, required List<String> execute, required String runtime, List<String>? events, String? schedule, int? timeout, bool? enabled}) async {
+    Future<models.Func> create({required String functionId, required String name, required String runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled}) async {
         final String path = '/functions';
 
         final Map<String, dynamic> params = {
@@ -114,7 +114,7 @@ class Functions extends Service {
     ///
     /// Update function by its unique ID.
     ///
-    Future<models.Func> update({required String functionId, required String name, required List<String> execute, List<String>? events, String? schedule, int? timeout, bool? enabled}) async {
+    Future<models.Func> update({required String functionId, required String name, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> params = {
