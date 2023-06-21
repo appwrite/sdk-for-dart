@@ -1,13 +1,12 @@
 part of dart_appwrite;
 
-    /// The Account service allows you to authenticate and manage a user account.
+/// The Account service allows you to authenticate and manage a user account.
 class Account extends Service {
     Account(super.client);
 
     /// Get Account
     ///
     /// Get currently logged in user data as JSON object.
-    ///
     Future<models.User> get() async {
         final String path = '/account';
 
@@ -25,8 +24,8 @@ class Account extends Service {
 
         return models.User.fromMap(res.data);
 
-
     }
+
     /// Update Email
     ///
     /// Update currently logged in user account email address. After changing user
@@ -37,7 +36,6 @@ class Account extends Service {
     /// This endpoint can also be used to convert an anonymous account to a normal
     /// one, by passing an email address and a new password.
     /// 
-    ///
     Future<models.User> updateEmail({required String email, required String password}) async {
         final String path = '/account/email';
 
@@ -57,13 +55,12 @@ class Account extends Service {
 
         return models.User.fromMap(res.data);
 
-
     }
+
     /// List Logs
     ///
     /// Get currently logged in user list of latest security activity logs. Each
     /// log returns user IP address, location and date and time of log.
-    ///
     Future<models.LogList> listLogs({List<String>? queries}) async {
         final String path = '/account/logs';
 
@@ -82,12 +79,11 @@ class Account extends Service {
 
         return models.LogList.fromMap(res.data);
 
-
     }
+
     /// Update Name
     ///
     /// Update currently logged in user account name.
-    ///
     Future<models.User> updateName({required String name}) async {
         final String path = '/account/name';
 
@@ -106,14 +102,13 @@ class Account extends Service {
 
         return models.User.fromMap(res.data);
 
-
     }
+
     /// Update Password
     ///
     /// Update currently logged in user password. For validation, user is required
     /// to pass in the new password, and the old password. For users created with
     /// OAuth, Team Invites and Magic URL, oldPassword is optional.
-    ///
     Future<models.User> updatePassword({required String password, String? oldPassword}) async {
         final String path = '/account/password';
 
@@ -133,8 +128,8 @@ class Account extends Service {
 
         return models.User.fromMap(res.data);
 
-
     }
+
     /// Update Phone
     ///
     /// Update the currently logged in user's phone number. After updating the
@@ -142,7 +137,6 @@ class Account extends Service {
     /// SMS is not sent automatically, however you can use the [POST
     /// /account/verification/phone](/docs/client/account#accountCreatePhoneVerification)
     /// endpoint to send a confirmation SMS.
-    ///
     Future<models.User> updatePhone({required String phone, required String password}) async {
         final String path = '/account/phone';
 
@@ -162,12 +156,11 @@ class Account extends Service {
 
         return models.User.fromMap(res.data);
 
-
     }
+
     /// Get Account Preferences
     ///
     /// Get currently logged in user preferences as a key-value object.
-    ///
     Future<models.Preferences> getPrefs() async {
         final String path = '/account/prefs';
 
@@ -185,14 +178,13 @@ class Account extends Service {
 
         return models.Preferences.fromMap(res.data);
 
-
     }
+
     /// Update Preferences
     ///
     /// Update currently logged in user account preferences. The object you pass is
     /// stored as is, and replaces any previous value. The maximum allowed prefs
     /// size is 64kB and throws error if exceeded.
-    ///
     Future<models.User> updatePrefs({required Map prefs}) async {
         final String path = '/account/prefs';
 
@@ -211,8 +203,8 @@ class Account extends Service {
 
         return models.User.fromMap(res.data);
 
-
     }
+
     /// Create Password Recovery
     ///
     /// Sends the user an email with a temporary secret key for password reset.
@@ -223,7 +215,6 @@ class Account extends Service {
     /// /account/recovery](/docs/client/account#accountUpdateRecovery) endpoint to
     /// complete the process. The verification link sent to the user's email
     /// address is valid for 1 hour.
-    ///
     Future<models.Token> createRecovery({required String email, required String url}) async {
         final String path = '/account/recovery';
 
@@ -243,8 +234,8 @@ class Account extends Service {
 
         return models.Token.fromMap(res.data);
 
-
     }
+
     /// Create Password Recovery (confirmation)
     ///
     /// Use this endpoint to complete the user account password reset. Both the
@@ -256,7 +247,6 @@ class Account extends Service {
     /// Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
     /// the only valid redirect URLs are the ones from domains you have set when
     /// adding your platforms in the console interface.
-    ///
     Future<models.Token> updateRecovery({required String userId, required String secret, required String password, required String passwordAgain}) async {
         final String path = '/account/recovery';
 
@@ -278,13 +268,12 @@ class Account extends Service {
 
         return models.Token.fromMap(res.data);
 
-
     }
+
     /// List Sessions
     ///
     /// Get currently logged in user list of active sessions across different
     /// devices.
-    ///
     Future<models.SessionList> listSessions() async {
         final String path = '/account/sessions';
 
@@ -302,13 +291,12 @@ class Account extends Service {
 
         return models.SessionList.fromMap(res.data);
 
-
     }
+
     /// Delete Sessions
     ///
     /// Delete all sessions from the user account and remove any sessions cookies
     /// from the end client.
-    ///
     Future deleteSessions() async {
         final String path = '/account/sessions';
 
@@ -326,13 +314,12 @@ class Account extends Service {
 
         return  res.data;
 
-
     }
+
     /// Get Session
     ///
     /// Use this endpoint to get a logged in user's session using a Session ID.
     /// Inputting 'current' will return the current session being used.
-    ///
     Future<models.Session> getSession({required String sessionId}) async {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
@@ -350,14 +337,13 @@ class Account extends Service {
 
         return models.Session.fromMap(res.data);
 
-
     }
+
     /// Update OAuth Session (Refresh Tokens)
     ///
     /// Access tokens have limited lifespan and expire to mitigate security risks.
     /// If session was created using an OAuth provider, this route can be used to
     /// "refresh" the access token.
-    ///
     Future<models.Session> updateSession({required String sessionId}) async {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
@@ -375,15 +361,14 @@ class Account extends Service {
 
         return models.Session.fromMap(res.data);
 
-
     }
+
     /// Delete Session
     ///
     /// Use this endpoint to log out the currently logged in user from all their
     /// account sessions across all of their different devices. When using the
     /// Session ID argument, only the unique session ID provided is deleted.
     /// 
-    ///
     Future deleteSession({required String sessionId}) async {
         final String path = '/account/sessions/{sessionId}'.replaceAll('{sessionId}', sessionId);
 
@@ -401,14 +386,13 @@ class Account extends Service {
 
         return  res.data;
 
-
     }
+
     /// Update Status
     ///
     /// Block the currently logged in user account. Behind the scene, the user
     /// record is not deleted but permanently blocked from any access. To
     /// completely delete a user, use the Users API instead.
-    ///
     Future<models.User> updateStatus() async {
         final String path = '/account/status';
 
@@ -426,8 +410,8 @@ class Account extends Service {
 
         return models.User.fromMap(res.data);
 
-
     }
+
     /// Create Email Verification
     ///
     /// Use this endpoint to send a verification message to your user email address
@@ -445,7 +429,6 @@ class Account extends Service {
     /// the only valid redirect URLs are the ones from domains you have set when
     /// adding your platforms in the console interface.
     /// 
-    ///
     Future<models.Token> createVerification({required String url}) async {
         final String path = '/account/verification';
 
@@ -464,15 +447,14 @@ class Account extends Service {
 
         return models.Token.fromMap(res.data);
 
-
     }
+
     /// Create Email Verification (confirmation)
     ///
     /// Use this endpoint to complete the user email verification process. Use both
     /// the **userId** and **secret** parameters that were attached to your app URL
     /// to verify the user email ownership. If confirmed this route will return a
     /// 200 status code.
-    ///
     Future<models.Token> updateVerification({required String userId, required String secret}) async {
         final String path = '/account/verification';
 
@@ -492,8 +474,8 @@ class Account extends Service {
 
         return models.Token.fromMap(res.data);
 
-
     }
+
     /// Create Phone Verification
     ///
     /// Use this endpoint to send a verification SMS to the currently logged in
@@ -502,7 +484,6 @@ class Account extends Service {
     /// endpoint. Learn more about how to [complete the verification
     /// process](/docs/client/account#accountUpdatePhoneVerification). The
     /// verification code sent to the user's phone number is valid for 15 minutes.
-    ///
     Future<models.Token> createPhoneVerification() async {
         final String path = '/account/verification/phone';
 
@@ -520,15 +501,14 @@ class Account extends Service {
 
         return models.Token.fromMap(res.data);
 
-
     }
+
     /// Create Phone Verification (confirmation)
     ///
     /// Use this endpoint to complete the user phone verification process. Use the
     /// **userId** and **secret** that were sent to your user's phone number to
     /// verify the user email ownership. If confirmed this route will return a 200
     /// status code.
-    ///
     Future<models.Token> updatePhoneVerification({required String userId, required String secret}) async {
         final String path = '/account/verification/phone';
 
@@ -547,7 +527,6 @@ class Account extends Service {
         final res = await client.call(HttpMethod.put, path: path, params: params, headers: headers);
 
         return models.Token.fromMap(res.data);
-
 
     }
 }

@@ -1,7 +1,7 @@
 part of dart_appwrite;
 
-    /// The Functions Service allows you view, create and manage your Cloud
-    /// Functions.
+/// The Functions Service allows you view, create and manage your Cloud
+/// Functions.
 class Functions extends Service {
     Functions(super.client);
 
@@ -9,7 +9,6 @@ class Functions extends Service {
     ///
     /// Get a list of all the project's functions. You can use the query params to
     /// filter your results.
-    ///
     Future<models.FunctionList> list({List<String>? queries, String? search}) async {
         final String path = '/functions';
 
@@ -29,14 +28,13 @@ class Functions extends Service {
 
         return models.FunctionList.fromMap(res.data);
 
-
     }
+
     /// Create Function
     ///
     /// Create a new function. You can pass a list of
     /// [permissions](/docs/permissions) to allow different project users or team
     /// with access to execute the function using the client API.
-    ///
     Future<models.Func> create({required String functionId, required String name, required String runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled}) async {
         final String path = '/functions';
 
@@ -62,12 +60,11 @@ class Functions extends Service {
 
         return models.Func.fromMap(res.data);
 
-
     }
+
     /// List runtimes
     ///
     /// Get a list of all runtimes that are currently active on your instance.
-    ///
     Future<models.RuntimeList> listRuntimes() async {
         final String path = '/functions/runtimes';
 
@@ -85,12 +82,11 @@ class Functions extends Service {
 
         return models.RuntimeList.fromMap(res.data);
 
-
     }
+
     /// Get Function
     ///
     /// Get a function by its unique ID.
-    ///
     Future<models.Func> get({required String functionId}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
@@ -108,12 +104,11 @@ class Functions extends Service {
 
         return models.Func.fromMap(res.data);
 
-
     }
+
     /// Update Function
     ///
     /// Update function by its unique ID.
-    ///
     Future<models.Func> update({required String functionId, required String name, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
@@ -137,12 +132,11 @@ class Functions extends Service {
 
         return models.Func.fromMap(res.data);
 
-
     }
+
     /// Delete Function
     ///
     /// Delete a function by its unique ID.
-    ///
     Future delete({required String functionId}) async {
         final String path = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
@@ -160,13 +154,12 @@ class Functions extends Service {
 
         return  res.data;
 
-
     }
+
     /// List Deployments
     ///
     /// Get a list of all the project's code deployments. You can use the query
     /// params to filter your results.
-    ///
     Future<models.DeploymentList> listDeployments({required String functionId, List<String>? queries, String? search}) async {
         final String path = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
 
@@ -186,8 +179,8 @@ class Functions extends Service {
 
         return models.DeploymentList.fromMap(res.data);
 
-
     }
+
     /// Create Deployment
     ///
     /// Create a new function code deployment. Use this endpoint to upload a new
@@ -200,7 +193,6 @@ class Functions extends Service {
     /// tutorial](/docs/functions).
     /// 
     /// Use the "command" param to set the entry point used to execute your code.
-    ///
     Future<models.Deployment> createDeployment({required String functionId, required String entrypoint, required InputFile code, required bool activate, Function(UploadProgress)? onProgress}) async {
         final String path = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
 
@@ -230,12 +222,11 @@ class Functions extends Service {
 
         return models.Deployment.fromMap(res.data);
 
-
     }
+
     /// Get Deployment
     ///
     /// Get a code deployment by its unique ID.
-    ///
     Future<models.Deployment> getDeployment({required String functionId, required String deploymentId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
@@ -253,14 +244,13 @@ class Functions extends Service {
 
         return models.Deployment.fromMap(res.data);
 
-
     }
+
     /// Update Function Deployment
     ///
     /// Update the function code deployment ID using the unique function ID. Use
     /// this endpoint to switch the code deployment that should be executed by the
     /// execution endpoint.
-    ///
     Future<models.Func> updateDeployment({required String functionId, required String deploymentId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
@@ -278,12 +268,11 @@ class Functions extends Service {
 
         return models.Func.fromMap(res.data);
 
-
     }
+
     /// Delete Deployment
     ///
     /// Delete a code deployment by its unique ID.
-    ///
     Future deleteDeployment({required String functionId, required String deploymentId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
@@ -301,9 +290,10 @@ class Functions extends Service {
 
         return  res.data;
 
-
     }
+
     /// Create Build
+    ///
     Future createBuild({required String functionId, required String deploymentId, required String buildId}) async {
         final String path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId).replaceAll('{buildId}', buildId);
 
@@ -321,13 +311,12 @@ class Functions extends Service {
 
         return  res.data;
 
-
     }
+
     /// List Executions
     ///
     /// Get a list of all the current user function execution logs. You can use the
     /// query params to filter your results.
-    ///
     Future<models.ExecutionList> listExecutions({required String functionId, List<String>? queries, String? search}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
@@ -347,15 +336,14 @@ class Functions extends Service {
 
         return models.ExecutionList.fromMap(res.data);
 
-
     }
+
     /// Create Execution
     ///
     /// Trigger a function execution. The returned object will return you the
     /// current execution status. You can ping the `Get Execution` endpoint to get
     /// updates on the current execution status. Once this endpoint is called, your
     /// function execution process will start asynchronously.
-    ///
     Future<models.Execution> createExecution({required String functionId, String? data, bool? xasync}) async {
         final String path = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
@@ -375,12 +363,11 @@ class Functions extends Service {
 
         return models.Execution.fromMap(res.data);
 
-
     }
+
     /// Get Execution
     ///
     /// Get a function execution log by its unique ID.
-    ///
     Future<models.Execution> getExecution({required String functionId, required String executionId}) async {
         final String path = '/functions/{functionId}/executions/{executionId}'.replaceAll('{functionId}', functionId).replaceAll('{executionId}', executionId);
 
@@ -398,12 +385,11 @@ class Functions extends Service {
 
         return models.Execution.fromMap(res.data);
 
-
     }
+
     /// List Variables
     ///
     /// Get a list of all variables of a specific function.
-    ///
     Future<models.VariableList> listVariables({required String functionId}) async {
         final String path = '/functions/{functionId}/variables'.replaceAll('{functionId}', functionId);
 
@@ -421,13 +407,12 @@ class Functions extends Service {
 
         return models.VariableList.fromMap(res.data);
 
-
     }
+
     /// Create Variable
     ///
     /// Create a new function variable. These variables can be accessed within
     /// function in the `env` object under the request variable.
-    ///
     Future<models.Variable> createVariable({required String functionId, required String key, required String value}) async {
         final String path = '/functions/{functionId}/variables'.replaceAll('{functionId}', functionId);
 
@@ -447,12 +432,11 @@ class Functions extends Service {
 
         return models.Variable.fromMap(res.data);
 
-
     }
+
     /// Get Variable
     ///
     /// Get a variable by its unique ID.
-    ///
     Future<models.Variable> getVariable({required String functionId, required String variableId}) async {
         final String path = '/functions/{functionId}/variables/{variableId}'.replaceAll('{functionId}', functionId).replaceAll('{variableId}', variableId);
 
@@ -470,12 +454,11 @@ class Functions extends Service {
 
         return models.Variable.fromMap(res.data);
 
-
     }
+
     /// Update Variable
     ///
     /// Update variable by its unique ID.
-    ///
     Future<models.Variable> updateVariable({required String functionId, required String variableId, required String key, String? value}) async {
         final String path = '/functions/{functionId}/variables/{variableId}'.replaceAll('{functionId}', functionId).replaceAll('{variableId}', variableId);
 
@@ -495,12 +478,11 @@ class Functions extends Service {
 
         return models.Variable.fromMap(res.data);
 
-
     }
+
     /// Delete Variable
     ///
     /// Delete a variable by its unique ID.
-    ///
     Future deleteVariable({required String functionId, required String variableId}) async {
         final String path = '/functions/{functionId}/variables/{variableId}'.replaceAll('{functionId}', functionId).replaceAll('{variableId}', variableId);
 
@@ -517,7 +499,6 @@ class Functions extends Service {
         final res = await client.call(HttpMethod.delete, path: path, params: params, headers: headers);
 
         return  res.data;
-
 
     }
 }

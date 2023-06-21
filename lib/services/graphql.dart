@@ -1,14 +1,13 @@
 part of dart_appwrite;
 
-    /// The GraphQL API allows you to query and mutate your Appwrite server using
-    /// GraphQL.
+/// The GraphQL API allows you to query and mutate your Appwrite server using
+/// GraphQL.
 class Graphql extends Service {
     Graphql(super.client);
 
     /// GraphQL Endpoint
     ///
     /// Execute a GraphQL mutation.
-    ///
     Future query({required Map query}) async {
         final String path = '/graphql';
 
@@ -28,12 +27,11 @@ class Graphql extends Service {
 
         return  res.data;
 
-
     }
+
     /// GraphQL Endpoint
     ///
     /// Execute a GraphQL mutation.
-    ///
     Future mutation({required Map query}) async {
         final String path = '/graphql/mutation';
 
@@ -52,7 +50,6 @@ class Graphql extends Service {
         final res = await client.call(HttpMethod.post, path: path, params: params, headers: headers);
 
         return  res.data;
-
 
     }
 }

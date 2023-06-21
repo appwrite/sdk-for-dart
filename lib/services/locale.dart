@@ -1,7 +1,7 @@
 part of dart_appwrite;
 
-    /// The Locale service allows you to customize your app based on your users'
-    /// location.
+/// The Locale service allows you to customize your app based on your users&#039;
+/// location.
 class Locale extends Service {
     Locale(super.client);
 
@@ -13,7 +13,6 @@ class Locale extends Service {
     /// supported language.
     /// 
     /// ([IP Geolocation by DB-IP](https://db-ip.com))
-    ///
     Future<models.Locale> get() async {
         final String path = '/locale';
 
@@ -31,13 +30,12 @@ class Locale extends Service {
 
         return models.Locale.fromMap(res.data);
 
-
     }
+
     /// List Continents
     ///
     /// List of all continents. You can use the locale header to get the data in a
     /// supported language.
-    ///
     Future<models.ContinentList> listContinents() async {
         final String path = '/locale/continents';
 
@@ -55,13 +53,12 @@ class Locale extends Service {
 
         return models.ContinentList.fromMap(res.data);
 
-
     }
+
     /// List Countries
     ///
     /// List of all countries. You can use the locale header to get the data in a
     /// supported language.
-    ///
     Future<models.CountryList> listCountries() async {
         final String path = '/locale/countries';
 
@@ -79,13 +76,12 @@ class Locale extends Service {
 
         return models.CountryList.fromMap(res.data);
 
-
     }
+
     /// List EU Countries
     ///
     /// List of all countries that are currently members of the EU. You can use the
     /// locale header to get the data in a supported language.
-    ///
     Future<models.CountryList> listCountriesEU() async {
         final String path = '/locale/countries/eu';
 
@@ -103,13 +99,12 @@ class Locale extends Service {
 
         return models.CountryList.fromMap(res.data);
 
-
     }
+
     /// List Countries Phone Codes
     ///
     /// List of all countries phone codes. You can use the locale header to get the
     /// data in a supported language.
-    ///
     Future<models.PhoneList> listCountriesPhones() async {
         final String path = '/locale/countries/phones';
 
@@ -127,14 +122,13 @@ class Locale extends Service {
 
         return models.PhoneList.fromMap(res.data);
 
-
     }
+
     /// List Currencies
     ///
     /// List of all currencies, including currency symbol, name, plural, and
     /// decimal digits for all major and minor currencies. You can use the locale
     /// header to get the data in a supported language.
-    ///
     Future<models.CurrencyList> listCurrencies() async {
         final String path = '/locale/currencies';
 
@@ -152,13 +146,12 @@ class Locale extends Service {
 
         return models.CurrencyList.fromMap(res.data);
 
-
     }
+
     /// List Languages
     ///
     /// List of all languages classified by ISO 639-1 including 2-letter code, name
     /// in English, and name in the respective language.
-    ///
     Future<models.LanguageList> listLanguages() async {
         final String path = '/locale/languages';
 
@@ -175,7 +168,6 @@ class Locale extends Service {
         final res = await client.call(HttpMethod.get, path: path, params: params, headers: headers);
 
         return models.LanguageList.fromMap(res.data);
-
 
     }
 }
