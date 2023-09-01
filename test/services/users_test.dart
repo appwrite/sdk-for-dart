@@ -79,12 +79,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -107,12 +109,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -137,12 +141,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -159,6 +165,36 @@ void main() {
 
         });
 
+        test('test method listIdentities()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'identities': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.listIdentities(
+            );
+            expect(response, isA<models.IdentityList>());
+
+        });
+
+        test('test method deleteIdentity()', () async {
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.deleteIdentity(
+                identityId: '[IDENTITY_ID]',
+            );
+        });
+
         test('test method createMD5User()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -167,12 +203,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -197,12 +235,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -227,12 +267,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -262,12 +304,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -295,12 +339,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -325,12 +371,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -366,12 +414,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -382,6 +432,37 @@ void main() {
             final response = await users.updateEmail(
                 userId: '[USER_ID]',
                 email: 'email@example.com',
+            );
+            expect(response, isA<models.User>());
+
+        });
+
+        test('test method updateLabels()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'John Doe',
+                'registration': '2020-10-15T06:38:00.000+00:00',
+                'status': true,
+                'labels': [],
+                'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+                'email': 'john@appwrite.io',
+                'phone': '+4930901820',
+                'emailVerification': true,
+                'phoneVerification': true,
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.updateLabels(
+                userId: '[USER_ID]',
+                labels: [],
             );
             expect(response, isA<models.User>());
 
@@ -431,12 +512,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -460,12 +543,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -489,12 +574,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -596,12 +683,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -625,12 +714,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -654,12 +745,14 @@ void main() {
                 'name': 'John Doe',
                 'registration': '2020-10-15T06:38:00.000+00:00',
                 'status': true,
+                'labels': [],
                 'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
                 'email': 'john@appwrite.io',
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
-                'prefs': <String, dynamic>{},};
+                'prefs': <String, dynamic>{},
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(

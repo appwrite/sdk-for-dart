@@ -9,6 +9,7 @@ void main() {
         key: 'ipAddress',
         type: 'string',
         status: 'available',
+        error: 'string',
         xrequired: true,
         format: 'ip',
       );
@@ -19,6 +20,7 @@ void main() {
       expect(result.key, 'ipAddress');
       expect(result.type, 'string');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.xrequired, true);
       expect(result.format, 'ip');
     });

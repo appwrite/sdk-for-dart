@@ -9,6 +9,7 @@ void main() {
         key: 'index1',
         type: 'primary',
         status: 'available',
+        error: 'string',
         attributes: [],
       );
 
@@ -18,6 +19,7 @@ void main() {
       expect(result.key, 'index1');
       expect(result.type, 'primary');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.attributes, []);
     });
   });

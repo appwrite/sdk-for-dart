@@ -9,6 +9,7 @@ void main() {
         key: 'fullName',
         type: 'string',
         status: 'available',
+        error: 'string',
         xrequired: true,
         size: 128,
       );
@@ -19,6 +20,7 @@ void main() {
       expect(result.key, 'fullName');
       expect(result.type, 'string');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.xrequired, true);
       expect(result.size, 128);
     });

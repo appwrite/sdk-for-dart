@@ -11,7 +11,8 @@ void main() {
         $updatedAt: '2020-10-15T06:38:00.000+00:00',
         key: 'API_KEY',
         value: 'myPa\$\$word1',
-        functionId: '5e5ea5c16897e',
+        resourceType: 'function',
+        resourceId: 'myAwesomeFunction',
       );
 
       final map = model.toMap();
@@ -22,7 +23,8 @@ void main() {
       expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
       expect(result.key, 'API_KEY');
       expect(result.value, 'myPa\$\$word1');
-      expect(result.functionId, '5e5ea5c16897e');
+      expect(result.resourceType, 'function');
+      expect(result.resourceId, 'myAwesomeFunction');
     });
   });
 }

@@ -9,6 +9,7 @@ void main() {
         key: 'birthDay',
         type: 'datetime',
         status: 'available',
+        error: 'string',
         xrequired: true,
         format: 'datetime',
       );
@@ -19,6 +20,7 @@ void main() {
       expect(result.key, 'birthDay');
       expect(result.type, 'datetime');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.xrequired, true);
       expect(result.format, 'datetime');
     });

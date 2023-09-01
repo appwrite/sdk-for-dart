@@ -9,6 +9,7 @@ void main() {
         key: 'isEnabled',
         type: 'boolean',
         status: 'available',
+        error: 'string',
         xrequired: true,
       );
 
@@ -18,6 +19,7 @@ void main() {
       expect(result.key, 'isEnabled');
       expect(result.type, 'boolean');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.xrequired, true);
     });
   });

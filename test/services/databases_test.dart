@@ -76,7 +76,8 @@ void main() {
                 '\$id': '5e5ea5c16897e',
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'enabled': true,};
 
 
             when(client.call(
@@ -97,7 +98,8 @@ void main() {
                 '\$id': '5e5ea5c16897e',
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'enabled': true,};
 
 
             when(client.call(
@@ -117,7 +119,8 @@ void main() {
                 '\$id': '5e5ea5c16897e',
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'enabled': true,};
 
 
             when(client.call(
@@ -285,6 +288,7 @@ void main() {
                 'key': 'isEnabled',
                 'type': 'boolean',
                 'status': 'available',
+                'error': 'string',
                 'required': true,};
 
 
@@ -308,6 +312,7 @@ void main() {
                 'key': 'isEnabled',
                 'type': 'boolean',
                 'status': 'available',
+                'error': 'string',
                 'required': true,};
 
 
@@ -332,6 +337,7 @@ void main() {
                 'key': 'birthDay',
                 'type': 'datetime',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'format': 'datetime',};
 
@@ -356,6 +362,7 @@ void main() {
                 'key': 'birthDay',
                 'type': 'datetime',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'format': 'datetime',};
 
@@ -381,6 +388,7 @@ void main() {
                 'key': 'userEmail',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'format': 'email',};
 
@@ -405,6 +413,7 @@ void main() {
                 'key': 'userEmail',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'format': 'email',};
 
@@ -430,6 +439,7 @@ void main() {
                 'key': 'status',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'elements': [],
                 'format': 'enum',};
@@ -456,6 +466,7 @@ void main() {
                 'key': 'status',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'elements': [],
                 'format': 'enum',};
@@ -483,6 +494,7 @@ void main() {
                 'key': 'percentageCompleted',
                 'type': 'double',
                 'status': 'available',
+                'error': 'string',
                 'required': true,};
 
 
@@ -506,6 +518,7 @@ void main() {
                 'key': 'percentageCompleted',
                 'type': 'double',
                 'status': 'available',
+                'error': 'string',
                 'required': true,};
 
 
@@ -532,6 +545,7 @@ void main() {
                 'key': 'count',
                 'type': 'integer',
                 'status': 'available',
+                'error': 'string',
                 'required': true,};
 
 
@@ -555,6 +569,7 @@ void main() {
                 'key': 'count',
                 'type': 'integer',
                 'status': 'available',
+                'error': 'string',
                 'required': true,};
 
 
@@ -581,6 +596,7 @@ void main() {
                 'key': 'ipAddress',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'format': 'ip',};
 
@@ -605,6 +621,7 @@ void main() {
                 'key': 'ipAddress',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'format': 'ip',};
 
@@ -630,6 +647,7 @@ void main() {
                 'key': 'fullName',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'relatedCollection': 'collection',
                 'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
@@ -659,6 +677,7 @@ void main() {
                 'key': 'fullName',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'size': 128,};
 
@@ -684,6 +703,7 @@ void main() {
                 'key': 'fullName',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'size': 128,};
 
@@ -709,6 +729,7 @@ void main() {
                 'key': 'githubUrl',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'format': 'url',};
 
@@ -733,6 +754,7 @@ void main() {
                 'key': 'githubUrl',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'format': 'url',};
 
@@ -788,6 +810,7 @@ void main() {
                 'key': 'fullName',
                 'type': 'string',
                 'status': 'available',
+                'error': 'string',
                 'required': true,
                 'relatedCollection': 'collection',
                 'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
@@ -942,6 +965,7 @@ void main() {
                 'key': 'index1',
                 'type': 'primary',
                 'status': 'available',
+                'error': 'string',
                 'attributes': [],};
 
 
@@ -966,6 +990,7 @@ void main() {
                 'key': 'index1',
                 'type': 'primary',
                 'status': 'available',
+                'error': 'string',
                 'attributes': [],};
 
 

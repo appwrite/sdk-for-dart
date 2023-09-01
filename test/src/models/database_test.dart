@@ -10,6 +10,7 @@ void main() {
         name: 'My Database',
         $createdAt: '2020-10-15T06:38:00.000+00:00',
         $updatedAt: '2020-10-15T06:38:00.000+00:00',
+        enabled: true,
       );
 
       final map = model.toMap();
@@ -19,6 +20,7 @@ void main() {
       expect(result.name, 'My Database');
       expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
       expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.enabled, true);
     });
   });
 }

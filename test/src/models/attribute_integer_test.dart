@@ -9,6 +9,7 @@ void main() {
         key: 'count',
         type: 'integer',
         status: 'available',
+        error: 'string',
         xrequired: true,
       );
 
@@ -18,6 +19,7 @@ void main() {
       expect(result.key, 'count');
       expect(result.type, 'integer');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.xrequired, true);
     });
   });

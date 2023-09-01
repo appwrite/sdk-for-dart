@@ -17,7 +17,7 @@ class Avatars extends Service {
     /// image at source quality. If dimensions are not specified, the default size
     /// of image returned is 100x100px.
     Future<Uint8List> getBrowser({required String code, int? width, int? height, int? quality}) async {
-        final String path = '/avatars/browsers/{code}'.replaceAll('{code}', code);
+        final String apiPath = '/avatars/browsers/{code}'.replaceAll('{code}', code);
 
         final Map<String, dynamic> params = {
             'width': width,
@@ -29,7 +29,7 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
+        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
 
@@ -45,7 +45,7 @@ class Avatars extends Service {
     /// of image returned is 100x100px.
     /// 
     Future<Uint8List> getCreditCard({required String code, int? width, int? height, int? quality}) async {
-        final String path = '/avatars/credit-cards/{code}'.replaceAll('{code}', code);
+        final String apiPath = '/avatars/credit-cards/{code}'.replaceAll('{code}', code);
 
         final Map<String, dynamic> params = {
             'width': width,
@@ -57,7 +57,7 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
+        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
 
@@ -67,7 +67,7 @@ class Avatars extends Service {
     /// website URL.
     /// 
     Future<Uint8List> getFavicon({required String url}) async {
-        final String path = '/avatars/favicon';
+        final String apiPath = '/avatars/favicon';
 
         final Map<String, dynamic> params = {
             'url': url,
@@ -77,7 +77,7 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
+        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
 
@@ -94,7 +94,7 @@ class Avatars extends Service {
     /// of image returned is 100x100px.
     /// 
     Future<Uint8List> getFlag({required String code, int? width, int? height, int? quality}) async {
-        final String path = '/avatars/flags/{code}'.replaceAll('{code}', code);
+        final String apiPath = '/avatars/flags/{code}'.replaceAll('{code}', code);
 
         final Map<String, dynamic> params = {
             'width': width,
@@ -106,7 +106,7 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
+        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
 
@@ -123,7 +123,7 @@ class Avatars extends Service {
     /// of image returned is 400x400px.
     /// 
     Future<Uint8List> getImage({required String url, int? width, int? height}) async {
-        final String path = '/avatars/image';
+        final String apiPath = '/avatars/image';
 
         final Map<String, dynamic> params = {
             'url': url,
@@ -135,7 +135,7 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
+        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
 
@@ -158,7 +158,7 @@ class Avatars extends Service {
     /// of image returned is 100x100px.
     /// 
     Future<Uint8List> getInitials({String? name, int? width, int? height, String? background}) async {
-        final String path = '/avatars/initials';
+        final String apiPath = '/avatars/initials';
 
         final Map<String, dynamic> params = {
             'name': name,
@@ -171,7 +171,7 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
+        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
 
@@ -181,7 +181,7 @@ class Avatars extends Service {
     /// parameters to change the size and style of the resulting image.
     /// 
     Future<Uint8List> getQR({required String text, int? size, int? margin, bool? download}) async {
-        final String path = '/avatars/qr';
+        final String apiPath = '/avatars/qr';
 
         final Map<String, dynamic> params = {
             'text': text,
@@ -194,7 +194,7 @@ class Avatars extends Service {
             'key': client.config['key'],
         };
 
-        final res = await client.call(HttpMethod.get, path: path, params: params, responseType: ResponseType.bytes);
+        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
         return res.data;
     }
 }
