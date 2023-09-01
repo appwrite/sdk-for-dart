@@ -10,12 +10,15 @@ class Database implements Model {
     final String $createdAt;
     /// Database update date in ISO 8601 format.
     final String $updatedAt;
+    /// If database is enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the database is inaccessible to users, but remains accessible to Server SDKs using API keys.
+    final bool enabled;
 
     Database({
         required this.$id,
         required this.name,
         required this.$createdAt,
         required this.$updatedAt,
+        required this.enabled,
     });
 
     factory Database.fromMap(Map<String, dynamic> map) {
@@ -24,6 +27,7 @@ class Database implements Model {
             name: map['name'].toString(),
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
+            enabled: map['enabled'],
         );
     }
 
@@ -33,6 +37,7 @@ class Database implements Model {
             "name": name,
             "\$createdAt": $createdAt,
             "\$updatedAt": $updatedAt,
+            "enabled": enabled,
         };
     }
 }

@@ -9,6 +9,7 @@ void main() {
         key: 'githubUrl',
         type: 'string',
         status: 'available',
+        error: 'string',
         xrequired: true,
         format: 'url',
       );
@@ -19,6 +20,7 @@ void main() {
       expect(result.key, 'githubUrl');
       expect(result.type, 'string');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.xrequired, true);
       expect(result.format, 'url');
     });

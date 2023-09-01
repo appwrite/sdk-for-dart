@@ -1,6 +1,6 @@
 /// Appwrite Dart SDK
 ///
-/// This SDK is compatible with Appwrite server version 1.3.x. 
+/// This SDK is compatible with Appwrite server version 1.4.x. 
 /// For older versions, please check
 /// [previous releases](https://github.com/appwrite/sdk-for-dart/releases).
 library dart_appwrite;

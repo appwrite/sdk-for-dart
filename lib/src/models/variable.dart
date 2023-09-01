@@ -12,8 +12,10 @@ class Variable implements Model {
     final String key;
     /// Variable value.
     final String value;
-    /// Function ID.
-    final String functionId;
+    /// Service to which the variable belongs. Possible values are &quot;project&quot;, &quot;function&quot;
+    final String resourceType;
+    /// ID of resource to which the variable belongs. If resourceType is &quot;project&quot;, it is empty. If resourceType is &quot;function&quot;, it is ID of the function.
+    final String resourceId;
 
     Variable({
         required this.$id,
@@ -21,7 +23,8 @@ class Variable implements Model {
         required this.$updatedAt,
         required this.key,
         required this.value,
-        required this.functionId,
+        required this.resourceType,
+        required this.resourceId,
     });
 
     factory Variable.fromMap(Map<String, dynamic> map) {
@@ -31,7 +34,8 @@ class Variable implements Model {
             $updatedAt: map['\$updatedAt'].toString(),
             key: map['key'].toString(),
             value: map['value'].toString(),
-            functionId: map['functionId'].toString(),
+            resourceType: map['resourceType'].toString(),
+            resourceId: map['resourceId'].toString(),
         );
     }
 
@@ -42,7 +46,8 @@ class Variable implements Model {
             "\$updatedAt": $updatedAt,
             "key": key,
             "value": value,
-            "functionId": functionId,
+            "resourceType": resourceType,
+            "resourceId": resourceId,
         };
     }
 }

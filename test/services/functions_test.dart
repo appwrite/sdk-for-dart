@@ -79,14 +79,22 @@ void main() {
                 'execute': [],
                 'name': 'My Function',
                 'enabled': true,
+                'live': true,
+                'logging': true,
                 'runtime': 'python-3.8',
                 'deployment': '5e5ea5c16897e',
                 'vars': [],
                 'events': [],
                 'schedule': '5 4 * * *',
-                'scheduleNext': '2020-10-15T06:38:00.000+00:00',
-                'schedulePrevious': '2020-10-15T06:38:00.000+00:00',
-                'timeout': 15,};
+                'timeout': 300,
+                'entrypoint': 'index.js',
+                'commands': 'npm install',
+                'version': 'v2',
+                'installationId': '6m40at4ejk5h2u9s1hboo',
+                'providerRepositoryId': 'appwrite',
+                'providerBranch': 'main',
+                'providerRootDirectory': 'functions/helloWorld',
+                'providerSilentMode': true,};
 
 
             when(client.call(
@@ -128,14 +136,22 @@ void main() {
                 'execute': [],
                 'name': 'My Function',
                 'enabled': true,
+                'live': true,
+                'logging': true,
                 'runtime': 'python-3.8',
                 'deployment': '5e5ea5c16897e',
                 'vars': [],
                 'events': [],
                 'schedule': '5 4 * * *',
-                'scheduleNext': '2020-10-15T06:38:00.000+00:00',
-                'schedulePrevious': '2020-10-15T06:38:00.000+00:00',
-                'timeout': 15,};
+                'timeout': 300,
+                'entrypoint': 'index.js',
+                'commands': 'npm install',
+                'version': 'v2',
+                'installationId': '6m40at4ejk5h2u9s1hboo',
+                'providerRepositoryId': 'appwrite',
+                'providerBranch': 'main',
+                'providerRootDirectory': 'functions/helloWorld',
+                'providerSilentMode': true,};
 
 
             when(client.call(
@@ -158,14 +174,22 @@ void main() {
                 'execute': [],
                 'name': 'My Function',
                 'enabled': true,
+                'live': true,
+                'logging': true,
                 'runtime': 'python-3.8',
                 'deployment': '5e5ea5c16897e',
                 'vars': [],
                 'events': [],
                 'schedule': '5 4 * * *',
-                'scheduleNext': '2020-10-15T06:38:00.000+00:00',
-                'schedulePrevious': '2020-10-15T06:38:00.000+00:00',
-                'timeout': 15,};
+                'timeout': 300,
+                'entrypoint': 'index.js',
+                'commands': 'npm install',
+                'version': 'v2',
+                'installationId': '6m40at4ejk5h2u9s1hboo',
+                'providerRepositoryId': 'appwrite',
+                'providerBranch': 'main',
+                'providerRootDirectory': 'functions/helloWorld',
+                'providerSilentMode': true,};
 
 
             when(client.call(
@@ -176,6 +200,7 @@ void main() {
             final response = await functions.update(
                 functionId: '[FUNCTION_ID]',
                 name: '[NAME]',
+                runtime: 'node-14.5',
             );
             expect(response, isA<models.Func>());
 
@@ -217,16 +242,26 @@ void main() {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'type': 'vcs',
                 'resourceId': '5e5ea6g16897e',
                 'resourceType': 'functions',
-                'entrypoint': 'enabled',
+                'entrypoint': 'index.js',
                 'size': 128,
                 'buildId': '5e5ea5c16897e',
                 'activate': true,
                 'status': 'ready',
-                'buildStdout': 'enabled',
-                'buildStderr': 'enabled',
-                'buildTime': 128,};
+                'buildLogs': 'Compiling source files...',
+                'buildTime': 128,
+                'providerRepositoryName': 'database',
+                'providerRepositoryOwner': 'utopia',
+                'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+                'providerBranch': '0.7.x',
+                'providerCommitHash': '7c3f25d',
+                'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+                'providerCommitAuthor': 'Khushboo Verma',
+                'providerCommitMessage': 'Update index.js',
+                'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
 
 
             when(client.chunkedUpload(
@@ -240,7 +275,6 @@ void main() {
 
             final response = await functions.createDeployment(
                 functionId: '[FUNCTION_ID]',
-                entrypoint: '[ENTRYPOINT]',
                 code: InputFile.fromPath(path: './image.png'),
                 activate: true,
             );
@@ -253,16 +287,26 @@ void main() {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'type': 'vcs',
                 'resourceId': '5e5ea6g16897e',
                 'resourceType': 'functions',
-                'entrypoint': 'enabled',
+                'entrypoint': 'index.js',
                 'size': 128,
                 'buildId': '5e5ea5c16897e',
                 'activate': true,
                 'status': 'ready',
-                'buildStdout': 'enabled',
-                'buildStderr': 'enabled',
-                'buildTime': 128,};
+                'buildLogs': 'Compiling source files...',
+                'buildTime': 128,
+                'providerRepositoryName': 'database',
+                'providerRepositoryOwner': 'utopia',
+                'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+                'providerBranch': '0.7.x',
+                'providerCommitHash': '7c3f25d',
+                'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+                'providerCommitAuthor': 'Khushboo Verma',
+                'providerCommitMessage': 'Update index.js',
+                'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
 
 
             when(client.call(
@@ -286,14 +330,22 @@ void main() {
                 'execute': [],
                 'name': 'My Function',
                 'enabled': true,
+                'live': true,
+                'logging': true,
                 'runtime': 'python-3.8',
                 'deployment': '5e5ea5c16897e',
                 'vars': [],
                 'events': [],
                 'schedule': '5 4 * * *',
-                'scheduleNext': '2020-10-15T06:38:00.000+00:00',
-                'schedulePrevious': '2020-10-15T06:38:00.000+00:00',
-                'timeout': 15,};
+                'timeout': 300,
+                'entrypoint': 'index.js',
+                'commands': 'npm install',
+                'version': 'v2',
+                'installationId': '6m40at4ejk5h2u9s1hboo',
+                'providerRepositoryId': 'appwrite',
+                'providerBranch': 'main',
+                'providerRootDirectory': 'functions/helloWorld',
+                'providerSilentMode': true,};
 
 
             when(client.call(
@@ -338,6 +390,21 @@ void main() {
             );
         });
 
+        test('test method downloadDeployment()', () async {final Uint8List data = Uint8List.fromList([]);
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.downloadDeployment(
+                functionId: '[FUNCTION_ID]',
+                deploymentId: '[DEPLOYMENT_ID]',
+            );
+            expect(response, isA<Uint8List>());
+
+        });
+
         test('test method listExecutions()', () async {
             final Map<String, dynamic> data = {
                 'total': 5,
@@ -365,10 +432,14 @@ void main() {
                 'functionId': '5e5ea6g16897e',
                 'trigger': 'http',
                 'status': 'processing',
-                'statusCode': 0,
-                'response': '',
-                'stdout': '',
-                'stderr': '',
+                'requestMethod': 'GET',
+                'requestPath': '/articles?id=5',
+                'requestHeaders': [],
+                'responseStatusCode': 200,
+                'responseBody': 'Developers are awesome.',
+                'responseHeaders': [],
+                'logs': '',
+                'errors': '',
                 'duration': 0.4,};
 
 
@@ -393,10 +464,14 @@ void main() {
                 'functionId': '5e5ea6g16897e',
                 'trigger': 'http',
                 'status': 'processing',
-                'statusCode': 0,
-                'response': '',
-                'stdout': '',
-                'stderr': '',
+                'requestMethod': 'GET',
+                'requestPath': '/articles?id=5',
+                'requestHeaders': [],
+                'responseStatusCode': 200,
+                'responseBody': 'Developers are awesome.',
+                'responseHeaders': [],
+                'logs': '',
+                'errors': '',
                 'duration': 0.4,};
 
 
@@ -438,7 +513,8 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'API_KEY',
                 'value': 'myPa\$\$word1',
-                'functionId': '5e5ea5c16897e',};
+                'resourceType': 'function',
+                'resourceId': 'myAwesomeFunction',};
 
 
             when(client.call(
@@ -462,7 +538,8 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'API_KEY',
                 'value': 'myPa\$\$word1',
-                'functionId': '5e5ea5c16897e',};
+                'resourceType': 'function',
+                'resourceId': 'myAwesomeFunction',};
 
 
             when(client.call(
@@ -485,7 +562,8 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'API_KEY',
                 'value': 'myPa\$\$word1',
-                'functionId': '5e5ea5c16897e',};
+                'resourceType': 'function',
+                'resourceId': 'myAwesomeFunction',};
 
 
             when(client.call(

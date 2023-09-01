@@ -6,6 +6,7 @@ void main() {
 
     test('model', () {
       final model = HealthStatus(
+        name: 'database',
         ping: 128,
         status: 'pass',
       );
@@ -13,6 +14,7 @@ void main() {
       final map = model.toMap();
       final result = HealthStatus.fromMap(map);
 
+      expect(result.name, 'database');
       expect(result.ping, 128);
       expect(result.status, 'pass');
     });

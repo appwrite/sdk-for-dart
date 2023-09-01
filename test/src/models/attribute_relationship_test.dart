@@ -9,6 +9,7 @@ void main() {
         key: 'fullName',
         type: 'string',
         status: 'available',
+        error: 'string',
         xrequired: true,
         relatedCollection: 'collection',
         relationType: 'oneToOne|oneToMany|manyToOne|manyToMany',
@@ -24,6 +25,7 @@ void main() {
       expect(result.key, 'fullName');
       expect(result.type, 'string');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.xrequired, true);
       expect(result.relatedCollection, 'collection');
       expect(result.relationType, 'oneToOne|oneToMany|manyToOne|manyToMany');

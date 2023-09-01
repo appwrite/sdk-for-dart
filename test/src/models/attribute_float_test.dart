@@ -9,6 +9,7 @@ void main() {
         key: 'percentageCompleted',
         type: 'double',
         status: 'available',
+        error: 'string',
         xrequired: true,
       );
 
@@ -18,6 +19,7 @@ void main() {
       expect(result.key, 'percentageCompleted');
       expect(result.type, 'double');
       expect(result.status, 'available');
+      expect(result.error, 'string');
       expect(result.xrequired, true);
     });
   });

@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '8.0.1',
-      'X-Appwrite-Response-Format' : '1.0.0',
+      'x-sdk-version': '9.0.1',
+      'X-Appwrite-Response-Format' : '1.4.0',
     };
 
     config = {};
@@ -128,18 +128,18 @@ class ClientBrowser extends ClientBase with ClientMixin {
           headers: headers,
         );
         final int chunksUploaded = res.data['chunksUploaded'] as int;
-        offset = min(size, chunksUploaded * CHUNK_SIZE);
+        offset = chunksUploaded * CHUNK_SIZE;
       } on AppwriteException catch (_) {}
     }
 
     while (offset < size) {
-      List<int> chunk;
-      final end = min(offset + CHUNK_SIZE, size);
+      var chunk;
+      final end = min(offset + CHUNK_SIZE - 1, size - 1);
       chunk = file.bytes!.getRange(offset, end).toList();
       params[paramName] =
           http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       headers['content-range'] =
-          'bytes $offset-${min<int>(((offset + CHUNK_SIZE) - 1), size)}/$size';
+          'bytes $offset-${min<int>((offset + CHUNK_SIZE - 1), size - 1)}/$size';
       res = await call(HttpMethod.post,
           path: path, headers: headers, params: params);
       offset += CHUNK_SIZE;
@@ -148,8 +148,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       }
       final progress = UploadProgress(
         $id: res.data['\$id'] ?? '',
-        progress: min(offset - 1, size) / size * 100,
-        sizeUploaded: min(offset - 1, size),
+        progress: min(offset, size) / size * 100,
+        sizeUploaded: min(offset, size),
         chunksTotal: res.data['chunksTotal'] ?? 0,
         chunksUploaded: res.data['chunksUploaded'] ?? 0,
       );

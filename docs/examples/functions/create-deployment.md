@@ -12,7 +12,6 @@ void main() { // Init SDK
 
   Future result = functions.createDeployment(
     functionId: '[FUNCTION_ID]',
-    entrypoint: '[ENTRYPOINT]',
     code: InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg'),
     activate: false,
   );

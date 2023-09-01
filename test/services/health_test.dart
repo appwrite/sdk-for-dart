@@ -56,6 +56,7 @@ void main() {
 
         test('test method get()', () async {
             final Map<String, dynamic> data = {
+                'name': 'database',
                 'ping': 128,
                 'status': 'pass',};
 
@@ -90,6 +91,7 @@ void main() {
 
         test('test method getCache()', () async {
             final Map<String, dynamic> data = {
+                'name': 'database',
                 'ping': 128,
                 'status': 'pass',};
 
@@ -107,6 +109,7 @@ void main() {
 
         test('test method getDB()', () async {
             final Map<String, dynamic> data = {
+                'name': 'database',
                 'ping': 128,
                 'status': 'pass',};
 
@@ -117,6 +120,42 @@ void main() {
 
 
             final response = await health.getDB(
+            );
+            expect(response, isA<models.HealthStatus>());
+
+        });
+
+        test('test method getPubSub()', () async {
+            final Map<String, dynamic> data = {
+                'name': 'database',
+                'ping': 128,
+                'status': 'pass',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getPubSub(
+            );
+            expect(response, isA<models.HealthStatus>());
+
+        });
+
+        test('test method getQueue()', () async {
+            final Map<String, dynamic> data = {
+                'name': 'database',
+                'ping': 128,
+                'status': 'pass',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueue(
             );
             expect(response, isA<models.HealthStatus>());
 
@@ -188,6 +227,7 @@ void main() {
 
         test('test method getStorageLocal()', () async {
             final Map<String, dynamic> data = {
+                'name': 'database',
                 'ping': 128,
                 'status': 'pass',};
 

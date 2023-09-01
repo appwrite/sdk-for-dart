@@ -14,7 +14,7 @@ class Collection implements Model {
     final String databaseId;
     /// Collection name.
     final String name;
-    /// Collection enabled.
+    /// Collection enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the collection is inaccessible to users, but remains accessible to Server SDKs using API keys.
     final bool enabled;
     /// Whether document-level permissions are enabled. [Learn more about permissions](/docs/permissions).
     final bool documentSecurity;

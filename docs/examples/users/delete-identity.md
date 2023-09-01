@@ -2,7 +2,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 
 void main() { // Init SDK
   Client client = Client();
-  Teams teams = Teams(client);
+  Users users = Users(client);
 
   client
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
@@ -10,10 +10,8 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = teams.updateMembershipRoles(
-    teamId: '[TEAM_ID]',
-    membershipId: '[MEMBERSHIP_ID]',
-    roles: [],
+  Future result = users.deleteIdentity(
+    identityId: '[IDENTITY_ID]',
   );
 
   result

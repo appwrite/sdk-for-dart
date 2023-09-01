@@ -42,9 +42,9 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '8.0.1',
-      'user-agent' : 'AppwriteDartSDK/8.0.1 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format' : '1.0.0',
+      'x-sdk-version': '9.0.1',
+      'user-agent' : 'AppwriteDartSDK/9.0.1 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format' : '1.4.0',
     };
 
     config = {};
@@ -157,7 +157,7 @@ class ClientIO extends ClientBase with ClientMixin {
           headers: headers,
         );
         final int chunksUploaded = res.data['chunksUploaded'] as int;
-        offset = min(size, chunksUploaded * CHUNK_SIZE);
+        offset = chunksUploaded * CHUNK_SIZE;
       } on AppwriteException catch (_) {}
     }
 
@@ -170,7 +170,7 @@ class ClientIO extends ClientBase with ClientMixin {
     while (offset < size) {
       List<int> chunk = [];
       if (file.bytes != null) {
-        final end = min(offset + CHUNK_SIZE-1, size-1);
+        final end = min(offset + CHUNK_SIZE - 1, size - 1);
         chunk = file.bytes!.getRange(offset, end).toList();
       } else {
         raf!.setPositionSync(offset);
@@ -179,7 +179,7 @@ class ClientIO extends ClientBase with ClientMixin {
       params[paramName] =
           http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       headers['content-range'] =
-          'bytes $offset-${min<int>(((offset + CHUNK_SIZE) - 1), size)}/$size';
+          'bytes $offset-${min<int>((offset + CHUNK_SIZE - 1), size - 1)}/$size';
       res = await call(HttpMethod.post,
           path: path, headers: headers, params: params);
       offset += CHUNK_SIZE;
@@ -188,8 +188,8 @@ class ClientIO extends ClientBase with ClientMixin {
       }
       final progress = UploadProgress(
         $id: res.data['\$id'] ?? '',
-        progress: min(offset - 1, size) / size * 100,
-        sizeUploaded: min(offset - 1, size),
+        progress: min(offset, size) / size * 100,
+        sizeUploaded: min(offset, size),
         chunksTotal: res.data['chunksTotal'] ?? 0,
         chunksUploaded: res.data['chunksUploaded'] ?? 0,
       );
