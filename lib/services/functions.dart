@@ -121,7 +121,7 @@ class Functions extends Service {
     /// Update Function
     ///
     /// Update function by its unique ID.
-    Future<models.Func> update({required String functionId, required String name, required String runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory}) async {
+    Future<models.Func> update({required String functionId, required String name, String? runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory}) async {
         final String apiPath = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {
