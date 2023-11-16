@@ -161,6 +161,22 @@ void main() {
 
         });
 
+        test('test method getQueueBuilds()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueBuilds(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
         test('test method getQueueCertificates()', () async {
             final Map<String, dynamic> data = {
                 'size': 8,};
@@ -172,6 +188,38 @@ void main() {
 
 
             final response = await health.getQueueCertificates(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
+        test('test method getQueueDatabases()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueDatabases(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
+        test('test method getQueueDeletes()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueDeletes(
             );
             expect(response, isA<models.HealthQueue>());
 
@@ -204,6 +252,54 @@ void main() {
 
 
             final response = await health.getQueueLogs(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
+        test('test method getQueueMails()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueMails(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
+        test('test method getQueueMessaging()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueMessaging(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
+        test('test method getQueueMigrations()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueMigrations(
             );
             expect(response, isA<models.HealthQueue>());
 

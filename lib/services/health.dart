@@ -27,7 +27,7 @@ class Health extends Service {
 
     }
 
-    /// Get Antivirus
+    /// Get antivirus
     ///
     /// Check the Appwrite Antivirus server is up and connection is successful.
     Future<models.HealthAntivirus> getAntivirus() async {
@@ -49,7 +49,7 @@ class Health extends Service {
 
     }
 
-    /// Get Cache
+    /// Get cache
     ///
     /// Check the Appwrite in-memory cache servers are up and connection is
     /// successful.
@@ -94,7 +94,7 @@ class Health extends Service {
 
     }
 
-    /// Get PubSub
+    /// Get pubsub
     ///
     /// Check the Appwrite pub-sub servers are up and connection is successful.
     Future<models.HealthStatus> getPubSub() async {
@@ -116,7 +116,7 @@ class Health extends Service {
 
     }
 
-    /// Get Queue
+    /// Get queue
     ///
     /// Check the Appwrite queue messaging servers are up and connection is
     /// successful.
@@ -139,16 +139,41 @@ class Health extends Service {
 
     }
 
-    /// Get Certificates Queue
+    /// Get builds queue
+    ///
+    /// Get the number of builds that are waiting to be processed in the Appwrite
+    /// internal queue server.
+    Future<models.HealthQueue> getQueueBuilds({int? threshold}) async {
+        final String apiPath = '/health/queue/builds';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get certificates queue
     ///
     /// Get the number of certificates that are waiting to be issued against
     /// [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
     /// server.
-    Future<models.HealthQueue> getQueueCertificates() async {
+    Future<models.HealthQueue> getQueueCertificates({int? threshold}) async {
         final String apiPath = '/health/queue/certificates';
 
         final Map<String, dynamic> apiParams = {
-            
+            'threshold': threshold,
+
             
         };
 
@@ -163,13 +188,63 @@ class Health extends Service {
 
     }
 
-    /// Get Functions Queue
+    /// Get databases queue
     ///
-    Future<models.HealthQueue> getQueueFunctions() async {
+    /// Get the number of database changes that are waiting to be processed in the
+    /// Appwrite internal queue server.
+    Future<models.HealthQueue> getQueueDatabases({String? name, int? threshold}) async {
+        final String apiPath = '/health/queue/databases';
+
+        final Map<String, dynamic> apiParams = {
+            'name': name,
+'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get deletes queue
+    ///
+    /// Get the number of background destructive changes that are waiting to be
+    /// processed in the Appwrite internal queue server.
+    Future<models.HealthQueue> getQueueDeletes({int? threshold}) async {
+        final String apiPath = '/health/queue/deletes';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get functions queue
+    ///
+    Future<models.HealthQueue> getQueueFunctions({int? threshold}) async {
         final String apiPath = '/health/queue/functions';
 
         final Map<String, dynamic> apiParams = {
-            
+            'threshold': threshold,
+
             
         };
 
@@ -184,15 +259,16 @@ class Health extends Service {
 
     }
 
-    /// Get Logs Queue
+    /// Get logs queue
     ///
     /// Get the number of logs that are waiting to be processed in the Appwrite
     /// internal queue server.
-    Future<models.HealthQueue> getQueueLogs() async {
+    Future<models.HealthQueue> getQueueLogs({int? threshold}) async {
         final String apiPath = '/health/queue/logs';
 
         final Map<String, dynamic> apiParams = {
-            
+            'threshold': threshold,
+
             
         };
 
@@ -207,15 +283,88 @@ class Health extends Service {
 
     }
 
-    /// Get Webhooks Queue
+    /// Get mails queue
+    ///
+    /// Get the number of mails that are waiting to be processed in the Appwrite
+    /// internal queue server.
+    Future<models.HealthQueue> getQueueMails({int? threshold}) async {
+        final String apiPath = '/health/queue/mails';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get messaging queue
+    ///
+    /// Get the number of messages that are waiting to be processed in the Appwrite
+    /// internal queue server.
+    Future<models.HealthQueue> getQueueMessaging({int? threshold}) async {
+        final String apiPath = '/health/queue/messaging';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get migrations queue
+    ///
+    /// Get the number of migrations that are waiting to be processed in the
+    /// Appwrite internal queue server.
+    Future<models.HealthQueue> getQueueMigrations({int? threshold}) async {
+        final String apiPath = '/health/queue/migrations';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get webhooks queue
     ///
     /// Get the number of webhooks that are waiting to be processed in the Appwrite
     /// internal queue server.
-    Future<models.HealthQueue> getQueueWebhooks() async {
+    Future<models.HealthQueue> getQueueWebhooks({int? threshold}) async {
         final String apiPath = '/health/queue/webhooks';
 
         final Map<String, dynamic> apiParams = {
-            
+            'threshold': threshold,
+
             
         };
 
@@ -230,7 +379,7 @@ class Health extends Service {
 
     }
 
-    /// Get Local Storage
+    /// Get local storage
     ///
     /// Check the Appwrite local storage device is up and connection is successful.
     Future<models.HealthStatus> getStorageLocal() async {
@@ -252,7 +401,7 @@ class Health extends Service {
 
     }
 
-    /// Get Time
+    /// Get time
     ///
     /// Check the Appwrite server time is synced with Google remote NTP server. We
     /// use this technology to smoothly handle leap seconds with no disruptive

@@ -10,7 +10,7 @@ void main() { // Init SDK
     .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
   ;
 
-  Future result = health.getQueueLogs(
+  Future result = health.getQueueDatabases(
   );
 
   result
