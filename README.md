@@ -23,7 +23,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  dart_appwrite: ^10.0.0
+  dart_appwrite: ^10.1.0
 ```
 
 You can install packages from the command line:

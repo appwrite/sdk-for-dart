@@ -8,9 +8,9 @@ class Bucket implements Model {
     final String $createdAt;
     /// Bucket update date in ISO 8601 format.
     final String $updatedAt;
-    /// Bucket permissions. [Learn more about permissions](/docs/permissions).
+    /// Bucket permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final List $permissions;
-    /// Whether file-level security is enabled. [Learn more about permissions](/docs/permissions).
+    /// Whether file-level security is enabled. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final bool fileSecurity;
     /// Bucket name.
     final String name;

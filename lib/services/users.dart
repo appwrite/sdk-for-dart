@@ -4,7 +4,7 @@ part of dart_appwrite;
 class Users extends Service {
     Users(super.client);
 
-    /// List Users
+    /// List users
     ///
     /// Get a list of all the project's users. You can use the query params to
     /// filter your results.
@@ -29,7 +29,7 @@ class Users extends Service {
 
     }
 
-    /// Create User
+    /// Create user
     ///
     /// Create a new user.
     Future<models.User> create({required String userId, String? email, String? phone, String? password, String? name}) async {
@@ -56,12 +56,12 @@ class Users extends Service {
 
     }
 
-    /// Create User with Argon2 Password
+    /// Create user with Argon2 password
     ///
     /// Create a new user. Password provided must be hashed with the
     /// [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST
-    /// /users](/docs/server/users#usersCreate) endpoint to create users with a
-    /// plain text password.
+    /// /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+    /// create users with a plain text password.
     Future<models.User> createArgon2User({required String userId, required String email, required String password, String? name}) async {
         final String apiPath = '/users/argon2';
 
@@ -85,12 +85,12 @@ class Users extends Service {
 
     }
 
-    /// Create User with Bcrypt Password
+    /// Create user with bcrypt password
     ///
     /// Create a new user. Password provided must be hashed with the
     /// [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST
-    /// /users](/docs/server/users#usersCreate) endpoint to create users with a
-    /// plain text password.
+    /// /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+    /// create users with a plain text password.
     Future<models.User> createBcryptUser({required String userId, required String email, required String password, String? name}) async {
         final String apiPath = '/users/bcrypt';
 
@@ -160,12 +160,12 @@ class Users extends Service {
 
     }
 
-    /// Create User with MD5 Password
+    /// Create user with MD5 password
     ///
     /// Create a new user. Password provided must be hashed with the
     /// [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST
-    /// /users](/docs/server/users#usersCreate) endpoint to create users with a
-    /// plain text password.
+    /// /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+    /// create users with a plain text password.
     Future<models.User> createMD5User({required String userId, required String email, required String password, String? name}) async {
         final String apiPath = '/users/md5';
 
@@ -189,12 +189,12 @@ class Users extends Service {
 
     }
 
-    /// Create User with PHPass Password
+    /// Create user with PHPass password
     ///
     /// Create a new user. Password provided must be hashed with the
     /// [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST
-    /// /users](/docs/server/users#usersCreate) endpoint to create users with a
-    /// plain text password.
+    /// /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+    /// create users with a plain text password.
     Future<models.User> createPHPassUser({required String userId, required String email, required String password, String? name}) async {
         final String apiPath = '/users/phpass';
 
@@ -218,12 +218,12 @@ class Users extends Service {
 
     }
 
-    /// Create User with Scrypt Password
+    /// Create user with Scrypt password
     ///
     /// Create a new user. Password provided must be hashed with the
     /// [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST
-    /// /users](/docs/server/users#usersCreate) endpoint to create users with a
-    /// plain text password.
+    /// /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+    /// create users with a plain text password.
     Future<models.User> createScryptUser({required String userId, required String email, required String password, required String passwordSalt, required int passwordCpu, required int passwordMemory, required int passwordParallel, required int passwordLength, String? name}) async {
         final String apiPath = '/users/scrypt';
 
@@ -252,12 +252,13 @@ class Users extends Service {
 
     }
 
-    /// Create User with Scrypt Modified Password
+    /// Create user with Scrypt modified password
     ///
     /// Create a new user. Password provided must be hashed with the [Scrypt
     /// Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc)
-    /// algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint
-    /// to create users with a plain text password.
+    /// algorithm. Use the [POST
+    /// /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+    /// create users with a plain text password.
     Future<models.User> createScryptModifiedUser({required String userId, required String email, required String password, required String passwordSalt, required String passwordSaltSeparator, required String passwordSignerKey, String? name}) async {
         final String apiPath = '/users/scrypt-modified';
 
@@ -284,12 +285,12 @@ class Users extends Service {
 
     }
 
-    /// Create User with SHA Password
+    /// Create user with SHA password
     ///
     /// Create a new user. Password provided must be hashed with the
     /// [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use
-    /// the [POST /users](/docs/server/users#usersCreate) endpoint to create users
-    /// with a plain text password.
+    /// the [POST /users](https://appwrite.io/docs/server/users#usersCreate)
+    /// endpoint to create users with a plain text password.
     Future<models.User> createSHAUser({required String userId, required String email, required String password, String? passwordVersion, String? name}) async {
         final String apiPath = '/users/sha';
 
@@ -314,7 +315,7 @@ class Users extends Service {
 
     }
 
-    /// Get User
+    /// Get user
     ///
     /// Get a user by its unique ID.
     Future<models.User> get({required String userId}) async {
@@ -336,12 +337,13 @@ class Users extends Service {
 
     }
 
-    /// Delete User
+    /// Delete user
     ///
     /// Delete a user by its unique ID, thereby releasing it's ID. Since ID is
     /// released and can be reused, all user-related resources like documents or
     /// storage files should be deleted before user deletion. If you want to keep
-    /// ID reserved, use the [updateStatus](/docs/server/users#usersUpdateStatus)
+    /// ID reserved, use the
+    /// [updateStatus](https://appwrite.io/docs/server/users#usersUpdateStatus)
     /// endpoint instead.
     Future delete({required String userId}) async {
         final String apiPath = '/users/{userId}'.replaceAll('{userId}', userId);
@@ -362,7 +364,7 @@ class Users extends Service {
 
     }
 
-    /// Update Email
+    /// Update email
     ///
     /// Update the user email by its unique ID.
     Future<models.User> updateEmail({required String userId, required String email}) async {
@@ -385,14 +387,14 @@ class Users extends Service {
 
     }
 
-    /// Update User Labels
+    /// Update user labels
     ///
     /// Update the user labels by its unique ID. 
     /// 
     /// Labels can be used to grant access to resources. While teams are a way for
     /// user's to share access to a resource, labels can be defined by the
     /// developer to grant access without an invitation. See the [Permissions
-    /// docs](/docs/permissions) for more info.
+    /// docs](https://appwrite.io/docs/permissions) for more info.
     Future<models.User> updateLabels({required String userId, required List<String> labels}) async {
         final String apiPath = '/users/{userId}/labels'.replaceAll('{userId}', userId);
 
@@ -413,7 +415,7 @@ class Users extends Service {
 
     }
 
-    /// List User Logs
+    /// List user logs
     ///
     /// Get the user activity logs list by its unique ID.
     Future<models.LogList> listLogs({required String userId, List<String>? queries}) async {
@@ -436,7 +438,7 @@ class Users extends Service {
 
     }
 
-    /// List User Memberships
+    /// List user memberships
     ///
     /// Get the user membership list by its unique ID.
     Future<models.MembershipList> listMemberships({required String userId}) async {
@@ -458,7 +460,7 @@ class Users extends Service {
 
     }
 
-    /// Update Name
+    /// Update name
     ///
     /// Update the user name by its unique ID.
     Future<models.User> updateName({required String userId, required String name}) async {
@@ -481,7 +483,7 @@ class Users extends Service {
 
     }
 
-    /// Update Password
+    /// Update password
     ///
     /// Update the user password by its unique ID.
     Future<models.User> updatePassword({required String userId, required String password}) async {
@@ -504,7 +506,7 @@ class Users extends Service {
 
     }
 
-    /// Update Phone
+    /// Update phone
     ///
     /// Update the user phone by its unique ID.
     Future<models.User> updatePhone({required String userId, required String number}) async {
@@ -527,7 +529,7 @@ class Users extends Service {
 
     }
 
-    /// Get User Preferences
+    /// Get user preferences
     ///
     /// Get the user preferences by its unique ID.
     Future<models.Preferences> getPrefs({required String userId}) async {
@@ -549,7 +551,7 @@ class Users extends Service {
 
     }
 
-    /// Update User Preferences
+    /// Update user preferences
     ///
     /// Update the user preferences by its unique ID. The object you pass is stored
     /// as is, and replaces any previous value. The maximum allowed prefs size is
@@ -574,7 +576,7 @@ class Users extends Service {
 
     }
 
-    /// List User Sessions
+    /// List user sessions
     ///
     /// Get the user sessions list by its unique ID.
     Future<models.SessionList> listSessions({required String userId}) async {
@@ -596,7 +598,7 @@ class Users extends Service {
 
     }
 
-    /// Delete User Sessions
+    /// Delete user sessions
     ///
     /// Delete all user's sessions by using the user's unique ID.
     Future deleteSessions({required String userId}) async {
@@ -618,7 +620,7 @@ class Users extends Service {
 
     }
 
-    /// Delete User Session
+    /// Delete user session
     ///
     /// Delete a user sessions by its unique ID.
     Future deleteSession({required String userId, required String sessionId}) async {
@@ -640,7 +642,7 @@ class Users extends Service {
 
     }
 
-    /// Update User Status
+    /// Update user status
     ///
     /// Update the user status by its unique ID. Use this endpoint as an
     /// alternative to deleting a user if you want to keep user's ID reserved.
@@ -664,7 +666,7 @@ class Users extends Service {
 
     }
 
-    /// Update Email Verification
+    /// Update email verification
     ///
     /// Update the user email verification status by its unique ID.
     Future<models.User> updateEmailVerification({required String userId, required bool emailVerification}) async {
@@ -687,7 +689,7 @@ class Users extends Service {
 
     }
 
-    /// Update Phone Verification
+    /// Update phone verification
     ///
     /// Update the user phone verification status by its unique ID.
     Future<models.User> updatePhoneVerification({required String userId, required bool phoneVerification}) async {

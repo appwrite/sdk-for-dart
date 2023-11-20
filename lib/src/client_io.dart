@@ -42,8 +42,8 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '10.0.0',
-      'user-agent' : 'AppwriteDartSDK/10.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'x-sdk-version': '10.1.0',
+      'user-agent' : 'AppwriteDartSDK/10.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format' : '1.4.0',
     };
 
@@ -170,7 +170,7 @@ class ClientIO extends ClientBase with ClientMixin {
     while (offset < size) {
       List<int> chunk = [];
       if (file.bytes != null) {
-        final end = min(offset + CHUNK_SIZE - 1, size - 1);
+        final end = min(offset + CHUNK_SIZE, size);
         chunk = file.bytes!.getRange(offset, end).toList();
       } else {
         raf!.setPositionSync(offset);

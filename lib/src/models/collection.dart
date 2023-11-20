@@ -8,7 +8,7 @@ class Collection implements Model {
     final String $createdAt;
     /// Collection update date in ISO 8601 format.
     final String $updatedAt;
-    /// Collection permissions. [Learn more about permissions](/docs/permissions).
+    /// Collection permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final List $permissions;
     /// Database ID.
     final String databaseId;
@@ -16,7 +16,7 @@ class Collection implements Model {
     final String name;
     /// Collection enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the collection is inaccessible to users, but remains accessible to Server SDKs using API keys.
     final bool enabled;
-    /// Whether document-level permissions are enabled. [Learn more about permissions](/docs/permissions).
+    /// Whether document-level permissions are enabled. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final bool documentSecurity;
     /// Collection attributes.
     final List attributes;
