@@ -11,7 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = users.deleteIdentity(
-    identityId: '[IDENTITY_ID]',
+    identityId:'[IDENTITY_ID]' ,
   );
 
   result
@@ -20,4 +20,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

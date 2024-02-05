@@ -11,9 +11,9 @@ void main() { // Init SDK
   ;
 
   Future result = functions.createDeployment(
-    functionId: '[FUNCTION_ID]',
-    code: InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg'),
-    activate: false,
+    functionId:'[FUNCTION_ID]' ,
+    code:InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg') ,
+    activate:false ,
   );
 
   result
@@ -22,4 +22,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

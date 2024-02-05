@@ -32,7 +32,7 @@ class Storage extends Service {
     /// Create bucket
     ///
     /// Create a new storage bucket.
-    Future<models.Bucket> createBucket({required String bucketId, required String name, List<String>? permissions, bool? fileSecurity, bool? enabled, int? maximumFileSize, List<String>? allowedFileExtensions, String? compression, bool? encryption, bool? antivirus}) async {
+    Future<models.Bucket> createBucket({required String bucketId, required String name, List<String>? permissions, bool? fileSecurity, bool? enabled, int? maximumFileSize, List<String>? allowedFileExtensions, enums.Compression? compression, bool? encryption, bool? antivirus}) async {
         final String apiPath = '/storage/buckets';
 
         final Map<String, dynamic> apiParams = {
@@ -87,7 +87,7 @@ class Storage extends Service {
     /// Update bucket
     ///
     /// Update a storage bucket by its unique ID.
-    Future<models.Bucket> updateBucket({required String bucketId, required String name, List<String>? permissions, bool? fileSecurity, bool? enabled, int? maximumFileSize, List<String>? allowedFileExtensions, String? compression, bool? encryption, bool? antivirus}) async {
+    Future<models.Bucket> updateBucket({required String bucketId, required String name, List<String>? permissions, bool? fileSecurity, bool? enabled, int? maximumFileSize, List<String>? allowedFileExtensions, enums.Compression? compression, bool? encryption, bool? antivirus}) async {
         final String apiPath = '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> apiParams = {
@@ -297,7 +297,7 @@ class Storage extends Service {
             
             
             'project': client.config['project'],
-            'key': client.config['key'],
+            'session': client.config['session'],
         };
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
@@ -311,7 +311,7 @@ class Storage extends Service {
     /// and spreadsheets, will return the file icon image. You can also pass query
     /// string arguments for cutting and resizing your preview image. Preview is
     /// supported only for image files smaller than 10MB.
-    Future<Uint8List> getFilePreview({required String bucketId, required String fileId, int? width, int? height, String? gravity, int? quality, int? borderWidth, String? borderColor, int? borderRadius, double? opacity, int? rotation, String? background, String? output}) async {
+    Future<Uint8List> getFilePreview({required String bucketId, required String fileId, int? width, int? height, enums.ImageGravity? gravity, int? quality, int? borderWidth, String? borderColor, int? borderRadius, double? opacity, int? rotation, String? background, enums.ImageFormat? output}) async {
         final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/preview'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
@@ -329,7 +329,7 @@ class Storage extends Service {
 
             
             'project': client.config['project'],
-            'key': client.config['key'],
+            'session': client.config['session'],
         };
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
@@ -348,7 +348,7 @@ class Storage extends Service {
             
             
             'project': client.config['project'],
-            'key': client.config['key'],
+            'session': client.config['session'],
         };
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);

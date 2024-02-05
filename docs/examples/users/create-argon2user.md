@@ -11,9 +11,9 @@ void main() { // Init SDK
   ;
 
   Future result = users.createArgon2User(
-    userId: '[USER_ID]',
-    email: 'email@example.com',
-    password: 'password',
+    userId:'[USER_ID]' ,
+    email:'email@example.com' ,
+    password:'password' ,
   );
 
   result
@@ -22,4 +22,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

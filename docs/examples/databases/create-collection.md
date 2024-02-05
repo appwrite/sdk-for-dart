@@ -11,9 +11,9 @@ void main() { // Init SDK
   ;
 
   Future result = databases.createCollection(
-    databaseId: '[DATABASE_ID]',
-    collectionId: '[COLLECTION_ID]',
-    name: '[NAME]',
+    databaseId:'[DATABASE_ID]' ,
+    collectionId:'[COLLECTION_ID]' ,
+    name:'[NAME]' ,
   );
 
   result
@@ -22,4 +22,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

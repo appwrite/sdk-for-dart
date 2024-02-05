@@ -85,7 +85,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -115,7 +118,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -147,7 +153,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -209,7 +218,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -241,7 +253,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -273,7 +288,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -310,7 +328,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -345,7 +366,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -377,7 +401,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -420,7 +447,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -451,7 +481,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -504,6 +537,75 @@ void main() {
 
         });
 
+        test('test method updateMfa()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'John Doe',
+                'registration': '2020-10-15T06:38:00.000+00:00',
+                'status': true,
+                'labels': [],
+                'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+                'email': 'john@appwrite.io',
+                'phone': '+4930901820',
+                'emailVerification': true,
+                'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
+                'prefs': <String, dynamic>{},
+                'targets': [],
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.updateMfa(
+                userId: '[USER_ID]',
+                mfa: true,
+            );
+            expect(response, isA<models.User>());
+
+        });
+
+        test('test method deleteAuthenticator()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'John Doe',
+                'registration': '2020-10-15T06:38:00.000+00:00',
+                'status': true,
+                'labels': [],
+                'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+                'email': 'john@appwrite.io',
+                'phone': '+4930901820',
+                'emailVerification': true,
+                'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
+                'prefs': <String, dynamic>{},
+                'targets': [],
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.deleteAuthenticator(
+                userId: '[USER_ID]',
+                provider: 'totp',
+                otp: '[OTP]',
+            );
+            expect(response, isA<models.User>());
+
+        });
+
         test('test method updateName()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -518,7 +620,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -549,7 +654,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -580,7 +688,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -630,6 +741,25 @@ void main() {
 
         });
 
+        test('test method listProviders()', () async {
+            final Map<String, dynamic> data = {
+                'totp': true,
+                'phone': true,
+                'email': true,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.listProviders(
+                userId: '[USER_ID]',
+            );
+            expect(response, isA<models.MfaProviders>());
+
+        });
+
         test('test method listSessions()', () async {
             final Map<String, dynamic> data = {
                 'total': 5,
@@ -645,6 +775,49 @@ void main() {
                 userId: '[USER_ID]',
             );
             expect(response, isA<models.SessionList>());
+
+        });
+
+        test('test method createSession()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                'userId': '5e5bb8c16897e',
+                'expire': '2020-10-15T06:38:00.000+00:00',
+                'provider': 'email',
+                'providerUid': 'user@example.com',
+                'providerAccessToken': 'MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3',
+                'providerAccessTokenExpiry': '2020-10-15T06:38:00.000+00:00',
+                'providerRefreshToken': 'MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3',
+                'ip': '127.0.0.1',
+                'osCode': 'Mac',
+                'osName': 'Mac',
+                'osVersion': 'Mac',
+                'clientType': 'browser',
+                'clientCode': 'CM',
+                'clientName': 'Chrome Mobile iOS',
+                'clientVersion': '84.0',
+                'clientEngine': 'WebKit',
+                'clientEngineVersion': '605.1.15',
+                'deviceName': 'smartphone',
+                'deviceBrand': 'Google',
+                'deviceModel': 'Nexus 5',
+                'countryCode': 'US',
+                'countryName': 'United States',
+                'current': true,
+                'factors': 1,
+                'secret': '5e5bb8c16897e',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.createSession(
+                userId: '[USER_ID]',
+            );
+            expect(response, isA<models.Session>());
 
         });
 
@@ -689,7 +862,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -703,6 +879,134 @@ void main() {
                 status: true,
             );
             expect(response, isA<models.User>());
+
+        });
+
+        test('test method listTargets()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'targets': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.listTargets(
+                userId: '[USER_ID]',
+            );
+            expect(response, isA<models.TargetList>());
+
+        });
+
+        test('test method createTarget()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '259125845563242502',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Aegon apple token',
+                'userId': '259125845563242502',
+                'providerType': 'email',
+                'identifier': 'token',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.createTarget(
+                userId: '[USER_ID]',
+                targetId: '[TARGET_ID]',
+                providerType: 'email',
+                identifier: '[IDENTIFIER]',
+            );
+            expect(response, isA<models.Target>());
+
+        });
+
+        test('test method getTarget()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '259125845563242502',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Aegon apple token',
+                'userId': '259125845563242502',
+                'providerType': 'email',
+                'identifier': 'token',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.getTarget(
+                userId: '[USER_ID]',
+                targetId: '[TARGET_ID]',
+            );
+            expect(response, isA<models.Target>());
+
+        });
+
+        test('test method updateTarget()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '259125845563242502',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Aegon apple token',
+                'userId': '259125845563242502',
+                'providerType': 'email',
+                'identifier': 'token',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.updateTarget(
+                userId: '[USER_ID]',
+                targetId: '[TARGET_ID]',
+            );
+            expect(response, isA<models.Target>());
+
+        });
+
+        test('test method deleteTarget()', () async {
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.deleteTarget(
+                userId: '[USER_ID]',
+                targetId: '[TARGET_ID]',
+            );
+        });
+
+        test('test method createToken()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': 'bb8ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                'userId': '5e5ea5c168bb8',
+                'secret': '',
+                'expire': '2020-10-15T06:38:00.000+00:00',
+                'phrase': 'Golden Fox',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.createToken(
+                userId: '[USER_ID]',
+            );
+            expect(response, isA<models.Token>());
 
         });
 
@@ -720,7 +1024,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
@@ -751,7 +1058,10 @@ void main() {
                 'phone': '+4930901820',
                 'emailVerification': true,
                 'phoneVerification': true,
+                'mfa': true,
+                'totp': true,
                 'prefs': <String, dynamic>{},
+                'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
 
 

@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updateEmail(
-    userId: '[USER_ID]',
-    email: 'email@example.com',
+    userId:'[USER_ID]' ,
+    email:'email@example.com' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

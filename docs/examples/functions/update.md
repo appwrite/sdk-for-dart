@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = functions.update(
-    functionId: '[FUNCTION_ID]',
-    name: '[NAME]',
+    functionId:'[FUNCTION_ID]' ,
+    name:'[NAME]' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

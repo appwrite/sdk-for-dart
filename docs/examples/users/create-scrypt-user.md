@@ -11,14 +11,14 @@ void main() { // Init SDK
   ;
 
   Future result = users.createScryptUser(
-    userId: '[USER_ID]',
-    email: 'email@example.com',
-    password: 'password',
-    passwordSalt: '[PASSWORD_SALT]',
-    passwordCpu: 0,
-    passwordMemory: 0,
-    passwordParallel: 0,
-    passwordLength: 0,
+    userId:'[USER_ID]' ,
+    email:'email@example.com' ,
+    password:'password' ,
+    passwordSalt:'[PASSWORD_SALT]' ,
+    passwordCpu:0 ,
+    passwordMemory:0 ,
+    passwordParallel:0 ,
+    passwordLength:0 ,
   );
 
   result
@@ -27,4 +27,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

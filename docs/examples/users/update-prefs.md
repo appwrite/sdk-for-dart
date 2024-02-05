@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updatePrefs(
-    userId: '[USER_ID]',
-    prefs: {},
+    userId:'[USER_ID]' ,
+    prefs:{} ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

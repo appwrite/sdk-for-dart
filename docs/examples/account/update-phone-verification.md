@@ -7,12 +7,12 @@ void main() { // Init SDK
   client
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...') // Your secret JSON Web Token
+    .setSession('') // The user session to authenticate with
   ;
 
   Future result = account.updatePhoneVerification(
-    userId: '[USER_ID]',
-    secret: '[SECRET]',
+    userId:'[USER_ID]' ,
+    secret:'[SECRET]' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

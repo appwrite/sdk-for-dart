@@ -11,7 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = users.create(
-    userId: '[USER_ID]',
+    userId:'[USER_ID]' ,
   );
 
   result
@@ -20,4 +20,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

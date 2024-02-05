@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updatePassword(
-    userId: '[USER_ID]',
-    password: '',
+    userId:'[USER_ID]' ,
+    password:'' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}
