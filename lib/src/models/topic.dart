@@ -12,8 +12,6 @@ class Topic implements Model {
     final String name;
     /// Total count of subscribers subscribed to topic.
     final int total;
-    /// Description of the topic.
-    final String? description;
 
     Topic({
         required this.$id,
@@ -21,7 +19,6 @@ class Topic implements Model {
         required this.$updatedAt,
         required this.name,
         required this.total,
-        this.description,
     });
 
     factory Topic.fromMap(Map<String, dynamic> map) {
@@ -31,7 +28,6 @@ class Topic implements Model {
             $updatedAt: map['\$updatedAt'].toString(),
             name: map['name'].toString(),
             total: map['total'],
-            description: map['description']?.toString(),
         );
     }
 
@@ -42,7 +38,6 @@ class Topic implements Model {
             "\$updatedAt": $updatedAt,
             "name": name,
             "total": total,
-            "description": description,
         };
     }
 }

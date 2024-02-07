@@ -28,8 +28,6 @@ class Message implements Model {
     final Map<String, dynamic> data;
     /// Status of delivery.
     final String status;
-    /// Message description.
-    final String? description;
 
     Message({
         required this.$id,
@@ -45,7 +43,6 @@ class Message implements Model {
         required this.deliveredTotal,
         required this.data,
         required this.status,
-        this.description,
     });
 
     factory Message.fromMap(Map<String, dynamic> map) {
@@ -63,7 +60,6 @@ class Message implements Model {
             deliveredTotal: map['deliveredTotal'],
             data: map['data'],
             status: map['status'].toString(),
-            description: map['description']?.toString(),
         );
     }
 
@@ -82,7 +78,6 @@ class Message implements Model {
             "deliveredTotal": deliveredTotal,
             "data": data,
             "status": status,
-            "description": description,
         };
     }
 }
