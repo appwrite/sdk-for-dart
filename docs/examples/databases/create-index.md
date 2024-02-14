@@ -11,11 +11,11 @@ void main() { // Init SDK
   ;
 
   Future result = databases.createIndex(
-    databaseId:'[DATABASE_ID]' ,
-    collectionId:'[COLLECTION_ID]' ,
-    key:'' ,
-    type: IndexType.key,
-    attributes:[] ,
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    type: 'key',
+    attributes: [],
   );
 
   result
@@ -24,4 +24,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

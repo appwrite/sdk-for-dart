@@ -11,12 +11,12 @@ void main() { // Init SDK
   ;
 
   Future result = databases.updateEnumAttribute(
-    databaseId:'[DATABASE_ID]' ,
-    collectionId:'[COLLECTION_ID]' ,
-    key:'' ,
-    elements:[] ,
-    xrequired:false ,
-    xdefault:'[DEFAULT]' ,
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    elements: [],
+    xrequired: false,
+    xdefault: '[DEFAULT]',
   );
 
   result
@@ -25,4 +25,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

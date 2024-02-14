@@ -11,11 +11,11 @@ void main() { // Init SDK
   ;
 
   Future result = databases.createStringAttribute(
-    databaseId:'[DATABASE_ID]' ,
-    collectionId:'[COLLECTION_ID]' ,
-    key:'' ,
-    size:1 ,
-    xrequired:false ,
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    size: 1,
+    xrequired: false,
   );
 
   result
@@ -24,4 +24,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

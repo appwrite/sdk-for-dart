@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.deleteSession(
-    userId:'[USER_ID]' ,
-    sessionId:'[SESSION_ID]' ,
+    userId: '[USER_ID]',
+    sessionId: '[SESSION_ID]',
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

@@ -11,11 +11,11 @@ void main() { // Init SDK
   ;
 
   Future result = databases.createEnumAttribute(
-    databaseId:'[DATABASE_ID]' ,
-    collectionId:'[COLLECTION_ID]' ,
-    key:'' ,
-    elements:[] ,
-    xrequired:false ,
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    elements: [],
+    xrequired: false,
   );
 
   result
@@ -24,4 +24,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

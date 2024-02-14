@@ -11,10 +11,10 @@ void main() { // Init SDK
   ;
 
   Future result = databases.createRelationshipAttribute(
-    databaseId:'[DATABASE_ID]' ,
-    collectionId:'[COLLECTION_ID]' ,
-    relatedCollectionId:'[RELATED_COLLECTION_ID]' ,
-    type: RelationshipType.oneToOne,
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    relatedCollectionId: '[RELATED_COLLECTION_ID]',
+    type: 'oneToOne',
   );
 
   result
@@ -23,4 +23,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

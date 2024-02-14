@@ -11,13 +11,13 @@ void main() { // Init SDK
   ;
 
   Future result = databases.updateIntegerAttribute(
-    databaseId:'[DATABASE_ID]' ,
-    collectionId:'[COLLECTION_ID]' ,
-    key:'' ,
-    xrequired:false ,
-    min:0 ,
-    max:0 ,
-    xdefault:0 ,
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    xrequired: false,
+    min: 0,
+    max: 0,
+    xdefault: 0,
   );
 
   result
@@ -26,4 +26,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

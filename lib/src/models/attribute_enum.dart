@@ -41,7 +41,7 @@ class AttributeEnum implements Model {
             error: map['error'].toString(),
             xrequired: map['required'],
             array: map['array'],
-            elements: map['elements'],
+            elements: map['elements'] ?? [],
             format: map['format'].toString(),
             xdefault: map['default']?.toString(),
         );

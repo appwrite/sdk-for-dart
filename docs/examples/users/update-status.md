@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updateStatus(
-    userId:'[USER_ID]' ,
-    status:false ,
+    userId: '[USER_ID]',
+    status: false,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

@@ -11,9 +11,9 @@ void main() { // Init SDK
   ;
 
   Future result = functions.updateVariable(
-    functionId:'[FUNCTION_ID]' ,
-    variableId:'[VARIABLE_ID]' ,
-    key:'[KEY]' ,
+    functionId: '[FUNCTION_ID]',
+    variableId: '[VARIABLE_ID]',
+    key: '[KEY]',
   );
 
   result
@@ -22,4 +22,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

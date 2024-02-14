@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updateLabels(
-    userId:'[USER_ID]' ,
-    labels:[] ,
+    userId: '[USER_ID]',
+    labels: [],
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

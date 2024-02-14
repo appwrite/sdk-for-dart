@@ -33,7 +33,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '11.0.0-rc.1',
+      'x-sdk-version': '10.1.1',
       'X-Appwrite-Response-Format' : '1.4.0',
     };
 
@@ -71,27 +71,6 @@ class ClientBrowser extends ClientBase with ClientMixin {
     ClientBrowser setLocale(value) {
         config['locale'] = value;
         addHeader('X-Appwrite-Locale', value);
-        return this;
-    }
-    /// The user session to authenticate with
-    @override
-    ClientBrowser setSession(value) {
-        config['session'] = value;
-        addHeader('X-Appwrite-Session', value);
-        return this;
-    }
-    /// The IP address of the client that made the request
-    @override
-    ClientBrowser setForwardedFor(value) {
-        config['forwardedFor'] = value;
-        addHeader('X-Forwarded-For', value);
-        return this;
-    }
-    /// The user agent string of the client that made the request
-    @override
-    ClientBrowser setForwardedUserAgent(value) {
-        config['forwardedUserAgent'] = value;
-        addHeader('X-Forwarded-User-Agent', value);
         return this;
     }
 

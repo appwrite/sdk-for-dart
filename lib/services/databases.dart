@@ -653,7 +653,7 @@ class Databases extends Service {
     /// Create relationship attribute. [Learn more about relationship
     /// attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
     /// 
-    Future<models.AttributeRelationship> createRelationshipAttribute({required String databaseId, required String collectionId, required String relatedCollectionId, required enums.RelationshipType type, bool? twoWay, String? key, String? twoWayKey, enums.RelationMutate? onDelete}) async {
+    Future<models.AttributeRelationship> createRelationshipAttribute({required String databaseId, required String collectionId, required String relatedCollectionId, required String type, bool? twoWay, String? key, String? twoWayKey, String? onDelete}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> apiParams = {
@@ -833,7 +833,7 @@ class Databases extends Service {
     /// Update relationship attribute. [Learn more about relationship
     /// attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
     /// 
-    Future<models.AttributeRelationship> updateRelationshipAttribute({required String databaseId, required String collectionId, required String key, enums.RelationMutate? onDelete}) async {
+    Future<models.AttributeRelationship> updateRelationshipAttribute({required String databaseId, required String collectionId, required String key, String? onDelete}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
         final Map<String, dynamic> apiParams = {
@@ -1000,7 +1000,7 @@ class Databases extends Service {
 
     /// Create index
     ///
-    Future<models.Index> createIndex({required String databaseId, required String collectionId, required String key, required enums.IndexType type, required List<String> attributes, List<String>? orders}) async {
+    Future<models.Index> createIndex({required String databaseId, required String collectionId, required String key, required String type, required List<String> attributes, List<String>? orders}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> apiParams = {

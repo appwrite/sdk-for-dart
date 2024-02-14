@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updatePhoneVerification(
-    userId:'[USER_ID]' ,
-    phoneVerification:false ,
+    userId: '[USER_ID]',
+    phoneVerification: false,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

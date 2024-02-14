@@ -11,11 +11,11 @@ void main() { // Init SDK
   ;
 
   Future result = databases.updateUrlAttribute(
-    databaseId:'[DATABASE_ID]' ,
-    collectionId:'[COLLECTION_ID]' ,
-    key:'' ,
-    xrequired:false ,
-    xdefault:'https://example.com' ,
+    databaseId: '[DATABASE_ID]',
+    collectionId: '[COLLECTION_ID]',
+    key: '',
+    xrequired: false,
+    xdefault: 'https://example.com',
   );
 
   result
@@ -24,4 +24,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}

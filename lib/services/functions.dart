@@ -36,7 +36,7 @@ class Functions extends Service {
     /// [permissions](https://appwrite.io/docs/permissions) to allow different
     /// project users or team with access to execute the function using the client
     /// API.
-    Future<models.Func> create({required String functionId, required String name, required enums.Runtime runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory, String? templateRepository, String? templateOwner, String? templateRootDirectory, String? templateBranch}) async {
+    Future<models.Func> create({required String functionId, required String name, required String runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory, String? templateRepository, String? templateOwner, String? templateRootDirectory, String? templateBranch}) async {
         final String apiPath = '/functions';
 
         final Map<String, dynamic> apiParams = {
@@ -122,7 +122,7 @@ class Functions extends Service {
     /// Update function
     ///
     /// Update function by its unique ID.
-    Future<models.Func> update({required String functionId, required String name, enums.Runtime? runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory}) async {
+    Future<models.Func> update({required String functionId, required String name, String? runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory}) async {
         final String apiPath = '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {
@@ -387,7 +387,7 @@ class Functions extends Service {
     /// current execution status. You can ping the `Get Execution` endpoint to get
     /// updates on the current execution status. Once this endpoint is called, your
     /// function execution process will start asynchronously.
-    Future<models.Execution> createExecution({required String functionId, String? body, bool? xasync, String? path, enums.ExecutionMethod? method, Map? headers}) async {
+    Future<models.Execution> createExecution({required String functionId, String? body, bool? xasync, String? path, String? method, Map? headers}) async {
         final String apiPath = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {

@@ -11,9 +11,9 @@ void main() { // Init SDK
   ;
 
   Future result = functions.create(
-    functionId:'[FUNCTION_ID]' ,
-    name:'[NAME]' ,
-    runtime: .node180,
+    functionId: '[FUNCTION_ID]',
+    name: '[NAME]',
+    runtime: 'node-18.0',
   );
 
   result
@@ -22,4 +22,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}}
+}
