@@ -41,12 +41,12 @@ class Collection implements Model {
             $id: map['\$id'].toString(),
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
-            $permissions: map['\$permissions'],
+            $permissions: map['\$permissions'] ?? [],
             databaseId: map['databaseId'].toString(),
             name: map['name'].toString(),
             enabled: map['enabled'],
             documentSecurity: map['documentSecurity'],
-            attributes: map['attributes'],
+            attributes: map['attributes'] ?? [],
             indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );
     }

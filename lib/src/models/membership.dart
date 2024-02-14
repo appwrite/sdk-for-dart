@@ -55,7 +55,7 @@ class Membership implements Model {
             invited: map['invited'].toString(),
             joined: map['joined'].toString(),
             confirm: map['confirm'],
-            roles: map['roles'],
+            roles: map['roles'] ?? [],
         );
     }
 

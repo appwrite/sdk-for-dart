@@ -33,7 +33,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '10.1.0',
+      'x-sdk-version': '10.1.1',
       'X-Appwrite-Response-Format' : '1.4.0',
     };
 

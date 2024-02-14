@@ -30,7 +30,7 @@ class Index implements Model {
             type: map['type'].toString(),
             status: map['status'].toString(),
             error: map['error'].toString(),
-            attributes: map['attributes'],
+            attributes: map['attributes'] ?? [],
             orders: map['orders'],
         );
     }
