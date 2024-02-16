@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = storage.createBucket(
-    bucketId: '[BUCKET_ID]',
-    name: '[NAME]',
+    bucketId:'[BUCKET_ID]' ,
+    name:'[NAME]' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

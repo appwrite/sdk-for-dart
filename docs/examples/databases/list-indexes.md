@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = databases.listIndexes(
-    databaseId: '[DATABASE_ID]',
-    collectionId: '[COLLECTION_ID]',
+    databaseId:'[DATABASE_ID]' ,
+    collectionId:'[COLLECTION_ID]' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

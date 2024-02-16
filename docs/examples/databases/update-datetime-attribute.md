@@ -11,11 +11,11 @@ void main() { // Init SDK
   ;
 
   Future result = databases.updateDatetimeAttribute(
-    databaseId: '[DATABASE_ID]',
-    collectionId: '[COLLECTION_ID]',
-    key: '',
-    xrequired: false,
-    xdefault: '',
+    databaseId:'[DATABASE_ID]' ,
+    collectionId:'[COLLECTION_ID]' ,
+    key:'' ,
+    xrequired:false ,
+    xdefault:'' ,
   );
 
   result
@@ -24,4 +24,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

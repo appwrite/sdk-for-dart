@@ -72,6 +72,29 @@ class Health extends Service {
 
     }
 
+    /// Get the SSL certificate for a domain
+    ///
+    /// Get the SSL certificate for a domain
+    Future<models.HealthCertificate> getCertificate({String? domain}) async {
+        final String apiPath = '/health/certificate';
+
+        final Map<String, dynamic> apiParams = {
+            'domain': domain,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthCertificate.fromMap(res.data);
+
+    }
+
     /// Get DB
     ///
     /// Check the Appwrite database servers are up and connection is successful.
@@ -219,6 +242,30 @@ class Health extends Service {
     /// processed in the Appwrite internal queue server.
     Future<models.HealthQueue> getQueueDeletes({int? threshold}) async {
         final String apiPath = '/health/queue/deletes';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get number of failed queue jobs
+    ///
+    /// Returns the amount of failed jobs in a given queue.
+    /// 
+    Future<models.HealthQueue> getFailedJobs({required enums.Name name, int? threshold}) async {
+        final String apiPath = '/health/queue/failed/{name}'.replaceAll('{name}', name);
 
         final Map<String, dynamic> apiParams = {
             'threshold': threshold,

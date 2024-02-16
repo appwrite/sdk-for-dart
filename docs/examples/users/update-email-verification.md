@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updateEmailVerification(
-    userId: '[USER_ID]',
-    emailVerification: false,
+    userId:'[USER_ID]' ,
+    emailVerification:false ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

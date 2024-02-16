@@ -117,7 +117,7 @@ class Users extends Service {
     /// List Identities
     ///
     /// Get identities for all users.
-    Future<models.IdentityList> listIdentities({String? queries, String? search}) async {
+    Future<models.IdentityList> listIdentities({List<String>? queries, String? search}) async {
         final String apiPath = '/users/identities';
 
         final Map<String, dynamic> apiParams = {
@@ -138,7 +138,7 @@ class Users extends Service {
 
     }
 
-    /// Delete Identity
+    /// Delete identity
     ///
     /// Delete an identity by its unique ID.
     Future deleteIdentity({required String identityId}) async {
@@ -291,7 +291,7 @@ class Users extends Service {
     /// [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use
     /// the [POST /users](https://appwrite.io/docs/server/users#usersCreate)
     /// endpoint to create users with a plain text password.
-    Future<models.User> createSHAUser({required String userId, required String email, required String password, String? passwordVersion, String? name}) async {
+    Future<models.User> createSHAUser({required String userId, required String email, required String password, enums.PasswordHash? passwordVersion, String? name}) async {
         final String apiPath = '/users/sha';
 
         final Map<String, dynamic> apiParams = {
@@ -460,6 +460,71 @@ class Users extends Service {
 
     }
 
+    /// Update MFA
+    ///
+    Future<models.User> updateMfa({required String userId, required bool mfa}) async {
+        final String apiPath = '/users/{userId}/mfa'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'mfa': mfa,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.User.fromMap(res.data);
+
+    }
+
+    /// List Factors
+    ///
+    Future<models.MfaFactors> listFactors({required String userId}) async {
+        final String apiPath = '/users/{userId}/mfa/factors'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.MfaFactors.fromMap(res.data);
+
+    }
+
+    /// Delete Authenticator
+    ///
+    Future<models.User> deleteAuthenticator({required String userId, required enums.Type type, required String otp}) async {
+        final String apiPath = '/users/{userId}/mfa/{type}'.replaceAll('{userId}', userId).replaceAll('{type}', type);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'otp': otp,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.User.fromMap(res.data);
+
+    }
+
     /// Update name
     ///
     /// Update the user name by its unique ID.
@@ -598,6 +663,33 @@ class Users extends Service {
 
     }
 
+    /// Create session
+    ///
+    /// Creates a session for a user. Returns an immediately usable session object.
+    /// 
+    /// If you want to generate a token for a custom authentication flow, use the
+    /// [POST
+    /// /users/{userId}/tokens](https://appwrite.io/docs/server/users#createToken)
+    /// endpoint.
+    Future<models.Session> createSession({required String userId}) async {
+        final String apiPath = '/users/{userId}/sessions'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Session.fromMap(res.data);
+
+    }
+
     /// Delete user sessions
     ///
     /// Delete all user's sessions by using the user's unique ID.
@@ -663,6 +755,148 @@ class Users extends Service {
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
         return models.User.fromMap(res.data);
+
+    }
+
+    /// List User Targets
+    ///
+    Future<models.TargetList> listTargets({required String userId, List<String>? queries}) async {
+        final String apiPath = '/users/{userId}/targets'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> apiParams = {
+            'queries': queries,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.TargetList.fromMap(res.data);
+
+    }
+
+    /// Create User Target
+    ///
+    Future<models.Target> createTarget({required String userId, required String targetId, required enums.MessagingProviderType providerType, required String identifier, String? providerId, String? name}) async {
+        final String apiPath = '/users/{userId}/targets'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'targetId': targetId,
+'providerType': providerType,
+'identifier': identifier,
+'providerId': providerId,
+'name': name,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Target.fromMap(res.data);
+
+    }
+
+    /// Get User Target
+    ///
+    Future<models.Target> getTarget({required String userId, required String targetId}) async {
+        final String apiPath = '/users/{userId}/targets/{targetId}'.replaceAll('{userId}', userId).replaceAll('{targetId}', targetId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Target.fromMap(res.data);
+
+    }
+
+    /// Update User target
+    ///
+    Future<models.Target> updateTarget({required String userId, required String targetId, String? identifier, String? providerId, String? name}) async {
+        final String apiPath = '/users/{userId}/targets/{targetId}'.replaceAll('{userId}', userId).replaceAll('{targetId}', targetId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'identifier': identifier,
+'providerId': providerId,
+'name': name,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Target.fromMap(res.data);
+
+    }
+
+    /// Delete user target
+    ///
+    Future deleteTarget({required String userId, required String targetId}) async {
+        final String apiPath = '/users/{userId}/targets/{targetId}'.replaceAll('{userId}', userId).replaceAll('{targetId}', targetId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return  res.data;
+
+    }
+
+    /// Create token
+    ///
+    /// Returns a token with a secret key for creating a session. If the provided
+    /// user ID has not be registered, a new user will be created. Use the returned
+    /// user ID and secret and submit a request to the [PUT
+    /// /account/sessions/custom](https://appwrite.io/docs/references/cloud/client-web/account#updateCustomSession)
+    /// endpoint to complete the login process.
+    Future<models.Token> createToken({required String userId, int? length, int? expire}) async {
+        final String apiPath = '/users/{userId}/tokens'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'length': length,
+'expire': expire,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Token.fromMap(res.data);
 
     }
 

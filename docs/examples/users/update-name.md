@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updateName(
-    userId: '[USER_ID]',
-    name: '[NAME]',
+    userId:'[USER_ID]' ,
+    name:'[NAME]' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

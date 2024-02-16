@@ -11,11 +11,11 @@ void main() { // Init SDK
   ;
 
   Future result = databases.updateStringAttribute(
-    databaseId: '[DATABASE_ID]',
-    collectionId: '[COLLECTION_ID]',
-    key: '',
-    xrequired: false,
-    xdefault: '[DEFAULT]',
+    databaseId:'[DATABASE_ID]' ,
+    collectionId:'[COLLECTION_ID]' ,
+    key:'' ,
+    xrequired:false ,
+    xdefault:'[DEFAULT]' ,
   );
 
   result
@@ -24,4 +24,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

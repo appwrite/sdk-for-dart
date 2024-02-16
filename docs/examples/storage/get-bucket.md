@@ -11,7 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = storage.getBucket(
-    bucketId: '[BUCKET_ID]',
+    bucketId:'[BUCKET_ID]' ,
   );
 
   result
@@ -20,4 +20,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

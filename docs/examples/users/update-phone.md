@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = users.updatePhone(
-    userId: '[USER_ID]',
-    number: '+12065550100',
+    userId:'[USER_ID]' ,
+    number:'+12065550100' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

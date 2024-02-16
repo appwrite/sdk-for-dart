@@ -11,11 +11,11 @@ void main() { // Init SDK
   ;
 
   Future result = databases.updateBooleanAttribute(
-    databaseId: '[DATABASE_ID]',
-    collectionId: '[COLLECTION_ID]',
-    key: '',
-    xrequired: false,
-    xdefault: false,
+    databaseId:'[DATABASE_ID]' ,
+    collectionId:'[COLLECTION_ID]' ,
+    key:'' ,
+    xrequired:false ,
+    xdefault:false ,
   );
 
   result
@@ -24,4 +24,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

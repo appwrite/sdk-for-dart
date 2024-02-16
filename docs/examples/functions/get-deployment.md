@@ -11,8 +11,8 @@ void main() { // Init SDK
   ;
 
   Future result = functions.getDeployment(
-    functionId: '[FUNCTION_ID]',
-    deploymentId: '[DEPLOYMENT_ID]',
+    functionId:'[FUNCTION_ID]' ,
+    deploymentId:'[DEPLOYMENT_ID]' ,
   );
 
   result
@@ -21,4 +21,4 @@ void main() { // Init SDK
     }).catchError((error) {
       print(error.response);
   });
-}
+}}

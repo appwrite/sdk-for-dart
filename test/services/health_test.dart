@@ -107,6 +107,27 @@ void main() {
 
         });
 
+        test('test method getCertificate()', () async {
+            final Map<String, dynamic> data = {
+                'name': '/CN=www.google.com',
+                'subjectSN': '',
+                'issuerOrganisation': '',
+                'validFrom': '1704200998',
+                'validTo': '1711458597',
+                'signatureTypeSN': 'RSA-SHA256',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getCertificate(
+            );
+            expect(response, isA<models.HealthCertificate>());
+
+        });
+
         test('test method getDB()', () async {
             final Map<String, dynamic> data = {
                 'name': 'database',
@@ -220,6 +241,23 @@ void main() {
 
 
             final response = await health.getQueueDeletes(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
+        test('test method getFailedJobs()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getFailedJobs(
+                name: 'v1-database',
             );
             expect(response, isA<models.HealthQueue>());
 
