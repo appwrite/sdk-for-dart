@@ -12,7 +12,7 @@ void main() { // Init SDK
 
   Future result = users.deleteAuthenticator(
     userId:'[USER_ID]' ,
-    type: .totp,
+    type: AuthenticatorType.totp,
     otp:'[OTP]' ,
   );
 

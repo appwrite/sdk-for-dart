@@ -10,7 +10,7 @@ void main() { // Init SDK
   ;
 
   Future result = account.create2FAChallenge(
-    factor: .totp,
+    factor: AuthenticationFactor.totp,
   );
 
   result

@@ -11,7 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = account.verifyAuthenticator(
-    type: .totp,
+    type: AuthenticatorType.totp,
     otp:'[OTP]' ,
   );
 

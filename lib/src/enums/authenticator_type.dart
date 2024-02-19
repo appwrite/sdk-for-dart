@@ -1,9 +1,9 @@
 part of dart_appwrite.enums;
 
-enum Type {
+enum AuthenticatorType {
     totp(value: 'totp');
 
-    const Type({
+    const AuthenticatorType({
         required this.value
     });
 

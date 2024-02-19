@@ -11,7 +11,7 @@ void main() { // Init SDK
   ;
 
   Future result = account.addAuthenticator(
-    type: .totp,
+    type: AuthenticatorType.totp,
   );
 
   result
