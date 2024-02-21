@@ -275,7 +275,7 @@ class Account extends Service {
     /// Add Authenticator
     ///
     Future<models.MfaType> addAuthenticator({required enums.AuthenticatorType type}) async {
-        final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type);
+        final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type.value);
 
         final Map<String, dynamic> apiParams = {
             
@@ -296,7 +296,7 @@ class Account extends Service {
     /// Verify Authenticator
     ///
     Future<models.User> verifyAuthenticator({required enums.AuthenticatorType type, required String otp}) async {
-        final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type);
+        final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type.value);
 
         final Map<String, dynamic> apiParams = {
             
@@ -318,7 +318,7 @@ class Account extends Service {
     /// Delete Authenticator
     ///
     Future<models.User> deleteAuthenticator({required enums.AuthenticatorType type, required String otp}) async {
-        final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type);
+        final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type.value);
 
         final Map<String, dynamic> apiParams = {
             
@@ -674,7 +674,7 @@ class Account extends Service {
     /// limits](https://appwrite.io/docs/authentication-security#limits).
     /// 
     Future createOAuth2Session({required enums.OAuthProvider provider, String? success, String? failure, bool? token, List<String>? scopes}) async {
-        final String apiPath = '/account/sessions/oauth2/{provider}'.replaceAll('{provider}', provider);
+        final String apiPath = '/account/sessions/oauth2/{provider}'.replaceAll('{provider}', provider.value);
 
         final Map<String, dynamic> apiParams = {
             'success': success,

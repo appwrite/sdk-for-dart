@@ -7,6 +7,7 @@ class Messaging extends Service {
 
     /// List messages
     ///
+    /// Get a list of all messages from the current Appwrite project.
     Future<models.MessageList> listMessages({List<String>? queries, String? search}) async {
         final String apiPath = '/messaging/messages';
 
@@ -28,9 +29,10 @@ class Messaging extends Service {
 
     }
 
-    /// Create an email.
+    /// Create an email
     ///
-    Future<models.Message> createEmail({required String messageId, required String subject, required String content, List<String>? topics, List<String>? users, List<String>? targets, List<String>? cc, List<String>? bcc, enums.MessageStatus? status, bool? html, String? scheduledAt}) async {
+    /// Create a new email message.
+    Future<models.Message> createEmail({required String messageId, required String subject, required String content, List<String>? topics, List<String>? users, List<String>? targets, List<String>? cc, List<String>? bcc, List<String>? attachments, enums.MessageStatus? status, bool? html, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/email';
 
         final Map<String, dynamic> apiParams = {
@@ -43,6 +45,7 @@ class Messaging extends Service {
 'targets': targets,
 'cc': cc,
 'bcc': bcc,
+'attachments': attachments,
 'status': status,
 'html': html,
 'scheduledAt': scheduledAt,
@@ -60,8 +63,10 @@ class Messaging extends Service {
 
     }
 
-    /// Update an email.
+    /// Update an email
     ///
+    /// Update an email message by its unique ID.
+    /// 
     Future<models.Message> updateEmail({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? subject, String? content, enums.MessageStatus? status, bool? html, List<String>? cc, List<String>? bcc, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/email/{messageId}'.replaceAll('{messageId}', messageId);
 
@@ -91,9 +96,10 @@ class Messaging extends Service {
 
     }
 
-    /// Create a push notification.
+    /// Create a push notification
     ///
-    Future<models.Message> createPush({required String messageId, required String title, required String body, List<String>? topics, List<String>? users, List<String>? targets, Map? data, String? action, String? icon, String? sound, String? color, String? tag, String? badge, enums.MessageStatus? status, String? scheduledAt}) async {
+    /// Create a new push notification.
+    Future<models.Message> createPush({required String messageId, required String title, required String body, List<String>? topics, List<String>? users, List<String>? targets, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, String? badge, enums.MessageStatus? status, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/push';
 
         final Map<String, dynamic> apiParams = {
@@ -106,6 +112,7 @@ class Messaging extends Service {
 'targets': targets,
 'data': data,
 'action': action,
+'image': image,
 'icon': icon,
 'sound': sound,
 'color': color,
@@ -127,9 +134,11 @@ class Messaging extends Service {
 
     }
 
-    /// Update a push notification.
+    /// Update a push notification
     ///
-    Future<models.Message> updatePush({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? title, String? body, Map? data, String? action, String? icon, String? sound, String? color, String? tag, int? badge, enums.MessageStatus? status, String? scheduledAt}) async {
+    /// Update a push notification by its unique ID.
+    /// 
+    Future<models.Message> updatePush({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? title, String? body, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, int? badge, enums.MessageStatus? status, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/push/{messageId}'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -141,6 +150,7 @@ class Messaging extends Service {
 'body': body,
 'data': data,
 'action': action,
+'image': image,
 'icon': icon,
 'sound': sound,
 'color': color,
@@ -162,9 +172,10 @@ class Messaging extends Service {
 
     }
 
-    /// Create an SMS.
+    /// Create an SMS
     ///
-    Future<models.Message> createSMS({required String messageId, required String content, List<String>? topics, List<String>? users, List<String>? targets, enums.MessageStatus? status, String? scheduledAt}) async {
+    /// Create a new SMS message.
+    Future<models.Message> createSms({required String messageId, required String content, List<String>? topics, List<String>? users, List<String>? targets, enums.MessageStatus? status, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/sms';
 
         final Map<String, dynamic> apiParams = {
@@ -190,9 +201,11 @@ class Messaging extends Service {
 
     }
 
-    /// Update an SMS.
+    /// Update an SMS
     ///
-    Future<models.Message> updateSMS({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? content, enums.MessageStatus? status, String? scheduledAt}) async {
+    /// Update an email message by its unique ID.
+    /// 
+    Future<models.Message> updateSms({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? content, enums.MessageStatus? status, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/sms/{messageId}'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -219,6 +232,8 @@ class Messaging extends Service {
 
     /// Get a message
     ///
+    /// Get a message by its unique ID.
+    /// 
     Future<models.Message> getMessage({required String messageId}) async {
         final String apiPath = '/messaging/messages/{messageId}'.replaceAll('{messageId}', messageId);
 
@@ -261,6 +276,7 @@ class Messaging extends Service {
 
     /// List message logs
     ///
+    /// Get the message activity logs listed by its unique ID.
     Future<models.LogList> listMessageLogs({required String messageId, List<String>? queries}) async {
         final String apiPath = '/messaging/messages/{messageId}/logs'.replaceAll('{messageId}', messageId);
 
@@ -283,8 +299,7 @@ class Messaging extends Service {
 
     /// List message targets
     ///
-    /// List the targets associated with a message as set via the targets
-    /// attribute.
+    /// Get a list of the targets associated with a message.
     Future<models.TargetList> listTargets({required String messageId, List<String>? queries}) async {
         final String apiPath = '/messaging/messages/{messageId}/targets'.replaceAll('{messageId}', messageId);
 
@@ -307,6 +322,7 @@ class Messaging extends Service {
 
     /// List providers
     ///
+    /// Get a list of all providers from the current Appwrite project.
     Future<models.ProviderList> listProviders({List<String>? queries, String? search}) async {
         final String apiPath = '/messaging/providers';
 
@@ -330,7 +346,8 @@ class Messaging extends Service {
 
     /// Create APNS provider
     ///
-    Future<models.Provider> createAPNSProvider({required String providerId, required String name, String? authKey, String? authKeyId, String? teamId, String? bundleId, bool? enabled}) async {
+    /// Create a new Apple Push Notification service provider.
+    Future<models.Provider> createApnsProvider({required String providerId, required String name, String? authKey, String? authKeyId, String? teamId, String? bundleId, bool? enabled}) async {
         final String apiPath = '/messaging/providers/apns';
 
         final Map<String, dynamic> apiParams = {
@@ -358,6 +375,7 @@ class Messaging extends Service {
 
     /// Update APNS provider
     ///
+    /// Update a Apple Push Notification service provider by its unique ID.
     Future<models.Provider> updateAPNSProvider({required String providerId, String? name, bool? enabled, String? authKey, String? authKeyId, String? teamId, String? bundleId}) async {
         final String apiPath = '/messaging/providers/apns/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -385,7 +403,8 @@ class Messaging extends Service {
 
     /// Create FCM provider
     ///
-    Future<models.Provider> createFCMProvider({required String providerId, required String name, Map? serviceAccountJSON, bool? enabled}) async {
+    /// Create a new Firebase Cloud Messaging provider.
+    Future<models.Provider> createFcmProvider({required String providerId, required String name, Map? serviceAccountJSON, bool? enabled}) async {
         final String apiPath = '/messaging/providers/fcm';
 
         final Map<String, dynamic> apiParams = {
@@ -410,6 +429,7 @@ class Messaging extends Service {
 
     /// Update FCM provider
     ///
+    /// Update a Firebase Cloud Messaging provider by its unique ID.
     Future<models.Provider> updateFCMProvider({required String providerId, String? name, bool? enabled, Map? serviceAccountJSON}) async {
         final String apiPath = '/messaging/providers/fcm/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -434,6 +454,7 @@ class Messaging extends Service {
 
     /// Create Mailgun provider
     ///
+    /// Create a new Mailgun provider.
     Future<models.Provider> createMailgunProvider({required String providerId, required String name, String? apiKey, String? domain, bool? isEuRegion, String? fromName, String? fromEmail, String? replyToName, String? replyToEmail, bool? enabled}) async {
         final String apiPath = '/messaging/providers/mailgun';
 
@@ -465,6 +486,7 @@ class Messaging extends Service {
 
     /// Update Mailgun provider
     ///
+    /// Update a Mailgun provider by its unique ID.
     Future<models.Provider> updateMailgunProvider({required String providerId, String? name, String? apiKey, String? domain, bool? isEuRegion, bool? enabled, String? fromName, String? fromEmail, String? replyToName, String? replyToEmail}) async {
         final String apiPath = '/messaging/providers/mailgun/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -495,6 +517,7 @@ class Messaging extends Service {
 
     /// Create Msg91 provider
     ///
+    /// Create a new MSG91 provider.
     Future<models.Provider> createMsg91Provider({required String providerId, required String name, String? from, String? senderId, String? authKey, bool? enabled}) async {
         final String apiPath = '/messaging/providers/msg91';
 
@@ -522,6 +545,7 @@ class Messaging extends Service {
 
     /// Update Msg91 provider
     ///
+    /// Update a MSG91 provider by its unique ID.
     Future<models.Provider> updateMsg91Provider({required String providerId, String? name, bool? enabled, String? senderId, String? authKey, String? from}) async {
         final String apiPath = '/messaging/providers/msg91/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -577,6 +601,7 @@ class Messaging extends Service {
 
     /// Update Sendgrid provider
     ///
+    /// Update a Sendgrid provider by its unique ID.
     Future<models.Provider> updateSendgridProvider({required String providerId, String? name, bool? enabled, String? apiKey, String? fromName, String? fromEmail, String? replyToName, String? replyToEmail}) async {
         final String apiPath = '/messaging/providers/sendgrid/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -605,7 +630,8 @@ class Messaging extends Service {
 
     /// Create SMTP provider
     ///
-    Future<models.Provider> createSMTPProvider({required String providerId, required String name, required String host, int? port, String? username, String? password, enums.SMTPEncryption? encryption, bool? autoTLS, String? mailer, String? fromName, String? fromEmail, String? replyToName, String? replyToEmail, bool? enabled}) async {
+    /// Create a new SMTP provider.
+    Future<models.Provider> createSmtpProvider({required String providerId, required String name, required String host, int? port, String? username, String? password, enums.Encryption? encryption, bool? autoTLS, String? mailer, String? fromName, String? fromEmail, String? replyToName, String? replyToEmail, bool? enabled}) async {
         final String apiPath = '/messaging/providers/smtp';
 
         final Map<String, dynamic> apiParams = {
@@ -640,7 +666,8 @@ class Messaging extends Service {
 
     /// Update SMTP provider
     ///
-    Future<models.Provider> updateSMTPProvider({required String providerId, String? name, String? host, int? port, String? username, String? password, enums.SMTPEncryption? encryption, bool? autoTLS, String? mailer, String? fromName, String? fromEmail, String? replyToName, String? replyToEmail, bool? enabled}) async {
+    /// Update a SMTP provider by its unique ID.
+    Future<models.Provider> updateSmtpProvider({required String providerId, String? name, String? host, int? port, String? username, String? password, enums.Encryption? encryption, bool? autoTLS, String? mailer, String? fromName, String? fromEmail, String? replyToName, String? replyToEmail, bool? enabled}) async {
         final String apiPath = '/messaging/providers/smtp/{providerId}'.replaceAll('{providerId}', providerId);
 
         final Map<String, dynamic> apiParams = {
@@ -674,6 +701,7 @@ class Messaging extends Service {
 
     /// Create Telesign provider
     ///
+    /// Create a new Telesign provider.
     Future<models.Provider> createTelesignProvider({required String providerId, required String name, String? from, String? customerId, String? apiKey, bool? enabled}) async {
         final String apiPath = '/messaging/providers/telesign';
 
@@ -701,6 +729,7 @@ class Messaging extends Service {
 
     /// Update Telesign provider
     ///
+    /// Update a Telesign provider by its unique ID.
     Future<models.Provider> updateTelesignProvider({required String providerId, String? name, bool? enabled, String? customerId, String? apiKey, String? from}) async {
         final String apiPath = '/messaging/providers/telesign/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -727,6 +756,7 @@ class Messaging extends Service {
 
     /// Create Textmagic provider
     ///
+    /// Create a new Textmagic provider.
     Future<models.Provider> createTextmagicProvider({required String providerId, required String name, String? from, String? username, String? apiKey, bool? enabled}) async {
         final String apiPath = '/messaging/providers/textmagic';
 
@@ -754,6 +784,7 @@ class Messaging extends Service {
 
     /// Update Textmagic provider
     ///
+    /// Update a Textmagic provider by its unique ID.
     Future<models.Provider> updateTextmagicProvider({required String providerId, String? name, bool? enabled, String? username, String? apiKey, String? from}) async {
         final String apiPath = '/messaging/providers/textmagic/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -780,6 +811,7 @@ class Messaging extends Service {
 
     /// Create Twilio provider
     ///
+    /// Create a new Twilio provider.
     Future<models.Provider> createTwilioProvider({required String providerId, required String name, String? from, String? accountSid, String? authToken, bool? enabled}) async {
         final String apiPath = '/messaging/providers/twilio';
 
@@ -807,6 +839,7 @@ class Messaging extends Service {
 
     /// Update Twilio provider
     ///
+    /// Update a Twilio provider by its unique ID.
     Future<models.Provider> updateTwilioProvider({required String providerId, String? name, bool? enabled, String? accountSid, String? authToken, String? from}) async {
         final String apiPath = '/messaging/providers/twilio/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -833,6 +866,7 @@ class Messaging extends Service {
 
     /// Create Vonage provider
     ///
+    /// Create a new Vonage provider.
     Future<models.Provider> createVonageProvider({required String providerId, required String name, String? from, String? apiKey, String? apiSecret, bool? enabled}) async {
         final String apiPath = '/messaging/providers/vonage';
 
@@ -860,6 +894,7 @@ class Messaging extends Service {
 
     /// Update Vonage provider
     ///
+    /// Update a Vonage provider by its unique ID.
     Future<models.Provider> updateVonageProvider({required String providerId, String? name, bool? enabled, String? apiKey, String? apiSecret, String? from}) async {
         final String apiPath = '/messaging/providers/vonage/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -886,6 +921,8 @@ class Messaging extends Service {
 
     /// Get provider
     ///
+    /// Get a provider by its unique ID.
+    /// 
     Future<models.Provider> getProvider({required String providerId}) async {
         final String apiPath = '/messaging/providers/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -907,6 +944,7 @@ class Messaging extends Service {
 
     /// Delete provider
     ///
+    /// Delete a provider by its unique ID.
     Future deleteProvider({required String providerId}) async {
         final String apiPath = '/messaging/providers/{providerId}'.replaceAll('{providerId}', providerId);
 
@@ -928,6 +966,7 @@ class Messaging extends Service {
 
     /// List provider logs
     ///
+    /// Get the provider activity logs listed by its unique ID.
     Future<models.LogList> listProviderLogs({required String providerId, List<String>? queries}) async {
         final String apiPath = '/messaging/providers/{providerId}/logs'.replaceAll('{providerId}', providerId);
 
@@ -950,6 +989,7 @@ class Messaging extends Service {
 
     /// List subscriber logs
     ///
+    /// Get the subscriber activity logs listed by its unique ID.
     Future<models.LogList> listSubscriberLogs({required String subscriberId, List<String>? queries}) async {
         final String apiPath = '/messaging/subscribers/{subscriberId}/logs'.replaceAll('{subscriberId}', subscriberId);
 
@@ -970,8 +1010,9 @@ class Messaging extends Service {
 
     }
 
-    /// List topics.
+    /// List topics
     ///
+    /// Get a list of all topics from the current Appwrite project.
     Future<models.TopicList> listTopics({List<String>? queries, String? search}) async {
         final String apiPath = '/messaging/topics';
 
@@ -993,8 +1034,9 @@ class Messaging extends Service {
 
     }
 
-    /// Create a topic.
+    /// Create a topic
     ///
+    /// Create a new topic.
     Future<models.Topic> createTopic({required String topicId, required String name, List<String>? subscribe}) async {
         final String apiPath = '/messaging/topics';
 
@@ -1017,8 +1059,10 @@ class Messaging extends Service {
 
     }
 
-    /// Get a topic.
+    /// Get a topic
     ///
+    /// Get a topic by its unique ID.
+    /// 
     Future<models.Topic> getTopic({required String topicId}) async {
         final String apiPath = '/messaging/topics/{topicId}'.replaceAll('{topicId}', topicId);
 
@@ -1038,8 +1082,10 @@ class Messaging extends Service {
 
     }
 
-    /// Update a topic.
+    /// Update a topic
     ///
+    /// Update a topic by its unique ID.
+    /// 
     Future<models.Topic> updateTopic({required String topicId, String? name}) async {
         final String apiPath = '/messaging/topics/{topicId}'.replaceAll('{topicId}', topicId);
 
@@ -1060,8 +1106,9 @@ class Messaging extends Service {
 
     }
 
-    /// Delete a topic.
+    /// Delete a topic
     ///
+    /// Delete a topic by its unique ID.
     Future deleteTopic({required String topicId}) async {
         final String apiPath = '/messaging/topics/{topicId}'.replaceAll('{topicId}', topicId);
 
@@ -1083,6 +1130,7 @@ class Messaging extends Service {
 
     /// List topic logs
     ///
+    /// Get the topic activity logs listed by its unique ID.
     Future<models.LogList> listTopicLogs({required String topicId, List<String>? queries}) async {
         final String apiPath = '/messaging/topics/{topicId}/logs'.replaceAll('{topicId}', topicId);
 
@@ -1103,8 +1151,9 @@ class Messaging extends Service {
 
     }
 
-    /// List subscribers.
+    /// List subscribers
     ///
+    /// Get a list of all subscribers from the current Appwrite project.
     Future<models.SubscriberList> listSubscribers({required String topicId, List<String>? queries, String? search}) async {
         final String apiPath = '/messaging/topics/{topicId}/subscribers'.replaceAll('{topicId}', topicId);
 
@@ -1126,8 +1175,9 @@ class Messaging extends Service {
 
     }
 
-    /// Create a subscriber.
+    /// Create a subscriber
     ///
+    /// Create a new subscriber.
     Future<models.Subscriber> createSubscriber({required String topicId, required String subscriberId, required String targetId}) async {
         final String apiPath = '/messaging/topics/{topicId}/subscribers'.replaceAll('{topicId}', topicId);
 
@@ -1149,8 +1199,10 @@ class Messaging extends Service {
 
     }
 
-    /// Get a subscriber.
+    /// Get a subscriber
     ///
+    /// Get a subscriber by its unique ID.
+    /// 
     Future<models.Subscriber> getSubscriber({required String topicId, required String subscriberId}) async {
         final String apiPath = '/messaging/topics/{topicId}/subscribers/{subscriberId}'.replaceAll('{topicId}', topicId).replaceAll('{subscriberId}', subscriberId);
 
@@ -1170,8 +1222,9 @@ class Messaging extends Service {
 
     }
 
-    /// Delete a subscriber.
+    /// Delete a subscriber
     ///
+    /// Delete a subscriber by its unique ID.
     Future deleteSubscriber({required String topicId, required String subscriberId}) async {
         final String apiPath = '/messaging/topics/{topicId}/subscribers/{subscriberId}'.replaceAll('{topicId}', topicId).replaceAll('{subscriberId}', subscriberId);
 

@@ -1,11 +1,11 @@
 part of dart_appwrite.enums;
 
-enum SMTPEncryption {
+enum Encryption {
     none(value: 'none'),
     ssl(value: 'ssl'),
     tls(value: 'tls');
 
-    const SMTPEncryption({
+    const Encryption({
         required this.value
     });
 

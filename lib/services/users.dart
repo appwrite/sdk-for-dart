@@ -506,7 +506,7 @@ class Users extends Service {
     /// Delete Authenticator
     ///
     Future<models.User> deleteAuthenticator({required String userId, required enums.AuthenticatorType type, required String otp}) async {
-        final String apiPath = '/users/{userId}/mfa/{type}'.replaceAll('{userId}', userId).replaceAll('{type}', type);
+        final String apiPath = '/users/{userId}/mfa/{type}'.replaceAll('{userId}', userId).replaceAll('{type}', type.value);
 
         final Map<String, dynamic> apiParams = {
             

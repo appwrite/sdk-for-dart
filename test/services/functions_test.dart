@@ -105,7 +105,7 @@ void main() {
             final response = await functions.create(
                 functionId: '[FUNCTION_ID]',
                 name: '[NAME]',
-                runtime: 'node-18.0',
+                runtime: 'node-14.5',
             );
             expect(response, isA<models.Func>());
 

@@ -179,7 +179,7 @@ void main() {
 
         });
 
-        test('test method createSMS()', () async {
+        test('test method createSms()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -198,7 +198,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await messaging.createSMS(
+            final response = await messaging.createSms(
                 messageId: '[MESSAGE_ID]',
                 content: '[CONTENT]',
             );
@@ -206,7 +206,7 @@ void main() {
 
         });
 
-        test('test method updateSMS()', () async {
+        test('test method updateSms()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -225,7 +225,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await messaging.updateSMS(
+            final response = await messaging.updateSms(
                 messageId: '[MESSAGE_ID]',
             );
             expect(response, isA<models.Message>());
@@ -324,7 +324,7 @@ void main() {
 
         });
 
-        test('test method createAPNSProvider()', () async {
+        test('test method createApnsProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -341,7 +341,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await messaging.createAPNSProvider(
+            final response = await messaging.createApnsProvider(
                 providerId: '[PROVIDER_ID]',
                 name: '[NAME]',
             );
@@ -373,7 +373,7 @@ void main() {
 
         });
 
-        test('test method createFCMProvider()', () async {
+        test('test method createFcmProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -390,7 +390,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await messaging.createFCMProvider(
+            final response = await messaging.createFcmProvider(
                 providerId: '[PROVIDER_ID]',
                 name: '[NAME]',
             );
@@ -569,7 +569,7 @@ void main() {
 
         });
 
-        test('test method createSMTPProvider()', () async {
+        test('test method createSmtpProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -586,7 +586,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await messaging.createSMTPProvider(
+            final response = await messaging.createSmtpProvider(
                 providerId: '[PROVIDER_ID]',
                 name: '[NAME]',
                 host: '[HOST]',
@@ -595,7 +595,7 @@ void main() {
 
         });
 
-        test('test method updateSMTPProvider()', () async {
+        test('test method updateSmtpProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -612,7 +612,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await messaging.updateSMTPProvider(
+            final response = await messaging.updateSmtpProvider(
                 providerId: '[PROVIDER_ID]',
             );
             expect(response, isA<models.Provider>());
