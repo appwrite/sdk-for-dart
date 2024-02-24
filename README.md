@@ -23,7 +23,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  dart_appwrite: ^11.0.0-rc.4
+  dart_appwrite: ^11.0.0-rc.5
 ```
 
 You can install packages from the command line:
@@ -51,7 +51,7 @@ void main() async {
   Users users = Users(client);
 
   try {
-    final user = await users.create(userId: ID.unique(), email: ‘email@example.com’,password: ‘password’, name: ‘name’);
+    final user = await users.create(userId: ID.unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
     print(user.toMap());
   } on AppwriteException catch(e) {
     print(e.message);
@@ -66,7 +66,7 @@ The Appwrite Dart SDK raises `AppwriteException` object with `message`, `code` a
 Users users = Users(client);
 
 try {
-  final user = await users.create(userId: ID.unique(), email: ‘email@example.com’,password: ‘password’, name: ‘name’);
+  final user = await users.create(userId: ID.unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
   print(user.toMap());
 } on AppwriteException catch(e) {
   //show message to user or do other operation based on error as required

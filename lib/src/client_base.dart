@@ -17,9 +17,6 @@ abstract class ClientBase implements Client {
   /// The user session to authenticate with
   @override
   ClientBase setSession(value);
-  /// The IP address of the client that made the request
-  @override
-  ClientBase setForwardedFor(value);
   /// The user agent string of the client that made the request
   @override
   ClientBase setForwardedUserAgent(value);

@@ -23,6 +23,9 @@ abstract class Client {
           bool selfSigned = false}) =>
       createClient(endPoint: endPoint, selfSigned: selfSigned);
 
+  /// Handle OAuth2 session creation.
+  Future<String?> webAuth(Uri url);
+
   /// Set self signed to [status].
   /// 
   /// If self signed is true, [Client] will ignore invalid certificates.
@@ -55,11 +58,6 @@ abstract class Client {
   ///
   /// The user session to authenticate with
   Client setSession(value);
-
-  /// Set ForwardedFor
-  ///
-  /// The IP address of the client that made the request
-  Client setForwardedFor(value);
 
   /// Set ForwardedUserAgent
   ///

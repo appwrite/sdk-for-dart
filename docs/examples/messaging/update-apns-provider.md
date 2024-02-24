@@ -7,11 +7,15 @@ Client client = Client()
 
 Messaging messaging = Messaging(client);
 
-Future result = messaging.updateFCMProvider(
-  providerId: '[PROVIDER_ID]',
-  name: '[NAME]', // (optional)
+Future result = messaging.updateApnsProvider(
+  providerId: '<PROVIDER_ID>',
+  name: '<NAME>', // (optional)
   enabled: false, // (optional)
-  serviceAccountJSON: {}, // (optional)
+  authKey: '<AUTH_KEY>', // (optional)
+  authKeyId: '<AUTH_KEY_ID>', // (optional)
+  teamId: '<TEAM_ID>', // (optional)
+  bundleId: '<BUNDLE_ID>', // (optional)
+  sandbox: false, // (optional)
 );
 
 result.then((response) {

@@ -91,9 +91,9 @@ void main() {
 
 
             final response = await messaging.createEmail(
-                messageId: '[MESSAGE_ID]',
-                subject: '[SUBJECT]',
-                content: '[CONTENT]',
+                messageId: '<MESSAGE_ID>',
+                subject: '<SUBJECT>',
+                content: '<CONTENT>',
             );
             expect(response, isA<models.Message>());
 
@@ -119,7 +119,7 @@ void main() {
 
 
             final response = await messaging.updateEmail(
-                messageId: '[MESSAGE_ID]',
+                messageId: '<MESSAGE_ID>',
             );
             expect(response, isA<models.Message>());
 
@@ -145,9 +145,9 @@ void main() {
 
 
             final response = await messaging.createPush(
-                messageId: '[MESSAGE_ID]',
-                title: '[TITLE]',
-                body: '[BODY]',
+                messageId: '<MESSAGE_ID>',
+                title: '<TITLE>',
+                body: '<BODY>',
             );
             expect(response, isA<models.Message>());
 
@@ -173,7 +173,7 @@ void main() {
 
 
             final response = await messaging.updatePush(
-                messageId: '[MESSAGE_ID]',
+                messageId: '<MESSAGE_ID>',
             );
             expect(response, isA<models.Message>());
 
@@ -199,8 +199,8 @@ void main() {
 
 
             final response = await messaging.createSms(
-                messageId: '[MESSAGE_ID]',
-                content: '[CONTENT]',
+                messageId: '<MESSAGE_ID>',
+                content: '<CONTENT>',
             );
             expect(response, isA<models.Message>());
 
@@ -226,7 +226,7 @@ void main() {
 
 
             final response = await messaging.updateSms(
-                messageId: '[MESSAGE_ID]',
+                messageId: '<MESSAGE_ID>',
             );
             expect(response, isA<models.Message>());
 
@@ -252,7 +252,7 @@ void main() {
 
 
             final response = await messaging.getMessage(
-                messageId: '[MESSAGE_ID]',
+                messageId: '<MESSAGE_ID>',
             );
             expect(response, isA<models.Message>());
 
@@ -267,7 +267,7 @@ void main() {
 
 
             final response = await messaging.delete(
-                messageId: '[MESSAGE_ID]',
+                messageId: '<MESSAGE_ID>',
             );
         });
 
@@ -283,7 +283,7 @@ void main() {
 
 
             final response = await messaging.listMessageLogs(
-                messageId: '[MESSAGE_ID]',
+                messageId: '<MESSAGE_ID>',
             );
             expect(response, isA<models.LogList>());
 
@@ -301,7 +301,7 @@ void main() {
 
 
             final response = await messaging.listTargets(
-                messageId: '[MESSAGE_ID]',
+                messageId: '<MESSAGE_ID>',
             );
             expect(response, isA<models.TargetList>());
 
@@ -342,14 +342,14 @@ void main() {
 
 
             final response = await messaging.createApnsProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
         });
 
-        test('test method updateAPNSProvider()', () async {
+        test('test method updateApnsProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -366,8 +366,8 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await messaging.updateAPNSProvider(
-                providerId: '[PROVIDER_ID]',
+            final response = await messaging.updateApnsProvider(
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -391,14 +391,14 @@ void main() {
 
 
             final response = await messaging.createFcmProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
         });
 
-        test('test method updateFCMProvider()', () async {
+        test('test method updateFcmProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -415,8 +415,8 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await messaging.updateFCMProvider(
-                providerId: '[PROVIDER_ID]',
+            final response = await messaging.updateFcmProvider(
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -440,8 +440,8 @@ void main() {
 
 
             final response = await messaging.createMailgunProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
@@ -465,7 +465,7 @@ void main() {
 
 
             final response = await messaging.updateMailgunProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -489,8 +489,8 @@ void main() {
 
 
             final response = await messaging.createMsg91Provider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
@@ -514,7 +514,7 @@ void main() {
 
 
             final response = await messaging.updateMsg91Provider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -538,8 +538,8 @@ void main() {
 
 
             final response = await messaging.createSendgridProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
@@ -563,7 +563,7 @@ void main() {
 
 
             final response = await messaging.updateSendgridProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -587,9 +587,9 @@ void main() {
 
 
             final response = await messaging.createSmtpProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
-                host: '[HOST]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
+                host: '<HOST>',
             );
             expect(response, isA<models.Provider>());
 
@@ -613,7 +613,7 @@ void main() {
 
 
             final response = await messaging.updateSmtpProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -637,8 +637,8 @@ void main() {
 
 
             final response = await messaging.createTelesignProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
@@ -662,7 +662,7 @@ void main() {
 
 
             final response = await messaging.updateTelesignProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -686,8 +686,8 @@ void main() {
 
 
             final response = await messaging.createTextmagicProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
@@ -711,7 +711,7 @@ void main() {
 
 
             final response = await messaging.updateTextmagicProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -735,8 +735,8 @@ void main() {
 
 
             final response = await messaging.createTwilioProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
@@ -760,7 +760,7 @@ void main() {
 
 
             final response = await messaging.updateTwilioProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -784,8 +784,8 @@ void main() {
 
 
             final response = await messaging.createVonageProvider(
-                providerId: '[PROVIDER_ID]',
-                name: '[NAME]',
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Provider>());
 
@@ -809,7 +809,7 @@ void main() {
 
 
             final response = await messaging.updateVonageProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -833,7 +833,7 @@ void main() {
 
 
             final response = await messaging.getProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
 
@@ -848,7 +848,7 @@ void main() {
 
 
             final response = await messaging.deleteProvider(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
         });
 
@@ -864,7 +864,7 @@ void main() {
 
 
             final response = await messaging.listProviderLogs(
-                providerId: '[PROVIDER_ID]',
+                providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.LogList>());
 
@@ -882,7 +882,7 @@ void main() {
 
 
             final response = await messaging.listSubscriberLogs(
-                subscriberId: '[SUBSCRIBER_ID]',
+                subscriberId: '<SUBSCRIBER_ID>',
             );
             expect(response, isA<models.LogList>());
 
@@ -923,8 +923,8 @@ void main() {
 
 
             final response = await messaging.createTopic(
-                topicId: '[TOPIC_ID]',
-                name: '[NAME]',
+                topicId: '<TOPIC_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Topic>());
 
@@ -948,7 +948,7 @@ void main() {
 
 
             final response = await messaging.getTopic(
-                topicId: '[TOPIC_ID]',
+                topicId: '<TOPIC_ID>',
             );
             expect(response, isA<models.Topic>());
 
@@ -972,7 +972,7 @@ void main() {
 
 
             final response = await messaging.updateTopic(
-                topicId: '[TOPIC_ID]',
+                topicId: '<TOPIC_ID>',
             );
             expect(response, isA<models.Topic>());
 
@@ -987,7 +987,7 @@ void main() {
 
 
             final response = await messaging.deleteTopic(
-                topicId: '[TOPIC_ID]',
+                topicId: '<TOPIC_ID>',
             );
         });
 
@@ -1003,7 +1003,7 @@ void main() {
 
 
             final response = await messaging.listTopicLogs(
-                topicId: '[TOPIC_ID]',
+                topicId: '<TOPIC_ID>',
             );
             expect(response, isA<models.LogList>());
 
@@ -1021,7 +1021,7 @@ void main() {
 
 
             final response = await messaging.listSubscribers(
-                topicId: '[TOPIC_ID]',
+                topicId: '<TOPIC_ID>',
             );
             expect(response, isA<models.SubscriberList>());
 
@@ -1046,9 +1046,9 @@ void main() {
 
 
             final response = await messaging.createSubscriber(
-                topicId: '[TOPIC_ID]',
-                subscriberId: '[SUBSCRIBER_ID]',
-                targetId: '[TARGET_ID]',
+                topicId: '<TOPIC_ID>',
+                subscriberId: '<SUBSCRIBER_ID>',
+                targetId: '<TARGET_ID>',
             );
             expect(response, isA<models.Subscriber>());
 
@@ -1073,8 +1073,8 @@ void main() {
 
 
             final response = await messaging.getSubscriber(
-                topicId: '[TOPIC_ID]',
-                subscriberId: '[SUBSCRIBER_ID]',
+                topicId: '<TOPIC_ID>',
+                subscriberId: '<SUBSCRIBER_ID>',
             );
             expect(response, isA<models.Subscriber>());
 
@@ -1089,8 +1089,8 @@ void main() {
 
 
             final response = await messaging.deleteSubscriber(
-                topicId: '[TOPIC_ID]',
-                subscriberId: '[SUBSCRIBER_ID]',
+                topicId: '<TOPIC_ID>',
+                subscriberId: '<SUBSCRIBER_ID>',
             );
         });
 

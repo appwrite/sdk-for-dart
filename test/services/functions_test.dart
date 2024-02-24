@@ -103,8 +103,8 @@ void main() {
 
 
             final response = await functions.create(
-                functionId: '[FUNCTION_ID]',
-                name: '[NAME]',
+                functionId: '<FUNCTION_ID>',
+                name: '<NAME>',
                 runtime: 'node-14.5',
             );
             expect(response, isA<models.Func>());
@@ -160,7 +160,7 @@ void main() {
 
 
             final response = await functions.get(
-                functionId: '[FUNCTION_ID]',
+                functionId: '<FUNCTION_ID>',
             );
             expect(response, isA<models.Func>());
 
@@ -198,8 +198,8 @@ void main() {
 
 
             final response = await functions.update(
-                functionId: '[FUNCTION_ID]',
-                name: '[NAME]',
+                functionId: '<FUNCTION_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Func>());
 
@@ -214,7 +214,7 @@ void main() {
 
 
             final response = await functions.delete(
-                functionId: '[FUNCTION_ID]',
+                functionId: '<FUNCTION_ID>',
             );
         });
 
@@ -230,7 +230,7 @@ void main() {
 
 
             final response = await functions.listDeployments(
-                functionId: '[FUNCTION_ID]',
+                functionId: '<FUNCTION_ID>',
             );
             expect(response, isA<models.DeploymentList>());
 
@@ -273,7 +273,7 @@ void main() {
 
 
             final response = await functions.createDeployment(
-                functionId: '[FUNCTION_ID]',
+                functionId: '<FUNCTION_ID>',
                 code: InputFile.fromPath(path: './image.png'),
                 activate: true,
             );
@@ -314,8 +314,8 @@ void main() {
 
 
             final response = await functions.getDeployment(
-                functionId: '[FUNCTION_ID]',
-                deploymentId: '[DEPLOYMENT_ID]',
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
             );
             expect(response, isA<models.Deployment>());
 
@@ -353,8 +353,8 @@ void main() {
 
 
             final response = await functions.updateDeployment(
-                functionId: '[FUNCTION_ID]',
-                deploymentId: '[DEPLOYMENT_ID]',
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
             );
             expect(response, isA<models.Func>());
 
@@ -369,8 +369,8 @@ void main() {
 
 
             final response = await functions.deleteDeployment(
-                functionId: '[FUNCTION_ID]',
-                deploymentId: '[DEPLOYMENT_ID]',
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
             );
         });
 
@@ -383,9 +383,9 @@ void main() {
 
 
             final response = await functions.createBuild(
-                functionId: '[FUNCTION_ID]',
-                deploymentId: '[DEPLOYMENT_ID]',
-                buildId: '[BUILD_ID]',
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
+                buildId: '<BUILD_ID>',
             );
         });
 
@@ -397,8 +397,8 @@ void main() {
 
 
             final response = await functions.downloadDeployment(
-                functionId: '[FUNCTION_ID]',
-                deploymentId: '[DEPLOYMENT_ID]',
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
             );
             expect(response, isA<Uint8List>());
 
@@ -416,7 +416,7 @@ void main() {
 
 
             final response = await functions.listExecutions(
-                functionId: '[FUNCTION_ID]',
+                functionId: '<FUNCTION_ID>',
             );
             expect(response, isA<models.ExecutionList>());
 
@@ -448,7 +448,7 @@ void main() {
 
 
             final response = await functions.createExecution(
-                functionId: '[FUNCTION_ID]',
+                functionId: '<FUNCTION_ID>',
             );
             expect(response, isA<models.Execution>());
 
@@ -480,8 +480,8 @@ void main() {
 
 
             final response = await functions.getExecution(
-                functionId: '[FUNCTION_ID]',
-                executionId: '[EXECUTION_ID]',
+                functionId: '<FUNCTION_ID>',
+                executionId: '<EXECUTION_ID>',
             );
             expect(response, isA<models.Execution>());
 
@@ -499,7 +499,7 @@ void main() {
 
 
             final response = await functions.listVariables(
-                functionId: '[FUNCTION_ID]',
+                functionId: '<FUNCTION_ID>',
             );
             expect(response, isA<models.VariableList>());
 
@@ -522,9 +522,9 @@ void main() {
 
 
             final response = await functions.createVariable(
-                functionId: '[FUNCTION_ID]',
-                key: '[KEY]',
-                value: '[VALUE]',
+                functionId: '<FUNCTION_ID>',
+                key: '<KEY>',
+                value: '<VALUE>',
             );
             expect(response, isA<models.Variable>());
 
@@ -547,8 +547,8 @@ void main() {
 
 
             final response = await functions.getVariable(
-                functionId: '[FUNCTION_ID]',
-                variableId: '[VARIABLE_ID]',
+                functionId: '<FUNCTION_ID>',
+                variableId: '<VARIABLE_ID>',
             );
             expect(response, isA<models.Variable>());
 
@@ -571,9 +571,9 @@ void main() {
 
 
             final response = await functions.updateVariable(
-                functionId: '[FUNCTION_ID]',
-                variableId: '[VARIABLE_ID]',
-                key: '[KEY]',
+                functionId: '<FUNCTION_ID>',
+                variableId: '<VARIABLE_ID>',
+                key: '<KEY>',
             );
             expect(response, isA<models.Variable>());
 
@@ -588,8 +588,8 @@ void main() {
 
 
             final response = await functions.deleteVariable(
-                functionId: '[FUNCTION_ID]',
-                variableId: '[VARIABLE_ID]',
+                functionId: '<FUNCTION_ID>',
+                variableId: '<VARIABLE_ID>',
             );
         });
 

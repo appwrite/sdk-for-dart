@@ -33,7 +33,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '11.0.0-rc.4',
+      'x-sdk-version': '11.0.0-rc.5',
       'X-Appwrite-Response-Format' : '1.5.0',
     };
 
@@ -80,13 +80,6 @@ class ClientBrowser extends ClientBase with ClientMixin {
         addHeader('X-Appwrite-Session', value);
         return this;
     }
-    /// The IP address of the client that made the request
-    @override
-    ClientBrowser setForwardedFor(value) {
-        config['forwardedFor'] = value;
-        addHeader('X-Forwarded-For', value);
-        return this;
-    }
     /// The user agent string of the client that made the request
     @override
     ClientBrowser setForwardedUserAgent(value) {
@@ -110,6 +103,14 @@ class ClientBrowser extends ClientBase with ClientMixin {
   ClientBrowser addHeader(String key, String value) {
     _headers![key] = value;
     return this;
+  }
+
+  @override
+  Future<String?> webAuth(Uri url) async {
+    final request = http.Request('GET', url);
+    request.followRedirects = false;
+    final response = await _httpClient.send(request);
+    return response.headers['location'];
   }
 
   @override

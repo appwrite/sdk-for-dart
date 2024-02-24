@@ -42,8 +42,8 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '11.0.0-rc.4',
-      'user-agent' : 'AppwriteDartSDK/11.0.0-rc.4 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'x-sdk-version': '11.0.0-rc.5',
+      'user-agent' : 'AppwriteDartSDK/11.0.0-rc.5 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format' : '1.5.0',
     };
 
@@ -88,13 +88,6 @@ class ClientIO extends ClientBase with ClientMixin {
     ClientIO setSession(value) {
         config['session'] = value;
         addHeader('X-Appwrite-Session', value);
-        return this;
-    }
-     /// The IP address of the client that made the request
-    @override
-    ClientIO setForwardedFor(value) {
-        config['forwardedFor'] = value;
-        addHeader('X-Forwarded-For', value);
         return this;
     }
      /// The user agent string of the client that made the request
@@ -218,6 +211,14 @@ class ClientIO extends ClientBase with ClientMixin {
     }
     raf?.close();
     return res;
+  }
+
+  @override
+  Future<String?> webAuth(Uri url) async {
+    final request = http.Request('GET', url);
+    request.followRedirects = false;
+    final response = await _httpClient.send(request);
+    return response.headers['location'];
   }
 
   @override

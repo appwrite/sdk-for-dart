@@ -86,8 +86,8 @@ void main() {
 
 
             final response = await databases.create(
-                databaseId: '[DATABASE_ID]',
-                name: '[NAME]',
+                databaseId: '<DATABASE_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Database>());
 
@@ -108,7 +108,7 @@ void main() {
 
 
             final response = await databases.get(
-                databaseId: '[DATABASE_ID]',
+                databaseId: '<DATABASE_ID>',
             );
             expect(response, isA<models.Database>());
 
@@ -129,8 +129,8 @@ void main() {
 
 
             final response = await databases.update(
-                databaseId: '[DATABASE_ID]',
-                name: '[NAME]',
+                databaseId: '<DATABASE_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Database>());
 
@@ -145,7 +145,7 @@ void main() {
 
 
             final response = await databases.delete(
-                databaseId: '[DATABASE_ID]',
+                databaseId: '<DATABASE_ID>',
             );
         });
 
@@ -161,7 +161,7 @@ void main() {
 
 
             final response = await databases.listCollections(
-                databaseId: '[DATABASE_ID]',
+                databaseId: '<DATABASE_ID>',
             );
             expect(response, isA<models.CollectionList>());
 
@@ -187,9 +187,9 @@ void main() {
 
 
             final response = await databases.createCollection(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
-                name: '[NAME]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Collection>());
 
@@ -215,8 +215,8 @@ void main() {
 
 
             final response = await databases.getCollection(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
             );
             expect(response, isA<models.Collection>());
 
@@ -242,9 +242,9 @@ void main() {
 
 
             final response = await databases.updateCollection(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
-                name: '[NAME]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.Collection>());
 
@@ -259,8 +259,8 @@ void main() {
 
 
             final response = await databases.deleteCollection(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
             );
         });
 
@@ -276,8 +276,8 @@ void main() {
 
 
             final response = await databases.listAttributes(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
             );
             expect(response, isA<models.AttributeList>());
 
@@ -298,8 +298,8 @@ void main() {
 
 
             final response = await databases.createBooleanAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
             );
@@ -322,8 +322,8 @@ void main() {
 
 
             final response = await databases.updateBooleanAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
                 xdefault: true,
@@ -348,8 +348,8 @@ void main() {
 
 
             final response = await databases.createDatetimeAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
             );
@@ -373,8 +373,8 @@ void main() {
 
 
             final response = await databases.updateDatetimeAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
                 xdefault: '',
@@ -399,8 +399,8 @@ void main() {
 
 
             final response = await databases.createEmailAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
             );
@@ -424,8 +424,8 @@ void main() {
 
 
             final response = await databases.updateEmailAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
                 xdefault: 'email@example.com',
@@ -451,8 +451,8 @@ void main() {
 
 
             final response = await databases.createEnumAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 elements: [],
                 xrequired: true,
@@ -478,12 +478,12 @@ void main() {
 
 
             final response = await databases.updateEnumAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 elements: [],
                 xrequired: true,
-                xdefault: '[DEFAULT]',
+                xdefault: '<DEFAULT>',
             );
             expect(response, isA<models.AttributeEnum>());
 
@@ -504,8 +504,8 @@ void main() {
 
 
             final response = await databases.createFloatAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
             );
@@ -528,8 +528,8 @@ void main() {
 
 
             final response = await databases.updateFloatAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
                 min: 1.0,
@@ -555,8 +555,8 @@ void main() {
 
 
             final response = await databases.createIntegerAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
             );
@@ -579,8 +579,8 @@ void main() {
 
 
             final response = await databases.updateIntegerAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
                 min: 1,
@@ -607,8 +607,8 @@ void main() {
 
 
             final response = await databases.createIpAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
             );
@@ -632,8 +632,8 @@ void main() {
 
 
             final response = await databases.updateIpAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
                 xdefault: '',
@@ -663,9 +663,9 @@ void main() {
 
 
             final response = await databases.createRelationshipAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
-                relatedCollectionId: '[RELATED_COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+                relatedCollectionId: '<RELATED_COLLECTION_ID>',
                 type: 'oneToOne',
             );
             expect(response, isA<models.AttributeRelationship>());
@@ -688,8 +688,8 @@ void main() {
 
 
             final response = await databases.createStringAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 size: 1,
                 xrequired: true,
@@ -714,11 +714,11 @@ void main() {
 
 
             final response = await databases.updateStringAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
-                xdefault: '[DEFAULT]',
+                xdefault: '<DEFAULT>',
             );
             expect(response, isA<models.AttributeString>());
 
@@ -740,8 +740,8 @@ void main() {
 
 
             final response = await databases.createUrlAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
             );
@@ -765,8 +765,8 @@ void main() {
 
 
             final response = await databases.updateUrlAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
                 xdefault: 'https://example.com',
@@ -784,8 +784,8 @@ void main() {
 
 
             final response = await databases.getAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
             );
         });
@@ -799,8 +799,8 @@ void main() {
 
 
             final response = await databases.deleteAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
             );
         });
@@ -826,8 +826,8 @@ void main() {
 
 
             final response = await databases.updateRelationshipAttribute(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
             );
             expect(response, isA<models.AttributeRelationship>());
@@ -846,8 +846,8 @@ void main() {
 
 
             final response = await databases.listDocuments(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
             );
             expect(response, isA<models.DocumentList>());
 
@@ -869,9 +869,9 @@ void main() {
 
 
             final response = await databases.createDocument(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
-                documentId: '[DOCUMENT_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+                documentId: '<DOCUMENT_ID>',
                 data: {},
             );
             expect(response, isA<models.Document>());
@@ -894,9 +894,9 @@ void main() {
 
 
             final response = await databases.getDocument(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
-                documentId: '[DOCUMENT_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+                documentId: '<DOCUMENT_ID>',
             );
             expect(response, isA<models.Document>());
 
@@ -918,9 +918,9 @@ void main() {
 
 
             final response = await databases.updateDocument(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
-                documentId: '[DOCUMENT_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+                documentId: '<DOCUMENT_ID>',
             );
             expect(response, isA<models.Document>());
 
@@ -935,9 +935,9 @@ void main() {
 
 
             final response = await databases.deleteDocument(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
-                documentId: '[DOCUMENT_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+                documentId: '<DOCUMENT_ID>',
             );
         });
 
@@ -953,8 +953,8 @@ void main() {
 
 
             final response = await databases.listIndexes(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
             );
             expect(response, isA<models.IndexList>());
 
@@ -975,8 +975,8 @@ void main() {
 
 
             final response = await databases.createIndex(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
                 type: 'key',
                 attributes: [],
@@ -1000,8 +1000,8 @@ void main() {
 
 
             final response = await databases.getIndex(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
             );
             expect(response, isA<models.Index>());
@@ -1017,8 +1017,8 @@ void main() {
 
 
             final response = await databases.deleteIndex(
-                databaseId: '[DATABASE_ID]',
-                collectionId: '[COLLECTION_ID]',
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
                 key: '',
             );
         });

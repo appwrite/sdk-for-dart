@@ -98,7 +98,7 @@ void main() {
 
 
             final response = await users.create(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.User>());
 
@@ -131,7 +131,7 @@ void main() {
 
 
             final response = await users.createArgon2User(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 email: 'email@example.com',
                 password: 'password',
             );
@@ -166,7 +166,7 @@ void main() {
 
 
             final response = await users.createBcryptUser(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 email: 'email@example.com',
                 password: 'password',
             );
@@ -200,7 +200,7 @@ void main() {
 
 
             final response = await users.deleteIdentity(
-                identityId: '[IDENTITY_ID]',
+                identityId: '<IDENTITY_ID>',
             );
         });
 
@@ -231,7 +231,7 @@ void main() {
 
 
             final response = await users.createMD5User(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 email: 'email@example.com',
                 password: 'password',
             );
@@ -266,7 +266,7 @@ void main() {
 
 
             final response = await users.createPHPassUser(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 email: 'email@example.com',
                 password: 'password',
             );
@@ -301,10 +301,10 @@ void main() {
 
 
             final response = await users.createScryptUser(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 email: 'email@example.com',
                 password: 'password',
-                passwordSalt: '[PASSWORD_SALT]',
+                passwordSalt: '<PASSWORD_SALT>',
                 passwordCpu: 1,
                 passwordMemory: 1,
                 passwordParallel: 1,
@@ -341,12 +341,12 @@ void main() {
 
 
             final response = await users.createScryptModifiedUser(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 email: 'email@example.com',
                 password: 'password',
-                passwordSalt: '[PASSWORD_SALT]',
-                passwordSaltSeparator: '[PASSWORD_SALT_SEPARATOR]',
-                passwordSignerKey: '[PASSWORD_SIGNER_KEY]',
+                passwordSalt: '<PASSWORD_SALT>',
+                passwordSaltSeparator: '<PASSWORD_SALT_SEPARATOR>',
+                passwordSignerKey: '<PASSWORD_SIGNER_KEY>',
             );
             expect(response, isA<models.User>());
 
@@ -379,7 +379,7 @@ void main() {
 
 
             final response = await users.createSHAUser(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 email: 'email@example.com',
                 password: 'password',
             );
@@ -414,7 +414,7 @@ void main() {
 
 
             final response = await users.get(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.User>());
 
@@ -429,7 +429,7 @@ void main() {
 
 
             final response = await users.delete(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
         });
 
@@ -460,7 +460,7 @@ void main() {
 
 
             final response = await users.updateEmail(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 email: 'email@example.com',
             );
             expect(response, isA<models.User>());
@@ -494,7 +494,7 @@ void main() {
 
 
             final response = await users.updateLabels(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 labels: [],
             );
             expect(response, isA<models.User>());
@@ -513,7 +513,7 @@ void main() {
 
 
             final response = await users.listLogs(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.LogList>());
 
@@ -531,7 +531,7 @@ void main() {
 
 
             final response = await users.listMemberships(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.MembershipList>());
 
@@ -564,7 +564,7 @@ void main() {
 
 
             final response = await users.updateMfa(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 mfa: true,
             );
             expect(response, isA<models.User>());
@@ -584,7 +584,7 @@ void main() {
 
 
             final response = await users.listFactors(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.MfaFactors>());
 
@@ -617,9 +617,9 @@ void main() {
 
 
             final response = await users.deleteAuthenticator(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 type: 'totp',
-                otp: '[OTP]',
+                otp: '<OTP>',
             );
             expect(response, isA<models.User>());
 
@@ -652,8 +652,8 @@ void main() {
 
 
             final response = await users.updateName(
-                userId: '[USER_ID]',
-                name: '[NAME]',
+                userId: '<USER_ID>',
+                name: '<NAME>',
             );
             expect(response, isA<models.User>());
 
@@ -686,7 +686,7 @@ void main() {
 
 
             final response = await users.updatePassword(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 password: '',
             );
             expect(response, isA<models.User>());
@@ -720,7 +720,7 @@ void main() {
 
 
             final response = await users.updatePhone(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 number: '+12065550100',
             );
             expect(response, isA<models.User>());
@@ -737,7 +737,7 @@ void main() {
 
 
             final response = await users.getPrefs(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.Preferences>());
 
@@ -753,7 +753,7 @@ void main() {
 
 
             final response = await users.updatePrefs(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 prefs: {},
             );
             expect(response, isA<models.Preferences>());
@@ -772,7 +772,7 @@ void main() {
 
 
             final response = await users.listSessions(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.SessionList>());
 
@@ -815,7 +815,7 @@ void main() {
 
 
             final response = await users.createSession(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.Session>());
 
@@ -830,7 +830,7 @@ void main() {
 
 
             final response = await users.deleteSessions(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
         });
 
@@ -843,8 +843,8 @@ void main() {
 
 
             final response = await users.deleteSession(
-                userId: '[USER_ID]',
-                sessionId: '[SESSION_ID]',
+                userId: '<USER_ID>',
+                sessionId: '<SESSION_ID>',
             );
         });
 
@@ -875,7 +875,7 @@ void main() {
 
 
             final response = await users.updateStatus(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 status: true,
             );
             expect(response, isA<models.User>());
@@ -894,7 +894,7 @@ void main() {
 
 
             final response = await users.listTargets(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.TargetList>());
 
@@ -917,10 +917,10 @@ void main() {
 
 
             final response = await users.createTarget(
-                userId: '[USER_ID]',
-                targetId: '[TARGET_ID]',
+                userId: '<USER_ID>',
+                targetId: '<TARGET_ID>',
                 providerType: 'email',
-                identifier: '[IDENTIFIER]',
+                identifier: '<IDENTIFIER>',
             );
             expect(response, isA<models.Target>());
 
@@ -943,8 +943,8 @@ void main() {
 
 
             final response = await users.getTarget(
-                userId: '[USER_ID]',
-                targetId: '[TARGET_ID]',
+                userId: '<USER_ID>',
+                targetId: '<TARGET_ID>',
             );
             expect(response, isA<models.Target>());
 
@@ -967,8 +967,8 @@ void main() {
 
 
             final response = await users.updateTarget(
-                userId: '[USER_ID]',
-                targetId: '[TARGET_ID]',
+                userId: '<USER_ID>',
+                targetId: '<TARGET_ID>',
             );
             expect(response, isA<models.Target>());
 
@@ -983,8 +983,8 @@ void main() {
 
 
             final response = await users.deleteTarget(
-                userId: '[USER_ID]',
-                targetId: '[TARGET_ID]',
+                userId: '<USER_ID>',
+                targetId: '<TARGET_ID>',
             );
         });
 
@@ -1004,7 +1004,7 @@ void main() {
 
 
             final response = await users.createToken(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
             );
             expect(response, isA<models.Token>());
 
@@ -1037,7 +1037,7 @@ void main() {
 
 
             final response = await users.updateEmailVerification(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 emailVerification: true,
             );
             expect(response, isA<models.User>());
@@ -1071,7 +1071,7 @@ void main() {
 
 
             final response = await users.updatePhoneVerification(
-                userId: '[USER_ID]',
+                userId: '<USER_ID>',
                 phoneVerification: true,
             );
             expect(response, isA<models.User>());
