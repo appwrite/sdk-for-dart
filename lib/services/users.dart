@@ -462,6 +462,7 @@ class Users extends Service {
 
     /// Update MFA
     ///
+    /// Enable or disable MFA on a user account.
     Future<models.User> updateMfa({required String userId, required bool mfa}) async {
         final String apiPath = '/users/{userId}/mfa'.replaceAll('{userId}', userId);
 
@@ -484,6 +485,7 @@ class Users extends Service {
 
     /// List Factors
     ///
+    /// List the factors available on the account to be used as a MFA challange.
     Future<models.MfaFactors> listFactors({required String userId}) async {
         final String apiPath = '/users/{userId}/mfa/factors'.replaceAll('{userId}', userId);
 
@@ -505,13 +507,13 @@ class Users extends Service {
 
     /// Delete Authenticator
     ///
-    Future<models.User> deleteAuthenticator({required String userId, required enums.AuthenticatorType type, required String otp}) async {
+    /// Delete an authenticator app.
+    Future<models.User> deleteAuthenticator({required String userId, required enums.AuthenticatorType type}) async {
         final String apiPath = '/users/{userId}/mfa/{type}'.replaceAll('{userId}', userId).replaceAll('{type}', type.value);
 
         final Map<String, dynamic> apiParams = {
             
-            'otp': otp,
-
+            
         };
 
         final Map<String, String> apiHeaders = {
@@ -760,6 +762,7 @@ class Users extends Service {
 
     /// List User Targets
     ///
+    /// List the messaging targets that are associated with a user.
     Future<models.TargetList> listTargets({required String userId, List<String>? queries}) async {
         final String apiPath = '/users/{userId}/targets'.replaceAll('{userId}', userId);
 
@@ -782,6 +785,7 @@ class Users extends Service {
 
     /// Create User Target
     ///
+    /// Create a messaging target.
     Future<models.Target> createTarget({required String userId, required String targetId, required enums.MessagingProviderType providerType, required String identifier, String? providerId, String? name}) async {
         final String apiPath = '/users/{userId}/targets'.replaceAll('{userId}', userId);
 
@@ -808,6 +812,7 @@ class Users extends Service {
 
     /// Get User Target
     ///
+    /// Get a user's push notification target by ID.
     Future<models.Target> getTarget({required String userId, required String targetId}) async {
         final String apiPath = '/users/{userId}/targets/{targetId}'.replaceAll('{userId}', userId).replaceAll('{targetId}', targetId);
 
@@ -829,6 +834,7 @@ class Users extends Service {
 
     /// Update User target
     ///
+    /// Update a messaging target.
     Future<models.Target> updateTarget({required String userId, required String targetId, String? identifier, String? providerId, String? name}) async {
         final String apiPath = '/users/{userId}/targets/{targetId}'.replaceAll('{userId}', userId).replaceAll('{targetId}', targetId);
 
@@ -853,6 +859,7 @@ class Users extends Service {
 
     /// Delete user target
     ///
+    /// Delete a messaging target.
     Future deleteTarget({required String userId, required String targetId}) async {
         final String apiPath = '/users/{userId}/targets/{targetId}'.replaceAll('{userId}', userId).replaceAll('{targetId}', targetId);
 

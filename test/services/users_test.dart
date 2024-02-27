@@ -619,7 +619,6 @@ void main() {
             final response = await users.deleteAuthenticator(
                 userId: '<USER_ID>',
                 type: 'totp',
-                otp: '<OTP>',
             );
             expect(response, isA<models.User>());
 

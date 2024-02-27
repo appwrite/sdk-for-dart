@@ -286,6 +286,8 @@ class Health extends Service {
 
     /// Get functions queue
     ///
+    /// Get the number of function executions that are waiting to be processed in
+    /// the Appwrite internal queue server.
     Future<models.HealthQueue> getQueueFunctions({int? threshold}) async {
         final String apiPath = '/health/queue/functions';
 

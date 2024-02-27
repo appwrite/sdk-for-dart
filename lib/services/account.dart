@@ -186,6 +186,7 @@ class Account extends Service {
 
     /// Update MFA
     ///
+    /// Enable or disable MFA on an account.
     Future<models.User> updateMFA({required bool mfa}) async {
         final String apiPath = '/account/mfa';
 
@@ -230,6 +231,7 @@ class Account extends Service {
 
     /// Create MFA Challenge (confirmation)
     ///
+    /// Complete the MFA challenge by providing the one-time password.
     Future updateChallenge({required String challengeId, required String otp}) async {
         final String apiPath = '/account/mfa/challenge';
 
@@ -253,6 +255,7 @@ class Account extends Service {
 
     /// List Factors
     ///
+    /// List the factors available on the account to be used as a MFA challange.
     Future<models.MfaFactors> listFactors() async {
         final String apiPath = '/account/mfa/factors';
 
@@ -274,6 +277,10 @@ class Account extends Service {
 
     /// Add Authenticator
     ///
+    /// Add an authenticator app to be used as an MFA factor. Verify the
+    /// authenticator using the [verify
+    /// authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
+    /// method.
     Future<models.MfaType> addAuthenticator({required enums.AuthenticatorType type}) async {
         final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type.value);
 
@@ -295,6 +302,9 @@ class Account extends Service {
 
     /// Verify Authenticator
     ///
+    /// Verify an authenticator app after adding it using the [add
+    /// authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
+    /// method.
     Future<models.User> verifyAuthenticator({required enums.AuthenticatorType type, required String otp}) async {
         final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type.value);
 
@@ -317,6 +327,7 @@ class Account extends Service {
 
     /// Delete Authenticator
     ///
+    /// Delete an authenticator for a user by ID.
     Future<models.User> deleteAuthenticator({required enums.AuthenticatorType type, required String otp}) async {
         final String apiPath = '/account/mfa/{type}'.replaceAll('{type}', type.value);
 
@@ -629,7 +640,7 @@ class Account extends Service {
 
     }
 
-    /// Create session (deprecated)
+    /// Update magic URL session
     ///
     /// Use this endpoint to create a session from token. Provide the **userId**
     /// and **secret** parameters from the successful response of authentication
@@ -655,57 +666,30 @@ class Account extends Service {
 
     }
 
-    /// Create OAuth2 session
+    /// Update phone session
     ///
-    /// Allow the user to login to their account using the OAuth2 provider of their
-    /// choice. Each OAuth2 provider should be enabled from the Appwrite console
-    /// first. Use the success and failure arguments to provide a redirect URL's
-    /// back to your app when login is completed.
-    /// 
-    /// If there is already an active session, the new session will be attached to
-    /// the logged-in account. If there are no active sessions, the server will
-    /// attempt to look for a user with the same email address as the email
-    /// received from the OAuth2 provider and attach the new session to the
-    /// existing user. If no matching user is found - the server will create a new
-    /// user.
-    /// 
-    /// A user is limited to 10 active sessions at a time by default. [Learn more
-    /// about session
-    /// limits](https://appwrite.io/docs/authentication-security#limits).
-    /// 
-    Future createOAuth2Session({required enums.OAuthProvider provider, String? success, String? failure, List<String>? scopes}) async {
-        final String apiPath = '/account/sessions/oauth2/{provider}'.replaceAll('{provider}', provider.value);
+    /// Use this endpoint to create a session from token. Provide the **userId**
+    /// and **secret** parameters from the successful response of authentication
+    /// flows initiated by token creation. For example, magic URL and phone login.
+    Future<models.Session> updatePhoneSession({required String userId, required String secret}) async {
+        final String apiPath = '/account/sessions/phone';
 
-        final Map<String, dynamic> params = {
-            'success': success,
-'failure': failure,
-'scopes': scopes,
-
+        final Map<String, dynamic> apiParams = {
             
-            'project': client.config['project'],
+            'userId': userId,
+'secret': secret,
+
         };
 
-        final List query = [];
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
 
-        params.forEach((key, value) {
-          if (value is List) { 
-            for (var item in value) {
-              query.add(Uri.encodeComponent(key + '[]') + '=' + Uri.encodeComponent(item));
-            }
-          } else if(value != null) {
-              query.add(Uri.encodeComponent(key) + '=' + Uri.encodeComponent(value));
-          }
-        });
+        };
 
-        Uri endpoint = Uri.parse(client.endPoint);
-        Uri url = Uri(scheme: endpoint.scheme,
-          host: endpoint.host,
-          port: endpoint.port,
-          path: endpoint.path + apiPath,
-          query: query.join('&')
-        );
+        final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-      return client.webAuth(url);
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Create session
@@ -757,7 +741,7 @@ class Account extends Service {
 
     }
 
-    /// Update (or renew) a session
+    /// Update (or renew) session
     ///
     /// Extend session's expiry to increase it's lifespan. Extending a session is
     /// useful when session length is short such as 5 minutes.

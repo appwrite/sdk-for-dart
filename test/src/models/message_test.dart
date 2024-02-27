@@ -15,7 +15,7 @@ void main() {
         targets: [],
         deliveredTotal: 1,
         data: {},
-        status: 'Message status can be one of the following: processing, sent, cancelled, failed.',
+        status: 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
       );
 
       final map = model.toMap();
@@ -30,7 +30,7 @@ void main() {
       expect(result.targets, []);
       expect(result.deliveredTotal, 1);
       expect(result.data, {});
-      expect(result.status, 'Message status can be one of the following: processing, sent, cancelled, failed.');
+      expect(result.status, 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.');
     });
   });
 }

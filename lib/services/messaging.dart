@@ -29,10 +29,10 @@ class Messaging extends Service {
 
     }
 
-    /// Create an email
+    /// Create email
     ///
     /// Create a new email message.
-    Future<models.Message> createEmail({required String messageId, required String subject, required String content, List<String>? topics, List<String>? users, List<String>? targets, List<String>? cc, List<String>? bcc, List<String>? attachments, enums.MessageStatus? status, bool? html, String? scheduledAt}) async {
+    Future<models.Message> createEmail({required String messageId, required String subject, required String content, List<String>? topics, List<String>? users, List<String>? targets, List<String>? cc, List<String>? bcc, List<String>? attachments, bool? draft, bool? html, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/email';
 
         final Map<String, dynamic> apiParams = {
@@ -46,7 +46,7 @@ class Messaging extends Service {
 'cc': cc,
 'bcc': bcc,
 'attachments': attachments,
-'status': status,
+'draft': draft,
 'html': html,
 'scheduledAt': scheduledAt,
 
@@ -63,11 +63,11 @@ class Messaging extends Service {
 
     }
 
-    /// Update an email
+    /// Update email
     ///
     /// Update an email message by its unique ID.
     /// 
-    Future<models.Message> updateEmail({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? subject, String? content, enums.MessageStatus? status, bool? html, List<String>? cc, List<String>? bcc, String? scheduledAt}) async {
+    Future<models.Message> updateEmail({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? subject, String? content, bool? draft, bool? html, List<String>? cc, List<String>? bcc, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/email/{messageId}'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -77,7 +77,7 @@ class Messaging extends Service {
 'targets': targets,
 'subject': subject,
 'content': content,
-'status': status,
+'draft': draft,
 'html': html,
 'cc': cc,
 'bcc': bcc,
@@ -96,10 +96,10 @@ class Messaging extends Service {
 
     }
 
-    /// Create a push notification
+    /// Create push notification
     ///
     /// Create a new push notification.
-    Future<models.Message> createPush({required String messageId, required String title, required String body, List<String>? topics, List<String>? users, List<String>? targets, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, String? badge, enums.MessageStatus? status, String? scheduledAt}) async {
+    Future<models.Message> createPush({required String messageId, required String title, required String body, List<String>? topics, List<String>? users, List<String>? targets, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, String? badge, bool? draft, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/push';
 
         final Map<String, dynamic> apiParams = {
@@ -118,7 +118,7 @@ class Messaging extends Service {
 'color': color,
 'tag': tag,
 'badge': badge,
-'status': status,
+'draft': draft,
 'scheduledAt': scheduledAt,
 
         };
@@ -134,11 +134,11 @@ class Messaging extends Service {
 
     }
 
-    /// Update a push notification
+    /// Update push notification
     ///
     /// Update a push notification by its unique ID.
     /// 
-    Future<models.Message> updatePush({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? title, String? body, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, int? badge, enums.MessageStatus? status, String? scheduledAt}) async {
+    Future<models.Message> updatePush({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? title, String? body, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, int? badge, bool? draft, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/push/{messageId}'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -156,7 +156,7 @@ class Messaging extends Service {
 'color': color,
 'tag': tag,
 'badge': badge,
-'status': status,
+'draft': draft,
 'scheduledAt': scheduledAt,
 
         };
@@ -172,10 +172,10 @@ class Messaging extends Service {
 
     }
 
-    /// Create an SMS
+    /// Create SMS
     ///
     /// Create a new SMS message.
-    Future<models.Message> createSms({required String messageId, required String content, List<String>? topics, List<String>? users, List<String>? targets, enums.MessageStatus? status, String? scheduledAt}) async {
+    Future<models.Message> createSms({required String messageId, required String content, List<String>? topics, List<String>? users, List<String>? targets, bool? draft, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/sms';
 
         final Map<String, dynamic> apiParams = {
@@ -185,7 +185,7 @@ class Messaging extends Service {
 'topics': topics,
 'users': users,
 'targets': targets,
-'status': status,
+'draft': draft,
 'scheduledAt': scheduledAt,
 
         };
@@ -201,11 +201,11 @@ class Messaging extends Service {
 
     }
 
-    /// Update an SMS
+    /// Update SMS
     ///
     /// Update an email message by its unique ID.
     /// 
-    Future<models.Message> updateSms({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? content, enums.MessageStatus? status, String? scheduledAt}) async {
+    Future<models.Message> updateSms({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? content, bool? draft, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/sms/{messageId}'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -214,7 +214,7 @@ class Messaging extends Service {
 'users': users,
 'targets': targets,
 'content': content,
-'status': status,
+'draft': draft,
 'scheduledAt': scheduledAt,
 
         };
@@ -230,7 +230,7 @@ class Messaging extends Service {
 
     }
 
-    /// Get a message
+    /// Get message
     ///
     /// Get a message by its unique ID.
     /// 
@@ -253,8 +253,10 @@ class Messaging extends Service {
 
     }
 
-    /// Delete a message
+    /// Delete message
     ///
+    /// Delete a message. If the message is not a draft or scheduled, but has been
+    /// sent, this will not recall the message.
     Future delete({required String messageId}) async {
         final String apiPath = '/messaging/messages/{messageId}'.replaceAll('{messageId}', messageId);
 
@@ -574,6 +576,7 @@ class Messaging extends Service {
 
     /// Create Sendgrid provider
     ///
+    /// Create a new Sendgrid provider.
     Future<models.Provider> createSendgridProvider({required String providerId, required String name, String? apiKey, String? fromName, String? fromEmail, String? replyToName, String? replyToEmail, bool? enabled}) async {
         final String apiPath = '/messaging/providers/sendgrid';
 
@@ -1036,7 +1039,7 @@ class Messaging extends Service {
 
     }
 
-    /// Create a topic
+    /// Create topic
     ///
     /// Create a new topic.
     Future<models.Topic> createTopic({required String topicId, required String name, List<String>? subscribe}) async {
@@ -1061,7 +1064,7 @@ class Messaging extends Service {
 
     }
 
-    /// Get a topic
+    /// Get topic
     ///
     /// Get a topic by its unique ID.
     /// 
@@ -1084,7 +1087,7 @@ class Messaging extends Service {
 
     }
 
-    /// Update a topic
+    /// Update topic
     ///
     /// Update a topic by its unique ID.
     /// 
@@ -1109,7 +1112,7 @@ class Messaging extends Service {
 
     }
 
-    /// Delete a topic
+    /// Delete topic
     ///
     /// Delete a topic by its unique ID.
     Future deleteTopic({required String topicId}) async {
@@ -1178,7 +1181,7 @@ class Messaging extends Service {
 
     }
 
-    /// Create a subscriber
+    /// Create subscriber
     ///
     /// Create a new subscriber.
     Future<models.Subscriber> createSubscriber({required String topicId, required String subscriberId, required String targetId}) async {
@@ -1202,7 +1205,7 @@ class Messaging extends Service {
 
     }
 
-    /// Get a subscriber
+    /// Get subscriber
     ///
     /// Get a subscriber by its unique ID.
     /// 
@@ -1225,7 +1228,7 @@ class Messaging extends Service {
 
     }
 
-    /// Delete a subscriber
+    /// Delete subscriber
     ///
     /// Delete a subscriber by its unique ID.
     Future deleteSubscriber({required String topicId, required String subscriberId}) async {

@@ -3,8 +3,7 @@ part of dart_appwrite.enums;
 enum IndexType {
     key(value: 'key'),
     fulltext(value: 'fulltext'),
-    unique(value: 'unique'),
-    spatial(value: 'spatial');
+    unique(value: 'unique');
 
     const IndexType({
         required this.value

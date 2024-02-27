@@ -255,6 +255,7 @@ class Databases extends Service {
 
     /// List attributes
     ///
+    /// List attributes in the collection.
     Future<models.AttributeList> listAttributes({required String databaseId, required String collectionId, List<String>? queries}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -304,6 +305,8 @@ class Databases extends Service {
 
     /// Update boolean attribute
     ///
+    /// Update a boolean attribute. Changing the `default` value will not update
+    /// already existing documents.
     Future<models.AttributeBoolean> updateBooleanAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required bool? xdefault}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
@@ -327,6 +330,7 @@ class Databases extends Service {
 
     /// Create datetime attribute
     ///
+    /// Create a date time attribute according to the ISO 8601 standard.
     Future<models.AttributeDatetime> createDatetimeAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, bool? array}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -352,6 +356,8 @@ class Databases extends Service {
 
     /// Update dateTime attribute
     ///
+    /// Update a date time attribute. Changing the `default` value will not update
+    /// already existing documents.
     Future<models.AttributeDatetime> updateDatetimeAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, required String? xdefault}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
@@ -428,6 +434,9 @@ class Databases extends Service {
 
     /// Create enum attribute
     ///
+    /// Create an enumeration attribute. The `elements` param acts as a white-list
+    /// of accepted values for this attribute. 
+    /// 
     Future<models.AttributeEnum> createEnumAttribute({required String databaseId, required String collectionId, required String key, required List<String> elements, required bool xrequired, String? xdefault, bool? array}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -788,6 +797,7 @@ class Databases extends Service {
 
     /// Get attribute
     ///
+    /// Get attribute by ID.
     Future getAttribute({required String databaseId, required String collectionId, required String key}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
@@ -809,6 +819,7 @@ class Databases extends Service {
 
     /// Delete attribute
     ///
+    /// Deletes an attribute.
     Future deleteAttribute({required String databaseId, required String collectionId, required String key}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
@@ -978,6 +989,7 @@ class Databases extends Service {
 
     /// List indexes
     ///
+    /// List indexes in the collection.
     Future<models.IndexList> listIndexes({required String databaseId, required String collectionId, List<String>? queries}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -1000,6 +1012,9 @@ class Databases extends Service {
 
     /// Create index
     ///
+    /// Creates an index on the attributes listed. Your index should include all
+    /// the attributes you will query in a single request.
+    /// Attributes can be `key`, `fulltext`, and `unique`.
     Future<models.Index> createIndex({required String databaseId, required String collectionId, required String key, required enums.IndexType type, required List<String> attributes, List<String>? orders}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -1025,6 +1040,7 @@ class Databases extends Service {
 
     /// Get index
     ///
+    /// Get index by ID.
     Future<models.Index> getIndex({required String databaseId, required String collectionId, required String key}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
@@ -1046,6 +1062,7 @@ class Databases extends Service {
 
     /// Delete index
     ///
+    /// Delete an index.
     Future deleteIndex({required String databaseId, required String collectionId, required String key}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
