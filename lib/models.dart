@@ -82,6 +82,7 @@ part 'src/models/health_certificate.dart';
 part 'src/models/health_time.dart';
 part 'src/models/headers.dart';
 part 'src/models/mfa_challenge.dart';
+part 'src/models/mfa_recovery_codes.dart';
 part 'src/models/mfa_type.dart';
 part 'src/models/mfa_factors.dart';
 part 'src/models/provider.dart';

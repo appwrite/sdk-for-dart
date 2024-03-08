@@ -7,7 +7,7 @@ Client client = Client()
 
 Account account = Account(client);
 
-await account.deleteAuthenticator(
-    type: AuthenticatorType.totp,
+ result = await account.updateMfaChallenge(
+    challengeId: '<CHALLENGE_ID>',
     otp: '<OTP>',
 );

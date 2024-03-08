@@ -343,6 +343,38 @@ void main() {
 
         });
 
+        test('test method getQueueUsage()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueUsage(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
+        test('test method getQueueUsage()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueUsage(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
         test('test method getQueueWebhooks()', () async {
             final Map<String, dynamic> data = {
                 'size': 8,};
@@ -356,6 +388,24 @@ void main() {
             final response = await health.getQueueWebhooks(
             );
             expect(response, isA<models.HealthQueue>());
+
+        });
+
+        test('test method getStorage()', () async {
+            final Map<String, dynamic> data = {
+                'name': 'database',
+                'ping': 128,
+                'status': 'pass',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getStorage(
+            );
+            expect(response, isA<models.HealthStatus>());
 
         });
 

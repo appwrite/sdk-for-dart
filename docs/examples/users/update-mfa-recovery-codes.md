@@ -7,7 +7,6 @@ Client client = Client()
 
 Users users = Users(client);
 
-await users.deleteAuthenticator(
+MfaRecoveryCodes result = await users.updateMfaRecoveryCodes(
     userId: '<USER_ID>',
-    type: AuthenticatorType.totp,
 );

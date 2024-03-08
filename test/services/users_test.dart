@@ -86,7 +86,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -119,7 +118,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -154,7 +152,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -219,7 +216,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -254,7 +250,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -289,7 +284,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -329,7 +323,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -367,7 +360,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -402,7 +394,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -448,7 +439,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -482,7 +472,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -552,7 +541,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -571,26 +559,7 @@ void main() {
 
         });
 
-        test('test method listFactors()', () async {
-            final Map<String, dynamic> data = {
-                'totp': true,
-                'phone': true,
-                'email': true,};
-
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await users.listFactors(
-                userId: '<USER_ID>',
-            );
-            expect(response, isA<models.MfaFactors>());
-
-        });
-
-        test('test method deleteAuthenticator()', () async {
+        test('test method deleteMfaAuthenticator()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -605,7 +574,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -616,11 +584,81 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await users.deleteAuthenticator(
+            final response = await users.deleteMfaAuthenticator(
                 userId: '<USER_ID>',
                 type: 'totp',
             );
             expect(response, isA<models.User>());
+
+        });
+
+        test('test method listMfaFactors()', () async {
+            final Map<String, dynamic> data = {
+                'totp': true,
+                'phone': true,
+                'email': true,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.listMfaFactors(
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.MfaFactors>());
+
+        });
+
+        test('test method getMfaRecoveryCodes()', () async {
+            final Map<String, dynamic> data = {
+                'recoveryCodes': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.getMfaRecoveryCodes(
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.MfaRecoveryCodes>());
+
+        });
+
+        test('test method updateMfaRecoveryCodes()', () async {
+            final Map<String, dynamic> data = {
+                'recoveryCodes': [],};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.updateMfaRecoveryCodes(
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.MfaRecoveryCodes>());
+
+        });
+
+        test('test method createMfaRecoveryCodes()', () async {
+            final Map<String, dynamic> data = {
+                'recoveryCodes': [],};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.createMfaRecoveryCodes(
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.MfaRecoveryCodes>());
 
         });
 
@@ -639,7 +677,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -673,7 +710,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -707,7 +743,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -805,7 +840,8 @@ void main() {
                 'countryName': 'United States',
                 'current': true,
                 'factors': [],
-                'secret': '5e5bb8c16897e',};
+                'secret': '5e5bb8c16897e',
+                'mfaUpdatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -862,7 +898,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -1024,7 +1059,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};
@@ -1058,7 +1092,6 @@ void main() {
                 'emailVerification': true,
                 'phoneVerification': true,
                 'mfa': true,
-                'totp': true,
                 'prefs': <String, dynamic>{},
                 'targets': [],
                 'accessedAt': '2020-10-15T06:38:00.000+00:00',};

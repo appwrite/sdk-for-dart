@@ -483,10 +483,32 @@ class Users extends Service {
 
     }
 
+    /// Delete Authenticator
+    ///
+    /// Delete an authenticator app.
+    Future<models.User> deleteMfaAuthenticator({required String userId, required enums.AuthenticatorType type}) async {
+        final String apiPath = '/users/{userId}/mfa/authenticators/{type}'.replaceAll('{userId}', userId).replaceAll('{type}', type.value);
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.User.fromMap(res.data);
+
+    }
+
     /// List Factors
     ///
     /// List the factors available on the account to be used as a MFA challange.
-    Future<models.MfaFactors> listFactors({required String userId}) async {
+    Future<models.MfaFactors> listMfaFactors({required String userId}) async {
         final String apiPath = '/users/{userId}/mfa/factors'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> apiParams = {
@@ -505,11 +527,14 @@ class Users extends Service {
 
     }
 
-    /// Delete Authenticator
+    /// Get MFA Recovery Codes
     ///
-    /// Delete an authenticator app.
-    Future<models.User> deleteAuthenticator({required String userId, required enums.AuthenticatorType type}) async {
-        final String apiPath = '/users/{userId}/mfa/{type}'.replaceAll('{userId}', userId).replaceAll('{type}', type.value);
+    /// Get recovery codes that can be used as backup for MFA flow by User ID.
+    /// Before getting codes, they must be generated using
+    /// [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+    /// method.
+    Future<models.MfaRecoveryCodes> getMfaRecoveryCodes({required String userId}) async {
+        final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> apiParams = {
             
@@ -521,9 +546,59 @@ class Users extends Service {
 
         };
 
-        final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return models.User.fromMap(res.data);
+        return models.MfaRecoveryCodes.fromMap(res.data);
+
+    }
+
+    /// Regenerate MFA Recovery Codes
+    ///
+    /// Regenerate recovery codes that can be used as backup for MFA flow by User
+    /// ID. Before regenerating codes, they must be first generated using
+    /// [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+    /// method.
+    Future<models.MfaRecoveryCodes> updateMfaRecoveryCodes({required String userId}) async {
+        final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.MfaRecoveryCodes.fromMap(res.data);
+
+    }
+
+    /// Create MFA Recovery Codes
+    ///
+    /// Generate recovery codes used as backup for MFA flow for User ID. Recovery
+    /// codes can be used as a MFA verification type in
+    /// [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+    /// method by client SDK.
+    Future<models.MfaRecoveryCodes> createMfaRecoveryCodes({required String userId}) async {
+        final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll('{userId}', userId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.MfaRecoveryCodes.fromMap(res.data);
 
     }
 

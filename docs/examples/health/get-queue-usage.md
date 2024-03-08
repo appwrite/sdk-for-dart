@@ -3,11 +3,10 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 Client client = Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setSession(''); // The user session to authenticate with
+    .setKey('919c2d18fb5d4...a2ae413da83346ad2'); // Your secret API key
 
-Account account = Account(client);
+Health health = Health(client);
 
-User result = await account.verifyAuthenticator(
-    type: AuthenticatorType.totp,
-    otp: '<OTP>',
+HealthQueue result = await health.getQueueUsage(
+    threshold: 0, // (optional)
 );

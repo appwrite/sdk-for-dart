@@ -404,6 +404,54 @@ class Health extends Service {
 
     }
 
+    /// Get usage queue
+    ///
+    /// Get the number of metrics that are waiting to be processed in the Appwrite
+    /// internal queue server.
+    Future<models.HealthQueue> getQueueUsage({int? threshold}) async {
+        final String apiPath = '/health/queue/usage';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get usage dump queue
+    ///
+    /// Get the number of projects containing metrics that are waiting to be
+    /// processed in the Appwrite internal queue server.
+    Future<models.HealthQueue> getQueueUsage({int? threshold}) async {
+        final String apiPath = '/health/queue/usage-dump';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
     /// Get webhooks queue
     ///
     /// Get the number of webhooks that are waiting to be processed in the Appwrite
@@ -425,6 +473,28 @@ class Health extends Service {
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
         return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get storage
+    ///
+    /// Check the Appwrite storage device is up and connection is successful.
+    Future<models.HealthStatus> getStorage() async {
+        final String apiPath = '/health/storage';
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthStatus.fromMap(res.data);
 
     }
 
