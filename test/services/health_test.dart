@@ -359,7 +359,7 @@ void main() {
 
         });
 
-        test('test method getQueueUsage()', () async {
+        test('test method getQueueUsageDump()', () async {
             final Map<String, dynamic> data = {
                 'size': 8,};
 
@@ -369,7 +369,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await health.getQueueUsage(
+            final response = await health.getQueueUsageDump(
             );
             expect(response, isA<models.HealthQueue>());
 

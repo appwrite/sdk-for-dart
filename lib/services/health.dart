@@ -432,7 +432,7 @@ class Health extends Service {
     ///
     /// Get the number of projects containing metrics that are waiting to be
     /// processed in the Appwrite internal queue server.
-    Future<models.HealthQueue> getQueueUsage({int? threshold}) async {
+    Future<models.HealthQueue> getQueueUsageDump({int? threshold}) async {
         final String apiPath = '/health/queue/usage-dump';
 
         final Map<String, dynamic> apiParams = {
