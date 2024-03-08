@@ -1,24 +1,21 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
 
-void main() { // Init SDK
-  Client client = Client();
-  Storage storage = Storage(client);
-
-  client
+Client client = Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
-  ;
+    .setKey('919c2d18fb5d4...a2ae413da83346ad2'); // Your secret API key
 
-  Future result = storage.createBucket(
-    bucketId: '[BUCKET_ID]',
-    name: '[NAME]',
-  );
+Storage storage = Storage(client);
 
-  result
-    .then((response) {
-      print(response);
-    }).catchError((error) {
-      print(error.response);
-  });
-}
+Bucket result = await storage.createBucket(
+    bucketId: '<BUCKET_ID>',
+    name: '<NAME>',
+    permissions: ["read("any")"], // (optional)
+    fileSecurity: false, // (optional)
+    enabled: false, // (optional)
+    maximumFileSize: 1, // (optional)
+    allowedFileExtensions: [], // (optional)
+    compression: .none, // (optional)
+    encryption: false, // (optional)
+    antivirus: false, // (optional)
+);

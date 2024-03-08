@@ -1,24 +1,24 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
 
-void main() { // Init SDK
-  Client client = Client();
-  Storage storage = Storage(client);
-
-  client
+Client client = Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
-  ;
+    .setSession(''); // The user session to authenticate with
 
-  Future result = storage.getFilePreview(
-    bucketId: '[BUCKET_ID]',
-    fileId: '[FILE_ID]',
-  );
+Storage storage = Storage(client);
 
-  result
-    .then((response) {
-      print(response);
-    }).catchError((error) {
-      print(error.response);
-  });
-}
+UInt8List result = await storage.getFilePreview(
+    bucketId: '<BUCKET_ID>',
+    fileId: '<FILE_ID>',
+    width: 0, // (optional)
+    height: 0, // (optional)
+    gravity: ImageGravity.center, // (optional)
+    quality: 0, // (optional)
+    borderWidth: 0, // (optional)
+    borderColor: '', // (optional)
+    borderRadius: 0, // (optional)
+    opacity: 0, // (optional)
+    rotation: -360, // (optional)
+    background: '', // (optional)
+    output: ImageFormat.jpg, // (optional)
+);

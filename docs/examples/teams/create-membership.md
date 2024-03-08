@@ -1,24 +1,18 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
 
-void main() { // Init SDK
-  Client client = Client();
-  Teams teams = Teams(client);
-
-  client
+Client client = Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
-  ;
+    .setSession(''); // The user session to authenticate with
 
-  Future result = teams.createMembership(
-    teamId: '[TEAM_ID]',
+Teams teams = Teams(client);
+
+Membership result = await teams.createMembership(
+    teamId: '<TEAM_ID>',
     roles: [],
-  );
-
-  result
-    .then((response) {
-      print(response);
-    }).catchError((error) {
-      print(error.response);
-  });
-}
+    email: 'email@example.com', // (optional)
+    userId: '<USER_ID>', // (optional)
+    phone: '+12065550100', // (optional)
+    url: 'https://example.com', // (optional)
+    name: '<NAME>', // (optional)
+);

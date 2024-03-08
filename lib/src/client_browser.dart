@@ -24,7 +24,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
   late BrowserClient _httpClient;
 
   ClientBrowser({
-    String endPoint = 'https://HOSTNAME/v1',
+    String endPoint = 'https://cloud.appwrite.io/v1',
     bool selfSigned = false,
   }) : _endPoint = endPoint {
     _httpClient = BrowserClient();
@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '10.1.1',
-      'X-Appwrite-Response-Format' : '1.4.0',
+      'x-sdk-version': '11.0.0',
+      'X-Appwrite-Response-Format' : '1.5.0',
     };
 
     config = {};
@@ -73,6 +73,20 @@ class ClientBrowser extends ClientBase with ClientMixin {
         addHeader('X-Appwrite-Locale', value);
         return this;
     }
+    /// The user session to authenticate with
+    @override
+    ClientBrowser setSession(value) {
+        config['session'] = value;
+        addHeader('X-Appwrite-Session', value);
+        return this;
+    }
+    /// The user agent string of the client that made the request
+    @override
+    ClientBrowser setForwardedUserAgent(value) {
+        config['forwardedUserAgent'] = value;
+        addHeader('X-Forwarded-User-Agent', value);
+        return this;
+    }
 
   @override
   ClientBrowser setSelfSigned({bool status = true}) {
@@ -89,6 +103,14 @@ class ClientBrowser extends ClientBase with ClientMixin {
   ClientBrowser addHeader(String key, String value) {
     _headers![key] = value;
     return this;
+  }
+
+  @override
+  Future<String?> webAuth(Uri url) async {
+    final request = http.Request('GET', url);
+    request.followRedirects = false;
+    final response = await _httpClient.send(request);
+    return response.headers['location'];
   }
 
   @override

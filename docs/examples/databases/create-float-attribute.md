@@ -1,26 +1,19 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
 
-void main() { // Init SDK
-  Client client = Client();
-  Databases databases = Databases(client);
-
-  client
+Client client = Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
-  ;
+    .setKey('919c2d18fb5d4...a2ae413da83346ad2'); // Your secret API key
 
-  Future result = databases.createFloatAttribute(
-    databaseId: '[DATABASE_ID]',
-    collectionId: '[COLLECTION_ID]',
+Databases databases = Databases(client);
+
+AttributeFloat result = await databases.createFloatAttribute(
+    databaseId: '<DATABASE_ID>',
+    collectionId: '<COLLECTION_ID>',
     key: '',
     xrequired: false,
-  );
-
-  result
-    .then((response) {
-      print(response);
-    }).catchError((error) {
-      print(error.response);
-  });
-}
+    min: 0, // (optional)
+    max: 0, // (optional)
+    xdefault: 0, // (optional)
+    array: false, // (optional)
+);

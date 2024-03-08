@@ -19,9 +19,12 @@ abstract class Client {
 
   /// Initializes a [Client].
   factory Client(
-          {String endPoint = 'https://HOSTNAME/v1',
+          {String endPoint = 'https://cloud.appwrite.io/v1',
           bool selfSigned = false}) =>
       createClient(endPoint: endPoint, selfSigned: selfSigned);
+
+  /// Handle OAuth2 session creation.
+  Future<String?> webAuth(Uri url);
 
   /// Set self signed to [status].
   /// 
@@ -50,6 +53,16 @@ abstract class Client {
 
   /// Set Locale
   Client setLocale(value);
+
+  /// Set Session
+  ///
+  /// The user session to authenticate with
+  Client setSession(value);
+
+  /// Set ForwardedUserAgent
+  ///
+  /// The user agent string of the client that made the request
+  Client setForwardedUserAgent(value);
 
   /// Add headers that should be sent with all API calls.
   Client addHeader(String key, String value);

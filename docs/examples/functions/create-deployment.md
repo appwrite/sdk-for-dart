@@ -1,25 +1,16 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
 
-void main() { // Init SDK
-  Client client = Client();
-  Functions functions = Functions(client);
-
-  client
+Client client = Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setKey('919c2d18fb5d4...a2ae413da83346ad2') // Your secret API key
-  ;
+    .setKey('919c2d18fb5d4...a2ae413da83346ad2'); // Your secret API key
 
-  Future result = functions.createDeployment(
-    functionId: '[FUNCTION_ID]',
+Functions functions = Functions(client);
+
+Deployment result = await functions.createDeployment(
+    functionId: '<FUNCTION_ID>',
     code: InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg'),
     activate: false,
-  );
-
-  result
-    .then((response) {
-      print(response);
-    }).catchError((error) {
-      print(error.response);
-  });
-}
+    entrypoint: '<ENTRYPOINT>', // (optional)
+    commands: '<COMMANDS>', // (optional)
+);

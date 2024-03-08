@@ -1,24 +1,13 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
 
-void main() { // Init SDK
-  Client client = Client();
-  Account account = Account(client);
-
-  client
+Client client = Client()
     .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('5df5acd0d48c2') // Your project ID
-    .setJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...') // Your secret JSON Web Token
-  ;
+    .setSession(''); // The user session to authenticate with
 
-  Future result = account.updateVerification(
-    userId: '[USER_ID]',
-    secret: '[SECRET]',
-  );
+Account account = Account(client);
 
-  result
-    .then((response) {
-      print(response);
-    }).catchError((error) {
-      print(error.response);
-  });
-}
+Token result = await account.updateVerification(
+    userId: '<USER_ID>',
+    secret: '<SECRET>',
+);

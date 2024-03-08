@@ -72,6 +72,29 @@ class Health extends Service {
 
     }
 
+    /// Get the SSL certificate for a domain
+    ///
+    /// Get the SSL certificate for a domain
+    Future<models.HealthCertificate> getCertificate({String? domain}) async {
+        final String apiPath = '/health/certificate';
+
+        final Map<String, dynamic> apiParams = {
+            'domain': domain,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthCertificate.fromMap(res.data);
+
+    }
+
     /// Get DB
     ///
     /// Check the Appwrite database servers are up and connection is successful.
@@ -237,8 +260,34 @@ class Health extends Service {
 
     }
 
+    /// Get number of failed queue jobs
+    ///
+    /// Returns the amount of failed jobs in a given queue.
+    /// 
+    Future<models.HealthQueue> getFailedJobs({required enums.Name name, int? threshold}) async {
+        final String apiPath = '/health/queue/failed/{name}'.replaceAll('{name}', name.value);
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
     /// Get functions queue
     ///
+    /// Get the number of function executions that are waiting to be processed in
+    /// the Appwrite internal queue server.
     Future<models.HealthQueue> getQueueFunctions({int? threshold}) async {
         final String apiPath = '/health/queue/functions';
 
@@ -355,6 +404,54 @@ class Health extends Service {
 
     }
 
+    /// Get usage queue
+    ///
+    /// Get the number of metrics that are waiting to be processed in the Appwrite
+    /// internal queue server.
+    Future<models.HealthQueue> getQueueUsage({int? threshold}) async {
+        final String apiPath = '/health/queue/usage';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get usage dump queue
+    ///
+    /// Get the number of projects containing metrics that are waiting to be
+    /// processed in the Appwrite internal queue server.
+    Future<models.HealthQueue> getQueueUsageDump({int? threshold}) async {
+        final String apiPath = '/health/queue/usage-dump';
+
+        final Map<String, dynamic> apiParams = {
+            'threshold': threshold,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthQueue.fromMap(res.data);
+
+    }
+
     /// Get webhooks queue
     ///
     /// Get the number of webhooks that are waiting to be processed in the Appwrite
@@ -376,6 +473,28 @@ class Health extends Service {
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
         return models.HealthQueue.fromMap(res.data);
+
+    }
+
+    /// Get storage
+    ///
+    /// Check the Appwrite storage device is up and connection is successful.
+    Future<models.HealthStatus> getStorage() async {
+        final String apiPath = '/health/storage';
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.HealthStatus.fromMap(res.data);
 
     }
 
