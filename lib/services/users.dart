@@ -299,7 +299,7 @@ class Users extends Service {
             'userId': userId,
 'email': email,
 'password': password,
-'passwordVersion': passwordVersion,
+'passwordVersion': passwordVersion?.value,
 'name': name,
 
         };
@@ -867,7 +867,7 @@ class Users extends Service {
         final Map<String, dynamic> apiParams = {
             
             'targetId': targetId,
-'providerType': providerType,
+'providerType': providerType.value,
 'identifier': identifier,
 'providerId': providerId,
 'name': name,

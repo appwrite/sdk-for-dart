@@ -43,7 +43,7 @@ class Functions extends Service {
             
             'functionId': functionId,
 'name': name,
-'runtime': runtime,
+'runtime': runtime.value,
 'execute': execute,
 'events': events,
 'schedule': schedule,
@@ -128,7 +128,7 @@ class Functions extends Service {
         final Map<String, dynamic> apiParams = {
             
             'name': name,
-'runtime': runtime,
+'runtime': runtime?.value,
 'execute': execute,
 'events': events,
 'schedule': schedule,
@@ -395,7 +395,7 @@ class Functions extends Service {
             'body': body,
 'async': xasync,
 'path': path,
-'method': method,
+'method': method?.value,
 'headers': headers,
 
         };

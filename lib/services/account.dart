@@ -290,7 +290,7 @@ class Account extends Service {
 
         final Map<String, dynamic> apiParams = {
             
-            'factor': factor,
+            'factor': factor.value,
 
         };
 

@@ -668,11 +668,11 @@ class Databases extends Service {
         final Map<String, dynamic> apiParams = {
             
             'relatedCollectionId': relatedCollectionId,
-'type': type,
+'type': type.value,
 'twoWay': twoWay,
 'key': key,
 'twoWayKey': twoWayKey,
-'onDelete': onDelete,
+'onDelete': onDelete?.value,
 
         };
 
@@ -849,7 +849,7 @@ class Databases extends Service {
 
         final Map<String, dynamic> apiParams = {
             
-            'onDelete': onDelete,
+            'onDelete': onDelete?.value,
 
         };
 
@@ -1021,7 +1021,7 @@ class Databases extends Service {
         final Map<String, dynamic> apiParams = {
             
             'key': key,
-'type': type,
+'type': type.value,
 'attributes': attributes,
 'orders': orders,
 

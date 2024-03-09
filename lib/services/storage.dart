@@ -44,7 +44,7 @@ class Storage extends Service {
 'enabled': enabled,
 'maximumFileSize': maximumFileSize,
 'allowedFileExtensions': allowedFileExtensions,
-'compression': compression,
+'compression': compression?.value,
 'encryption': encryption,
 'antivirus': antivirus,
 
@@ -98,7 +98,7 @@ class Storage extends Service {
 'enabled': enabled,
 'maximumFileSize': maximumFileSize,
 'allowedFileExtensions': allowedFileExtensions,
-'compression': compression,
+'compression': compression?.value,
 'encryption': encryption,
 'antivirus': antivirus,
 
@@ -317,7 +317,7 @@ class Storage extends Service {
         final Map<String, dynamic> params = {
             'width': width,
 'height': height,
-'gravity': gravity,
+'gravity': gravity?.value,
 'quality': quality,
 'borderWidth': borderWidth,
 'borderColor': borderColor,
@@ -325,7 +325,7 @@ class Storage extends Service {
 'opacity': opacity,
 'rotation': rotation,
 'background': background,
-'output': output,
+'output': output?.value,
 
             
             'project': client.config['project'],
