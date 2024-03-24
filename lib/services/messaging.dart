@@ -522,14 +522,14 @@ class Messaging extends Service {
     /// Create Msg91 provider
     ///
     /// Create a new MSG91 provider.
-    Future<models.Provider> createMsg91Provider({required String providerId, required String name, String? from, String? senderId, String? authKey, bool? enabled}) async {
+    Future<models.Provider> createMsg91Provider({required String providerId, required String name, String? templateId, String? senderId, String? authKey, bool? enabled}) async {
         final String apiPath = '/messaging/providers/msg91';
 
         final Map<String, dynamic> apiParams = {
             
             'providerId': providerId,
 'name': name,
-'from': from,
+'templateId': templateId,
 'senderId': senderId,
 'authKey': authKey,
 'enabled': enabled,
@@ -550,16 +550,16 @@ class Messaging extends Service {
     /// Update Msg91 provider
     ///
     /// Update a MSG91 provider by its unique ID.
-    Future<models.Provider> updateMsg91Provider({required String providerId, String? name, bool? enabled, String? senderId, String? authKey, String? from}) async {
+    Future<models.Provider> updateMsg91Provider({required String providerId, String? name, bool? enabled, String? templateId, String? senderId, String? authKey}) async {
         final String apiPath = '/messaging/providers/msg91/{providerId}'.replaceAll('{providerId}', providerId);
 
         final Map<String, dynamic> apiParams = {
             
             'name': name,
 'enabled': enabled,
+'templateId': templateId,
 'senderId': senderId,
 'authKey': authKey,
-'from': from,
 
         };
 

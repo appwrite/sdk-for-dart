@@ -3,8 +3,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('unique()', () {
-    test('returns unique()', () {
-      expect(ID.unique(), 'unique()');
+    test('returns unique ID', () {
+      expect((ID.unique()).length, 20);
     });
   });
 
