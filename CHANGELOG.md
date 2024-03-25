@@ -1,3 +1,7 @@
+## 11.0.3
+
+* Upgraded dependencies
+
 ## 11.0.2
 
 * Fixed MSG91 missing template ID

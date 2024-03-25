@@ -1,4 +1,4 @@
-part of dart_appwrite;
+part of '../dart_appwrite.dart';
 
 /// The Messaging service allows you to send messages to any provider type
 /// (SMTP, push notification, SMS, etc.).

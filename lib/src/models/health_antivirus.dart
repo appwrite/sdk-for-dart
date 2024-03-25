@@ -1,4 +1,4 @@
-part of dart_appwrite.models;
+part of '../../models.dart';
 
 /// Health Antivirus
 class HealthAntivirus implements Model {

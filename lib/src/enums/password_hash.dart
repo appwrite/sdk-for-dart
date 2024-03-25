@@ -1,4 +1,4 @@
-part of dart_appwrite.enums;
+part of '../../enums.dart';
 
 enum PasswordHash {
     sha1(value: 'sha1'),

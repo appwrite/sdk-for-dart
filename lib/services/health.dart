@@ -1,4 +1,4 @@
-part of dart_appwrite;
+part of '../dart_appwrite.dart';
 
 /// The Health service allows you to both validate and monitor your Appwrite
 /// server&#039;s health.

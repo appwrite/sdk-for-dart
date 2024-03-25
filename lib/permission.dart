@@ -1,4 +1,4 @@
-part of dart_appwrite;
+part of 'dart_appwrite.dart';
 
 /// Helper class to generate permission strings for resources.
 class Permission {

@@ -1,4 +1,4 @@
-part of dart_appwrite;
+part of '../dart_appwrite.dart';
 
 /// The Account service allows you to authenticate and manage a user account.
 class Account extends Service {
