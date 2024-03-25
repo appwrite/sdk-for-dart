@@ -1,4 +1,4 @@
-part of dart_appwrite.enums;
+part of '../../enums.dart';
 
 enum Runtime {
     node145(value: 'node-14.5'),

@@ -1,4 +1,4 @@
-part of dart_appwrite;
+part of '../dart_appwrite.dart';
 
 /// The Functions Service allows you view, create and manage your Cloud
 /// Functions.

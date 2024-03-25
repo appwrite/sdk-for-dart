@@ -1,4 +1,4 @@
-part of dart_appwrite;
+part of '../dart_appwrite.dart';
 
 /// The Avatars service aims to help you complete everyday tasks related to
 /// your app image, icons, and avatars.

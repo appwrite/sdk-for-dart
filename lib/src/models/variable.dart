@@ -1,4 +1,4 @@
-part of dart_appwrite.models;
+part of '../../models.dart';
 
 /// Variable
 class Variable implements Model {

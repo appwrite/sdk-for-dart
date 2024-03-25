@@ -1,4 +1,4 @@
-part of dart_appwrite;
+part of '../dart_appwrite.dart';
 
 /// The Users service allows you to manage your project users.
 class Users extends Service {

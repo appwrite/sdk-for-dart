@@ -1,4 +1,4 @@
-part of dart_appwrite.models;
+part of '../../models.dart';
 
 /// MFAFactors
 class MfaFactors implements Model {

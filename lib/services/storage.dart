@@ -1,4 +1,4 @@
-part of dart_appwrite;
+part of '../dart_appwrite.dart';
 
 /// The Storage service allows you to manage your project files.
 class Storage extends Service {
