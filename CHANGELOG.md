@@ -1,6 +1,6 @@
 ## 11.0.3
 
-* Upgraded dependencies
+* Minor bugfixes
 
 ## 11.0.2
 

@@ -20,6 +20,7 @@ enum Runtime {
     python310(value: 'python-3.10'),
     python311(value: 'python-3.11'),
     python312(value: 'python-3.12'),
+    pythonMl311(value: 'python-ml-3.11'),
     deno140(value: 'deno-1.40'),
     dart215(value: 'dart-2.15'),
     dart216(value: 'dart-2.16'),

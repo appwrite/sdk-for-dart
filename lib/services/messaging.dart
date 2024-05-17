@@ -67,7 +67,7 @@ class Messaging extends Service {
     ///
     /// Update an email message by its unique ID.
     /// 
-    Future<models.Message> updateEmail({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? subject, String? content, bool? draft, bool? html, List<String>? cc, List<String>? bcc, String? scheduledAt}) async {
+    Future<models.Message> updateEmail({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? subject, String? content, bool? draft, bool? html, List<String>? cc, List<String>? bcc, String? scheduledAt, List<String>? attachments}) async {
         final String apiPath = '/messaging/messages/email/{messageId}'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -82,6 +82,7 @@ class Messaging extends Service {
 'cc': cc,
 'bcc': bcc,
 'scheduledAt': scheduledAt,
+'attachments': attachments,
 
         };
 
