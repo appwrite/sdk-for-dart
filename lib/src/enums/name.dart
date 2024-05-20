@@ -12,8 +12,7 @@ enum Name {
     v1Certificates(value: 'v1-certificates'),
     v1Builds(value: 'v1-builds'),
     v1Messaging(value: 'v1-messaging'),
-    v1Migrations(value: 'v1-migrations'),
-    hamsterv1(value: 'hamsterv1');
+    v1Migrations(value: 'v1-migrations');
 
     const Name({
         required this.value
