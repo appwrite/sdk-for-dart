@@ -1,23 +1,23 @@
-part of dart_appwrite.models;
+part of '../../models.dart';
 
 /// AlgoBcrypt
 class AlgoBcrypt implements Model {
-    /// Algo type.
-    final String type;
+  /// Algo type.
+  final String type;
 
-    AlgoBcrypt({
-        required this.type,
-    });
+  AlgoBcrypt({
+    required this.type,
+  });
 
-    factory AlgoBcrypt.fromMap(Map<String, dynamic> map) {
-        return AlgoBcrypt(
-            type: map['type'].toString(),
-        );
-    }
+  factory AlgoBcrypt.fromMap(Map<String, dynamic> map) {
+    return AlgoBcrypt(
+      type: map['type'].toString(),
+    );
+  }
 
-    Map<String, dynamic> toMap() {
-        return {
-            "type": type,
-        };
-    }
+  Map<String, dynamic> toMap() {
+    return {
+      "type": type,
+    };
+  }
 }

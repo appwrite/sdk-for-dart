@@ -1,33 +1,35 @@
-part of dart_appwrite.models;
+part of '../../models.dart';
 
 /// Health Time
 class HealthTime implements Model {
-    /// Current unix timestamp on trustful remote server.
-    final int remoteTime;
-    /// Current unix timestamp of local server where Appwrite runs.
-    final int localTime;
-    /// Difference of unix remote and local timestamps in milliseconds.
-    final int diff;
+  /// Current unix timestamp on trustful remote server.
+  final int remoteTime;
 
-    HealthTime({
-        required this.remoteTime,
-        required this.localTime,
-        required this.diff,
-    });
+  /// Current unix timestamp of local server where Appwrite runs.
+  final int localTime;
 
-    factory HealthTime.fromMap(Map<String, dynamic> map) {
-        return HealthTime(
-            remoteTime: map['remoteTime'],
-            localTime: map['localTime'],
-            diff: map['diff'],
-        );
-    }
+  /// Difference of unix remote and local timestamps in milliseconds.
+  final int diff;
 
-    Map<String, dynamic> toMap() {
-        return {
-            "remoteTime": remoteTime,
-            "localTime": localTime,
-            "diff": diff,
-        };
-    }
+  HealthTime({
+    required this.remoteTime,
+    required this.localTime,
+    required this.diff,
+  });
+
+  factory HealthTime.fromMap(Map<String, dynamic> map) {
+    return HealthTime(
+      remoteTime: map['remoteTime'],
+      localTime: map['localTime'],
+      diff: map['diff'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "remoteTime": remoteTime,
+      "localTime": localTime,
+      "diff": diff,
+    };
+  }
 }

@@ -1,15 +1,13 @@
-part of dart_appwrite.enums;
+part of '../../enums.dart';
 
 enum IndexType {
-    key(value: 'key'),
-    fulltext(value: 'fulltext'),
-    unique(value: 'unique');
+  key(value: 'key'),
+  fulltext(value: 'fulltext'),
+  unique(value: 'unique');
 
-    const IndexType({
-        required this.value
-    });
+  const IndexType({required this.value});
 
-    final String value;
+  final String value;
 
-    String toJson() => value;
+  String toJson() => value;
 }

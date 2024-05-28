@@ -596,7 +596,8 @@ void main() {
             final Map<String, dynamic> data = {
                 'totp': true,
                 'phone': true,
-                'email': true,};
+                'email': true,
+                'recoveryCode': true,};
 
 
             when(client.call(
@@ -816,6 +817,7 @@ void main() {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'userId': '5e5bb8c16897e',
                 'expire': '2020-10-15T06:38:00.000+00:00',
                 'provider': 'email',
