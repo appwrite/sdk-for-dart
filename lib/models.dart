@@ -69,6 +69,7 @@ part 'src/models/function.dart';
 part 'src/models/runtime.dart';
 part 'src/models/deployment.dart';
 part 'src/models/execution.dart';
+part 'src/models/build.dart';
 part 'src/models/variable.dart';
 part 'src/models/country.dart';
 part 'src/models/continent.dart';
