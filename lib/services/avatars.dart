@@ -67,6 +67,7 @@ class Avatars extends Service {
     /// Use this endpoint to fetch the favorite icon (AKA favicon) of any remote
     /// website URL.
     /// 
+    /// This endpoint does not follow HTTP redirects.
     Future<Uint8List> getFavicon({required String url}) async {
         final String apiPath = '/avatars/favicon';
 
@@ -123,6 +124,7 @@ class Avatars extends Service {
     /// image at source quality. If dimensions are not specified, the default size
     /// of image returned is 400x400px.
     /// 
+    /// This endpoint does not follow HTTP redirects.
     Future<Uint8List> getImage({required String url, int? width, int? height}) async {
         final String apiPath = '/avatars/image';
 

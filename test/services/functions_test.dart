@@ -129,6 +129,56 @@ void main() {
 
         });
 
+        test('test method listTemplates()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'templates': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.listTemplates(
+            );
+            expect(response, isA<models.TemplateFunctionList>());
+
+        });
+
+        test('test method getTemplate()', () async {
+            final Map<String, dynamic> data = {
+                'icon': 'icon-lightning-bolt',
+                'id': 'starter',
+                'name': 'Starter function',
+                'tagline': 'A simple function to get started.',
+                'permissions': [],
+                'events': [],
+                'cron': '0 0 * * *',
+                'timeout': 300,
+                'useCases': [],
+                'runtimes': [],
+                'instructions': 'For documentation and instructions check out <link>.',
+                'vcsProvider': 'github',
+                'providerRepositoryId': 'templates',
+                'providerOwner': 'appwrite',
+                'providerVersion': 'main',
+                'variables': [],
+                'scopes': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.getTemplate(
+                templateId: '<TEMPLATE_ID>',
+            );
+            expect(response, isA<models.TemplateFunction>());
+
+        });
+
         test('test method get()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -418,14 +468,14 @@ void main() {
 
         });
 
-        test('test method downloadDeployment()', () async {final Uint8List data = Uint8List.fromList([]);
+        test('test method getDeploymentDownload()', () async {final Uint8List data = Uint8List.fromList([]);
 
             when(client.call(
                 HttpMethod.get,
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await functions.downloadDeployment(
+            final response = await functions.getDeploymentDownload(
                 functionId: '<FUNCTION_ID>',
                 deploymentId: '<DEPLOYMENT_ID>',
             );
@@ -471,8 +521,12 @@ void main() {
                 'duration': 0.4,};
 
 
-            when(client.call(
-                HttpMethod.post,
+            when(client.chunkedUpload(
+                path: argThat(isNotNull),
+                params: argThat(isNotNull),
+                paramName: argThat(isNotNull),
+                idParamName: argThat(isNotNull),
+                headers: argThat(isNotNull),
             )).thenAnswer((_) async => Response(data: data));
 
 

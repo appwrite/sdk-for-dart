@@ -36,7 +36,7 @@ class Functions extends Service {
     /// [permissions](https://appwrite.io/docs/permissions) to allow different
     /// project users or team with access to execute the function using the client
     /// API.
-    Future<models.Func> create({required String functionId, required String name, required enums.Runtime runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, List<String>? scopes, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory, String? templateRepository, String? templateOwner, String? templateRootDirectory, String? templateBranch}) async {
+    Future<models.Func> create({required String functionId, required String name, required enums.Runtime runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, List<String>? scopes, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory, String? templateRepository, String? templateOwner, String? templateRootDirectory, String? templateVersion}) async {
         final String apiPath = '/functions';
 
         final Map<String, dynamic> apiParams = {
@@ -61,7 +61,7 @@ class Functions extends Service {
 'templateRepository': templateRepository,
 'templateOwner': templateOwner,
 'templateRootDirectory': templateRootDirectory,
-'templateBranch': templateBranch,
+'templateVersion': templateVersion,
 
         };
 
@@ -95,6 +95,58 @@ class Functions extends Service {
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
         return models.RuntimeList.fromMap(res.data);
+
+    }
+
+    /// List function templates
+    ///
+    /// List available function templates. You can use template details in
+    /// [createFunction](/docs/references/cloud/server-nodejs/functions#create)
+    /// method.
+    Future<models.TemplateFunctionList> listTemplates({List<String>? runtimes, List<String>? useCases, int? limit, int? offset}) async {
+        final String apiPath = '/functions/templates';
+
+        final Map<String, dynamic> apiParams = {
+            'runtimes': runtimes,
+'useCases': useCases,
+'limit': limit,
+'offset': offset,
+
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.TemplateFunctionList.fromMap(res.data);
+
+    }
+
+    /// Get function template
+    ///
+    /// Get a function template using ID. You can use template details in
+    /// [createFunction](/docs/references/cloud/server-nodejs/functions#create)
+    /// method.
+    Future<models.TemplateFunction> getTemplate({required String templateId}) async {
+        final String apiPath = '/functions/templates/{templateId}'.replaceAll('{templateId}', templateId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.TemplateFunction.fromMap(res.data);
 
     }
 
@@ -271,7 +323,7 @@ class Functions extends Service {
 
     }
 
-    /// Update function deployment
+    /// Update deployment
     ///
     /// Update the function code deployment ID using the unique function ID. Use
     /// this endpoint to switch the code deployment that should be executed by the
@@ -360,18 +412,18 @@ class Functions extends Service {
 
     }
 
-    /// Download Deployment
+    /// Download deployment
     ///
     /// Get a Deployment's contents by its unique ID. This endpoint supports range
     /// requests for partial or streaming file download.
-    Future<Uint8List> downloadDeployment({required String functionId, required String deploymentId}) async {
+    Future<Uint8List> getDeploymentDownload({required String functionId, required String deploymentId}) async {
         final String apiPath = '/functions/{functionId}/deployments/{deploymentId}/download'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
         final Map<String, dynamic> params = {
             
             
             'project': client.config['project'],
-            'key': client.config['key'],
+            'session': client.config['session'],
         };
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
@@ -409,7 +461,7 @@ class Functions extends Service {
     /// current execution status. You can ping the `Get Execution` endpoint to get
     /// updates on the current execution status. Once this endpoint is called, your
     /// function execution process will start asynchronously.
-    Future<models.Execution> createExecution({required String functionId, String? body, bool? xasync, String? path, enums.ExecutionMethod? method, Map? headers, String? scheduledAt}) async {
+    Future<models.Execution> createExecution({required String functionId, String? body, bool? xasync, String? path, enums.ExecutionMethod? method, Map? headers, String? scheduledAt, Function(UploadProgress)? onProgress}) async {
         final String apiPath = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {
@@ -424,11 +476,19 @@ class Functions extends Service {
         };
 
         final Map<String, String> apiHeaders = {
-            'content-type': 'application/json',
+            'content-type': 'multipart/form-data',
 
         };
 
-        final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+        String idParamName = '';
+        final res = await client.chunkedUpload(
+            path: apiPath,
+            params: apiParams,
+            paramName: paramName,
+            idParamName: idParamName,
+            headers: apiHeaders,
+            onProgress: onProgress,
+        );
 
         return models.Execution.fromMap(res.data);
 

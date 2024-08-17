@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/dart_appwrite.svg?style=flat-square)](https://pub.dartlang.org/packages/dart_appwrite)
 ![License](https://img.shields.io/github/license/appwrite/sdk-for-dart.svg?style=flat-square)
-![Version](https://img.shields.io/badge/api%20version-1.5.x-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/api%20version-1.6.x-blue.svg?style=flat-square)
 [![Build Status](https://img.shields.io/travis/com/appwrite/sdk-generator?style=flat-square)](https://travis-ci.com/appwrite/sdk-generator)
 [![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
@@ -23,7 +23,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  dart_appwrite: ^12.0.0-rc.1
+  dart_appwrite: ^12.0.0-rc.2
 ```
 
 You can install packages from the command line:
