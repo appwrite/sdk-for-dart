@@ -29,6 +29,7 @@ void main() {
         providerBranch: 'main',
         providerRootDirectory: 'functions/helloWorld',
         providerSilentMode: true,
+        specification: 's-0.5vcpu-512mb',
       );
 
       final map = model.toMap();
@@ -57,6 +58,7 @@ void main() {
       expect(result.providerBranch, 'main');
       expect(result.providerRootDirectory, 'functions/helloWorld');
       expect(result.providerSilentMode, true);
+      expect(result.specification, 's-0.5vcpu-512mb');
     });
   });
 }

@@ -95,7 +95,8 @@ void main() {
                 'providerRepositoryId': 'appwrite',
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,};
+                'providerSilentMode': true,
+                'specification': 's-0.5vcpu-512mb',};
 
 
             when(client.call(
@@ -126,6 +127,23 @@ void main() {
             final response = await functions.listRuntimes(
             );
             expect(response, isA<models.RuntimeList>());
+
+        });
+
+        test('test method listSpecifications()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'specifications': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.listSpecifications(
+            );
+            expect(response, isA<models.SpecificationList>());
 
         });
 
@@ -203,7 +221,8 @@ void main() {
                 'providerRepositoryId': 'appwrite',
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,};
+                'providerSilentMode': true,
+                'specification': 's-0.5vcpu-512mb',};
 
 
             when(client.call(
@@ -242,7 +261,8 @@ void main() {
                 'providerRepositoryId': 'appwrite',
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,};
+                'providerSilentMode': true,
+                'specification': 's-0.5vcpu-512mb',};
 
 
             when(client.call(
@@ -398,7 +418,8 @@ void main() {
                 'providerRepositoryId': 'appwrite',
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,};
+                'providerSilentMode': true,
+                'specification': 's-0.5vcpu-512mb',};
 
 
             when(client.call(
@@ -521,12 +542,8 @@ void main() {
                 'duration': 0.4,};
 
 
-            when(client.chunkedUpload(
-                path: argThat(isNotNull),
-                params: argThat(isNotNull),
-                paramName: argThat(isNotNull),
-                idParamName: argThat(isNotNull),
-                headers: argThat(isNotNull),
+            when(client.call(
+                HttpMethod.post,
             )).thenAnswer((_) async => Response(data: data));
 
 
