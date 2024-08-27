@@ -8,7 +8,7 @@ enum Name {
   v1Functions(value: 'v1-functions'),
   v1Usage(value: 'v1-usage'),
   v1UsageDump(value: 'v1-usage-dump'),
-  webhooksv1(value: 'webhooksv1'),
+  v1Webhooks(value: 'v1-webhooks'),
   v1Certificates(value: 'v1-certificates'),
   v1Builds(value: 'v1-builds'),
   v1Messaging(value: 'v1-messaging'),

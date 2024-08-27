@@ -46,6 +46,7 @@ class Functions extends Service {
       bool? logging,
       String? entrypoint,
       String? commands,
+      List<String>? scopes,
       String? installationId,
       String? providerRepositoryId,
       String? providerBranch,
@@ -54,7 +55,8 @@ class Functions extends Service {
       String? templateRepository,
       String? templateOwner,
       String? templateRootDirectory,
-      String? templateBranch}) async {
+      String? templateVersion,
+      String? specification}) async {
     final String apiPath = '/functions';
 
     final Map<String, dynamic> apiParams = {
@@ -69,6 +71,7 @@ class Functions extends Service {
       'logging': logging,
       'entrypoint': entrypoint,
       'commands': commands,
+      'scopes': scopes,
       'installationId': installationId,
       'providerRepositoryId': providerRepositoryId,
       'providerBranch': providerBranch,
@@ -77,7 +80,8 @@ class Functions extends Service {
       'templateRepository': templateRepository,
       'templateOwner': templateOwner,
       'templateRootDirectory': templateRootDirectory,
-      'templateBranch': templateBranch,
+      'templateVersion': templateVersion,
+      'specification': specification,
     };
 
     final Map<String, String> apiHeaders = {
@@ -106,6 +110,25 @@ class Functions extends Service {
         path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.RuntimeList.fromMap(res.data);
+  }
+
+  /// List available function runtime specifications
+  ///
+  /// List allowed function specifications for this instance.
+  ///
+  Future<models.SpecificationList> listSpecifications() async {
+    final String apiPath = '/functions/specifications';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.SpecificationList.fromMap(res.data);
   }
 
   /// Get function
@@ -142,11 +165,13 @@ class Functions extends Service {
       bool? logging,
       String? entrypoint,
       String? commands,
+      List<String>? scopes,
       String? installationId,
       String? providerRepositoryId,
       String? providerBranch,
       bool? providerSilentMode,
-      String? providerRootDirectory}) async {
+      String? providerRootDirectory,
+      String? specification}) async {
     final String apiPath =
         '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
@@ -161,11 +186,13 @@ class Functions extends Service {
       'logging': logging,
       'entrypoint': entrypoint,
       'commands': commands,
+      'scopes': scopes,
       'installationId': installationId,
       'providerRepositoryId': providerRepositoryId,
       'providerBranch': providerBranch,
       'providerSilentMode': providerSilentMode,
       'providerRootDirectory': providerRootDirectory,
+      'specification': specification,
     };
 
     final Map<String, String> apiHeaders = {
@@ -291,7 +318,7 @@ class Functions extends Service {
     return models.Deployment.fromMap(res.data);
   }
 
-  /// Update function deployment
+  /// Update deployment
   ///
   /// Update the function code deployment ID using the unique function ID. Use
   /// this endpoint to switch the code deployment that should be executed by the
@@ -335,21 +362,20 @@ class Functions extends Service {
     return res.data;
   }
 
-  /// Create build
+  /// Rebuild deployment
   ///
-  /// Create a new build for an Appwrite Function deployment. This endpoint can
-  /// be used to retry a failed build.
   Future createBuild(
       {required String functionId,
       required String deploymentId,
-      required String buildId}) async {
+      String? buildId}) async {
     final String apiPath =
-        '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'
+        '/functions/{functionId}/deployments/{deploymentId}/build'
             .replaceAll('{functionId}', functionId)
-            .replaceAll('{deploymentId}', deploymentId)
-            .replaceAll('{buildId}', buildId);
+            .replaceAll('{deploymentId}', deploymentId);
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      'buildId': buildId,
+    };
 
     final Map<String, String> apiHeaders = {
       'content-type': 'application/json',
@@ -361,11 +387,32 @@ class Functions extends Service {
     return res.data;
   }
 
-  /// Download Deployment
+  /// Cancel deployment
+  ///
+  Future<models.Build> updateDeploymentBuild(
+      {required String functionId, required String deploymentId}) async {
+    final String apiPath =
+        '/functions/{functionId}/deployments/{deploymentId}/build'
+            .replaceAll('{functionId}', functionId)
+            .replaceAll('{deploymentId}', deploymentId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Build.fromMap(res.data);
+  }
+
+  /// Download deployment
   ///
   /// Get a Deployment's contents by its unique ID. This endpoint supports range
   /// requests for partial or streaming file download.
-  Future<Uint8List> downloadDeployment(
+  Future<Uint8List> getDeploymentDownload(
       {required String functionId, required String deploymentId}) async {
     final String apiPath =
         '/functions/{functionId}/deployments/{deploymentId}/download'
@@ -420,7 +467,8 @@ class Functions extends Service {
       bool? xasync,
       String? path,
       enums.ExecutionMethod? method,
-      Map? headers}) async {
+      Map? headers,
+      String? scheduledAt}) async {
     final String apiPath = '/functions/{functionId}/executions'
         .replaceAll('{functionId}', functionId);
 
@@ -430,6 +478,7 @@ class Functions extends Service {
       'path': path,
       'method': method?.value,
       'headers': headers,
+      'scheduledAt': scheduledAt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -461,6 +510,28 @@ class Functions extends Service {
         path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Execution.fromMap(res.data);
+  }
+
+  /// Delete execution
+  ///
+  /// Delete a function execution by its unique ID.
+  ///
+  Future deleteExecution(
+      {required String functionId, required String executionId}) async {
+    final String apiPath = '/functions/{functionId}/executions/{executionId}'
+        .replaceAll('{functionId}', functionId)
+        .replaceAll('{executionId}', executionId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return res.data;
   }
 
   /// List variables

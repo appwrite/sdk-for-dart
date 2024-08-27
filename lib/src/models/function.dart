@@ -32,6 +32,9 @@ class Func implements Model {
   /// Function&#039;s active deployment ID.
   final String deployment;
 
+  /// Allowed permission scopes.
+  final List scopes;
+
   /// Function variables.
   final List<Variable> vars;
 
@@ -68,6 +71,9 @@ class Func implements Model {
   /// Is VCS (Version Control System) connection is in silent mode? When in silence mode, no comments will be posted on the repository pull or merge requests
   final bool providerSilentMode;
 
+  /// Machine specification for builds and executions.
+  final String specification;
+
   Func({
     required this.$id,
     required this.$createdAt,
@@ -79,6 +85,7 @@ class Func implements Model {
     required this.logging,
     required this.runtime,
     required this.deployment,
+    required this.scopes,
     required this.vars,
     required this.events,
     required this.schedule,
@@ -91,6 +98,7 @@ class Func implements Model {
     required this.providerBranch,
     required this.providerRootDirectory,
     required this.providerSilentMode,
+    required this.specification,
   });
 
   factory Func.fromMap(Map<String, dynamic> map) {
@@ -105,6 +113,7 @@ class Func implements Model {
       logging: map['logging'],
       runtime: map['runtime'].toString(),
       deployment: map['deployment'].toString(),
+      scopes: map['scopes'] ?? [],
       vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
       events: map['events'] ?? [],
       schedule: map['schedule'].toString(),
@@ -117,6 +126,7 @@ class Func implements Model {
       providerBranch: map['providerBranch'].toString(),
       providerRootDirectory: map['providerRootDirectory'].toString(),
       providerSilentMode: map['providerSilentMode'],
+      specification: map['specification'].toString(),
     );
   }
 
@@ -132,6 +142,7 @@ class Func implements Model {
       "logging": logging,
       "runtime": runtime,
       "deployment": deployment,
+      "scopes": scopes,
       "vars": vars.map((p) => p.toMap()).toList(),
       "events": events,
       "schedule": schedule,
@@ -144,6 +155,7 @@ class Func implements Model {
       "providerBranch": providerBranch,
       "providerRootDirectory": providerRootDirectory,
       "providerSilentMode": providerSilentMode,
+      "specification": specification,
     };
   }
 }

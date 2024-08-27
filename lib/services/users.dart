@@ -388,6 +388,31 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
+  /// Create user JWT
+  ///
+  /// Use this endpoint to create a JSON Web Token for user by its unique ID. You
+  /// can use the resulting JWT to authenticate on behalf of the user. The JWT
+  /// secret will become invalid if the session it uses gets deleted.
+  Future<models.Jwt> createJWT(
+      {required String userId, String? sessionId, int? duration}) async {
+    final String apiPath =
+        '/users/{userId}/jwts'.replaceAll('{userId}', userId);
+
+    final Map<String, dynamic> apiParams = {
+      'sessionId': sessionId,
+      'duration': duration,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Jwt.fromMap(res.data);
+  }
+
   /// Update user labels
   ///
   /// Update the user labels by its unique ID.

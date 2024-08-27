@@ -26,6 +26,9 @@ class Deployment implements Model {
   /// The code size in bytes.
   final int size;
 
+  /// The build output size in bytes.
+  final int buildSize;
+
   /// The current build ID.
   final String buildId;
 
@@ -80,6 +83,7 @@ class Deployment implements Model {
     required this.resourceType,
     required this.entrypoint,
     required this.size,
+    required this.buildSize,
     required this.buildId,
     required this.activate,
     required this.status,
@@ -107,6 +111,7 @@ class Deployment implements Model {
       resourceType: map['resourceType'].toString(),
       entrypoint: map['entrypoint'].toString(),
       size: map['size'],
+      buildSize: map['buildSize'],
       buildId: map['buildId'].toString(),
       activate: map['activate'],
       status: map['status'].toString(),
@@ -135,6 +140,7 @@ class Deployment implements Model {
       "resourceType": resourceType,
       "entrypoint": entrypoint,
       "size": size,
+      "buildSize": buildSize,
       "buildId": buildId,
       "activate": activate,
       "status": status,

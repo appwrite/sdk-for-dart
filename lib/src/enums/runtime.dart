@@ -45,7 +45,8 @@ enum Runtime {
   kotlin19(value: 'kotlin-1.9'),
   cpp17(value: 'cpp-17'),
   cpp20(value: 'cpp-20'),
-  bun10(value: 'bun-1.0');
+  bun10(value: 'bun-1.0'),
+  go123(value: 'go-1.23');
 
   const Runtime({required this.value});
 

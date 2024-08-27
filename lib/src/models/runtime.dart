@@ -5,6 +5,9 @@ class Runtime implements Model {
   /// Runtime ID.
   final String $id;
 
+  /// Parent runtime key.
+  final String key;
+
   /// Runtime Name.
   final String name;
 
@@ -25,6 +28,7 @@ class Runtime implements Model {
 
   Runtime({
     required this.$id,
+    required this.key,
     required this.name,
     required this.version,
     required this.base,
@@ -36,6 +40,7 @@ class Runtime implements Model {
   factory Runtime.fromMap(Map<String, dynamic> map) {
     return Runtime(
       $id: map['\$id'].toString(),
+      key: map['key'].toString(),
       name: map['name'].toString(),
       version: map['version'].toString(),
       base: map['base'].toString(),
@@ -48,6 +53,7 @@ class Runtime implements Model {
   Map<String, dynamic> toMap() {
     return {
       "\$id": $id,
+      "key": key,
       "name": name,
       "version": version,
       "base": base,

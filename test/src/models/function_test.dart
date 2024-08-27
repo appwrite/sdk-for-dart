@@ -16,6 +16,7 @@ void main() {
         logging: true,
         runtime: 'python-3.8',
         deployment: '5e5ea5c16897e',
+        scopes: [],
         vars: [],
         events: [],
         schedule: '5 4 * * *',
@@ -28,6 +29,7 @@ void main() {
         providerBranch: 'main',
         providerRootDirectory: 'functions/helloWorld',
         providerSilentMode: true,
+        specification: 's-0.5vcpu-512mb',
       );
 
       final map = model.toMap();
@@ -43,6 +45,7 @@ void main() {
       expect(result.logging, true);
       expect(result.runtime, 'python-3.8');
       expect(result.deployment, '5e5ea5c16897e');
+      expect(result.scopes, []);
       expect(result.vars, []);
       expect(result.events, []);
       expect(result.schedule, '5 4 * * *');
@@ -55,6 +58,7 @@ void main() {
       expect(result.providerBranch, 'main');
       expect(result.providerRootDirectory, 'functions/helloWorld');
       expect(result.providerSilentMode, true);
+      expect(result.specification, 's-0.5vcpu-512mb');
     });
   });
 }
