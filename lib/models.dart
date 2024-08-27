@@ -15,7 +15,6 @@ part 'src/models/bucket_list.dart';
 part 'src/models/team_list.dart';
 part 'src/models/membership_list.dart';
 part 'src/models/function_list.dart';
-part 'src/models/template_function_list.dart';
 part 'src/models/runtime_list.dart';
 part 'src/models/deployment_list.dart';
 part 'src/models/execution_list.dart';
