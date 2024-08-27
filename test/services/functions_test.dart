@@ -147,39 +147,6 @@ void main() {
 
         });
 
-        test('test method getTemplate()', () async {
-            final Map<String, dynamic> data = {
-                'icon': 'icon-lightning-bolt',
-                'id': 'starter',
-                'name': 'Starter function',
-                'tagline': 'A simple function to get started.',
-                'permissions': [],
-                'events': [],
-                'cron': '0 0 * * *',
-                'timeout': 300,
-                'useCases': [],
-                'runtimes': [],
-                'instructions': 'For documentation and instructions check out <link>.',
-                'vcsProvider': 'github',
-                'providerRepositoryId': 'templates',
-                'providerOwner': 'appwrite',
-                'providerVersion': 'main',
-                'variables': [],
-                'scopes': [],};
-
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await functions.getTemplate(
-                templateId: '<TEMPLATE_ID>',
-            );
-            expect(response, isA<models.TemplateFunction>());
-
-        });
-
         test('test method get()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
