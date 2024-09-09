@@ -83,6 +83,7 @@ void main() {
                 'logging': true,
                 'runtime': 'python-3.8',
                 'deployment': '5e5ea5c16897e',
+                'scopes': [],
                 'vars': [],
                 'events': [],
                 'schedule': '5 4 * * *',
@@ -94,7 +95,8 @@ void main() {
                 'providerRepositoryId': 'appwrite',
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,};
+                'providerSilentMode': true,
+                'specification': 's-0.5vcpu-512mb',};
 
 
             when(client.call(
@@ -128,6 +130,23 @@ void main() {
 
         });
 
+        test('test method listSpecifications()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'specifications': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.listSpecifications(
+            );
+            expect(response, isA<models.SpecificationList>());
+
+        });
+
         test('test method get()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -140,6 +159,7 @@ void main() {
                 'logging': true,
                 'runtime': 'python-3.8',
                 'deployment': '5e5ea5c16897e',
+                'scopes': [],
                 'vars': [],
                 'events': [],
                 'schedule': '5 4 * * *',
@@ -151,7 +171,8 @@ void main() {
                 'providerRepositoryId': 'appwrite',
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,};
+                'providerSilentMode': true,
+                'specification': 's-0.5vcpu-512mb',};
 
 
             when(client.call(
@@ -178,6 +199,7 @@ void main() {
                 'logging': true,
                 'runtime': 'python-3.8',
                 'deployment': '5e5ea5c16897e',
+                'scopes': [],
                 'vars': [],
                 'events': [],
                 'schedule': '5 4 * * *',
@@ -189,7 +211,8 @@ void main() {
                 'providerRepositoryId': 'appwrite',
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,};
+                'providerSilentMode': true,
+                'specification': 's-0.5vcpu-512mb',};
 
 
             when(client.call(
@@ -246,6 +269,7 @@ void main() {
                 'resourceType': 'functions',
                 'entrypoint': 'index.js',
                 'size': 128,
+                'buildSize': 128,
                 'buildId': '5e5ea5c16897e',
                 'activate': true,
                 'status': 'ready',
@@ -291,6 +315,7 @@ void main() {
                 'resourceType': 'functions',
                 'entrypoint': 'index.js',
                 'size': 128,
+                'buildSize': 128,
                 'buildId': '5e5ea5c16897e',
                 'activate': true,
                 'status': 'ready',
@@ -333,6 +358,7 @@ void main() {
                 'logging': true,
                 'runtime': 'python-3.8',
                 'deployment': '5e5ea5c16897e',
+                'scopes': [],
                 'vars': [],
                 'events': [],
                 'schedule': '5 4 * * *',
@@ -344,7 +370,8 @@ void main() {
                 'providerRepositoryId': 'appwrite',
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,};
+                'providerSilentMode': true,
+                'specification': 's-0.5vcpu-512mb',};
 
 
             when(client.call(
@@ -385,18 +412,43 @@ void main() {
             final response = await functions.createBuild(
                 functionId: '<FUNCTION_ID>',
                 deploymentId: '<DEPLOYMENT_ID>',
-                buildId: '<BUILD_ID>',
             );
         });
 
-        test('test method downloadDeployment()', () async {final Uint8List data = Uint8List.fromList([]);
+        test('test method updateDeploymentBuild()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                'deploymentId': '5e5ea5c16897e',
+                'status': 'ready',
+                'stdout': '',
+                'stderr': '',
+                'startTime': '2020-10-15T06:38:00.000+00:00',
+                'endTime': '2020-10-15T06:38:00.000+00:00',
+                'duration': 0,
+                'size': 128,};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.updateDeploymentBuild(
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
+            );
+            expect(response, isA<models.Build>());
+
+        });
+
+        test('test method getDeploymentDownload()', () async {final Uint8List data = Uint8List.fromList([]);
 
             when(client.call(
                 HttpMethod.get,
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await functions.downloadDeployment(
+            final response = await functions.getDeploymentDownload(
                 functionId: '<FUNCTION_ID>',
                 deploymentId: '<DEPLOYMENT_ID>',
             );
@@ -485,6 +537,20 @@ void main() {
             );
             expect(response, isA<models.Execution>());
 
+        });
+
+        test('test method deleteExecution()', () async {
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.deleteExecution(
+                functionId: '<FUNCTION_ID>',
+                executionId: '<EXECUTION_ID>',
+            );
         });
 
         test('test method listVariables()', () async {

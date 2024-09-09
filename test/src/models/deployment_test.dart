@@ -14,6 +14,7 @@ void main() {
         resourceType: 'functions',
         entrypoint: 'index.js',
         size: 128,
+        buildSize: 128,
         buildId: '5e5ea5c16897e',
         activate: true,
         status: 'ready',
@@ -42,6 +43,7 @@ void main() {
       expect(result.resourceType, 'functions');
       expect(result.entrypoint, 'index.js');
       expect(result.size, 128);
+      expect(result.buildSize, 128);
       expect(result.buildId, '5e5ea5c16897e');
       expect(result.activate, true);
       expect(result.status, 'ready');
