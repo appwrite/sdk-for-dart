@@ -318,7 +318,8 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      required bool? xdefault}) async {
+      required bool? xdefault,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -328,6 +329,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -381,7 +383,8 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      required String? xdefault}) async {
+      required String? xdefault,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -391,6 +394,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -446,7 +450,8 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      required String? xdefault}) async {
+      required String? xdefault,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -456,6 +461,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -515,7 +521,8 @@ class Databases extends Service {
       required String key,
       required List<String> elements,
       required bool xrequired,
-      required String? xdefault}) async {
+      required String? xdefault,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -526,6 +533,7 @@ class Databases extends Service {
       'elements': elements,
       'required': xrequired,
       'default': xdefault,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -588,7 +596,8 @@ class Databases extends Service {
       required bool xrequired,
       required double min,
       required double max,
-      required double? xdefault}) async {
+      required double? xdefault,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -600,6 +609,7 @@ class Databases extends Service {
       'min': min,
       'max': max,
       'default': xdefault,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -662,7 +672,8 @@ class Databases extends Service {
       required bool xrequired,
       required int min,
       required int max,
-      required int? xdefault}) async {
+      required int? xdefault,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -674,6 +685,7 @@ class Databases extends Service {
       'min': min,
       'max': max,
       'default': xdefault,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -729,7 +741,8 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      required String? xdefault}) async {
+      required String? xdefault,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -739,6 +752,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -836,7 +850,9 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      required String? xdefault}) async {
+      required String? xdefault,
+      int? size,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -846,6 +862,8 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
+      'size': size,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -901,7 +919,8 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      required String? xdefault}) async {
+      required String? xdefault,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'
             .replaceAll('{databaseId}', databaseId)
@@ -911,6 +930,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -982,7 +1002,8 @@ class Databases extends Service {
       {required String databaseId,
       required String collectionId,
       required String key,
-      enums.RelationMutate? onDelete}) async {
+      enums.RelationMutate? onDelete,
+      String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
             .replaceAll('{databaseId}', databaseId)
@@ -991,6 +1012,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       'onDelete': onDelete?.value,
+      'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
