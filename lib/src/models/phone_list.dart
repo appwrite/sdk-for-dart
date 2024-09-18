@@ -2,28 +2,30 @@ part of '../../models.dart';
 
 /// Phones List
 class PhoneList implements Model {
-    /// Total number of phones documents that matched your query.
-    final int total;
-    /// List of phones.
-    final List<Phone> phones;
+  /// Total number of phones documents that matched your query.
+  final int total;
 
-    PhoneList({
-        required this.total,
-        required this.phones,
-    });
+  /// List of phones.
+  final List<Phone> phones;
 
-    factory PhoneList.fromMap(Map<String, dynamic> map) {
-        return PhoneList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
-            phones: List<Phone>.from(map['phones'].map((p) => Phone.fromMap(p))),
-        );
-    }
+  PhoneList({
+    required this.total,
+    required this.phones,
+  });
 
-    Map<String, dynamic> toMap() {
-        return {
-            "total": total,
-            "phones": phones.map((p) => p.toMap()).toList(),
-        };
-    }
+  factory PhoneList.fromMap(Map<String, dynamic> map) {
+    return PhoneList(
+      total: (map['total'] is String)
+          ? int.tryParse(map['total']) ?? 0
+          : map['total'] ?? 0,
+      phones: List<Phone>.from(map['phones'].map((p) => Phone.fromMap(p))),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "total": total,
+      "phones": phones.map((p) => p.toMap()).toList(),
+    };
+  }
 }

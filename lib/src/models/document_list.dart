@@ -2,31 +2,34 @@ part of '../../models.dart';
 
 /// Documents List
 class DocumentList implements Model {
-    /// Total number of documents documents that matched your query.
-    final int total;
-    /// List of documents.
-    final List<Document> documents;
+  /// Total number of documents documents that matched your query.
+  final int total;
 
-    DocumentList({
-        required this.total,
-        required this.documents,
-    });
+  /// List of documents.
+  final List<Document> documents;
 
-    factory DocumentList.fromMap(Map<String, dynamic> map) {
-        return DocumentList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
-            documents: List<Document>.from(map['documents'].map((p) => Document.fromMap(p))),
-        );
-    }
+  DocumentList({
+    required this.total,
+    required this.documents,
+  });
 
-    Map<String, dynamic> toMap() {
-        return {
-            "total": total,
-            "documents": documents.map((p) => p.toMap()).toList(),
-        };
-    }
+  factory DocumentList.fromMap(Map<String, dynamic> map) {
+    return DocumentList(
+      total: (map['total'] is String)
+          ? int.tryParse(map['total']) ?? 0
+          : map['total'] ?? 0,
+      documents:
+          List<Document>.from(map['documents'].map((p) => Document.fromMap(p))),
+    );
+  }
 
-    List<T> convertTo<T>(T Function(Map) fromJson) =>
-        documents.map((d) => d.convertTo<T>(fromJson)).toList();
+  Map<String, dynamic> toMap() {
+    return {
+      "total": total,
+      "documents": documents.map((p) => p.toMap()).toList(),
+    };
+  }
+
+  List<T> convertTo<T>(T Function(Map) fromJson) =>
+      documents.map((d) => d.convertTo<T>(fromJson)).toList();
 }

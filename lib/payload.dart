@@ -14,10 +14,10 @@ class Payload {
 
   /// Convert to binary, with optional offset and length
   List<int> toBinary({int offset = 0, int? length}) {
-    if(data == null) {
+    if (data == null) {
       throw AppwriteException('`data` is not defined.');
     }
-    if(offset == 0 && length == null) {
+    if (offset == 0 && length == null) {
       return data!;
     } else if (length == null) {
       return data!.sublist(offset);
@@ -29,7 +29,7 @@ class Payload {
   /// Convert binary data to string (utf8)
   @override
   String toString() {
-    if(data == null) {
+    if (data == null) {
       return '';
     }
     return utf8.decode(data!);
