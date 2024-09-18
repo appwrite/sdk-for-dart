@@ -1,6 +1,6 @@
 /// Appwrite Dart SDK
 ///
-/// This SDK is compatible with Appwrite server version 1.6.x.
+/// This SDK is compatible with Appwrite server version 1.6.x. 
 /// For older versions, please check
 /// [previous releases](https://github.com/appwrite/sdk-for-dart/releases).
 library dart_appwrite;
@@ -12,16 +12,16 @@ import 'dart:convert';
 
 import 'src/enums.dart';
 import 'src/service.dart';
-import 'src/input_file.dart';
 import 'src/upload_progress.dart';
 import 'models.dart' as models;
 import 'enums.dart' as enums;
+import 'payload.dart';
 
 export 'src/response.dart';
 export 'src/client.dart';
 export 'src/exception.dart';
-export 'src/input_file.dart';
 export 'src/upload_progress.dart';
+export 'payload.dart';
 
 part 'query.dart';
 part 'permission.dart';

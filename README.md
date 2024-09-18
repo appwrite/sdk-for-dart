@@ -23,7 +23,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  dart_appwrite: ^12.1.0
+  dart_appwrite: ^13.0.0-rc1
 ```
 
 You can install packages from the command line:

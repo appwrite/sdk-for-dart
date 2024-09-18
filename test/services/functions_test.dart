@@ -298,7 +298,7 @@ void main() {
 
             final response = await functions.createDeployment(
                 functionId: '<FUNCTION_ID>',
-                code: InputFile.fromPath(path: './image.png'),
+                code: Payload.fromPath(path: './image.png'),
                 activate: true,
             );
             expect(response, isA<models.Deployment>());
@@ -494,8 +494,12 @@ void main() {
                 'duration': 0.4,};
 
 
-            when(client.call(
-                HttpMethod.post,
+            when(client.chunkedUpload(
+                path: argThat(isNotNull),
+                params: argThat(isNotNull),
+                paramName: argThat(isNotNull),
+                idParamName: argThat(isNotNull),
+                headers: argThat(isNotNull),
             )).thenAnswer((_) async => Response(data: data));
 
 

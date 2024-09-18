@@ -11,6 +11,6 @@ Storage storage = Storage(client);
 File result = await storage.createFile(
     bucketId: '<BUCKET_ID>',
     fileId: '<FILE_ID>',
-    file: InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg'),
+    file: Payload.fromFile(path: '/path/to/file.png'),
     permissions: ["read("any")"], // (optional)
 );

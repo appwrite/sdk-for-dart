@@ -9,7 +9,7 @@ Functions functions = Functions(client);
 
 Execution result = await functions.createExecution(
     functionId: '<FUNCTION_ID>',
-    body: '<BODY>', // (optional)
+    body: Payload.fromJson({ 'x': 'y' }), // (optional)
     xasync: false, // (optional)
     path: '<PATH>', // (optional)
     method: ExecutionMethod.gET, // (optional)
