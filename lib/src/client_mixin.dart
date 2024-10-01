@@ -50,7 +50,7 @@ mixin ClientMixin {
       }
     } else if (method == HttpMethod.get) {
       if (params.isNotEmpty) {
-        params = params.map((key, value) {
+        params = params.map((key, value){
           if (value is int || value is double) {
             return MapEntry(key, value.toString());
           }
@@ -76,8 +76,7 @@ mixin ClientMixin {
     return request;
   }
 
-  Future<Response> prepareResponse(http.Response res,
-      {ResponseType? responseType}) async {
+  Future<Response> prepareResponse(http.Response res, {ResponseType? responseType}) async {
     responseType ??= ResponseType.json;
 
     String? warnings = res.headers['x-appwrite-warning'];
@@ -107,10 +106,8 @@ mixin ClientMixin {
       } else {
         data = res.body;
       }
-    } else if ((res.headers['content-type'] ?? '')
-        .contains('multipart/form-data')) {
-      data = await _parseMultipart(
-          res.headers['content-type']!, Stream.value(res.bodyBytes));
+    } else if((res.headers['content-type'] ?? '').contains('multipart/form-data')) {
+      data = await _parseMultipart(res.headers['content-type']!, Stream.value(res.bodyBytes));
       return Response(data: data);
     } else {
       if (responseType == ResponseType.bytes) {
@@ -122,24 +119,19 @@ mixin ClientMixin {
     return Response(data: data);
   }
 
-  Future<http.Response> toResponse(
-      http.StreamedResponse streamedResponse) async {
-    if (streamedResponse.statusCode == 204) {
-      return http.Response(
-        '',
-        streamedResponse.statusCode,
-        headers: streamedResponse.headers.map((k, v) =>
-            k.toLowerCase() == 'content-type'
-                ? MapEntry(k, 'text/plain')
-                : MapEntry(k, v)),
-        request: streamedResponse.request,
-        isRedirect: streamedResponse.isRedirect,
-        persistentConnection: streamedResponse.persistentConnection,
-        reasonPhrase: streamedResponse.reasonPhrase,
-      );
-    } else {
-      return await http.Response.fromStream(streamedResponse);
-    }
+  Future<http.Response> toResponse(http.StreamedResponse streamedResponse) async {
+    if(streamedResponse.statusCode == 204) {
+        return http.Response('',
+          streamedResponse.statusCode,
+          headers: streamedResponse.headers.map((k,v) => k.toLowerCase()=='content-type' ? MapEntry(k, 'text/plain') : MapEntry(k,v)),
+          request: streamedResponse.request,
+          isRedirect: streamedResponse.isRedirect,
+          persistentConnection: streamedResponse.persistentConnection,
+          reasonPhrase: streamedResponse.reasonPhrase,
+        );
+      } else {
+        return await http.Response.fromStream(streamedResponse);
+      }
   }
 
   Future<List<int>> _decodeMimeMultipart(MimeMultipart part) async {
@@ -187,9 +179,8 @@ mixin ClientMixin {
     final Map<String, dynamic> out = {};
     for (final item in data) {
       if (item!.name == 'responseBody') {
-        out[item.name] = Payload.fromBinary(
-            data: await _decodeMimeMultipart(item.value),
-            filename: item.filename);
+        out[item.name] =
+            Payload.fromBinary(data: await _decodeMimeMultipart(item.value), filename: item.filename);
       } else {
         out[item.name] = await item.value;
       }

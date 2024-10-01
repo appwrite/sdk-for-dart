@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'src/exception.dart';
+import 'dart:io';
 
 class Payload {
   late final String? path;
@@ -14,10 +15,10 @@ class Payload {
 
   /// Convert to binary, with optional offset and length
   List<int> toBinary({int offset = 0, int? length}) {
-    if (data == null) {
+    if(data == null) {
       throw AppwriteException('`data` is not defined.');
     }
-    if (offset == 0 && length == null) {
+    if(offset == 0 && length == null) {
       return data!;
     } else if (length == null) {
       return data!.sublist(offset);
@@ -29,7 +30,7 @@ class Payload {
   /// Convert binary data to string (utf8)
   @override
   String toString() {
-    if (data == null) {
+    if(data == null) {
       return '';
     }
     return utf8.decode(data!);
@@ -42,6 +43,15 @@ class Payload {
     } catch (e) {
       throw FormatException('Failed to parse JSON: ${e.toString()}');
     }
+  }
+
+  /// Create a file from the payload
+  void toFile(String path) {
+    if(data == null) {
+      throw AppwriteException('`data` is not defined.');
+    }
+    final file = File(path);
+    file.writeAsBytesSync(data!);
   }
 
   /// Create a Payload from binary data
