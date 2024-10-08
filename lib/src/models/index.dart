@@ -14,6 +14,10 @@ class Index implements Model {
     final List attributes;
     /// Index orders.
     final List? orders;
+    /// Index creation date in ISO 8601 format.
+    final String $createdAt;
+    /// Index update date in ISO 8601 format.
+    final String $updatedAt;
 
     Index({
         required this.key,
@@ -22,6 +26,8 @@ class Index implements Model {
         required this.error,
         required this.attributes,
         this.orders,
+        required this.$createdAt,
+        required this.$updatedAt,
     });
 
     factory Index.fromMap(Map<String, dynamic> map) {
@@ -32,6 +38,8 @@ class Index implements Model {
             error: map['error'].toString(),
             attributes: map['attributes'] ?? [],
             orders: map['orders'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
         );
     }
 
@@ -43,6 +51,8 @@ class Index implements Model {
             "error": error,
             "attributes": attributes,
             "orders": orders,
+            "\$createdAt": $createdAt,
+            "\$updatedAt": $updatedAt,
         };
     }
 }

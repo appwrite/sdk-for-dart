@@ -14,6 +14,10 @@ class AttributeRelationship implements Model {
     final bool xrequired;
     /// Is attribute an array?
     final bool? array;
+    /// Attribute creation date in ISO 8601 format.
+    final String $createdAt;
+    /// Attribute update date in ISO 8601 format.
+    final String $updatedAt;
     /// The ID of the related collection.
     final String relatedCollection;
     /// The type of the relationship.
@@ -34,6 +38,8 @@ class AttributeRelationship implements Model {
         required this.error,
         required this.xrequired,
         this.array,
+        required this.$createdAt,
+        required this.$updatedAt,
         required this.relatedCollection,
         required this.relationType,
         required this.twoWay,
@@ -50,6 +56,8 @@ class AttributeRelationship implements Model {
             error: map['error'].toString(),
             xrequired: map['required'],
             array: map['array'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
             relatedCollection: map['relatedCollection'].toString(),
             relationType: map['relationType'].toString(),
             twoWay: map['twoWay'],
@@ -67,6 +75,8 @@ class AttributeRelationship implements Model {
             "error": error,
             "required": xrequired,
             "array": array,
+            "\$createdAt": $createdAt,
+            "\$updatedAt": $updatedAt,
             "relatedCollection": relatedCollection,
             "relationType": relationType,
             "twoWay": twoWay,
