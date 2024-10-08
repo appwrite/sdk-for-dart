@@ -298,7 +298,7 @@ void main() {
 
             final response = await functions.createDeployment(
                 functionId: '<FUNCTION_ID>',
-                code: InputFile.fromPath(path: './image.png'),
+                code: Payload.fromPath(path: './image.png'),
                 activate: true,
             );
             expect(response, isA<models.Deployment>());
@@ -487,15 +487,19 @@ void main() {
                 'requestPath': '/articles?id=5',
                 'requestHeaders': [],
                 'responseStatusCode': 200,
-                'responseBody': 'Developers are awesome.',
+                'responseBody': ,
                 'responseHeaders': [],
                 'logs': '',
                 'errors': '',
                 'duration': 0.4,};
 
 
-            when(client.call(
-                HttpMethod.post,
+            when(client.chunkedUpload(
+                path: argThat(isNotNull),
+                params: argThat(isNotNull),
+                paramName: argThat(isNotNull),
+                idParamName: argThat(isNotNull),
+                headers: argThat(isNotNull),
             )).thenAnswer((_) async => Response(data: data));
 
 
@@ -519,7 +523,7 @@ void main() {
                 'requestPath': '/articles?id=5',
                 'requestHeaders': [],
                 'responseStatusCode': 200,
-                'responseBody': 'Developers are awesome.',
+                'responseBody': ,
                 'responseHeaders': [],
                 'logs': '',
                 'errors': '',

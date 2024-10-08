@@ -11,6 +11,8 @@ void main() {
         status: 'available',
         error: 'string',
         xrequired: true,
+        $createdAt: '2020-10-15T06:38:00.000+00:00',
+        $updatedAt: '2020-10-15T06:38:00.000+00:00',
         relatedCollection: 'collection',
         relationType: 'oneToOne|oneToMany|manyToOne|manyToMany',
         twoWay: true,
@@ -27,6 +29,8 @@ void main() {
       expect(result.status, 'available');
       expect(result.error, 'string');
       expect(result.xrequired, true);
+      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
       expect(result.relatedCollection, 'collection');
       expect(result.relationType, 'oneToOne|oneToMany|manyToOne|manyToMany');
       expect(result.twoWay, true);
