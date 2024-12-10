@@ -42,10 +42,8 @@ class Build implements Model {
             stderr: map['stderr'].toString(),
             startTime: map['startTime'].toString(),
             endTime: map['endTime'].toString(),
-            duration: (map['duration'] is String) ?
-                        int.tryParse(map['duration']) ?? 0:map['duration'] ?? 0,
-            size: (map['size'] is String) ?
-                        int.tryParse(map['size']) ?? 0:map['size'] ?? 0,
+            duration: map['duration'],
+            size: map['size'],
         );
     }
 

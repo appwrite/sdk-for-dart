@@ -14,8 +14,7 @@ class DeploymentList implements Model {
 
     factory DeploymentList.fromMap(Map<String, dynamic> map) {
         return DeploymentList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             deployments: List<Deployment>.from(map['deployments'].map((p) => Deployment.fromMap(p))),
         );
     }

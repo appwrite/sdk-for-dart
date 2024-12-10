@@ -14,8 +14,7 @@ class MessageList implements Model {
 
     factory MessageList.fromMap(Map<String, dynamic> map) {
         return MessageList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             messages: List<Message>.from(map['messages'].map((p) => Message.fromMap(p))),
         );
     }

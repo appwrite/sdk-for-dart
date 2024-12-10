@@ -14,8 +14,7 @@ class CollectionList implements Model {
 
     factory CollectionList.fromMap(Map<String, dynamic> map) {
         return CollectionList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             collections: List<Collection>.from(map['collections'].map((p) => Collection.fromMap(p))),
         );
     }

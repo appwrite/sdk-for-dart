@@ -18,8 +18,7 @@ class HealthStatus implements Model {
     factory HealthStatus.fromMap(Map<String, dynamic> map) {
         return HealthStatus(
             name: map['name'].toString(),
-            ping: (map['ping'] is String) ?
-                        int.tryParse(map['ping']) ?? 0:map['ping'] ?? 0,
+            ping: map['ping'],
             status: map['status'].toString(),
         );
     }

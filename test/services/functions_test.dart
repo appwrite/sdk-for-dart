@@ -96,7 +96,7 @@ void main() {
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
                 'providerSilentMode': true,
-                'specification': 's-0.5vcpu-512mb',};
+                'specification': 's-1vcpu-512mb',};
 
 
             when(client.call(
@@ -172,7 +172,7 @@ void main() {
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
                 'providerSilentMode': true,
-                'specification': 's-0.5vcpu-512mb',};
+                'specification': 's-1vcpu-512mb',};
 
 
             when(client.call(
@@ -212,7 +212,7 @@ void main() {
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
                 'providerSilentMode': true,
-                'specification': 's-0.5vcpu-512mb',};
+                'specification': 's-1vcpu-512mb',};
 
 
             when(client.call(
@@ -298,7 +298,7 @@ void main() {
 
             final response = await functions.createDeployment(
                 functionId: '<FUNCTION_ID>',
-                code: Payload.fromPath(path: './image.png'),
+                code: InputFile.fromPath(path: './image.png'),
                 activate: true,
             );
             expect(response, isA<models.Deployment>());
@@ -371,7 +371,7 @@ void main() {
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
                 'providerSilentMode': true,
-                'specification': 's-0.5vcpu-512mb',};
+                'specification': 's-1vcpu-512mb',};
 
 
             when(client.call(
@@ -487,19 +487,15 @@ void main() {
                 'requestPath': '/articles?id=5',
                 'requestHeaders': [],
                 'responseStatusCode': 200,
-                'responseBody': ,
+                'responseBody': '',
                 'responseHeaders': [],
                 'logs': '',
                 'errors': '',
                 'duration': 0.4,};
 
 
-            when(client.chunkedUpload(
-                path: argThat(isNotNull),
-                params: argThat(isNotNull),
-                paramName: argThat(isNotNull),
-                idParamName: argThat(isNotNull),
-                headers: argThat(isNotNull),
+            when(client.call(
+                HttpMethod.post,
             )).thenAnswer((_) async => Response(data: data));
 
 
@@ -523,7 +519,7 @@ void main() {
                 'requestPath': '/articles?id=5',
                 'requestHeaders': [],
                 'responseStatusCode': 200,
-                'responseBody': ,
+                'responseBody': '',
                 'responseHeaders': [],
                 'logs': '',
                 'errors': '',

@@ -941,9 +941,7 @@ class Account extends Service {
     /// [POST
     /// /v1/account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
     /// endpoint to complete the login process. The link sent to the user's email
-    /// address is valid for 1 hour. If you are on a mobile device you can leave
-    /// the URL parameter empty, so that the login completion will be handled by
-    /// your Appwrite instance by default.
+    /// address is valid for 1 hour.
     /// 
     /// A user is limited to 10 active sessions at a time by default. [Learn more
     /// about session

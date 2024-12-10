@@ -100,7 +100,7 @@ class Messaging extends Service {
     /// Create push notification
     ///
     /// Create a new push notification.
-    Future<models.Message> createPush({required String messageId, required String title, required String body, List<String>? topics, List<String>? users, List<String>? targets, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, String? badge, bool? draft, String? scheduledAt}) async {
+    Future<models.Message> createPush({required String messageId, String? title, String? body, List<String>? topics, List<String>? users, List<String>? targets, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, int? badge, bool? draft, String? scheduledAt, bool? contentAvailable, bool? critical, enums.MessagePriority? priority}) async {
         final String apiPath = '/messaging/messages/push';
 
         final Map<String, dynamic> apiParams = {
@@ -121,6 +121,9 @@ class Messaging extends Service {
 'badge': badge,
 'draft': draft,
 'scheduledAt': scheduledAt,
+'contentAvailable': contentAvailable,
+'critical': critical,
+'priority': priority?.value,
 
         };
 
@@ -139,7 +142,7 @@ class Messaging extends Service {
     ///
     /// Update a push notification by its unique ID.
     /// 
-    Future<models.Message> updatePush({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? title, String? body, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, int? badge, bool? draft, String? scheduledAt}) async {
+    Future<models.Message> updatePush({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? title, String? body, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, int? badge, bool? draft, String? scheduledAt, bool? contentAvailable, bool? critical, enums.MessagePriority? priority}) async {
         final String apiPath = '/messaging/messages/push/{messageId}'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -159,6 +162,9 @@ class Messaging extends Service {
 'badge': badge,
 'draft': draft,
 'scheduledAt': scheduledAt,
+'contentAvailable': contentAvailable,
+'critical': critical,
+'priority': priority?.value,
 
         };
 

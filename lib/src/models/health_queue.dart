@@ -11,8 +11,7 @@ class HealthQueue implements Model {
 
     factory HealthQueue.fromMap(Map<String, dynamic> map) {
         return HealthQueue(
-            size: (map['size'] is String) ?
-                        int.tryParse(map['size']) ?? 0:map['size'] ?? 0,
+            size: map['size'],
         );
     }
 

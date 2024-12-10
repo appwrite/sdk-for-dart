@@ -10,7 +10,7 @@ Functions functions = Functions(client);
 
 Deployment result = await functions.createDeployment(
     functionId: '<FUNCTION_ID>',
-    code: Payload.fromFile(path: '/path/to/file.png'),
+    code: InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg'),
     activate: false,
     entrypoint: '<ENTRYPOINT>', // (optional)
     commands: '<COMMANDS>', // (optional)

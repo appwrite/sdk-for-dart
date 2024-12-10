@@ -14,8 +14,7 @@ class VariableList implements Model {
 
     factory VariableList.fromMap(Map<String, dynamic> map) {
         return VariableList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             variables: List<Variable>.from(map['variables'].map((p) => Variable.fromMap(p))),
         );
     }

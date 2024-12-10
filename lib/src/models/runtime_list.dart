@@ -14,8 +14,7 @@ class RuntimeList implements Model {
 
     factory RuntimeList.fromMap(Map<String, dynamic> map) {
         return RuntimeList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             runtimes: List<Runtime>.from(map['runtimes'].map((p) => Runtime.fromMap(p))),
         );
     }

@@ -9,7 +9,7 @@ class Func implements Model {
     /// Function update date in ISO 8601 format.
     final String $updatedAt;
     /// Execution permissions.
-    final List execute;
+    final List<String> execute;
     /// Function name.
     final String name;
     /// Function enabled.
@@ -23,12 +23,12 @@ class Func implements Model {
     /// Function&#039;s active deployment ID.
     final String deployment;
     /// Allowed permission scopes.
-    final List scopes;
+    final List<String> scopes;
     /// Function variables.
     final List<Variable> vars;
     /// Function trigger events.
-    final List events;
-    /// Function execution schedult in CRON format.
+    final List<String> events;
+    /// Function execution schedule in CRON format.
     final String schedule;
     /// Function execution timeout in seconds.
     final int timeout;
@@ -94,8 +94,7 @@ class Func implements Model {
             vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
             events: map['events'] ?? [],
             schedule: map['schedule'].toString(),
-            timeout: (map['timeout'] is String) ?
-                        int.tryParse(map['timeout']) ?? 0:map['timeout'] ?? 0,
+            timeout: map['timeout'],
             entrypoint: map['entrypoint'].toString(),
             commands: map['commands'].toString(),
             version: map['version'].toString(),

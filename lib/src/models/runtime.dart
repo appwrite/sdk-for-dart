@@ -17,7 +17,7 @@ class Runtime implements Model {
     /// Name of the logo image.
     final String logo;
     /// List of supported architectures.
-    final List supports;
+    final List<String> supports;
 
     Runtime({
         required this.$id,

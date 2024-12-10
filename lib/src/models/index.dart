@@ -11,9 +11,9 @@ class Index implements Model {
     /// Error message. Displays error generated on failure of creating or deleting an index.
     final String error;
     /// Index attributes.
-    final List attributes;
+    final List<String> attributes;
     /// Index orders.
-    final List? orders;
+    final List<String>? orders;
     /// Index creation date in ISO 8601 format.
     final String $createdAt;
     /// Index update date in ISO 8601 format.

@@ -14,8 +14,7 @@ class TopicList implements Model {
 
     factory TopicList.fromMap(Map<String, dynamic> map) {
         return TopicList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             topics: List<Topic>.from(map['topics'].map((p) => Topic.fromMap(p))),
         );
     }

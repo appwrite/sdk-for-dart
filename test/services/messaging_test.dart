@@ -146,8 +146,6 @@ void main() {
 
             final response = await messaging.createPush(
                 messageId: '<MESSAGE_ID>',
-                title: '<TITLE>',
-                body: '<BODY>',
             );
             expect(response, isA<models.Message>());
 

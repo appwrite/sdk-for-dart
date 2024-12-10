@@ -11,17 +11,17 @@ class Message implements Model {
     /// Message provider type.
     final String providerType;
     /// Topic IDs set as recipients.
-    final List topics;
+    final List<String> topics;
     /// User IDs set as recipients.
-    final List users;
+    final List<String> users;
     /// Target IDs set as recipients.
-    final List targets;
+    final List<String> targets;
     /// The scheduled time for message.
     final String? scheduledAt;
     /// The time when the message was delivered.
     final String? deliveredAt;
     /// Delivery errors if any.
-    final List? deliveryErrors;
+    final List<String>? deliveryErrors;
     /// Number of recipients the message was delivered to.
     final int deliveredTotal;
     /// Data of the message.
@@ -57,8 +57,7 @@ class Message implements Model {
             scheduledAt: map['scheduledAt']?.toString(),
             deliveredAt: map['deliveredAt']?.toString(),
             deliveryErrors: map['deliveryErrors'],
-            deliveredTotal: (map['deliveredTotal'] is String) ?
-                        int.tryParse(map['deliveredTotal']) ?? 0:map['deliveredTotal'] ?? 0,
+            deliveredTotal: map['deliveredTotal'],
             data: map['data'],
             status: map['status'].toString(),
         );

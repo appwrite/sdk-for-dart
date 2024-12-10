@@ -19,7 +19,7 @@ class AttributeEnum implements Model {
     /// Attribute update date in ISO 8601 format.
     final String $updatedAt;
     /// Array of elements in enumerated type.
-    final List elements;
+    final List<String> elements;
     /// String format.
     final String format;
     /// Default value for attribute when not provided. Cannot be set when attribute is required.

@@ -14,8 +14,7 @@ class SpecificationList implements Model {
 
     factory SpecificationList.fromMap(Map<String, dynamic> map) {
         return SpecificationList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             specifications: List<Specification>.from(map['specifications'].map((p) => Specification.fromMap(p))),
         );
     }

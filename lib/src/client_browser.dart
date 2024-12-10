@@ -6,7 +6,7 @@ import 'enums.dart';
 import 'exception.dart';
 import 'client_base.dart';
 import 'response.dart';
-import '../payload.dart';
+import 'input_file.dart';
 import 'upload_progress.dart';
 
 ClientBase createClient({
@@ -33,7 +33,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '13.0.0',
+      'x-sdk-version': '12.2.0',
       'X-Appwrite-Response-Format' : '1.6.0',
     };
 
@@ -122,16 +122,16 @@ class ClientBrowser extends ClientBase with ClientMixin {
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    Payload file = params[paramName];
-    if (file.data == null) {
-      throw AppwriteException("File data must be provided for Flutter web");
+    InputFile file = params[paramName];
+    if (file.bytes == null) {
+      throw AppwriteException("File bytes must be provided for Flutter web");
     }
 
-    int size = file.data!.length;
+    int size = file.bytes!.length;
 
     late Response res;
     if (size <= CHUNK_SIZE) {
-      params[paramName] = http.MultipartFile.fromBytes(paramName, file.data!, filename: file.filename);
+      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!, filename: file.filename);
       return call(
         HttpMethod.post,
         path: path,
@@ -157,7 +157,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     while (offset < size) {
       List<int> chunk = [];
       final end = min(offset + CHUNK_SIZE, size);
-      chunk = file.toBinary(length: offset, length: min(CHUNK_SIZE, size - offset));
+      chunk = file.bytes!.getRange(offset, end).toList();
       params[paramName] =
           http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       headers['content-range'] =

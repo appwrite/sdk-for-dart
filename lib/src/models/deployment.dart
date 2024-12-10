@@ -87,16 +87,13 @@ class Deployment implements Model {
             resourceId: map['resourceId'].toString(),
             resourceType: map['resourceType'].toString(),
             entrypoint: map['entrypoint'].toString(),
-            size: (map['size'] is String) ?
-                        int.tryParse(map['size']) ?? 0:map['size'] ?? 0,
-            buildSize: (map['buildSize'] is String) ?
-                        int.tryParse(map['buildSize']) ?? 0:map['buildSize'] ?? 0,
+            size: map['size'],
+            buildSize: map['buildSize'],
             buildId: map['buildId'].toString(),
             activate: map['activate'],
             status: map['status'].toString(),
             buildLogs: map['buildLogs'].toString(),
-            buildTime: (map['buildTime'] is String) ?
-                        int.tryParse(map['buildTime']) ?? 0:map['buildTime'] ?? 0,
+            buildTime: map['buildTime'],
             providerRepositoryName: map['providerRepositoryName'].toString(),
             providerRepositoryOwner: map['providerRepositoryOwner'].toString(),
             providerRepositoryUrl: map['providerRepositoryUrl'].toString(),

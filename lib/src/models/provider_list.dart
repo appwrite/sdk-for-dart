@@ -14,8 +14,7 @@ class ProviderList implements Model {
 
     factory ProviderList.fromMap(Map<String, dynamic> map) {
         return ProviderList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             providers: List<Provider>.from(map['providers'].map((p) => Provider.fromMap(p))),
         );
     }

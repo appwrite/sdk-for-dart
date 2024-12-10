@@ -46,8 +46,7 @@ class AttributeString implements Model {
             array: map['array'],
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
-            size: (map['size'] is String) ?
-                        int.tryParse(map['size']) ?? 0:map['size'] ?? 0,
+            size: map['size'],
             xdefault: map['default']?.toString(),
         );
     }

@@ -14,8 +14,7 @@ class IndexList implements Model {
 
     factory IndexList.fromMap(Map<String, dynamic> map) {
         return IndexList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );
     }

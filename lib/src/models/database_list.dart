@@ -14,8 +14,7 @@ class DatabaseList implements Model {
 
     factory DatabaseList.fromMap(Map<String, dynamic> map) {
         return DatabaseList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             databases: List<Database>.from(map['databases'].map((p) => Database.fromMap(p))),
         );
     }

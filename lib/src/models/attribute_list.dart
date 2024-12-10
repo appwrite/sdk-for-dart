@@ -14,8 +14,7 @@ class AttributeList implements Model {
 
     factory AttributeList.fromMap(Map<String, dynamic> map) {
         return AttributeList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             attributes: map['attributes'] ?? [],
         );
     }

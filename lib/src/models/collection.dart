@@ -9,7 +9,7 @@ class Collection implements Model {
     /// Collection update date in ISO 8601 format.
     final String $updatedAt;
     /// Collection permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
-    final List $permissions;
+    final List<String> $permissions;
     /// Database ID.
     final String databaseId;
     /// Collection name.

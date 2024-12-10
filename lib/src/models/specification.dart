@@ -20,8 +20,7 @@ class Specification implements Model {
 
     factory Specification.fromMap(Map<String, dynamic> map) {
         return Specification(
-            memory: (map['memory'] is String) ?
-                        int.tryParse(map['memory']) ?? 0:map['memory'] ?? 0,
+            memory: map['memory'],
             cpus: map['cpus'].toDouble(),
             enabled: map['enabled'],
             slug: map['slug'].toString(),

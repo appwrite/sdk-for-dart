@@ -17,7 +17,7 @@ class Topic implements Model {
     /// Total count of push subscribers subscribed to the topic.
     final int pushTotal;
     /// Subscribe permissions.
-    final List subscribe;
+    final List<String> subscribe;
 
     Topic({
         required this.$id,
@@ -36,12 +36,9 @@ class Topic implements Model {
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
             name: map['name'].toString(),
-            emailTotal: (map['emailTotal'] is String) ?
-                        int.tryParse(map['emailTotal']) ?? 0:map['emailTotal'] ?? 0,
-            smsTotal: (map['smsTotal'] is String) ?
-                        int.tryParse(map['smsTotal']) ?? 0:map['smsTotal'] ?? 0,
-            pushTotal: (map['pushTotal'] is String) ?
-                        int.tryParse(map['pushTotal']) ?? 0:map['pushTotal'] ?? 0,
+            emailTotal: map['emailTotal'],
+            smsTotal: map['smsTotal'],
+            pushTotal: map['pushTotal'],
             subscribe: map['subscribe'] ?? [],
         );
     }

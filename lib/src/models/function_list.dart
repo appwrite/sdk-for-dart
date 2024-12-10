@@ -14,8 +14,7 @@ class FunctionList implements Model {
 
     factory FunctionList.fromMap(Map<String, dynamic> map) {
         return FunctionList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             functions: List<Func>.from(map['functions'].map((p) => Func.fromMap(p))),
         );
     }

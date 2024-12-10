@@ -17,12 +17,9 @@ class HealthTime implements Model {
 
     factory HealthTime.fromMap(Map<String, dynamic> map) {
         return HealthTime(
-            remoteTime: (map['remoteTime'] is String) ?
-                        int.tryParse(map['remoteTime']) ?? 0:map['remoteTime'] ?? 0,
-            localTime: (map['localTime'] is String) ?
-                        int.tryParse(map['localTime']) ?? 0:map['localTime'] ?? 0,
-            diff: (map['diff'] is String) ?
-                        int.tryParse(map['diff']) ?? 0:map['diff'] ?? 0,
+            remoteTime: map['remoteTime'],
+            localTime: map['localTime'],
+            diff: map['diff'],
         );
     }
 

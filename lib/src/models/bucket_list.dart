@@ -14,8 +14,7 @@ class BucketList implements Model {
 
     factory BucketList.fromMap(Map<String, dynamic> map) {
         return BucketList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             buckets: List<Bucket>.from(map['buckets'].map((p) => Bucket.fromMap(p))),
         );
     }

@@ -49,12 +49,9 @@ class AttributeInteger implements Model {
             array: map['array'],
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
-            min: (map['min'] is String) ?
-                        int.tryParse(map['min']):map['min'],
-            max: (map['max'] is String) ?
-                        int.tryParse(map['max']):map['max'],
-            xdefault: (map['default'] is String) ?
-                        int.tryParse(map['default']):map['default'],
+            min: map['min'],
+            max: map['max'],
+            xdefault: map['default'],
         );
     }
 

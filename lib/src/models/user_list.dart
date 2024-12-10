@@ -14,8 +14,7 @@ class UserList implements Model {
 
     factory UserList.fromMap(Map<String, dynamic> map) {
         return UserList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             users: List<User>.from(map['users'].map((p) => User.fromMap(p))),
         );
     }

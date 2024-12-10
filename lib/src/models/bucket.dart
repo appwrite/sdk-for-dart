@@ -9,7 +9,7 @@ class Bucket implements Model {
     /// Bucket update date in ISO 8601 format.
     final String $updatedAt;
     /// Bucket permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
-    final List $permissions;
+    final List<String> $permissions;
     /// Whether file-level security is enabled. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final bool fileSecurity;
     /// Bucket name.
@@ -19,7 +19,7 @@ class Bucket implements Model {
     /// Maximum file size supported.
     final int maximumFileSize;
     /// Allowed file extensions.
-    final List allowedFileExtensions;
+    final List<String> allowedFileExtensions;
     /// Compression algorithm choosen for compression. Will be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd).
     final String compression;
     /// Bucket is encrypted.
@@ -51,8 +51,7 @@ class Bucket implements Model {
             fileSecurity: map['fileSecurity'],
             name: map['name'].toString(),
             enabled: map['enabled'],
-            maximumFileSize: (map['maximumFileSize'] is String) ?
-                        int.tryParse(map['maximumFileSize']) ?? 0:map['maximumFileSize'] ?? 0,
+            maximumFileSize: map['maximumFileSize'],
             allowedFileExtensions: map['allowedFileExtensions'] ?? [],
             compression: map['compression'].toString(),
             encryption: map['encryption'],

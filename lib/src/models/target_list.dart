@@ -14,8 +14,7 @@ class TargetList implements Model {
 
     factory TargetList.fromMap(Map<String, dynamic> map) {
         return TargetList(
-            total: (map['total'] is String) ?
-                        int.tryParse(map['total']) ?? 0:map['total'] ?? 0,
+            total: map['total'],
             targets: List<Target>.from(map['targets'].map((p) => Target.fromMap(p))),
         );
     }

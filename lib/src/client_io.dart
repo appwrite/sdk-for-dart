@@ -2,13 +2,12 @@ import 'dart:io';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-
 import 'client_mixin.dart';
 import 'client_base.dart';
 import 'enums.dart';
 import 'exception.dart';
 import 'response.dart';
-import '../payload.dart';
+import 'input_file.dart';
 import 'upload_progress.dart';
 
 ClientBase createClient({
@@ -43,8 +42,8 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '13.0.0',
-      'user-agent' : 'AppwriteDartSDK/13.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'x-sdk-version': '12.2.0',
+      'user-agent' : 'AppwriteDartSDK/12.2.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format' : '1.6.0',
     };
 
@@ -127,14 +126,14 @@ class ClientIO extends ClientBase with ClientMixin {
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    Payload file = params[paramName];
-    if (file.path == null && file.data == null) {
-      throw AppwriteException("File path or data must be provided");
+    InputFile file = params[paramName];
+    if (file.path == null && file.bytes == null) {
+      throw AppwriteException("File path or bytes must be provided");
     }
 
     int size = 0;
-    if (file.data != null) {
-      size = file.data!.length;
+    if (file.bytes != null) {
+      size = file.bytes!.length;
     }
 
     File? iofile;
@@ -151,7 +150,7 @@ class ClientIO extends ClientBase with ClientMixin {
             paramName, file.path!,
             filename: file.filename);
       } else {
-        params[paramName] = http.MultipartFile.fromBytes(paramName, file.data!,
+        params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!,
             filename: file.filename);
       }
       return call(
@@ -184,8 +183,9 @@ class ClientIO extends ClientBase with ClientMixin {
 
     while (offset < size) {
       List<int> chunk = [];
-      if (file.data != null) {
-        chunk = file.toBinary(offset: offset, length: min(CHUNK_SIZE, size - offset));
+      if (file.bytes != null) {
+        final end = min(offset + CHUNK_SIZE, size);
+        chunk = file.bytes!.getRange(offset, end).toList();
       } else {
         raf!.setPositionSync(offset);
         chunk = raf.readSync(CHUNK_SIZE);
