@@ -13,6 +13,7 @@ part 'src/enums/index_type.dart';
 part 'src/enums/runtime.dart';
 part 'src/enums/execution_method.dart';
 part 'src/enums/name.dart';
+part 'src/enums/message_priority.dart';
 part 'src/enums/smtp_encryption.dart';
 part 'src/enums/compression.dart';
 part 'src/enums/image_gravity.dart';

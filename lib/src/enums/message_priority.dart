@@ -1,9 +1,10 @@
 part of '../../enums.dart';
 
-enum AuthenticatorType {
-    totp(value: 'totp');
+enum MessagePriority {
+    normal(value: 'normal'),
+    high(value: 'high');
 
-    const AuthenticatorType({
+    const MessagePriority({
         required this.value
     });
 

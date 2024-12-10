@@ -96,7 +96,7 @@ void main() {
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
                 'providerSilentMode': true,
-                'specification': 's-0.5vcpu-512mb',};
+                'specification': 's-1vcpu-512mb',};
 
 
             when(client.call(
@@ -172,7 +172,7 @@ void main() {
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
                 'providerSilentMode': true,
-                'specification': 's-0.5vcpu-512mb',};
+                'specification': 's-1vcpu-512mb',};
 
 
             when(client.call(
@@ -212,7 +212,7 @@ void main() {
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
                 'providerSilentMode': true,
-                'specification': 's-0.5vcpu-512mb',};
+                'specification': 's-1vcpu-512mb',};
 
 
             when(client.call(
@@ -371,7 +371,7 @@ void main() {
                 'providerBranch': 'main',
                 'providerRootDirectory': 'functions/helloWorld',
                 'providerSilentMode': true,
-                'specification': 's-0.5vcpu-512mb',};
+                'specification': 's-1vcpu-512mb',};
 
 
             when(client.call(
@@ -487,7 +487,7 @@ void main() {
                 'requestPath': '/articles?id=5',
                 'requestHeaders': [],
                 'responseStatusCode': 200,
-                'responseBody': 'Developers are awesome.',
+                'responseBody': '',
                 'responseHeaders': [],
                 'logs': '',
                 'errors': '',
@@ -519,7 +519,7 @@ void main() {
                 'requestPath': '/articles?id=5',
                 'requestHeaders': [],
                 'responseStatusCode': 200,
-                'responseBody': 'Developers are awesome.',
+                'responseBody': '',
                 'responseHeaders': [],
                 'logs': '',
                 'errors': '',

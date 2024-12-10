@@ -289,7 +289,9 @@ void main() {
                 'type': 'boolean',
                 'status': 'available',
                 'error': 'string',
-                'required': true,};
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -313,7 +315,9 @@ void main() {
                 'type': 'boolean',
                 'status': 'available',
                 'error': 'string',
-                'required': true,};
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -339,6 +343,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'format': 'datetime',};
 
 
@@ -364,6 +370,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'format': 'datetime',};
 
 
@@ -390,6 +398,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'format': 'email',};
 
 
@@ -415,6 +425,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'format': 'email',};
 
 
@@ -441,6 +453,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'elements': [],
                 'format': 'enum',};
 
@@ -468,6 +482,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'elements': [],
                 'format': 'enum',};
 
@@ -495,7 +511,9 @@ void main() {
                 'type': 'double',
                 'status': 'available',
                 'error': 'string',
-                'required': true,};
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -519,7 +537,9 @@ void main() {
                 'type': 'double',
                 'status': 'available',
                 'error': 'string',
-                'required': true,};
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -546,7 +566,9 @@ void main() {
                 'type': 'integer',
                 'status': 'available',
                 'error': 'string',
-                'required': true,};
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -570,7 +592,9 @@ void main() {
                 'type': 'integer',
                 'status': 'available',
                 'error': 'string',
-                'required': true,};
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -598,6 +622,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'format': 'ip',};
 
 
@@ -623,6 +649,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'format': 'ip',};
 
 
@@ -649,6 +677,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'relatedCollection': 'collection',
                 'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
                 'twoWay': true,
@@ -679,6 +709,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'size': 128,};
 
 
@@ -705,6 +737,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'size': 128,};
 
 
@@ -731,6 +765,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'format': 'url',};
 
 
@@ -756,6 +792,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'format': 'url',};
 
 
@@ -812,6 +850,8 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'relatedCollection': 'collection',
                 'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
                 'twoWay': true,
@@ -966,7 +1006,9 @@ void main() {
                 'type': 'primary',
                 'status': 'available',
                 'error': 'string',
-                'attributes': [],};
+                'attributes': [],
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(
@@ -991,7 +1033,9 @@ void main() {
                 'type': 'primary',
                 'status': 'available',
                 'error': 'string',
-                'attributes': [],};
+                'attributes': [],
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
 
             when(client.call(

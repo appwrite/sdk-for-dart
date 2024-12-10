@@ -9,7 +9,7 @@ void main() {
         memory: 512,
         cpus: 1,
         enabled: true,
-        slug: 's-0.5vcpu-512mb',
+        slug: 's-1vcpu-512mb',
       );
 
       final map = model.toMap();
@@ -18,7 +18,7 @@ void main() {
       expect(result.memory, 512);
       expect(result.cpus, 1);
       expect(result.enabled, true);
-      expect(result.slug, 's-0.5vcpu-512mb');
+      expect(result.slug, 's-1vcpu-512mb');
     });
   });
 }
