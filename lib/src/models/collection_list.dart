@@ -2,27 +2,29 @@ part of '../../models.dart';
 
 /// Collections List
 class CollectionList implements Model {
-    /// Total number of collections documents that matched your query.
-    final int total;
-    /// List of collections.
-    final List<Collection> collections;
+  /// Total number of collections documents that matched your query.
+  final int total;
 
-    CollectionList({
-        required this.total,
-        required this.collections,
-    });
+  /// List of collections.
+  final List<Collection> collections;
 
-    factory CollectionList.fromMap(Map<String, dynamic> map) {
-        return CollectionList(
-            total: map['total'],
-            collections: List<Collection>.from(map['collections'].map((p) => Collection.fromMap(p))),
-        );
-    }
+  CollectionList({
+    required this.total,
+    required this.collections,
+  });
 
-    Map<String, dynamic> toMap() {
-        return {
-            "total": total,
-            "collections": collections.map((p) => p.toMap()).toList(),
-        };
-    }
+  factory CollectionList.fromMap(Map<String, dynamic> map) {
+    return CollectionList(
+      total: map['total'],
+      collections: List<Collection>.from(
+          map['collections'].map((p) => Collection.fromMap(p))),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "total": total,
+      "collections": collections.map((p) => p.toMap()).toList(),
+    };
+  }
 }
