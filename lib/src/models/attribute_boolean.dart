@@ -20,6 +20,12 @@ class AttributeBoolean implements Model {
   /// Is attribute an array?
   final bool? array;
 
+  /// Attribute creation date in ISO 8601 format.
+  final String $createdAt;
+
+  /// Attribute update date in ISO 8601 format.
+  final String $updatedAt;
+
   /// Default value for attribute when not provided. Cannot be set when attribute is required.
   final bool? xdefault;
 
@@ -30,6 +36,8 @@ class AttributeBoolean implements Model {
     required this.error,
     required this.xrequired,
     this.array,
+    required this.$createdAt,
+    required this.$updatedAt,
     this.xdefault,
   });
 
@@ -41,6 +49,8 @@ class AttributeBoolean implements Model {
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],
+      $createdAt: map['\$createdAt'].toString(),
+      $updatedAt: map['\$updatedAt'].toString(),
       xdefault: map['default'],
     );
   }
@@ -53,6 +63,8 @@ class AttributeBoolean implements Model {
       "error": error,
       "required": xrequired,
       "array": array,
+      "\$createdAt": $createdAt,
+      "\$updatedAt": $updatedAt,
       "default": xdefault,
     };
   }

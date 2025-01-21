@@ -24,7 +24,7 @@ class Topic implements Model {
   final int pushTotal;
 
   /// Subscribe permissions.
-  final List subscribe;
+  final List<String> subscribe;
 
   Topic({
     required this.$id,

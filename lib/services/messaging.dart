@@ -119,8 +119,8 @@ class Messaging extends Service {
   /// Create a new push notification.
   Future<models.Message> createPush(
       {required String messageId,
-      required String title,
-      required String body,
+      String? title,
+      String? body,
       List<String>? topics,
       List<String>? users,
       List<String>? targets,
@@ -131,9 +131,12 @@ class Messaging extends Service {
       String? sound,
       String? color,
       String? tag,
-      String? badge,
+      int? badge,
       bool? draft,
-      String? scheduledAt}) async {
+      String? scheduledAt,
+      bool? contentAvailable,
+      bool? critical,
+      enums.MessagePriority? priority}) async {
     final String apiPath = '/messaging/messages/push';
 
     final Map<String, dynamic> apiParams = {
@@ -153,6 +156,9 @@ class Messaging extends Service {
       'badge': badge,
       'draft': draft,
       'scheduledAt': scheduledAt,
+      'contentAvailable': contentAvailable,
+      'critical': critical,
+      'priority': priority?.value,
     };
 
     final Map<String, String> apiHeaders = {
@@ -185,7 +191,10 @@ class Messaging extends Service {
       String? tag,
       int? badge,
       bool? draft,
-      String? scheduledAt}) async {
+      String? scheduledAt,
+      bool? contentAvailable,
+      bool? critical,
+      enums.MessagePriority? priority}) async {
     final String apiPath = '/messaging/messages/push/{messageId}'
         .replaceAll('{messageId}', messageId);
 
@@ -205,6 +214,9 @@ class Messaging extends Service {
       'badge': badge,
       'draft': draft,
       'scheduledAt': scheduledAt,
+      'contentAvailable': contentAvailable,
+      'critical': critical,
+      'priority': priority?.value,
     };
 
     final Map<String, String> apiHeaders = {

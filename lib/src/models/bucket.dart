@@ -12,7 +12,7 @@ class Bucket implements Model {
   final String $updatedAt;
 
   /// Bucket permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
-  final List $permissions;
+  final List<String> $permissions;
 
   /// Whether file-level security is enabled. [Learn more about permissions](https://appwrite.io/docs/permissions).
   final bool fileSecurity;
@@ -27,7 +27,7 @@ class Bucket implements Model {
   final int maximumFileSize;
 
   /// Allowed file extensions.
-  final List allowedFileExtensions;
+  final List<String> allowedFileExtensions;
 
   /// Compression algorithm choosen for compression. Will be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd).
   final String compression;

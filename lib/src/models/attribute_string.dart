@@ -20,6 +20,12 @@ class AttributeString implements Model {
   /// Is attribute an array?
   final bool? array;
 
+  /// Attribute creation date in ISO 8601 format.
+  final String $createdAt;
+
+  /// Attribute update date in ISO 8601 format.
+  final String $updatedAt;
+
   /// Attribute size.
   final int size;
 
@@ -33,6 +39,8 @@ class AttributeString implements Model {
     required this.error,
     required this.xrequired,
     this.array,
+    required this.$createdAt,
+    required this.$updatedAt,
     required this.size,
     this.xdefault,
   });
@@ -45,6 +53,8 @@ class AttributeString implements Model {
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],
+      $createdAt: map['\$createdAt'].toString(),
+      $updatedAt: map['\$updatedAt'].toString(),
       size: map['size'],
       xdefault: map['default']?.toString(),
     );
@@ -58,6 +68,8 @@ class AttributeString implements Model {
       "error": error,
       "required": xrequired,
       "array": array,
+      "\$createdAt": $createdAt,
+      "\$updatedAt": $updatedAt,
       "size": size,
       "default": xdefault,
     };

@@ -12,7 +12,7 @@ class Func implements Model {
   final String $updatedAt;
 
   /// Execution permissions.
-  final List execute;
+  final List<String> execute;
 
   /// Function name.
   final String name;
@@ -33,15 +33,15 @@ class Func implements Model {
   final String deployment;
 
   /// Allowed permission scopes.
-  final List scopes;
+  final List<String> scopes;
 
   /// Function variables.
   final List<Variable> vars;
 
   /// Function trigger events.
-  final List events;
+  final List<String> events;
 
-  /// Function execution schedult in CRON format.
+  /// Function execution schedule in CRON format.
   final String schedule;
 
   /// Function execution timeout in seconds.

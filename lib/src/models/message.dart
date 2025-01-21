@@ -15,13 +15,13 @@ class Message implements Model {
   final String providerType;
 
   /// Topic IDs set as recipients.
-  final List topics;
+  final List<String> topics;
 
   /// User IDs set as recipients.
-  final List users;
+  final List<String> users;
 
   /// Target IDs set as recipients.
-  final List targets;
+  final List<String> targets;
 
   /// The scheduled time for message.
   final String? scheduledAt;
@@ -30,7 +30,7 @@ class Message implements Model {
   final String? deliveredAt;
 
   /// Delivery errors if any.
-  final List? deliveryErrors;
+  final List<String>? deliveryErrors;
 
   /// Number of recipients the message was delivered to.
   final int deliveredTotal;

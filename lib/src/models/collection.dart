@@ -12,7 +12,7 @@ class Collection implements Model {
   final String $updatedAt;
 
   /// Collection permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
-  final List $permissions;
+  final List<String> $permissions;
 
   /// Database ID.
   final String databaseId;

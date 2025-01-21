@@ -115,7 +115,7 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
-  /// List Identities
+  /// List identities
   ///
   /// Get identities for all users.
   Future<models.IdentityList> listIdentities(
@@ -503,7 +503,7 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
-  /// Delete Authenticator
+  /// Delete authenticator
   ///
   /// Delete an authenticator app.
   Future<models.User> deleteMfaAuthenticator(
@@ -524,7 +524,7 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
-  /// List Factors
+  /// List factors
   ///
   /// List the factors available on the account to be used as a MFA challange.
   Future<models.MfaFactors> listMfaFactors({required String userId}) async {
@@ -543,7 +543,7 @@ class Users extends Service {
     return models.MfaFactors.fromMap(res.data);
   }
 
-  /// Get MFA Recovery Codes
+  /// Get MFA recovery codes
   ///
   /// Get recovery codes that can be used as backup for MFA flow by User ID.
   /// Before getting codes, they must be generated using
@@ -566,7 +566,7 @@ class Users extends Service {
     return models.MfaRecoveryCodes.fromMap(res.data);
   }
 
-  /// Regenerate MFA Recovery Codes
+  /// Regenerate MFA recovery codes
   ///
   /// Regenerate recovery codes that can be used as backup for MFA flow by User
   /// ID. Before regenerating codes, they must be first generated using
@@ -589,7 +589,7 @@ class Users extends Service {
     return models.MfaRecoveryCodes.fromMap(res.data);
   }
 
-  /// Create MFA Recovery Codes
+  /// Create MFA recovery codes
   ///
   /// Generate recovery codes used as backup for MFA flow for User ID. Recovery
   /// codes can be used as a MFA verification type in
@@ -827,7 +827,7 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
-  /// List User Targets
+  /// List user targets
   ///
   /// List the messaging targets that are associated with a user.
   Future<models.TargetList> listTargets(
@@ -849,7 +849,7 @@ class Users extends Service {
     return models.TargetList.fromMap(res.data);
   }
 
-  /// Create User Target
+  /// Create user target
   ///
   /// Create a messaging target.
   Future<models.Target> createTarget(
@@ -880,7 +880,7 @@ class Users extends Service {
     return models.Target.fromMap(res.data);
   }
 
-  /// Get User Target
+  /// Get user target
   ///
   /// Get a user's push notification target by ID.
   Future<models.Target> getTarget(
@@ -901,7 +901,7 @@ class Users extends Service {
     return models.Target.fromMap(res.data);
   }
 
-  /// Update User target
+  /// Update user target
   ///
   /// Update a messaging target.
   Future<models.Target> updateTarget(
