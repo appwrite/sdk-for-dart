@@ -4,8 +4,10 @@ part of '../../models.dart';
 class HealthTime implements Model {
     /// Current unix timestamp on trustful remote server.
     final int remoteTime;
+
     /// Current unix timestamp of local server where Appwrite runs.
     final int localTime;
+
     /// Difference of unix remote and local timestamps in milliseconds.
     final int diff;
 

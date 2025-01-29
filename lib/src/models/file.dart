@@ -4,24 +4,34 @@ part of '../../models.dart';
 class File implements Model {
     /// File ID.
     final String $id;
+
     /// Bucket ID.
     final String bucketId;
+
     /// File creation date in ISO 8601 format.
     final String $createdAt;
+
     /// File update date in ISO 8601 format.
     final String $updatedAt;
+
     /// File permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final List<String> $permissions;
+
     /// File name.
     final String name;
+
     /// File MD5 signature.
     final String signature;
+
     /// File mime type.
     final String mimeType;
+
     /// File original size in bytes.
     final int sizeOriginal;
+
     /// Total number of chunks available
     final int chunksTotal;
+
     /// Total number of chunks uploaded
     final int chunksUploaded;
 
@@ -45,7 +55,7 @@ class File implements Model {
             bucketId: map['bucketId'].toString(),
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
-            $permissions: List<String>.from(map['\$permissions']?.map((x) => x.toString()) ?? []),
+            $permissions: List.from(map['\$permissions'] ?? []),
             name: map['name'].toString(),
             signature: map['signature'].toString(),
             mimeType: map['mimeType'].toString(),

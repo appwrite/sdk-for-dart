@@ -4,6 +4,7 @@ part of '../../models.dart';
 class MembershipList implements Model {
     /// Total number of memberships documents that matched your query.
     final int total;
+
     /// List of memberships.
     final List<Membership> memberships;
 

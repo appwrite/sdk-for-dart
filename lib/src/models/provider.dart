@@ -4,20 +4,28 @@ part of '../../models.dart';
 class Provider implements Model {
     /// Provider ID.
     final String $id;
+
     /// Provider creation time in ISO 8601 format.
     final String $createdAt;
+
     /// Provider update date in ISO 8601 format.
     final String $updatedAt;
+
     /// The name for the provider instance.
     final String name;
+
     /// The name of the provider service.
     final String provider;
+
     /// Is provider enabled?
     final bool enabled;
+
     /// Type of provider.
     final String type;
+
     /// Provider credentials.
     final Map<String, dynamic> credentials;
+
     /// Provider options.
     final Map<String, dynamic>? options;
 

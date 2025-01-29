@@ -4,14 +4,19 @@ part of '../../models.dart';
 class HealthCertificate implements Model {
     /// Certificate name
     final String name;
+
     /// Subject SN
     final String subjectSN;
+
     /// Issuer organisation
     final String issuerOrganisation;
+
     /// Valid from
     final String validFrom;
+
     /// Valid to
     final String validTo;
+
     /// Signature type SN
     final String signatureTypeSN;
 

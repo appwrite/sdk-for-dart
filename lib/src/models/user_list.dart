@@ -4,6 +4,7 @@ part of '../../models.dart';
 class UserList implements Model {
     /// Total number of users documents that matched your query.
     final int total;
+
     /// List of users.
     final List<User> users;
 

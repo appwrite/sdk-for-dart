@@ -4,6 +4,7 @@ part of '../../models.dart';
 class LogList implements Model {
     /// Total number of logs documents that matched your query.
     final int total;
+
     /// List of logs.
     final List<Log> logs;
 

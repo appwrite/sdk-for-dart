@@ -4,8 +4,10 @@ part of '../../models.dart';
 class HealthStatus implements Model {
     /// Name of the service.
     final String name;
+
     /// Duration in milliseconds how long the health check took.
     final int ping;
+
     /// Service status. Possible values can are: `pass`, `fail`
     final String status;
 

@@ -4,6 +4,7 @@ part of '../../models.dart';
 class IdentityList implements Model {
     /// Total number of identities documents that matched your query.
     final int total;
+
     /// List of identities.
     final List<Identity> identities;
 

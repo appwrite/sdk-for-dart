@@ -4,20 +4,28 @@ part of '../../models.dart';
 class Subscriber implements Model {
     /// Subscriber ID.
     final String $id;
+
     /// Subscriber creation time in ISO 8601 format.
     final String $createdAt;
+
     /// Subscriber update date in ISO 8601 format.
     final String $updatedAt;
+
     /// Target ID.
     final String targetId;
+
     /// Target.
     final Target target;
+
     /// Topic ID.
     final String userId;
+
     /// User Name.
     final String userName;
+
     /// Topic ID.
     final String topicId;
+
     /// The target provider type. Can be one of the following: `email`, `sms` or `push`.
     final String providerType;
 

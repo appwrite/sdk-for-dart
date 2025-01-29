@@ -4,6 +4,7 @@ part of '../../models.dart';
 class AttributeList implements Model {
     /// Total number of attributes in the given collection.
     final int total;
+
     /// List of attributes.
     final List attributes;
 
@@ -15,7 +16,7 @@ class AttributeList implements Model {
     factory AttributeList.fromMap(Map<String, dynamic> map) {
         return AttributeList(
             total: map['total'],
-            attributes: List<>.from(map['attributes']?.map((x) => x) ?? []),
+            attributes: List.from(map['attributes'] ?? []),
         );
     }
 

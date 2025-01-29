@@ -4,8 +4,10 @@ part of '../../models.dart';
 class Language implements Model {
     /// Language name.
     final String name;
+
     /// Language two-character ISO 639-1 codes.
     final String code;
+
     /// Language native name.
     final String nativeName;
 

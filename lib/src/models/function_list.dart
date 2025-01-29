@@ -4,6 +4,7 @@ part of '../../models.dart';
 class FunctionList implements Model {
     /// Total number of functions documents that matched your query.
     final int total;
+
     /// List of functions.
     final List<Func> functions;
 

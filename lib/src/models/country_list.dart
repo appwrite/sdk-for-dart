@@ -4,6 +4,7 @@ part of '../../models.dart';
 class CountryList implements Model {
     /// Total number of countries documents that matched your query.
     final int total;
+
     /// List of countries.
     final List<Country> countries;
 

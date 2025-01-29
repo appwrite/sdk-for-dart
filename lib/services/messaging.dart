@@ -65,7 +65,9 @@ class Messaging extends Service {
 
     /// Update email
     ///
-    /// Update an email message by its unique ID.
+    /// Update an email message by its unique ID. This endpoint only works on
+    /// messages that are in draft status. Messages that are already processing,
+    /// sent, or failed cannot be updated.
     /// 
     Future<models.Message> updateEmail({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? subject, String? content, bool? draft, bool? html, List<String>? cc, List<String>? bcc, String? scheduledAt, List<String>? attachments}) async {
         final String apiPath = '/messaging/messages/email/{messageId}'.replaceAll('{messageId}', messageId);
@@ -140,7 +142,9 @@ class Messaging extends Service {
 
     /// Update push notification
     ///
-    /// Update a push notification by its unique ID.
+    /// Update a push notification by its unique ID. This endpoint only works on
+    /// messages that are in draft status. Messages that are already processing,
+    /// sent, or failed cannot be updated.
     /// 
     Future<models.Message> updatePush({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? title, String? body, Map? data, String? action, String? image, String? icon, String? sound, String? color, String? tag, int? badge, bool? draft, String? scheduledAt, bool? contentAvailable, bool? critical, enums.MessagePriority? priority}) async {
         final String apiPath = '/messaging/messages/push/{messageId}'.replaceAll('{messageId}', messageId);
@@ -210,7 +214,9 @@ class Messaging extends Service {
 
     /// Update SMS
     ///
-    /// Update an SMS message by its unique ID.
+    /// Update an SMS message by its unique ID. This endpoint only works on
+    /// messages that are in draft status. Messages that are already processing,
+    /// sent, or failed cannot be updated.
     /// 
     Future<models.Message> updateSms({required String messageId, List<String>? topics, List<String>? users, List<String>? targets, String? content, bool? draft, String? scheduledAt}) async {
         final String apiPath = '/messaging/messages/sms/{messageId}'.replaceAll('{messageId}', messageId);

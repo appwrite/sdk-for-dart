@@ -4,20 +4,28 @@ part of '../../models.dart';
 class AttributeBoolean implements Model {
     /// Attribute Key.
     final String key;
+
     /// Attribute type.
     final String type;
+
     /// Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
     final String status;
+
     /// Error message. Displays error generated on failure of creating or deleting an attribute.
     final String error;
+
     /// Is attribute required?
     final bool xrequired;
+
     /// Is attribute an array?
     final bool? array;
+
     /// Attribute creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Attribute update date in ISO 8601 format.
     final String $updatedAt;
+
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final bool? xdefault;
 

@@ -4,6 +4,7 @@ part of '../../models.dart';
 class Continent implements Model {
     /// Continent name.
     final String name;
+
     /// Continent two letter code.
     final String code;
 

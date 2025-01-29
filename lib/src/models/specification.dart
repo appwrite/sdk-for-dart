@@ -4,10 +4,13 @@ part of '../../models.dart';
 class Specification implements Model {
     /// Memory size in MB.
     final int memory;
+
     /// Number of CPUs.
     final double cpus;
+
     /// Is size enabled.
     final bool enabled;
+
     /// Size slug.
     final String slug;
 

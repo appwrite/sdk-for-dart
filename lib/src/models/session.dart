@@ -4,60 +4,88 @@ part of '../../models.dart';
 class Session implements Model {
     /// Session ID.
     final String $id;
+
     /// Session creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Session update date in ISO 8601 format.
     final String $updatedAt;
+
     /// User ID.
     final String userId;
+
     /// Session expiration date in ISO 8601 format.
     final String expire;
+
     /// Session Provider.
     final String provider;
+
     /// Session Provider User ID.
     final String providerUid;
+
     /// Session Provider Access Token.
     final String providerAccessToken;
+
     /// The date of when the access token expires in ISO 8601 format.
     final String providerAccessTokenExpiry;
+
     /// Session Provider Refresh Token.
     final String providerRefreshToken;
+
     /// IP in use when the session was created.
     final String ip;
+
     /// Operating system code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/os.json).
     final String osCode;
+
     /// Operating system name.
     final String osName;
+
     /// Operating system version.
     final String osVersion;
+
     /// Client type.
     final String clientType;
+
     /// Client code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/clients.json).
     final String clientCode;
+
     /// Client name.
     final String clientName;
+
     /// Client version.
     final String clientVersion;
+
     /// Client engine name.
     final String clientEngine;
+
     /// Client engine name.
     final String clientEngineVersion;
+
     /// Device name.
     final String deviceName;
+
     /// Device brand name.
     final String deviceBrand;
+
     /// Device model name.
     final String deviceModel;
+
     /// Country two-character ISO 3166-1 alpha code.
     final String countryCode;
+
     /// Country name.
     final String countryName;
+
     /// Returns true if this the current user session.
     final bool current;
+
     /// Returns a list of active session factors.
     final List<String> factors;
+
     /// Secret used to authenticate the user. Only included if the request was made with an API key
     final String secret;
+
     /// Most recent date in ISO 8601 format when the session successfully passed MFA challenge.
     final String mfaUpdatedAt;
 
@@ -121,7 +149,7 @@ class Session implements Model {
             countryCode: map['countryCode'].toString(),
             countryName: map['countryName'].toString(),
             current: map['current'],
-            factors: List<String>.from(map['factors']?.map((x) => x.toString()) ?? []),
+            factors: List.from(map['factors'] ?? []),
             secret: map['secret'].toString(),
             mfaUpdatedAt: map['mfaUpdatedAt'].toString(),
         );

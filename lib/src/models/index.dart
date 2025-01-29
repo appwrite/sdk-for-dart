@@ -4,18 +4,25 @@ part of '../../models.dart';
 class Index implements Model {
     /// Index Key.
     final String key;
+
     /// Index type.
     final String type;
+
     /// Index status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
     final String status;
+
     /// Error message. Displays error generated on failure of creating or deleting an index.
     final String error;
+
     /// Index attributes.
     final List<String> attributes;
+
     /// Index orders.
     final List<String>? orders;
+
     /// Index creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Index update date in ISO 8601 format.
     final String $updatedAt;
 
@@ -36,8 +43,8 @@ class Index implements Model {
             type: map['type'].toString(),
             status: map['status'].toString(),
             error: map['error'].toString(),
-            attributes: List<String>.from(map['attributes']?.map((x) => x.toString()) ?? []),
-            orders: List<String>.from(map['orders']?.map((x) => x.toString()) ?? []),
+            attributes: List.from(map['attributes'] ?? []),
+            orders: List.from(map['orders'] ?? []),
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
         );

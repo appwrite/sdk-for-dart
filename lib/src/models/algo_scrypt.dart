@@ -4,12 +4,16 @@ part of '../../models.dart';
 class AlgoScrypt implements Model {
     /// Algo type.
     final String type;
+
     /// CPU complexity of computed hash.
     final int costCpu;
+
     /// Memory complexity of computed hash.
     final int costMemory;
+
     /// Parallelization of computed hash.
     final int costParallel;
+
     /// Length used to compute hash.
     final int length;
 

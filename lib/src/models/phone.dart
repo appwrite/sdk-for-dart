@@ -4,8 +4,10 @@ part of '../../models.dart';
 class Phone implements Model {
     /// Phone code.
     final String code;
+
     /// Country two-character ISO 3166-1 alpha code.
     final String countryCode;
+
     /// Country name.
     final String countryName;
 

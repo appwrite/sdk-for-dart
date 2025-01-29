@@ -4,16 +4,22 @@ part of '../../models.dart';
 class Currency implements Model {
     /// Currency symbol.
     final String symbol;
+
     /// Currency name.
     final String name;
+
     /// Currency native symbol.
     final String symbolNative;
+
     /// Number of decimal digits.
     final int decimalDigits;
+
     /// Currency digit rounding.
     final double rounding;
+
     /// Currency code in [ISO 4217-1](http://en.wikipedia.org/wiki/ISO_4217) three-character format.
     final String code;
+
     /// Currency plural name
     final String namePlural;
 

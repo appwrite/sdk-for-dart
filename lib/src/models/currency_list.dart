@@ -4,6 +4,7 @@ part of '../../models.dart';
 class CurrencyList implements Model {
     /// Total number of currencies documents that matched your query.
     final int total;
+
     /// List of currencies.
     final List<Currency> currencies;
 

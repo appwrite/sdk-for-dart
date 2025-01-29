@@ -4,6 +4,7 @@ part of '../../models.dart';
 class TeamList implements Model {
     /// Total number of teams documents that matched your query.
     final int total;
+
     /// List of teams.
     final List<Team> teams;
 

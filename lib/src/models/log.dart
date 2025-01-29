@@ -4,44 +4,64 @@ part of '../../models.dart';
 class Log implements Model {
     /// Event name.
     final String event;
+
     /// User ID.
     final String userId;
+
     /// User Email.
     final String userEmail;
+
     /// User Name.
     final String userName;
+
     /// API mode when event triggered.
     final String mode;
+
     /// IP session in use when the session was created.
     final String ip;
+
     /// Log creation date in ISO 8601 format.
     final String time;
+
     /// Operating system code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/os.json).
     final String osCode;
+
     /// Operating system name.
     final String osName;
+
     /// Operating system version.
     final String osVersion;
+
     /// Client type.
     final String clientType;
+
     /// Client code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/clients.json).
     final String clientCode;
+
     /// Client name.
     final String clientName;
+
     /// Client version.
     final String clientVersion;
+
     /// Client engine name.
     final String clientEngine;
+
     /// Client engine name.
     final String clientEngineVersion;
+
     /// Device name.
     final String deviceName;
+
     /// Device brand name.
     final String deviceBrand;
+
     /// Device model name.
     final String deviceModel;
+
     /// Country two-character ISO 3166-1 alpha code.
     final String countryCode;
+
     /// Country name.
     final String countryName;
 

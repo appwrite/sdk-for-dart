@@ -4,50 +4,73 @@ part of '../../models.dart';
 class Deployment implements Model {
     /// Deployment ID.
     final String $id;
+
     /// Deployment creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Deployment update date in ISO 8601 format.
     final String $updatedAt;
+
     /// Type of deployment.
     final String type;
+
     /// Resource ID.
     final String resourceId;
+
     /// Resource type.
     final String resourceType;
+
     /// The entrypoint file to use to execute the deployment code.
     final String entrypoint;
+
     /// The code size in bytes.
     final int size;
+
     /// The build output size in bytes.
     final int buildSize;
+
     /// The current build ID.
     final String buildId;
+
     /// Whether the deployment should be automatically activated.
     final bool activate;
+
     /// The deployment status. Possible values are &quot;processing&quot;, &quot;building&quot;, &quot;waiting&quot;, &quot;ready&quot;, and &quot;failed&quot;.
     final String status;
+
     /// The build logs.
     final String buildLogs;
+
     /// The current build time in seconds.
     final int buildTime;
+
     /// The name of the vcs provider repository
     final String providerRepositoryName;
+
     /// The name of the vcs provider repository owner
     final String providerRepositoryOwner;
+
     /// The url of the vcs provider repository
     final String providerRepositoryUrl;
+
     /// The branch of the vcs repository
     final String providerBranch;
+
     /// The commit hash of the vcs commit
     final String providerCommitHash;
+
     /// The url of vcs commit author
     final String providerCommitAuthorUrl;
+
     /// The name of vcs commit author
     final String providerCommitAuthor;
+
     /// The commit message
     final String providerCommitMessage;
+
     /// The url of the vcs commit
     final String providerCommitUrl;
+
     /// The branch of the vcs repository
     final String providerBranchUrl;
 

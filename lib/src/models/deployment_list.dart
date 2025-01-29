@@ -4,6 +4,7 @@ part of '../../models.dart';
 class DeploymentList implements Model {
     /// Total number of deployments documents that matched your query.
     final int total;
+
     /// List of deployments.
     final List<Deployment> deployments;
 

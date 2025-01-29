@@ -4,6 +4,7 @@ part of '../../models.dart';
 class SessionList implements Model {
     /// Total number of sessions documents that matched your query.
     final int total;
+
     /// List of sessions.
     final List<Session> sessions;
 

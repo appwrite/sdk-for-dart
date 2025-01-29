@@ -4,22 +4,31 @@ part of '../../models.dart';
 class Collection implements Model {
     /// Collection ID.
     final String $id;
+
     /// Collection creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Collection update date in ISO 8601 format.
     final String $updatedAt;
+
     /// Collection permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final List<String> $permissions;
+
     /// Database ID.
     final String databaseId;
+
     /// Collection name.
     final String name;
+
     /// Collection enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the collection is inaccessible to users, but remains accessible to Server SDKs using API keys.
     final bool enabled;
+
     /// Whether document-level permissions are enabled. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final bool documentSecurity;
+
     /// Collection attributes.
     final List attributes;
+
     /// Collection indexes.
     final List<Index> indexes;
 
@@ -41,12 +50,12 @@ class Collection implements Model {
             $id: map['\$id'].toString(),
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
-            $permissions: List<String>.from(map['\$permissions']?.map((x) => x.toString()) ?? []),
+            $permissions: List.from(map['\$permissions'] ?? []),
             databaseId: map['databaseId'].toString(),
             name: map['name'].toString(),
             enabled: map['enabled'],
             documentSecurity: map['documentSecurity'],
-            attributes: List<>.from(map['attributes']?.map((x) => x) ?? []),
+            attributes: List.from(map['attributes'] ?? []),
             indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );
     }

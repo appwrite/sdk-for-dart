@@ -4,6 +4,7 @@ part of '../../models.dart';
 class ProviderList implements Model {
     /// Total number of providers documents that matched your query.
     final int total;
+
     /// List of providers.
     final List<Provider> providers;
 

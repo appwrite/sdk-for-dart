@@ -4,6 +4,7 @@ part of '../../models.dart';
 class MfaType implements Model {
     /// Secret token used for TOTP factor.
     final String secret;
+
     /// URI for authenticator apps.
     final String uri;
 

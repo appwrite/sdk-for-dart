@@ -4,40 +4,58 @@ part of '../../models.dart';
 class User implements Model {
     /// User ID.
     final String $id;
+
     /// User creation date in ISO 8601 format.
     final String $createdAt;
+
     /// User update date in ISO 8601 format.
     final String $updatedAt;
+
     /// User name.
     final String name;
+
     /// Hashed user password.
     final String? password;
+
     /// Password hashing algorithm.
     final String? hash;
+
     /// Password hashing algorithm configuration.
     final Map? hashOptions;
+
     /// User registration date in ISO 8601 format.
     final String registration;
+
     /// User status. Pass `true` for enabled and `false` for disabled.
     final bool status;
+
     /// Labels for the user.
     final List<String> labels;
+
     /// Password update time in ISO 8601 format.
     final String passwordUpdate;
+
     /// User email address.
     final String email;
+
     /// User phone number in E.164 format.
     final String phone;
+
     /// Email verification status.
     final bool emailVerification;
+
     /// Phone verification status.
     final bool phoneVerification;
+
     /// Multi factor authentication status.
     final bool mfa;
+
     /// User preferences as a key-value object
     final Preferences prefs;
+
     /// A user-owned message receiver. A single user may have multiple e.g. emails, phones, and a browser. Each target is registered with a single provider.
     final List<Target> targets;
+
     /// Most recent access date in ISO 8601 format. This attribute is only updated again after 24 hours.
     final String accessedAt;
 
@@ -74,7 +92,7 @@ class User implements Model {
             hashOptions: map['hashOptions'],
             registration: map['registration'].toString(),
             status: map['status'],
-            labels: List<String>.from(map['labels']?.map((x) => x.toString()) ?? []),
+            labels: List.from(map['labels'] ?? []),
             passwordUpdate: map['passwordUpdate'].toString(),
             email: map['email'].toString(),
             phone: map['phone'].toString(),

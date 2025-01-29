@@ -4,6 +4,7 @@ part of '../../models.dart';
 class RuntimeList implements Model {
     /// Total number of runtimes documents that matched your query.
     final int total;
+
     /// List of runtimes.
     final List<Runtime> runtimes;
 

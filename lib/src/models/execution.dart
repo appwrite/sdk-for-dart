@@ -4,36 +4,52 @@ part of '../../models.dart';
 class Execution implements Model {
     /// Execution ID.
     final String $id;
+
     /// Execution creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Execution upate date in ISO 8601 format.
     final String $updatedAt;
+
     /// Execution roles.
     final List<String> $permissions;
+
     /// Function ID.
     final String functionId;
+
     /// The trigger that caused the function to execute. Possible values can be: `http`, `schedule`, or `event`.
     final String trigger;
+
     /// The status of the function execution. Possible values can be: `waiting`, `processing`, `completed`, or `failed`.
     final String status;
+
     /// HTTP request method type.
     final String requestMethod;
+
     /// HTTP request path and query.
     final String requestPath;
+
     /// HTTP response headers as a key-value object. This will return only whitelisted headers. All headers are returned if execution is created as synchronous.
     final List<Headers> requestHeaders;
+
     /// HTTP response status code.
     final int responseStatusCode;
+
     /// HTTP response body. This will return empty unless execution is created as synchronous.
     final String responseBody;
+
     /// HTTP response headers as a key-value object. This will return only whitelisted headers. All headers are returned if execution is created as synchronous.
     final List<Headers> responseHeaders;
+
     /// Function logs. Includes the last 4,000 characters. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
     final String logs;
+
     /// Function errors. Includes the last 4,000 characters. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
     final String errors;
+
     /// Function execution duration in seconds.
     final double duration;
+
     /// The scheduled time for execution. If left empty, execution will be queued immediately.
     final String? scheduledAt;
 
@@ -62,7 +78,7 @@ class Execution implements Model {
             $id: map['\$id'].toString(),
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
-            $permissions: List<String>.from(map['\$permissions']?.map((x) => x.toString()) ?? []),
+            $permissions: List.from(map['\$permissions'] ?? []),
             functionId: map['functionId'].toString(),
             trigger: map['trigger'].toString(),
             status: map['status'].toString(),

@@ -4,6 +4,7 @@ part of '../../models.dart';
 class BucketList implements Model {
     /// Total number of buckets documents that matched your query.
     final int total;
+
     /// List of buckets.
     final List<Bucket> buckets;
 

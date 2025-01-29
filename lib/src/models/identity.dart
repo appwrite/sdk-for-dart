@@ -4,22 +4,31 @@ part of '../../models.dart';
 class Identity implements Model {
     /// Identity ID.
     final String $id;
+
     /// Identity creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Identity update date in ISO 8601 format.
     final String $updatedAt;
+
     /// User ID.
     final String userId;
+
     /// Identity Provider.
     final String provider;
+
     /// ID of the User in the Identity Provider.
     final String providerUid;
+
     /// Email of the User in the Identity Provider.
     final String providerEmail;
+
     /// Identity Provider Access Token.
     final String providerAccessToken;
+
     /// The date of when the access token expires in ISO 8601 format.
     final String providerAccessTokenExpiry;
+
     /// Identity Provider Refresh Token.
     final String providerRefreshToken;
 

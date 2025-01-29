@@ -4,10 +4,13 @@ part of '../../models.dart';
 class AlgoScryptModified implements Model {
     /// Algo type.
     final String type;
+
     /// Salt used to compute hash.
     final String salt;
+
     /// Separator used to compute hash.
     final String saltSeparator;
+
     /// Key used to compute hash.
     final String signerKey;
 

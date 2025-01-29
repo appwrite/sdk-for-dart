@@ -4,6 +4,7 @@ part of '../../models.dart';
 class PhoneList implements Model {
     /// Total number of phones documents that matched your query.
     final int total;
+
     /// List of phones.
     final List<Phone> phones;
 

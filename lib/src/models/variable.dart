@@ -4,16 +4,22 @@ part of '../../models.dart';
 class Variable implements Model {
     /// Variable ID.
     final String $id;
+
     /// Variable creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Variable creation date in ISO 8601 format.
     final String $updatedAt;
+
     /// Variable key.
     final String key;
+
     /// Variable value.
     final String value;
+
     /// Service to which the variable belongs. Possible values are &quot;project&quot;, &quot;function&quot;
     final String resourceType;
+
     /// ID of resource to which the variable belongs. If resourceType is &quot;project&quot;, it is empty. If resourceType is &quot;function&quot;, it is ID of the function.
     final String resourceId;
 

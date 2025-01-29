@@ -4,20 +4,28 @@ part of '../../models.dart';
 class Build implements Model {
     /// Build ID.
     final String $id;
+
     /// The deployment that created this build.
     final String deploymentId;
+
     /// The build status. There are a few different types and each one means something different. \nFailed - The deployment build has failed. More details can usually be found in buildStderr\nReady - The deployment build was successful and the deployment is ready to be deployed\nProcessing - The deployment is currently waiting to have a build triggered\nBuilding - The deployment is currently being built
     final String status;
+
     /// The stdout of the build.
     final String stdout;
+
     /// The stderr of the build.
     final String stderr;
+
     /// The deployment creation date in ISO 8601 format.
     final String startTime;
+
     /// The time the build was finished in ISO 8601 format.
     final String endTime;
+
     /// The build duration in seconds.
     final int duration;
+
     /// The code size in bytes.
     final int size;
 

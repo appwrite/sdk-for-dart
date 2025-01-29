@@ -4,6 +4,7 @@ part of '../../models.dart';
 class IndexList implements Model {
     /// Total number of indexes documents that matched your query.
     final int total;
+
     /// List of indexes.
     final List<Index> indexes;
 

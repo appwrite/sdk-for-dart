@@ -4,10 +4,13 @@ part of '../../models.dart';
 class MfaChallenge implements Model {
     /// Token ID.
     final String $id;
+
     /// Token creation date in ISO 8601 format.
     final String $createdAt;
+
     /// User ID.
     final String userId;
+
     /// Token expiration date in ISO 8601 format.
     final String expire;
 

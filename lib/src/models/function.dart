@@ -4,50 +4,73 @@ part of '../../models.dart';
 class Func implements Model {
     /// Function ID.
     final String $id;
+
     /// Function creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Function update date in ISO 8601 format.
     final String $updatedAt;
+
     /// Execution permissions.
     final List<String> execute;
+
     /// Function name.
     final String name;
+
     /// Function enabled.
     final bool enabled;
+
     /// Is the function deployed with the latest configuration? This is set to false if you&#039;ve changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. When the value is false, redeploy the function to update it with the latest configuration.
     final bool live;
+
     /// Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
     final bool logging;
+
     /// Function execution runtime.
     final String runtime;
+
     /// Function&#039;s active deployment ID.
     final String deployment;
+
     /// Allowed permission scopes.
     final List<String> scopes;
+
     /// Function variables.
     final List<Variable> vars;
+
     /// Function trigger events.
     final List<String> events;
+
     /// Function execution schedule in CRON format.
     final String schedule;
+
     /// Function execution timeout in seconds.
     final int timeout;
+
     /// The entrypoint file used to execute the deployment.
     final String entrypoint;
+
     /// The build command used to build the deployment.
     final String commands;
+
     /// Version of Open Runtimes used for the function.
     final String version;
+
     /// Function VCS (Version Control System) installation id.
     final String installationId;
+
     /// VCS (Version Control System) Repository ID
     final String providerRepositoryId;
+
     /// VCS (Version Control System) branch name
     final String providerBranch;
+
     /// Path to function in VCS (Version Control System) repository
     final String providerRootDirectory;
+
     /// Is VCS (Version Control System) connection is in silent mode? When in silence mode, no comments will be posted on the repository pull or merge requests
     final bool providerSilentMode;
+
     /// Machine specification for builds and executions.
     final String specification;
 
@@ -83,16 +106,16 @@ class Func implements Model {
             $id: map['\$id'].toString(),
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
-            execute: List<String>.from(map['execute']?.map((x) => x.toString()) ?? []),
+            execute: List.from(map['execute'] ?? []),
             name: map['name'].toString(),
             enabled: map['enabled'],
             live: map['live'],
             logging: map['logging'],
             runtime: map['runtime'].toString(),
             deployment: map['deployment'].toString(),
-            scopes: List<String>.from(map['scopes']?.map((x) => x.toString()) ?? []),
+            scopes: List.from(map['scopes'] ?? []),
             vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
-            events: List<String>.from(map['events']?.map((x) => x.toString()) ?? []),
+            events: List.from(map['events'] ?? []),
             schedule: map['schedule'].toString(),
             timeout: map['timeout'],
             entrypoint: map['entrypoint'].toString(),

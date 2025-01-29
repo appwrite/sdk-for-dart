@@ -4,18 +4,25 @@ part of '../../models.dart';
 class Runtime implements Model {
     /// Runtime ID.
     final String $id;
+
     /// Parent runtime key.
     final String key;
+
     /// Runtime Name.
     final String name;
+
     /// Runtime version.
     final String version;
+
     /// Base Docker image used to build the runtime.
     final String base;
+
     /// Image name of Docker Hub.
     final String image;
+
     /// Name of the logo image.
     final String logo;
+
     /// List of supported architectures.
     final List<String> supports;
 
@@ -39,7 +46,7 @@ class Runtime implements Model {
             base: map['base'].toString(),
             image: map['image'].toString(),
             logo: map['logo'].toString(),
-            supports: List<String>.from(map['supports']?.map((x) => x.toString()) ?? []),
+            supports: List.from(map['supports'] ?? []),
         );
     }
 

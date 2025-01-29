@@ -4,6 +4,7 @@ part of '../../models.dart';
 class Headers implements Model {
     /// Header name.
     final String name;
+
     /// Header value.
     final String value;
 

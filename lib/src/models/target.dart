@@ -4,20 +4,28 @@ part of '../../models.dart';
 class Target implements Model {
     /// Target ID.
     final String $id;
+
     /// Target creation time in ISO 8601 format.
     final String $createdAt;
+
     /// Target update date in ISO 8601 format.
     final String $updatedAt;
+
     /// Target Name.
     final String name;
+
     /// User ID.
     final String userId;
+
     /// Provider ID.
     final String? providerId;
+
     /// The target provider type. Can be one of the following: `email`, `sms` or `push`.
     final String providerType;
+
     /// The target identifier.
     final String identifier;
+
     /// Is the target expired.
     final bool expired;
 

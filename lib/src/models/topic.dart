@@ -4,18 +4,25 @@ part of '../../models.dart';
 class Topic implements Model {
     /// Topic ID.
     final String $id;
+
     /// Topic creation time in ISO 8601 format.
     final String $createdAt;
+
     /// Topic update date in ISO 8601 format.
     final String $updatedAt;
+
     /// The name of the topic.
     final String name;
+
     /// Total count of email subscribers subscribed to the topic.
     final int emailTotal;
+
     /// Total count of SMS subscribers subscribed to the topic.
     final int smsTotal;
+
     /// Total count of push subscribers subscribed to the topic.
     final int pushTotal;
+
     /// Subscribe permissions.
     final List<String> subscribe;
 
@@ -39,7 +46,7 @@ class Topic implements Model {
             emailTotal: map['emailTotal'],
             smsTotal: map['smsTotal'],
             pushTotal: map['pushTotal'],
-            subscribe: List<String>.from(map['subscribe']?.map((x) => x.toString()) ?? []),
+            subscribe: List.from(map['subscribe'] ?? []),
         );
     }
 

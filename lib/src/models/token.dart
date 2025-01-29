@@ -4,14 +4,19 @@ part of '../../models.dart';
 class Token implements Model {
     /// Token ID.
     final String $id;
+
     /// Token creation date in ISO 8601 format.
     final String $createdAt;
+
     /// User ID.
     final String userId;
+
     /// Token secret key. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
     final String secret;
+
     /// Token expiration date in ISO 8601 format.
     final String expire;
+
     /// Security phrase of a token. Empty if security phrase was not requested when creating a token. It includes randomly generated phrase which is also sent in the external resource such as email.
     final String phrase;
 

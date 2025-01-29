@@ -4,24 +4,34 @@ part of '../../models.dart';
 class AttributeFloat implements Model {
     /// Attribute Key.
     final String key;
+
     /// Attribute type.
     final String type;
+
     /// Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
     final String status;
+
     /// Error message. Displays error generated on failure of creating or deleting an attribute.
     final String error;
+
     /// Is attribute required?
     final bool xrequired;
+
     /// Is attribute an array?
     final bool? array;
+
     /// Attribute creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Attribute update date in ISO 8601 format.
     final String $updatedAt;
+
     /// Minimum value to enforce for new documents.
     final double? min;
+
     /// Maximum value to enforce for new documents.
     final double? max;
+
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final double? xdefault;
 

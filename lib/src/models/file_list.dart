@@ -4,6 +4,7 @@ part of '../../models.dart';
 class FileList implements Model {
     /// Total number of files documents that matched your query.
     final int total;
+
     /// List of files.
     final List<File> files;
 

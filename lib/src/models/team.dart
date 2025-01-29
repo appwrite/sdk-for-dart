@@ -4,14 +4,19 @@ part of '../../models.dart';
 class Team implements Model {
     /// Team ID.
     final String $id;
+
     /// Team creation date in ISO 8601 format.
     final String $createdAt;
+
     /// Team update date in ISO 8601 format.
     final String $updatedAt;
+
     /// Team name.
     final String name;
+
     /// Total number of team members.
     final int total;
+
     /// Team preferences as a key-value object
     final Preferences prefs;
 

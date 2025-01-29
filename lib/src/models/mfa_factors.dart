@@ -4,10 +4,13 @@ part of '../../models.dart';
 class MfaFactors implements Model {
     /// Can TOTP be used for MFA challenge for this account.
     final bool totp;
+
     /// Can phone (SMS) be used for MFA challenge for this account.
     final bool phone;
+
     /// Can email be used for MFA challenge for this account.
     final bool email;
+
     /// Can recovery code be used for MFA challenge for this account.
     final bool recoveryCode;
 

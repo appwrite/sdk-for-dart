@@ -4,10 +4,13 @@ part of '../../models.dart';
 class AlgoArgon2 implements Model {
     /// Algo type.
     final String type;
+
     /// Memory used to compute hash.
     final int memoryCost;
+
     /// Amount of time consumed to compute hash
     final int timeCost;
+
     /// Number of threads used to compute hash.
     final int threads;
 

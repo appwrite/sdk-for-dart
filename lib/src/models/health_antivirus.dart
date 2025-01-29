@@ -4,6 +4,7 @@ part of '../../models.dart';
 class HealthAntivirus implements Model {
     /// Antivirus version.
     final String version;
+
     /// Antivirus status. Possible values can are: `disabled`, `offline`, `online`
     final String status;
 
