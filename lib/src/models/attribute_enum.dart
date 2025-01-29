@@ -59,7 +59,7 @@ class AttributeEnum implements Model {
       array: map['array'],
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
-      elements: map['elements'] ?? [],
+      elements: List.from(map['elements'] ?? []),
       format: map['format'].toString(),
       xdefault: map['default']?.toString(),
     );

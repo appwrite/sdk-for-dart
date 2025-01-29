@@ -506,7 +506,7 @@ class Users extends Service {
   /// Delete authenticator
   ///
   /// Delete an authenticator app.
-  Future<models.User> deleteMfaAuthenticator(
+  Future deleteMfaAuthenticator(
       {required String userId, required enums.AuthenticatorType type}) async {
     final String apiPath = '/users/{userId}/mfa/authenticators/{type}'
         .replaceAll('{userId}', userId)
@@ -521,7 +521,7 @@ class Users extends Service {
     final res = await client.call(HttpMethod.delete,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return models.User.fromMap(res.data);
+    return res.data;
   }
 
   /// List factors

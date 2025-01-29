@@ -46,7 +46,7 @@ class Runtime implements Model {
       base: map['base'].toString(),
       image: map['image'].toString(),
       logo: map['logo'].toString(),
-      supports: map['supports'] ?? [],
+      supports: List.from(map['supports'] ?? []),
     );
   }
 

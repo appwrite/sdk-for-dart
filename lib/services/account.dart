@@ -282,7 +282,7 @@ class Account extends Service {
   /// the flow, use
   /// [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
   /// method.
-  Future updateMfaChallenge(
+  Future<models.Session> updateMfaChallenge(
       {required String challengeId, required String otp}) async {
     final String apiPath = '/account/mfa/challenge';
 
@@ -298,7 +298,7 @@ class Account extends Service {
     final res = await client.call(HttpMethod.put,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return res.data;
+    return models.Session.fromMap(res.data);
   }
 
   /// List factors

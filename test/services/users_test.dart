@@ -577,24 +577,7 @@ void main() {
         });
 
         test('test method deleteMfaAuthenticator()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': '5e5ea5c16897e',
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'name': 'John Doe',
-                'registration': '2020-10-15T06:38:00.000+00:00',
-                'status': true,
-                'labels': [],
-                'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
-                'email': 'john@appwrite.io',
-                'phone': '+4930901820',
-                'emailVerification': true,
-                'phoneVerification': true,
-                'mfa': true,
-                'prefs': <String, dynamic>{},
-                'targets': [],
-                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
-
+            final data = '';
 
             when(client.call(
                 HttpMethod.delete,
@@ -605,8 +588,6 @@ void main() {
                 userId: '<USER_ID>',
                 type: 'totp',
             );
-            expect(response, isA<models.User>());
-
         });
 
         test('test method listMfaFactors()', () async {

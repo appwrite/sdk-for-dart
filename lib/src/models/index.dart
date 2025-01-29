@@ -43,8 +43,8 @@ class Index implements Model {
       type: map['type'].toString(),
       status: map['status'].toString(),
       error: map['error'].toString(),
-      attributes: map['attributes'] ?? [],
-      orders: map['orders'],
+      attributes: List.from(map['attributes'] ?? []),
+      orders: List.from(map['orders'] ?? []),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
     );

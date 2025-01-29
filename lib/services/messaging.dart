@@ -72,7 +72,9 @@ class Messaging extends Service {
 
   /// Update email
   ///
-  /// Update an email message by its unique ID.
+  /// Update an email message by its unique ID. This endpoint only works on
+  /// messages that are in draft status. Messages that are already processing,
+  /// sent, or failed cannot be updated.
   ///
   Future<models.Message> updateEmail(
       {required String messageId,
@@ -173,7 +175,9 @@ class Messaging extends Service {
 
   /// Update push notification
   ///
-  /// Update a push notification by its unique ID.
+  /// Update a push notification by its unique ID. This endpoint only works on
+  /// messages that are in draft status. Messages that are already processing,
+  /// sent, or failed cannot be updated.
   ///
   Future<models.Message> updatePush(
       {required String messageId,
@@ -264,7 +268,9 @@ class Messaging extends Service {
 
   /// Update SMS
   ///
-  /// Update an email message by its unique ID.
+  /// Update an SMS message by its unique ID. This endpoint only works on
+  /// messages that are in draft status. Messages that are already processing,
+  /// sent, or failed cannot be updated.
   ///
   Future<models.Message> updateSms(
       {required String messageId,

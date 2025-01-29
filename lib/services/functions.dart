@@ -364,6 +364,11 @@ class Functions extends Service {
 
   /// Rebuild deployment
   ///
+  /// Create a new build for an existing function deployment. This endpoint
+  /// allows you to rebuild a deployment with the updated function configuration,
+  /// including its entrypoint and build commands if they have been modified The
+  /// build process will be queued and executed asynchronously. The original
+  /// deployment's code will be preserved and used for the new build.
   Future createBuild(
       {required String functionId,
       required String deploymentId,
@@ -389,6 +394,11 @@ class Functions extends Service {
 
   /// Cancel deployment
   ///
+  /// Cancel an ongoing function deployment build. If the build is already in
+  /// progress, it will be stopped and marked as canceled. If the build hasn't
+  /// started yet, it will be marked as canceled without executing. You cannot
+  /// cancel builds that have already completed (status 'ready') or failed. The
+  /// response includes the final build status and details.
   Future<models.Build> updateDeploymentBuild(
       {required String functionId, required String deploymentId}) async {
     final String apiPath =

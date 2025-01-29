@@ -11,7 +11,7 @@ class MfaRecoveryCodes implements Model {
 
   factory MfaRecoveryCodes.fromMap(Map<String, dynamic> map) {
     return MfaRecoveryCodes(
-      recoveryCodes: map['recoveryCodes'] ?? [],
+      recoveryCodes: List.from(map['recoveryCodes'] ?? []),
     );
   }
 

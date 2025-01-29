@@ -33,7 +33,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '12.2.0',
+      'x-sdk-version': '13.0.0',
       'X-Appwrite-Response-Format': '1.6.0',
     };
 
@@ -111,6 +111,15 @@ class ClientBrowser extends ClientBase with ClientMixin {
   }
 
   @override
+  Future<String> ping() async {
+    final String apiPath = '/ping';
+    final response = await call(HttpMethod.get,
+        path: apiPath, responseType: ResponseType.plain);
+
+    return response.data;
+  }
+
+  @override
   Future<String?> webAuth(Uri url) async {
     final request = http.Request('GET', url);
     request.followRedirects = false;
@@ -147,7 +156,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     }
 
     var offset = 0;
-    if (idParamName.isNotEmpty && params[idParamName] != 'unique()') {
+    if (idParamName.isNotEmpty) {
       //make a request to check if a file already exists
       try {
         res = await call(

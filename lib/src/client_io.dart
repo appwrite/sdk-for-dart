@@ -42,9 +42,9 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '12.2.0',
+      'x-sdk-version': '13.0.0',
       'user-agent':
-          'AppwriteDartSDK/12.2.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+          'AppwriteDartSDK/13.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format': '1.6.0',
     };
 
@@ -124,6 +124,15 @@ class ClientIO extends ClientBase with ClientMixin {
   }
 
   @override
+  Future<String> ping() async {
+    final String apiPath = '/ping';
+    final response = await call(HttpMethod.get,
+        path: apiPath, responseType: ResponseType.plain);
+
+    return response.data;
+  }
+
+  @override
   Future<Response> chunkedUpload({
     required String path,
     required Map<String, dynamic> params,
@@ -168,7 +177,7 @@ class ClientIO extends ClientBase with ClientMixin {
     }
 
     var offset = 0;
-    if (idParamName.isNotEmpty && params[idParamName] != 'unique()') {
+    if (idParamName.isNotEmpty) {
       //make a request to check if a file already exists
       try {
         res = await call(

@@ -46,7 +46,7 @@ class Topic implements Model {
       emailTotal: map['emailTotal'],
       smsTotal: map['smsTotal'],
       pushTotal: map['pushTotal'],
-      subscribe: map['subscribe'] ?? [],
+      subscribe: List.from(map['subscribe'] ?? []),
     );
   }
 
