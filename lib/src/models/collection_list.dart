@@ -8,16 +8,14 @@ class CollectionList implements Model {
   /// List of collections.
   final List<Collection> collections;
 
-  CollectionList({
-    required this.total,
-    required this.collections,
-  });
+  CollectionList({required this.total, required this.collections});
 
   factory CollectionList.fromMap(Map<String, dynamic> map) {
     return CollectionList(
       total: map['total'],
       collections: List<Collection>.from(
-          map['collections'].map((p) => Collection.fromMap(p))),
+        map['collections'].map((p) => Collection.fromMap(p)),
+      ),
     );
   }
 

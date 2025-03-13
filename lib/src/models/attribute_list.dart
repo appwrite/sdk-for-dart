@@ -8,10 +8,7 @@ class AttributeList implements Model {
   /// List of attributes.
   final List attributes;
 
-  AttributeList({
-    required this.total,
-    required this.attributes,
-  });
+  AttributeList({required this.total, required this.attributes});
 
   factory AttributeList.fromMap(Map<String, dynamic> map) {
     return AttributeList(
@@ -21,9 +18,6 @@ class AttributeList implements Model {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      "total": total,
-      "attributes": attributes,
-    };
+    return {"total": total, "attributes": attributes};
   }
 }

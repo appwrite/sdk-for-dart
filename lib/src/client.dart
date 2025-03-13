@@ -18,10 +18,10 @@ abstract class Client {
   String get endPoint => _endPoint;
 
   /// Initializes a [Client].
-  factory Client(
-          {String endPoint = 'https://cloud.appwrite.io/v1',
-          bool selfSigned = false}) =>
-      createClient(endPoint: endPoint, selfSigned: selfSigned);
+  factory Client({
+    String endPoint = 'https://cloud.appwrite.io/v1',
+    bool selfSigned = false,
+  }) => createClient(endPoint: endPoint, selfSigned: selfSigned);
 
   /// Handle OAuth2 session creation.
   Future<String?> webAuth(Uri url);

@@ -8,10 +8,7 @@ class HealthAntivirus implements Model {
   /// Antivirus status. Possible values can are: `disabled`, `offline`, `online`
   final String status;
 
-  HealthAntivirus({
-    required this.version,
-    required this.status,
-  });
+  HealthAntivirus({required this.version, required this.status});
 
   factory HealthAntivirus.fromMap(Map<String, dynamic> map) {
     return HealthAntivirus(
@@ -21,9 +18,6 @@ class HealthAntivirus implements Model {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      "version": version,
-      "status": status,
-    };
+    return {"version": version, "status": status};
   }
 }

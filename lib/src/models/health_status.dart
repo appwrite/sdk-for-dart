@@ -11,11 +11,7 @@ class HealthStatus implements Model {
   /// Service status. Possible values can are: `pass`, `fail`
   final String status;
 
-  HealthStatus({
-    required this.name,
-    required this.ping,
-    required this.status,
-  });
+  HealthStatus({required this.name, required this.ping, required this.status});
 
   factory HealthStatus.fromMap(Map<String, dynamic> map) {
     return HealthStatus(
@@ -26,10 +22,6 @@ class HealthStatus implements Model {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      "name": name,
-      "ping": ping,
-      "status": status,
-    };
+    return {"name": name, "ping": ping, "status": status};
   }
 }

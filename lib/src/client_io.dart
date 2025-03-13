@@ -10,14 +10,8 @@ import 'response.dart';
 import 'input_file.dart';
 import 'upload_progress.dart';
 
-ClientBase createClient({
-  required String endPoint,
-  required bool selfSigned,
-}) =>
-    ClientIO(
-      endPoint: endPoint,
-      selfSigned: selfSigned,
-    );
+ClientBase createClient({required String endPoint, required bool selfSigned}) =>
+    ClientIO(endPoint: endPoint, selfSigned: selfSigned);
 
 class ClientIO extends ClientBase with ClientMixin {
   static const int CHUNK_SIZE = 5 * 1024 * 1024;
@@ -32,9 +26,10 @@ class ClientIO extends ClientBase with ClientMixin {
     String endPoint = 'https://cloud.appwrite.io/v1',
     bool selfSigned = false,
   }) : _endPoint = endPoint {
-    _nativeClient = HttpClient()
-      ..badCertificateCallback =
-          ((X509Certificate cert, String host, int port) => selfSigned);
+    _nativeClient =
+        HttpClient()
+          ..badCertificateCallback =
+              ((X509Certificate cert, String host, int port) => selfSigned);
     _httpClient = IOClient(_nativeClient);
     _endPoint = endPoint;
     _headers = {
@@ -42,16 +37,18 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '13.0.0',
+      'x-sdk-version': '14.0.0',
       'user-agent':
-          'AppwriteDartSDK/13.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+          'AppwriteDartSDK/14.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format': '1.6.0',
     };
 
     config = {};
 
-    assert(_endPoint.startsWith(RegExp("http://|https://")),
-        "endPoint $_endPoint must start with 'http'");
+    assert(
+      _endPoint.startsWith(RegExp("http://|https://")),
+      "endPoint $_endPoint must start with 'http'",
+    );
   }
 
   @override
@@ -124,15 +121,6 @@ class ClientIO extends ClientBase with ClientMixin {
   }
 
   @override
-  Future<String> ping() async {
-    final String apiPath = '/ping';
-    final response = await call(HttpMethod.get,
-        path: apiPath, responseType: ResponseType.plain);
-
-    return response.data;
-  }
-
-  @override
   Future<Response> chunkedUpload({
     required String path,
     required Map<String, dynamic> params,
@@ -162,11 +150,16 @@ class ClientIO extends ClientBase with ClientMixin {
     if (size <= CHUNK_SIZE) {
       if (file.path != null) {
         params[paramName] = await http.MultipartFile.fromPath(
-            paramName, file.path!,
-            filename: file.filename);
+          paramName,
+          file.path!,
+          filename: file.filename,
+        );
       } else {
-        params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!,
-            filename: file.filename);
+        params[paramName] = http.MultipartFile.fromBytes(
+          paramName,
+          file.bytes!,
+          filename: file.filename,
+        );
       }
       return call(
         HttpMethod.post,
@@ -205,12 +198,19 @@ class ClientIO extends ClientBase with ClientMixin {
         raf!.setPositionSync(offset);
         chunk = raf.readSync(CHUNK_SIZE);
       }
-      params[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
-          filename: file.filename);
+      params[paramName] = http.MultipartFile.fromBytes(
+        paramName,
+        chunk,
+        filename: file.filename,
+      );
       headers['content-range'] =
           'bytes $offset-${min<int>((offset + CHUNK_SIZE - 1), size - 1)}/$size';
-      res = await call(HttpMethod.post,
-          path: path, headers: headers, params: params);
+      res = await call(
+        HttpMethod.post,
+        path: path,
+        headers: headers,
+        params: params,
+      );
       offset += CHUNK_SIZE;
       if (offset < size) {
         headers['x-appwrite-id'] = res.data['\$id'];
@@ -255,10 +255,7 @@ class ClientIO extends ClientBase with ClientMixin {
     try {
       final streamedResponse = await _httpClient.send(request);
       res = await toResponse(streamedResponse);
-      return prepareResponse(
-        res,
-        responseType: responseType,
-      );
+      return prepareResponse(res, responseType: responseType);
     } catch (e) {
       if (e is AppwriteException) {
         rethrow;

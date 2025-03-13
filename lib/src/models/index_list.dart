@@ -8,10 +8,7 @@ class IndexList implements Model {
   /// List of indexes.
   final List<Index> indexes;
 
-  IndexList({
-    required this.total,
-    required this.indexes,
-  });
+  IndexList({required this.total, required this.indexes});
 
   factory IndexList.fromMap(Map<String, dynamic> map) {
     return IndexList(
@@ -21,9 +18,6 @@ class IndexList implements Model {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      "total": total,
-      "indexes": indexes.map((p) => p.toMap()).toList(),
-    };
+    return {"total": total, "indexes": indexes.map((p) => p.toMap()).toList()};
   }
 }

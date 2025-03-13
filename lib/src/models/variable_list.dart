@@ -8,16 +8,14 @@ class VariableList implements Model {
   /// List of variables.
   final List<Variable> variables;
 
-  VariableList({
-    required this.total,
-    required this.variables,
-  });
+  VariableList({required this.total, required this.variables});
 
   factory VariableList.fromMap(Map<String, dynamic> map) {
     return VariableList(
       total: map['total'],
-      variables:
-          List<Variable>.from(map['variables'].map((p) => Variable.fromMap(p))),
+      variables: List<Variable>.from(
+        map['variables'].map((p) => Variable.fromMap(p)),
+      ),
     );
   }
 

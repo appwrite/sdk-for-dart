@@ -8,10 +8,7 @@ class TargetList implements Model {
   /// List of targets.
   final List<Target> targets;
 
-  TargetList({
-    required this.total,
-    required this.targets,
-  });
+  TargetList({required this.total, required this.targets});
 
   factory TargetList.fromMap(Map<String, dynamic> map) {
     return TargetList(
@@ -21,9 +18,6 @@ class TargetList implements Model {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      "total": total,
-      "targets": targets.map((p) => p.toMap()).toList(),
-    };
+    return {"total": total, "targets": targets.map((p) => p.toMap()).toList()};
   }
 }
