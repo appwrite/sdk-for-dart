@@ -37,9 +37,9 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '14.0.0',
+      'x-sdk-version': '15.0.0',
       'user-agent':
-          'AppwriteDartSDK/14.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+          'AppwriteDartSDK/15.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format': '1.6.0',
     };
 
@@ -110,6 +110,10 @@ class ClientIO extends ClientBase with ClientMixin {
 
   @override
   ClientIO setEndpoint(String endPoint) {
+    if (!endPoint.startsWith('http://') && !endPoint.startsWith('https://')) {
+      throw AppwriteException('Invalid endpoint URL: $endPoint');
+    }
+
     _endPoint = endPoint;
     return this;
   }

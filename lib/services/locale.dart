@@ -16,7 +16,7 @@ class Locale extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -35,7 +35,7 @@ class Locale extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -54,7 +54,7 @@ class Locale extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -73,7 +73,7 @@ class Locale extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -92,7 +92,7 @@ class Locale extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -111,7 +111,7 @@ class Locale extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -131,7 +131,7 @@ class Locale extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -150,7 +150,7 @@ class Locale extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,

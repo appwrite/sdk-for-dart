@@ -30,7 +30,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '14.0.0',
+      'x-sdk-version': '15.0.0',
       'X-Appwrite-Response-Format': '1.6.0',
     };
 
@@ -99,6 +99,10 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
   @override
   ClientBrowser setEndpoint(String endPoint) {
+    if (!endPoint.startsWith('http://') && !endPoint.startsWith('https://')) {
+      throw AppwriteException('Invalid endpoint URL: $endPoint');
+    }
+
     _endPoint = endPoint;
     return this;
   }

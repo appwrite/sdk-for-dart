@@ -18,7 +18,7 @@ class Functions extends Service {
       'search': search,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -103,7 +103,7 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -122,7 +122,7 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -143,7 +143,7 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -251,7 +251,7 @@ class Functions extends Service {
       'search': search,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -322,7 +322,7 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -481,7 +481,7 @@ class Functions extends Service {
       'search': search,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -543,7 +543,7 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -590,7 +590,7 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -639,7 +639,7 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,

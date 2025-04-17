@@ -7,6 +7,6 @@ Client client = Client()
 
 Health health = Health(client);
 
-HealthQueue result = await health.getQueueUsageDump(
+HealthQueue result = await health.getQueueStatsResources(
     threshold: 0, // (optional)
 );

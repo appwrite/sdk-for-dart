@@ -164,24 +164,6 @@ void main() {
 
         });
 
-        test('test method getQueue()', () async {
-            final Map<String, dynamic> data = {
-                'name': 'database',
-                'ping': 128,
-                'status': 'pass',};
-
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await health.getQueue(
-            );
-            expect(response, isA<models.HealthStatus>());
-
-        });
-
         test('test method getQueueBuilds()', () async {
             final Map<String, dynamic> data = {
                 'size': 8,};
@@ -343,6 +325,22 @@ void main() {
 
         });
 
+        test('test method getQueueStatsResources()', () async {
+            final Map<String, dynamic> data = {
+                'size': 8,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await health.getQueueStatsResources(
+            );
+            expect(response, isA<models.HealthQueue>());
+
+        });
+
         test('test method getQueueUsage()', () async {
             final Map<String, dynamic> data = {
                 'size': 8,};
@@ -354,22 +352,6 @@ void main() {
 
 
             final response = await health.getQueueUsage(
-            );
-            expect(response, isA<models.HealthQueue>());
-
-        });
-
-        test('test method getQueueUsageDump()', () async {
-            final Map<String, dynamic> data = {
-                'size': 8,};
-
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await health.getQueueUsageDump(
             );
             expect(response, isA<models.HealthQueue>());
 

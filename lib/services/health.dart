@@ -11,7 +11,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -29,7 +29,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -48,7 +48,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -66,7 +66,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'domain': domain};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -84,7 +84,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -102,26 +102,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
-
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.HealthStatus.fromMap(res.data);
-  }
-
-  /// Check the Appwrite queue messaging servers are up and connection is
-  /// successful.
-  Future<models.HealthStatus> getQueue() async {
-    final String apiPath = '/health/queue';
-
-    final Map<String, dynamic> apiParams = {};
-
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -140,7 +121,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -160,7 +141,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -185,7 +166,7 @@ class Health extends Service {
       'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -204,7 +185,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -229,7 +210,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -248,7 +229,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -267,7 +248,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -286,7 +267,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -305,7 +286,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -324,7 +305,26 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.HealthQueue.fromMap(res.data);
+  }
+
+  /// Get the number of metrics that are waiting to be processed in the Appwrite
+  /// stats resources queue.
+  Future<models.HealthQueue> getQueueStatsResources({int? threshold}) async {
+    final String apiPath = '/health/queue/stats-resources';
+
+    final Map<String, dynamic> apiParams = {'threshold': threshold};
+
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -339,30 +339,11 @@ class Health extends Service {
   /// Get the number of metrics that are waiting to be processed in the Appwrite
   /// internal queue server.
   Future<models.HealthQueue> getQueueUsage({int? threshold}) async {
-    final String apiPath = '/health/queue/usage';
+    final String apiPath = '/health/queue/stats-usage';
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
-
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.HealthQueue.fromMap(res.data);
-  }
-
-  /// Get the number of projects containing metrics that are waiting to be
-  /// processed in the Appwrite internal queue server.
-  Future<models.HealthQueue> getQueueUsageDump({int? threshold}) async {
-    final String apiPath = '/health/queue/usage-dump';
-
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
-
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -381,7 +362,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {'threshold': threshold};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -399,7 +380,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -417,7 +398,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -441,7 +422,7 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,

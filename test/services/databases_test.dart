@@ -552,8 +552,6 @@ void main() {
                 collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
-                min: 1.0,
-                max: 1.0,
                 xdefault: 1.0,
             );
             expect(response, isA<models.AttributeFloat>());
@@ -607,8 +605,6 @@ void main() {
                 collectionId: '<COLLECTION_ID>',
                 key: '',
                 xrequired: true,
-                min: 1,
-                max: 1,
                 xdefault: 1,
             );
             expect(response, isA<models.AttributeInteger>());

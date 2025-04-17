@@ -18,7 +18,7 @@ class Databases extends Service {
       'search': search,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -67,7 +67,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -143,7 +143,7 @@ class Databases extends Service {
       'search': search,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -204,7 +204,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -285,7 +285,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {'queries': queries};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -622,9 +622,9 @@ class Databases extends Service {
     required String collectionId,
     required String key,
     required bool xrequired,
-    required double min,
-    required double max,
     required double? xdefault,
+    double? min,
+    double? max,
     String? newKey,
   }) async {
     final String apiPath =
@@ -700,9 +700,9 @@ class Databases extends Service {
     required String collectionId,
     required String key,
     required bool xrequired,
-    required int min,
-    required int max,
     required int? xdefault,
+    int? min,
+    int? max,
     String? newKey,
   }) async {
     final String apiPath =
@@ -997,7 +997,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -1082,7 +1082,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {'queries': queries};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -1098,6 +1098,7 @@ class Databases extends Service {
   /// collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
+  ///
   Future<models.Document> createDocument({
     required String databaseId,
     required String collectionId,
@@ -1144,7 +1145,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {'queries': queries};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -1227,7 +1228,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {'queries': queries};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
@@ -1288,7 +1289,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {};
 
     final res = await client.call(
       HttpMethod.get,
