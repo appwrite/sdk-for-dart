@@ -914,6 +914,83 @@ void main() {
 
         });
 
+        test('test method createDocuments()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'documents': [],};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await databases.createDocuments(
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+                documents: [],
+            );
+            expect(response, isA<models.DocumentList>());
+
+        });
+
+        test('test method upsertDocuments()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'documents': [],};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await databases.upsertDocuments(
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+            );
+            expect(response, isA<models.DocumentList>());
+
+        });
+
+        test('test method updateDocuments()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'documents': [],};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await databases.updateDocuments(
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+            );
+            expect(response, isA<models.DocumentList>());
+
+        });
+
+        test('test method deleteDocuments()', () async {
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'documents': [],};
+
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await databases.deleteDocuments(
+                databaseId: '<DATABASE_ID>',
+                collectionId: '<COLLECTION_ID>',
+            );
+            expect(response, isA<models.DocumentList>());
+
+        });
+
         test('test method getDocument()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
