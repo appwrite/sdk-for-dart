@@ -854,7 +854,6 @@ class Databases extends Service {
     /// collection resource using either a [server
     /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
     /// API or directly from your database console.
-    /// 
     Future<models.DocumentList> createDocuments({required String databaseId, required String collectionId, required List<Map> documents}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/documents'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
@@ -1033,7 +1032,7 @@ class Databases extends Service {
     /// Creates an index on the attributes listed. Your index should include all
     /// the attributes you will query in a single request.
     /// Attributes can be `key`, `fulltext`, and `unique`.
-    Future<models.Index> createIndex({required String databaseId, required String collectionId, required String key, required enums.IndexType type, required List<String> attributes, List<String>? orders}) async {
+    Future<models.Index> createIndex({required String databaseId, required String collectionId, required String key, required enums.IndexType type, required List<String> attributes, List<String>? orders, List<int>? lengths}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/indexes'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
 
         final Map<String, dynamic> apiParams = {
@@ -1042,6 +1041,7 @@ class Databases extends Service {
 'type': type.value,
 'attributes': attributes,
 'orders': orders,
+'lengths': lengths,
 
         };
 

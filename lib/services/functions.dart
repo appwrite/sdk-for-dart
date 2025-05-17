@@ -31,7 +31,7 @@ class Functions extends Service {
     /// [permissions](https://appwrite.io/docs/permissions) to allow different
     /// project users or team with access to execute the function using the client
     /// API.
-    Future<models.Func> create({required String functionId, required String name, required enums.Runtime runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, List<String>? scopes, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory, String? templateRepository, String? templateOwner, String? templateRootDirectory, String? templateVersion, String? specification}) async {
+    Future<models.Func> create({required String functionId, required String name, required enums.Runtime runtime, List<String>? execute, List<String>? events, String? schedule, int? timeout, bool? enabled, bool? logging, String? entrypoint, String? commands, List<String>? scopes, String? installationId, String? providerRepositoryId, String? providerBranch, bool? providerSilentMode, String? providerRootDirectory, String? specification}) async {
         final String apiPath = '/functions';
 
         final Map<String, dynamic> apiParams = {
@@ -53,10 +53,6 @@ class Functions extends Service {
 'providerBranch': providerBranch,
 'providerSilentMode': providerSilentMode,
 'providerRootDirectory': providerRootDirectory,
-'templateRepository': templateRepository,
-'templateOwner': templateOwner,
-'templateRootDirectory': templateRootDirectory,
-'templateVersion': templateVersion,
 'specification': specification,
 
         };
@@ -92,7 +88,6 @@ class Functions extends Service {
     }
 
     /// List allowed function specifications for this instance.
-    /// 
     Future<models.SpecificationList> listSpecifications() async {
         final String apiPath = '/functions/specifications';
 
@@ -187,7 +182,29 @@ class Functions extends Service {
 
     }
 
-    /// Get a list of all the project's code deployments. You can use the query
+    /// Update the function active deployment. Use this endpoint to switch the code
+    /// deployment that should be used when visitor opens your function.
+    Future<models.Func> updateFunctionDeployment({required String functionId, required String deploymentId}) async {
+        final String apiPath = '/functions/{functionId}/deployment'.replaceAll('{functionId}', functionId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'deploymentId': deploymentId,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Func.fromMap(res.data);
+
+    }
+
+    /// Get a list of all the function's code deployments. You can use the query
     /// params to filter your results.
     Future<models.DeploymentList> listDeployments({required String functionId, List<String>? queries, String? search}) async {
         final String apiPath = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
@@ -251,7 +268,87 @@ class Functions extends Service {
 
     }
 
-    /// Get a code deployment by its unique ID.
+    /// Create a new build for an existing function deployment. This endpoint
+    /// allows you to rebuild a deployment with the updated function configuration,
+    /// including its entrypoint and build commands if they have been modified. The
+    /// build process will be queued and executed asynchronously. The original
+    /// deployment's code will be preserved and used for the new build.
+    Future<models.Deployment> createDuplicateDeployment({required String functionId, required String deploymentId, String? buildId}) async {
+        final String apiPath = '/functions/{functionId}/deployments/duplicate'.replaceAll('{functionId}', functionId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'deploymentId': deploymentId,
+'buildId': buildId,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Deployment.fromMap(res.data);
+
+    }
+
+    /// Create a deployment based on a template.
+    /// 
+    /// Use this endpoint with combination of
+    /// [listTemplates](https://appwrite.io/docs/server/functions#listTemplates) to
+    /// find the template details.
+    Future<models.Deployment> createTemplateDeployment({required String functionId, required String repository, required String owner, required String rootDirectory, required String version, bool? activate}) async {
+        final String apiPath = '/functions/{functionId}/deployments/template'.replaceAll('{functionId}', functionId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'repository': repository,
+'owner': owner,
+'rootDirectory': rootDirectory,
+'version': version,
+'activate': activate,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Deployment.fromMap(res.data);
+
+    }
+
+    /// Create a deployment when a function is connected to VCS.
+    /// 
+    /// This endpoint lets you create deployment from a branch, commit, or a tag.
+    Future<models.Deployment> createVcsDeployment({required String functionId, required enums.VCSDeploymentType type, required String reference, bool? activate}) async {
+        final String apiPath = '/functions/{functionId}/deployments/vcs'.replaceAll('{functionId}', functionId);
+
+        final Map<String, dynamic> apiParams = {
+            
+            'type': type.value,
+'reference': reference,
+'activate': activate,
+
+        };
+
+        final Map<String, String> apiHeaders = {
+            'content-type': 'application/json',
+
+        };
+
+        final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+        return models.Deployment.fromMap(res.data);
+
+    }
+
+    /// Get a function deployment by its unique ID.
     Future<models.Deployment> getDeployment({required String functionId, required String deploymentId}) async {
         final String apiPath = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
@@ -267,28 +364,6 @@ class Functions extends Service {
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
         return models.Deployment.fromMap(res.data);
-
-    }
-
-    /// Update the function code deployment ID using the unique function ID. Use
-    /// this endpoint to switch the code deployment that should be executed by the
-    /// execution endpoint.
-    Future<models.Func> updateDeployment({required String functionId, required String deploymentId}) async {
-        final String apiPath = '/functions/{functionId}/deployments/{deploymentId}'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
-
-        final Map<String, dynamic> apiParams = {
-            
-            
-        };
-
-        final Map<String, String> apiHeaders = {
-            'content-type': 'application/json',
-
-        };
-
-        final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
-
-        return models.Func.fromMap(res.data);
 
     }
 
@@ -312,29 +387,22 @@ class Functions extends Service {
 
     }
 
-    /// Create a new build for an existing function deployment. This endpoint
-    /// allows you to rebuild a deployment with the updated function configuration,
-    /// including its entrypoint and build commands if they have been modified The
-    /// build process will be queued and executed asynchronously. The original
-    /// deployment's code will be preserved and used for the new build.
-    Future createBuild({required String functionId, required String deploymentId, String? buildId}) async {
-        final String apiPath = '/functions/{functionId}/deployments/{deploymentId}/build'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
+    /// Get a function deployment content by its unique ID. The endpoint response
+    /// return with a 'Content-Disposition: attachment' header that tells the
+    /// browser to start downloading the file to user downloads directory.
+    Future<Uint8List> getDeploymentDownload({required String functionId, required String deploymentId, enums.DeploymentDownloadType? type}) async {
+        final String apiPath = '/functions/{functionId}/deployments/{deploymentId}/download'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
-        final Map<String, dynamic> apiParams = {
+        final Map<String, dynamic> params = {
+            'type': type?.value,
+
             
-            'buildId': buildId,
-
+            'project': client.config['project'],
+            'key': client.config['key'],
         };
 
-        final Map<String, String> apiHeaders = {
-            'content-type': 'application/json',
-
-        };
-
-        final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
-
-        return  res.data;
-
+        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
+        return res.data;
     }
 
     /// Cancel an ongoing function deployment build. If the build is already in
@@ -342,8 +410,8 @@ class Functions extends Service {
     /// started yet, it will be marked as canceled without executing. You cannot
     /// cancel builds that have already completed (status 'ready') or failed. The
     /// response includes the final build status and details.
-    Future<models.Build> updateDeploymentBuild({required String functionId, required String deploymentId}) async {
-        final String apiPath = '/functions/{functionId}/deployments/{deploymentId}/build'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
+    Future<models.Deployment> updateDeploymentStatus({required String functionId, required String deploymentId}) async {
+        final String apiPath = '/functions/{functionId}/deployments/{deploymentId}/status'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
 
         final Map<String, dynamic> apiParams = {
             
@@ -357,34 +425,17 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return models.Build.fromMap(res.data);
+        return models.Deployment.fromMap(res.data);
 
-    }
-
-    /// Get a Deployment's contents by its unique ID. This endpoint supports range
-    /// requests for partial or streaming file download.
-    Future<Uint8List> getDeploymentDownload({required String functionId, required String deploymentId}) async {
-        final String apiPath = '/functions/{functionId}/deployments/{deploymentId}/download'.replaceAll('{functionId}', functionId).replaceAll('{deploymentId}', deploymentId);
-
-        final Map<String, dynamic> params = {
-            
-            
-            'project': client.config['project'],
-            'key': client.config['key'],
-        };
-
-        final res = await client.call(HttpMethod.get, path: apiPath, params: params, responseType: ResponseType.bytes);
-        return res.data;
     }
 
     /// Get a list of all the current user function execution logs. You can use the
     /// query params to filter your results.
-    Future<models.ExecutionList> listExecutions({required String functionId, List<String>? queries, String? search}) async {
+    Future<models.ExecutionList> listExecutions({required String functionId, List<String>? queries}) async {
         final String apiPath = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {
             'queries': queries,
-'search': search,
 
             
         };
@@ -448,7 +499,6 @@ class Functions extends Service {
     }
 
     /// Delete a function execution by its unique ID.
-    /// 
     Future deleteExecution({required String functionId, required String executionId}) async {
         final String apiPath = '/functions/{functionId}/executions/{executionId}'.replaceAll('{functionId}', functionId).replaceAll('{executionId}', executionId);
 
@@ -489,13 +539,14 @@ class Functions extends Service {
 
     /// Create a new function environment variable. These variables can be accessed
     /// in the function at runtime as environment variables.
-    Future<models.Variable> createVariable({required String functionId, required String key, required String value}) async {
+    Future<models.Variable> createVariable({required String functionId, required String key, required String value, bool? secret}) async {
         final String apiPath = '/functions/{functionId}/variables'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {
             
             'key': key,
 'value': value,
+'secret': secret,
 
         };
 
@@ -530,13 +581,14 @@ class Functions extends Service {
     }
 
     /// Update variable by its unique ID.
-    Future<models.Variable> updateVariable({required String functionId, required String variableId, required String key, String? value}) async {
+    Future<models.Variable> updateVariable({required String functionId, required String variableId, required String key, String? value, bool? secret}) async {
         final String apiPath = '/functions/{functionId}/variables/{variableId}'.replaceAll('{functionId}', functionId).replaceAll('{variableId}', variableId);
 
         final Map<String, dynamic> apiParams = {
             
             'key': key,
 'value': value,
+'secret': secret,
 
         };
 

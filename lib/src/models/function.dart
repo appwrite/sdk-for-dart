@@ -23,14 +23,26 @@ class Func implements Model {
     /// Is the function deployed with the latest configuration? This is set to false if you&#039;ve changed an environment variables, entrypoint, commands, or other settings that needs redeploy to be applied. When the value is false, redeploy the function to update it with the latest configuration.
     final bool live;
 
-    /// Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
+    /// When disabled, executions will exclude logs and errors, and will be slightly faster.
     final bool logging;
 
-    /// Function execution runtime.
+    /// Function execution and build runtime.
     final String runtime;
 
     /// Function&#039;s active deployment ID.
-    final String deployment;
+    final String deploymentId;
+
+    /// Active deployment creation date in ISO 8601 format.
+    final String deploymentCreatedAt;
+
+    /// Function&#039;s latest deployment ID.
+    final String latestDeploymentId;
+
+    /// Latest deployment creation date in ISO 8601 format.
+    final String latestDeploymentCreatedAt;
+
+    /// Status of latest deployment. Possible values are &quot;waiting&quot;, &quot;processing&quot;, &quot;building&quot;, &quot;ready&quot;, and &quot;failed&quot;.
+    final String latestDeploymentStatus;
 
     /// Allowed permission scopes.
     final List<String> scopes;
@@ -84,7 +96,11 @@ class Func implements Model {
         required this.live,
         required this.logging,
         required this.runtime,
-        required this.deployment,
+        required this.deploymentId,
+        required this.deploymentCreatedAt,
+        required this.latestDeploymentId,
+        required this.latestDeploymentCreatedAt,
+        required this.latestDeploymentStatus,
         required this.scopes,
         required this.vars,
         required this.events,
@@ -112,7 +128,11 @@ class Func implements Model {
             live: map['live'],
             logging: map['logging'],
             runtime: map['runtime'].toString(),
-            deployment: map['deployment'].toString(),
+            deploymentId: map['deploymentId'].toString(),
+            deploymentCreatedAt: map['deploymentCreatedAt'].toString(),
+            latestDeploymentId: map['latestDeploymentId'].toString(),
+            latestDeploymentCreatedAt: map['latestDeploymentCreatedAt'].toString(),
+            latestDeploymentStatus: map['latestDeploymentStatus'].toString(),
             scopes: List.from(map['scopes'] ?? []),
             vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
             events: List.from(map['events'] ?? []),
@@ -141,7 +161,11 @@ class Func implements Model {
             "live": live,
             "logging": logging,
             "runtime": runtime,
-            "deployment": deployment,
+            "deploymentId": deploymentId,
+            "deploymentCreatedAt": deploymentCreatedAt,
+            "latestDeploymentId": latestDeploymentId,
+            "latestDeploymentCreatedAt": latestDeploymentCreatedAt,
+            "latestDeploymentStatus": latestDeploymentStatus,
             "scopes": scopes,
             "vars": vars.map((p) => p.toMap()).toList(),
             "events": events,

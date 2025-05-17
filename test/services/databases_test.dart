@@ -1080,6 +1080,7 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'attributes': [],
+                'lengths': [],
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 
@@ -1107,6 +1108,7 @@ void main() {
                 'status': 'available',
                 'error': 'string',
                 'attributes': [],
+                'lengths': [],
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
 

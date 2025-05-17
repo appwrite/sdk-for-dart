@@ -7,7 +7,7 @@ Client client = Client()
 
 Functions functions = Functions(client);
 
-Func result = await functions.updateDeployment(
+Func result = await functions.updateFunctionDeployment(
     functionId: '<FUNCTION_ID>',
     deploymentId: '<DEPLOYMENT_ID>',
 );

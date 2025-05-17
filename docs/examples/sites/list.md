@@ -5,9 +5,9 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Functions functions = Functions(client);
+Sites sites = Sites(client);
 
-Build result = await functions.updateDeploymentBuild(
-    functionId: '<FUNCTION_ID>',
-    deploymentId: '<DEPLOYMENT_ID>',
+SiteList result = await sites.list(
+    queries: [], // (optional)
+    search: '<SEARCH>', // (optional)
 );

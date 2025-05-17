@@ -264,11 +264,12 @@ class Storage extends Service {
     /// Get a file content by its unique ID. The endpoint response return with a
     /// 'Content-Disposition: attachment' header that tells the browser to start
     /// downloading the file to user downloads directory.
-    Future<Uint8List> getFileDownload({required String bucketId, required String fileId}) async {
+    Future<Uint8List> getFileDownload({required String bucketId, required String fileId, String? token}) async {
         final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/download'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
-            
+            'token': token,
+
             
             'project': client.config['project'],
             'session': client.config['session'],
@@ -283,7 +284,7 @@ class Storage extends Service {
     /// and spreadsheets, will return the file icon image. You can also pass query
     /// string arguments for cutting and resizing your preview image. Preview is
     /// supported only for image files smaller than 10MB.
-    Future<Uint8List> getFilePreview({required String bucketId, required String fileId, int? width, int? height, enums.ImageGravity? gravity, int? quality, int? borderWidth, String? borderColor, int? borderRadius, double? opacity, int? rotation, String? background, enums.ImageFormat? output}) async {
+    Future<Uint8List> getFilePreview({required String bucketId, required String fileId, int? width, int? height, enums.ImageGravity? gravity, int? quality, int? borderWidth, String? borderColor, int? borderRadius, double? opacity, int? rotation, String? background, enums.ImageFormat? output, String? token}) async {
         final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/preview'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
@@ -298,6 +299,7 @@ class Storage extends Service {
 'rotation': rotation,
 'background': background,
 'output': output?.value,
+'token': token,
 
             
             'project': client.config['project'],
@@ -311,11 +313,12 @@ class Storage extends Service {
     /// Get a file content by its unique ID. This endpoint is similar to the
     /// download method but returns with no  'Content-Disposition: attachment'
     /// header.
-    Future<Uint8List> getFileView({required String bucketId, required String fileId}) async {
+    Future<Uint8List> getFileView({required String bucketId, required String fileId, String? token}) async {
         final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/view'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> params = {
-            
+            'token': token,
+
             
             'project': client.config['project'],
             'session': client.config['session'],

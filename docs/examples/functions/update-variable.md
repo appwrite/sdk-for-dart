@@ -12,4 +12,5 @@ Variable result = await functions.updateVariable(
     variableId: '<VARIABLE_ID>',
     key: '<KEY>',
     value: '<VALUE>', // (optional)
+    secret: false, // (optional)
 );

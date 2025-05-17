@@ -13,13 +13,16 @@ void main() {
         resourceId: '5e5ea6g16897e',
         resourceType: 'functions',
         entrypoint: 'index.js',
-        size: 128,
+        sourceSize: 128,
         buildSize: 128,
+        totalSize: 128,
         buildId: '5e5ea5c16897e',
         activate: true,
+        screenshotLight: '5e5ea5c16897e',
+        screenshotDark: '5e5ea5c16897e',
         status: 'ready',
         buildLogs: 'Compiling source files...',
-        buildTime: 128,
+        buildDuration: 128,
         providerRepositoryName: 'database',
         providerRepositoryOwner: 'utopia',
         providerRepositoryUrl: 'https://github.com/vermakhushboo/g4-node-function',
@@ -42,13 +45,16 @@ void main() {
       expect(result.resourceId, '5e5ea6g16897e');
       expect(result.resourceType, 'functions');
       expect(result.entrypoint, 'index.js');
-      expect(result.size, 128);
+      expect(result.sourceSize, 128);
       expect(result.buildSize, 128);
+      expect(result.totalSize, 128);
       expect(result.buildId, '5e5ea5c16897e');
       expect(result.activate, true);
+      expect(result.screenshotLight, '5e5ea5c16897e');
+      expect(result.screenshotDark, '5e5ea5c16897e');
       expect(result.status, 'ready');
       expect(result.buildLogs, 'Compiling source files...');
-      expect(result.buildTime, 128);
+      expect(result.buildDuration, 128);
       expect(result.providerRepositoryName, 'database');
       expect(result.providerRepositoryOwner, 'utopia');
       expect(result.providerRepositoryUrl, 'https://github.com/vermakhushboo/g4-node-function');

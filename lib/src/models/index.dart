@@ -17,6 +17,9 @@ class Index implements Model {
     /// Index attributes.
     final List<String> attributes;
 
+    /// Index attributes length.
+    final List<int> lengths;
+
     /// Index orders.
     final List<String>? orders;
 
@@ -32,6 +35,7 @@ class Index implements Model {
         required this.status,
         required this.error,
         required this.attributes,
+        required this.lengths,
         this.orders,
         required this.$createdAt,
         required this.$updatedAt,
@@ -44,6 +48,7 @@ class Index implements Model {
             status: map['status'].toString(),
             error: map['error'].toString(),
             attributes: List.from(map['attributes'] ?? []),
+            lengths: List.from(map['lengths'] ?? []),
             orders: List.from(map['orders'] ?? []),
             $createdAt: map['\$createdAt'].toString(),
             $updatedAt: map['\$updatedAt'].toString(),
@@ -57,6 +62,7 @@ class Index implements Model {
             "status": status,
             "error": error,
             "attributes": attributes,
+            "lengths": lengths,
             "orders": orders,
             "\$createdAt": $createdAt,
             "\$updatedAt": $updatedAt,

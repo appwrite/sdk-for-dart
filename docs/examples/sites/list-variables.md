@@ -5,10 +5,8 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Functions functions = Functions(client);
+Sites sites = Sites(client);
 
- result = await functions.createBuild(
-    functionId: '<FUNCTION_ID>',
-    deploymentId: '<DEPLOYMENT_ID>',
-    buildId: '<BUILD_ID>', // (optional)
+VariableList result = await sites.listVariables(
+    siteId: '<SITE_ID>',
 );

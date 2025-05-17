@@ -17,6 +17,9 @@ class Variable implements Model {
     /// Variable value.
     final String value;
 
+    /// Variable secret flag. Secret variables can only be updated or deleted, but never read.
+    final bool secret;
+
     /// Service to which the variable belongs. Possible values are &quot;project&quot;, &quot;function&quot;
     final String resourceType;
 
@@ -29,6 +32,7 @@ class Variable implements Model {
         required this.$updatedAt,
         required this.key,
         required this.value,
+        required this.secret,
         required this.resourceType,
         required this.resourceId,
     });
@@ -40,6 +44,7 @@ class Variable implements Model {
             $updatedAt: map['\$updatedAt'].toString(),
             key: map['key'].toString(),
             value: map['value'].toString(),
+            secret: map['secret'],
             resourceType: map['resourceType'].toString(),
             resourceId: map['resourceId'].toString(),
         );
@@ -52,6 +57,7 @@ class Variable implements Model {
             "\$updatedAt": $updatedAt,
             "key": key,
             "value": value,
+            "secret": secret,
             "resourceType": resourceType,
             "resourceId": resourceId,
         };
