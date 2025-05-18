@@ -1098,7 +1098,6 @@ class Databases extends Service {
   /// collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
-  ///
   Future<models.Document> createDocument({
     required String databaseId,
     required String collectionId,
@@ -1127,6 +1126,117 @@ class Databases extends Service {
     );
 
     return models.Document.fromMap(res.data);
+  }
+
+  /// Create new Documents. Before using this route, you should create a new
+  /// collection resource using either a [server
+  /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+  /// API or directly from your database console.
+  Future<models.DocumentList> createDocuments({
+    required String databaseId,
+    required String collectionId,
+    required List<Map> documents,
+  }) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/documents'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {'documents': documents};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.DocumentList.fromMap(res.data);
+  }
+
+  /// Create or update Documents. Before using this route, you should create a
+  /// new collection resource using either a [server
+  /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+  /// API or directly from your database console.
+  ///
+  Future<models.DocumentList> upsertDocuments({
+    required String databaseId,
+    required String collectionId,
+    List<Map>? documents,
+  }) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/documents'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {'documents': documents};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.DocumentList.fromMap(res.data);
+  }
+
+  /// Update all documents that match your queries, if no queries are submitted
+  /// then all documents are updated. You can pass only specific fields to be
+  /// updated.
+  Future<models.DocumentList> updateDocuments({
+    required String databaseId,
+    required String collectionId,
+    Map? data,
+    List<String>? queries,
+  }) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/documents'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {'data': data, 'queries': queries};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.DocumentList.fromMap(res.data);
+  }
+
+  /// Bulk delete documents using queries, if no queries are passed then all
+  /// documents are deleted.
+  Future<models.DocumentList> deleteDocuments({
+    required String databaseId,
+    required String collectionId,
+    List<String>? queries,
+  }) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/documents'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {'queries': queries};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.DocumentList.fromMap(res.data);
   }
 
   /// Get a document by its unique ID. This endpoint response returns a JSON
@@ -1250,6 +1360,7 @@ class Databases extends Service {
     required enums.IndexType type,
     required List<String> attributes,
     List<String>? orders,
+    List<int>? lengths,
   }) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/indexes'
@@ -1261,6 +1372,7 @@ class Databases extends Service {
       'type': type.value,
       'attributes': attributes,
       'orders': orders,
+      'lengths': lengths,
     };
 
     final Map<String, String> apiHeaders = {'content-type': 'application/json'};

@@ -11,6 +11,7 @@ void main() {
         status: 'available',
         error: 'string',
         attributes: [],
+        lengths: [],
         $createdAt: '2020-10-15T06:38:00.000+00:00',
         $updatedAt: '2020-10-15T06:38:00.000+00:00',
       );
@@ -23,6 +24,7 @@ void main() {
       expect(result.status, 'available');
       expect(result.error, 'string');
       expect(result.attributes, []);
+      expect(result.lengths, []);
       expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
       expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
     });

@@ -22,6 +22,7 @@ enum Runtime {
   python311(value: 'python-3.11'),
   python312(value: 'python-3.12'),
   pythonMl311(value: 'python-ml-3.11'),
+  pythonMl312(value: 'python-ml-3.12'),
   deno121(value: 'deno-1.21'),
   deno124(value: 'deno-1.24'),
   deno135(value: 'deno-1.35'),
@@ -32,6 +33,7 @@ enum Runtime {
   dart216(value: 'dart-2.16'),
   dart217(value: 'dart-2.17'),
   dart218(value: 'dart-2.18'),
+  dart219(value: 'dart-2.19'),
   dart30(value: 'dart-3.0'),
   dart31(value: 'dart-3.1'),
   dart33(value: 'dart-3.3'),
@@ -59,7 +61,9 @@ enum Runtime {
   bun11(value: 'bun-1.1'),
   go123(value: 'go-1.23'),
   static1(value: 'static-1'),
-  flutter324(value: 'flutter-3.24');
+  flutter324(value: 'flutter-3.24'),
+  flutter327(value: 'flutter-3.27'),
+  flutter329(value: 'flutter-3.29');
 
   const Runtime({required this.value});
 

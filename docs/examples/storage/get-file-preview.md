@@ -1,7 +1,7 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
 
 Client client = Client()
-    .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+    .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setSession(''); // The user session to authenticate with
 
@@ -13,7 +13,7 @@ UInt8List result = await storage.getFilePreview(
     width: 0, // (optional)
     height: 0, // (optional)
     gravity: ImageGravity.center, // (optional)
-    quality: 0, // (optional)
+    quality: -1, // (optional)
     borderWidth: 0, // (optional)
     borderColor: '', // (optional)
     borderRadius: 0, // (optional)
@@ -21,4 +21,5 @@ UInt8List result = await storage.getFilePreview(
     rotation: -360, // (optional)
     background: '', // (optional)
     output: ImageFormat.jpg, // (optional)
+    token: '<TOKEN>', // (optional)
 );

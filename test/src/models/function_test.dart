@@ -15,7 +15,11 @@ void main() {
         live: true,
         logging: true,
         runtime: 'python-3.8',
-        deployment: '5e5ea5c16897e',
+        deploymentId: '5e5ea5c16897e',
+        deploymentCreatedAt: '2020-10-15T06:38:00.000+00:00',
+        latestDeploymentId: '5e5ea5c16897e',
+        latestDeploymentCreatedAt: '2020-10-15T06:38:00.000+00:00',
+        latestDeploymentStatus: 'ready',
         scopes: [],
         vars: [],
         events: [],
@@ -44,7 +48,11 @@ void main() {
       expect(result.live, true);
       expect(result.logging, true);
       expect(result.runtime, 'python-3.8');
-      expect(result.deployment, '5e5ea5c16897e');
+      expect(result.deploymentId, '5e5ea5c16897e');
+      expect(result.deploymentCreatedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.latestDeploymentId, '5e5ea5c16897e');
+      expect(result.latestDeploymentCreatedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.latestDeploymentStatus, 'ready');
       expect(result.scopes, []);
       expect(result.vars, []);
       expect(result.events, []);

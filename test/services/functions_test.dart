@@ -82,7 +82,11 @@ void main() {
                 'live': true,
                 'logging': true,
                 'runtime': 'python-3.8',
-                'deployment': '5e5ea5c16897e',
+                'deploymentId': '5e5ea5c16897e',
+                'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+                'latestDeploymentId': '5e5ea5c16897e',
+                'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+                'latestDeploymentStatus': 'ready',
                 'scopes': [],
                 'vars': [],
                 'events': [],
@@ -158,7 +162,11 @@ void main() {
                 'live': true,
                 'logging': true,
                 'runtime': 'python-3.8',
-                'deployment': '5e5ea5c16897e',
+                'deploymentId': '5e5ea5c16897e',
+                'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+                'latestDeploymentId': '5e5ea5c16897e',
+                'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+                'latestDeploymentStatus': 'ready',
                 'scopes': [],
                 'vars': [],
                 'events': [],
@@ -198,7 +206,11 @@ void main() {
                 'live': true,
                 'logging': true,
                 'runtime': 'python-3.8',
-                'deployment': '5e5ea5c16897e',
+                'deploymentId': '5e5ea5c16897e',
+                'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+                'latestDeploymentId': '5e5ea5c16897e',
+                'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+                'latestDeploymentStatus': 'ready',
                 'scopes': [],
                 'vars': [],
                 'events': [],
@@ -241,6 +253,51 @@ void main() {
             );
         });
 
+        test('test method updateFunctionDeployment()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'execute': [],
+                'name': 'My Function',
+                'enabled': true,
+                'live': true,
+                'logging': true,
+                'runtime': 'python-3.8',
+                'deploymentId': '5e5ea5c16897e',
+                'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+                'latestDeploymentId': '5e5ea5c16897e',
+                'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
+                'latestDeploymentStatus': 'ready',
+                'scopes': [],
+                'vars': [],
+                'events': [],
+                'schedule': '5 4 * * *',
+                'timeout': 300,
+                'entrypoint': 'index.js',
+                'commands': 'npm install',
+                'version': 'v2',
+                'installationId': '6m40at4ejk5h2u9s1hboo',
+                'providerRepositoryId': 'appwrite',
+                'providerBranch': 'main',
+                'providerRootDirectory': 'functions/helloWorld',
+                'providerSilentMode': true,
+                'specification': 's-1vcpu-512mb',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.updateFunctionDeployment(
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
+            );
+            expect(response, isA<models.Func>());
+
+        });
+
         test('test method listDeployments()', () async {
             final Map<String, dynamic> data = {
                 'total': 5,
@@ -268,13 +325,16 @@ void main() {
                 'resourceId': '5e5ea6g16897e',
                 'resourceType': 'functions',
                 'entrypoint': 'index.js',
-                'size': 128,
+                'sourceSize': 128,
                 'buildSize': 128,
+                'totalSize': 128,
                 'buildId': '5e5ea5c16897e',
                 'activate': true,
+                'screenshotLight': '5e5ea5c16897e',
+                'screenshotDark': '5e5ea5c16897e',
                 'status': 'ready',
                 'buildLogs': 'Compiling source files...',
-                'buildTime': 128,
+                'buildDuration': 128,
                 'providerRepositoryName': 'database',
                 'providerRepositoryOwner': 'utopia',
                 'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
@@ -305,6 +365,142 @@ void main() {
 
         });
 
+        test('test method createDuplicateDeployment()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'type': 'vcs',
+                'resourceId': '5e5ea6g16897e',
+                'resourceType': 'functions',
+                'entrypoint': 'index.js',
+                'sourceSize': 128,
+                'buildSize': 128,
+                'totalSize': 128,
+                'buildId': '5e5ea5c16897e',
+                'activate': true,
+                'screenshotLight': '5e5ea5c16897e',
+                'screenshotDark': '5e5ea5c16897e',
+                'status': 'ready',
+                'buildLogs': 'Compiling source files...',
+                'buildDuration': 128,
+                'providerRepositoryName': 'database',
+                'providerRepositoryOwner': 'utopia',
+                'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+                'providerBranch': '0.7.x',
+                'providerCommitHash': '7c3f25d',
+                'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+                'providerCommitAuthor': 'Khushboo Verma',
+                'providerCommitMessage': 'Update index.js',
+                'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.createDuplicateDeployment(
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
+            );
+            expect(response, isA<models.Deployment>());
+
+        });
+
+        test('test method createTemplateDeployment()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'type': 'vcs',
+                'resourceId': '5e5ea6g16897e',
+                'resourceType': 'functions',
+                'entrypoint': 'index.js',
+                'sourceSize': 128,
+                'buildSize': 128,
+                'totalSize': 128,
+                'buildId': '5e5ea5c16897e',
+                'activate': true,
+                'screenshotLight': '5e5ea5c16897e',
+                'screenshotDark': '5e5ea5c16897e',
+                'status': 'ready',
+                'buildLogs': 'Compiling source files...',
+                'buildDuration': 128,
+                'providerRepositoryName': 'database',
+                'providerRepositoryOwner': 'utopia',
+                'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+                'providerBranch': '0.7.x',
+                'providerCommitHash': '7c3f25d',
+                'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+                'providerCommitAuthor': 'Khushboo Verma',
+                'providerCommitMessage': 'Update index.js',
+                'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.createTemplateDeployment(
+                functionId: '<FUNCTION_ID>',
+                repository: '<REPOSITORY>',
+                owner: '<OWNER>',
+                rootDirectory: '<ROOT_DIRECTORY>',
+                version: '<VERSION>',
+            );
+            expect(response, isA<models.Deployment>());
+
+        });
+
+        test('test method createVcsDeployment()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'type': 'vcs',
+                'resourceId': '5e5ea6g16897e',
+                'resourceType': 'functions',
+                'entrypoint': 'index.js',
+                'sourceSize': 128,
+                'buildSize': 128,
+                'totalSize': 128,
+                'buildId': '5e5ea5c16897e',
+                'activate': true,
+                'screenshotLight': '5e5ea5c16897e',
+                'screenshotDark': '5e5ea5c16897e',
+                'status': 'ready',
+                'buildLogs': 'Compiling source files...',
+                'buildDuration': 128,
+                'providerRepositoryName': 'database',
+                'providerRepositoryOwner': 'utopia',
+                'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+                'providerBranch': '0.7.x',
+                'providerCommitHash': '7c3f25d',
+                'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+                'providerCommitAuthor': 'Khushboo Verma',
+                'providerCommitMessage': 'Update index.js',
+                'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.createVcsDeployment(
+                functionId: '<FUNCTION_ID>',
+                type: 'branch',
+                reference: '<REFERENCE>',
+            );
+            expect(response, isA<models.Deployment>());
+
+        });
+
         test('test method getDeployment()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -314,13 +510,16 @@ void main() {
                 'resourceId': '5e5ea6g16897e',
                 'resourceType': 'functions',
                 'entrypoint': 'index.js',
-                'size': 128,
+                'sourceSize': 128,
                 'buildSize': 128,
+                'totalSize': 128,
                 'buildId': '5e5ea5c16897e',
                 'activate': true,
+                'screenshotLight': '5e5ea5c16897e',
+                'screenshotDark': '5e5ea5c16897e',
                 'status': 'ready',
                 'buildLogs': 'Compiling source files...',
-                'buildTime': 128,
+                'buildDuration': 128,
                 'providerRepositoryName': 'database',
                 'providerRepositoryOwner': 'utopia',
                 'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
@@ -346,47 +545,6 @@ void main() {
 
         });
 
-        test('test method updateDeployment()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': '5e5ea5c16897e',
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'execute': [],
-                'name': 'My Function',
-                'enabled': true,
-                'live': true,
-                'logging': true,
-                'runtime': 'python-3.8',
-                'deployment': '5e5ea5c16897e',
-                'scopes': [],
-                'vars': [],
-                'events': [],
-                'schedule': '5 4 * * *',
-                'timeout': 300,
-                'entrypoint': 'index.js',
-                'commands': 'npm install',
-                'version': 'v2',
-                'installationId': '6m40at4ejk5h2u9s1hboo',
-                'providerRepositoryId': 'appwrite',
-                'providerBranch': 'main',
-                'providerRootDirectory': 'functions/helloWorld',
-                'providerSilentMode': true,
-                'specification': 's-1vcpu-512mb',};
-
-
-            when(client.call(
-                HttpMethod.patch,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await functions.updateDeployment(
-                functionId: '<FUNCTION_ID>',
-                deploymentId: '<DEPLOYMENT_ID>',
-            );
-            expect(response, isA<models.Func>());
-
-        });
-
         test('test method deleteDeployment()', () async {
             final data = '';
 
@@ -401,46 +559,6 @@ void main() {
             );
         });
 
-        test('test method createBuild()', () async {
-            final data = '';
-
-            when(client.call(
-                HttpMethod.post,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await functions.createBuild(
-                functionId: '<FUNCTION_ID>',
-                deploymentId: '<DEPLOYMENT_ID>',
-            );
-        });
-
-        test('test method updateDeploymentBuild()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': '5e5ea5c16897e',
-                'deploymentId': '5e5ea5c16897e',
-                'status': 'ready',
-                'stdout': '',
-                'stderr': '',
-                'startTime': '2020-10-15T06:38:00.000+00:00',
-                'endTime': '2020-10-15T06:38:00.000+00:00',
-                'duration': 0,
-                'size': 128,};
-
-
-            when(client.call(
-                HttpMethod.patch,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await functions.updateDeploymentBuild(
-                functionId: '<FUNCTION_ID>',
-                deploymentId: '<DEPLOYMENT_ID>',
-            );
-            expect(response, isA<models.Build>());
-
-        });
-
         test('test method getDeploymentDownload()', () async {final Uint8List data = Uint8List.fromList([]);
 
             when(client.call(
@@ -453,6 +571,50 @@ void main() {
                 deploymentId: '<DEPLOYMENT_ID>',
             );
             expect(response, isA<Uint8List>());
+
+        });
+
+        test('test method updateDeploymentStatus()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'type': 'vcs',
+                'resourceId': '5e5ea6g16897e',
+                'resourceType': 'functions',
+                'entrypoint': 'index.js',
+                'sourceSize': 128,
+                'buildSize': 128,
+                'totalSize': 128,
+                'buildId': '5e5ea5c16897e',
+                'activate': true,
+                'screenshotLight': '5e5ea5c16897e',
+                'screenshotDark': '5e5ea5c16897e',
+                'status': 'ready',
+                'buildLogs': 'Compiling source files...',
+                'buildDuration': 128,
+                'providerRepositoryName': 'database',
+                'providerRepositoryOwner': 'utopia',
+                'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
+                'providerBranch': '0.7.x',
+                'providerCommitHash': '7c3f25d',
+                'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
+                'providerCommitAuthor': 'Khushboo Verma',
+                'providerCommitMessage': 'Update index.js',
+                'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await functions.updateDeploymentStatus(
+                functionId: '<FUNCTION_ID>',
+                deploymentId: '<DEPLOYMENT_ID>',
+            );
+            expect(response, isA<models.Deployment>());
 
         });
 
@@ -578,6 +740,7 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'API_KEY',
                 'value': 'myPa\$\$word1',
+                'secret': true,
                 'resourceType': 'function',
                 'resourceId': 'myAwesomeFunction',};
 
@@ -603,6 +766,7 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'API_KEY',
                 'value': 'myPa\$\$word1',
+                'secret': true,
                 'resourceType': 'function',
                 'resourceId': 'myAwesomeFunction',};
 
@@ -627,6 +791,7 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'API_KEY',
                 'value': 'myPa\$\$word1',
+                'secret': true,
                 'resourceType': 'function',
                 'resourceId': 'myAwesomeFunction',};
 

@@ -488,13 +488,18 @@ class Users extends Service {
   /// Get the user membership list by its unique ID.
   Future<models.MembershipList> listMemberships({
     required String userId,
+    List<String>? queries,
+    String? search,
   }) async {
     final String apiPath = '/users/{userId}/memberships'.replaceAll(
       '{userId}',
       userId,
     );
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      'queries': queries,
+      'search': search,
+    };
 
     final Map<String, String> apiHeaders = {};
 
