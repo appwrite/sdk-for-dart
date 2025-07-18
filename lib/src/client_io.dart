@@ -10,11 +10,17 @@ import 'response.dart';
 import 'input_file.dart';
 import 'upload_progress.dart';
 
-ClientBase createClient({required String endPoint, required bool selfSigned}) =>
-    ClientIO(endPoint: endPoint, selfSigned: selfSigned);
+ClientBase createClient({
+  required String endPoint,
+  required bool selfSigned,
+}) =>
+    ClientIO(
+      endPoint: endPoint,
+      selfSigned: selfSigned,
+    );
 
 class ClientIO extends ClientBase with ClientMixin {
-  static const int CHUNK_SIZE = 5 * 1024 * 1024;
+  static const int CHUNK_SIZE = 5*1024*1024;
   String _endPoint;
   Map<String, String>? _headers;
   @override
@@ -36,69 +42,61 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '16.0.1',
-      'user-agent':
-          'AppwriteDartSDK/16.0.1 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format': '1.7.0',
+      'x-sdk-version': '16.1.0',
+      'user-agent' : 'AppwriteDartSDK/16.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format' : '1.7.0',
     };
 
     config = {};
 
-    assert(
-      _endPoint.startsWith(RegExp("http://|https://")),
-      "endPoint $_endPoint must start with 'http'",
-    );
+    assert(_endPoint.startsWith(RegExp("http://|https://")),
+        "endPoint $_endPoint must start with 'http'");
   }
 
   @override
   String get endPoint => _endPoint;
 
-  /// Your project ID
-  @override
-  ClientIO setProject(value) {
-    config['project'] = value;
-    addHeader('X-Appwrite-Project', value);
-    return this;
-  }
-
-  /// Your secret API key
-  @override
-  ClientIO setKey(value) {
-    config['key'] = value;
-    addHeader('X-Appwrite-Key', value);
-    return this;
-  }
-
-  /// Your secret JSON Web Token
-  @override
-  ClientIO setJWT(value) {
-    config['jWT'] = value;
-    addHeader('X-Appwrite-JWT', value);
-    return this;
-  }
-
-  @override
-  ClientIO setLocale(value) {
-    config['locale'] = value;
-    addHeader('X-Appwrite-Locale', value);
-    return this;
-  }
-
-  /// The user session to authenticate with
-  @override
-  ClientIO setSession(value) {
-    config['session'] = value;
-    addHeader('X-Appwrite-Session', value);
-    return this;
-  }
-
-  /// The user agent string of the client that made the request
-  @override
-  ClientIO setForwardedUserAgent(value) {
-    config['forwardedUserAgent'] = value;
-    addHeader('X-Forwarded-User-Agent', value);
-    return this;
-  }
+     /// Your project ID
+    @override
+    ClientIO setProject(value) {
+        config['project'] = value;
+        addHeader('X-Appwrite-Project', value);
+        return this;
+    }
+     /// Your secret API key
+    @override
+    ClientIO setKey(value) {
+        config['key'] = value;
+        addHeader('X-Appwrite-Key', value);
+        return this;
+    }
+     /// Your secret JSON Web Token
+    @override
+    ClientIO setJWT(value) {
+        config['jWT'] = value;
+        addHeader('X-Appwrite-JWT', value);
+        return this;
+    }
+    @override
+    ClientIO setLocale(value) {
+        config['locale'] = value;
+        addHeader('X-Appwrite-Locale', value);
+        return this;
+    }
+     /// The user session to authenticate with
+    @override
+    ClientIO setSession(value) {
+        config['session'] = value;
+        addHeader('X-Appwrite-Session', value);
+        return this;
+    }
+     /// The user agent string of the client that made the request
+    @override
+    ClientIO setForwardedUserAgent(value) {
+        config['forwardedUserAgent'] = value;
+        addHeader('X-Forwarded-User-Agent', value);
+        return this;
+    }
 
   @override
   ClientIO setSelfSigned({bool status = true}) {
@@ -153,16 +151,11 @@ class ClientIO extends ClientBase with ClientMixin {
     if (size <= CHUNK_SIZE) {
       if (file.path != null) {
         params[paramName] = await http.MultipartFile.fromPath(
-          paramName,
-          file.path!,
-          filename: file.filename,
-        );
+            paramName, file.path!,
+            filename: file.filename);
       } else {
-        params[paramName] = http.MultipartFile.fromBytes(
-          paramName,
-          file.bytes!,
-          filename: file.filename,
-        );
+        params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!,
+            filename: file.filename);
       }
       return call(
         HttpMethod.post,
@@ -201,19 +194,12 @@ class ClientIO extends ClientBase with ClientMixin {
         raf!.setPositionSync(offset);
         chunk = raf.readSync(CHUNK_SIZE);
       }
-      params[paramName] = http.MultipartFile.fromBytes(
-        paramName,
-        chunk,
-        filename: file.filename,
-      );
+      params[paramName] =
+          http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       headers['content-range'] =
           'bytes $offset-${min<int>((offset + CHUNK_SIZE - 1), size - 1)}/$size';
-      res = await call(
-        HttpMethod.post,
-        path: path,
-        headers: headers,
-        params: params,
-      );
+      res = await call(HttpMethod.post,
+          path: path, headers: headers, params: params);
       offset += CHUNK_SIZE;
       if (offset < size) {
         headers['x-appwrite-id'] = res.data['\$id'];
@@ -258,7 +244,10 @@ class ClientIO extends ClientBase with ClientMixin {
     try {
       final streamedResponse = await _httpClient.send(request);
       res = await toResponse(streamedResponse);
-      return prepareResponse(res, responseType: responseType);
+      return prepareResponse(
+        res,
+        responseType: responseType,
+      );
     } catch (e) {
       if (e is AppwriteException) {
         rethrow;

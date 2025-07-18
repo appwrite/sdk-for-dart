@@ -1,12 +1,14 @@
 part of '../../enums.dart';
 
 enum MessagePriority {
-  normal(value: 'normal'),
-  high(value: 'high');
+    normal(value: 'normal'),
+    high(value: 'high');
 
-  const MessagePriority({required this.value});
+    const MessagePriority({
+        required this.value
+    });
 
-  final String value;
+    final String value;
 
-  String toJson() => value;
+    String toJson() => value;
 }
