@@ -1,8 +1,16 @@
 # Change Log
 
+## 16.1.0
+
+* Add `gif` support to `ImageFormat` enum
+* Add support for `dart38` and `flutter332` runtimes
+* Add `upsertDocument()` method to Databases service
+* Fix `convertTo()` method in `Document` and `Preferences` models to correctly accept `Map<String, dynamic>`
+* Fix `upsertDocuments()` method to have `documents` attribute as required parameter
+
 ## 16.0.0
 
-* Add `&lt;REGION&gt;` to doc examples due to the new multi region endpoints
+* Add `<REGION>` to doc examples due to the new multi region endpoints
 * Add doc examples and methods for bulk api transactions: `createDocuments`, `deleteDocuments` etc.
 * Add doc examples, class and methods for new `Sites` service
 * Add doc examples, class and methods for new `Tokens` service
@@ -15,13 +23,13 @@
 ## 14.0.0
 
 * Breaking changes:
-  * Changed the typing of `AppwriteException`&#039;s response parameter from a `dynamic` object to an optional string (`?String`).
+  * Changed the typing of `AppwriteException`'s response parameter from a `dynamic` object to an optional string (`?String`).
 
 ## 13.0.0
 
 * Fixed realtime pong response.
 * Fixed issues with `chunkedUpload` method.
-* Fixed type mismatch bug where `List&lt;dynamic&gt;` was incorrectly causing runtime type errors.
+* Fixed type mismatch bug where `List<dynamic>` was incorrectly causing runtime type errors.
 * Updated return type of `updateMfaChallenge()` from raw data to properly typed `models.Session` object.
 
 ## 12.0.0
@@ -151,7 +159,7 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 * The `number` argument in phone endpoints have been renamed to `phone`
 * List endpoints no longer support `limit`, `offset`, `cursor`, `cursorDirection`, `orderAttributes`, `orderTypes` as they have been moved to the `queries` array
 * `read` and `write` permission have been deprecated and they are now included in the `permissions` array
-* Parameter `permission` for collections and buckets are now renamed to `documentSecurity` &amp; `fileSecurity` respectively
+* Parameter `permission` for collections and buckets are now renamed to `documentSecurity` & `fileSecurity` respectively
 * Renamed methods of the Query helper
     1.  `lesser` renamed to `lessThan`
     2.  `lesserEqual` renamed to `lessThanEqual`
@@ -167,8 +175,8 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 
 ## 6.0.0
 * Support for Appwrite 0.15
-* **BREAKING** `Database` -&gt; `Databases`
-* **BREAKING** `account.createSession()` -&gt; `account.createEmailSession()`
+* **BREAKING** `Database` -> `Databases`
+* **BREAKING** `account.createSession()` -> `account.createEmailSession()`
 * **BREAKING** `dateCreated` attribute removed from `Team`, `Execution`, `File` models
 * **BREAKING** `dateCreated` and `dateUpdated` attribute removed from `Func`, `Deployment`, `Bucket` models
 * **BREAKING** Realtime channels
@@ -182,7 +190,7 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 
 ## 5.0.0
 * Support for Appwrite 0.14
-* **BREAKING** `account.delete()` -&gt; `account.updateStatus()`
+* **BREAKING** `account.delete()` -> `account.updateStatus()`
 * **BREAKING** Execution model `stdout` renamed to `response`
 * **BREAKING** Membership model `name` renamed to `userName` and `email` renamed to `userEmail`
 * Added `teamName` to Membership model
@@ -200,7 +208,7 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 * **BREAKING** **Tags** have been renamed to **Deployments**
 * **BREAKING** `createFile` function expects Bucket ID as the first parameter
 * **BREAKING** `createDeployment` and `createFile` functions expect an instance **InputFile** rather than the instance of **MultipartFile**
-* **BREAKING** `list&lt;Entity&gt;` endpoints now contain a `total` attribute instead of `sum`
+* **BREAKING** `list<Entity>` endpoints now contain a `total` attribute instead of `sum`
 * `onProgress()` callback function for endpoints supporting file uploads
 * Support for synchronous function executions
 * Bug fixes and Improvements
@@ -237,7 +245,7 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 
 ## 0.7.0
 - Support for Appwrite 0.9
-- Breaking - removed order type enum, now you should pass string &#039;ASC&#039; or &#039;DESC&#039;
+- Breaking - removed order type enum, now you should pass string 'ASC' or 'DESC'
 - Breaking - changed param name from `env` to `runtime` in the **Functions** API
 - Image Crop Gravity support in image preview service
 - New endpoint in Account getSession to get session by ID
@@ -258,7 +266,7 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 - Upgraded all underlying dependencies to null safe version
 - BREAKING Renamed users.deleteUser to users.delete
 - BREAKING Renamed parameter inviteId to membershipId on teams.updateMembershipStatus, teams.deleteMembership
-- JWT Support client.setJWT(&#039;JWT_GENERATED_IN_CLIENT&#039;)
+- JWT Support client.setJWT('JWT_GENERATED_IN_CLIENT')
 - [Update membership roles](https://appwrite.io/docs/references/cloud/server-dart/teams?sdk=dart#updateMembershipRoles)
 - New awesome image preview features, supports borderRadius, borderColor, borderWidth
 

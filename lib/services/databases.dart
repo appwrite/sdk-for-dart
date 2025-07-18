@@ -1128,6 +1128,10 @@ class Databases extends Service {
     return models.Document.fromMap(res.data);
   }
 
+  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
+  /// yet officially supported. It may be subject to breaking changes or removal
+  /// in future versions.
+  ///
   /// Create new Documents. Before using this route, you should create a new
   /// collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -1156,15 +1160,18 @@ class Databases extends Service {
     return models.DocumentList.fromMap(res.data);
   }
 
+  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
+  /// yet officially supported. It may be subject to breaking changes or removal
+  /// in future versions.
+  ///
   /// Create or update Documents. Before using this route, you should create a
   /// new collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
-  ///
   Future<models.DocumentList> upsertDocuments({
     required String databaseId,
     required String collectionId,
-    List<Map>? documents,
+    required List<Map> documents,
   }) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/documents'
@@ -1185,6 +1192,10 @@ class Databases extends Service {
     return models.DocumentList.fromMap(res.data);
   }
 
+  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
+  /// yet officially supported. It may be subject to breaking changes or removal
+  /// in future versions.
+  ///
   /// Update all documents that match your queries, if no queries are submitted
   /// then all documents are updated. You can pass only specific fields to be
   /// updated.
@@ -1213,6 +1224,10 @@ class Databases extends Service {
     return models.DocumentList.fromMap(res.data);
   }
 
+  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
+  /// yet officially supported. It may be subject to breaking changes or removal
+  /// in future versions.
+  ///
   /// Bulk delete documents using queries, if no queries are passed then all
   /// documents are deleted.
   Future<models.DocumentList> deleteDocuments({
@@ -1259,6 +1274,44 @@ class Databases extends Service {
 
     final res = await client.call(
       HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Document.fromMap(res.data);
+  }
+
+  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
+  /// yet officially supported. It may be subject to breaking changes or removal
+  /// in future versions.
+  ///
+  /// Create or update a Document. Before using this route, you should create a
+  /// new collection resource using either a [server
+  /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+  /// API or directly from your database console.
+  Future<models.Document> upsertDocument({
+    required String databaseId,
+    required String collectionId,
+    required String documentId,
+    required Map data,
+    List<String>? permissions,
+  }) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{documentId}', documentId);
+
+    final Map<String, dynamic> apiParams = {
+      'data': data,
+      'permissions': permissions,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.put,
       path: apiPath,
       params: apiParams,
       headers: apiHeaders,

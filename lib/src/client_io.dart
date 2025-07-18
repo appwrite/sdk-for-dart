@@ -26,10 +26,9 @@ class ClientIO extends ClientBase with ClientMixin {
     String endPoint = 'https://cloud.appwrite.io/v1',
     bool selfSigned = false,
   }) : _endPoint = endPoint {
-    _nativeClient =
-        HttpClient()
-          ..badCertificateCallback =
-              ((X509Certificate cert, String host, int port) => selfSigned);
+    _nativeClient = HttpClient()
+      ..badCertificateCallback =
+          ((X509Certificate cert, String host, int port) => selfSigned);
     _httpClient = IOClient(_nativeClient);
     _endPoint = endPoint;
     _headers = {
@@ -37,9 +36,9 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '16.0.0',
+      'x-sdk-version': '16.1.0',
       'user-agent':
-          'AppwriteDartSDK/16.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+          'AppwriteDartSDK/16.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format': '1.7.0',
     };
 

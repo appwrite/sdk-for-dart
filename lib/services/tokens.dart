@@ -29,7 +29,7 @@ class Tokens extends Service {
   }
 
   /// Create a new token. A token is linked to a file. Token can be passed as a
-  /// header or request get parameter.
+  /// request URL search parameter.
   Future<models.ResourceToken> createFileToken({
     required String bucketId,
     required String fileId,
