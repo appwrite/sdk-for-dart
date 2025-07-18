@@ -8,7 +8,7 @@ import 'upload_progress.dart';
 /// [Client] that handles requests to Appwrite
 abstract class Client {
   /// The size for cunked uploads in bytes.
-  static const int CHUNK_SIZE = 5 * 1024 * 1024;
+  static const int CHUNK_SIZE = 5*1024*1024;
 
   /// Holds configuration such as project.
   late Map<String, String> config;
@@ -18,16 +18,16 @@ abstract class Client {
   String get endPoint => _endPoint;
 
   /// Initializes a [Client].
-  factory Client({
-    String endPoint = 'https://cloud.appwrite.io/v1',
-    bool selfSigned = false,
-  }) => createClient(endPoint: endPoint, selfSigned: selfSigned);
+  factory Client(
+          {String endPoint = 'https://cloud.appwrite.io/v1',
+          bool selfSigned = false}) =>
+      createClient(endPoint: endPoint, selfSigned: selfSigned);
 
   /// Handle OAuth2 session creation.
   Future<String?> webAuth(Uri url);
 
   /// Set self signed to [status].
-  ///
+  /// 
   /// If self signed is true, [Client] will ignore invalid certificates.
   /// This is helpful in environments where your Appwrite
   /// instance does not have a valid SSL certificate.
@@ -81,8 +81,7 @@ abstract class Client {
   });
 
   /// Send the API request.
-  Future<Response> call(
-    HttpMethod method, {
+  Future<Response> call(HttpMethod method, {
     String path = '',
     Map<String, String> headers = const {},
     Map<String, dynamic> params = const {},
