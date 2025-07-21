@@ -2,31 +2,22 @@ part of '../../models.dart';
 
 /// Sites List
 class SiteList implements Model {
-    /// Total number of sites documents that matched your query.
-    final int total;
+  /// Total number of sites documents that matched your query.
+  final int total;
 
-    /// List of sites.
-    final List<Site> sites;
+  /// List of sites.
+  final List<Site> sites;
 
-    SiteList({
-        required this.total,
-        required this.sites,
-    });
+  SiteList({required this.total, required this.sites});
 
-    factory SiteList.fromMap(Map<String, dynamic> map) {
-        return SiteList(
-            total: 
-map['total'],
-            sites: 
-List<Site>.from(map['sites'].map((p) => Site.fromMap(p))),
-        );
-    }
+  factory SiteList.fromMap(Map<String, dynamic> map) {
+    return SiteList(
+      total: map['total'],
+      sites: List<Site>.from(map['sites'].map((p) => Site.fromMap(p))),
+    );
+  }
 
-    Map<String, dynamic> toMap() {
-        return {
-            "total": total,
-            "sites": sites.map((p) => p.toMap()).toList(),
-        };
-    }
-
+  Map<String, dynamic> toMap() {
+    return {"total": total, "sites": sites.map((p) => p.toMap()).toList()};
+  }
 }
