@@ -2,21 +2,24 @@ part of '../../models.dart';
 
 /// AlgoBcrypt
 class AlgoBcrypt<T> implements Model {
-  /// Algo type.
-  final String type;
+    /// Algo type.
+    final String type;
 
-  AlgoBcrypt({required this.type});
+    AlgoBcrypt({
+        required this.type,
+    });
 
-  factory AlgoBcrypt.fromMap(
-    Map<String, dynamic> map, [
-    T Function(Map<String, dynamic>)? fromJson,
-  ]) {
-    return AlgoBcrypt(type: map['type'].toString());
-  }
+    factory AlgoBcrypt.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+        return AlgoBcrypt(
+            type: 
+map['type'].toString(),
+        );
+    }
 
-  Map<String, dynamic> toMap() {
-    return {"type": type};
-  }
+    Map<String, dynamic> toMap() {
+        return {
+            "type": type,
+        };
+    }
 
-  // Public getters for private underscore fields
 }
