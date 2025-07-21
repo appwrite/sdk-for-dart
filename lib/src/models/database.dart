@@ -1,47 +1,54 @@
 part of '../../models.dart';
 
 /// Database
-class Database implements Model {
-  /// Database ID.
-  final String $id;
+class Database<T> implements Model {
+    /// Database ID.
+    final String $id;
 
-  /// Database name.
-  final String name;
+    /// Database name.
+    final String name;
 
-  /// Database creation date in ISO 8601 format.
-  final String $createdAt;
+    /// Database creation date in ISO 8601 format.
+    final String $createdAt;
 
-  /// Database update date in ISO 8601 format.
-  final String $updatedAt;
+    /// Database update date in ISO 8601 format.
+    final String $updatedAt;
 
-  /// If database is enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the database is inaccessible to users, but remains accessible to Server SDKs using API keys.
-  final bool enabled;
+    /// If database is enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the database is inaccessible to users, but remains accessible to Server SDKs using API keys.
+    final bool enabled;
 
-  Database({
-    required this.$id,
-    required this.name,
-    required this.$createdAt,
-    required this.$updatedAt,
-    required this.enabled,
-  });
+    Database({
+        required this.$id,
+        required this.name,
+        required this.$createdAt,
+        required this.$updatedAt,
+        required this.enabled,
+    });
 
-  factory Database.fromMap(Map<String, dynamic> map) {
-    return Database(
-      $id: map['\$id'].toString(),
-      name: map['name'].toString(),
-      $createdAt: map['\$createdAt'].toString(),
-      $updatedAt: map['\$updatedAt'].toString(),
-      enabled: map['enabled'],
-    );
-  }
+    factory Database.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+        return Database(
+            $id: 
+map['\$id'].toString(),
+            name: 
+map['name'].toString(),
+            $createdAt: 
+map['\$createdAt'].toString(),
+            $updatedAt: 
+map['\$updatedAt'].toString(),
+            enabled: 
+map['enabled'],
+        );
+    }
 
-  Map<String, dynamic> toMap() {
-    return {
-      "\$id": $id,
-      "name": name,
-      "\$createdAt": $createdAt,
-      "\$updatedAt": $updatedAt,
-      "enabled": enabled,
-    };
-  }
+    Map<String, dynamic> toMap() {
+        return {
+            "\$id": $id,
+            "name": name,
+            "\$createdAt": $createdAt,
+            "\$updatedAt": $updatedAt,
+            "enabled": enabled,
+        };
+    }
+
+    // Public getters for private underscore fields
 }
