@@ -1,20 +1,25 @@
 part of '../../models.dart';
 
 /// Health Queue
-class HealthQueue<T> implements Model {
-  /// Amount of actions in the queue.
-  final int size;
+class HealthQueue implements Model {
+    /// Amount of actions in the queue.
+    final int size;
 
-  HealthQueue({required this.size});
+    HealthQueue({
+        required this.size,
+    });
 
-  factory HealthQueue.fromMap(
-    Map<String, dynamic> map, [
-    T Function(Map<String, dynamic>)? fromJson,
-  ]) {
-    return HealthQueue(size: map['size']);
-  }
+    factory HealthQueue.fromMap(Map<String, dynamic> map) {
+        return HealthQueue(
+            size: 
+map['size'],
+        );
+    }
 
-  Map<String, dynamic> toMap() {
-    return {"size": size};
-  }
+    Map<String, dynamic> toMap() {
+        return {
+            "size": size,
+        };
+    }
+
 }
