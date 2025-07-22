@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AttributeIP
-class AttributeIp<T> implements Model {
+class AttributeIp implements Model {
     /// Attribute Key.
     final String key;
 
@@ -45,28 +45,18 @@ class AttributeIp<T> implements Model {
         this.xdefault,
     });
 
-    factory AttributeIp.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AttributeIp.fromMap(Map<String, dynamic> map) {
         return AttributeIp(
-            key: 
-map['key'].toString(),
-            type: 
-map['type'].toString(),
-            status: 
-map['status'].toString(),
-            error: 
-map['error'].toString(),
-            xrequired: 
-map['required'],
-            array: 
-map['array'],
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            format: 
-map['format'].toString(),
-            xdefault: 
-map['default']?.toString(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
+            error: map['error'].toString(),
+            xrequired: map['required'],
+            array: map['array'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            format: map['format'].toString(),
+            xdefault: map['default']?.toString(),
         );
     }
 
@@ -84,6 +74,4 @@ map['default']?.toString(),
             "default": xdefault,
         };
     }
-
-    // Public getters for private underscore fields
 }

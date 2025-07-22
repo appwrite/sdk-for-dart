@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Logs List
-class LogList<T> implements Model {
-    /// Total number of logs documents that matched your query.
+class LogList implements Model {
+    /// Total number of logs rows that matched your query.
     final int total;
 
     /// List of logs.
-    final List<Log<T>> logs;
+    final List<Log> logs;
 
     LogList({
         required this.total,
         required this.logs,
     });
 
-    factory LogList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory LogList.fromMap(Map<String, dynamic> map) {
         return LogList(
-            total: 
-map['total'],
-            logs: 
-List<Log<T>>.from(map['logs'].map((p) => Log.fromMap(p, fromJson))),
+            total: map['total'],
+            logs: List<Log>.from(map['logs'].map((p) => Log.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Log<T>>.from(map['logs'].map((p) => Log.fromMap(p, fromJson))),
             "logs": logs.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

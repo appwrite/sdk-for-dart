@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Resource Tokens List
-class ResourceTokenList<T> implements Model {
-    /// Total number of tokens documents that matched your query.
+class ResourceTokenList implements Model {
+    /// Total number of tokens rows that matched your query.
     final int total;
 
     /// List of tokens.
-    final List<ResourceToken<T>> tokens;
+    final List<ResourceToken> tokens;
 
     ResourceTokenList({
         required this.total,
         required this.tokens,
     });
 
-    factory ResourceTokenList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory ResourceTokenList.fromMap(Map<String, dynamic> map) {
         return ResourceTokenList(
-            total: 
-map['total'],
-            tokens: 
-List<ResourceToken<T>>.from(map['tokens'].map((p) => ResourceToken.fromMap(p, fromJson))),
+            total: map['total'],
+            tokens: List<ResourceToken>.from(map['tokens'].map((p) => ResourceToken.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<ResourceToken<T>>.from(map['tokens'].map((p) => ResourceToken.fromMap(p, fr
             "tokens": tokens.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

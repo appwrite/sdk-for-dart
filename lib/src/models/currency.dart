@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Currency
-class Currency<T> implements Model {
+class Currency implements Model {
     /// Currency symbol.
     final String symbol;
 
@@ -33,22 +33,15 @@ class Currency<T> implements Model {
         required this.namePlural,
     });
 
-    factory Currency.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Currency.fromMap(Map<String, dynamic> map) {
         return Currency(
-            symbol: 
-map['symbol'].toString(),
-            name: 
-map['name'].toString(),
-            symbolNative: 
-map['symbolNative'].toString(),
-            decimalDigits: 
-map['decimalDigits'],
-            rounding: 
-map['rounding'].toDouble(),
-            code: 
-map['code'].toString(),
-            namePlural: 
-map['namePlural'].toString(),
+            symbol: map['symbol'].toString(),
+            name: map['name'].toString(),
+            symbolNative: map['symbolNative'].toString(),
+            decimalDigits: map['decimalDigits'],
+            rounding: map['rounding'].toDouble(),
+            code: map['code'].toString(),
+            namePlural: map['namePlural'].toString(),
         );
     }
 
@@ -63,6 +56,4 @@ map['namePlural'].toString(),
             "namePlural": namePlural,
         };
     }
-
-    // Public getters for private underscore fields
 }

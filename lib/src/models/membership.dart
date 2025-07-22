@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Membership
-class Membership<T> implements Model {
+class Membership implements Model {
     /// Membership ID.
     final String $id;
 
@@ -57,34 +57,21 @@ class Membership<T> implements Model {
         required this.roles,
     });
 
-    factory Membership.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Membership.fromMap(Map<String, dynamic> map) {
         return Membership(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            userId: 
-map['userId'].toString(),
-            userName: 
-map['userName'].toString(),
-            userEmail: 
-map['userEmail'].toString(),
-            teamId: 
-map['teamId'].toString(),
-            teamName: 
-map['teamName'].toString(),
-            invited: 
-map['invited'].toString(),
-            joined: 
-map['joined'].toString(),
-            confirm: 
-map['confirm'],
-            mfa: 
-map['mfa'],
-            roles: 
-List.from(map['roles'] ?? []),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            userId: map['userId'].toString(),
+            userName: map['userName'].toString(),
+            userEmail: map['userEmail'].toString(),
+            teamId: map['teamId'].toString(),
+            teamName: map['teamName'].toString(),
+            invited: map['invited'].toString(),
+            joined: map['joined'].toString(),
+            confirm: map['confirm'],
+            mfa: map['mfa'],
+            roles: List.from(map['roles'] ?? []),
         );
     }
 
@@ -105,6 +92,4 @@ List.from(map['roles'] ?? []),
             "roles": roles,
         };
     }
-
-    // Public getters for private underscore fields
 }

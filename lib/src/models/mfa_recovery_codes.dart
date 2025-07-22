@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// MFA Recovery Codes
-class MfaRecoveryCodes<T> implements Model {
+class MfaRecoveryCodes implements Model {
     /// Recovery codes.
     final List<String> recoveryCodes;
 
@@ -9,10 +9,9 @@ class MfaRecoveryCodes<T> implements Model {
         required this.recoveryCodes,
     });
 
-    factory MfaRecoveryCodes.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory MfaRecoveryCodes.fromMap(Map<String, dynamic> map) {
         return MfaRecoveryCodes(
-            recoveryCodes: 
-List.from(map['recoveryCodes'] ?? []),
+            recoveryCodes: List.from(map['recoveryCodes'] ?? []),
         );
     }
 
@@ -21,6 +20,4 @@ List.from(map['recoveryCodes'] ?? []),
             "recoveryCodes": recoveryCodes,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AttributeFloat
-class AttributeFloat<T> implements Model {
+class AttributeFloat implements Model {
     /// Attribute Key.
     final String key;
 
@@ -49,30 +49,19 @@ class AttributeFloat<T> implements Model {
         this.xdefault,
     });
 
-    factory AttributeFloat.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AttributeFloat.fromMap(Map<String, dynamic> map) {
         return AttributeFloat(
-            key: 
-map['key'].toString(),
-            type: 
-map['type'].toString(),
-            status: 
-map['status'].toString(),
-            error: 
-map['error'].toString(),
-            xrequired: 
-map['required'],
-            array: 
-map['array'],
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            min: 
-map['min']?.toDouble(),
-            max: 
-map['max']?.toDouble(),
-            xdefault: 
-map['default']?.toDouble(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
+            error: map['error'].toString(),
+            xrequired: map['required'],
+            array: map['array'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            min: map['min']?.toDouble(),
+            max: map['max']?.toDouble(),
+            xdefault: map['default']?.toDouble(),
         );
     }
 
@@ -91,6 +80,4 @@ map['default']?.toDouble(),
             "default": xdefault,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AttributeInteger
-class AttributeInteger<T> implements Model {
+class AttributeInteger implements Model {
     /// Attribute Key.
     final String key;
 
@@ -49,30 +49,19 @@ class AttributeInteger<T> implements Model {
         this.xdefault,
     });
 
-    factory AttributeInteger.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AttributeInteger.fromMap(Map<String, dynamic> map) {
         return AttributeInteger(
-            key: 
-map['key'].toString(),
-            type: 
-map['type'].toString(),
-            status: 
-map['status'].toString(),
-            error: 
-map['error'].toString(),
-            xrequired: 
-map['required'],
-            array: 
-map['array'],
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            min: 
-map['min'],
-            max: 
-map['max'],
-            xdefault: 
-map['default'],
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
+            error: map['error'].toString(),
+            xrequired: map['required'],
+            array: map['array'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            min: map['min'],
+            max: map['max'],
+            xdefault: map['default'],
         );
     }
 
@@ -91,6 +80,4 @@ map['default'],
             "default": xdefault,
         };
     }
-
-    // Public getters for private underscore fields
 }

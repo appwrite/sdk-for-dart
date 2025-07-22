@@ -20,8 +20,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthStatus.fromMap(res.data);
-        
+        return models.HealthStatus.fromMap(res.data);
+
     }
 
     /// Check the Appwrite Antivirus server is up and connection is successful.
@@ -39,8 +39,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthAntivirus.fromMap(res.data);
-        
+        return models.HealthAntivirus.fromMap(res.data);
+
     }
 
     /// Check the Appwrite in-memory cache servers are up and connection is
@@ -59,8 +59,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthStatus.fromMap(res.data);
-        
+        return models.HealthStatus.fromMap(res.data);
+
     }
 
     /// Get the SSL certificate for a domain
@@ -79,8 +79,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthCertificate.fromMap(res.data);
-        
+        return models.HealthCertificate.fromMap(res.data);
+
     }
 
     /// Check the Appwrite database servers are up and connection is successful.
@@ -98,8 +98,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthStatus.fromMap(res.data);
-        
+        return models.HealthStatus.fromMap(res.data);
+
     }
 
     /// Check the Appwrite pub-sub servers are up and connection is successful.
@@ -117,8 +117,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthStatus.fromMap(res.data);
-        
+        return models.HealthStatus.fromMap(res.data);
+
     }
 
     /// Get the number of builds that are waiting to be processed in the Appwrite
@@ -138,8 +138,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of certificates that are waiting to be issued against
@@ -160,8 +160,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of database changes that are waiting to be processed in the
@@ -182,8 +182,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of background destructive changes that are waiting to be
@@ -203,8 +203,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Returns the amount of failed jobs in a given queue.
@@ -224,8 +224,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of function executions that are waiting to be processed in
@@ -245,8 +245,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of logs that are waiting to be processed in the Appwrite
@@ -266,8 +266,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of mails that are waiting to be processed in the Appwrite
@@ -287,8 +287,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of messages that are waiting to be processed in the Appwrite
@@ -308,8 +308,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of migrations that are waiting to be processed in the
@@ -329,8 +329,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of metrics that are waiting to be processed in the Appwrite
@@ -350,8 +350,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of metrics that are waiting to be processed in the Appwrite
@@ -371,8 +371,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Get the number of webhooks that are waiting to be processed in the Appwrite
@@ -392,8 +392,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthQueue.fromMap(res.data);
-        
+        return models.HealthQueue.fromMap(res.data);
+
     }
 
     /// Check the Appwrite storage device is up and connection is successful.
@@ -411,8 +411,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthStatus.fromMap(res.data);
-        
+        return models.HealthStatus.fromMap(res.data);
+
     }
 
     /// Check the Appwrite local storage device is up and connection is successful.
@@ -430,8 +430,8 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthStatus.fromMap(res.data);
-        
+        return models.HealthStatus.fromMap(res.data);
+
     }
 
     /// Check the Appwrite server time is synced with Google remote NTP server. We
@@ -455,7 +455,7 @@ class Health extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.HealthTime.fromMap(res.data);
-        
+        return models.HealthTime.fromMap(res.data);
+
     }
 }

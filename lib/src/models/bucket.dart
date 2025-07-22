@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Bucket
-class Bucket<T> implements Model {
+class Bucket implements Model {
     /// Bucket ID.
     final String $id;
 
@@ -53,32 +53,20 @@ class Bucket<T> implements Model {
         required this.antivirus,
     });
 
-    factory Bucket.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Bucket.fromMap(Map<String, dynamic> map) {
         return Bucket(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            $permissions: 
-List.from(map['\$permissions'] ?? []),
-            fileSecurity: 
-map['fileSecurity'],
-            name: 
-map['name'].toString(),
-            enabled: 
-map['enabled'],
-            maximumFileSize: 
-map['maximumFileSize'],
-            allowedFileExtensions: 
-List.from(map['allowedFileExtensions'] ?? []),
-            compression: 
-map['compression'].toString(),
-            encryption: 
-map['encryption'],
-            antivirus: 
-map['antivirus'],
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            $permissions: List.from(map['\$permissions'] ?? []),
+            fileSecurity: map['fileSecurity'],
+            name: map['name'].toString(),
+            enabled: map['enabled'],
+            maximumFileSize: map['maximumFileSize'],
+            allowedFileExtensions: List.from(map['allowedFileExtensions'] ?? []),
+            compression: map['compression'].toString(),
+            encryption: map['encryption'],
+            antivirus: map['antivirus'],
         );
     }
 
@@ -98,6 +86,4 @@ map['antivirus'],
             "antivirus": antivirus,
         };
     }
-
-    // Public getters for private underscore fields
 }

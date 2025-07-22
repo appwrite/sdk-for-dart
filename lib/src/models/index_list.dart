@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Indexes List
-class IndexList<T> implements Model {
-    /// Total number of indexes documents that matched your query.
+class IndexList implements Model {
+    /// Total number of indexes rows that matched your query.
     final int total;
 
     /// List of indexes.
-    final List<Index<T>> indexes;
+    final List<Index> indexes;
 
     IndexList({
         required this.total,
         required this.indexes,
     });
 
-    factory IndexList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory IndexList.fromMap(Map<String, dynamic> map) {
         return IndexList(
-            total: 
-map['total'],
-            indexes: 
-List<Index<T>>.from(map['indexes'].map((p) => Index.fromMap(p, fromJson))),
+            total: map['total'],
+            indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Index<T>>.from(map['indexes'].map((p) => Index.fromMap(p, fromJson))),
             "indexes": indexes.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

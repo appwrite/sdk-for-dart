@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Execution
-class Execution<T> implements Model {
+class Execution implements Model {
     /// Execution ID.
     final String $id;
 
@@ -30,7 +30,7 @@ class Execution<T> implements Model {
     final String requestPath;
 
     /// HTTP response headers as a key-value object. This will return only whitelisted headers. All headers are returned if execution is created as synchronous.
-    final List<Headers<T>> requestHeaders;
+    final List<Headers> requestHeaders;
 
     /// HTTP response status code.
     final int responseStatusCode;
@@ -39,7 +39,7 @@ class Execution<T> implements Model {
     final String responseBody;
 
     /// HTTP response headers as a key-value object. This will return only whitelisted headers. All headers are returned if execution is created as synchronous.
-    final List<Headers<T>> responseHeaders;
+    final List<Headers> responseHeaders;
 
     /// Function logs. Includes the last 4,000 characters. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
     final String logs;
@@ -73,42 +73,25 @@ class Execution<T> implements Model {
         this.scheduledAt,
     });
 
-    factory Execution.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Execution.fromMap(Map<String, dynamic> map) {
         return Execution(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            $permissions: 
-List.from(map['\$permissions'] ?? []),
-            functionId: 
-map['functionId'].toString(),
-            trigger: 
-map['trigger'].toString(),
-            status: 
-map['status'].toString(),
-            requestMethod: 
-map['requestMethod'].toString(),
-            requestPath: 
-map['requestPath'].toString(),
-            requestHeaders: 
-List<Headers<T>>.from(map['requestHeaders'].map((p) => Headers.fromMap(p, fromJson))),
-            responseStatusCode: 
-map['responseStatusCode'],
-            responseBody: 
-map['responseBody'].toString(),
-            responseHeaders: 
-List<Headers<T>>.from(map['responseHeaders'].map((p) => Headers.fromMap(p, fromJson))),
-            logs: 
-map['logs'].toString(),
-            errors: 
-map['errors'].toString(),
-            duration: 
-map['duration'].toDouble(),
-            scheduledAt: 
-map['scheduledAt']?.toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            $permissions: List.from(map['\$permissions'] ?? []),
+            functionId: map['functionId'].toString(),
+            trigger: map['trigger'].toString(),
+            status: map['status'].toString(),
+            requestMethod: map['requestMethod'].toString(),
+            requestPath: map['requestPath'].toString(),
+            requestHeaders: List<Headers>.from(map['requestHeaders'].map((p) => Headers.fromMap(p))),
+            responseStatusCode: map['responseStatusCode'],
+            responseBody: map['responseBody'].toString(),
+            responseHeaders: List<Headers>.from(map['responseHeaders'].map((p) => Headers.fromMap(p))),
+            logs: map['logs'].toString(),
+            errors: map['errors'].toString(),
+            duration: map['duration'].toDouble(),
+            scheduledAt: map['scheduledAt']?.toString(),
         );
     }
 
@@ -133,6 +116,4 @@ map['scheduledAt']?.toString(),
             "scheduledAt": scheduledAt,
         };
     }
-
-    // Public getters for private underscore fields
 }

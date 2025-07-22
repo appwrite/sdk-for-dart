@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Topic list
-class TopicList<T> implements Model {
-    /// Total number of topics documents that matched your query.
+class TopicList implements Model {
+    /// Total number of topics rows that matched your query.
     final int total;
 
     /// List of topics.
-    final List<Topic<T>> topics;
+    final List<Topic> topics;
 
     TopicList({
         required this.total,
         required this.topics,
     });
 
-    factory TopicList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory TopicList.fromMap(Map<String, dynamic> map) {
         return TopicList(
-            total: 
-map['total'],
-            topics: 
-List<Topic<T>>.from(map['topics'].map((p) => Topic.fromMap(p, fromJson))),
+            total: map['total'],
+            topics: List<Topic>.from(map['topics'].map((p) => Topic.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Topic<T>>.from(map['topics'].map((p) => Topic.fromMap(p, fromJson))),
             "topics": topics.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

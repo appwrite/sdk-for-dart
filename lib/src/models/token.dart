@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Token
-class Token<T> implements Model {
+class Token implements Model {
     /// Token ID.
     final String $id;
 
@@ -29,20 +29,14 @@ class Token<T> implements Model {
         required this.phrase,
     });
 
-    factory Token.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Token.fromMap(Map<String, dynamic> map) {
         return Token(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            userId: 
-map['userId'].toString(),
-            secret: 
-map['secret'].toString(),
-            expire: 
-map['expire'].toString(),
-            phrase: 
-map['phrase'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            userId: map['userId'].toString(),
+            secret: map['secret'].toString(),
+            expire: map['expire'].toString(),
+            phrase: map['phrase'].toString(),
         );
     }
 
@@ -56,6 +50,4 @@ map['phrase'].toString(),
             "phrase": phrase,
         };
     }
-
-    // Public getters for private underscore fields
 }

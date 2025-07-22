@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// User
-class User<T> implements Model {
+class User implements Model {
     /// User ID.
     final String $id;
 
@@ -54,7 +54,7 @@ class User<T> implements Model {
     final Preferences prefs;
 
     /// A user-owned message receiver. A single user may have multiple e.g. emails, phones, and a browser. Each target is registered with a single provider.
-    final List<Target<T>> targets;
+    final List<Target> targets;
 
     /// Most recent access date in ISO 8601 format. This attribute is only updated again after 24 hours.
     final String accessedAt;
@@ -81,46 +81,27 @@ class User<T> implements Model {
         required this.accessedAt,
     });
 
-    factory User.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory User.fromMap(Map<String, dynamic> map) {
         return User(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            name: 
-map['name'].toString(),
-            password: 
-map['password']?.toString(),
-            hash: 
-map['hash']?.toString(),
-            hashOptions: 
-map['hashOptions'],
-            registration: 
-map['registration'].toString(),
-            status: 
-map['status'],
-            labels: 
-List.from(map['labels'] ?? []),
-            passwordUpdate: 
-map['passwordUpdate'].toString(),
-            email: 
-map['email'].toString(),
-            phone: 
-map['phone'].toString(),
-            emailVerification: 
-map['emailVerification'],
-            phoneVerification: 
-map['phoneVerification'],
-            mfa: 
-map['mfa'],
-            prefs: 
-Preferences.fromMap(map['prefs']),
-            targets: 
-List<Target<T>>.from(map['targets'].map((p) => Target.fromMap(p, fromJson))),
-            accessedAt: 
-map['accessedAt'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            name: map['name'].toString(),
+            password: map['password']?.toString(),
+            hash: map['hash']?.toString(),
+            hashOptions: map['hashOptions'],
+            registration: map['registration'].toString(),
+            status: map['status'],
+            labels: List.from(map['labels'] ?? []),
+            passwordUpdate: map['passwordUpdate'].toString(),
+            email: map['email'].toString(),
+            phone: map['phone'].toString(),
+            emailVerification: map['emailVerification'],
+            phoneVerification: map['phoneVerification'],
+            mfa: map['mfa'],
+            prefs: Preferences.fromMap(map['prefs']),
+            targets: List<Target>.from(map['targets'].map((p) => Target.fromMap(p))),
+            accessedAt: map['accessedAt'].toString(),
         );
     }
 
@@ -147,6 +128,4 @@ map['accessedAt'].toString(),
             "accessedAt": accessedAt,
         };
     }
-
-    // Public getters for private underscore fields
 }

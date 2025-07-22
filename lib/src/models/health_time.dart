@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Health Time
-class HealthTime<T> implements Model {
+class HealthTime implements Model {
     /// Current unix timestamp on trustful remote server.
     final int remoteTime;
 
@@ -17,14 +17,11 @@ class HealthTime<T> implements Model {
         required this.diff,
     });
 
-    factory HealthTime.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory HealthTime.fromMap(Map<String, dynamic> map) {
         return HealthTime(
-            remoteTime: 
-map['remoteTime'],
-            localTime: 
-map['localTime'],
-            diff: 
-map['diff'],
+            remoteTime: map['remoteTime'],
+            localTime: map['localTime'],
+            diff: map['diff'],
         );
     }
 
@@ -35,6 +32,4 @@ map['diff'],
             "diff": diff,
         };
     }
-
-    // Public getters for private underscore fields
 }

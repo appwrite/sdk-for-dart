@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Users List
-class UserList<T> implements Model {
-    /// Total number of users documents that matched your query.
+class UserList implements Model {
+    /// Total number of users rows that matched your query.
     final int total;
 
     /// List of users.
-    final List<User<T>> users;
+    final List<User> users;
 
     UserList({
         required this.total,
         required this.users,
     });
 
-    factory UserList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory UserList.fromMap(Map<String, dynamic> map) {
         return UserList(
-            total: 
-map['total'],
-            users: 
-List<User<T>>.from(map['users'].map((p) => User.fromMap(p, fromJson))),
+            total: map['total'],
+            users: List<User>.from(map['users'].map((p) => User.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<User<T>>.from(map['users'].map((p) => User.fromMap(p, fromJson))),
             "users": users.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

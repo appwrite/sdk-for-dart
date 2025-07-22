@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Health Queue
-class HealthQueue<T> implements Model {
+class HealthQueue implements Model {
     /// Amount of actions in the queue.
     final int size;
 
@@ -9,10 +9,9 @@ class HealthQueue<T> implements Model {
         required this.size,
     });
 
-    factory HealthQueue.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory HealthQueue.fromMap(Map<String, dynamic> map) {
         return HealthQueue(
-            size: 
-map['size'],
+            size: map['size'],
         );
     }
 
@@ -21,6 +20,4 @@ map['size'],
             "size": size,
         };
     }
-
-    // Public getters for private underscore fields
 }

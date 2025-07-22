@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Identity
-class Identity<T> implements Model {
+class Identity implements Model {
     /// Identity ID.
     final String $id;
 
@@ -45,28 +45,18 @@ class Identity<T> implements Model {
         required this.providerRefreshToken,
     });
 
-    factory Identity.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Identity.fromMap(Map<String, dynamic> map) {
         return Identity(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            userId: 
-map['userId'].toString(),
-            provider: 
-map['provider'].toString(),
-            providerUid: 
-map['providerUid'].toString(),
-            providerEmail: 
-map['providerEmail'].toString(),
-            providerAccessToken: 
-map['providerAccessToken'].toString(),
-            providerAccessTokenExpiry: 
-map['providerAccessTokenExpiry'].toString(),
-            providerRefreshToken: 
-map['providerRefreshToken'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            userId: map['userId'].toString(),
+            provider: map['provider'].toString(),
+            providerUid: map['providerUid'].toString(),
+            providerEmail: map['providerEmail'].toString(),
+            providerAccessToken: map['providerAccessToken'].toString(),
+            providerAccessTokenExpiry: map['providerAccessTokenExpiry'].toString(),
+            providerRefreshToken: map['providerRefreshToken'].toString(),
         );
     }
 
@@ -84,6 +74,4 @@ map['providerRefreshToken'].toString(),
             "providerRefreshToken": providerRefreshToken,
         };
     }
-
-    // Public getters for private underscore fields
 }

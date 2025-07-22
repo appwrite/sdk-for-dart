@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Target
-class Target<T> implements Model {
+class Target implements Model {
     /// Target ID.
     final String $id;
 
@@ -41,26 +41,17 @@ class Target<T> implements Model {
         required this.expired,
     });
 
-    factory Target.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Target.fromMap(Map<String, dynamic> map) {
         return Target(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            name: 
-map['name'].toString(),
-            userId: 
-map['userId'].toString(),
-            providerId: 
-map['providerId']?.toString(),
-            providerType: 
-map['providerType'].toString(),
-            identifier: 
-map['identifier'].toString(),
-            expired: 
-map['expired'],
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            name: map['name'].toString(),
+            userId: map['userId'].toString(),
+            providerId: map['providerId']?.toString(),
+            providerType: map['providerType'].toString(),
+            identifier: map['identifier'].toString(),
+            expired: map['expired'],
         );
     }
 
@@ -77,6 +68,4 @@ map['expired'],
             "expired": expired,
         };
     }
-
-    // Public getters for private underscore fields
 }

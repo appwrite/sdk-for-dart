@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Frameworks List
-class FrameworkList<T> implements Model {
-    /// Total number of frameworks documents that matched your query.
+class FrameworkList implements Model {
+    /// Total number of frameworks rows that matched your query.
     final int total;
 
     /// List of frameworks.
-    final List<Framework<T>> frameworks;
+    final List<Framework> frameworks;
 
     FrameworkList({
         required this.total,
         required this.frameworks,
     });
 
-    factory FrameworkList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory FrameworkList.fromMap(Map<String, dynamic> map) {
         return FrameworkList(
-            total: 
-map['total'],
-            frameworks: 
-List<Framework<T>>.from(map['frameworks'].map((p) => Framework.fromMap(p, fromJson))),
+            total: map['total'],
+            frameworks: List<Framework>.from(map['frameworks'].map((p) => Framework.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Framework<T>>.from(map['frameworks'].map((p) => Framework.fromMap(p, fromJs
             "frameworks": frameworks.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,16 +1,16 @@
 part of '../../models.dart';
 
 /// Preferences
-class Preferences<T> implements Model {
-    final T data;
+class Preferences implements Model {
+    final Map<String, dynamic> data;
 
     Preferences({
         required this.data,
     });
 
-    factory Preferences.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Preferences.fromMap(Map<String, dynamic> map) {
         return Preferences(
-            data: fromJson != null ? fromJson(map) : map as T,
+            data: map,
         );
     }
 
@@ -20,7 +20,5 @@ class Preferences<T> implements Model {
         };
     }
 
-    T convertTo<T>(T Function(Map<String, dynamic>) fromJson) => fromJson(data as Map<String, dynamic>);
-
-    // Public getters for private underscore fields
+    T convertTo<T>(T Function(Map<String, dynamic>) fromJson) => fromJson(data);
 }

@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Framework Adapter
-class FrameworkAdapter<T> implements Model {
+class FrameworkAdapter implements Model {
     /// Adapter key.
     final String key;
 
@@ -25,18 +25,13 @@ class FrameworkAdapter<T> implements Model {
         required this.fallbackFile,
     });
 
-    factory FrameworkAdapter.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory FrameworkAdapter.fromMap(Map<String, dynamic> map) {
         return FrameworkAdapter(
-            key: 
-map['key'].toString(),
-            installCommand: 
-map['installCommand'].toString(),
-            buildCommand: 
-map['buildCommand'].toString(),
-            outputDirectory: 
-map['outputDirectory'].toString(),
-            fallbackFile: 
-map['fallbackFile'].toString(),
+            key: map['key'].toString(),
+            installCommand: map['installCommand'].toString(),
+            buildCommand: map['buildCommand'].toString(),
+            outputDirectory: map['outputDirectory'].toString(),
+            fallbackFile: map['fallbackFile'].toString(),
         );
     }
 
@@ -49,6 +44,4 @@ map['fallbackFile'].toString(),
             "fallbackFile": fallbackFile,
         };
     }
-
-    // Public getters for private underscore fields
 }

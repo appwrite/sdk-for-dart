@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// MFA Challenge
-class MfaChallenge<T> implements Model {
+class MfaChallenge implements Model {
     /// Token ID.
     final String $id;
 
@@ -21,16 +21,12 @@ class MfaChallenge<T> implements Model {
         required this.expire,
     });
 
-    factory MfaChallenge.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory MfaChallenge.fromMap(Map<String, dynamic> map) {
         return MfaChallenge(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            userId: 
-map['userId'].toString(),
-            expire: 
-map['expire'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            userId: map['userId'].toString(),
+            expire: map['expire'].toString(),
         );
     }
 
@@ -42,6 +38,4 @@ map['expire'].toString(),
             "expire": expire,
         };
     }
-
-    // Public getters for private underscore fields
 }

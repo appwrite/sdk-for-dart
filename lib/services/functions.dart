@@ -7,7 +7,7 @@ class Functions extends Service {
 
     /// Get a list of all the project's functions. You can use the query params to
     /// filter your results.
-    Future<models.FunctionList<T>> list<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.FunctionList> list({List<String>? queries, String? search}) async {
         final String apiPath = '/functions';
 
         final Map<String, dynamic> apiParams = {
@@ -23,8 +23,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.FunctionList.fromMap(res.data, fromJson);
-        
+        return models.FunctionList.fromMap(res.data);
+
     }
 
     /// Create a new function. You can pass a list of
@@ -64,12 +64,12 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Func.fromMap(res.data);
-        
+        return models.Func.fromMap(res.data);
+
     }
 
     /// Get a list of all runtimes that are currently active on your instance.
-    Future<models.RuntimeList<T>> listRuntimes<T>({T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.RuntimeList> listRuntimes() async {
         final String apiPath = '/functions/runtimes';
 
         final Map<String, dynamic> apiParams = {
@@ -83,12 +83,12 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.RuntimeList.fromMap(res.data, fromJson);
-        
+        return models.RuntimeList.fromMap(res.data);
+
     }
 
     /// List allowed function specifications for this instance.
-    Future<models.SpecificationList<T>> listSpecifications<T>({T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.SpecificationList> listSpecifications() async {
         final String apiPath = '/functions/specifications';
 
         final Map<String, dynamic> apiParams = {
@@ -102,8 +102,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.SpecificationList.fromMap(res.data, fromJson);
-        
+        return models.SpecificationList.fromMap(res.data);
+
     }
 
     /// Get a function by its unique ID.
@@ -121,8 +121,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Func.fromMap(res.data);
-        
+        return models.Func.fromMap(res.data);
+
     }
 
     /// Update function by its unique ID.
@@ -158,8 +158,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Func.fromMap(res.data);
-        
+        return models.Func.fromMap(res.data);
+
     }
 
     /// Delete a function by its unique ID.
@@ -178,7 +178,7 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -200,13 +200,13 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Func.fromMap(res.data);
-        
+        return models.Func.fromMap(res.data);
+
     }
 
     /// Get a list of all the function's code deployments. You can use the query
     /// params to filter your results.
-    Future<models.DeploymentList<T>> listDeployments<T>({required String functionId, List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.DeploymentList> listDeployments({required String functionId, List<String>? queries, String? search}) async {
         final String apiPath = '/functions/{functionId}/deployments'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {
@@ -222,8 +222,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.DeploymentList.fromMap(res.data, fromJson);
-        
+        return models.DeploymentList.fromMap(res.data);
+
     }
 
     /// Create a new function code deployment. Use this endpoint to upload a new
@@ -290,8 +290,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Create a deployment based on a template.
@@ -319,8 +319,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Create a deployment when a function is connected to VCS.
@@ -344,8 +344,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Get a function deployment by its unique ID.
@@ -363,8 +363,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Delete a code deployment by its unique ID.
@@ -383,7 +383,7 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -425,13 +425,13 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Get a list of all the current user function execution logs. You can use the
     /// query params to filter your results.
-    Future<models.ExecutionList<T>> listExecutions<T>({required String functionId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.ExecutionList> listExecutions({required String functionId, List<String>? queries}) async {
         final String apiPath = '/functions/{functionId}/executions'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {
@@ -446,8 +446,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.ExecutionList.fromMap(res.data, fromJson);
-        
+        return models.ExecutionList.fromMap(res.data);
+
     }
 
     /// Trigger a function execution. The returned object will return you the
@@ -475,8 +475,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Execution.fromMap(res.data);
-        
+        return models.Execution.fromMap(res.data);
+
     }
 
     /// Get a function execution log by its unique ID.
@@ -494,8 +494,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Execution.fromMap(res.data);
-        
+        return models.Execution.fromMap(res.data);
+
     }
 
     /// Delete a function execution by its unique ID.
@@ -514,12 +514,12 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
     /// Get a list of all variables of a specific function.
-    Future<models.VariableList<T>> listVariables<T>({required String functionId, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.VariableList> listVariables({required String functionId}) async {
         final String apiPath = '/functions/{functionId}/variables'.replaceAll('{functionId}', functionId);
 
         final Map<String, dynamic> apiParams = {
@@ -533,8 +533,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.VariableList.fromMap(res.data, fromJson);
-        
+        return models.VariableList.fromMap(res.data);
+
     }
 
     /// Create a new function environment variable. These variables can be accessed
@@ -557,8 +557,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Variable.fromMap(res.data);
-        
+        return models.Variable.fromMap(res.data);
+
     }
 
     /// Get a variable by its unique ID.
@@ -576,8 +576,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Variable.fromMap(res.data);
-        
+        return models.Variable.fromMap(res.data);
+
     }
 
     /// Update variable by its unique ID.
@@ -599,8 +599,8 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Variable.fromMap(res.data);
-        
+        return models.Variable.fromMap(res.data);
+
     }
 
     /// Delete a variable by its unique ID.
@@ -619,7 +619,7 @@ class Functions extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 }

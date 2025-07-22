@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Countries List
-class CountryList<T> implements Model {
-    /// Total number of countries documents that matched your query.
+class CountryList implements Model {
+    /// Total number of countries rows that matched your query.
     final int total;
 
     /// List of countries.
-    final List<Country<T>> countries;
+    final List<Country> countries;
 
     CountryList({
         required this.total,
         required this.countries,
     });
 
-    factory CountryList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory CountryList.fromMap(Map<String, dynamic> map) {
         return CountryList(
-            total: 
-map['total'],
-            countries: 
-List<Country<T>>.from(map['countries'].map((p) => Country.fromMap(p, fromJson))),
+            total: map['total'],
+            countries: List<Country>.from(map['countries'].map((p) => Country.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Country<T>>.from(map['countries'].map((p) => Country.fromMap(p, fromJson)))
             "countries": countries.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

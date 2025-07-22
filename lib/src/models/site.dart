@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Site
-class Site<T> implements Model {
+class Site implements Model {
     /// Site ID.
     final String $id;
 
@@ -48,7 +48,7 @@ class Site<T> implements Model {
     final String latestDeploymentStatus;
 
     /// Site variables.
-    final List<Variable<T>> vars;
+    final List<Variable> vars;
 
     /// Site request timeout in seconds.
     final int timeout;
@@ -121,66 +121,37 @@ class Site<T> implements Model {
         required this.fallbackFile,
     });
 
-    factory Site.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Site.fromMap(Map<String, dynamic> map) {
         return Site(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            name: 
-map['name'].toString(),
-            enabled: 
-map['enabled'],
-            live: 
-map['live'],
-            logging: 
-map['logging'],
-            framework: 
-map['framework'].toString(),
-            deploymentId: 
-map['deploymentId'].toString(),
-            deploymentCreatedAt: 
-map['deploymentCreatedAt'].toString(),
-            deploymentScreenshotLight: 
-map['deploymentScreenshotLight'].toString(),
-            deploymentScreenshotDark: 
-map['deploymentScreenshotDark'].toString(),
-            latestDeploymentId: 
-map['latestDeploymentId'].toString(),
-            latestDeploymentCreatedAt: 
-map['latestDeploymentCreatedAt'].toString(),
-            latestDeploymentStatus: 
-map['latestDeploymentStatus'].toString(),
-            vars: 
-List<Variable<T>>.from(map['vars'].map((p) => Variable.fromMap(p, fromJson))),
-            timeout: 
-map['timeout'],
-            installCommand: 
-map['installCommand'].toString(),
-            buildCommand: 
-map['buildCommand'].toString(),
-            outputDirectory: 
-map['outputDirectory'].toString(),
-            installationId: 
-map['installationId'].toString(),
-            providerRepositoryId: 
-map['providerRepositoryId'].toString(),
-            providerBranch: 
-map['providerBranch'].toString(),
-            providerRootDirectory: 
-map['providerRootDirectory'].toString(),
-            providerSilentMode: 
-map['providerSilentMode'],
-            specification: 
-map['specification'].toString(),
-            buildRuntime: 
-map['buildRuntime'].toString(),
-            adapter: 
-map['adapter'].toString(),
-            fallbackFile: 
-map['fallbackFile'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            name: map['name'].toString(),
+            enabled: map['enabled'],
+            live: map['live'],
+            logging: map['logging'],
+            framework: map['framework'].toString(),
+            deploymentId: map['deploymentId'].toString(),
+            deploymentCreatedAt: map['deploymentCreatedAt'].toString(),
+            deploymentScreenshotLight: map['deploymentScreenshotLight'].toString(),
+            deploymentScreenshotDark: map['deploymentScreenshotDark'].toString(),
+            latestDeploymentId: map['latestDeploymentId'].toString(),
+            latestDeploymentCreatedAt: map['latestDeploymentCreatedAt'].toString(),
+            latestDeploymentStatus: map['latestDeploymentStatus'].toString(),
+            vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
+            timeout: map['timeout'],
+            installCommand: map['installCommand'].toString(),
+            buildCommand: map['buildCommand'].toString(),
+            outputDirectory: map['outputDirectory'].toString(),
+            installationId: map['installationId'].toString(),
+            providerRepositoryId: map['providerRepositoryId'].toString(),
+            providerBranch: map['providerBranch'].toString(),
+            providerRootDirectory: map['providerRootDirectory'].toString(),
+            providerSilentMode: map['providerSilentMode'],
+            specification: map['specification'].toString(),
+            buildRuntime: map['buildRuntime'].toString(),
+            adapter: map['adapter'].toString(),
+            fallbackFile: map['fallbackFile'].toString(),
         );
     }
 
@@ -217,6 +188,4 @@ map['fallbackFile'].toString(),
             "fallbackFile": fallbackFile,
         };
     }
-
-    // Public getters for private underscore fields
 }

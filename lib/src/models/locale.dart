@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Locale
-class Locale<T> implements Model {
+class Locale implements Model {
     /// User IP address.
     final String ip;
 
@@ -33,22 +33,15 @@ class Locale<T> implements Model {
         required this.currency,
     });
 
-    factory Locale.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Locale.fromMap(Map<String, dynamic> map) {
         return Locale(
-            ip: 
-map['ip'].toString(),
-            countryCode: 
-map['countryCode'].toString(),
-            country: 
-map['country'].toString(),
-            continentCode: 
-map['continentCode'].toString(),
-            continent: 
-map['continent'].toString(),
-            eu: 
-map['eu'],
-            currency: 
-map['currency'].toString(),
+            ip: map['ip'].toString(),
+            countryCode: map['countryCode'].toString(),
+            country: map['country'].toString(),
+            continentCode: map['continentCode'].toString(),
+            continent: map['continent'].toString(),
+            eu: map['eu'],
+            currency: map['currency'].toString(),
         );
     }
 
@@ -63,6 +56,4 @@ map['currency'].toString(),
             "currency": currency,
         };
     }
-
-    // Public getters for private underscore fields
 }

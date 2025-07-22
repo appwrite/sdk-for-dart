@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AttributeString
-class AttributeString<T> implements Model {
+class AttributeString implements Model {
     /// Attribute Key.
     final String key;
 
@@ -32,6 +32,9 @@ class AttributeString<T> implements Model {
     /// Default value for attribute when not provided. Cannot be set when attribute is required.
     final String? xdefault;
 
+    /// Defines whether this attribute is encrypted or not.
+    final bool? encrypt;
+
     AttributeString({
         required this.key,
         required this.type,
@@ -43,30 +46,22 @@ class AttributeString<T> implements Model {
         required this.$updatedAt,
         required this.size,
         this.xdefault,
+        this.encrypt,
     });
 
-    factory AttributeString.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AttributeString.fromMap(Map<String, dynamic> map) {
         return AttributeString(
-            key: 
-map['key'].toString(),
-            type: 
-map['type'].toString(),
-            status: 
-map['status'].toString(),
-            error: 
-map['error'].toString(),
-            xrequired: 
-map['required'],
-            array: 
-map['array'],
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            size: 
-map['size'],
-            xdefault: 
-map['default']?.toString(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
+            error: map['error'].toString(),
+            xrequired: map['required'],
+            array: map['array'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            size: map['size'],
+            xdefault: map['default']?.toString(),
+            encrypt: map['encrypt'],
         );
     }
 
@@ -82,8 +77,7 @@ map['default']?.toString(),
             "\$updatedAt": $updatedAt,
             "size": size,
             "default": xdefault,
+            "encrypt": encrypt,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AlgoArgon2
-class AlgoArgon2<T> implements Model {
+class AlgoArgon2 implements Model {
     /// Algo type.
     final String type;
 
@@ -21,16 +21,12 @@ class AlgoArgon2<T> implements Model {
         required this.threads,
     });
 
-    factory AlgoArgon2.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AlgoArgon2.fromMap(Map<String, dynamic> map) {
         return AlgoArgon2(
-            type: 
-map['type'].toString(),
-            memoryCost: 
-map['memoryCost'],
-            timeCost: 
-map['timeCost'],
-            threads: 
-map['threads'],
+            type: map['type'].toString(),
+            memoryCost: map['memoryCost'],
+            timeCost: map['timeCost'],
+            threads: map['threads'],
         );
     }
 
@@ -42,6 +38,4 @@ map['threads'],
             "threads": threads,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -6,7 +6,7 @@ class Users extends Service {
 
     /// Get a list of all the project's users. You can use the query params to
     /// filter your results.
-    Future<models.UserList<T>> list<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.UserList> list({List<String>? queries, String? search}) async {
         final String apiPath = '/users';
 
         final Map<String, dynamic> apiParams = {
@@ -22,8 +22,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.UserList.fromMap(res.data, fromJson);
-        
+        return models.UserList.fromMap(res.data);
+
     }
 
     /// Create a new user.
@@ -47,8 +47,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Create a new user. Password provided must be hashed with the
@@ -74,8 +74,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Create a new user. Password provided must be hashed with the
@@ -101,12 +101,12 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Get identities for all users.
-    Future<models.IdentityList<T>> listIdentities<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.IdentityList> listIdentities({List<String>? queries, String? search}) async {
         final String apiPath = '/users/identities';
 
         final Map<String, dynamic> apiParams = {
@@ -122,8 +122,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.IdentityList.fromMap(res.data, fromJson);
-        
+        return models.IdentityList.fromMap(res.data);
+
     }
 
     /// Delete an identity by its unique ID.
@@ -142,7 +142,7 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -169,8 +169,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Create a new user. Password provided must be hashed with the
@@ -196,8 +196,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Create a new user. Password provided must be hashed with the
@@ -228,8 +228,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Create a new user. Password provided must be hashed with the [Scrypt
@@ -259,8 +259,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Create a new user. Password provided must be hashed with the
@@ -287,8 +287,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Get a user by its unique ID.
@@ -306,8 +306,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Delete a user by its unique ID, thereby releasing it's ID. Since ID is
@@ -331,7 +331,7 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -352,8 +352,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Use this endpoint to create a JSON Web Token for user by its unique ID. You
@@ -376,8 +376,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Jwt.fromMap(res.data);
-        
+        return models.Jwt.fromMap(res.data);
+
     }
 
     /// Update the user labels by its unique ID. 
@@ -402,12 +402,12 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Get the user activity logs list by its unique ID.
-    Future<models.LogList<T>> listLogs<T>({required String userId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.LogList> listLogs({required String userId, List<String>? queries}) async {
         final String apiPath = '/users/{userId}/logs'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> apiParams = {
@@ -422,12 +422,12 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.LogList.fromMap(res.data, fromJson);
-        
+        return models.LogList.fromMap(res.data);
+
     }
 
     /// Get the user membership list by its unique ID.
-    Future<models.MembershipList<T>> listMemberships<T>({required String userId, List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.MembershipList> listMemberships({required String userId, List<String>? queries, String? search}) async {
         final String apiPath = '/users/{userId}/memberships'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> apiParams = {
@@ -443,8 +443,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MembershipList.fromMap(res.data, fromJson);
-        
+        return models.MembershipList.fromMap(res.data);
+
     }
 
     /// Enable or disable MFA on a user account.
@@ -464,8 +464,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Delete an authenticator app.
@@ -484,7 +484,7 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -503,8 +503,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaFactors.fromMap(res.data);
-        
+        return models.MfaFactors.fromMap(res.data);
+
     }
 
     /// Get recovery codes that can be used as backup for MFA flow by User ID.
@@ -525,8 +525,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaRecoveryCodes.fromMap(res.data);
-        
+        return models.MfaRecoveryCodes.fromMap(res.data);
+
     }
 
     /// Regenerate recovery codes that can be used as backup for MFA flow by User
@@ -548,8 +548,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaRecoveryCodes.fromMap(res.data);
-        
+        return models.MfaRecoveryCodes.fromMap(res.data);
+
     }
 
     /// Generate recovery codes used as backup for MFA flow for User ID. Recovery
@@ -571,8 +571,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaRecoveryCodes.fromMap(res.data);
-        
+        return models.MfaRecoveryCodes.fromMap(res.data);
+
     }
 
     /// Update the user name by its unique ID.
@@ -592,8 +592,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Update the user password by its unique ID.
@@ -613,8 +613,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Update the user phone by its unique ID.
@@ -634,8 +634,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Get the user preferences by its unique ID.
@@ -653,8 +653,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Preferences.fromMap(res.data);
-        
+        return models.Preferences.fromMap(res.data);
+
     }
 
     /// Update the user preferences by its unique ID. The object you pass is stored
@@ -676,12 +676,12 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Preferences.fromMap(res.data);
-        
+        return models.Preferences.fromMap(res.data);
+
     }
 
     /// Get the user sessions list by its unique ID.
-    Future<models.SessionList<T>> listSessions<T>({required String userId, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.SessionList> listSessions({required String userId}) async {
         final String apiPath = '/users/{userId}/sessions'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> apiParams = {
@@ -695,8 +695,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.SessionList.fromMap(res.data, fromJson);
-        
+        return models.SessionList.fromMap(res.data);
+
     }
 
     /// Creates a session for a user. Returns an immediately usable session object.
@@ -720,8 +720,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Delete all user's sessions by using the user's unique ID.
@@ -740,7 +740,7 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -760,7 +760,7 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -782,12 +782,12 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// List the messaging targets that are associated with a user.
-    Future<models.TargetList<T>> listTargets<T>({required String userId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.TargetList> listTargets({required String userId, List<String>? queries}) async {
         final String apiPath = '/users/{userId}/targets'.replaceAll('{userId}', userId);
 
         final Map<String, dynamic> apiParams = {
@@ -802,8 +802,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.TargetList.fromMap(res.data, fromJson);
-        
+        return models.TargetList.fromMap(res.data);
+
     }
 
     /// Create a messaging target.
@@ -827,8 +827,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Target.fromMap(res.data);
-        
+        return models.Target.fromMap(res.data);
+
     }
 
     /// Get a user's push notification target by ID.
@@ -846,8 +846,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Target.fromMap(res.data);
-        
+        return models.Target.fromMap(res.data);
+
     }
 
     /// Update a messaging target.
@@ -869,8 +869,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Target.fromMap(res.data);
-        
+        return models.Target.fromMap(res.data);
+
     }
 
     /// Delete a messaging target.
@@ -889,7 +889,7 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -915,8 +915,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Update the user email verification status by its unique ID.
@@ -936,8 +936,8 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Update the user phone verification status by its unique ID.
@@ -957,7 +957,7 @@ class Users extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 }

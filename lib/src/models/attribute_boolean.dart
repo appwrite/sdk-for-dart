@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AttributeBoolean
-class AttributeBoolean<T> implements Model {
+class AttributeBoolean implements Model {
     /// Attribute Key.
     final String key;
 
@@ -41,26 +41,17 @@ class AttributeBoolean<T> implements Model {
         this.xdefault,
     });
 
-    factory AttributeBoolean.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AttributeBoolean.fromMap(Map<String, dynamic> map) {
         return AttributeBoolean(
-            key: 
-map['key'].toString(),
-            type: 
-map['type'].toString(),
-            status: 
-map['status'].toString(),
-            error: 
-map['error'].toString(),
-            xrequired: 
-map['required'],
-            array: 
-map['array'],
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            xdefault: 
-map['default'],
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
+            error: map['error'].toString(),
+            xrequired: map['required'],
+            array: map['array'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            xdefault: map['default'],
         );
     }
 
@@ -77,6 +68,4 @@ map['default'],
             "default": xdefault,
         };
     }
-
-    // Public getters for private underscore fields
 }

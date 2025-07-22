@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Provider
-class Provider<T> implements Model {
+class Provider implements Model {
     /// Provider ID.
     final String $id;
 
@@ -41,26 +41,17 @@ class Provider<T> implements Model {
         this.options,
     });
 
-    factory Provider.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Provider.fromMap(Map<String, dynamic> map) {
         return Provider(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            name: 
-map['name'].toString(),
-            provider: 
-map['provider'].toString(),
-            enabled: 
-map['enabled'],
-            type: 
-map['type'].toString(),
-            credentials: 
-map['credentials'],
-            options: 
-map['options'],
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            name: map['name'].toString(),
+            provider: map['provider'].toString(),
+            enabled: map['enabled'],
+            type: map['type'].toString(),
+            credentials: map['credentials'],
+            options: map['options'],
         );
     }
 
@@ -77,6 +68,4 @@ map['options'],
             "options": options,
         };
     }
-
-    // Public getters for private underscore fields
 }

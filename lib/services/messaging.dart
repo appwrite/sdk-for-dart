@@ -6,7 +6,7 @@ class Messaging extends Service {
     Messaging(super.client);
 
     /// Get a list of all messages from the current Appwrite project.
-    Future<models.MessageList<T>> listMessages<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.MessageList> listMessages({List<String>? queries, String? search}) async {
         final String apiPath = '/messaging/messages';
 
         final Map<String, dynamic> apiParams = {
@@ -22,8 +22,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MessageList.fromMap(res.data, fromJson);
-        
+        return models.MessageList.fromMap(res.data);
+
     }
 
     /// Create a new email message.
@@ -54,8 +54,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Message.fromMap(res.data);
-        
+        return models.Message.fromMap(res.data);
+
     }
 
     /// Update an email message by its unique ID. This endpoint only works on
@@ -88,8 +88,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Message.fromMap(res.data);
-        
+        return models.Message.fromMap(res.data);
+
     }
 
     /// Create a new push notification.
@@ -127,8 +127,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Message.fromMap(res.data);
-        
+        return models.Message.fromMap(res.data);
+
     }
 
     /// Update a push notification by its unique ID. This endpoint only works on
@@ -168,8 +168,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Message.fromMap(res.data);
-        
+        return models.Message.fromMap(res.data);
+
     }
 
     /// Create a new SMS message.
@@ -195,8 +195,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Message.fromMap(res.data);
-        
+        return models.Message.fromMap(res.data);
+
     }
 
     /// Update an SMS message by its unique ID. This endpoint only works on
@@ -224,8 +224,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Message.fromMap(res.data);
-        
+        return models.Message.fromMap(res.data);
+
     }
 
     /// Get a message by its unique ID.
@@ -244,8 +244,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Message.fromMap(res.data);
-        
+        return models.Message.fromMap(res.data);
+
     }
 
     /// Delete a message. If the message is not a draft or scheduled, but has been
@@ -265,12 +265,12 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
     /// Get the message activity logs listed by its unique ID.
-    Future<models.LogList<T>> listMessageLogs<T>({required String messageId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.LogList> listMessageLogs({required String messageId, List<String>? queries}) async {
         final String apiPath = '/messaging/messages/{messageId}/logs'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -285,12 +285,12 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.LogList.fromMap(res.data, fromJson);
-        
+        return models.LogList.fromMap(res.data);
+
     }
 
     /// Get a list of the targets associated with a message.
-    Future<models.TargetList<T>> listTargets<T>({required String messageId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.TargetList> listTargets({required String messageId, List<String>? queries}) async {
         final String apiPath = '/messaging/messages/{messageId}/targets'.replaceAll('{messageId}', messageId);
 
         final Map<String, dynamic> apiParams = {
@@ -305,12 +305,12 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.TargetList.fromMap(res.data, fromJson);
-        
+        return models.TargetList.fromMap(res.data);
+
     }
 
     /// Get a list of all providers from the current Appwrite project.
-    Future<models.ProviderList<T>> listProviders<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.ProviderList> listProviders({List<String>? queries, String? search}) async {
         final String apiPath = '/messaging/providers';
 
         final Map<String, dynamic> apiParams = {
@@ -326,8 +326,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.ProviderList.fromMap(res.data, fromJson);
-        
+        return models.ProviderList.fromMap(res.data);
+
     }
 
     /// Create a new Apple Push Notification service provider.
@@ -354,8 +354,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a Apple Push Notification service provider by its unique ID.
@@ -381,8 +381,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new Firebase Cloud Messaging provider.
@@ -405,8 +405,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a Firebase Cloud Messaging provider by its unique ID.
@@ -428,8 +428,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new Mailgun provider.
@@ -458,8 +458,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a Mailgun provider by its unique ID.
@@ -487,8 +487,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new MSG91 provider.
@@ -513,8 +513,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a MSG91 provider by its unique ID.
@@ -538,8 +538,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new Sendgrid provider.
@@ -566,8 +566,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a Sendgrid provider by its unique ID.
@@ -593,8 +593,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new SMTP provider.
@@ -627,8 +627,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a SMTP provider by its unique ID.
@@ -660,8 +660,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new Telesign provider.
@@ -686,8 +686,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a Telesign provider by its unique ID.
@@ -711,8 +711,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new Textmagic provider.
@@ -737,8 +737,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a Textmagic provider by its unique ID.
@@ -762,8 +762,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new Twilio provider.
@@ -788,8 +788,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a Twilio provider by its unique ID.
@@ -813,8 +813,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Create a new Vonage provider.
@@ -839,8 +839,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Update a Vonage provider by its unique ID.
@@ -864,8 +864,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Get a provider by its unique ID.
@@ -884,8 +884,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Provider.fromMap(res.data);
-        
+        return models.Provider.fromMap(res.data);
+
     }
 
     /// Delete a provider by its unique ID.
@@ -904,12 +904,12 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
     /// Get the provider activity logs listed by its unique ID.
-    Future<models.LogList<T>> listProviderLogs<T>({required String providerId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.LogList> listProviderLogs({required String providerId, List<String>? queries}) async {
         final String apiPath = '/messaging/providers/{providerId}/logs'.replaceAll('{providerId}', providerId);
 
         final Map<String, dynamic> apiParams = {
@@ -924,12 +924,12 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.LogList.fromMap(res.data, fromJson);
-        
+        return models.LogList.fromMap(res.data);
+
     }
 
     /// Get the subscriber activity logs listed by its unique ID.
-    Future<models.LogList<T>> listSubscriberLogs<T>({required String subscriberId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.LogList> listSubscriberLogs({required String subscriberId, List<String>? queries}) async {
         final String apiPath = '/messaging/subscribers/{subscriberId}/logs'.replaceAll('{subscriberId}', subscriberId);
 
         final Map<String, dynamic> apiParams = {
@@ -944,12 +944,12 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.LogList.fromMap(res.data, fromJson);
-        
+        return models.LogList.fromMap(res.data);
+
     }
 
     /// Get a list of all topics from the current Appwrite project.
-    Future<models.TopicList<T>> listTopics<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.TopicList> listTopics({List<String>? queries, String? search}) async {
         final String apiPath = '/messaging/topics';
 
         final Map<String, dynamic> apiParams = {
@@ -965,8 +965,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.TopicList.fromMap(res.data, fromJson);
-        
+        return models.TopicList.fromMap(res.data);
+
     }
 
     /// Create a new topic.
@@ -988,8 +988,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Topic.fromMap(res.data);
-        
+        return models.Topic.fromMap(res.data);
+
     }
 
     /// Get a topic by its unique ID.
@@ -1008,8 +1008,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Topic.fromMap(res.data);
-        
+        return models.Topic.fromMap(res.data);
+
     }
 
     /// Update a topic by its unique ID.
@@ -1031,8 +1031,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Topic.fromMap(res.data);
-        
+        return models.Topic.fromMap(res.data);
+
     }
 
     /// Delete a topic by its unique ID.
@@ -1051,12 +1051,12 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
     /// Get the topic activity logs listed by its unique ID.
-    Future<models.LogList<T>> listTopicLogs<T>({required String topicId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.LogList> listTopicLogs({required String topicId, List<String>? queries}) async {
         final String apiPath = '/messaging/topics/{topicId}/logs'.replaceAll('{topicId}', topicId);
 
         final Map<String, dynamic> apiParams = {
@@ -1071,12 +1071,12 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.LogList.fromMap(res.data, fromJson);
-        
+        return models.LogList.fromMap(res.data);
+
     }
 
     /// Get a list of all subscribers from the current Appwrite project.
-    Future<models.SubscriberList<T>> listSubscribers<T>({required String topicId, List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.SubscriberList> listSubscribers({required String topicId, List<String>? queries, String? search}) async {
         final String apiPath = '/messaging/topics/{topicId}/subscribers'.replaceAll('{topicId}', topicId);
 
         final Map<String, dynamic> apiParams = {
@@ -1092,8 +1092,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.SubscriberList.fromMap(res.data, fromJson);
-        
+        return models.SubscriberList.fromMap(res.data);
+
     }
 
     /// Create a new subscriber.
@@ -1114,8 +1114,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Subscriber.fromMap(res.data);
-        
+        return models.Subscriber.fromMap(res.data);
+
     }
 
     /// Get a subscriber by its unique ID.
@@ -1134,8 +1134,8 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Subscriber.fromMap(res.data);
-        
+        return models.Subscriber.fromMap(res.data);
+
     }
 
     /// Delete a subscriber by its unique ID.
@@ -1154,7 +1154,7 @@ class Messaging extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 }

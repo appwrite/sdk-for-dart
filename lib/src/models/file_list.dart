@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Files List
-class FileList<T> implements Model {
-    /// Total number of files documents that matched your query.
+class FileList implements Model {
+    /// Total number of files rows that matched your query.
     final int total;
 
     /// List of files.
-    final List<File<T>> files;
+    final List<File> files;
 
     FileList({
         required this.total,
         required this.files,
     });
 
-    factory FileList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory FileList.fromMap(Map<String, dynamic> map) {
         return FileList(
-            total: 
-map['total'],
-            files: 
-List<File<T>>.from(map['files'].map((p) => File.fromMap(p, fromJson))),
+            total: map['total'],
+            files: List<File>.from(map['files'].map((p) => File.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<File<T>>.from(map['files'].map((p) => File.fromMap(p, fromJson))),
             "files": files.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

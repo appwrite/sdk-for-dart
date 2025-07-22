@@ -1,9 +1,12 @@
 part of '../../models.dart';
 
 /// Document
-class Document<T> implements Model {
+class Document implements Model {
     /// Document ID.
     final String $id;
+
+    /// Document automatically incrementing ID.
+    final int $sequence;
 
     /// Collection ID.
     final String $collectionId;
@@ -20,10 +23,11 @@ class Document<T> implements Model {
     /// Document permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
     final List<String> $permissions;
 
-    final T data;
+    final Map<String, dynamic> data;
 
     Document({
         required this.$id,
+        required this.$sequence,
         required this.$collectionId,
         required this.$databaseId,
         required this.$createdAt,
@@ -32,27 +36,23 @@ class Document<T> implements Model {
         required this.data,
     });
 
-    factory Document.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Document.fromMap(Map<String, dynamic> map) {
         return Document(
-            $id: 
-map['\$id'].toString(),
-            $collectionId: 
-map['\$collectionId'].toString(),
-            $databaseId: 
-map['\$databaseId'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            $permissions: 
-List.from(map['\$permissions'] ?? []),
-            data: fromJson != null ? fromJson(map) : map as T,
+            $id: map['\$id'].toString(),
+            $sequence: map['\$sequence'],
+            $collectionId: map['\$collectionId'].toString(),
+            $databaseId: map['\$databaseId'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            $permissions: List.from(map['\$permissions'] ?? []),
+            data: map,
         );
     }
 
     Map<String, dynamic> toMap() {
         return {
             "\$id": $id,
+            "\$sequence": $sequence,
             "\$collectionId": $collectionId,
             "\$databaseId": $databaseId,
             "\$createdAt": $createdAt,
@@ -62,7 +62,5 @@ List.from(map['\$permissions'] ?? []),
         };
     }
 
-    T convertTo<T>(T Function(Map<String, dynamic>) fromJson) => fromJson(data as Map<String, dynamic>);
-
-    // Public getters for private underscore fields
+    T convertTo<T>(T Function(Map<String, dynamic>) fromJson) => fromJson(data);
 }

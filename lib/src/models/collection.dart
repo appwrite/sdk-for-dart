@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Collection
-class Collection<T> implements Model {
+class Collection implements Model {
     /// Collection ID.
     final String $id;
 
@@ -30,7 +30,7 @@ class Collection<T> implements Model {
     final List attributes;
 
     /// Collection indexes.
-    final List<Index<T>> indexes;
+    final List<Index> indexes;
 
     Collection({
         required this.$id,
@@ -45,28 +45,18 @@ class Collection<T> implements Model {
         required this.indexes,
     });
 
-    factory Collection.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Collection.fromMap(Map<String, dynamic> map) {
         return Collection(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            $permissions: 
-List.from(map['\$permissions'] ?? []),
-            databaseId: 
-map['databaseId'].toString(),
-            name: 
-map['name'].toString(),
-            enabled: 
-map['enabled'],
-            documentSecurity: 
-map['documentSecurity'],
-            attributes: 
-List.from(map['attributes'] ?? []),
-            indexes: 
-List<Index<T>>.from(map['indexes'].map((p) => Index.fromMap(p, fromJson))),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            $permissions: List.from(map['\$permissions'] ?? []),
+            databaseId: map['databaseId'].toString(),
+            name: map['name'].toString(),
+            enabled: map['enabled'],
+            documentSecurity: map['documentSecurity'],
+            attributes: List.from(map['attributes'] ?? []),
+            indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
         );
     }
 
@@ -84,6 +74,4 @@ List<Index<T>>.from(map['indexes'].map((p) => Index.fromMap(p, fromJson))),
             "indexes": indexes.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Index
-class Index<T> implements Model {
+class Index implements Model {
     /// Index Key.
     final String key;
 
@@ -41,26 +41,17 @@ class Index<T> implements Model {
         required this.$updatedAt,
     });
 
-    factory Index.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Index.fromMap(Map<String, dynamic> map) {
         return Index(
-            key: 
-map['key'].toString(),
-            type: 
-map['type'].toString(),
-            status: 
-map['status'].toString(),
-            error: 
-map['error'].toString(),
-            attributes: 
-List.from(map['attributes'] ?? []),
-            lengths: 
-List.from(map['lengths'] ?? []),
-            orders: 
-List.from(map['orders'] ?? []),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
+            error: map['error'].toString(),
+            attributes: List.from(map['attributes'] ?? []),
+            lengths: List.from(map['lengths'] ?? []),
+            orders: List.from(map['orders'] ?? []),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
         );
     }
 
@@ -77,6 +68,4 @@ map['\$updatedAt'].toString(),
             "\$updatedAt": $updatedAt,
         };
     }
-
-    // Public getters for private underscore fields
 }

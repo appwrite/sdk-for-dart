@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Language
-class Language<T> implements Model {
+class Language implements Model {
     /// Language name.
     final String name;
 
@@ -17,14 +17,11 @@ class Language<T> implements Model {
         required this.nativeName,
     });
 
-    factory Language.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Language.fromMap(Map<String, dynamic> map) {
         return Language(
-            name: 
-map['name'].toString(),
-            code: 
-map['code'].toString(),
-            nativeName: 
-map['nativeName'].toString(),
+            name: map['name'].toString(),
+            code: map['code'].toString(),
+            nativeName: map['nativeName'].toString(),
         );
     }
 
@@ -35,6 +32,4 @@ map['nativeName'].toString(),
             "nativeName": nativeName,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -19,8 +19,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Use this endpoint to allow a new user to register a new account in your
@@ -49,8 +49,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Update currently logged in user account email address. After changing user
@@ -78,12 +78,12 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Get the list of identities for the currently logged in user.
-    Future<models.IdentityList<T>> listIdentities<T>({List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.IdentityList> listIdentities({List<String>? queries}) async {
         final String apiPath = '/account/identities';
 
         final Map<String, dynamic> apiParams = {
@@ -98,8 +98,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.IdentityList.fromMap(res.data, fromJson);
-        
+        return models.IdentityList.fromMap(res.data);
+
     }
 
     /// Delete an identity by its unique ID.
@@ -118,7 +118,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -142,13 +142,13 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Jwt.fromMap(res.data);
-        
+        return models.Jwt.fromMap(res.data);
+
     }
 
     /// Get the list of latest security activity logs for the currently logged in
     /// user. Each log returns user IP address, location and date and time of log.
-    Future<models.LogList<T>> listLogs<T>({List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.LogList> listLogs({List<String>? queries}) async {
         final String apiPath = '/account/logs';
 
         final Map<String, dynamic> apiParams = {
@@ -163,8 +163,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.LogList.fromMap(res.data, fromJson);
-        
+        return models.LogList.fromMap(res.data);
+
     }
 
     /// Enable or disable MFA on an account.
@@ -184,8 +184,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Add an authenticator app to be used as an MFA factor. Verify the
@@ -207,8 +207,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaType.fromMap(res.data);
-        
+        return models.MfaType.fromMap(res.data);
+
     }
 
     /// Verify an authenticator app after adding it using the [add
@@ -230,8 +230,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Delete an authenticator for a user by ID.
@@ -250,7 +250,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -273,8 +273,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaChallenge.fromMap(res.data);
-        
+        return models.MfaChallenge.fromMap(res.data);
+
     }
 
     /// Complete the MFA challenge by providing the one-time password. Finish the
@@ -299,8 +299,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// List the factors available on the account to be used as a MFA challange.
@@ -318,8 +318,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaFactors.fromMap(res.data);
-        
+        return models.MfaFactors.fromMap(res.data);
+
     }
 
     /// Get recovery codes that can be used as backup for MFA flow. Before getting
@@ -340,8 +340,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaRecoveryCodes.fromMap(res.data);
-        
+        return models.MfaRecoveryCodes.fromMap(res.data);
+
     }
 
     /// Generate recovery codes as backup for MFA flow. It's recommended to
@@ -364,8 +364,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaRecoveryCodes.fromMap(res.data);
-        
+        return models.MfaRecoveryCodes.fromMap(res.data);
+
     }
 
     /// Regenerate recovery codes that can be used as backup for MFA flow. Before
@@ -387,8 +387,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MfaRecoveryCodes.fromMap(res.data);
-        
+        return models.MfaRecoveryCodes.fromMap(res.data);
+
     }
 
     /// Update currently logged in user account name.
@@ -408,8 +408,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Update currently logged in user password. For validation, user is required
@@ -432,8 +432,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Update the currently logged in user's phone number. After updating the
@@ -458,8 +458,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Get the preferences as a key-value object for the currently logged in user.
@@ -477,8 +477,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Preferences.fromMap(res.data);
-        
+        return models.Preferences.fromMap(res.data);
+
     }
 
     /// Update currently logged in user account preferences. The object you pass is
@@ -500,8 +500,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Sends the user an email with a temporary secret key for password reset.
@@ -529,8 +529,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Use this endpoint to complete the user account password reset. Both the
@@ -561,13 +561,13 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Get the list of active sessions across different devices for the currently
     /// logged in user.
-    Future<models.SessionList<T>> listSessions<T>({T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.SessionList> listSessions() async {
         final String apiPath = '/account/sessions';
 
         final Map<String, dynamic> apiParams = {
@@ -581,8 +581,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.SessionList.fromMap(res.data, fromJson);
-        
+        return models.SessionList.fromMap(res.data);
+
     }
 
     /// Delete all sessions from the user account and remove any sessions cookies
@@ -602,7 +602,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -628,8 +628,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Allow the user to login into their account by providing a valid email and
@@ -655,13 +655,14 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Use this endpoint to create a session from token. Provide the **userId**
     /// and **secret** parameters from the successful response of authentication
     /// flows initiated by token creation. For example, magic URL and phone login.
+    @Deprecated('This API has been deprecated.')
     Future<models.Session> updateMagicURLSession({required String userId, required String secret}) async {
         final String apiPath = '/account/sessions/magic-url';
 
@@ -679,13 +680,14 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Use this endpoint to create a session from token. Provide the **userId**
     /// and **secret** parameters from the successful response of authentication
     /// flows initiated by token creation. For example, magic URL and phone login.
+    @Deprecated('This API has been deprecated.')
     Future<models.Session> updatePhoneSession({required String userId, required String secret}) async {
         final String apiPath = '/account/sessions/phone';
 
@@ -703,8 +705,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Use this endpoint to create a session from token. Provide the **userId**
@@ -727,8 +729,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Use this endpoint to get a logged in user's session using a Session ID.
@@ -747,8 +749,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Use this endpoint to extend a session's length. Extending a session is
@@ -769,8 +771,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Session.fromMap(res.data);
-        
+        return models.Session.fromMap(res.data);
+
     }
 
     /// Logout the user. Use 'current' as the session ID to logout on this device,
@@ -793,7 +795,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -815,8 +817,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.User.fromMap(res.data);
-        
+        return models.User.fromMap(res.data);
+
     }
 
     /// Sends the user an email with a secret key for creating a session. If the
@@ -847,8 +849,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Sends the user an email with a secret key for creating a session. If the
@@ -884,8 +886,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Allow the user to login to their account using the OAuth2 provider of their
@@ -964,8 +966,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Use this endpoint to send a verification message to your user email address
@@ -999,8 +1001,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Use this endpoint to complete the user email verification process. Use both
@@ -1024,8 +1026,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Use this endpoint to send a verification SMS to the currently logged in
@@ -1051,8 +1053,8 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 
     /// Use this endpoint to complete the user phone verification process. Use the
@@ -1076,7 +1078,7 @@ class Account extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Token.fromMap(res.data);
-        
+        return models.Token.fromMap(res.data);
+
     }
 }

@@ -7,7 +7,7 @@ class Teams extends Service {
 
     /// Get a list of all the teams in which the current user is a member. You can
     /// use the parameters to filter your results.
-    Future<models.TeamList<T>> list<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.TeamList> list({List<String>? queries, String? search}) async {
         final String apiPath = '/teams';
 
         final Map<String, dynamic> apiParams = {
@@ -23,8 +23,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.TeamList.fromMap(res.data, fromJson);
-        
+        return models.TeamList.fromMap(res.data);
+
     }
 
     /// Create a new team. The user who creates the team will automatically be
@@ -48,8 +48,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Team.fromMap(res.data);
-        
+        return models.Team.fromMap(res.data);
+
     }
 
     /// Get a team by its ID. All team members have read access for this resource.
@@ -67,8 +67,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Team.fromMap(res.data);
-        
+        return models.Team.fromMap(res.data);
+
     }
 
     /// Update the team's name by its unique ID.
@@ -88,8 +88,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Team.fromMap(res.data);
-        
+        return models.Team.fromMap(res.data);
+
     }
 
     /// Delete a team using its ID. Only team members with the owner role can
@@ -109,14 +109,14 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
     /// Use this endpoint to list a team's members using the team's ID. All team
     /// members have read access to this endpoint. Hide sensitive attributes from
     /// the response by toggling membership privacy in the Console.
-    Future<models.MembershipList<T>> listMemberships<T>({required String teamId, List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.MembershipList> listMemberships({required String teamId, List<String>? queries, String? search}) async {
         final String apiPath = '/teams/{teamId}/memberships'.replaceAll('{teamId}', teamId);
 
         final Map<String, dynamic> apiParams = {
@@ -132,8 +132,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.MembershipList.fromMap(res.data, fromJson);
-        
+        return models.MembershipList.fromMap(res.data);
+
     }
 
     /// Invite a new member to join your team. Provide an ID for existing users, or
@@ -178,8 +178,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Membership.fromMap(res.data);
-        
+        return models.Membership.fromMap(res.data);
+
     }
 
     /// Get a team member by the membership unique id. All team members have read
@@ -199,8 +199,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Membership.fromMap(res.data);
-        
+        return models.Membership.fromMap(res.data);
+
     }
 
     /// Modify the roles of a team member. Only team members with the owner role
@@ -223,8 +223,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Membership.fromMap(res.data);
-        
+        return models.Membership.fromMap(res.data);
+
     }
 
     /// This endpoint allows a user to leave a team or for a team owner to delete
@@ -245,7 +245,7 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -273,8 +273,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Membership.fromMap(res.data);
-        
+        return models.Membership.fromMap(res.data);
+
     }
 
     /// Get the team's shared preferences by its unique ID. If a preference doesn't
@@ -294,8 +294,8 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Preferences.fromMap(res.data);
-        
+        return models.Preferences.fromMap(res.data);
+
     }
 
     /// Update the team's preferences by its unique ID. The object you pass is
@@ -317,7 +317,7 @@ class Teams extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Preferences.fromMap(res.data);
-        
+        return models.Preferences.fromMap(res.data);
+
     }
 }

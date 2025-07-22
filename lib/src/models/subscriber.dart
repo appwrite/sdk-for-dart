@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Subscriber
-class Subscriber<T> implements Model {
+class Subscriber implements Model {
     /// Subscriber ID.
     final String $id;
 
@@ -41,26 +41,17 @@ class Subscriber<T> implements Model {
         required this.providerType,
     });
 
-    factory Subscriber.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Subscriber.fromMap(Map<String, dynamic> map) {
         return Subscriber(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            targetId: 
-map['targetId'].toString(),
-            target: 
-Target.fromMap(map['target']),
-            userId: 
-map['userId'].toString(),
-            userName: 
-map['userName'].toString(),
-            topicId: 
-map['topicId'].toString(),
-            providerType: 
-map['providerType'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            targetId: map['targetId'].toString(),
+            target: Target.fromMap(map['target']),
+            userId: map['userId'].toString(),
+            userName: map['userName'].toString(),
+            topicId: map['topicId'].toString(),
+            providerType: map['providerType'].toString(),
         );
     }
 
@@ -77,6 +68,4 @@ map['providerType'].toString(),
             "providerType": providerType,
         };
     }
-
-    // Public getters for private underscore fields
 }

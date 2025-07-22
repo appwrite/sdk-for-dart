@@ -6,7 +6,7 @@ class Storage extends Service {
 
     /// Get a list of all the storage buckets. You can use the query params to
     /// filter your results.
-    Future<models.BucketList<T>> listBuckets<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.BucketList> listBuckets({List<String>? queries, String? search}) async {
         final String apiPath = '/storage/buckets';
 
         final Map<String, dynamic> apiParams = {
@@ -22,8 +22,8 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.BucketList.fromMap(res.data, fromJson);
-        
+        return models.BucketList.fromMap(res.data);
+
     }
 
     /// Create a new storage bucket.
@@ -52,8 +52,8 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Bucket.fromMap(res.data);
-        
+        return models.Bucket.fromMap(res.data);
+
     }
 
     /// Get a storage bucket by its unique ID. This endpoint response returns a
@@ -72,8 +72,8 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Bucket.fromMap(res.data);
-        
+        return models.Bucket.fromMap(res.data);
+
     }
 
     /// Update a storage bucket by its unique ID.
@@ -101,8 +101,8 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Bucket.fromMap(res.data);
-        
+        return models.Bucket.fromMap(res.data);
+
     }
 
     /// Delete a storage bucket by its unique ID.
@@ -121,13 +121,13 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
     /// Get a list of all the user files. You can use the query params to filter
     /// your results.
-    Future<models.FileList<T>> listFiles<T>({required String bucketId, List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.FileList> listFiles({required String bucketId, List<String>? queries, String? search}) async {
         final String apiPath = '/storage/buckets/{bucketId}/files'.replaceAll('{bucketId}', bucketId);
 
         final Map<String, dynamic> apiParams = {
@@ -143,8 +143,8 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.FileList.fromMap(res.data, fromJson);
-        
+        return models.FileList.fromMap(res.data);
+
     }
 
     /// Create a new file. Before using this route, you should create a new bucket
@@ -213,8 +213,8 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.File.fromMap(res.data);
-        
+        return models.File.fromMap(res.data);
+
     }
 
     /// Update a file by its unique ID. Only users with write permissions have
@@ -236,8 +236,8 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.File.fromMap(res.data);
-        
+        return models.File.fromMap(res.data);
+
     }
 
     /// Delete a file by its unique ID. Only users with write permissions have
@@ -257,7 +257,7 @@ class Storage extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 

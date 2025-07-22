@@ -6,7 +6,7 @@ class Sites extends Service {
 
     /// Get a list of all the project's sites. You can use the query params to
     /// filter your results.
-    Future<models.SiteList<T>> list<T>({List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.SiteList> list({List<String>? queries, String? search}) async {
         final String apiPath = '/sites';
 
         final Map<String, dynamic> apiParams = {
@@ -22,8 +22,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.SiteList.fromMap(res.data, fromJson);
-        
+        return models.SiteList.fromMap(res.data);
+
     }
 
     /// Create a new site.
@@ -60,13 +60,13 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Site.fromMap(res.data);
-        
+        return models.Site.fromMap(res.data);
+
     }
 
     /// Get a list of all frameworks that are currently available on the server
     /// instance.
-    Future<models.FrameworkList<T>> listFrameworks<T>({T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.FrameworkList> listFrameworks() async {
         final String apiPath = '/sites/frameworks';
 
         final Map<String, dynamic> apiParams = {
@@ -80,12 +80,12 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.FrameworkList.fromMap(res.data, fromJson);
-        
+        return models.FrameworkList.fromMap(res.data);
+
     }
 
     /// List allowed site specifications for this instance.
-    Future<models.SpecificationList<T>> listSpecifications<T>({T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.SpecificationList> listSpecifications() async {
         final String apiPath = '/sites/specifications';
 
         final Map<String, dynamic> apiParams = {
@@ -99,8 +99,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.SpecificationList.fromMap(res.data, fromJson);
-        
+        return models.SpecificationList.fromMap(res.data);
+
     }
 
     /// Get a site by its unique ID.
@@ -118,8 +118,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Site.fromMap(res.data);
-        
+        return models.Site.fromMap(res.data);
+
     }
 
     /// Update site by its unique ID.
@@ -155,8 +155,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Site.fromMap(res.data);
-        
+        return models.Site.fromMap(res.data);
+
     }
 
     /// Delete a site by its unique ID.
@@ -175,7 +175,7 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -197,13 +197,13 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Site.fromMap(res.data);
-        
+        return models.Site.fromMap(res.data);
+
     }
 
     /// Get a list of all the site's code deployments. You can use the query params
     /// to filter your results.
-    Future<models.DeploymentList<T>> listDeployments<T>({required String siteId, List<String>? queries, String? search, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.DeploymentList> listDeployments({required String siteId, List<String>? queries, String? search}) async {
         final String apiPath = '/sites/{siteId}/deployments'.replaceAll('{siteId}', siteId);
 
         final Map<String, dynamic> apiParams = {
@@ -219,8 +219,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.DeploymentList.fromMap(res.data, fromJson);
-        
+        return models.DeploymentList.fromMap(res.data);
+
     }
 
     /// Create a new site code deployment. Use this endpoint to upload a new
@@ -280,8 +280,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Create a deployment based on a template.
@@ -309,8 +309,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Create a deployment when a site is connected to VCS.
@@ -334,8 +334,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Get a site deployment by its unique ID.
@@ -353,8 +353,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Delete a site deployment by its unique ID.
@@ -373,7 +373,7 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
@@ -415,13 +415,13 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Deployment.fromMap(res.data);
-        
+        return models.Deployment.fromMap(res.data);
+
     }
 
     /// Get a list of all site logs. You can use the query params to filter your
     /// results.
-    Future<models.ExecutionList<T>> listLogs<T>({required String siteId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.ExecutionList> listLogs({required String siteId, List<String>? queries}) async {
         final String apiPath = '/sites/{siteId}/logs'.replaceAll('{siteId}', siteId);
 
         final Map<String, dynamic> apiParams = {
@@ -436,8 +436,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.ExecutionList.fromMap(res.data, fromJson);
-        
+        return models.ExecutionList.fromMap(res.data);
+
     }
 
     /// Get a site request log by its unique ID.
@@ -455,8 +455,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Execution.fromMap(res.data);
-        
+        return models.Execution.fromMap(res.data);
+
     }
 
     /// Delete a site log by its unique ID.
@@ -475,12 +475,12 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 
     /// Get a list of all variables of a specific site.
-    Future<models.VariableList<T>> listVariables<T>({required String siteId, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.VariableList> listVariables({required String siteId}) async {
         final String apiPath = '/sites/{siteId}/variables'.replaceAll('{siteId}', siteId);
 
         final Map<String, dynamic> apiParams = {
@@ -494,8 +494,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.VariableList.fromMap(res.data, fromJson);
-        
+        return models.VariableList.fromMap(res.data);
+
     }
 
     /// Create a new site variable. These variables can be accessed during build
@@ -518,8 +518,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Variable.fromMap(res.data);
-        
+        return models.Variable.fromMap(res.data);
+
     }
 
     /// Get a variable by its unique ID.
@@ -537,8 +537,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Variable.fromMap(res.data);
-        
+        return models.Variable.fromMap(res.data);
+
     }
 
     /// Update variable by its unique ID.
@@ -560,8 +560,8 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.put, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.Variable.fromMap(res.data);
-        
+        return models.Variable.fromMap(res.data);
+
     }
 
     /// Delete a variable by its unique ID.
@@ -580,7 +580,7 @@ class Sites extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 }

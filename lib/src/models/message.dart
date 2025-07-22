@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Message
-class Message<T> implements Model {
+class Message implements Model {
     /// Message ID.
     final String $id;
 
@@ -57,34 +57,21 @@ class Message<T> implements Model {
         required this.status,
     });
 
-    factory Message.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Message.fromMap(Map<String, dynamic> map) {
         return Message(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            providerType: 
-map['providerType'].toString(),
-            topics: 
-List.from(map['topics'] ?? []),
-            users: 
-List.from(map['users'] ?? []),
-            targets: 
-List.from(map['targets'] ?? []),
-            scheduledAt: 
-map['scheduledAt']?.toString(),
-            deliveredAt: 
-map['deliveredAt']?.toString(),
-            deliveryErrors: 
-List.from(map['deliveryErrors'] ?? []),
-            deliveredTotal: 
-map['deliveredTotal'],
-            data: 
-map['data'],
-            status: 
-map['status'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            providerType: map['providerType'].toString(),
+            topics: List.from(map['topics'] ?? []),
+            users: List.from(map['users'] ?? []),
+            targets: List.from(map['targets'] ?? []),
+            scheduledAt: map['scheduledAt']?.toString(),
+            deliveredAt: map['deliveredAt']?.toString(),
+            deliveryErrors: List.from(map['deliveryErrors'] ?? []),
+            deliveredTotal: map['deliveredTotal'],
+            data: map['data'],
+            status: map['status'].toString(),
         );
     }
 
@@ -105,6 +92,4 @@ map['status'].toString(),
             "status": status,
         };
     }
-
-    // Public getters for private underscore fields
 }

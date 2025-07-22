@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AttributeRelationship
-class AttributeRelationship<T> implements Model {
+class AttributeRelationship implements Model {
     /// Attribute Key.
     final String key;
 
@@ -61,36 +61,22 @@ class AttributeRelationship<T> implements Model {
         required this.side,
     });
 
-    factory AttributeRelationship.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AttributeRelationship.fromMap(Map<String, dynamic> map) {
         return AttributeRelationship(
-            key: 
-map['key'].toString(),
-            type: 
-map['type'].toString(),
-            status: 
-map['status'].toString(),
-            error: 
-map['error'].toString(),
-            xrequired: 
-map['required'],
-            array: 
-map['array'],
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            relatedCollection: 
-map['relatedCollection'].toString(),
-            relationType: 
-map['relationType'].toString(),
-            twoWay: 
-map['twoWay'],
-            twoWayKey: 
-map['twoWayKey'].toString(),
-            onDelete: 
-map['onDelete'].toString(),
-            side: 
-map['side'].toString(),
+            key: map['key'].toString(),
+            type: map['type'].toString(),
+            status: map['status'].toString(),
+            error: map['error'].toString(),
+            xrequired: map['required'],
+            array: map['array'],
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            relatedCollection: map['relatedCollection'].toString(),
+            relationType: map['relationType'].toString(),
+            twoWay: map['twoWay'],
+            twoWayKey: map['twoWayKey'].toString(),
+            onDelete: map['onDelete'].toString(),
+            side: map['side'].toString(),
         );
     }
 
@@ -112,6 +98,4 @@ map['side'].toString(),
             "side": side,
         };
     }
-
-    // Public getters for private underscore fields
 }

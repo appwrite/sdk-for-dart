@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Database
-class Database<T> implements Model {
+class Database implements Model {
     /// Database ID.
     final String $id;
 
@@ -25,18 +25,13 @@ class Database<T> implements Model {
         required this.enabled,
     });
 
-    factory Database.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Database.fromMap(Map<String, dynamic> map) {
         return Database(
-            $id: 
-map['\$id'].toString(),
-            name: 
-map['name'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            enabled: 
-map['enabled'],
+            $id: map['\$id'].toString(),
+            name: map['name'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            enabled: map['enabled'],
         );
     }
 
@@ -49,6 +44,4 @@ map['enabled'],
             "enabled": enabled,
         };
     }
-
-    // Public getters for private underscore fields
 }

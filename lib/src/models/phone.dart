@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Phone
-class Phone<T> implements Model {
+class Phone implements Model {
     /// Phone code.
     final String code;
 
@@ -17,14 +17,11 @@ class Phone<T> implements Model {
         required this.countryName,
     });
 
-    factory Phone.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Phone.fromMap(Map<String, dynamic> map) {
         return Phone(
-            code: 
-map['code'].toString(),
-            countryCode: 
-map['countryCode'].toString(),
-            countryName: 
-map['countryName'].toString(),
+            code: map['code'].toString(),
+            countryCode: map['countryCode'].toString(),
+            countryName: map['countryName'].toString(),
         );
     }
 
@@ -35,6 +32,4 @@ map['countryName'].toString(),
             "countryName": countryName,
         };
     }
-
-    // Public getters for private underscore fields
 }

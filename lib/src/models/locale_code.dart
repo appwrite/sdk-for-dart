@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// LocaleCode
-class LocaleCode<T> implements Model {
+class LocaleCode implements Model {
     /// Locale codes in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
     final String code;
 
@@ -13,12 +13,10 @@ class LocaleCode<T> implements Model {
         required this.name,
     });
 
-    factory LocaleCode.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory LocaleCode.fromMap(Map<String, dynamic> map) {
         return LocaleCode(
-            code: 
-map['code'].toString(),
-            name: 
-map['name'].toString(),
+            code: map['code'].toString(),
+            name: map['name'].toString(),
         );
     }
 
@@ -28,6 +26,4 @@ map['name'].toString(),
             "name": name,
         };
     }
-
-    // Public getters for private underscore fields
 }

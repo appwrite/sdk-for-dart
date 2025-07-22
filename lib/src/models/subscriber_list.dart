@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Subscriber list
-class SubscriberList<T> implements Model {
-    /// Total number of subscribers documents that matched your query.
+class SubscriberList implements Model {
+    /// Total number of subscribers rows that matched your query.
     final int total;
 
     /// List of subscribers.
-    final List<Subscriber<T>> subscribers;
+    final List<Subscriber> subscribers;
 
     SubscriberList({
         required this.total,
         required this.subscribers,
     });
 
-    factory SubscriberList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory SubscriberList.fromMap(Map<String, dynamic> map) {
         return SubscriberList(
-            total: 
-map['total'],
-            subscribers: 
-List<Subscriber<T>>.from(map['subscribers'].map((p) => Subscriber.fromMap(p, fromJson))),
+            total: map['total'],
+            subscribers: List<Subscriber>.from(map['subscribers'].map((p) => Subscriber.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Subscriber<T>>.from(map['subscribers'].map((p) => Subscriber.fromMap(p, fro
             "subscribers": subscribers.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

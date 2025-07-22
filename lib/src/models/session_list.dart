@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Sessions List
-class SessionList<T> implements Model {
-    /// Total number of sessions documents that matched your query.
+class SessionList implements Model {
+    /// Total number of sessions rows that matched your query.
     final int total;
 
     /// List of sessions.
-    final List<Session<T>> sessions;
+    final List<Session> sessions;
 
     SessionList({
         required this.total,
         required this.sessions,
     });
 
-    factory SessionList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory SessionList.fromMap(Map<String, dynamic> map) {
         return SessionList(
-            total: 
-map['total'],
-            sessions: 
-List<Session<T>>.from(map['sessions'].map((p) => Session.fromMap(p, fromJson))),
+            total: map['total'],
+            sessions: List<Session>.from(map['sessions'].map((p) => Session.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Session<T>>.from(map['sessions'].map((p) => Session.fromMap(p, fromJson))),
             "sessions": sessions.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

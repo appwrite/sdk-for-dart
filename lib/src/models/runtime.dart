@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Runtime
-class Runtime<T> implements Model {
+class Runtime implements Model {
     /// Runtime ID.
     final String $id;
 
@@ -37,24 +37,16 @@ class Runtime<T> implements Model {
         required this.supports,
     });
 
-    factory Runtime.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Runtime.fromMap(Map<String, dynamic> map) {
         return Runtime(
-            $id: 
-map['\$id'].toString(),
-            key: 
-map['key'].toString(),
-            name: 
-map['name'].toString(),
-            version: 
-map['version'].toString(),
-            base: 
-map['base'].toString(),
-            image: 
-map['image'].toString(),
-            logo: 
-map['logo'].toString(),
-            supports: 
-List.from(map['supports'] ?? []),
+            $id: map['\$id'].toString(),
+            key: map['key'].toString(),
+            name: map['name'].toString(),
+            version: map['version'].toString(),
+            base: map['base'].toString(),
+            image: map['image'].toString(),
+            logo: map['logo'].toString(),
+            supports: List.from(map['supports'] ?? []),
         );
     }
 
@@ -70,6 +62,4 @@ List.from(map['supports'] ?? []),
             "supports": supports,
         };
     }
-
-    // Public getters for private underscore fields
 }

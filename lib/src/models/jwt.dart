@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// JWT
-class Jwt<T> implements Model {
+class Jwt implements Model {
     /// JWT encoded string.
     final String jwt;
 
@@ -9,10 +9,9 @@ class Jwt<T> implements Model {
         required this.jwt,
     });
 
-    factory Jwt.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Jwt.fromMap(Map<String, dynamic> map) {
         return Jwt(
-            jwt: 
-map['jwt'].toString(),
+            jwt: map['jwt'].toString(),
         );
     }
 
@@ -21,6 +20,4 @@ map['jwt'].toString(),
             "jwt": jwt,
         };
     }
-
-    // Public getters for private underscore fields
 }

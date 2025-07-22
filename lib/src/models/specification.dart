@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Specification
-class Specification<T> implements Model {
+class Specification implements Model {
     /// Memory size in MB.
     final int memory;
 
@@ -21,16 +21,12 @@ class Specification<T> implements Model {
         required this.slug,
     });
 
-    factory Specification.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Specification.fromMap(Map<String, dynamic> map) {
         return Specification(
-            memory: 
-map['memory'],
-            cpus: 
-map['cpus'].toDouble(),
-            enabled: 
-map['enabled'],
-            slug: 
-map['slug'].toString(),
+            memory: map['memory'],
+            cpus: map['cpus'].toDouble(),
+            enabled: map['enabled'],
+            slug: map['slug'].toString(),
         );
     }
 
@@ -42,6 +38,4 @@ map['slug'].toString(),
             "slug": slug,
         };
     }
-
-    // Public getters for private underscore fields
 }

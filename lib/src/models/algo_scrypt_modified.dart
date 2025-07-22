@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AlgoScryptModified
-class AlgoScryptModified<T> implements Model {
+class AlgoScryptModified implements Model {
     /// Algo type.
     final String type;
 
@@ -21,16 +21,12 @@ class AlgoScryptModified<T> implements Model {
         required this.signerKey,
     });
 
-    factory AlgoScryptModified.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AlgoScryptModified.fromMap(Map<String, dynamic> map) {
         return AlgoScryptModified(
-            type: 
-map['type'].toString(),
-            salt: 
-map['salt'].toString(),
-            saltSeparator: 
-map['saltSeparator'].toString(),
-            signerKey: 
-map['signerKey'].toString(),
+            type: map['type'].toString(),
+            salt: map['salt'].toString(),
+            saltSeparator: map['saltSeparator'].toString(),
+            signerKey: map['signerKey'].toString(),
         );
     }
 
@@ -42,6 +38,4 @@ map['signerKey'].toString(),
             "signerKey": signerKey,
         };
     }
-
-    // Public getters for private underscore fields
 }

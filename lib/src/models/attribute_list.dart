@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Attributes List
-class AttributeList<T> implements Model {
+class AttributeList implements Model {
     /// Total number of attributes in the given collection.
     final int total;
 
@@ -13,12 +13,10 @@ class AttributeList<T> implements Model {
         required this.attributes,
     });
 
-    factory AttributeList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AttributeList.fromMap(Map<String, dynamic> map) {
         return AttributeList(
-            total: 
-map['total'],
-            attributes: 
-List.from(map['attributes'] ?? []),
+            total: map['total'],
+            attributes: List.from(map['attributes'] ?? []),
         );
     }
 
@@ -28,6 +26,4 @@ List.from(map['attributes'] ?? []),
             "attributes": attributes,
         };
     }
-
-    // Public getters for private underscore fields
 }

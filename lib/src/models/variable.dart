@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Variable
-class Variable<T> implements Model {
+class Variable implements Model {
     /// Variable ID.
     final String $id;
 
@@ -37,24 +37,16 @@ class Variable<T> implements Model {
         required this.resourceId,
     });
 
-    factory Variable.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Variable.fromMap(Map<String, dynamic> map) {
         return Variable(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            key: 
-map['key'].toString(),
-            value: 
-map['value'].toString(),
-            secret: 
-map['secret'],
-            resourceType: 
-map['resourceType'].toString(),
-            resourceId: 
-map['resourceId'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            key: map['key'].toString(),
+            value: map['value'].toString(),
+            secret: map['secret'],
+            resourceType: map['resourceType'].toString(),
+            resourceId: map['resourceId'].toString(),
         );
     }
 
@@ -70,6 +62,4 @@ map['resourceId'].toString(),
             "resourceId": resourceId,
         };
     }
-
-    // Public getters for private underscore fields
 }

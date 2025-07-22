@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Log
-class Log<T> implements Model {
+class Log implements Model {
     /// Event name.
     final String event;
 
@@ -89,50 +89,29 @@ class Log<T> implements Model {
         required this.countryName,
     });
 
-    factory Log.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Log.fromMap(Map<String, dynamic> map) {
         return Log(
-            event: 
-map['event'].toString(),
-            userId: 
-map['userId'].toString(),
-            userEmail: 
-map['userEmail'].toString(),
-            userName: 
-map['userName'].toString(),
-            mode: 
-map['mode'].toString(),
-            ip: 
-map['ip'].toString(),
-            time: 
-map['time'].toString(),
-            osCode: 
-map['osCode'].toString(),
-            osName: 
-map['osName'].toString(),
-            osVersion: 
-map['osVersion'].toString(),
-            clientType: 
-map['clientType'].toString(),
-            clientCode: 
-map['clientCode'].toString(),
-            clientName: 
-map['clientName'].toString(),
-            clientVersion: 
-map['clientVersion'].toString(),
-            clientEngine: 
-map['clientEngine'].toString(),
-            clientEngineVersion: 
-map['clientEngineVersion'].toString(),
-            deviceName: 
-map['deviceName'].toString(),
-            deviceBrand: 
-map['deviceBrand'].toString(),
-            deviceModel: 
-map['deviceModel'].toString(),
-            countryCode: 
-map['countryCode'].toString(),
-            countryName: 
-map['countryName'].toString(),
+            event: map['event'].toString(),
+            userId: map['userId'].toString(),
+            userEmail: map['userEmail'].toString(),
+            userName: map['userName'].toString(),
+            mode: map['mode'].toString(),
+            ip: map['ip'].toString(),
+            time: map['time'].toString(),
+            osCode: map['osCode'].toString(),
+            osName: map['osName'].toString(),
+            osVersion: map['osVersion'].toString(),
+            clientType: map['clientType'].toString(),
+            clientCode: map['clientCode'].toString(),
+            clientName: map['clientName'].toString(),
+            clientVersion: map['clientVersion'].toString(),
+            clientEngine: map['clientEngine'].toString(),
+            clientEngineVersion: map['clientEngineVersion'].toString(),
+            deviceName: map['deviceName'].toString(),
+            deviceBrand: map['deviceBrand'].toString(),
+            deviceModel: map['deviceModel'].toString(),
+            countryCode: map['countryCode'].toString(),
+            countryName: map['countryName'].toString(),
         );
     }
 
@@ -161,6 +140,4 @@ map['countryName'].toString(),
             "countryName": countryName,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Specifications List
-class SpecificationList<T> implements Model {
-    /// Total number of specifications documents that matched your query.
+class SpecificationList implements Model {
+    /// Total number of specifications rows that matched your query.
     final int total;
 
     /// List of specifications.
-    final List<Specification<T>> specifications;
+    final List<Specification> specifications;
 
     SpecificationList({
         required this.total,
         required this.specifications,
     });
 
-    factory SpecificationList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory SpecificationList.fromMap(Map<String, dynamic> map) {
         return SpecificationList(
-            total: 
-map['total'],
-            specifications: 
-List<Specification<T>>.from(map['specifications'].map((p) => Specification.fromMap(p, fromJson))),
+            total: map['total'],
+            specifications: List<Specification>.from(map['specifications'].map((p) => Specification.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Specification<T>>.from(map['specifications'].map((p) => Specification.fromM
             "specifications": specifications.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

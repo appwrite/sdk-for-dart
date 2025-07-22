@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AlgoPHPass
-class AlgoPhpass<T> implements Model {
+class AlgoPhpass implements Model {
     /// Algo type.
     final String type;
 
@@ -9,10 +9,9 @@ class AlgoPhpass<T> implements Model {
         required this.type,
     });
 
-    factory AlgoPhpass.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AlgoPhpass.fromMap(Map<String, dynamic> map) {
         return AlgoPhpass(
-            type: 
-map['type'].toString(),
+            type: map['type'].toString(),
         );
     }
 
@@ -21,6 +20,4 @@ map['type'].toString(),
             "type": type,
         };
     }
-
-    // Public getters for private underscore fields
 }

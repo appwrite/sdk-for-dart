@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Framework
-class Framework<T> implements Model {
+class Framework implements Model {
     /// Framework key.
     final String key;
 
@@ -15,7 +15,7 @@ class Framework<T> implements Model {
     final List<String> runtimes;
 
     /// List of supported adapters.
-    final List<FrameworkAdapter<T>> adapters;
+    final List<FrameworkAdapter> adapters;
 
     Framework({
         required this.key,
@@ -25,18 +25,13 @@ class Framework<T> implements Model {
         required this.adapters,
     });
 
-    factory Framework.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Framework.fromMap(Map<String, dynamic> map) {
         return Framework(
-            key: 
-map['key'].toString(),
-            name: 
-map['name'].toString(),
-            buildRuntime: 
-map['buildRuntime'].toString(),
-            runtimes: 
-List.from(map['runtimes'] ?? []),
-            adapters: 
-List<FrameworkAdapter<T>>.from(map['adapters'].map((p) => FrameworkAdapter.fromMap(p, fromJson))),
+            key: map['key'].toString(),
+            name: map['name'].toString(),
+            buildRuntime: map['buildRuntime'].toString(),
+            runtimes: List.from(map['runtimes'] ?? []),
+            adapters: List<FrameworkAdapter>.from(map['adapters'].map((p) => FrameworkAdapter.fromMap(p))),
         );
     }
 
@@ -49,6 +44,4 @@ List<FrameworkAdapter<T>>.from(map['adapters'].map((p) => FrameworkAdapter.fromM
             "adapters": adapters.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

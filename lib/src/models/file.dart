@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// File
-class File<T> implements Model {
+class File implements Model {
     /// File ID.
     final String $id;
 
@@ -49,30 +49,19 @@ class File<T> implements Model {
         required this.chunksUploaded,
     });
 
-    factory File.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory File.fromMap(Map<String, dynamic> map) {
         return File(
-            $id: 
-map['\$id'].toString(),
-            bucketId: 
-map['bucketId'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            $permissions: 
-List.from(map['\$permissions'] ?? []),
-            name: 
-map['name'].toString(),
-            signature: 
-map['signature'].toString(),
-            mimeType: 
-map['mimeType'].toString(),
-            sizeOriginal: 
-map['sizeOriginal'],
-            chunksTotal: 
-map['chunksTotal'],
-            chunksUploaded: 
-map['chunksUploaded'],
+            $id: map['\$id'].toString(),
+            bucketId: map['bucketId'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            $permissions: List.from(map['\$permissions'] ?? []),
+            name: map['name'].toString(),
+            signature: map['signature'].toString(),
+            mimeType: map['mimeType'].toString(),
+            sizeOriginal: map['sizeOriginal'],
+            chunksTotal: map['chunksTotal'],
+            chunksUploaded: map['chunksUploaded'],
         );
     }
 
@@ -91,6 +80,4 @@ map['chunksUploaded'],
             "chunksUploaded": chunksUploaded,
         };
     }
-
-    // Public getters for private underscore fields
 }

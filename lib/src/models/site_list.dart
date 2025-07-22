@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Sites List
-class SiteList<T> implements Model {
-    /// Total number of sites documents that matched your query.
+class SiteList implements Model {
+    /// Total number of sites rows that matched your query.
     final int total;
 
     /// List of sites.
-    final List<Site<T>> sites;
+    final List<Site> sites;
 
     SiteList({
         required this.total,
         required this.sites,
     });
 
-    factory SiteList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory SiteList.fromMap(Map<String, dynamic> map) {
         return SiteList(
-            total: 
-map['total'],
-            sites: 
-List<Site<T>>.from(map['sites'].map((p) => Site.fromMap(p, fromJson))),
+            total: map['total'],
+            sites: List<Site>.from(map['sites'].map((p) => Site.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Site<T>>.from(map['sites'].map((p) => Site.fromMap(p, fromJson))),
             "sites": sites.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

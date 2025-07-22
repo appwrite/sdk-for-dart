@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// MFAType
-class MfaType<T> implements Model {
+class MfaType implements Model {
     /// Secret token used for TOTP factor.
     final String secret;
 
@@ -13,12 +13,10 @@ class MfaType<T> implements Model {
         required this.uri,
     });
 
-    factory MfaType.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory MfaType.fromMap(Map<String, dynamic> map) {
         return MfaType(
-            secret: 
-map['secret'].toString(),
-            uri: 
-map['uri'].toString(),
+            secret: map['secret'].toString(),
+            uri: map['uri'].toString(),
         );
     }
 
@@ -28,6 +26,4 @@ map['uri'].toString(),
             "uri": uri,
         };
     }
-
-    // Public getters for private underscore fields
 }

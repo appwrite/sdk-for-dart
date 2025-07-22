@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Health Certificate
-class HealthCertificate<T> implements Model {
+class HealthCertificate implements Model {
     /// Certificate name
     final String name;
 
@@ -29,20 +29,14 @@ class HealthCertificate<T> implements Model {
         required this.signatureTypeSN,
     });
 
-    factory HealthCertificate.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory HealthCertificate.fromMap(Map<String, dynamic> map) {
         return HealthCertificate(
-            name: 
-map['name'].toString(),
-            subjectSN: 
-map['subjectSN'].toString(),
-            issuerOrganisation: 
-map['issuerOrganisation'].toString(),
-            validFrom: 
-map['validFrom'].toString(),
-            validTo: 
-map['validTo'].toString(),
-            signatureTypeSN: 
-map['signatureTypeSN'].toString(),
+            name: map['name'].toString(),
+            subjectSN: map['subjectSN'].toString(),
+            issuerOrganisation: map['issuerOrganisation'].toString(),
+            validFrom: map['validFrom'].toString(),
+            validTo: map['validTo'].toString(),
+            signatureTypeSN: map['signatureTypeSN'].toString(),
         );
     }
 
@@ -56,6 +50,4 @@ map['signatureTypeSN'].toString(),
             "signatureTypeSN": signatureTypeSN,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Executions List
-class ExecutionList<T> implements Model {
-    /// Total number of executions documents that matched your query.
+class ExecutionList implements Model {
+    /// Total number of executions rows that matched your query.
     final int total;
 
     /// List of executions.
-    final List<Execution<T>> executions;
+    final List<Execution> executions;
 
     ExecutionList({
         required this.total,
         required this.executions,
     });
 
-    factory ExecutionList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory ExecutionList.fromMap(Map<String, dynamic> map) {
         return ExecutionList(
-            total: 
-map['total'],
-            executions: 
-List<Execution<T>>.from(map['executions'].map((p) => Execution.fromMap(p, fromJson))),
+            total: map['total'],
+            executions: List<Execution>.from(map['executions'].map((p) => Execution.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Execution<T>>.from(map['executions'].map((p) => Execution.fromMap(p, fromJs
             "executions": executions.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

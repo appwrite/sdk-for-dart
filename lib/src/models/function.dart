@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Function
-class Func<T> implements Model {
+class Func implements Model {
     /// Function ID.
     final String $id;
 
@@ -48,7 +48,7 @@ class Func<T> implements Model {
     final List<String> scopes;
 
     /// Function variables.
-    final List<Variable<T>> vars;
+    final List<Variable> vars;
 
     /// Function trigger events.
     final List<String> events;
@@ -117,64 +117,36 @@ class Func<T> implements Model {
         required this.specification,
     });
 
-    factory Func.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Func.fromMap(Map<String, dynamic> map) {
         return Func(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            execute: 
-List.from(map['execute'] ?? []),
-            name: 
-map['name'].toString(),
-            enabled: 
-map['enabled'],
-            live: 
-map['live'],
-            logging: 
-map['logging'],
-            runtime: 
-map['runtime'].toString(),
-            deploymentId: 
-map['deploymentId'].toString(),
-            deploymentCreatedAt: 
-map['deploymentCreatedAt'].toString(),
-            latestDeploymentId: 
-map['latestDeploymentId'].toString(),
-            latestDeploymentCreatedAt: 
-map['latestDeploymentCreatedAt'].toString(),
-            latestDeploymentStatus: 
-map['latestDeploymentStatus'].toString(),
-            scopes: 
-List.from(map['scopes'] ?? []),
-            vars: 
-List<Variable<T>>.from(map['vars'].map((p) => Variable.fromMap(p, fromJson))),
-            events: 
-List.from(map['events'] ?? []),
-            schedule: 
-map['schedule'].toString(),
-            timeout: 
-map['timeout'],
-            entrypoint: 
-map['entrypoint'].toString(),
-            commands: 
-map['commands'].toString(),
-            version: 
-map['version'].toString(),
-            installationId: 
-map['installationId'].toString(),
-            providerRepositoryId: 
-map['providerRepositoryId'].toString(),
-            providerBranch: 
-map['providerBranch'].toString(),
-            providerRootDirectory: 
-map['providerRootDirectory'].toString(),
-            providerSilentMode: 
-map['providerSilentMode'],
-            specification: 
-map['specification'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            execute: List.from(map['execute'] ?? []),
+            name: map['name'].toString(),
+            enabled: map['enabled'],
+            live: map['live'],
+            logging: map['logging'],
+            runtime: map['runtime'].toString(),
+            deploymentId: map['deploymentId'].toString(),
+            deploymentCreatedAt: map['deploymentCreatedAt'].toString(),
+            latestDeploymentId: map['latestDeploymentId'].toString(),
+            latestDeploymentCreatedAt: map['latestDeploymentCreatedAt'].toString(),
+            latestDeploymentStatus: map['latestDeploymentStatus'].toString(),
+            scopes: List.from(map['scopes'] ?? []),
+            vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
+            events: List.from(map['events'] ?? []),
+            schedule: map['schedule'].toString(),
+            timeout: map['timeout'],
+            entrypoint: map['entrypoint'].toString(),
+            commands: map['commands'].toString(),
+            version: map['version'].toString(),
+            installationId: map['installationId'].toString(),
+            providerRepositoryId: map['providerRepositoryId'].toString(),
+            providerBranch: map['providerBranch'].toString(),
+            providerRootDirectory: map['providerRootDirectory'].toString(),
+            providerSilentMode: map['providerSilentMode'],
+            specification: map['specification'].toString(),
         );
     }
 
@@ -210,6 +182,4 @@ map['specification'].toString(),
             "specification": specification,
         };
     }
-
-    // Public getters for private underscore fields
 }

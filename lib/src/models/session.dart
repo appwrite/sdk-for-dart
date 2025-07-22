@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Session
-class Session<T> implements Model {
+class Session implements Model {
     /// Session ID.
     final String $id;
 
@@ -121,66 +121,37 @@ class Session<T> implements Model {
         required this.mfaUpdatedAt,
     });
 
-    factory Session.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Session.fromMap(Map<String, dynamic> map) {
         return Session(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            userId: 
-map['userId'].toString(),
-            expire: 
-map['expire'].toString(),
-            provider: 
-map['provider'].toString(),
-            providerUid: 
-map['providerUid'].toString(),
-            providerAccessToken: 
-map['providerAccessToken'].toString(),
-            providerAccessTokenExpiry: 
-map['providerAccessTokenExpiry'].toString(),
-            providerRefreshToken: 
-map['providerRefreshToken'].toString(),
-            ip: 
-map['ip'].toString(),
-            osCode: 
-map['osCode'].toString(),
-            osName: 
-map['osName'].toString(),
-            osVersion: 
-map['osVersion'].toString(),
-            clientType: 
-map['clientType'].toString(),
-            clientCode: 
-map['clientCode'].toString(),
-            clientName: 
-map['clientName'].toString(),
-            clientVersion: 
-map['clientVersion'].toString(),
-            clientEngine: 
-map['clientEngine'].toString(),
-            clientEngineVersion: 
-map['clientEngineVersion'].toString(),
-            deviceName: 
-map['deviceName'].toString(),
-            deviceBrand: 
-map['deviceBrand'].toString(),
-            deviceModel: 
-map['deviceModel'].toString(),
-            countryCode: 
-map['countryCode'].toString(),
-            countryName: 
-map['countryName'].toString(),
-            current: 
-map['current'],
-            factors: 
-List.from(map['factors'] ?? []),
-            secret: 
-map['secret'].toString(),
-            mfaUpdatedAt: 
-map['mfaUpdatedAt'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            userId: map['userId'].toString(),
+            expire: map['expire'].toString(),
+            provider: map['provider'].toString(),
+            providerUid: map['providerUid'].toString(),
+            providerAccessToken: map['providerAccessToken'].toString(),
+            providerAccessTokenExpiry: map['providerAccessTokenExpiry'].toString(),
+            providerRefreshToken: map['providerRefreshToken'].toString(),
+            ip: map['ip'].toString(),
+            osCode: map['osCode'].toString(),
+            osName: map['osName'].toString(),
+            osVersion: map['osVersion'].toString(),
+            clientType: map['clientType'].toString(),
+            clientCode: map['clientCode'].toString(),
+            clientName: map['clientName'].toString(),
+            clientVersion: map['clientVersion'].toString(),
+            clientEngine: map['clientEngine'].toString(),
+            clientEngineVersion: map['clientEngineVersion'].toString(),
+            deviceName: map['deviceName'].toString(),
+            deviceBrand: map['deviceBrand'].toString(),
+            deviceModel: map['deviceModel'].toString(),
+            countryCode: map['countryCode'].toString(),
+            countryName: map['countryName'].toString(),
+            current: map['current'],
+            factors: List.from(map['factors'] ?? []),
+            secret: map['secret'].toString(),
+            mfaUpdatedAt: map['mfaUpdatedAt'].toString(),
         );
     }
 
@@ -217,6 +188,4 @@ map['mfaUpdatedAt'].toString(),
             "mfaUpdatedAt": mfaUpdatedAt,
         };
     }
-
-    // Public getters for private underscore fields
 }

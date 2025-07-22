@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Message list
-class MessageList<T> implements Model {
-    /// Total number of messages documents that matched your query.
+class MessageList implements Model {
+    /// Total number of messages rows that matched your query.
     final int total;
 
     /// List of messages.
-    final List<Message<T>> messages;
+    final List<Message> messages;
 
     MessageList({
         required this.total,
         required this.messages,
     });
 
-    factory MessageList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory MessageList.fromMap(Map<String, dynamic> map) {
         return MessageList(
-            total: 
-map['total'],
-            messages: 
-List<Message<T>>.from(map['messages'].map((p) => Message.fromMap(p, fromJson))),
+            total: map['total'],
+            messages: List<Message>.from(map['messages'].map((p) => Message.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Message<T>>.from(map['messages'].map((p) => Message.fromMap(p, fromJson))),
             "messages": messages.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

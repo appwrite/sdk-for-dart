@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Collections List
-class CollectionList<T> implements Model {
-    /// Total number of collections documents that matched your query.
+class CollectionList implements Model {
+    /// Total number of collections rows that matched your query.
     final int total;
 
     /// List of collections.
-    final List<Collection<T>> collections;
+    final List<Collection> collections;
 
     CollectionList({
         required this.total,
         required this.collections,
     });
 
-    factory CollectionList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory CollectionList.fromMap(Map<String, dynamic> map) {
         return CollectionList(
-            total: 
-map['total'],
-            collections: 
-List<Collection<T>>.from(map['collections'].map((p) => Collection.fromMap(p, fromJson))),
+            total: map['total'],
+            collections: List<Collection>.from(map['collections'].map((p) => Collection.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Collection<T>>.from(map['collections'].map((p) => Collection.fromMap(p, fro
             "collections": collections.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

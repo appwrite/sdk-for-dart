@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Continent
-class Continent<T> implements Model {
+class Continent implements Model {
     /// Continent name.
     final String name;
 
@@ -13,12 +13,10 @@ class Continent<T> implements Model {
         required this.code,
     });
 
-    factory Continent.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Continent.fromMap(Map<String, dynamic> map) {
         return Continent(
-            name: 
-map['name'].toString(),
-            code: 
-map['code'].toString(),
+            name: map['name'].toString(),
+            code: map['code'].toString(),
         );
     }
 
@@ -28,6 +26,4 @@ map['code'].toString(),
             "code": code,
         };
     }
-
-    // Public getters for private underscore fields
 }

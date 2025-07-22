@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Health Antivirus
-class HealthAntivirus<T> implements Model {
+class HealthAntivirus implements Model {
     /// Antivirus version.
     final String version;
 
@@ -13,12 +13,10 @@ class HealthAntivirus<T> implements Model {
         required this.status,
     });
 
-    factory HealthAntivirus.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory HealthAntivirus.fromMap(Map<String, dynamic> map) {
         return HealthAntivirus(
-            version: 
-map['version'].toString(),
-            status: 
-map['status'].toString(),
+            version: map['version'].toString(),
+            status: map['status'].toString(),
         );
     }
 
@@ -28,6 +26,4 @@ map['status'].toString(),
             "status": status,
         };
     }
-
-    // Public getters for private underscore fields
 }

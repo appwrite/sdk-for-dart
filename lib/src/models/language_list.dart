@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Languages List
-class LanguageList<T> implements Model {
-    /// Total number of languages documents that matched your query.
+class LanguageList implements Model {
+    /// Total number of languages rows that matched your query.
     final int total;
 
     /// List of languages.
-    final List<Language<T>> languages;
+    final List<Language> languages;
 
     LanguageList({
         required this.total,
         required this.languages,
     });
 
-    factory LanguageList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory LanguageList.fromMap(Map<String, dynamic> map) {
         return LanguageList(
-            total: 
-map['total'],
-            languages: 
-List<Language<T>>.from(map['languages'].map((p) => Language.fromMap(p, fromJson))),
+            total: map['total'],
+            languages: List<Language>.from(map['languages'].map((p) => Language.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Language<T>>.from(map['languages'].map((p) => Language.fromMap(p, fromJson)
             "languages": languages.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }

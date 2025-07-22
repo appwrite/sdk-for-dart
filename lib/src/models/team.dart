@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Team
-class Team<T> implements Model {
+class Team implements Model {
     /// Team ID.
     final String $id;
 
@@ -29,20 +29,14 @@ class Team<T> implements Model {
         required this.prefs,
     });
 
-    factory Team.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Team.fromMap(Map<String, dynamic> map) {
         return Team(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            name: 
-map['name'].toString(),
-            total: 
-map['total'],
-            prefs: 
-Preferences.fromMap(map['prefs']),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            name: map['name'].toString(),
+            total: map['total'],
+            prefs: Preferences.fromMap(map['prefs']),
         );
     }
 
@@ -56,6 +50,4 @@ Preferences.fromMap(map['prefs']),
             "prefs": prefs.toMap(),
         };
     }
-
-    // Public getters for private underscore fields
 }

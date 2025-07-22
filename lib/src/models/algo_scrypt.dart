@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// AlgoScrypt
-class AlgoScrypt<T> implements Model {
+class AlgoScrypt implements Model {
     /// Algo type.
     final String type;
 
@@ -25,18 +25,13 @@ class AlgoScrypt<T> implements Model {
         required this.length,
     });
 
-    factory AlgoScrypt.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory AlgoScrypt.fromMap(Map<String, dynamic> map) {
         return AlgoScrypt(
-            type: 
-map['type'].toString(),
-            costCpu: 
-map['costCpu'],
-            costMemory: 
-map['costMemory'],
-            costParallel: 
-map['costParallel'],
-            length: 
-map['length'],
+            type: map['type'].toString(),
+            costCpu: map['costCpu'],
+            costMemory: map['costMemory'],
+            costParallel: map['costParallel'],
+            length: map['length'],
         );
     }
 
@@ -49,6 +44,4 @@ map['length'],
             "length": length,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Headers
-class Headers<T> implements Model {
+class Headers implements Model {
     /// Header name.
     final String name;
 
@@ -13,12 +13,10 @@ class Headers<T> implements Model {
         required this.value,
     });
 
-    factory Headers.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Headers.fromMap(Map<String, dynamic> map) {
         return Headers(
-            name: 
-map['name'].toString(),
-            value: 
-map['value'].toString(),
+            name: map['name'].toString(),
+            value: map['value'].toString(),
         );
     }
 
@@ -28,6 +26,4 @@ map['value'].toString(),
             "value": value,
         };
     }
-
-    // Public getters for private underscore fields
 }

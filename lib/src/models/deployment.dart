@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Deployment
-class Deployment<T> implements Model {
+class Deployment implements Model {
     /// Deployment ID.
     final String $id;
 
@@ -113,62 +113,35 @@ class Deployment<T> implements Model {
         required this.providerBranchUrl,
     });
 
-    factory Deployment.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Deployment.fromMap(Map<String, dynamic> map) {
         return Deployment(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            type: 
-map['type'].toString(),
-            resourceId: 
-map['resourceId'].toString(),
-            resourceType: 
-map['resourceType'].toString(),
-            entrypoint: 
-map['entrypoint'].toString(),
-            sourceSize: 
-map['sourceSize'],
-            buildSize: 
-map['buildSize'],
-            totalSize: 
-map['totalSize'],
-            buildId: 
-map['buildId'].toString(),
-            activate: 
-map['activate'],
-            screenshotLight: 
-map['screenshotLight'].toString(),
-            screenshotDark: 
-map['screenshotDark'].toString(),
-            status: 
-map['status'].toString(),
-            buildLogs: 
-map['buildLogs'].toString(),
-            buildDuration: 
-map['buildDuration'],
-            providerRepositoryName: 
-map['providerRepositoryName'].toString(),
-            providerRepositoryOwner: 
-map['providerRepositoryOwner'].toString(),
-            providerRepositoryUrl: 
-map['providerRepositoryUrl'].toString(),
-            providerBranch: 
-map['providerBranch'].toString(),
-            providerCommitHash: 
-map['providerCommitHash'].toString(),
-            providerCommitAuthorUrl: 
-map['providerCommitAuthorUrl'].toString(),
-            providerCommitAuthor: 
-map['providerCommitAuthor'].toString(),
-            providerCommitMessage: 
-map['providerCommitMessage'].toString(),
-            providerCommitUrl: 
-map['providerCommitUrl'].toString(),
-            providerBranchUrl: 
-map['providerBranchUrl'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            type: map['type'].toString(),
+            resourceId: map['resourceId'].toString(),
+            resourceType: map['resourceType'].toString(),
+            entrypoint: map['entrypoint'].toString(),
+            sourceSize: map['sourceSize'],
+            buildSize: map['buildSize'],
+            totalSize: map['totalSize'],
+            buildId: map['buildId'].toString(),
+            activate: map['activate'],
+            screenshotLight: map['screenshotLight'].toString(),
+            screenshotDark: map['screenshotDark'].toString(),
+            status: map['status'].toString(),
+            buildLogs: map['buildLogs'].toString(),
+            buildDuration: map['buildDuration'],
+            providerRepositoryName: map['providerRepositoryName'].toString(),
+            providerRepositoryOwner: map['providerRepositoryOwner'].toString(),
+            providerRepositoryUrl: map['providerRepositoryUrl'].toString(),
+            providerBranch: map['providerBranch'].toString(),
+            providerCommitHash: map['providerCommitHash'].toString(),
+            providerCommitAuthorUrl: map['providerCommitAuthorUrl'].toString(),
+            providerCommitAuthor: map['providerCommitAuthor'].toString(),
+            providerCommitMessage: map['providerCommitMessage'].toString(),
+            providerCommitUrl: map['providerCommitUrl'].toString(),
+            providerBranchUrl: map['providerBranchUrl'].toString(),
         );
     }
 
@@ -203,6 +176,4 @@ map['providerBranchUrl'].toString(),
             "providerBranchUrl": providerBranchUrl,
         };
     }
-
-    // Public getters for private underscore fields
 }

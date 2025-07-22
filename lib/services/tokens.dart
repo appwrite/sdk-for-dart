@@ -5,7 +5,7 @@ class Tokens extends Service {
 
     /// List all the tokens created for a specific file or bucket. You can use the
     /// query params to filter your results.
-    Future<models.ResourceTokenList<T>> list<T>({required String bucketId, required String fileId, List<String>? queries, T Function(Map<String, dynamic>)? fromJson}) async {
+    Future<models.ResourceTokenList> list({required String bucketId, required String fileId, List<String>? queries}) async {
         final String apiPath = '/tokens/buckets/{bucketId}/files/{fileId}'.replaceAll('{bucketId}', bucketId).replaceAll('{fileId}', fileId);
 
         final Map<String, dynamic> apiParams = {
@@ -20,8 +20,8 @@ class Tokens extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.ResourceTokenList.fromMap(res.data, fromJson);
-        
+        return models.ResourceTokenList.fromMap(res.data);
+
     }
 
     /// Create a new token. A token is linked to a file. Token can be passed as a
@@ -42,8 +42,8 @@ class Tokens extends Service {
 
         final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.ResourceToken.fromMap(res.data);
-        
+        return models.ResourceToken.fromMap(res.data);
+
     }
 
     /// Get a token by its unique ID.
@@ -61,8 +61,8 @@ class Tokens extends Service {
 
         final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.ResourceToken.fromMap(res.data);
-        
+        return models.ResourceToken.fromMap(res.data);
+
     }
 
     /// Update a token by its unique ID. Use this endpoint to update a token's
@@ -83,8 +83,8 @@ class Tokens extends Service {
 
         final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
-                return models.ResourceToken.fromMap(res.data);
-        
+        return models.ResourceToken.fromMap(res.data);
+
     }
 
     /// Delete a token by its unique ID.
@@ -103,7 +103,7 @@ class Tokens extends Service {
 
         final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-        return res.data;
+        return  res.data;
 
     }
 }

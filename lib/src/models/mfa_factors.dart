@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// MFAFactors
-class MfaFactors<T> implements Model {
+class MfaFactors implements Model {
     /// Can TOTP be used for MFA challenge for this account.
     final bool totp;
 
@@ -21,16 +21,12 @@ class MfaFactors<T> implements Model {
         required this.recoveryCode,
     });
 
-    factory MfaFactors.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory MfaFactors.fromMap(Map<String, dynamic> map) {
         return MfaFactors(
-            totp: 
-map['totp'],
-            phone: 
-map['phone'],
-            email: 
-map['email'],
-            recoveryCode: 
-map['recoveryCode'],
+            totp: map['totp'],
+            phone: map['phone'],
+            email: map['email'],
+            recoveryCode: map['recoveryCode'],
         );
     }
 
@@ -42,6 +38,4 @@ map['recoveryCode'],
             "recoveryCode": recoveryCode,
         };
     }
-
-    // Public getters for private underscore fields
 }

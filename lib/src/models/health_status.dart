@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Health Status
-class HealthStatus<T> implements Model {
+class HealthStatus implements Model {
     /// Name of the service.
     final String name;
 
@@ -17,14 +17,11 @@ class HealthStatus<T> implements Model {
         required this.status,
     });
 
-    factory HealthStatus.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory HealthStatus.fromMap(Map<String, dynamic> map) {
         return HealthStatus(
-            name: 
-map['name'].toString(),
-            ping: 
-map['ping'],
-            status: 
-map['status'].toString(),
+            name: map['name'].toString(),
+            ping: map['ping'],
+            status: map['status'].toString(),
         );
     }
 
@@ -35,6 +32,4 @@ map['status'].toString(),
             "status": status,
         };
     }
-
-    // Public getters for private underscore fields
 }

@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// ResourceToken
-class ResourceToken<T> implements Model {
+class ResourceToken implements Model {
     /// Token ID.
     final String $id;
 
@@ -33,22 +33,15 @@ class ResourceToken<T> implements Model {
         required this.accessedAt,
     });
 
-    factory ResourceToken.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory ResourceToken.fromMap(Map<String, dynamic> map) {
         return ResourceToken(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            resourceId: 
-map['resourceId'].toString(),
-            resourceType: 
-map['resourceType'].toString(),
-            expire: 
-map['expire'].toString(),
-            secret: 
-map['secret'].toString(),
-            accessedAt: 
-map['accessedAt'].toString(),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            resourceId: map['resourceId'].toString(),
+            resourceType: map['resourceType'].toString(),
+            expire: map['expire'].toString(),
+            secret: map['secret'].toString(),
+            accessedAt: map['accessedAt'].toString(),
         );
     }
 
@@ -63,6 +56,4 @@ map['accessedAt'].toString(),
             "accessedAt": accessedAt,
         };
     }
-
-    // Public getters for private underscore fields
 }

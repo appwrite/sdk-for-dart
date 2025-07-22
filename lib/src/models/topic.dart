@@ -1,7 +1,7 @@
 part of '../../models.dart';
 
 /// Topic
-class Topic<T> implements Model {
+class Topic implements Model {
     /// Topic ID.
     final String $id;
 
@@ -37,24 +37,16 @@ class Topic<T> implements Model {
         required this.subscribe,
     });
 
-    factory Topic.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory Topic.fromMap(Map<String, dynamic> map) {
         return Topic(
-            $id: 
-map['\$id'].toString(),
-            $createdAt: 
-map['\$createdAt'].toString(),
-            $updatedAt: 
-map['\$updatedAt'].toString(),
-            name: 
-map['name'].toString(),
-            emailTotal: 
-map['emailTotal'],
-            smsTotal: 
-map['smsTotal'],
-            pushTotal: 
-map['pushTotal'],
-            subscribe: 
-List.from(map['subscribe'] ?? []),
+            $id: map['\$id'].toString(),
+            $createdAt: map['\$createdAt'].toString(),
+            $updatedAt: map['\$updatedAt'].toString(),
+            name: map['name'].toString(),
+            emailTotal: map['emailTotal'],
+            smsTotal: map['smsTotal'],
+            pushTotal: map['pushTotal'],
+            subscribe: List.from(map['subscribe'] ?? []),
         );
     }
 
@@ -70,6 +62,4 @@ List.from(map['subscribe'] ?? []),
             "subscribe": subscribe,
         };
     }
-
-    // Public getters for private underscore fields
 }

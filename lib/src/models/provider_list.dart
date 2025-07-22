@@ -1,24 +1,22 @@
 part of '../../models.dart';
 
 /// Provider list
-class ProviderList<T> implements Model {
-    /// Total number of providers documents that matched your query.
+class ProviderList implements Model {
+    /// Total number of providers rows that matched your query.
     final int total;
 
     /// List of providers.
-    final List<Provider<T>> providers;
+    final List<Provider> providers;
 
     ProviderList({
         required this.total,
         required this.providers,
     });
 
-    factory ProviderList.fromMap(Map<String, dynamic> map, [T Function(Map<String, dynamic>)? fromJson]) {
+    factory ProviderList.fromMap(Map<String, dynamic> map) {
         return ProviderList(
-            total: 
-map['total'],
-            providers: 
-List<Provider<T>>.from(map['providers'].map((p) => Provider.fromMap(p, fromJson))),
+            total: map['total'],
+            providers: List<Provider>.from(map['providers'].map((p) => Provider.fromMap(p))),
         );
     }
 
@@ -28,6 +26,4 @@ List<Provider<T>>.from(map['providers'].map((p) => Provider.fromMap(p, fromJson)
             "providers": providers.map((p) => p.toMap()).toList(),
         };
     }
-
-    // Public getters for private underscore fields
 }
