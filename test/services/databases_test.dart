@@ -949,6 +949,7 @@ void main() {
             final response = await databases.upsertDocuments(
                 databaseId: '<DATABASE_ID>',
                 collectionId: '<COLLECTION_ID>',
+                documents: [],
             );
             expect(response, isA<models.DocumentList>());
 
@@ -1037,6 +1038,7 @@ void main() {
                 databaseId: '<DATABASE_ID>',
                 collectionId: '<COLLECTION_ID>',
                 documentId: '<DOCUMENT_ID>',
+                data: {},
             );
             expect(response, isA<models.Document>());
 
