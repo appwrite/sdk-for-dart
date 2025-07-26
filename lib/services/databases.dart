@@ -1168,6 +1168,7 @@ class Databases extends Service {
   /// new collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
+  ///
   Future<models.DocumentList> upsertDocuments({
     required String databaseId,
     required String collectionId,
@@ -1376,6 +1377,66 @@ class Databases extends Service {
     );
 
     return res.data;
+  }
+
+  /// Decrement a specific attribute of a document by a given value.
+  Future<models.Document> decrementDocumentAttribute({
+    required String databaseId,
+    required String collectionId,
+    required String documentId,
+    required String attribute,
+    double? value,
+    double? min,
+  }) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{documentId}', documentId)
+            .replaceAll('{attribute}', attribute);
+
+    final Map<String, dynamic> apiParams = {'value': value, 'min': min};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Document.fromMap(res.data);
+  }
+
+  /// Increment a specific attribute of a document by a given value.
+  Future<models.Document> incrementDocumentAttribute({
+    required String databaseId,
+    required String collectionId,
+    required String documentId,
+    required String attribute,
+    double? value,
+    double? max,
+  }) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{documentId}', documentId)
+            .replaceAll('{attribute}', attribute);
+
+    final Map<String, dynamic> apiParams = {'value': value, 'max': max};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Document.fromMap(res.data);
   }
 
   /// List indexes in the collection.
