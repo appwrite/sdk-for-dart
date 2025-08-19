@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('HealthQueue', () {
-
     test('model', () {
       final model = HealthQueue(
         size: 8,

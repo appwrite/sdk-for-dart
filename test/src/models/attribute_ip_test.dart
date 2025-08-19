@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeIp', () {
-
     test('model', () {
       final model = AttributeIp(
         key: 'ipAddress',

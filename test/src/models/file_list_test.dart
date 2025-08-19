@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('FileList', () {
-
     test('model', () {
       final model = FileList(
         total: 5,

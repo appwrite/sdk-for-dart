@@ -7,6 +7,7 @@ part 'src/enums/o_auth_provider.dart';
 part 'src/enums/browser.dart';
 part 'src/enums/credit_card.dart';
 part 'src/enums/flag.dart';
+part 'src/enums/type.dart';
 part 'src/enums/relationship_type.dart';
 part 'src/enums/relation_mutate.dart';
 part 'src/enums/index_type.dart';

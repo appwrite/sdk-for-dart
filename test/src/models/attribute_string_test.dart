@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeString', () {
-
     test('model', () {
       final model = AttributeString(
         key: 'fullName',

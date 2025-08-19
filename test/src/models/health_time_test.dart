@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('HealthTime', () {
-
     test('model', () {
       final model = HealthTime(
         remoteTime: 1639490751,

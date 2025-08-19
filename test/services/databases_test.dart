@@ -77,7 +77,8 @@ void main() {
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'enabled': true,};
+                'enabled': true,
+                'type': 'legacy',};
 
 
             when(client.call(
@@ -99,7 +100,8 @@ void main() {
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'enabled': true,};
+                'enabled': true,
+                'type': 'legacy',};
 
 
             when(client.call(
@@ -120,7 +122,8 @@ void main() {
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'enabled': true,};
+                'enabled': true,
+                'type': 'legacy',};
 
 
             when(client.call(
@@ -1157,14 +1160,15 @@ void main() {
 
         test('test method createIndex()', () async {
             final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'index1',
                 'type': 'primary',
                 'status': 'available',
                 'error': 'string',
                 'attributes': [],
-                'lengths': [],
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+                'lengths': [],};
 
 
             when(client.call(
@@ -1185,14 +1189,15 @@ void main() {
 
         test('test method getIndex()', () async {
             final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'index1',
                 'type': 'primary',
                 'status': 'available',
                 'error': 'string',
                 'attributes': [],
-                'lengths': [],
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+                'lengths': [],};
 
 
             when(client.call(

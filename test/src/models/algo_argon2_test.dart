@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AlgoArgon2', () {
-
     test('model', () {
       final model = AlgoArgon2(
         type: 'argon2',

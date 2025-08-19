@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Currency', () {
-
     test('model', () {
       final model = Currency(
         symbol: '\$',

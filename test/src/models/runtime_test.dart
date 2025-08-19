@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Runtime', () {
-
     test('model', () {
       final model = Runtime(
         $id: 'python-3.8',

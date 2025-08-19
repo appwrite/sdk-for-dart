@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Bucket', () {
-
     test('model', () {
       final model = Bucket(
         $id: '5e5ea5c16897e',

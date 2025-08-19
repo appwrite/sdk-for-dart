@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeEnum', () {
-
     test('model', () {
       final model = AttributeEnum(
         key: 'status',

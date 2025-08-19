@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('MfaType', () {
-
     test('model', () {
       final model = MfaType(
         secret: '1',

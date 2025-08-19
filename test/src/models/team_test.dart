@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Team', () {
-
     test('model', () {
       final model = Team(
         $id: '5e5ea5c16897e',

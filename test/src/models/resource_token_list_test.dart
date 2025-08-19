@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('ResourceTokenList', () {
-
     test('model', () {
       final model = ResourceTokenList(
         total: 5,

@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeRelationship', () {
-
     test('model', () {
       final model = AttributeRelationship(
         key: 'fullName',

@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AlgoScrypt', () {
-
     test('model', () {
       final model = AlgoScrypt(
         type: 'scrypt',

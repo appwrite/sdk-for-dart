@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('BucketList', () {
-
     test('model', () {
       final model = BucketList(
         total: 5,

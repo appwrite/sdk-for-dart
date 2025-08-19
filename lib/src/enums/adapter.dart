@@ -1,12 +1,14 @@
 part of '../../enums.dart';
 
 enum Adapter {
-  static(value: 'static'),
-  ssr(value: 'ssr');
+    xstatic(value: 'static'),
+    ssr(value: 'ssr');
 
-  const Adapter({required this.value});
+    const Adapter({
+        required this.value
+    });
 
-  final String value;
+    final String value;
 
-  String toJson() => value;
+    String toJson() => value;
 }

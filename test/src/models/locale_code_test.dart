@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('LocaleCode', () {
-
     test('model', () {
       final model = LocaleCode(
         code: 'en-us',

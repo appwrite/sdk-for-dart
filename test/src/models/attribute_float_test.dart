@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeFloat', () {
-
     test('model', () {
       final model = AttributeFloat(
         key: 'percentageCompleted',

@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Variable', () {
-
     test('model', () {
       final model = Variable(
         $id: '5e5ea5c16897e',

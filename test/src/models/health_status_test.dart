@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('HealthStatus', () {
-
     test('model', () {
       final model = HealthStatus(
         name: 'database',

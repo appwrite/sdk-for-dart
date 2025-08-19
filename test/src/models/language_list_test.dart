@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('LanguageList', () {
-
     test('model', () {
       final model = LanguageList(
         total: 5,

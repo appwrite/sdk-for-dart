@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeDatetime', () {
-
     test('model', () {
       final model = AttributeDatetime(
         key: 'birthDay',

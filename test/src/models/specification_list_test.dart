@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('SpecificationList', () {
-
     test('model', () {
       final model = SpecificationList(
         total: 5,

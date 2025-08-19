@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('FunctionList', () {
-
     test('model', () {
       final model = FunctionList(
         total: 5,

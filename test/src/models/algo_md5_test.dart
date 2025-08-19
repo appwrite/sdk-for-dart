@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AlgoMd5', () {
-
     test('model', () {
       final model = AlgoMd5(
         type: 'md5',

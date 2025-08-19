@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('HealthAntivirus', () {
-
     test('model', () {
       final model = HealthAntivirus(
         version: '1.0.0',

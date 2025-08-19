@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Framework', () {
-
     test('model', () {
       final model = Framework(
         key: 'sveltekit',

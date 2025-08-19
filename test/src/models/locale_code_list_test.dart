@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('LocaleCodeList', () {
-
     test('model', () {
       final model = LocaleCodeList(
         total: 5,

@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Continent', () {
-
     test('model', () {
       final model = Continent(
         name: 'Europe',

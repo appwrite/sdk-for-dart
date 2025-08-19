@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('FrameworkAdapter', () {
-
     test('model', () {
       final model = FrameworkAdapter(
         key: 'static',

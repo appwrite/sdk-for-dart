@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('HealthCertificate', () {
-
     test('model', () {
       final model = HealthCertificate(
         name: '/CN=www.google.com',

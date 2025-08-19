@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Preferences', () {
-
     test('model', () {
       final model = Preferences(
         data: {},

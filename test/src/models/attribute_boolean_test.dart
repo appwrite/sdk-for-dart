@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeBoolean', () {
-
     test('model', () {
       final model = AttributeBoolean(
         key: 'isEnabled',

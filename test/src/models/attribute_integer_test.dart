@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeInteger', () {
-
     test('model', () {
       final model = AttributeInteger(
         key: 'count',

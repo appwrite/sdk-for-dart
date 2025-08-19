@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('FrameworkList', () {
-
     test('model', () {
       final model = FrameworkList(
         total: 5,

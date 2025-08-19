@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Specification', () {
-
     test('model', () {
       final model = Specification(
         memory: 512,

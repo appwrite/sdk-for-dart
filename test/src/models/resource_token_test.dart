@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('ResourceToken', () {
-
     test('model', () {
       final model = ResourceToken(
         $id: 'bb8ea5c16897e',

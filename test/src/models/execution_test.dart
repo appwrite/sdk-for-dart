@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Execution', () {
-
     test('model', () {
       final model = Execution(
         $id: '5e5ea5c16897e',

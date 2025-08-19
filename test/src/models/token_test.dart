@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Token', () {
-
     test('model', () {
       final model = Token(
         $id: 'bb8ea5c16897e',

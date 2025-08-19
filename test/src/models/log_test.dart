@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Log', () {
-
     test('model', () {
       final model = Log(
         event: 'account.sessions.create',

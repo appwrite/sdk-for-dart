@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('CurrencyList', () {
-
     test('model', () {
       final model = CurrencyList(
         total: 5,

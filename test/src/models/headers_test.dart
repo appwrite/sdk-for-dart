@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Headers', () {
-
     test('model', () {
       final model = Headers(
         name: 'Content-Type',

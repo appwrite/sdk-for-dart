@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeEmail', () {
-
     test('model', () {
       final model = AttributeEmail(
         key: 'userEmail',

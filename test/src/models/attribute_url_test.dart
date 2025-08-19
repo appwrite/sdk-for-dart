@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AttributeUrl', () {
-
     test('model', () {
       final model = AttributeUrl(
         key: 'githubUrl',

@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('IndexList', () {
-
     test('model', () {
       final model = IndexList(
         total: 5,

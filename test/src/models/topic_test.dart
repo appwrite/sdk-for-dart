@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Topic', () {
-
     test('model', () {
       final model = Topic(
         $id: '259125845563242502',

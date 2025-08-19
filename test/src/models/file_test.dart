@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('File', () {
-
     test('model', () {
       final model = File(
         $id: '5e5ea5c16897e',

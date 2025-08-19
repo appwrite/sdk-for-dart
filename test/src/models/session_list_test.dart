@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('SessionList', () {
-
     test('model', () {
       final model = SessionList(
         total: 5,

@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('RuntimeList', () {
-
     test('model', () {
       final model = RuntimeList(
         total: 5,

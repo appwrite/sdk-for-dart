@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('AlgoBcrypt', () {
-
     test('model', () {
       final model = AlgoBcrypt(
         type: 'bcrypt',

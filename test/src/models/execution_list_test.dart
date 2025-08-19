@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('ExecutionList', () {
-
     test('model', () {
       final model = ExecutionList(
         total: 5,
