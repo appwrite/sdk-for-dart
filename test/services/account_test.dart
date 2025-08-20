@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 import 'package:dart_appwrite/src/enums.dart';
 import 'package:dart_appwrite/src/response.dart';
 import 'dart:typed_data';
@@ -22,12 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future webAuth(
-    Uri? url, 
-    {
-        String? callbackUrlScheme,
-    }
-  ) async {
+  Future<String?> webAuth(Uri url) async {
     return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
@@ -259,7 +255,7 @@ void main() {
 
 
             final response = await account.createMfaAuthenticator(
-                type: 'totp',
+                type: enums.AuthenticatorType.totp,
             );
             expect(response, isA<models.MfaType>());
 
@@ -291,7 +287,7 @@ void main() {
 
 
             final response = await account.updateMfaAuthenticator(
-                type: 'totp',
+                type: enums.AuthenticatorType.totp,
                 otp: '<OTP>',
             );
             expect(response, isA<models.User>());
@@ -307,7 +303,7 @@ void main() {
 
 
             final response = await account.deleteMfaAuthenticator(
-                type: 'totp',
+                type: enums.AuthenticatorType.totp,
             );
         });
 
@@ -325,7 +321,7 @@ void main() {
 
 
             final response = await account.createMfaChallenge(
-                factor: 'email',
+                factor: enums.AuthenticationFactor.email,
             );
             expect(response, isA<models.MfaChallenge>());
 
@@ -1080,7 +1076,7 @@ void main() {
 
 
             final response = await account.createOAuth2Token(
-                provider: 'amazon',
+                provider: enums.OAuthProvider.amazon,
             );
         });
 

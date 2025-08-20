@@ -18,14 +18,14 @@ void main() {
       final map = model.toMap();
       final result = AttributeDatetime.fromMap(map);
 
-      expect(result.key, 'birthDay');
-      expect(result.type, 'datetime');
-      expect(result.status, 'available');
-      expect(result.error, 'string');
-      expect(result.xrequired, true);
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.format, 'datetime');
-    });
+            expect(result.key, 'birthDay');
+                  expect(result.type, 'datetime');
+                  expect(result.status, 'available');
+                  expect(result.error, 'string');
+                  expect(result.xrequired, true);
+                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.format, 'datetime');
+          });
   });
 }

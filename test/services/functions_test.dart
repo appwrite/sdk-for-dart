@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 import 'package:dart_appwrite/src/enums.dart';
 import 'package:dart_appwrite/src/response.dart';
 import 'dart:typed_data';
@@ -22,12 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future webAuth(
-    Uri? url, 
-    {
-        String? callbackUrlScheme,
-    }
-  ) async {
+  Future<String?> webAuth(Uri url) async {
     return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
@@ -111,7 +107,7 @@ void main() {
             final response = await functions.create(
                 functionId: '<FUNCTION_ID>',
                 name: '<NAME>',
-                runtime: 'node-14.5',
+                runtime: enums.Runtime.node145,
             );
             expect(response, isA<models.Func>());
 
@@ -494,7 +490,7 @@ void main() {
 
             final response = await functions.createVcsDeployment(
                 functionId: '<FUNCTION_ID>',
-                type: 'branch',
+                type: enums.VCSDeploymentType.branch,
                 reference: '<REFERENCE>',
             );
             expect(response, isA<models.Deployment>());

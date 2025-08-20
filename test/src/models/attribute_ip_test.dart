@@ -18,14 +18,14 @@ void main() {
       final map = model.toMap();
       final result = AttributeIp.fromMap(map);
 
-      expect(result.key, 'ipAddress');
-      expect(result.type, 'string');
-      expect(result.status, 'available');
-      expect(result.error, 'string');
-      expect(result.xrequired, true);
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.format, 'ip');
-    });
+            expect(result.key, 'ipAddress');
+                  expect(result.type, 'string');
+                  expect(result.status, 'available');
+                  expect(result.error, 'string');
+                  expect(result.xrequired, true);
+                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.format, 'ip');
+          });
   });
 }

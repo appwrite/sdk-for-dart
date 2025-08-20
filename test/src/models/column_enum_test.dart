@@ -19,15 +19,15 @@ void main() {
       final map = model.toMap();
       final result = ColumnEnum.fromMap(map);
 
-      expect(result.key, 'status');
-      expect(result.type, 'string');
-      expect(result.status, 'available');
-      expect(result.error, 'string');
-      expect(result.xrequired, true);
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.elements, []);
-      expect(result.format, 'enum');
-    });
+            expect(result.key, 'status');
+                  expect(result.type, 'string');
+                  expect(result.status, 'available');
+                  expect(result.error, 'string');
+                  expect(result.xrequired, true);
+                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.elements, []);
+                  expect(result.format, 'enum');
+          });
   });
 }

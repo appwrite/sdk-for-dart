@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 import 'package:dart_appwrite/src/enums.dart';
 import 'package:dart_appwrite/src/response.dart';
 import 'dart:typed_data';
@@ -22,12 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future webAuth(
-    Uri? url, 
-    {
-        String? callbackUrlScheme,
-    }
-  ) async {
+  Future<String?> webAuth(Uri url) async {
     return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
@@ -586,7 +582,7 @@ void main() {
 
             final response = await users.deleteMfaAuthenticator(
                 userId: '<USER_ID>',
-                type: 'totp',
+                type: enums.AuthenticatorType.totp,
             );
         });
 
@@ -954,7 +950,7 @@ void main() {
             final response = await users.createTarget(
                 userId: '<USER_ID>',
                 targetId: '<TARGET_ID>',
-                providerType: 'email',
+                providerType: enums.MessagingProviderType.email,
                 identifier: '<IDENTIFIER>',
             );
             expect(response, isA<models.Target>());

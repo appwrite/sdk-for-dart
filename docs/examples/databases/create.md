@@ -11,5 +11,4 @@ Database result = await databases.create(
     databaseId: '<DATABASE_ID>',
     name: '<NAME>',
     enabled: false, // (optional)
-    type: .tablesdb, // (optional)
 );

@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 import 'package:dart_appwrite/src/enums.dart';
 import 'package:dart_appwrite/src/response.dart';
 import 'dart:typed_data';
@@ -22,12 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future webAuth(
-    Uri? url, 
-    {
-        String? callbackUrlScheme,
-    }
-  ) async {
+  Future<String?> webAuth(Uri url) async {
     return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
@@ -695,7 +691,7 @@ void main() {
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 relatedTableId: '<RELATED_TABLE_ID>',
-                type: 'oneToOne',
+                type: enums.RelationshipType.oneToOne,
             );
             expect(response, isA<models.ColumnRelationship>());
 
@@ -914,7 +910,7 @@ void main() {
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
-                type: 'key',
+                type: enums.IndexType.key,
                 columns: [],
             );
             expect(response, isA<models.ColumnIndex>());
