@@ -2,27 +2,28 @@ part of '../../models.dart';
 
 /// Runtimes List
 class RuntimeList implements Model {
-  /// Total number of runtimes rows that matched your query.
-  final int total;
+    /// Total number of runtimes that matched your query.
+    final int total;
 
-  /// List of runtimes.
-  final List<Runtime> runtimes;
+    /// List of runtimes.
+    final List<Runtime> runtimes;
 
-  RuntimeList({required this.total, required this.runtimes});
+    RuntimeList({
+        required this.total,
+        required this.runtimes,
+    });
 
-  factory RuntimeList.fromMap(Map<String, dynamic> map) {
-    return RuntimeList(
-      total: map['total'],
-      runtimes: List<Runtime>.from(
-        map['runtimes'].map((p) => Runtime.fromMap(p)),
-      ),
-    );
-  }
+    factory RuntimeList.fromMap(Map<String, dynamic> map) {
+        return RuntimeList(
+            total: map['total'],
+            runtimes: List<Runtime>.from(map['runtimes'].map((p) => Runtime.fromMap(p))),
+        );
+    }
 
-  Map<String, dynamic> toMap() {
-    return {
-      "total": total,
-      "runtimes": runtimes.map((p) => p.toMap()).toList(),
-    };
-  }
+    Map<String, dynamic> toMap() {
+        return {
+            "total": total,
+            "runtimes": runtimes.map((p) => p.toMap()).toList(),
+        };
+    }
 }

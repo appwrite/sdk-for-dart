@@ -41,13 +41,13 @@ class MockClient extends Mock implements Client {
 }
 
 void main() {
-    group('TablesDb test', () {
+    group('TablesDB test', () {
         late MockClient client;
-        late TablesDb tablesDb;
+        late TablesDB tablesDB;
 
         setUp(() {
             client = MockClient();
-            tablesDb = TablesDb(client);
+            tablesDB = TablesDB(client);
         });
 
         test('test method list()', () async {
@@ -61,7 +61,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.list(
+            final response = await tablesDB.list(
             );
             expect(response, isA<models.DatabaseList>());
 
@@ -82,7 +82,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.create(
+            final response = await tablesDB.create(
                 databaseId: '<DATABASE_ID>',
                 name: '<NAME>',
             );
@@ -105,7 +105,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.get(
+            final response = await tablesDB.get(
                 databaseId: '<DATABASE_ID>',
             );
             expect(response, isA<models.Database>());
@@ -127,7 +127,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.update(
+            final response = await tablesDB.update(
                 databaseId: '<DATABASE_ID>',
                 name: '<NAME>',
             );
@@ -143,7 +143,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.delete(
+            final response = await tablesDB.delete(
                 databaseId: '<DATABASE_ID>',
             );
         });
@@ -159,7 +159,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.listTables(
+            final response = await tablesDB.listTables(
                 databaseId: '<DATABASE_ID>',
             );
             expect(response, isA<models.TableList>());
@@ -185,7 +185,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createTable(
+            final response = await tablesDB.createTable(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 name: '<NAME>',
@@ -213,7 +213,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.getTable(
+            final response = await tablesDB.getTable(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
             );
@@ -240,7 +240,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateTable(
+            final response = await tablesDB.updateTable(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 name: '<NAME>',
@@ -257,7 +257,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.deleteTable(
+            final response = await tablesDB.deleteTable(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
             );
@@ -274,7 +274,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.listColumns(
+            final response = await tablesDB.listColumns(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
             );
@@ -298,7 +298,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createBooleanColumn(
+            final response = await tablesDB.createBooleanColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -324,7 +324,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateBooleanColumn(
+            final response = await tablesDB.updateBooleanColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -352,7 +352,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createDatetimeColumn(
+            final response = await tablesDB.createDatetimeColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -379,7 +379,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateDatetimeColumn(
+            final response = await tablesDB.updateDatetimeColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -407,7 +407,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createEmailColumn(
+            final response = await tablesDB.createEmailColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -434,7 +434,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateEmailColumn(
+            final response = await tablesDB.updateEmailColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -463,7 +463,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createEnumColumn(
+            final response = await tablesDB.createEnumColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -492,7 +492,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateEnumColumn(
+            final response = await tablesDB.updateEnumColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -520,7 +520,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createFloatColumn(
+            final response = await tablesDB.createFloatColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -546,7 +546,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateFloatColumn(
+            final response = await tablesDB.updateFloatColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -573,7 +573,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createIntegerColumn(
+            final response = await tablesDB.createIntegerColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -599,7 +599,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateIntegerColumn(
+            final response = await tablesDB.updateIntegerColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -627,7 +627,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createIpColumn(
+            final response = await tablesDB.createIpColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -654,7 +654,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateIpColumn(
+            final response = await tablesDB.updateIpColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -687,7 +687,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createRelationshipColumn(
+            final response = await tablesDB.createRelationshipColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 relatedTableId: '<RELATED_TABLE_ID>',
@@ -714,7 +714,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createStringColumn(
+            final response = await tablesDB.createStringColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -742,7 +742,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateStringColumn(
+            final response = await tablesDB.updateStringColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -770,7 +770,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createUrlColumn(
+            final response = await tablesDB.createUrlColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -797,7 +797,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateUrlColumn(
+            final response = await tablesDB.updateUrlColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -816,7 +816,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.getColumn(
+            final response = await tablesDB.getColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -831,7 +831,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.deleteColumn(
+            final response = await tablesDB.deleteColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -860,7 +860,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateRelationshipColumn(
+            final response = await tablesDB.updateRelationshipColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -880,7 +880,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.listIndexes(
+            final response = await tablesDB.listIndexes(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
             );
@@ -906,7 +906,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createIndex(
+            final response = await tablesDB.createIndex(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -935,7 +935,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.getIndex(
+            final response = await tablesDB.getIndex(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -952,7 +952,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.deleteIndex(
+            final response = await tablesDB.deleteIndex(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 key: '',
@@ -970,7 +970,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.listRows(
+            final response = await tablesDB.listRows(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
             );
@@ -994,7 +994,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createRow(
+            final response = await tablesDB.createRow(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rowId: '<ROW_ID>',
@@ -1015,7 +1015,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.createRows(
+            final response = await tablesDB.createRows(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rows: [],
@@ -1035,7 +1035,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.upsertRows(
+            final response = await tablesDB.upsertRows(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rows: [],
@@ -1055,7 +1055,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateRows(
+            final response = await tablesDB.updateRows(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
             );
@@ -1074,7 +1074,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.deleteRows(
+            final response = await tablesDB.deleteRows(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
             );
@@ -1098,7 +1098,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.getRow(
+            final response = await tablesDB.getRow(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rowId: '<ROW_ID>',
@@ -1123,7 +1123,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.upsertRow(
+            final response = await tablesDB.upsertRow(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rowId: '<ROW_ID>',
@@ -1148,7 +1148,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.updateRow(
+            final response = await tablesDB.updateRow(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rowId: '<ROW_ID>',
@@ -1165,7 +1165,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.deleteRow(
+            final response = await tablesDB.deleteRow(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rowId: '<ROW_ID>',
@@ -1188,7 +1188,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.decrementRowColumn(
+            final response = await tablesDB.decrementRowColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rowId: '<ROW_ID>',
@@ -1214,7 +1214,7 @@ void main() {
             )).thenAnswer((_) async => Response(data: data));
 
 
-            final response = await tablesDb.incrementRowColumn(
+            final response = await tablesDB.incrementRowColumn(
                 databaseId: '<DATABASE_ID>',
                 tableId: '<TABLE_ID>',
                 rowId: '<ROW_ID>',

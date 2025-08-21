@@ -5,8 +5,8 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-TablesDb tablesDb = TablesDb(client);
+TablesDB tablesDB = TablesDB(client);
 
-Database result = await tablesDb.get(
+Database result = await tablesDB.get(
     databaseId: '<DATABASE_ID>',
 );

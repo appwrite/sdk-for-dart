@@ -37,7 +37,7 @@ part 'services/locale.dart';
 part 'services/messaging.dart';
 part 'services/sites.dart';
 part 'services/storage.dart';
-part 'services/tables-db.dart';
+part 'services/tables-d-b.dart';
 part 'services/teams.dart';
 part 'services/tokens.dart';
 part 'services/users.dart';

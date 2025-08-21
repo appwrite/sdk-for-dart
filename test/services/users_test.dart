@@ -572,6 +572,39 @@ void main() {
 
         });
 
+        test('test method updateMFA()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'John Doe',
+                'registration': '2020-10-15T06:38:00.000+00:00',
+                'status': true,
+                'labels': [],
+                'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+                'email': 'john@appwrite.io',
+                'phone': '+4930901820',
+                'emailVerification': true,
+                'phoneVerification': true,
+                'mfa': true,
+                'prefs': <String, dynamic>{},
+                'targets': [],
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.updateMFA(
+                userId: '<USER_ID>',
+                mfa: true,
+            );
+            expect(response, isA<models.User>());
+
+        });
+
         test('test method deleteMfaAuthenticator()', () async {
             final data = '';
 
@@ -581,6 +614,20 @@ void main() {
 
 
             final response = await users.deleteMfaAuthenticator(
+                userId: '<USER_ID>',
+                type: enums.AuthenticatorType.totp,
+            );
+        });
+
+        test('test method deleteMFAAuthenticator()', () async {
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.deleteMFAAuthenticator(
                 userId: '<USER_ID>',
                 type: enums.AuthenticatorType.totp,
             );
@@ -606,6 +653,26 @@ void main() {
 
         });
 
+        test('test method listMFAFactors()', () async {
+            final Map<String, dynamic> data = {
+                'totp': true,
+                'phone': true,
+                'email': true,
+                'recoveryCode': true,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.listMFAFactors(
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.MfaFactors>());
+
+        });
+
         test('test method getMfaRecoveryCodes()', () async {
             final Map<String, dynamic> data = {
                 'recoveryCodes': [],};
@@ -617,6 +684,23 @@ void main() {
 
 
             final response = await users.getMfaRecoveryCodes(
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.MfaRecoveryCodes>());
+
+        });
+
+        test('test method getMFARecoveryCodes()', () async {
+            final Map<String, dynamic> data = {
+                'recoveryCodes': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.getMFARecoveryCodes(
                 userId: '<USER_ID>',
             );
             expect(response, isA<models.MfaRecoveryCodes>());
@@ -640,6 +724,23 @@ void main() {
 
         });
 
+        test('test method updateMFARecoveryCodes()', () async {
+            final Map<String, dynamic> data = {
+                'recoveryCodes': [],};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.updateMFARecoveryCodes(
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.MfaRecoveryCodes>());
+
+        });
+
         test('test method createMfaRecoveryCodes()', () async {
             final Map<String, dynamic> data = {
                 'recoveryCodes': [],};
@@ -651,6 +752,23 @@ void main() {
 
 
             final response = await users.createMfaRecoveryCodes(
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.MfaRecoveryCodes>());
+
+        });
+
+        test('test method createMFARecoveryCodes()', () async {
+            final Map<String, dynamic> data = {
+                'recoveryCodes': [],};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await users.createMFARecoveryCodes(
                 userId: '<USER_ID>',
             );
             expect(response, isA<models.MfaRecoveryCodes>());

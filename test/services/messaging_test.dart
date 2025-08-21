@@ -200,6 +200,33 @@ void main() {
 
         });
 
+        test('test method createSMS()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'providerType': 'email',
+                'topics': [],
+                'users': [],
+                'targets': [],
+                'deliveredTotal': 1,
+                'data': <String, dynamic>{},
+                'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await messaging.createSMS(
+                messageId: '<MESSAGE_ID>',
+                content: '<CONTENT>',
+            );
+            expect(response, isA<models.Message>());
+
+        });
+
         test('test method updateSms()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -220,6 +247,32 @@ void main() {
 
 
             final response = await messaging.updateSms(
+                messageId: '<MESSAGE_ID>',
+            );
+            expect(response, isA<models.Message>());
+
+        });
+
+        test('test method updateSMS()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'providerType': 'email',
+                'topics': [],
+                'users': [],
+                'targets': [],
+                'deliveredTotal': 1,
+                'data': <String, dynamic>{},
+                'status': 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await messaging.updateSMS(
                 messageId: '<MESSAGE_ID>',
             );
             expect(response, isA<models.Message>());
@@ -343,6 +396,31 @@ void main() {
 
         });
 
+        test('test method createAPNSProvider()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Mailgun',
+                'provider': 'mailgun',
+                'enabled': true,
+                'type': 'sms',
+                'credentials': <String, dynamic>{},};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await messaging.createAPNSProvider(
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
+            );
+            expect(response, isA<models.Provider>());
+
+        });
+
         test('test method updateApnsProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -361,6 +439,30 @@ void main() {
 
 
             final response = await messaging.updateApnsProvider(
+                providerId: '<PROVIDER_ID>',
+            );
+            expect(response, isA<models.Provider>());
+
+        });
+
+        test('test method updateAPNSProvider()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Mailgun',
+                'provider': 'mailgun',
+                'enabled': true,
+                'type': 'sms',
+                'credentials': <String, dynamic>{},};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await messaging.updateAPNSProvider(
                 providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
@@ -392,6 +494,31 @@ void main() {
 
         });
 
+        test('test method createFCMProvider()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Mailgun',
+                'provider': 'mailgun',
+                'enabled': true,
+                'type': 'sms',
+                'credentials': <String, dynamic>{},};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await messaging.createFCMProvider(
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
+            );
+            expect(response, isA<models.Provider>());
+
+        });
+
         test('test method updateFcmProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -410,6 +537,30 @@ void main() {
 
 
             final response = await messaging.updateFcmProvider(
+                providerId: '<PROVIDER_ID>',
+            );
+            expect(response, isA<models.Provider>());
+
+        });
+
+        test('test method updateFCMProvider()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Mailgun',
+                'provider': 'mailgun',
+                'enabled': true,
+                'type': 'sms',
+                'credentials': <String, dynamic>{},};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await messaging.updateFCMProvider(
                 providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
@@ -589,6 +740,32 @@ void main() {
 
         });
 
+        test('test method createSMTPProvider()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Mailgun',
+                'provider': 'mailgun',
+                'enabled': true,
+                'type': 'sms',
+                'credentials': <String, dynamic>{},};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await messaging.createSMTPProvider(
+                providerId: '<PROVIDER_ID>',
+                name: '<NAME>',
+                host: '<HOST>',
+            );
+            expect(response, isA<models.Provider>());
+
+        });
+
         test('test method updateSmtpProvider()', () async {
             final Map<String, dynamic> data = {
                 '\$id': '5e5ea5c16897e',
@@ -607,6 +784,30 @@ void main() {
 
 
             final response = await messaging.updateSmtpProvider(
+                providerId: '<PROVIDER_ID>',
+            );
+            expect(response, isA<models.Provider>());
+
+        });
+
+        test('test method updateSMTPProvider()', () async {
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'Mailgun',
+                'provider': 'mailgun',
+                'enabled': true,
+                'type': 'sms',
+                'credentials': <String, dynamic>{},};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await messaging.updateSMTPProvider(
                 providerId: '<PROVIDER_ID>',
             );
             expect(response, isA<models.Provider>());
