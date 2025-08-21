@@ -2,76 +2,76 @@ part of '../../models.dart';
 
 /// ColumnIP
 class ColumnIp implements Model {
-    /// Column Key.
-    final String key;
+  /// Column Key.
+  final String key;
 
-    /// Column type.
-    final String type;
+  /// Column type.
+  final String type;
 
-    /// Column status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
-    final String status;
+  /// Column status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
+  final String status;
 
-    /// Error message. Displays error generated on failure of creating or deleting an column.
-    final String error;
+  /// Error message. Displays error generated on failure of creating or deleting an column.
+  final String error;
 
-    /// Is column required?
-    final bool xrequired;
+  /// Is column required?
+  final bool xrequired;
 
-    /// Is column an array?
-    final bool? array;
+  /// Is column an array?
+  final bool? array;
 
-    /// Column creation date in ISO 8601 format.
-    final String $createdAt;
+  /// Column creation date in ISO 8601 format.
+  final String $createdAt;
 
-    /// Column update date in ISO 8601 format.
-    final String $updatedAt;
+  /// Column update date in ISO 8601 format.
+  final String $updatedAt;
 
-    /// String format.
-    final String format;
+  /// String format.
+  final String format;
 
-    /// Default value for attribute when not provided. Cannot be set when attribute is required.
-    final String? xdefault;
+  /// Default value for attribute when not provided. Cannot be set when attribute is required.
+  final String? xdefault;
 
-    ColumnIp({
-        required this.key,
-        required this.type,
-        required this.status,
-        required this.error,
-        required this.xrequired,
-        this.array,
-        required this.$createdAt,
-        required this.$updatedAt,
-        required this.format,
-        this.xdefault,
-    });
+  ColumnIp({
+    required this.key,
+    required this.type,
+    required this.status,
+    required this.error,
+    required this.xrequired,
+    this.array,
+    required this.$createdAt,
+    required this.$updatedAt,
+    required this.format,
+    this.xdefault,
+  });
 
-    factory ColumnIp.fromMap(Map<String, dynamic> map) {
-        return ColumnIp(
-            key: map['key'].toString(),
-            type: map['type'].toString(),
-            status: map['status'].toString(),
-            error: map['error'].toString(),
-            xrequired: map['required'],
-            array: map['array'],
-            $createdAt: map['\$createdAt'].toString(),
-            $updatedAt: map['\$updatedAt'].toString(),
-            format: map['format'].toString(),
-            xdefault: map['default']?.toString(),
-        );
-    }
+  factory ColumnIp.fromMap(Map<String, dynamic> map) {
+    return ColumnIp(
+      key: map['key'].toString(),
+      type: map['type'].toString(),
+      status: map['status'].toString(),
+      error: map['error'].toString(),
+      xrequired: map['required'],
+      array: map['array'],
+      $createdAt: map['\$createdAt'].toString(),
+      $updatedAt: map['\$updatedAt'].toString(),
+      format: map['format'].toString(),
+      xdefault: map['default']?.toString(),
+    );
+  }
 
-    Map<String, dynamic> toMap() {
-        return {
-            "key": key,
-            "type": type,
-            "status": status,
-            "error": error,
-            "required": xrequired,
-            "array": array,
-            "\$createdAt": $createdAt,
-            "\$updatedAt": $updatedAt,
-            "format": format,
-            "default": xdefault,
-        };
-    }
+  Map<String, dynamic> toMap() {
+    return {
+      "key": key,
+      "type": type,
+      "status": status,
+      "error": error,
+      "required": xrequired,
+      "array": array,
+      "\$createdAt": $createdAt,
+      "\$updatedAt": $updatedAt,
+      "format": format,
+      "default": xdefault,
+    };
+  }
 }
