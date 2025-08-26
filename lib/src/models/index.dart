@@ -2,7 +2,16 @@ part of '../../models.dart';
 
 /// Index
 class Index implements Model {
-  /// Index Key.
+  /// Index ID.
+  final String $id;
+
+  /// Index creation date in ISO 8601 format.
+  final String $createdAt;
+
+  /// Index update date in ISO 8601 format.
+  final String $updatedAt;
+
+  /// Index key.
   final String key;
 
   /// Index type.
@@ -23,13 +32,10 @@ class Index implements Model {
   /// Index orders.
   final List<String>? orders;
 
-  /// Index creation date in ISO 8601 format.
-  final String $createdAt;
-
-  /// Index update date in ISO 8601 format.
-  final String $updatedAt;
-
   Index({
+    required this.$id,
+    required this.$createdAt,
+    required this.$updatedAt,
     required this.key,
     required this.type,
     required this.status,
@@ -37,12 +43,13 @@ class Index implements Model {
     required this.attributes,
     required this.lengths,
     this.orders,
-    required this.$createdAt,
-    required this.$updatedAt,
   });
 
   factory Index.fromMap(Map<String, dynamic> map) {
     return Index(
+      $id: map['\$id'].toString(),
+      $createdAt: map['\$createdAt'].toString(),
+      $updatedAt: map['\$updatedAt'].toString(),
       key: map['key'].toString(),
       type: map['type'].toString(),
       status: map['status'].toString(),
@@ -50,13 +57,14 @@ class Index implements Model {
       attributes: List.from(map['attributes'] ?? []),
       lengths: List.from(map['lengths'] ?? []),
       orders: List.from(map['orders'] ?? []),
-      $createdAt: map['\$createdAt'].toString(),
-      $updatedAt: map['\$updatedAt'].toString(),
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      "\$id": $id,
+      "\$createdAt": $createdAt,
+      "\$updatedAt": $updatedAt,
       "key": key,
       "type": type,
       "status": status,
@@ -64,8 +72,6 @@ class Index implements Model {
       "attributes": attributes,
       "lengths": lengths,
       "orders": orders,
-      "\$createdAt": $createdAt,
-      "\$updatedAt": $updatedAt,
     };
   }
 }

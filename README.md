@@ -2,12 +2,12 @@
 
 [![pub package](https://img.shields.io/pub/v/dart_appwrite.svg?style=flat-square)](https://pub.dartlang.org/packages/dart_appwrite)
 ![License](https://img.shields.io/github/license/appwrite/sdk-for-dart.svg?style=flat-square)
-![Version](https://img.shields.io/badge/api%20version-1.7.x-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/api%20version-1.8.x-blue.svg?style=flat-square)
 [![Build Status](https://img.shields.io/travis/com/appwrite/sdk-generator?style=flat-square)](https://travis-ci.com/appwrite/sdk-generator)
 [![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
-**This SDK is compatible with Appwrite server version 1.7.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-dart/releases).**
+**This SDK is compatible with Appwrite server version 1.8.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-dart/releases).**
 
  > This is the Dart SDK for integrating with Appwrite from your Dart server-side code. If you're looking for the Flutter SDK you should check [appwrite/sdk-for-flutter](https://github.com/appwrite/sdk-for-flutter)
 
@@ -23,7 +23,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yml
 dependencies:
-  dart_appwrite: ^16.2.0
+  dart_appwrite: ^17.0.0
 ```
 
 You can install packages from the command line:
@@ -39,38 +39,29 @@ dart pub add dart_appwrite
 Once you add the dependencies, its extremely easy to get started with the SDK; All you need to do is import the package in your code, set your Appwrite credentials, and start making API calls. Below is a simple example:
 
 ```dart
-import 'package:dart_appwrite/dart_appwrite.dart';
+Client client = Client()
+  .setProject('<YOUR_PROJECT_ID>')
+  .setKey('<YOUR_API_KEY>');
 
-void main() async {
-  Client client = Client()
-    .setEndpoint('http://[HOSTNAME_OR_IP]/v1') // Make sure your endpoint is accessible
-    .setProject('5ff3379a01d25') // Your project ID
-    .setKey('cd868c7af8bdc893b4...93b7535db89')
-    .setSelfSigned(); // Use only on dev mode with a self-signed SSL cert
+Users users = Users(client);
 
-  Users users = Users(client);
-
-  try {
-    final user = await users.create(userId: ID.unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
-    print(user.toMap());
-  } on AppwriteException catch(e) {
-    print(e.message);
-  }
-}
+User user = await users.create(
+  userId: ID.unique(),
+  email: 'email@example.com',
+  phone: '+123456789',
+  password: 'password',
+  name: 'Walter O'Brien'
+);
 ```
 
 ### Error handling
 The Appwrite Dart SDK raises `AppwriteException` object with `message`, `code` and `response` properties. You can handle any errors by catching `AppwriteException` and present the `message` to the user or handle it yourself based on the provided error information. Below is an example.
 
 ```dart
-Users users = Users(client);
-
 try {
-  final user = await users.create(userId: ID.unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
-  print(user.toMap());
+  User user = await users.create(...);
 } on AppwriteException catch(e) {
-  //show message to user or do other operation based on error as required
-  print(e.message);
+  // Handle the error
 }
 ```
 

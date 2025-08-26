@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Variables List
 class VariableList implements Model {
-  /// Total number of variables documents that matched your query.
+  /// Total number of variables that matched your query.
   final int total;
 
   /// List of variables.

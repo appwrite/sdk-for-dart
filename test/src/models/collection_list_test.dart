@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('CollectionList', () {
-
     test('model', () {
       final model = CollectionList(
         total: 5,
@@ -13,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = CollectionList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.collections, []);
-    });
+            expect(result.total, 5);
+                  expect(result.collections, []);
+          });
   });
 }

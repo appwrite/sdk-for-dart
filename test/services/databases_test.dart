@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 import 'package:dart_appwrite/src/enums.dart';
 import 'package:dart_appwrite/src/response.dart';
 import 'dart:typed_data';
@@ -22,12 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future webAuth(
-    Uri? url, 
-    {
-        String? callbackUrlScheme,
-    }
-  ) async {
+  Future<String?> webAuth(Uri url) async {
     return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
@@ -77,7 +73,8 @@ void main() {
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'enabled': true,};
+                'enabled': true,
+                'type': 'legacy',};
 
 
             when(client.call(
@@ -99,7 +96,8 @@ void main() {
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'enabled': true,};
+                'enabled': true,
+                'type': 'legacy',};
 
 
             when(client.call(
@@ -120,7 +118,8 @@ void main() {
                 'name': 'My Database',
                 '\$createdAt': '2020-10-15T06:38:00.000+00:00',
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'enabled': true,};
+                'enabled': true,
+                'type': 'legacy',};
 
 
             when(client.call(
@@ -692,7 +691,7 @@ void main() {
                 databaseId: '<DATABASE_ID>',
                 collectionId: '<COLLECTION_ID>',
                 relatedCollectionId: '<RELATED_COLLECTION_ID>',
-                type: 'oneToOne',
+                type: enums.RelationshipType.oneToOne,
             );
             expect(response, isA<models.AttributeRelationship>());
 
@@ -1157,14 +1156,15 @@ void main() {
 
         test('test method createIndex()', () async {
             final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'index1',
                 'type': 'primary',
                 'status': 'available',
                 'error': 'string',
                 'attributes': [],
-                'lengths': [],
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+                'lengths': [],};
 
 
             when(client.call(
@@ -1176,7 +1176,7 @@ void main() {
                 databaseId: '<DATABASE_ID>',
                 collectionId: '<COLLECTION_ID>',
                 key: '',
-                type: 'key',
+                type: enums.IndexType.key,
                 attributes: [],
             );
             expect(response, isA<models.Index>());
@@ -1185,14 +1185,15 @@ void main() {
 
         test('test method getIndex()', () async {
             final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'key': 'index1',
                 'type': 'primary',
                 'status': 'available',
                 'error': 'string',
                 'attributes': [],
-                'lengths': [],
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+                'lengths': [],};
 
 
             when(client.call(

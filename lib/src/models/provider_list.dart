@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Provider list
 class ProviderList implements Model {
-  /// Total number of providers documents that matched your query.
+  /// Total number of providers that matched your query.
   final int total;
 
   /// List of providers.

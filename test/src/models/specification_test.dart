@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Specification', () {
-
     test('model', () {
       final model = Specification(
         memory: 512,
@@ -15,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = Specification.fromMap(map);
 
-      expect(result.memory, 512);
-      expect(result.cpus, 1);
-      expect(result.enabled, true);
-      expect(result.slug, 's-1vcpu-512mb');
-    });
+            expect(result.memory, 512);
+                  expect(result.cpus, 1);
+                  expect(result.enabled, true);
+                  expect(result.slug, 's-1vcpu-512mb');
+          });
   });
 }

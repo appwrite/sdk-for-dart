@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('HealthStatus', () {
-
     test('model', () {
       final model = HealthStatus(
         name: 'database',
@@ -14,9 +13,9 @@ void main() {
       final map = model.toMap();
       final result = HealthStatus.fromMap(map);
 
-      expect(result.name, 'database');
-      expect(result.ping, 128);
-      expect(result.status, 'pass');
-    });
+            expect(result.name, 'database');
+                  expect(result.ping, 128);
+                  expect(result.status, 'pass');
+          });
   });
 }

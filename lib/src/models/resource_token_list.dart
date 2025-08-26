@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Resource Tokens List
 class ResourceTokenList implements Model {
-  /// Total number of tokens documents that matched your query.
+  /// Total number of tokens that matched your query.
   final int total;
 
   /// List of tokens.

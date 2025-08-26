@@ -514,6 +514,9 @@ class Users extends Service {
   }
 
   /// Enable or disable MFA on a user account.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Users.updateMFA` instead.',
+  )
   Future<models.User> updateMfa({
     required String userId,
     required bool mfa,
@@ -534,7 +537,31 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
+  /// Enable or disable MFA on a user account.
+  Future<models.User> updateMFA({
+    required String userId,
+    required bool mfa,
+  }) async {
+    final String apiPath = '/users/{userId}/mfa'.replaceAll('{userId}', userId);
+
+    final Map<String, dynamic> apiParams = {'mfa': mfa};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.User.fromMap(res.data);
+  }
+
   /// Delete an authenticator app.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Users.deleteMFAAuthenticator` instead.',
+  )
   Future deleteMfaAuthenticator({
     required String userId,
     required enums.AuthenticatorType type,
@@ -557,8 +584,55 @@ class Users extends Service {
     return res.data;
   }
 
+  /// Delete an authenticator app.
+  Future deleteMFAAuthenticator({
+    required String userId,
+    required enums.AuthenticatorType type,
+  }) async {
+    final String apiPath = '/users/{userId}/mfa/authenticators/{type}'
+        .replaceAll('{userId}', userId)
+        .replaceAll('{type}', type.value);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
+
   /// List the factors available on the account to be used as a MFA challange.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Users.listMFAFactors` instead.',
+  )
   Future<models.MfaFactors> listMfaFactors({required String userId}) async {
+    final String apiPath = '/users/{userId}/mfa/factors'.replaceAll(
+      '{userId}',
+      userId,
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {};
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.MfaFactors.fromMap(res.data);
+  }
+
+  /// List the factors available on the account to be used as a MFA challange.
+  Future<models.MfaFactors> listMFAFactors({required String userId}) async {
     final String apiPath = '/users/{userId}/mfa/factors'.replaceAll(
       '{userId}',
       userId,
@@ -582,7 +656,36 @@ class Users extends Service {
   /// Before getting codes, they must be generated using
   /// [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
   /// method.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Users.getMFARecoveryCodes` instead.',
+  )
   Future<models.MfaRecoveryCodes> getMfaRecoveryCodes({
+    required String userId,
+  }) async {
+    final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
+      '{userId}',
+      userId,
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {};
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.MfaRecoveryCodes.fromMap(res.data);
+  }
+
+  /// Get recovery codes that can be used as backup for MFA flow by User ID.
+  /// Before getting codes, they must be generated using
+  /// [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+  /// method.
+  Future<models.MfaRecoveryCodes> getMFARecoveryCodes({
     required String userId,
   }) async {
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
@@ -608,7 +711,36 @@ class Users extends Service {
   /// ID. Before regenerating codes, they must be first generated using
   /// [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
   /// method.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Users.updateMFARecoveryCodes` instead.',
+  )
   Future<models.MfaRecoveryCodes> updateMfaRecoveryCodes({
+    required String userId,
+  }) async {
+    final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
+      '{userId}',
+      userId,
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.MfaRecoveryCodes.fromMap(res.data);
+  }
+
+  /// Regenerate recovery codes that can be used as backup for MFA flow by User
+  /// ID. Before regenerating codes, they must be first generated using
+  /// [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+  /// method.
+  Future<models.MfaRecoveryCodes> updateMFARecoveryCodes({
     required String userId,
   }) async {
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
@@ -634,7 +766,36 @@ class Users extends Service {
   /// codes can be used as a MFA verification type in
   /// [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
   /// method by client SDK.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Users.createMFARecoveryCodes` instead.',
+  )
   Future<models.MfaRecoveryCodes> createMfaRecoveryCodes({
+    required String userId,
+  }) async {
+    final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
+      '{userId}',
+      userId,
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.MfaRecoveryCodes.fromMap(res.data);
+  }
+
+  /// Generate recovery codes used as backup for MFA flow for User ID. Recovery
+  /// codes can be used as a MFA verification type in
+  /// [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+  /// method by client SDK.
+  Future<models.MfaRecoveryCodes> createMFARecoveryCodes({
     required String userId,
   }) async {
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(

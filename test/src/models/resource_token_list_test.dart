@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('ResourceTokenList', () {
-
     test('model', () {
       final model = ResourceTokenList(
         total: 5,
@@ -13,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = ResourceTokenList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.tokens, []);
-    });
+            expect(result.total, 5);
+                  expect(result.tokens, []);
+          });
   });
 }

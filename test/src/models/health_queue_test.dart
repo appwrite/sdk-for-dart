@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('HealthQueue', () {
-
     test('model', () {
       final model = HealthQueue(
         size: 8,
@@ -12,7 +11,7 @@ void main() {
       final map = model.toMap();
       final result = HealthQueue.fromMap(map);
 
-      expect(result.size, 8);
-    });
+            expect(result.size, 8);
+          });
   });
 }

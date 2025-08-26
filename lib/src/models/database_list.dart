@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Databases List
 class DatabaseList implements Model {
-  /// Total number of databases documents that matched your query.
+  /// Total number of databases that matched your query.
   final int total;
 
   /// List of databases.

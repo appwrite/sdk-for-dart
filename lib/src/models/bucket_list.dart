@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Buckets List
 class BucketList implements Model {
-  /// Total number of buckets documents that matched your query.
+  /// Total number of buckets that matched your query.
   final int total;
 
   /// List of buckets.

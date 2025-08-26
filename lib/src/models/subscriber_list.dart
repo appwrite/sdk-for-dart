@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Subscriber list
 class SubscriberList implements Model {
-  /// Total number of subscribers documents that matched your query.
+  /// Total number of subscribers that matched your query.
   final int total;
 
   /// List of subscribers.

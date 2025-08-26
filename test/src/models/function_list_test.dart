@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('FunctionList', () {
-
     test('model', () {
       final model = FunctionList(
         total: 5,
@@ -13,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = FunctionList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.functions, []);
-    });
+            expect(result.total, 5);
+                  expect(result.functions, []);
+          });
   });
 }

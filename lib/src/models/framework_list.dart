@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Frameworks List
 class FrameworkList implements Model {
-  /// Total number of frameworks documents that matched your query.
+  /// Total number of frameworks that matched your query.
   final int total;
 
   /// List of frameworks.

@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Database', () {
-
     test('model', () {
       final model = Database(
         $id: '5e5ea5c16897e',
@@ -11,16 +10,18 @@ void main() {
         $createdAt: '2020-10-15T06:38:00.000+00:00',
         $updatedAt: '2020-10-15T06:38:00.000+00:00',
         enabled: true,
+        type: 'legacy',
       );
 
       final map = model.toMap();
       final result = Database.fromMap(map);
 
-      expect(result.$id, '5e5ea5c16897e');
-      expect(result.name, 'My Database');
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.enabled, true);
-    });
+            expect(result.$id, '5e5ea5c16897e');
+                  expect(result.name, 'My Database');
+                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.enabled, true);
+                  expect(result.type, 'legacy');
+          });
   });
 }

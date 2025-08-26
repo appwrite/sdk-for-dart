@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('BucketList', () {
-
     test('model', () {
       final model = BucketList(
         total: 5,
@@ -13,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = BucketList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.buckets, []);
-    });
+            expect(result.total, 5);
+                  expect(result.buckets, []);
+          });
   });
 }

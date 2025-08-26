@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('DatabaseList', () {
-
     test('model', () {
       final model = DatabaseList(
         total: 5,
@@ -13,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = DatabaseList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.databases, []);
-    });
+            expect(result.total, 5);
+                  expect(result.databases, []);
+          });
   });
 }

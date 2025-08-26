@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Collections List
 class CollectionList implements Model {
-  /// Total number of collections documents that matched your query.
+  /// Total number of collections that matched your query.
   final int total;
 
   /// List of collections.

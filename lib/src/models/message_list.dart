@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Message list
 class MessageList implements Model {
-  /// Total number of messages documents that matched your query.
+  /// Total number of messages that matched your query.
   final int total;
 
   /// List of messages.

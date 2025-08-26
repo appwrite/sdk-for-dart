@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Specifications List
 class SpecificationList implements Model {
-  /// Total number of specifications documents that matched your query.
+  /// Total number of specifications that matched your query.
   final int total;
 
   /// List of specifications.

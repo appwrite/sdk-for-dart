@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Target list
 class TargetList implements Model {
-  /// Total number of targets documents that matched your query.
+  /// Total number of targets that matched your query.
   final int total;
 
   /// List of targets.

@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Sites List
 class SiteList implements Model {
-  /// Total number of sites documents that matched your query.
+  /// Total number of sites that matched your query.
   final int total;
 
   /// List of sites.

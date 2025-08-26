@@ -244,7 +244,44 @@ class Messaging extends Service {
   }
 
   /// Create a new SMS message.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Messaging.createSMS` instead.',
+  )
   Future<models.Message> createSms({
+    required String messageId,
+    required String content,
+    List<String>? topics,
+    List<String>? users,
+    List<String>? targets,
+    bool? draft,
+    String? scheduledAt,
+  }) async {
+    final String apiPath = '/messaging/messages/sms';
+
+    final Map<String, dynamic> apiParams = {
+      'messageId': messageId,
+      'content': content,
+      'topics': topics,
+      'users': users,
+      'targets': targets,
+      'draft': draft,
+      'scheduledAt': scheduledAt,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Message.fromMap(res.data);
+  }
+
+  /// Create a new SMS message.
+  Future<models.Message> createSMS({
     required String messageId,
     required String content,
     List<String>? topics,
@@ -281,7 +318,49 @@ class Messaging extends Service {
   /// messages that are in draft status. Messages that are already processing,
   /// sent, or failed cannot be updated.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Messaging.updateSMS` instead.',
+  )
   Future<models.Message> updateSms({
+    required String messageId,
+    List<String>? topics,
+    List<String>? users,
+    List<String>? targets,
+    String? content,
+    bool? draft,
+    String? scheduledAt,
+  }) async {
+    final String apiPath = '/messaging/messages/sms/{messageId}'.replaceAll(
+      '{messageId}',
+      messageId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'topics': topics,
+      'users': users,
+      'targets': targets,
+      'content': content,
+      'draft': draft,
+      'scheduledAt': scheduledAt,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Message.fromMap(res.data);
+  }
+
+  /// Update an SMS message by its unique ID. This endpoint only works on
+  /// messages that are in draft status. Messages that are already processing,
+  /// sent, or failed cannot be updated.
+  ///
+  Future<models.Message> updateSMS({
     required String messageId,
     List<String>? topics,
     List<String>? users,
@@ -433,6 +512,9 @@ class Messaging extends Service {
   }
 
   /// Create a new Apple Push Notification service provider.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Messaging.createAPNSProvider` instead.',
+  )
   Future<models.Provider> createApnsProvider({
     required String providerId,
     required String name,
@@ -468,7 +550,46 @@ class Messaging extends Service {
     return models.Provider.fromMap(res.data);
   }
 
+  /// Create a new Apple Push Notification service provider.
+  Future<models.Provider> createAPNSProvider({
+    required String providerId,
+    required String name,
+    String? authKey,
+    String? authKeyId,
+    String? teamId,
+    String? bundleId,
+    bool? sandbox,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/messaging/providers/apns';
+
+    final Map<String, dynamic> apiParams = {
+      'providerId': providerId,
+      'name': name,
+      'authKey': authKey,
+      'authKeyId': authKeyId,
+      'teamId': teamId,
+      'bundleId': bundleId,
+      'sandbox': sandbox,
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
   /// Update a Apple Push Notification service provider by its unique ID.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Messaging.updateAPNSProvider` instead.',
+  )
   Future<models.Provider> updateApnsProvider({
     required String providerId,
     String? name,
@@ -506,7 +627,48 @@ class Messaging extends Service {
     return models.Provider.fromMap(res.data);
   }
 
+  /// Update a Apple Push Notification service provider by its unique ID.
+  Future<models.Provider> updateAPNSProvider({
+    required String providerId,
+    String? name,
+    bool? enabled,
+    String? authKey,
+    String? authKeyId,
+    String? teamId,
+    String? bundleId,
+    bool? sandbox,
+  }) async {
+    final String apiPath = '/messaging/providers/apns/{providerId}'.replaceAll(
+      '{providerId}',
+      providerId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+      'enabled': enabled,
+      'authKey': authKey,
+      'authKeyId': authKeyId,
+      'teamId': teamId,
+      'bundleId': bundleId,
+      'sandbox': sandbox,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
   /// Create a new Firebase Cloud Messaging provider.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Messaging.createFCMProvider` instead.',
+  )
   Future<models.Provider> createFcmProvider({
     required String providerId,
     required String name,
@@ -534,8 +696,69 @@ class Messaging extends Service {
     return models.Provider.fromMap(res.data);
   }
 
+  /// Create a new Firebase Cloud Messaging provider.
+  Future<models.Provider> createFCMProvider({
+    required String providerId,
+    required String name,
+    Map? serviceAccountJSON,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/messaging/providers/fcm';
+
+    final Map<String, dynamic> apiParams = {
+      'providerId': providerId,
+      'name': name,
+      'serviceAccountJSON': serviceAccountJSON,
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
   /// Update a Firebase Cloud Messaging provider by its unique ID.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Messaging.updateFCMProvider` instead.',
+  )
   Future<models.Provider> updateFcmProvider({
+    required String providerId,
+    String? name,
+    bool? enabled,
+    Map? serviceAccountJSON,
+  }) async {
+    final String apiPath = '/messaging/providers/fcm/{providerId}'.replaceAll(
+      '{providerId}',
+      providerId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+      'enabled': enabled,
+      'serviceAccountJSON': serviceAccountJSON,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Update a Firebase Cloud Messaging provider by its unique ID.
+  Future<models.Provider> updateFCMProvider({
     required String providerId,
     String? name,
     bool? enabled,
@@ -783,6 +1006,9 @@ class Messaging extends Service {
   }
 
   /// Create a new SMTP provider.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Messaging.createSMTPProvider` instead.',
+  )
   Future<models.Provider> createSmtpProvider({
     required String providerId,
     required String name,
@@ -830,8 +1056,109 @@ class Messaging extends Service {
     return models.Provider.fromMap(res.data);
   }
 
+  /// Create a new SMTP provider.
+  Future<models.Provider> createSMTPProvider({
+    required String providerId,
+    required String name,
+    required String host,
+    int? port,
+    String? username,
+    String? password,
+    enums.SmtpEncryption? encryption,
+    bool? autoTLS,
+    String? mailer,
+    String? fromName,
+    String? fromEmail,
+    String? replyToName,
+    String? replyToEmail,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/messaging/providers/smtp';
+
+    final Map<String, dynamic> apiParams = {
+      'providerId': providerId,
+      'name': name,
+      'host': host,
+      'port': port,
+      'username': username,
+      'password': password,
+      'encryption': encryption?.value,
+      'autoTLS': autoTLS,
+      'mailer': mailer,
+      'fromName': fromName,
+      'fromEmail': fromEmail,
+      'replyToName': replyToName,
+      'replyToEmail': replyToEmail,
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
   /// Update a SMTP provider by its unique ID.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `Messaging.updateSMTPProvider` instead.',
+  )
   Future<models.Provider> updateSmtpProvider({
+    required String providerId,
+    String? name,
+    String? host,
+    int? port,
+    String? username,
+    String? password,
+    enums.SmtpEncryption? encryption,
+    bool? autoTLS,
+    String? mailer,
+    String? fromName,
+    String? fromEmail,
+    String? replyToName,
+    String? replyToEmail,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/messaging/providers/smtp/{providerId}'.replaceAll(
+      '{providerId}',
+      providerId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+      'host': host,
+      'port': port,
+      'username': username,
+      'password': password,
+      'encryption': encryption?.value,
+      'autoTLS': autoTLS,
+      'mailer': mailer,
+      'fromName': fromName,
+      'fromEmail': fromEmail,
+      'replyToName': replyToName,
+      'replyToEmail': replyToEmail,
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Update a SMTP provider by its unique ID.
+  Future<models.Provider> updateSMTPProvider({
     required String providerId,
     String? name,
     String? host,

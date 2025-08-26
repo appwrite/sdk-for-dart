@@ -17,12 +17,16 @@ class Database implements Model {
   /// If database is enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the database is inaccessible to users, but remains accessible to Server SDKs using API keys.
   final bool enabled;
 
+  /// Database type.
+  final String type;
+
   Database({
     required this.$id,
     required this.name,
     required this.$createdAt,
     required this.$updatedAt,
     required this.enabled,
+    required this.type,
   });
 
   factory Database.fromMap(Map<String, dynamic> map) {
@@ -32,6 +36,7 @@ class Database implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       enabled: map['enabled'],
+      type: map['type'].toString(),
     );
   }
 
@@ -42,6 +47,7 @@ class Database implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "enabled": enabled,
+      "type": type,
     };
   }
 }

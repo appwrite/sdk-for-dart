@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('HealthTime', () {
-
     test('model', () {
       final model = HealthTime(
         remoteTime: 1639490751,
@@ -14,9 +13,9 @@ void main() {
       final map = model.toMap();
       final result = HealthTime.fromMap(map);
 
-      expect(result.remoteTime, 1639490751);
-      expect(result.localTime, 1639490844);
-      expect(result.diff, 93);
-    });
+            expect(result.remoteTime, 1639490751);
+                  expect(result.localTime, 1639490844);
+                  expect(result.diff, 93);
+          });
   });
 }

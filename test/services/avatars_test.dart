@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 import 'package:dart_appwrite/src/enums.dart';
 import 'package:dart_appwrite/src/response.dart';
 import 'dart:typed_data';
@@ -22,12 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future webAuth(
-    Uri? url, 
-    {
-        String? callbackUrlScheme,
-    }
-  ) async {
+  Future<String?> webAuth(Uri url) async {
     return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
@@ -62,7 +58,7 @@ void main() {
 
 
             final response = await avatars.getBrowser(
-                code: 'aa',
+                code: enums.Browser.avantBrowser,
             );
             expect(response, isA<Uint8List>());
 
@@ -76,7 +72,7 @@ void main() {
 
 
             final response = await avatars.getCreditCard(
-                code: 'amex',
+                code: enums.CreditCard.americanExpress,
             );
             expect(response, isA<Uint8List>());
 
@@ -104,7 +100,7 @@ void main() {
 
 
             final response = await avatars.getFlag(
-                code: 'af',
+                code: enums.Flag.afghanistan,
             );
             expect(response, isA<Uint8List>());
 

@@ -7,6 +7,9 @@ class Databases extends Service {
 
   /// Get a list of all databases from the current Appwrite project. You can use
   /// the search parameter to filter your results.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.list` instead.',
+  )
   Future<models.DatabaseList> list({
     List<String>? queries,
     String? search,
@@ -32,6 +35,9 @@ class Databases extends Service {
 
   /// Create a new Database.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createDatabase` instead.',
+  )
   Future<models.Database> create({
     required String databaseId,
     required String name,
@@ -59,6 +65,9 @@ class Databases extends Service {
 
   /// Get a database by its unique ID. This endpoint response returns a JSON
   /// object with the database metadata.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.get` instead.',
+  )
   Future<models.Database> get({required String databaseId}) async {
     final String apiPath = '/databases/{databaseId}'.replaceAll(
       '{databaseId}',
@@ -80,6 +89,9 @@ class Databases extends Service {
   }
 
   /// Update a database by its unique ID.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.update` instead.',
+  )
   Future<models.Database> update({
     required String databaseId,
     required String name,
@@ -106,6 +118,9 @@ class Databases extends Service {
 
   /// Delete a database by its unique ID. Only API keys with with databases.write
   /// scope can delete a database.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.delete` instead.',
+  )
   Future delete({required String databaseId}) async {
     final String apiPath = '/databases/{databaseId}'.replaceAll(
       '{databaseId}',
@@ -128,6 +143,9 @@ class Databases extends Service {
 
   /// Get a list of all collections that belong to the provided databaseId. You
   /// can use the search parameter to filter your results.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.listTables` instead.',
+  )
   Future<models.CollectionList> listCollections({
     required String databaseId,
     List<String>? queries,
@@ -159,6 +177,9 @@ class Databases extends Service {
   /// database resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createTable` instead.',
+  )
   Future<models.Collection> createCollection({
     required String databaseId,
     required String collectionId,
@@ -194,6 +215,9 @@ class Databases extends Service {
 
   /// Get a collection by its unique ID. This endpoint response returns a JSON
   /// object with the collection metadata.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.getTable` instead.',
+  )
   Future<models.Collection> getCollection({
     required String databaseId,
     required String collectionId,
@@ -217,6 +241,9 @@ class Databases extends Service {
   }
 
   /// Update a collection by its unique ID.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateTable` instead.',
+  )
   Future<models.Collection> updateCollection({
     required String databaseId,
     required String collectionId,
@@ -250,6 +277,9 @@ class Databases extends Service {
 
   /// Delete a collection by its unique ID. Only users with write permissions
   /// have access to delete this resource.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.deleteTable` instead.',
+  )
   Future deleteCollection({
     required String databaseId,
     required String collectionId,
@@ -273,6 +303,9 @@ class Databases extends Service {
   }
 
   /// List attributes in the collection.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.listColumns` instead.',
+  )
   Future<models.AttributeList> listAttributes({
     required String databaseId,
     required String collectionId,
@@ -299,6 +332,9 @@ class Databases extends Service {
 
   /// Create a boolean attribute.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createBooleanColumn` instead.',
+  )
   Future<models.AttributeBoolean> createBooleanAttribute({
     required String databaseId,
     required String collectionId,
@@ -333,6 +369,9 @@ class Databases extends Service {
 
   /// Update a boolean attribute. Changing the `default` value will not update
   /// already existing documents.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateBooleanColumn` instead.',
+  )
   Future<models.AttributeBoolean> updateBooleanAttribute({
     required String databaseId,
     required String collectionId,
@@ -366,6 +405,9 @@ class Databases extends Service {
   }
 
   /// Create a date time attribute according to the ISO 8601 standard.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createDatetimeColumn` instead.',
+  )
   Future<models.AttributeDatetime> createDatetimeAttribute({
     required String databaseId,
     required String collectionId,
@@ -400,6 +442,9 @@ class Databases extends Service {
 
   /// Update a date time attribute. Changing the `default` value will not update
   /// already existing documents.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateDatetimeColumn` instead.',
+  )
   Future<models.AttributeDatetime> updateDatetimeAttribute({
     required String databaseId,
     required String collectionId,
@@ -434,6 +479,9 @@ class Databases extends Service {
 
   /// Create an email attribute.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createEmailColumn` instead.',
+  )
   Future<models.AttributeEmail> createEmailAttribute({
     required String databaseId,
     required String collectionId,
@@ -469,6 +517,9 @@ class Databases extends Service {
   /// Update an email attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateEmailColumn` instead.',
+  )
   Future<models.AttributeEmail> updateEmailAttribute({
     required String databaseId,
     required String collectionId,
@@ -501,9 +552,12 @@ class Databases extends Service {
     return models.AttributeEmail.fromMap(res.data);
   }
 
-  /// Create an enumeration attribute. The `elements` param acts as a white-list
-  /// of accepted values for this attribute.
+  /// Create an enum attribute. The `elements` param acts as a white-list of
+  /// accepted values for this attribute.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createEnumColumn` instead.',
+  )
   Future<models.AttributeEnum> createEnumAttribute({
     required String databaseId,
     required String collectionId,
@@ -541,6 +595,9 @@ class Databases extends Service {
   /// Update an enum attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateEnumColumn` instead.',
+  )
   Future<models.AttributeEnum> updateEnumAttribute({
     required String databaseId,
     required String collectionId,
@@ -578,6 +635,9 @@ class Databases extends Service {
   /// Create a float attribute. Optionally, minimum and maximum values can be
   /// provided.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createFloatColumn` instead.',
+  )
   Future<models.AttributeFloat> createFloatAttribute({
     required String databaseId,
     required String collectionId,
@@ -617,6 +677,9 @@ class Databases extends Service {
   /// Update a float attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateFloatColumn` instead.',
+  )
   Future<models.AttributeFloat> updateFloatAttribute({
     required String databaseId,
     required String collectionId,
@@ -656,6 +719,9 @@ class Databases extends Service {
   /// Create an integer attribute. Optionally, minimum and maximum values can be
   /// provided.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createIntegerColumn` instead.',
+  )
   Future<models.AttributeInteger> createIntegerAttribute({
     required String databaseId,
     required String collectionId,
@@ -695,6 +761,9 @@ class Databases extends Service {
   /// Update an integer attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateIntegerColumn` instead.',
+  )
   Future<models.AttributeInteger> updateIntegerAttribute({
     required String databaseId,
     required String collectionId,
@@ -733,6 +802,9 @@ class Databases extends Service {
 
   /// Create IP address attribute.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createIpColumn` instead.',
+  )
   Future<models.AttributeIp> createIpAttribute({
     required String databaseId,
     required String collectionId,
@@ -768,6 +840,9 @@ class Databases extends Service {
   /// Update an ip attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateIpColumn` instead.',
+  )
   Future<models.AttributeIp> updateIpAttribute({
     required String databaseId,
     required String collectionId,
@@ -803,6 +878,9 @@ class Databases extends Service {
   /// Create relationship attribute. [Learn more about relationship
   /// attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createRelationshipColumn` instead.',
+  )
   Future<models.AttributeRelationship> createRelationshipAttribute({
     required String databaseId,
     required String collectionId,
@@ -841,6 +919,9 @@ class Databases extends Service {
 
   /// Create a string attribute.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createStringColumn` instead.',
+  )
   Future<models.AttributeString> createStringAttribute({
     required String databaseId,
     required String collectionId,
@@ -880,6 +961,9 @@ class Databases extends Service {
   /// Update a string attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateStringColumn` instead.',
+  )
   Future<models.AttributeString> updateStringAttribute({
     required String databaseId,
     required String collectionId,
@@ -916,6 +1000,9 @@ class Databases extends Service {
 
   /// Create a URL attribute.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createUrlColumn` instead.',
+  )
   Future<models.AttributeUrl> createUrlAttribute({
     required String databaseId,
     required String collectionId,
@@ -951,6 +1038,9 @@ class Databases extends Service {
   /// Update an url attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateUrlColumn` instead.',
+  )
   Future<models.AttributeUrl> updateUrlAttribute({
     required String databaseId,
     required String collectionId,
@@ -984,6 +1074,9 @@ class Databases extends Service {
   }
 
   /// Get attribute by ID.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.getColumn` instead.',
+  )
   Future getAttribute({
     required String databaseId,
     required String collectionId,
@@ -1010,6 +1103,9 @@ class Databases extends Service {
   }
 
   /// Deletes an attribute.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.deleteColumn` instead.',
+  )
   Future deleteAttribute({
     required String databaseId,
     required String collectionId,
@@ -1038,6 +1134,9 @@ class Databases extends Service {
   /// Update relationship attribute. [Learn more about relationship
   /// attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateRelationshipColumn` instead.',
+  )
   Future<models.AttributeRelationship> updateRelationshipAttribute({
     required String databaseId,
     required String collectionId,
@@ -1070,6 +1169,9 @@ class Databases extends Service {
 
   /// Get a list of all the user's documents in a given collection. You can use
   /// the query params to filter your results.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.listRows` instead.',
+  )
   Future<models.DocumentList> listDocuments({
     required String databaseId,
     required String collectionId,
@@ -1098,6 +1200,9 @@ class Databases extends Service {
   /// collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createRow` instead.',
+  )
   Future<models.Document> createDocument({
     required String databaseId,
     required String collectionId,
@@ -1128,14 +1233,13 @@ class Databases extends Service {
     return models.Document.fromMap(res.data);
   }
 
-  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
-  /// yet officially supported. It may be subject to breaking changes or removal
-  /// in future versions.
-  ///
   /// Create new Documents. Before using this route, you should create a new
   /// collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createRows` instead.',
+  )
   Future<models.DocumentList> createDocuments({
     required String databaseId,
     required String collectionId,
@@ -1160,15 +1264,14 @@ class Databases extends Service {
     return models.DocumentList.fromMap(res.data);
   }
 
-  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
-  /// yet officially supported. It may be subject to breaking changes or removal
-  /// in future versions.
-  ///
   /// Create or update Documents. Before using this route, you should create a
   /// new collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
   ///
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.upsertRows` instead.',
+  )
   Future<models.DocumentList> upsertDocuments({
     required String databaseId,
     required String collectionId,
@@ -1193,13 +1296,12 @@ class Databases extends Service {
     return models.DocumentList.fromMap(res.data);
   }
 
-  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
-  /// yet officially supported. It may be subject to breaking changes or removal
-  /// in future versions.
-  ///
   /// Update all documents that match your queries, if no queries are submitted
   /// then all documents are updated. You can pass only specific fields to be
   /// updated.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateRows` instead.',
+  )
   Future<models.DocumentList> updateDocuments({
     required String databaseId,
     required String collectionId,
@@ -1225,12 +1327,11 @@ class Databases extends Service {
     return models.DocumentList.fromMap(res.data);
   }
 
-  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
-  /// yet officially supported. It may be subject to breaking changes or removal
-  /// in future versions.
-  ///
   /// Bulk delete documents using queries, if no queries are passed then all
   /// documents are deleted.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.deleteRows` instead.',
+  )
   Future<models.DocumentList> deleteDocuments({
     required String databaseId,
     required String collectionId,
@@ -1257,6 +1358,9 @@ class Databases extends Service {
 
   /// Get a document by its unique ID. This endpoint response returns a JSON
   /// object with the document data.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.getRow` instead.',
+  )
   Future<models.Document> getDocument({
     required String databaseId,
     required String collectionId,
@@ -1283,14 +1387,13 @@ class Databases extends Service {
     return models.Document.fromMap(res.data);
   }
 
-  /// **WARNING: Experimental Feature** - This endpoint is experimental and not
-  /// yet officially supported. It may be subject to breaking changes or removal
-  /// in future versions.
-  ///
   /// Create or update a Document. Before using this route, you should create a
   /// new collection resource using either a [server
   /// integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
   /// API or directly from your database console.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.upsertRow` instead.',
+  )
   Future<models.Document> upsertDocument({
     required String databaseId,
     required String collectionId,
@@ -1323,6 +1426,9 @@ class Databases extends Service {
 
   /// Update a document by its unique ID. Using the patch method you can pass
   /// only specific fields that will get updated.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.updateRow` instead.',
+  )
   Future<models.Document> updateDocument({
     required String databaseId,
     required String collectionId,
@@ -1354,6 +1460,9 @@ class Databases extends Service {
   }
 
   /// Delete a document by its unique ID.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.deleteRow` instead.',
+  )
   Future deleteDocument({
     required String databaseId,
     required String collectionId,
@@ -1380,6 +1489,9 @@ class Databases extends Service {
   }
 
   /// Decrement a specific attribute of a document by a given value.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.decrementRowColumn` instead.',
+  )
   Future<models.Document> decrementDocumentAttribute({
     required String databaseId,
     required String collectionId,
@@ -1410,6 +1522,9 @@ class Databases extends Service {
   }
 
   /// Increment a specific attribute of a document by a given value.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.incrementRowColumn` instead.',
+  )
   Future<models.Document> incrementDocumentAttribute({
     required String databaseId,
     required String collectionId,
@@ -1440,6 +1555,9 @@ class Databases extends Service {
   }
 
   /// List indexes in the collection.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.listIndexes` instead.',
+  )
   Future<models.IndexList> listIndexes({
     required String databaseId,
     required String collectionId,
@@ -1467,6 +1585,9 @@ class Databases extends Service {
   /// Creates an index on the attributes listed. Your index should include all
   /// the attributes you will query in a single request.
   /// Attributes can be `key`, `fulltext`, and `unique`.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createIndex` instead.',
+  )
   Future<models.Index> createIndex({
     required String databaseId,
     required String collectionId,
@@ -1502,6 +1623,9 @@ class Databases extends Service {
   }
 
   /// Get index by ID.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.getIndex` instead.',
+  )
   Future<models.Index> getIndex({
     required String databaseId,
     required String collectionId,
@@ -1528,6 +1652,9 @@ class Databases extends Service {
   }
 
   /// Delete an index.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.deleteIndex` instead.',
+  )
   Future deleteIndex({
     required String databaseId,
     required String collectionId,
