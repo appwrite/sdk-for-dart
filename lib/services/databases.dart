@@ -30,7 +30,7 @@ class Databases extends Service {
 
   /// Create a new Database.
   /// 
-    @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.createDatabase` instead.')
+    @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.create` instead.')
     Future<models.Database> create({required String databaseId, required String name, bool? enabled}) async {
         final String apiPath = '/databases';
 
@@ -631,6 +631,153 @@ class Databases extends Service {
     final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.AttributeIp.fromMap(res.data);
+
+    }
+
+  /// Create a geometric line attribute.
+    @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.createLineColumn` instead.')
+    Future<models.AttributeLine> createLineAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault}) async {
+        final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/line'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {
+      
+      'key': key,
+'required': xrequired,
+'default': xdefault,
+
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+
+    };
+
+    final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeLine.fromMap(res.data);
+
+    }
+
+  /// Update a line attribute. Changing the `default` value will not update
+  /// already existing documents.
+    @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.updateLineColumn` instead.')
+    Future<models.AttributeLine> updateLineAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, String? newKey}) async {
+        final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/line/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      
+      'required': xrequired,
+'default': xdefault,
+'newKey': newKey,
+
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+
+    };
+
+    final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeLine.fromMap(res.data);
+
+    }
+
+  /// Create a geometric 2d point attribute.
+    @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.createPointColumn` instead.')
+    Future<models.AttributePoint> createPointAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault}) async {
+        final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/point'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {
+      
+      'key': key,
+'required': xrequired,
+'default': xdefault,
+
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+
+    };
+
+    final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributePoint.fromMap(res.data);
+
+    }
+
+  /// Update a point attribute. Changing the `default` value will not update
+  /// already existing documents.
+    @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.updatePointColumn` instead.')
+    Future<models.AttributePoint> updatePointAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, String? newKey}) async {
+        final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/point/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      
+      'required': xrequired,
+'default': xdefault,
+'newKey': newKey,
+
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+
+    };
+
+    final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributePoint.fromMap(res.data);
+
+    }
+
+  /// Create a geometric polygon attribute.
+    @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.createPolygonColumn` instead.')
+    Future<models.AttributePolygon> createPolygonAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault}) async {
+        final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/polygon'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {
+      
+      'key': key,
+'required': xrequired,
+'default': xdefault,
+
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+
+    };
+
+    final res = await client.call(HttpMethod.post, path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributePolygon.fromMap(res.data);
+
+    }
+
+  /// Update a polygon attribute. Changing the `default` value will not update
+  /// already existing documents.
+    @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.updatePolygonColumn` instead.')
+    Future<models.AttributePolygon> updatePolygonAttribute({required String databaseId, required String collectionId, required String key, required bool xrequired, String? xdefault, String? newKey}) async {
+        final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/polygon/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      
+      'required': xrequired,
+'default': xdefault,
+'newKey': newKey,
+
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+
+    };
+
+    final res = await client.call(HttpMethod.patch, path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributePolygon.fromMap(res.data);
 
     }
 

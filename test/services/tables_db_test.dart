@@ -665,6 +665,162 @@ void main() {
 
         });
 
+        test('test method createLineColumn()', () async {
+            final Map<String, dynamic> data = {
+                'key': 'fullName',
+                'type': 'string',
+                'status': 'available',
+                'error': 'string',
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await tablesDB.createLineColumn(
+                databaseId: '<DATABASE_ID>',
+                tableId: '<TABLE_ID>',
+                key: '',
+                xrequired: true,
+            );
+            expect(response, isA<models.ColumnLine>());
+
+        });
+
+        test('test method updateLineColumn()', () async {
+            final Map<String, dynamic> data = {
+                'key': 'fullName',
+                'type': 'string',
+                'status': 'available',
+                'error': 'string',
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await tablesDB.updateLineColumn(
+                databaseId: '<DATABASE_ID>',
+                tableId: '<TABLE_ID>',
+                key: '',
+                xrequired: true,
+            );
+            expect(response, isA<models.ColumnLine>());
+
+        });
+
+        test('test method createPointColumn()', () async {
+            final Map<String, dynamic> data = {
+                'key': 'fullName',
+                'type': 'string',
+                'status': 'available',
+                'error': 'string',
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await tablesDB.createPointColumn(
+                databaseId: '<DATABASE_ID>',
+                tableId: '<TABLE_ID>',
+                key: '',
+                xrequired: true,
+            );
+            expect(response, isA<models.ColumnPoint>());
+
+        });
+
+        test('test method updatePointColumn()', () async {
+            final Map<String, dynamic> data = {
+                'key': 'fullName',
+                'type': 'string',
+                'status': 'available',
+                'error': 'string',
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await tablesDB.updatePointColumn(
+                databaseId: '<DATABASE_ID>',
+                tableId: '<TABLE_ID>',
+                key: '',
+                xrequired: true,
+            );
+            expect(response, isA<models.ColumnPoint>());
+
+        });
+
+        test('test method createPolygonColumn()', () async {
+            final Map<String, dynamic> data = {
+                'key': 'fullName',
+                'type': 'string',
+                'status': 'available',
+                'error': 'string',
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await tablesDB.createPolygonColumn(
+                databaseId: '<DATABASE_ID>',
+                tableId: '<TABLE_ID>',
+                key: '',
+                xrequired: true,
+            );
+            expect(response, isA<models.ColumnPolygon>());
+
+        });
+
+        test('test method updatePolygonColumn()', () async {
+            final Map<String, dynamic> data = {
+                'key': 'fullName',
+                'type': 'string',
+                'status': 'available',
+                'error': 'string',
+                'required': true,
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await tablesDB.updatePolygonColumn(
+                databaseId: '<DATABASE_ID>',
+                tableId: '<TABLE_ID>',
+                key: '',
+                xrequired: true,
+            );
+            expect(response, isA<models.ColumnPolygon>());
+
+        });
+
         test('test method createRelationshipColumn()', () async {
             final Map<String, dynamic> data = {
                 'key': 'fullName',
