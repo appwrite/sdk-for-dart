@@ -1,13 +1,15 @@
 part of '../../enums.dart';
 
 enum VCSDeploymentType {
-  branch(value: 'branch'),
-  commit(value: 'commit'),
-  tag(value: 'tag');
+    branch(value: 'branch'),
+    commit(value: 'commit'),
+    tag(value: 'tag');
 
-  const VCSDeploymentType({required this.value});
+    const VCSDeploymentType({
+        required this.value
+    });
 
-  final String value;
+    final String value;
 
-  String toJson() => value;
+    String toJson() => value;
 }
