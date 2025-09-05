@@ -27,7 +27,7 @@ abstract class Client {
   Future<String?> webAuth(Uri url);
 
   /// Set self signed to [status].
-  ///
+  /// 
   /// If self signed is true, [Client] will ignore invalid certificates.
   /// This is helpful in environments where your Appwrite
   /// instance does not have a valid SSL certificate.
@@ -81,8 +81,7 @@ abstract class Client {
   });
 
   /// Send the API request.
-  Future<Response> call(
-    HttpMethod method, {
+  Future<Response> call(HttpMethod method, {
     String path = '',
     Map<String, String> headers = const {},
     Map<String, dynamic> params = const {},
