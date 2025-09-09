@@ -795,6 +795,201 @@ class TablesDB extends Service {
     return models.ColumnIp.fromMap(res.data);
   }
 
+  /// Create a geometric line column.
+  Future<models.ColumnLine> createLineColumn({
+    required String databaseId,
+    required String tableId,
+    required String key,
+    required bool xrequired,
+    List? xdefault,
+  }) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ColumnLine.fromMap(res.data);
+  }
+
+  /// Update a line column. Changing the `default` value will not update already
+  /// existing rows.
+  Future<models.ColumnLine> updateLineColumn({
+    required String databaseId,
+    required String tableId,
+    required String key,
+    required bool xrequired,
+    List? xdefault,
+    String? newKey,
+  }) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ColumnLine.fromMap(res.data);
+  }
+
+  /// Create a geometric point column.
+  Future<models.ColumnPoint> createPointColumn({
+    required String databaseId,
+    required String tableId,
+    required String key,
+    required bool xrequired,
+    List? xdefault,
+  }) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ColumnPoint.fromMap(res.data);
+  }
+
+  /// Update a point column. Changing the `default` value will not update already
+  /// existing rows.
+  Future<models.ColumnPoint> updatePointColumn({
+    required String databaseId,
+    required String tableId,
+    required String key,
+    required bool xrequired,
+    List? xdefault,
+    String? newKey,
+  }) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ColumnPoint.fromMap(res.data);
+  }
+
+  /// Create a geometric polygon column.
+  Future<models.ColumnPolygon> createPolygonColumn({
+    required String databaseId,
+    required String tableId,
+    required String key,
+    required bool xrequired,
+    List? xdefault,
+  }) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ColumnPolygon.fromMap(res.data);
+  }
+
+  /// Update a polygon column. Changing the `default` value will not update
+  /// already existing rows.
+  Future<models.ColumnPolygon> updatePolygonColumn({
+    required String databaseId,
+    required String tableId,
+    required String key,
+    required bool xrequired,
+    List? xdefault,
+    String? newKey,
+  }) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ColumnPolygon.fromMap(res.data);
+  }
+
   /// Create relationship column. [Learn more about relationship
   /// columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
   ///
