@@ -334,12 +334,12 @@ void main() {
                 'providerRepositoryName': 'database',
                 'providerRepositoryOwner': 'utopia',
                 'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
-                'providerBranch': '0.7.x',
                 'providerCommitHash': '7c3f25d',
                 'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
                 'providerCommitAuthor': 'Khushboo Verma',
                 'providerCommitMessage': 'Update index.js',
                 'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranch': '0.7.x',
                 'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
 
 
@@ -383,12 +383,12 @@ void main() {
                 'providerRepositoryName': 'database',
                 'providerRepositoryOwner': 'utopia',
                 'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
-                'providerBranch': '0.7.x',
                 'providerCommitHash': '7c3f25d',
                 'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
                 'providerCommitAuthor': 'Khushboo Verma',
                 'providerCommitMessage': 'Update index.js',
                 'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranch': '0.7.x',
                 'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
 
 
@@ -427,12 +427,12 @@ void main() {
                 'providerRepositoryName': 'database',
                 'providerRepositoryOwner': 'utopia',
                 'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
-                'providerBranch': '0.7.x',
                 'providerCommitHash': '7c3f25d',
                 'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
                 'providerCommitAuthor': 'Khushboo Verma',
                 'providerCommitMessage': 'Update index.js',
                 'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranch': '0.7.x',
                 'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
 
 
@@ -474,12 +474,12 @@ void main() {
                 'providerRepositoryName': 'database',
                 'providerRepositoryOwner': 'utopia',
                 'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
-                'providerBranch': '0.7.x',
                 'providerCommitHash': '7c3f25d',
                 'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
                 'providerCommitAuthor': 'Khushboo Verma',
                 'providerCommitMessage': 'Update index.js',
                 'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranch': '0.7.x',
                 'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
 
 
@@ -519,12 +519,12 @@ void main() {
                 'providerRepositoryName': 'database',
                 'providerRepositoryOwner': 'utopia',
                 'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
-                'providerBranch': '0.7.x',
                 'providerCommitHash': '7c3f25d',
                 'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
                 'providerCommitAuthor': 'Khushboo Verma',
                 'providerCommitMessage': 'Update index.js',
                 'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranch': '0.7.x',
                 'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
 
 
@@ -592,12 +592,12 @@ void main() {
                 'providerRepositoryName': 'database',
                 'providerRepositoryOwner': 'utopia',
                 'providerRepositoryUrl': 'https://github.com/vermakhushboo/g4-node-function',
-                'providerBranch': '0.7.x',
                 'providerCommitHash': '7c3f25d',
                 'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
                 'providerCommitAuthor': 'Khushboo Verma',
                 'providerCommitMessage': 'Update index.js',
                 'providerCommitUrl': 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+                'providerBranch': '0.7.x',
                 'providerBranchUrl': 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',};
 
 
