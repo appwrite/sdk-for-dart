@@ -32,7 +32,7 @@ class Execution implements Model {
   /// HTTP request path and query.
   final String requestPath;
 
-  /// HTTP response headers as a key-value object. This will return only whitelisted headers. All headers are returned if execution is created as synchronous.
+  /// HTTP request headers as a key-value object. This will return only whitelisted headers. All headers are returned if execution is created as synchronous.
   final List<Headers> requestHeaders;
 
   /// HTTP response status code.

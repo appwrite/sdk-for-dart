@@ -62,9 +62,6 @@ class Deployment implements Model {
   /// The url of the vcs provider repository
   final String providerRepositoryUrl;
 
-  /// The branch of the vcs repository
-  final String providerBranch;
-
   /// The commit hash of the vcs commit
   final String providerCommitHash;
 
@@ -79,6 +76,9 @@ class Deployment implements Model {
 
   /// The url of the vcs commit
   final String providerCommitUrl;
+
+  /// The branch of the vcs repository
+  final String providerBranch;
 
   /// The branch of the vcs repository
   final String providerBranchUrl;
@@ -104,12 +104,12 @@ class Deployment implements Model {
     required this.providerRepositoryName,
     required this.providerRepositoryOwner,
     required this.providerRepositoryUrl,
-    required this.providerBranch,
     required this.providerCommitHash,
     required this.providerCommitAuthorUrl,
     required this.providerCommitAuthor,
     required this.providerCommitMessage,
     required this.providerCommitUrl,
+    required this.providerBranch,
     required this.providerBranchUrl,
   });
 
@@ -135,12 +135,12 @@ class Deployment implements Model {
       providerRepositoryName: map['providerRepositoryName'].toString(),
       providerRepositoryOwner: map['providerRepositoryOwner'].toString(),
       providerRepositoryUrl: map['providerRepositoryUrl'].toString(),
-      providerBranch: map['providerBranch'].toString(),
       providerCommitHash: map['providerCommitHash'].toString(),
       providerCommitAuthorUrl: map['providerCommitAuthorUrl'].toString(),
       providerCommitAuthor: map['providerCommitAuthor'].toString(),
       providerCommitMessage: map['providerCommitMessage'].toString(),
       providerCommitUrl: map['providerCommitUrl'].toString(),
+      providerBranch: map['providerBranch'].toString(),
       providerBranchUrl: map['providerBranchUrl'].toString(),
     );
   }
@@ -167,12 +167,12 @@ class Deployment implements Model {
       "providerRepositoryName": providerRepositoryName,
       "providerRepositoryOwner": providerRepositoryOwner,
       "providerRepositoryUrl": providerRepositoryUrl,
-      "providerBranch": providerBranch,
       "providerCommitHash": providerCommitHash,
       "providerCommitAuthorUrl": providerCommitAuthorUrl,
       "providerCommitAuthor": providerCommitAuthor,
       "providerCommitMessage": providerCommitMessage,
       "providerCommitUrl": providerCommitUrl,
+      "providerBranch": providerBranch,
       "providerBranchUrl": providerBranchUrl,
     };
   }

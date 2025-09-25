@@ -5,7 +5,7 @@ class HealthAntivirus implements Model {
   /// Antivirus version.
   final String version;
 
-  /// Antivirus status. Possible values can are: `disabled`, `offline`, `online`
+  /// Antivirus status. Possible values are: `disabled`, `offline`, `online`
   final String status;
 
   HealthAntivirus({required this.version, required this.status});

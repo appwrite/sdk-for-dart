@@ -8,7 +8,7 @@ class HealthStatus implements Model {
   /// Duration in milliseconds how long the health check took.
   final int ping;
 
-  /// Service status. Possible values can are: `pass`, `fail`
+  /// Service status. Possible values are: `pass`, `fail`
   final String status;
 
   HealthStatus({required this.name, required this.ping, required this.status});

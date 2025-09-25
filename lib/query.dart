@@ -153,6 +153,9 @@ class Query {
   static String orderDesc(String attribute) =>
       Query._('orderDesc', attribute).toString();
 
+  /// Sort results randomly.
+  static String orderRandom() => Query._('orderRandom').toString();
+
   /// Return results before [id].
   ///
   /// Refer to the [Cursor Based Pagination](https://appwrite.io/docs/pagination#cursor-pagination)

@@ -25,12 +25,12 @@ void main() {
         providerRepositoryName: 'database',
         providerRepositoryOwner: 'utopia',
         providerRepositoryUrl: 'https://github.com/vermakhushboo/g4-node-function',
-        providerBranch: '0.7.x',
         providerCommitHash: '7c3f25d',
         providerCommitAuthorUrl: 'https://github.com/vermakhushboo',
         providerCommitAuthor: 'Khushboo Verma',
         providerCommitMessage: 'Update index.js',
         providerCommitUrl: 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
+        providerBranch: '0.7.x',
         providerBranchUrl: 'https://github.com/vermakhushboo/appwrite/tree/0.7.x',
       );
 
@@ -57,12 +57,12 @@ void main() {
                   expect(result.providerRepositoryName, 'database');
                   expect(result.providerRepositoryOwner, 'utopia');
                   expect(result.providerRepositoryUrl, 'https://github.com/vermakhushboo/g4-node-function');
-                  expect(result.providerBranch, '0.7.x');
                   expect(result.providerCommitHash, '7c3f25d');
                   expect(result.providerCommitAuthorUrl, 'https://github.com/vermakhushboo');
                   expect(result.providerCommitAuthor, 'Khushboo Verma');
                   expect(result.providerCommitMessage, 'Update index.js');
                   expect(result.providerCommitUrl, 'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb');
+                  expect(result.providerBranch, '0.7.x');
                   expect(result.providerBranchUrl, 'https://github.com/vermakhushboo/appwrite/tree/0.7.x');
           });
   });
