@@ -1,4 +1,5 @@
 import 'package:dart_appwrite/models.dart';
+import 'package:dart_appwrite/enums.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -19,7 +20,7 @@ void main() {
         activate: true,
         screenshotLight: '5e5ea5c16897e',
         screenshotDark: '5e5ea5c16897e',
-        status: 'ready',
+        status: DeploymentStatus.waiting,
         buildLogs: 'Compiling source files...',
         buildDuration: 128,
         providerRepositoryName: 'database',
@@ -51,7 +52,7 @@ void main() {
                   expect(result.activate, true);
                   expect(result.screenshotLight, '5e5ea5c16897e');
                   expect(result.screenshotDark, '5e5ea5c16897e');
-                  expect(result.status, 'ready');
+                  expect(result.status, DeploymentStatus.waiting);
                   expect(result.buildLogs, 'Compiling source files...');
                   expect(result.buildDuration, 128);
                   expect(result.providerRepositoryName, 'database');
