@@ -9,7 +9,7 @@ class HealthStatus implements Model {
   final int ping;
 
   /// Service status. Possible values are: `pass`, `fail`
-  final String status;
+  final enums.HealthCheckStatus status;
 
   HealthStatus({required this.name, required this.ping, required this.status});
 
@@ -17,11 +17,13 @@ class HealthStatus implements Model {
     return HealthStatus(
       name: map['name'].toString(),
       ping: map['ping'],
-      status: map['status'].toString(),
+      status: enums.HealthCheckStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {"name": name, "ping": ping, "status": status};
+    return {"name": name, "ping": ping, "status": status.value};
   }
 }

@@ -1,6 +1,8 @@
 /// Appwrite Models
 library dart_appwrite.models;
 
+import 'enums.dart' as enums;
+
 part 'src/models/model.dart';
 part 'src/models/row_list.dart';
 part 'src/models/document_list.dart';

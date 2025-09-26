@@ -1,4 +1,5 @@
 import 'package:dart_appwrite/models.dart';
+import 'package:dart_appwrite/enums.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -14,7 +15,7 @@ void main() {
         targets: [],
         deliveredTotal: 1,
         data: {},
-        status: 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        status: MessageStatus.draft,
       );
 
       final map = model.toMap();
@@ -29,7 +30,7 @@ void main() {
                   expect(result.targets, []);
                   expect(result.deliveredTotal, 1);
                   expect(result.data, {});
-                  expect(result.status, 'Message status can be one of the following: draft, processing, scheduled, sent, or failed.');
+                  expect(result.status, MessageStatus.draft);
           });
   });
 }
