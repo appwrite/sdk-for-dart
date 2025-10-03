@@ -18,7 +18,7 @@ class Database implements Model {
   final bool enabled;
 
   /// Database type.
-  final String type;
+  final enums.DatabaseType type;
 
   Database({
     required this.$id,
@@ -36,7 +36,7 @@ class Database implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       enabled: map['enabled'],
-      type: map['type'].toString(),
+      type: enums.DatabaseType.values.firstWhere((e) => e.value == map['type']),
     );
   }
 
@@ -47,7 +47,7 @@ class Database implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "enabled": enabled,
-      "type": type,
+      "type": type.value,
     };
   }
 }

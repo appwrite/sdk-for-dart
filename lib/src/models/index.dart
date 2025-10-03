@@ -18,7 +18,7 @@ class Index implements Model {
   final String type;
 
   /// Index status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
-  final String status;
+  final enums.IndexStatus status;
 
   /// Error message. Displays error generated on failure of creating or deleting an index.
   final String error;
@@ -52,7 +52,9 @@ class Index implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: map['status'].toString(),
+      status: enums.IndexStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       attributes: List.from(map['attributes'] ?? []),
       lengths: List.from(map['lengths'] ?? []),
@@ -67,7 +69,7 @@ class Index implements Model {
       "\$updatedAt": $updatedAt,
       "key": key,
       "type": type,
-      "status": status,
+      "status": status.value,
       "error": error,
       "attributes": attributes,
       "lengths": lengths,

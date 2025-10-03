@@ -45,7 +45,7 @@ class Deployment implements Model {
   final String screenshotDark;
 
   /// The deployment status. Possible values are &quot;waiting&quot;, &quot;processing&quot;, &quot;building&quot;, &quot;ready&quot;, and &quot;failed&quot;.
-  final String status;
+  final enums.DeploymentStatus status;
 
   /// The build logs.
   final String buildLogs;
@@ -129,7 +129,9 @@ class Deployment implements Model {
       activate: map['activate'],
       screenshotLight: map['screenshotLight'].toString(),
       screenshotDark: map['screenshotDark'].toString(),
-      status: map['status'].toString(),
+      status: enums.DeploymentStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       buildLogs: map['buildLogs'].toString(),
       buildDuration: map['buildDuration'],
       providerRepositoryName: map['providerRepositoryName'].toString(),
@@ -161,7 +163,7 @@ class Deployment implements Model {
       "activate": activate,
       "screenshotLight": screenshotLight,
       "screenshotDark": screenshotDark,
-      "status": status,
+      "status": status.value,
       "buildLogs": buildLogs,
       "buildDuration": buildDuration,
       "providerRepositoryName": providerRepositoryName,

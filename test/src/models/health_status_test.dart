@@ -1,4 +1,5 @@
 import 'package:dart_appwrite/models.dart';
+import 'package:dart_appwrite/enums.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -7,7 +8,7 @@ void main() {
       final model = HealthStatus(
         name: 'database',
         ping: 128,
-        status: 'pass',
+        status: HealthCheckStatus.pass,
       );
 
       final map = model.toMap();
@@ -15,7 +16,7 @@ void main() {
 
             expect(result.name, 'database');
                   expect(result.ping, 128);
-                  expect(result.status, 'pass');
+                  expect(result.status, HealthCheckStatus.pass);
           });
   });
 }

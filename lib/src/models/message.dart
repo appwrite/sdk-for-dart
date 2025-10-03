@@ -39,7 +39,7 @@ class Message implements Model {
   final Map<String, dynamic> data;
 
   /// Status of delivery.
-  final String status;
+  final enums.MessageStatus status;
 
   Message({
     required this.$id,
@@ -71,7 +71,9 @@ class Message implements Model {
       deliveryErrors: List.from(map['deliveryErrors'] ?? []),
       deliveredTotal: map['deliveredTotal'],
       data: map['data'],
-      status: map['status'].toString(),
+      status: enums.MessageStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
     );
   }
 
@@ -89,7 +91,7 @@ class Message implements Model {
       "deliveryErrors": deliveryErrors,
       "deliveredTotal": deliveredTotal,
       "data": data,
-      "status": status,
+      "status": status.value,
     };
   }
 }

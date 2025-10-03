@@ -9,7 +9,7 @@ class ColumnRelationship implements Model {
   final String type;
 
   /// Column status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
-  final String status;
+  final enums.ColumnStatus status;
 
   /// Error message. Displays error generated on failure of creating or deleting an column.
   final String error;
@@ -65,7 +65,9 @@ class ColumnRelationship implements Model {
     return ColumnRelationship(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: map['status'].toString(),
+      status: enums.ColumnStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],
@@ -84,7 +86,7 @@ class ColumnRelationship implements Model {
     return {
       "key": key,
       "type": type,
-      "status": status,
+      "status": status.value,
       "error": error,
       "required": xrequired,
       "array": array,

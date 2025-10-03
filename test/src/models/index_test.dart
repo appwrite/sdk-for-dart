@@ -1,4 +1,5 @@
 import 'package:dart_appwrite/models.dart';
+import 'package:dart_appwrite/enums.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -10,7 +11,7 @@ void main() {
         $updatedAt: '2020-10-15T06:38:00.000+00:00',
         key: 'index1',
         type: 'primary',
-        status: 'available',
+        status: IndexStatus.available,
         error: 'string',
         attributes: [],
         lengths: [],
@@ -24,7 +25,7 @@ void main() {
                   expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
                   expect(result.key, 'index1');
                   expect(result.type, 'primary');
-                  expect(result.status, 'available');
+                  expect(result.status, IndexStatus.available);
                   expect(result.error, 'string');
                   expect(result.attributes, []);
                   expect(result.lengths, []);

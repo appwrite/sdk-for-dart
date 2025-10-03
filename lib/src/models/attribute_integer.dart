@@ -9,7 +9,7 @@ class AttributeInteger implements Model {
   final String type;
 
   /// Attribute status. Possible values: `available`, `processing`, `deleting`, `stuck`, or `failed`
-  final String status;
+  final enums.AttributeStatus status;
 
   /// Error message. Displays error generated on failure of creating or deleting an attribute.
   final String error;
@@ -53,7 +53,9 @@ class AttributeInteger implements Model {
     return AttributeInteger(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: map['status'].toString(),
+      status: enums.AttributeStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],
@@ -69,7 +71,7 @@ class AttributeInteger implements Model {
     return {
       "key": key,
       "type": type,
-      "status": status,
+      "status": status.value,
       "error": error,
       "required": xrequired,
       "array": array,
