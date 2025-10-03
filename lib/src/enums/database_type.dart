@@ -1,9 +1,10 @@
 part of '../../enums.dart';
 
-enum AuthenticatorType {
-    totp(value: 'totp');
+enum DatabaseType {
+    legacy(value: 'legacy'),
+    tablesdb(value: 'tablesdb');
 
-    const AuthenticatorType({
+    const DatabaseType({
         required this.value
     });
 

@@ -1,13 +1,13 @@
 part of '../../enums.dart';
 
-enum MessageStatus {
-    draft(value: 'draft'),
+enum ColumnStatus {
+    available(value: 'available'),
     processing(value: 'processing'),
-    scheduled(value: 'scheduled'),
-    sent(value: 'sent'),
+    deleting(value: 'deleting'),
+    stuck(value: 'stuck'),
     failed(value: 'failed');
 
-    const MessageStatus({
+    const ColumnStatus({
         required this.value
     });
 
