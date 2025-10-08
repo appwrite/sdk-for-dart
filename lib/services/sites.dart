@@ -338,8 +338,8 @@ class Sites extends Service {
   /// Create a deployment based on a template.
   ///
   /// Use this endpoint with combination of
-  /// [listTemplates](https://appwrite.io/docs/server/sites#listTemplates) to
-  /// find the template details.
+  /// [listTemplates](https://appwrite.io/docs/products/sites/templates) to find
+  /// the template details.
   Future<models.Deployment> createTemplateDeployment({
     required String siteId,
     required String repository,

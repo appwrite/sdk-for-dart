@@ -155,7 +155,7 @@ class TablesDB extends Service {
 
   /// Create a new Table. Before using this route, you should create a new
   /// database resource using either a [server
-  /// integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
+  /// integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
   /// API or directly from your database console.
   Future<models.Table> createTable({
     required String databaseId,
@@ -1396,7 +1396,7 @@ class TablesDB extends Service {
 
   /// Create a new Row. Before using this route, you should create a new table
   /// resource using either a [server
-  /// integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
+  /// integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
   /// API or directly from your database console.
   Future<models.Row> createRow({
     required String databaseId,
@@ -1429,7 +1429,7 @@ class TablesDB extends Service {
 
   /// Create new Rows. Before using this route, you should create a new table
   /// resource using either a [server
-  /// integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
+  /// integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
   /// API or directly from your database console.
   Future<models.RowList> createRows({
     required String databaseId,
@@ -1456,7 +1456,7 @@ class TablesDB extends Service {
 
   /// Create or update Rows. Before using this route, you should create a new
   /// table resource using either a [server
-  /// integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
+  /// integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
   /// API or directly from your database console.
   ///
   Future<models.RowList> upsertRows({
@@ -1563,7 +1563,7 @@ class TablesDB extends Service {
 
   /// Create or update a Row. Before using this route, you should create a new
   /// table resource using either a [server
-  /// integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
+  /// integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable)
   /// API or directly from your database console.
   Future<models.Row> upsertRow({
     required String databaseId,
