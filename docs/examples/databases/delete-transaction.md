@@ -7,9 +7,6 @@ Client client = Client()
 
 Databases databases = Databases(client);
 
-DocumentList result = await databases.upsertDocuments(
-    databaseId: '<DATABASE_ID>',
-    collectionId: '<COLLECTION_ID>',
-    documents: [],
-    transactionId: '<TRANSACTION_ID>', // (optional)
+await databases.deleteTransaction(
+    transactionId: '<TRANSACTION_ID>',
 );

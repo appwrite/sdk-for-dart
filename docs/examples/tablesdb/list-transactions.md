@@ -5,11 +5,8 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Databases databases = Databases(client);
+TablesDB tablesDB = TablesDB(client);
 
-DocumentList result = await databases.upsertDocuments(
-    databaseId: '<DATABASE_ID>',
-    collectionId: '<COLLECTION_ID>',
-    documents: [],
-    transactionId: '<TRANSACTION_ID>', // (optional)
+TransactionList result = await tablesDB.listTransactions(
+    queries: [], // (optional)
 );
