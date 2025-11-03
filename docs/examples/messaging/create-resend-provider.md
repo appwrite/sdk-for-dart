@@ -7,8 +7,13 @@ Client client = Client()
 
 Messaging messaging = Messaging(client);
 
-LogList result = await messaging.listProviderLogs(
+Provider result = await messaging.createResendProvider(
     providerId: '<PROVIDER_ID>',
-    queries: [], // (optional)
-    total: false, // (optional)
+    name: '<NAME>',
+    apiKey: '<API_KEY>', // (optional)
+    fromName: '<FROM_NAME>', // (optional)
+    fromEmail: 'email@example.com', // (optional)
+    replyToName: '<REPLY_TO_NAME>', // (optional)
+    replyToEmail: 'email@example.com', // (optional)
+    enabled: false, // (optional)
 );

@@ -7,8 +7,8 @@ import 'upload_progress.dart';
 
 /// [Client] that handles requests to Appwrite
 abstract class Client {
-  /// The size for cunked uploads in bytes.
-  static const int CHUNK_SIZE = 5 * 1024 * 1024;
+  /// The size for chunked uploads in bytes.
+  static const int chunkSize = 5 * 1024 * 1024;
 
   /// Holds configuration such as project.
   late Map<String, String> config;
@@ -27,7 +27,7 @@ abstract class Client {
   Future<String?> webAuth(Uri url);
 
   /// Set self signed to [status].
-  ///
+  /// 
   /// If self signed is true, [Client] will ignore invalid certificates.
   /// This is helpful in environments where your Appwrite
   /// instance does not have a valid SSL certificate.
@@ -39,30 +39,30 @@ abstract class Client {
   /// Set Project
   ///
   /// Your project ID
-  Client setProject(value);
+  Client setProject(String value);
 
   /// Set Key
   ///
   /// Your secret API key
-  Client setKey(value);
+  Client setKey(String value);
 
   /// Set JWT
   ///
   /// Your secret JSON Web Token
-  Client setJWT(value);
+  Client setJWT(String value);
 
   /// Set Locale
-  Client setLocale(value);
+  Client setLocale(String value);
 
   /// Set Session
   ///
   /// The user session to authenticate with
-  Client setSession(value);
+  Client setSession(String value);
 
   /// Set ForwardedUserAgent
   ///
   /// The user agent string of the client that made the request
-  Client setForwardedUserAgent(value);
+  Client setForwardedUserAgent(String value);
 
   /// Add headers that should be sent with all API calls.
   Client addHeader(String key, String value);
@@ -81,8 +81,7 @@ abstract class Client {
   });
 
   /// Send the API request.
-  Future<Response> call(
-    HttpMethod method, {
+  Future<Response> call(HttpMethod method, {
     String path = '',
     Map<String, String> headers = const {},
     Map<String, dynamic> params = const {},
