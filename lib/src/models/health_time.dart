@@ -25,7 +25,12 @@ class HealthTime implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"remoteTime": remoteTime, "localTime": localTime, "diff": diff};
+    return {
+      "remoteTime": remoteTime,
+      "localTime": localTime,
+      "diff": diff,
+    };
   }
 }

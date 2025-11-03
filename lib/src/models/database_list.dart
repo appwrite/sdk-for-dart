@@ -8,17 +8,20 @@ class DatabaseList implements Model {
   /// List of databases.
   final List<Database> databases;
 
-  DatabaseList({required this.total, required this.databases});
+  DatabaseList({
+    required this.total,
+    required this.databases,
+  });
 
   factory DatabaseList.fromMap(Map<String, dynamic> map) {
     return DatabaseList(
       total: map['total'],
-      databases: List<Database>.from(
-        map['databases'].map((p) => Database.fromMap(p)),
-      ),
+      databases:
+          List<Database>.from(map['databases'].map((p) => Database.fromMap(p))),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "total": total,

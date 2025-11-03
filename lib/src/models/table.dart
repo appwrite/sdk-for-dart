@@ -57,11 +57,11 @@ class Table implements Model {
       rowSecurity: map['rowSecurity'],
       columns: List.from(map['columns'] ?? []),
       indexes: List<ColumnIndex>.from(
-        map['indexes'].map((p) => ColumnIndex.fromMap(p)),
-      ),
+          map['indexes'].map((p) => ColumnIndex.fromMap(p))),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "\$id": $id,

@@ -8,7 +8,10 @@ class ColumnList implements Model {
   /// List of columns.
   final List columns;
 
-  ColumnList({required this.total, required this.columns});
+  ColumnList({
+    required this.total,
+    required this.columns,
+  });
 
   factory ColumnList.fromMap(Map<String, dynamic> map) {
     return ColumnList(
@@ -17,7 +20,11 @@ class ColumnList implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"total": total, "columns": columns};
+    return {
+      "total": total,
+      "columns": columns,
+    };
   }
 }

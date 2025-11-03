@@ -32,11 +32,11 @@ class Framework implements Model {
       buildRuntime: map['buildRuntime'].toString(),
       runtimes: List.from(map['runtimes'] ?? []),
       adapters: List<FrameworkAdapter>.from(
-        map['adapters'].map((p) => FrameworkAdapter.fromMap(p)),
-      ),
+          map['adapters'].map((p) => FrameworkAdapter.fromMap(p))),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "key": key,

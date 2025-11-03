@@ -9,11 +9,14 @@ import 'response.dart';
 import 'input_file.dart';
 import 'upload_progress.dart';
 
-ClientBase createClient({required String endPoint, required bool selfSigned}) =>
+ClientBase createClient({
+  required String endPoint,
+  required bool selfSigned,
+}) =>
     ClientBrowser(endPoint: endPoint, selfSigned: selfSigned);
 
 class ClientBrowser extends ClientBase with ClientMixin {
-  static const int CHUNK_SIZE = 5 * 1024 * 1024;
+  static const int chunkSize = 5 * 1024 * 1024;
   String _endPoint;
   Map<String, String>? _headers;
   @override
@@ -30,16 +33,14 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '19.2.1',
+      'x-sdk-version': '19.3.0',
       'X-Appwrite-Response-Format': '1.8.0',
     };
 
     config = {};
 
-    assert(
-      _endPoint.startsWith(RegExp("http://|https://")),
-      "endPoint $_endPoint must start with 'http'",
-    );
+    assert(_endPoint.startsWith(RegExp("http://|https://")),
+        "endPoint $_endPoint must start with 'http'");
   }
 
   @override
@@ -138,12 +139,9 @@ class ClientBrowser extends ClientBase with ClientMixin {
     int size = file.bytes!.length;
 
     late Response res;
-    if (size <= CHUNK_SIZE) {
-      params[paramName] = http.MultipartFile.fromBytes(
-        paramName,
-        file.bytes!,
-        filename: file.filename,
-      );
+    if (size <= chunkSize) {
+      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!,
+          filename: file.filename);
       return call(
         HttpMethod.post,
         path: path,
@@ -158,32 +156,25 @@ class ClientBrowser extends ClientBase with ClientMixin {
       try {
         res = await call(
           HttpMethod.get,
-          path: path + '/' + params[idParamName],
+          path: '$path/${params[idParamName]}',
           headers: headers,
         );
         final int chunksUploaded = res.data['chunksUploaded'] as int;
-        offset = chunksUploaded * CHUNK_SIZE;
+        offset = chunksUploaded * chunkSize;
       } on AppwriteException catch (_) {}
     }
 
     while (offset < size) {
       List<int> chunk = [];
-      final end = min(offset + CHUNK_SIZE, size);
+      final end = min(offset + chunkSize, size);
       chunk = file.bytes!.getRange(offset, end).toList();
-      params[paramName] = http.MultipartFile.fromBytes(
-        paramName,
-        chunk,
-        filename: file.filename,
-      );
+      params[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
+          filename: file.filename);
       headers['content-range'] =
-          'bytes $offset-${min<int>((offset + CHUNK_SIZE - 1), size - 1)}/$size';
-      res = await call(
-        HttpMethod.post,
-        path: path,
-        headers: headers,
-        params: params,
-      );
-      offset += CHUNK_SIZE;
+          'bytes $offset-${min<int>((offset + chunkSize - 1), size - 1)}/$size';
+      res = await call(HttpMethod.post,
+          path: path, headers: headers, params: params);
+      offset += chunkSize;
       if (offset < size) {
         headers['x-appwrite-id'] = res.data['\$id'];
       }

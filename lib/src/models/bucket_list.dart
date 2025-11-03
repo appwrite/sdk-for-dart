@@ -8,7 +8,10 @@ class BucketList implements Model {
   /// List of buckets.
   final List<Bucket> buckets;
 
-  BucketList({required this.total, required this.buckets});
+  BucketList({
+    required this.total,
+    required this.buckets,
+  });
 
   factory BucketList.fromMap(Map<String, dynamic> map) {
     return BucketList(
@@ -17,7 +20,11 @@ class BucketList implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"total": total, "buckets": buckets.map((p) => p.toMap()).toList()};
+    return {
+      "total": total,
+      "buckets": buckets.map((p) => p.toMap()).toList(),
+    };
   }
 }

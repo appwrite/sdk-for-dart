@@ -49,9 +49,8 @@ class ColumnUrl implements Model {
     return ColumnUrl(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: enums.ColumnStatus.values.firstWhere(
-        (e) => e.value == map['status'],
-      ),
+      status:
+          enums.ColumnStatus.values.firstWhere((e) => e.value == map['status']),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],
@@ -62,6 +61,7 @@ class ColumnUrl implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "key": key,

@@ -8,18 +8,24 @@ class ResourceTokenList implements Model {
   /// List of tokens.
   final List<ResourceToken> tokens;
 
-  ResourceTokenList({required this.total, required this.tokens});
+  ResourceTokenList({
+    required this.total,
+    required this.tokens,
+  });
 
   factory ResourceTokenList.fromMap(Map<String, dynamic> map) {
     return ResourceTokenList(
       total: map['total'],
       tokens: List<ResourceToken>.from(
-        map['tokens'].map((p) => ResourceToken.fromMap(p)),
-      ),
+          map['tokens'].map((p) => ResourceToken.fromMap(p))),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"total": total, "tokens": tokens.map((p) => p.toMap()).toList()};
+    return {
+      "total": total,
+      "tokens": tokens.map((p) => p.toMap()).toList(),
+    };
   }
 }

@@ -7,25 +7,20 @@ class Functions extends Service {
 
   /// Get a list of all the project's functions. You can use the query params to
   /// filter your results.
-  Future<models.FunctionList> list({
-    List<String>? queries,
-    String? search,
-  }) async {
+  Future<models.FunctionList> list(
+      {List<String>? queries, String? search, bool? total}) async {
     final String apiPath = '/functions';
 
     final Map<String, dynamic> apiParams = {
       'queries': queries,
       'search': search,
+      'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.FunctionList.fromMap(res.data);
   }
@@ -34,26 +29,25 @@ class Functions extends Service {
   /// [permissions](https://appwrite.io/docs/permissions) to allow different
   /// project users or team with access to execute the function using the client
   /// API.
-  Future<models.Func> create({
-    required String functionId,
-    required String name,
-    required enums.Runtime runtime,
-    List<String>? execute,
-    List<String>? events,
-    String? schedule,
-    int? timeout,
-    bool? enabled,
-    bool? logging,
-    String? entrypoint,
-    String? commands,
-    List<String>? scopes,
-    String? installationId,
-    String? providerRepositoryId,
-    String? providerBranch,
-    bool? providerSilentMode,
-    String? providerRootDirectory,
-    String? specification,
-  }) async {
+  Future<models.Func> create(
+      {required String functionId,
+      required String name,
+      required enums.Runtime runtime,
+      List<String>? execute,
+      List<String>? events,
+      String? schedule,
+      int? timeout,
+      bool? enabled,
+      bool? logging,
+      String? entrypoint,
+      String? commands,
+      List<String>? scopes,
+      String? installationId,
+      String? providerRepositoryId,
+      String? providerBranch,
+      bool? providerSilentMode,
+      String? providerRootDirectory,
+      String? specification}) async {
     final String apiPath = '/functions';
 
     final Map<String, dynamic> apiParams = {
@@ -77,14 +71,12 @@ class Functions extends Service {
       'specification': specification,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.post,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Func.fromMap(res.data);
   }
@@ -97,12 +89,8 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.RuntimeList.fromMap(res.data);
   }
@@ -115,62 +103,49 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.SpecificationList.fromMap(res.data);
   }
 
   /// Get a function by its unique ID.
   Future<models.Func> get({required String functionId}) async {
-    final String apiPath = '/functions/{functionId}'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+    final String apiPath =
+        '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Func.fromMap(res.data);
   }
 
   /// Update function by its unique ID.
-  Future<models.Func> update({
-    required String functionId,
-    required String name,
-    enums.Runtime? runtime,
-    List<String>? execute,
-    List<String>? events,
-    String? schedule,
-    int? timeout,
-    bool? enabled,
-    bool? logging,
-    String? entrypoint,
-    String? commands,
-    List<String>? scopes,
-    String? installationId,
-    String? providerRepositoryId,
-    String? providerBranch,
-    bool? providerSilentMode,
-    String? providerRootDirectory,
-    String? specification,
-  }) async {
-    final String apiPath = '/functions/{functionId}'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.Func> update(
+      {required String functionId,
+      required String name,
+      enums.Runtime? runtime,
+      List<String>? execute,
+      List<String>? events,
+      String? schedule,
+      int? timeout,
+      bool? enabled,
+      bool? logging,
+      String? entrypoint,
+      String? commands,
+      List<String>? scopes,
+      String? installationId,
+      String? providerRepositoryId,
+      String? providerBranch,
+      bool? providerSilentMode,
+      String? providerRootDirectory,
+      String? specification}) async {
+    final String apiPath =
+        '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {
       'name': name,
@@ -192,89 +167,74 @@ class Functions extends Service {
       'specification': specification,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.put,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.put,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Func.fromMap(res.data);
   }
 
   /// Delete a function by its unique ID.
   Future delete({required String functionId}) async {
-    final String apiPath = '/functions/{functionId}'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+    final String apiPath =
+        '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.delete,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return res.data;
   }
 
   /// Update the function active deployment. Use this endpoint to switch the code
   /// deployment that should be used when visitor opens your function.
-  Future<models.Func> updateFunctionDeployment({
-    required String functionId,
-    required String deploymentId,
-  }) async {
-    final String apiPath = '/functions/{functionId}/deployment'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.Func> updateFunctionDeployment(
+      {required String functionId, required String deploymentId}) async {
+    final String apiPath = '/functions/{functionId}/deployment'
+        .replaceAll('{functionId}', functionId);
 
-    final Map<String, dynamic> apiParams = {'deploymentId': deploymentId};
+    final Map<String, dynamic> apiParams = {
+      'deploymentId': deploymentId,
+    };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.patch,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Func.fromMap(res.data);
   }
 
   /// Get a list of all the function's code deployments. You can use the query
   /// params to filter your results.
-  Future<models.DeploymentList> listDeployments({
-    required String functionId,
-    List<String>? queries,
-    String? search,
-  }) async {
-    final String apiPath = '/functions/{functionId}/deployments'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.DeploymentList> listDeployments(
+      {required String functionId,
+      List<String>? queries,
+      String? search,
+      bool? total}) async {
+    final String apiPath = '/functions/{functionId}/deployments'
+        .replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {
       'queries': queries,
       'search': search,
+      'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.DeploymentList.fromMap(res.data);
   }
@@ -289,18 +249,15 @@ class Functions extends Service {
   /// tutorial](https://appwrite.io/docs/functions).
   ///
   /// Use the "command" param to set the entrypoint used to execute your code.
-  Future<models.Deployment> createDeployment({
-    required String functionId,
-    required InputFile code,
-    required bool activate,
-    String? entrypoint,
-    String? commands,
-    Function(UploadProgress)? onProgress,
-  }) async {
-    final String apiPath = '/functions/{functionId}/deployments'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.Deployment> createDeployment(
+      {required String functionId,
+      required InputFile code,
+      required bool activate,
+      String? entrypoint,
+      String? commands,
+      Function(UploadProgress)? onProgress}) async {
+    final String apiPath = '/functions/{functionId}/deployments'
+        .replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {
       'entrypoint': entrypoint,
@@ -332,11 +289,10 @@ class Functions extends Service {
   /// including its entrypoint and build commands if they have been modified. The
   /// build process will be queued and executed asynchronously. The original
   /// deployment's code will be preserved and used for the new build.
-  Future<models.Deployment> createDuplicateDeployment({
-    required String functionId,
-    required String deploymentId,
-    String? buildId,
-  }) async {
+  Future<models.Deployment> createDuplicateDeployment(
+      {required String functionId,
+      required String deploymentId,
+      String? buildId}) async {
     final String apiPath = '/functions/{functionId}/deployments/duplicate'
         .replaceAll('{functionId}', functionId);
 
@@ -345,14 +301,12 @@ class Functions extends Service {
       'buildId': buildId,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.post,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Deployment.fromMap(res.data);
   }
@@ -362,14 +316,13 @@ class Functions extends Service {
   /// Use this endpoint with combination of
   /// [listTemplates](https://appwrite.io/docs/products/functions/templates) to
   /// find the template details.
-  Future<models.Deployment> createTemplateDeployment({
-    required String functionId,
-    required String repository,
-    required String owner,
-    required String rootDirectory,
-    required String version,
-    bool? activate,
-  }) async {
+  Future<models.Deployment> createTemplateDeployment(
+      {required String functionId,
+      required String repository,
+      required String owner,
+      required String rootDirectory,
+      required String version,
+      bool? activate}) async {
     final String apiPath = '/functions/{functionId}/deployments/template'
         .replaceAll('{functionId}', functionId);
 
@@ -381,14 +334,12 @@ class Functions extends Service {
       'activate': activate,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.post,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Deployment.fromMap(res.data);
   }
@@ -396,16 +347,13 @@ class Functions extends Service {
   /// Create a deployment when a function is connected to VCS.
   ///
   /// This endpoint lets you create deployment from a branch, commit, or a tag.
-  Future<models.Deployment> createVcsDeployment({
-    required String functionId,
-    required enums.VCSDeploymentType type,
-    required String reference,
-    bool? activate,
-  }) async {
-    final String apiPath = '/functions/{functionId}/deployments/vcs'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.Deployment> createVcsDeployment(
+      {required String functionId,
+      required enums.VCSDeploymentType type,
+      required String reference,
+      bool? activate}) async {
+    final String apiPath = '/functions/{functionId}/deployments/vcs'
+        .replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {
       'type': type.value,
@@ -413,23 +361,19 @@ class Functions extends Service {
       'activate': activate,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.post,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Deployment.fromMap(res.data);
   }
 
   /// Get a function deployment by its unique ID.
-  Future<models.Deployment> getDeployment({
-    required String functionId,
-    required String deploymentId,
-  }) async {
+  Future<models.Deployment> getDeployment(
+      {required String functionId, required String deploymentId}) async {
     final String apiPath = '/functions/{functionId}/deployments/{deploymentId}'
         .replaceAll('{functionId}', functionId)
         .replaceAll('{deploymentId}', deploymentId);
@@ -438,35 +382,27 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Deployment.fromMap(res.data);
   }
 
   /// Delete a code deployment by its unique ID.
-  Future deleteDeployment({
-    required String functionId,
-    required String deploymentId,
-  }) async {
+  Future deleteDeployment(
+      {required String functionId, required String deploymentId}) async {
     final String apiPath = '/functions/{functionId}/deployments/{deploymentId}'
         .replaceAll('{functionId}', functionId)
         .replaceAll('{deploymentId}', deploymentId);
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.delete,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return res.data;
   }
@@ -474,11 +410,10 @@ class Functions extends Service {
   /// Get a function deployment content by its unique ID. The endpoint response
   /// return with a 'Content-Disposition: attachment' header that tells the
   /// browser to start downloading the file to user downloads directory.
-  Future<Uint8List> getDeploymentDownload({
-    required String functionId,
-    required String deploymentId,
-    enums.DeploymentDownloadType? type,
-  }) async {
+  Future<Uint8List> getDeploymentDownload(
+      {required String functionId,
+      required String deploymentId,
+      enums.DeploymentDownloadType? type}) async {
     final String apiPath =
         '/functions/{functionId}/deployments/{deploymentId}/download'
             .replaceAll('{functionId}', functionId)
@@ -486,17 +421,12 @@ class Functions extends Service {
 
     final Map<String, dynamic> params = {
       'type': type?.value,
-
       'project': client.config['project'],
       'key': client.config['key'],
     };
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: params,
-      responseType: ResponseType.bytes,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: params, responseType: ResponseType.bytes);
     return res.data;
   }
 
@@ -505,10 +435,8 @@ class Functions extends Service {
   /// started yet, it will be marked as canceled without executing. You cannot
   /// cancel builds that have already completed (status 'ready') or failed. The
   /// response includes the final build status and details.
-  Future<models.Deployment> updateDeploymentStatus({
-    required String functionId,
-    required String deploymentId,
-  }) async {
+  Future<models.Deployment> updateDeploymentStatus(
+      {required String functionId, required String deploymentId}) async {
     final String apiPath =
         '/functions/{functionId}/deployments/{deploymentId}/status'
             .replaceAll('{functionId}', functionId)
@@ -516,39 +444,32 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.patch,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Deployment.fromMap(res.data);
   }
 
   /// Get a list of all the current user function execution logs. You can use the
   /// query params to filter your results.
-  Future<models.ExecutionList> listExecutions({
-    required String functionId,
-    List<String>? queries,
-  }) async {
-    final String apiPath = '/functions/{functionId}/executions'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.ExecutionList> listExecutions(
+      {required String functionId, List<String>? queries, bool? total}) async {
+    final String apiPath = '/functions/{functionId}/executions'
+        .replaceAll('{functionId}', functionId);
 
-    final Map<String, dynamic> apiParams = {'queries': queries};
+    final Map<String, dynamic> apiParams = {
+      'queries': queries,
+      'total': total,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.ExecutionList.fromMap(res.data);
   }
@@ -557,19 +478,16 @@ class Functions extends Service {
   /// current execution status. You can ping the `Get Execution` endpoint to get
   /// updates on the current execution status. Once this endpoint is called, your
   /// function execution process will start asynchronously.
-  Future<models.Execution> createExecution({
-    required String functionId,
-    String? body,
-    bool? xasync,
-    String? path,
-    enums.ExecutionMethod? method,
-    Map? headers,
-    String? scheduledAt,
-  }) async {
-    final String apiPath = '/functions/{functionId}/executions'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.Execution> createExecution(
+      {required String functionId,
+      String? body,
+      bool? xasync,
+      String? path,
+      enums.ExecutionMethod? method,
+      Map? headers,
+      String? scheduledAt}) async {
+    final String apiPath = '/functions/{functionId}/executions'
+        .replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {
       'body': body,
@@ -580,23 +498,19 @@ class Functions extends Service {
       'scheduledAt': scheduledAt,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.post,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Execution.fromMap(res.data);
   }
 
   /// Get a function execution log by its unique ID.
-  Future<models.Execution> getExecution({
-    required String functionId,
-    required String executionId,
-  }) async {
+  Future<models.Execution> getExecution(
+      {required String functionId, required String executionId}) async {
     final String apiPath = '/functions/{functionId}/executions/{executionId}'
         .replaceAll('{functionId}', functionId)
         .replaceAll('{executionId}', executionId);
@@ -605,74 +519,56 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Execution.fromMap(res.data);
   }
 
   /// Delete a function execution by its unique ID.
-  Future deleteExecution({
-    required String functionId,
-    required String executionId,
-  }) async {
+  Future deleteExecution(
+      {required String functionId, required String executionId}) async {
     final String apiPath = '/functions/{functionId}/executions/{executionId}'
         .replaceAll('{functionId}', functionId)
         .replaceAll('{executionId}', executionId);
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.delete,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return res.data;
   }
 
   /// Get a list of all variables of a specific function.
-  Future<models.VariableList> listVariables({
-    required String functionId,
-  }) async {
-    final String apiPath = '/functions/{functionId}/variables'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.VariableList> listVariables(
+      {required String functionId}) async {
+    final String apiPath = '/functions/{functionId}/variables'
+        .replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.VariableList.fromMap(res.data);
   }
 
   /// Create a new function environment variable. These variables can be accessed
   /// in the function at runtime as environment variables.
-  Future<models.Variable> createVariable({
-    required String functionId,
-    required String key,
-    required String value,
-    bool? secret,
-  }) async {
-    final String apiPath = '/functions/{functionId}/variables'.replaceAll(
-      '{functionId}',
-      functionId,
-    );
+  Future<models.Variable> createVariable(
+      {required String functionId,
+      required String key,
+      required String value,
+      bool? secret}) async {
+    final String apiPath = '/functions/{functionId}/variables'
+        .replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {
       'key': key,
@@ -680,23 +576,19 @@ class Functions extends Service {
       'secret': secret,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.post,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Variable.fromMap(res.data);
   }
 
   /// Get a variable by its unique ID.
-  Future<models.Variable> getVariable({
-    required String functionId,
-    required String variableId,
-  }) async {
+  Future<models.Variable> getVariable(
+      {required String functionId, required String variableId}) async {
     final String apiPath = '/functions/{functionId}/variables/{variableId}'
         .replaceAll('{functionId}', functionId)
         .replaceAll('{variableId}', variableId);
@@ -705,24 +597,19 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Variable.fromMap(res.data);
   }
 
   /// Update variable by its unique ID.
-  Future<models.Variable> updateVariable({
-    required String functionId,
-    required String variableId,
-    required String key,
-    String? value,
-    bool? secret,
-  }) async {
+  Future<models.Variable> updateVariable(
+      {required String functionId,
+      required String variableId,
+      required String key,
+      String? value,
+      bool? secret}) async {
     final String apiPath = '/functions/{functionId}/variables/{variableId}'
         .replaceAll('{functionId}', functionId)
         .replaceAll('{variableId}', variableId);
@@ -733,37 +620,31 @@ class Functions extends Service {
       'secret': secret,
     };
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.put,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.put,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Variable.fromMap(res.data);
   }
 
   /// Delete a variable by its unique ID.
-  Future deleteVariable({
-    required String functionId,
-    required String variableId,
-  }) async {
+  Future deleteVariable(
+      {required String functionId, required String variableId}) async {
     final String apiPath = '/functions/{functionId}/variables/{variableId}'
         .replaceAll('{functionId}', functionId)
         .replaceAll('{variableId}', variableId);
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {'content-type': 'application/json'};
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
 
-    final res = await client.call(
-      HttpMethod.delete,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return res.data;
   }

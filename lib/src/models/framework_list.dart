@@ -8,17 +8,20 @@ class FrameworkList implements Model {
   /// List of frameworks.
   final List<Framework> frameworks;
 
-  FrameworkList({required this.total, required this.frameworks});
+  FrameworkList({
+    required this.total,
+    required this.frameworks,
+  });
 
   factory FrameworkList.fromMap(Map<String, dynamic> map) {
     return FrameworkList(
       total: map['total'],
       frameworks: List<Framework>.from(
-        map['frameworks'].map((p) => Framework.fromMap(p)),
-      ),
+          map['frameworks'].map((p) => Framework.fromMap(p))),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "total": total,

@@ -8,7 +8,10 @@ class TableList implements Model {
   /// List of tables.
   final List<Table> tables;
 
-  TableList({required this.total, required this.tables});
+  TableList({
+    required this.total,
+    required this.tables,
+  });
 
   factory TableList.fromMap(Map<String, dynamic> map) {
     return TableList(
@@ -17,7 +20,11 @@ class TableList implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"total": total, "tables": tables.map((p) => p.toMap()).toList()};
+    return {
+      "total": total,
+      "tables": tables.map((p) => p.toMap()).toList(),
+    };
   }
 }

@@ -9,6 +9,7 @@ enum Framework {
   vue(value: 'vue'),
   sveltekit(value: 'sveltekit'),
   astro(value: 'astro'),
+  tanstackStart(value: 'tanstack-start'),
   remix(value: 'remix'),
   lynx(value: 'lynx'),
   flutter(value: 'flutter'),

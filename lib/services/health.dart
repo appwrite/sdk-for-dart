@@ -13,12 +13,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthStatus.fromMap(res.data);
   }
@@ -31,12 +27,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthAntivirus.fromMap(res.data);
   }
@@ -50,12 +42,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthStatus.fromMap(res.data);
   }
@@ -64,16 +52,14 @@ class Health extends Service {
   Future<models.HealthCertificate> getCertificate({String? domain}) async {
     final String apiPath = '/health/certificate';
 
-    final Map<String, dynamic> apiParams = {'domain': domain};
+    final Map<String, dynamic> apiParams = {
+      'domain': domain,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthCertificate.fromMap(res.data);
   }
@@ -86,12 +72,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthStatus.fromMap(res.data);
   }
@@ -104,12 +86,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthStatus.fromMap(res.data);
   }
@@ -119,16 +97,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueBuilds({int? threshold}) async {
     final String apiPath = '/health/queue/builds';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -139,26 +115,22 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueCertificates({int? threshold}) async {
     final String apiPath = '/health/queue/certificates';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
 
   /// Get the number of database changes that are waiting to be processed in the
   /// Appwrite internal queue server.
-  Future<models.HealthQueue> getQueueDatabases({
-    String? name,
-    int? threshold,
-  }) async {
+  Future<models.HealthQueue> getQueueDatabases(
+      {String? name, int? threshold}) async {
     final String apiPath = '/health/queue/databases';
 
     final Map<String, dynamic> apiParams = {
@@ -168,12 +140,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -183,41 +151,33 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueDeletes({int? threshold}) async {
     final String apiPath = '/health/queue/deletes';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
 
   /// Returns the amount of failed jobs in a given queue.
   ///
-  Future<models.HealthQueue> getFailedJobs({
-    required enums.Name name,
-    int? threshold,
-  }) async {
-    final String apiPath = '/health/queue/failed/{name}'.replaceAll(
-      '{name}',
-      name.value,
-    );
+  Future<models.HealthQueue> getFailedJobs(
+      {required enums.Name name, int? threshold}) async {
+    final String apiPath =
+        '/health/queue/failed/{name}'.replaceAll('{name}', name.value);
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -227,16 +187,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueFunctions({int? threshold}) async {
     final String apiPath = '/health/queue/functions';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -246,16 +204,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueLogs({int? threshold}) async {
     final String apiPath = '/health/queue/logs';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -265,16 +221,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueMails({int? threshold}) async {
     final String apiPath = '/health/queue/mails';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -284,16 +238,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueMessaging({int? threshold}) async {
     final String apiPath = '/health/queue/messaging';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -303,16 +255,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueMigrations({int? threshold}) async {
     final String apiPath = '/health/queue/migrations';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -322,16 +272,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueStatsResources({int? threshold}) async {
     final String apiPath = '/health/queue/stats-resources';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -341,16 +289,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueUsage({int? threshold}) async {
     final String apiPath = '/health/queue/stats-usage';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -360,16 +306,14 @@ class Health extends Service {
   Future<models.HealthQueue> getQueueWebhooks({int? threshold}) async {
     final String apiPath = '/health/queue/webhooks';
 
-    final Map<String, dynamic> apiParams = {'threshold': threshold};
+    final Map<String, dynamic> apiParams = {
+      'threshold': threshold,
+    };
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthQueue.fromMap(res.data);
   }
@@ -382,12 +326,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthStatus.fromMap(res.data);
   }
@@ -400,12 +340,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthStatus.fromMap(res.data);
   }
@@ -424,12 +360,8 @@ class Health extends Service {
 
     final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthTime.fromMap(res.data);
   }

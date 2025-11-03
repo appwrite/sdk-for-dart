@@ -129,9 +129,8 @@ class Deployment implements Model {
       activate: map['activate'],
       screenshotLight: map['screenshotLight'].toString(),
       screenshotDark: map['screenshotDark'].toString(),
-      status: enums.DeploymentStatus.values.firstWhere(
-        (e) => e.value == map['status'],
-      ),
+      status: enums.DeploymentStatus.values
+          .firstWhere((e) => e.value == map['status']),
       buildLogs: map['buildLogs'].toString(),
       buildDuration: map['buildDuration'],
       providerRepositoryName: map['providerRepositoryName'].toString(),
@@ -147,6 +146,7 @@ class Deployment implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "\$id": $id,

@@ -6,7 +6,7 @@ class Query {
   final String? attribute;
   final dynamic values;
 
-  Query._(this.method, [this.attribute = null, this.values = null]);
+  Query._(this.method, [this.attribute, this.values]);
 
   Map<String, dynamic> toJson() {
     final result = <String, dynamic>{};
@@ -106,40 +106,36 @@ class Query {
       Query._('notEndsWith', attribute, value).toString();
 
   /// Filter resources where document was created before [value].
-  static String createdBefore(String value) =>
-      Query._('createdBefore', null, value).toString();
+  static String createdBefore(String value) => lessThan('\$createdAt', value);
 
   /// Filter resources where document was created after [value].
-  static String createdAfter(String value) =>
-      Query._('createdAfter', null, value).toString();
+  static String createdAfter(String value) => greaterThan('\$createdAt', value);
 
   /// Filter resources where document was created between [start] and [end] (inclusive).
   static String createdBetween(String start, String end) =>
-      Query._('createdBetween', null, [start, end]).toString();
+      between('\$createdAt', start, end);
 
   /// Filter resources where document was updated before [value].
-  static String updatedBefore(String value) =>
-      Query._('updatedBefore', null, value).toString();
+  static String updatedBefore(String value) => lessThan('\$updatedAt', value);
 
   /// Filter resources where document was updated after [value].
-  static String updatedAfter(String value) =>
-      Query._('updatedAfter', null, value).toString();
+  static String updatedAfter(String value) => greaterThan('\$updatedAt', value);
 
   /// Filter resources where document was updated between [start] and [end] (inclusive).
   static String updatedBetween(String start, String end) =>
-      Query._('updatedBetween', null, [start, end]).toString();
+      between('\$updatedAt', start, end);
 
   static String or(List<String> queries) => Query._(
-    'or',
-    null,
-    queries.map((query) => jsonDecode(query)).toList(),
-  ).toString();
+        'or',
+        null,
+        queries.map((query) => jsonDecode(query)).toList(),
+      ).toString();
 
   static String and(List<String> queries) => Query._(
-    'and',
-    null,
-    queries.map((query) => jsonDecode(query)).toList(),
-  ).toString();
+        'and',
+        null,
+        queries.map((query) => jsonDecode(query)).toList(),
+      ).toString();
 
   /// Specify which attributes should be returned by the API call.
   static String select(List<String> attributes) =>
@@ -182,43 +178,35 @@ class Query {
 
   /// Filter resources where [attribute] is at a specific distance from the given coordinates.
   static String distanceEqual(
-    String attribute,
-    List<dynamic> values,
-    num distance, [
-    bool meters = true,
-  ]) => Query._('distanceEqual', attribute, [
-    [values, distance, meters],
-  ]).toString();
+          String attribute, List<dynamic> values, num distance,
+          [bool meters = true]) =>
+      Query._('distanceEqual', attribute, [
+        [values, distance, meters]
+      ]).toString();
 
   /// Filter resources where [attribute] is not at a specific distance from the given coordinates.
   static String distanceNotEqual(
-    String attribute,
-    List<dynamic> values,
-    num distance, [
-    bool meters = true,
-  ]) => Query._('distanceNotEqual', attribute, [
-    [values, distance, meters],
-  ]).toString();
+          String attribute, List<dynamic> values, num distance,
+          [bool meters = true]) =>
+      Query._('distanceNotEqual', attribute, [
+        [values, distance, meters]
+      ]).toString();
 
   /// Filter resources where [attribute] is at a distance greater than the specified value from the given coordinates.
   static String distanceGreaterThan(
-    String attribute,
-    List<dynamic> values,
-    num distance, [
-    bool meters = true,
-  ]) => Query._('distanceGreaterThan', attribute, [
-    [values, distance, meters],
-  ]).toString();
+          String attribute, List<dynamic> values, num distance,
+          [bool meters = true]) =>
+      Query._('distanceGreaterThan', attribute, [
+        [values, distance, meters]
+      ]).toString();
 
   /// Filter resources where [attribute] is at a distance less than the specified value from the given coordinates.
   static String distanceLessThan(
-    String attribute,
-    List<dynamic> values,
-    num distance, [
-    bool meters = true,
-  ]) => Query._('distanceLessThan', attribute, [
-    [values, distance, meters],
-  ]).toString();
+          String attribute, List<dynamic> values, num distance,
+          [bool meters = true]) =>
+      Query._('distanceLessThan', attribute, [
+        [values, distance, meters]
+      ]).toString();
 
   /// Filter resources where [attribute] intersects with the given geometry.
   static String intersects(String attribute, List<dynamic> values) =>

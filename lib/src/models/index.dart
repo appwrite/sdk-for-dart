@@ -52,9 +52,8 @@ class Index implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: enums.IndexStatus.values.firstWhere(
-        (e) => e.value == map['status'],
-      ),
+      status:
+          enums.IndexStatus.values.firstWhere((e) => e.value == map['status']),
       error: map['error'].toString(),
       attributes: List.from(map['attributes'] ?? []),
       lengths: List.from(map['lengths'] ?? []),
@@ -62,6 +61,7 @@ class Index implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "\$id": $id,

@@ -8,7 +8,10 @@ class SiteList implements Model {
   /// List of sites.
   final List<Site> sites;
 
-  SiteList({required this.total, required this.sites});
+  SiteList({
+    required this.total,
+    required this.sites,
+  });
 
   factory SiteList.fromMap(Map<String, dynamic> map) {
     return SiteList(
@@ -17,7 +20,11 @@ class SiteList implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"total": total, "sites": sites.map((p) => p.toMap()).toList()};
+    return {
+      "total": total,
+      "sites": sites.map((p) => p.toMap()).toList(),
+    };
   }
 }

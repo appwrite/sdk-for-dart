@@ -8,7 +8,10 @@ class FunctionList implements Model {
   /// List of functions.
   final List<Func> functions;
 
-  FunctionList({required this.total, required this.functions});
+  FunctionList({
+    required this.total,
+    required this.functions,
+  });
 
   factory FunctionList.fromMap(Map<String, dynamic> map) {
     return FunctionList(
@@ -17,6 +20,7 @@ class FunctionList implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "total": total,

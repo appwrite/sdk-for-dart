@@ -24,7 +24,8 @@ class MockClient extends Mock implements Client {
 
   @override
   Future<String?> webAuth(Uri url) async {
-    return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super
+        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
   @override
@@ -36,116 +37,110 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    return super.noSuchMethod(Invocation.method(#chunkedUpload, [path, params, paramName, idParamName, headers]), returnValue: Response(data: {}));
+    return super.noSuchMethod(
+        Invocation.method(
+            #chunkedUpload, [path, params, paramName, idParamName, headers]),
+        returnValue: Response(data: {}));
   }
 }
 
 void main() {
-    group('Avatars test', () {
-        late MockClient client;
-        late Avatars avatars;
+  group('Avatars test', () {
+    late MockClient client;
+    late Avatars avatars;
 
-        setUp(() {
-            client = MockClient();
-            avatars = Avatars(client);
-        });
-
-        test('test method getBrowser()', () async {final Uint8List data = Uint8List.fromList([]);
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await avatars.getBrowser(
-                code: enums.Browser.avantBrowser,
-            );
-            expect(response, isA<Uint8List>());
-
-        });
-
-        test('test method getCreditCard()', () async {final Uint8List data = Uint8List.fromList([]);
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await avatars.getCreditCard(
-                code: enums.CreditCard.americanExpress,
-            );
-            expect(response, isA<Uint8List>());
-
-        });
-
-        test('test method getFavicon()', () async {final Uint8List data = Uint8List.fromList([]);
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await avatars.getFavicon(
-                url: 'https://example.com',
-            );
-            expect(response, isA<Uint8List>());
-
-        });
-
-        test('test method getFlag()', () async {final Uint8List data = Uint8List.fromList([]);
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await avatars.getFlag(
-                code: enums.Flag.afghanistan,
-            );
-            expect(response, isA<Uint8List>());
-
-        });
-
-        test('test method getImage()', () async {final Uint8List data = Uint8List.fromList([]);
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await avatars.getImage(
-                url: 'https://example.com',
-            );
-            expect(response, isA<Uint8List>());
-
-        });
-
-        test('test method getInitials()', () async {final Uint8List data = Uint8List.fromList([]);
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await avatars.getInitials(
-            );
-            expect(response, isA<Uint8List>());
-
-        });
-
-        test('test method getQR()', () async {final Uint8List data = Uint8List.fromList([]);
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await avatars.getQR(
-                text: '<TEXT>',
-            );
-            expect(response, isA<Uint8List>());
-
-        });
-
+    setUp(() {
+      client = MockClient();
+      avatars = Avatars(client);
     });
+
+    test('test method getBrowser()', () async {
+      final Uint8List data = Uint8List.fromList([]);
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await avatars.getBrowser(
+        code: enums.Browser.avantBrowser,
+      );
+      expect(response, isA<Uint8List>());
+    });
+
+    test('test method getCreditCard()', () async {
+      final Uint8List data = Uint8List.fromList([]);
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await avatars.getCreditCard(
+        code: enums.CreditCard.americanExpress,
+      );
+      expect(response, isA<Uint8List>());
+    });
+
+    test('test method getFavicon()', () async {
+      final Uint8List data = Uint8List.fromList([]);
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await avatars.getFavicon(
+        url: 'https://example.com',
+      );
+      expect(response, isA<Uint8List>());
+    });
+
+    test('test method getFlag()', () async {
+      final Uint8List data = Uint8List.fromList([]);
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await avatars.getFlag(
+        code: enums.Flag.afghanistan,
+      );
+      expect(response, isA<Uint8List>());
+    });
+
+    test('test method getImage()', () async {
+      final Uint8List data = Uint8List.fromList([]);
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await avatars.getImage(
+        url: 'https://example.com',
+      );
+      expect(response, isA<Uint8List>());
+    });
+
+    test('test method getInitials()', () async {
+      final Uint8List data = Uint8List.fromList([]);
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await avatars.getInitials();
+      expect(response, isA<Uint8List>());
+    });
+
+    test('test method getQR()', () async {
+      final Uint8List data = Uint8List.fromList([]);
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await avatars.getQR(
+        text: '<TEXT>',
+      );
+      expect(response, isA<Uint8List>());
+    });
+  });
 }

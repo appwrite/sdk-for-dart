@@ -8,7 +8,10 @@ class UserList implements Model {
   /// List of users.
   final List<User> users;
 
-  UserList({required this.total, required this.users});
+  UserList({
+    required this.total,
+    required this.users,
+  });
 
   factory UserList.fromMap(Map<String, dynamic> map) {
     return UserList(
@@ -17,7 +20,11 @@ class UserList implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"total": total, "users": users.map((p) => p.toMap()).toList()};
+    return {
+      "total": total,
+      "users": users.map((p) => p.toMap()).toList(),
+    };
   }
 }

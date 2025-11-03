@@ -21,16 +21,16 @@ void main() {
       final map = model.toMap();
       final result = Message.fromMap(map);
 
-            expect(result.$id, '5e5ea5c16897e');
-                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-                  expect(result.providerType, 'email');
-                  expect(result.topics, []);
-                  expect(result.users, []);
-                  expect(result.targets, []);
-                  expect(result.deliveredTotal, 1);
-                  expect(result.data, {});
-                  expect(result.status, MessageStatus.draft);
-          });
+      expect(result.$id, '5e5ea5c16897e');
+      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.providerType, 'email');
+      expect(result.topics, []);
+      expect(result.users, []);
+      expect(result.targets, []);
+      expect(result.deliveredTotal, 1);
+      expect(result.data, {});
+      expect(result.status, MessageStatus.draft);
+    });
   });
 }

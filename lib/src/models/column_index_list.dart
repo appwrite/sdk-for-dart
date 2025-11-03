@@ -8,18 +8,24 @@ class ColumnIndexList implements Model {
   /// List of indexes.
   final List<ColumnIndex> indexes;
 
-  ColumnIndexList({required this.total, required this.indexes});
+  ColumnIndexList({
+    required this.total,
+    required this.indexes,
+  });
 
   factory ColumnIndexList.fromMap(Map<String, dynamic> map) {
     return ColumnIndexList(
       total: map['total'],
       indexes: List<ColumnIndex>.from(
-        map['indexes'].map((p) => ColumnIndex.fromMap(p)),
-      ),
+          map['indexes'].map((p) => ColumnIndex.fromMap(p))),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"total": total, "indexes": indexes.map((p) => p.toMap()).toList()};
+    return {
+      "total": total,
+      "indexes": indexes.map((p) => p.toMap()).toList(),
+    };
   }
 }

@@ -71,12 +71,12 @@ class Message implements Model {
       deliveryErrors: List.from(map['deliveryErrors'] ?? []),
       deliveredTotal: map['deliveredTotal'],
       data: map['data'],
-      status: enums.MessageStatus.values.firstWhere(
-        (e) => e.value == map['status'],
-      ),
+      status: enums.MessageStatus.values
+          .firstWhere((e) => e.value == map['status']),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "\$id": $id,

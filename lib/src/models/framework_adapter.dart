@@ -35,6 +35,7 @@ class FrameworkAdapter implements Model {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "key": key,

@@ -8,17 +8,20 @@ class RuntimeList implements Model {
   /// List of runtimes.
   final List<Runtime> runtimes;
 
-  RuntimeList({required this.total, required this.runtimes});
+  RuntimeList({
+    required this.total,
+    required this.runtimes,
+  });
 
   factory RuntimeList.fromMap(Map<String, dynamic> map) {
     return RuntimeList(
       total: map['total'],
-      runtimes: List<Runtime>.from(
-        map['runtimes'].map((p) => Runtime.fromMap(p)),
-      ),
+      runtimes:
+          List<Runtime>.from(map['runtimes'].map((p) => Runtime.fromMap(p))),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       "total": total,

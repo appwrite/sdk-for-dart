@@ -11,19 +11,27 @@ class HealthStatus implements Model {
   /// Service status. Possible values are: `pass`, `fail`
   final enums.HealthCheckStatus status;
 
-  HealthStatus({required this.name, required this.ping, required this.status});
+  HealthStatus({
+    required this.name,
+    required this.ping,
+    required this.status,
+  });
 
   factory HealthStatus.fromMap(Map<String, dynamic> map) {
     return HealthStatus(
       name: map['name'].toString(),
       ping: map['ping'],
-      status: enums.HealthCheckStatus.values.firstWhere(
-        (e) => e.value == map['status'],
-      ),
+      status: enums.HealthCheckStatus.values
+          .firstWhere((e) => e.value == map['status']),
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
-    return {"name": name, "ping": ping, "status": status.value};
+    return {
+      "name": name,
+      "ping": ping,
+      "status": status.value,
+    };
   }
 }
