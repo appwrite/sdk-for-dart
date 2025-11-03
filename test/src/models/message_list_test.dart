@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = MessageList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.messages, []);
-          });
+      expect(result.total, 5);
+      expect(result.messages, []);
+    });
   });
 }
