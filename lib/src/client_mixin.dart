@@ -12,23 +12,25 @@ mixin ClientMixin {
     required Map<String, String> headers,
     required Map<String, dynamic> params,
   }) {
-    if (params.isNotEmpty) {
-      params.removeWhere((key, value) => value == null);
-    }
 
     http.BaseRequest request = http.Request(method.name(), uri);
     if (headers['content-type'] == 'multipart/form-data') {
       request = http.MultipartRequest(method.name(), uri);
       if (params.isNotEmpty) {
         params.forEach((key, value) {
+          if (value == null) {
+            return;
+          }
           if (value is http.MultipartFile) {
             (request as http.MultipartRequest).files.add(value);
           } else {
             if (value is List) {
               value.asMap().forEach((i, v) {
-                (request as http.MultipartRequest)
-                    .fields
-                    .addAll({"$key[$i]": v.toString()});
+                if (v != null) {
+                  (request as http.MultipartRequest)
+                      .fields
+                      .addAll({"$key[$i]": v.toString()});
+                }
               });
             } else {
               (request as http.MultipartRequest)
@@ -40,15 +42,19 @@ mixin ClientMixin {
       }
     } else if (method == HttpMethod.get) {
       if (params.isNotEmpty) {
-        params = params.map((key, value) {
-          if (value is int || value is double) {
-            return MapEntry(key, value.toString());
+        Map<String, dynamic> filteredParams = {};
+        params.forEach((key, value) {
+          if (value != null) {
+            if (value is int || value is double) {
+              filteredParams[key] = value.toString();
+            } else if (value is List) {
+              filteredParams["$key[]"] = value;
+            } else {
+              filteredParams[key] = value;
+            }
           }
-          if (value is List) {
-            return MapEntry("$key[]", value);
-          }
-          return MapEntry(key, value);
         });
+        params = filteredParams;
       }
       uri = Uri(
           fragment: uri.fragment,
@@ -66,8 +72,7 @@ mixin ClientMixin {
       headers['User-Agent'] = Uri.encodeFull(headers['User-Agent']!);
     }
     if (headers['X-Forwarded-User-Agent'] != null) {
-      headers['X-Forwarded-User-Agent'] =
-          Uri.encodeFull(headers['X-Forwarded-User-Agent']!);
+      headers['X-Forwarded-User-Agent'] = Uri.encodeFull(headers['X-Forwarded-User-Agent']!);
     }
 
     request.headers.addAll(headers);
@@ -114,23 +119,18 @@ mixin ClientMixin {
     return Response(data: data);
   }
 
-  Future<http.Response> toResponse(
-      http.StreamedResponse streamedResponse) async {
-    if (streamedResponse.statusCode == 204) {
-      return http.Response(
-        '',
-        streamedResponse.statusCode,
-        headers: streamedResponse.headers.map((k, v) =>
-            k.toLowerCase() == 'content-type'
-                ? MapEntry(k, 'text/plain')
-                : MapEntry(k, v)),
-        request: streamedResponse.request,
-        isRedirect: streamedResponse.isRedirect,
-        persistentConnection: streamedResponse.persistentConnection,
-        reasonPhrase: streamedResponse.reasonPhrase,
-      );
-    } else {
-      return await http.Response.fromStream(streamedResponse);
-    }
+  Future<http.Response> toResponse(http.StreamedResponse streamedResponse) async {
+    if(streamedResponse.statusCode == 204) {
+        return http.Response('',
+          streamedResponse.statusCode,
+          headers: streamedResponse.headers.map((k,v) => k.toLowerCase()=='content-type' ? MapEntry(k, 'text/plain') : MapEntry(k,v)),
+          request: streamedResponse.request,
+          isRedirect: streamedResponse.isRedirect,
+          persistentConnection: streamedResponse.persistentConnection,
+          reasonPhrase: streamedResponse.reasonPhrase,
+        );
+      } else {
+        return await http.Response.fromStream(streamedResponse);
+      }
   }
 }
