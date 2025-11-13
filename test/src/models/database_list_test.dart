@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = DatabaseList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.databases, []);
-    });
+            expect(result.total, 5);
+                  expect(result.databases, []);
+          });
   });
 }
