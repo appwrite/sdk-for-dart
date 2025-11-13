@@ -53,7 +53,7 @@ class Health extends Service {
     final String apiPath = '/health/certificate';
 
     final Map<String, dynamic> apiParams = {
-      'domain': domain,
+      if (domain != null) 'domain': domain,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -98,7 +98,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/builds';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -116,7 +116,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/certificates';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -134,8 +134,8 @@ class Health extends Service {
     final String apiPath = '/health/queue/databases';
 
     final Map<String, dynamic> apiParams = {
-      'name': name,
-      'threshold': threshold,
+      if (name != null) 'name': name,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -152,7 +152,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/deletes';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -171,7 +171,7 @@ class Health extends Service {
         '/health/queue/failed/{name}'.replaceAll('{name}', name.value);
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -188,7 +188,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/functions';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -205,7 +205,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/logs';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -222,7 +222,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/mails';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -239,7 +239,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/messaging';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -256,7 +256,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/migrations';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -273,7 +273,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/stats-resources';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -290,7 +290,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/stats-usage';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -307,7 +307,7 @@ class Health extends Service {
     final String apiPath = '/health/queue/webhooks';
 
     final Map<String, dynamic> apiParams = {
-      'threshold': threshold,
+      if (threshold != null) 'threshold': threshold,
     };
 
     final Map<String, String> apiHeaders = {};

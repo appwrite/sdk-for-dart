@@ -36,7 +36,7 @@ class Account extends Service {
       'userId': userId,
       'email': email,
       'password': password,
-      'name': name,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -82,8 +82,8 @@ class Account extends Service {
     final String apiPath = '/account/identities';
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -137,8 +137,8 @@ class Account extends Service {
     final String apiPath = '/account/logs';
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -562,7 +562,7 @@ class Account extends Service {
 
     final Map<String, dynamic> apiParams = {
       'password': password,
-      'oldPassword': oldPassword,
+      if (oldPassword != null) 'oldPassword': oldPassword,
     };
 
     final Map<String, String> apiHeaders = {
@@ -936,7 +936,7 @@ class Account extends Service {
     final Map<String, dynamic> apiParams = {
       'userId': userId,
       'email': email,
-      'phrase': phrase,
+      if (phrase != null) 'phrase': phrase,
     };
 
     final Map<String, String> apiHeaders = {
@@ -973,8 +973,8 @@ class Account extends Service {
     final Map<String, dynamic> apiParams = {
       'userId': userId,
       'email': email,
-      'url': url,
-      'phrase': phrase,
+      if (url != null) 'url': url,
+      if (phrase != null) 'phrase': phrase,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1010,9 +1010,9 @@ class Account extends Service {
         .replaceAll('{provider}', provider.value);
 
     final Map<String, dynamic> params = {
-      'success': success,
-      'failure': failure,
-      'scopes': scopes,
+      if (success != null) 'success': success,
+      if (failure != null) 'failure': failure,
+      if (scopes != null) 'scopes': scopes,
       'project': client.config['project'],
     };
 

@@ -14,9 +14,9 @@ class Databases extends Service {
     final String apiPath = '/databases';
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'search': search,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (search != null) 'search': search,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -38,7 +38,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'databaseId': databaseId,
       'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -57,7 +57,7 @@ class Databases extends Service {
     final String apiPath = '/databases/transactions';
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
+      if (queries != null) 'queries': queries,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -73,7 +73,7 @@ class Databases extends Service {
     final String apiPath = '/databases/transactions';
 
     final Map<String, dynamic> apiParams = {
-      'ttl': ttl,
+      if (ttl != null) 'ttl': ttl,
     };
 
     final Map<String, String> apiHeaders = {
@@ -109,8 +109,8 @@ class Databases extends Service {
         .replaceAll('{transactionId}', transactionId);
 
     final Map<String, dynamic> apiParams = {
-      'commit': commit,
-      'rollback': rollback,
+      if (commit != null) 'commit': commit,
+      if (rollback != null) 'rollback': rollback,
     };
 
     final Map<String, String> apiHeaders = {
@@ -147,7 +147,7 @@ class Databases extends Service {
         .replaceAll('{transactionId}', transactionId);
 
     final Map<String, dynamic> apiParams = {
-      'operations': operations,
+      if (operations != null) 'operations': operations,
     };
 
     final Map<String, String> apiHeaders = {
@@ -188,7 +188,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -234,9 +234,9 @@ class Databases extends Service {
         .replaceAll('{databaseId}', databaseId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'search': search,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (search != null) 'search': search,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -266,9 +266,9 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'collectionId': collectionId,
       'name': name,
-      'permissions': permissions,
-      'documentSecurity': documentSecurity,
-      'enabled': enabled,
+      if (permissions != null) 'permissions': permissions,
+      if (documentSecurity != null) 'documentSecurity': documentSecurity,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -317,9 +317,9 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       'name': name,
-      'permissions': permissions,
-      'documentSecurity': documentSecurity,
-      'enabled': enabled,
+      if (permissions != null) 'permissions': permissions,
+      if (documentSecurity != null) 'documentSecurity': documentSecurity,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -368,8 +368,8 @@ class Databases extends Service {
             .replaceAll('{collectionId}', collectionId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -399,8 +399,8 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
-      'array': array,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
     };
 
     final Map<String, String> apiHeaders = {
@@ -433,7 +433,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -464,8 +464,8 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
-      'array': array,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
     };
 
     final Map<String, String> apiHeaders = {
@@ -498,7 +498,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -530,8 +530,8 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
-      'array': array,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
     };
 
     final Map<String, String> apiHeaders = {
@@ -565,7 +565,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -600,8 +600,8 @@ class Databases extends Service {
       'key': key,
       'elements': elements,
       'required': xrequired,
-      'default': xdefault,
-      'array': array,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
     };
 
     final Map<String, String> apiHeaders = {
@@ -637,7 +637,7 @@ class Databases extends Service {
       'elements': elements,
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -672,10 +672,10 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'min': min,
-      'max': max,
-      'default': xdefault,
-      'array': array,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
     };
 
     final Map<String, String> apiHeaders = {
@@ -710,10 +710,10 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
-      'min': min,
-      'max': max,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -748,10 +748,10 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'min': min,
-      'max': max,
-      'default': xdefault,
-      'array': array,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
     };
 
     final Map<String, String> apiHeaders = {
@@ -786,10 +786,10 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
-      'min': min,
-      'max': max,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -821,8 +821,8 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
-      'array': array,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
     };
 
     final Map<String, String> apiHeaders = {
@@ -856,7 +856,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -919,7 +919,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -982,7 +982,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1045,7 +1045,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1080,10 +1080,10 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'relatedCollectionId': relatedCollectionId,
       'type': type.value,
-      'twoWay': twoWay,
-      'key': key,
-      'twoWayKey': twoWayKey,
-      'onDelete': onDelete?.value,
+      if (twoWay != null) 'twoWay': twoWay,
+      if (key != null) 'key': key,
+      if (twoWayKey != null) 'twoWayKey': twoWayKey,
+      if (onDelete != null) 'onDelete': onDelete!.value,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1118,9 +1118,9 @@ class Databases extends Service {
       'key': key,
       'size': size,
       'required': xrequired,
-      'default': xdefault,
-      'array': array,
-      'encrypt': encrypt,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1155,8 +1155,8 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'size': size,
-      'newKey': newKey,
+      if (size != null) 'size': size,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1188,8 +1188,8 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
-      'array': array,
+      if (xdefault != null) 'default': xdefault,
+      if (array != null) 'array': array,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1223,7 +1223,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1302,8 +1302,8 @@ class Databases extends Service {
             .replaceAll('{key}', key);
 
     final Map<String, dynamic> apiParams = {
-      'onDelete': onDelete?.value,
-      'newKey': newKey,
+      if (onDelete != null) 'onDelete': onDelete!.value,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1332,9 +1332,9 @@ class Databases extends Service {
             .replaceAll('{collectionId}', collectionId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'transactionId': transactionId,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (transactionId != null) 'transactionId': transactionId,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -1366,8 +1366,8 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       'documentId': documentId,
       'data': data,
-      'permissions': permissions,
-      'transactionId': transactionId,
+      if (permissions != null) 'permissions': permissions,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1398,7 +1398,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       'documents': documents,
-      'transactionId': transactionId,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1430,7 +1430,7 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       'documents': documents,
-      'transactionId': transactionId,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1460,9 +1460,9 @@ class Databases extends Service {
             .replaceAll('{collectionId}', collectionId);
 
     final Map<String, dynamic> apiParams = {
-      'data': data,
-      'queries': queries,
-      'transactionId': transactionId,
+      if (data != null) 'data': data,
+      if (queries != null) 'queries': queries,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1490,8 +1490,8 @@ class Databases extends Service {
             .replaceAll('{collectionId}', collectionId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'transactionId': transactionId,
+      if (queries != null) 'queries': queries,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1521,8 +1521,8 @@ class Databases extends Service {
             .replaceAll('{documentId}', documentId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'transactionId': transactionId,
+      if (queries != null) 'queries': queries,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -1554,8 +1554,8 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       'data': data,
-      'permissions': permissions,
-      'transactionId': transactionId,
+      if (permissions != null) 'permissions': permissions,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1586,9 +1586,9 @@ class Databases extends Service {
             .replaceAll('{documentId}', documentId);
 
     final Map<String, dynamic> apiParams = {
-      'data': data,
-      'permissions': permissions,
-      'transactionId': transactionId,
+      if (data != null) 'data': data,
+      if (permissions != null) 'permissions': permissions,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1616,7 +1616,7 @@ class Databases extends Service {
             .replaceAll('{documentId}', documentId);
 
     final Map<String, dynamic> apiParams = {
-      'transactionId': transactionId,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1648,9 +1648,9 @@ class Databases extends Service {
             .replaceAll('{attribute}', attribute);
 
     final Map<String, dynamic> apiParams = {
-      'value': value,
-      'min': min,
-      'transactionId': transactionId,
+      if (value != null) 'value': value,
+      if (min != null) 'min': min,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1682,9 +1682,9 @@ class Databases extends Service {
             .replaceAll('{attribute}', attribute);
 
     final Map<String, dynamic> apiParams = {
-      'value': value,
-      'max': max,
-      'transactionId': transactionId,
+      if (value != null) 'value': value,
+      if (max != null) 'max': max,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1711,8 +1711,8 @@ class Databases extends Service {
             .replaceAll('{collectionId}', collectionId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -1745,8 +1745,8 @@ class Databases extends Service {
       'key': key,
       'type': type.value,
       'attributes': attributes,
-      'orders': orders,
-      'lengths': lengths,
+      if (orders != null) 'orders': orders,
+      if (lengths != null) 'lengths': lengths,
     };
 
     final Map<String, String> apiHeaders = {

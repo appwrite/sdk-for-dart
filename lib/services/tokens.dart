@@ -15,8 +15,8 @@ class Tokens extends Service {
         .replaceAll('{fileId}', fileId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};

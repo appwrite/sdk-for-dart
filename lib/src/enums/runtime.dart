@@ -39,6 +39,7 @@ enum Runtime {
   dart33(value: 'dart-3.3'),
   dart35(value: 'dart-3.5'),
   dart38(value: 'dart-3.8'),
+  dart39(value: 'dart-3.9'),
   dotnet60(value: 'dotnet-6.0'),
   dotnet70(value: 'dotnet-7.0'),
   dotnet80(value: 'dotnet-8.0'),
@@ -65,7 +66,8 @@ enum Runtime {
   flutter324(value: 'flutter-3.24'),
   flutter327(value: 'flutter-3.27'),
   flutter329(value: 'flutter-3.29'),
-  flutter332(value: 'flutter-3.32');
+  flutter332(value: 'flutter-3.32'),
+  flutter335(value: 'flutter-3.35');
 
   const Runtime({required this.value});
 

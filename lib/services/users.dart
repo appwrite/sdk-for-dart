@@ -11,9 +11,9 @@ class Users extends Service {
     final String apiPath = '/users';
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'search': search,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (search != null) 'search': search,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -35,10 +35,10 @@ class Users extends Service {
 
     final Map<String, dynamic> apiParams = {
       'userId': userId,
-      'email': email,
-      'phone': phone,
-      'password': password,
-      'name': name,
+      if (email != null) 'email': email,
+      if (phone != null) 'phone': phone,
+      if (password != null) 'password': password,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -66,7 +66,7 @@ class Users extends Service {
       'userId': userId,
       'email': email,
       'password': password,
-      'name': name,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -94,7 +94,7 @@ class Users extends Service {
       'userId': userId,
       'email': email,
       'password': password,
-      'name': name,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -113,9 +113,9 @@ class Users extends Service {
     final String apiPath = '/users/identities';
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'search': search,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (search != null) 'search': search,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -158,7 +158,7 @@ class Users extends Service {
       'userId': userId,
       'email': email,
       'password': password,
-      'name': name,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -186,7 +186,7 @@ class Users extends Service {
       'userId': userId,
       'email': email,
       'password': password,
-      'name': name,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -224,7 +224,7 @@ class Users extends Service {
       'passwordMemory': passwordMemory,
       'passwordParallel': passwordParallel,
       'passwordLength': passwordLength,
-      'name': name,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -259,7 +259,7 @@ class Users extends Service {
       'passwordSalt': passwordSalt,
       'passwordSaltSeparator': passwordSaltSeparator,
       'passwordSignerKey': passwordSignerKey,
-      'name': name,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -288,8 +288,8 @@ class Users extends Service {
       'userId': userId,
       'email': email,
       'password': password,
-      'passwordVersion': passwordVersion?.value,
-      'name': name,
+      if (passwordVersion != null) 'passwordVersion': passwordVersion!.value,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -366,8 +366,8 @@ class Users extends Service {
         '/users/{userId}/jwts'.replaceAll('{userId}', userId);
 
     final Map<String, dynamic> apiParams = {
-      'sessionId': sessionId,
-      'duration': duration,
+      if (sessionId != null) 'sessionId': sessionId,
+      if (duration != null) 'duration': duration,
     };
 
     final Map<String, String> apiHeaders = {
@@ -412,8 +412,8 @@ class Users extends Service {
         '/users/{userId}/logs'.replaceAll('{userId}', userId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -434,9 +434,9 @@ class Users extends Service {
         '/users/{userId}/memberships'.replaceAll('{userId}', userId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'search': search,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (search != null) 'search': search,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -791,7 +791,7 @@ class Users extends Service {
         '/users/{userId}/sessions'.replaceAll('{userId}', userId);
 
     final Map<String, dynamic> apiParams = {
-      'total': total,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -888,8 +888,8 @@ class Users extends Service {
         '/users/{userId}/targets'.replaceAll('{userId}', userId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -915,8 +915,8 @@ class Users extends Service {
       'targetId': targetId,
       'providerType': providerType.value,
       'identifier': identifier,
-      'providerId': providerId,
-      'name': name,
+      if (providerId != null) 'providerId': providerId,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -958,9 +958,9 @@ class Users extends Service {
         .replaceAll('{targetId}', targetId);
 
     final Map<String, dynamic> apiParams = {
-      'identifier': identifier,
-      'providerId': providerId,
-      'name': name,
+      if (identifier != null) 'identifier': identifier,
+      if (providerId != null) 'providerId': providerId,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1003,8 +1003,8 @@ class Users extends Service {
         '/users/{userId}/tokens'.replaceAll('{userId}', userId);
 
     final Map<String, dynamic> apiParams = {
-      'length': length,
-      'expire': expire,
+      if (length != null) 'length': length,
+      if (expire != null) 'expire': expire,
     };
 
     final Map<String, String> apiHeaders = {

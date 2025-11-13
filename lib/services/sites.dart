@@ -11,9 +11,9 @@ class Sites extends Service {
     final String apiPath = '/sites';
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'search': search,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (search != null) 'search': search,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -50,21 +50,23 @@ class Sites extends Service {
       'siteId': siteId,
       'name': name,
       'framework': framework.value,
-      'enabled': enabled,
-      'logging': logging,
-      'timeout': timeout,
-      'installCommand': installCommand,
-      'buildCommand': buildCommand,
-      'outputDirectory': outputDirectory,
+      if (enabled != null) 'enabled': enabled,
+      if (logging != null) 'logging': logging,
+      if (timeout != null) 'timeout': timeout,
+      if (installCommand != null) 'installCommand': installCommand,
+      if (buildCommand != null) 'buildCommand': buildCommand,
+      if (outputDirectory != null) 'outputDirectory': outputDirectory,
       'buildRuntime': buildRuntime.value,
-      'adapter': adapter?.value,
-      'installationId': installationId,
-      'fallbackFile': fallbackFile,
-      'providerRepositoryId': providerRepositoryId,
-      'providerBranch': providerBranch,
-      'providerSilentMode': providerSilentMode,
-      'providerRootDirectory': providerRootDirectory,
-      'specification': specification,
+      if (adapter != null) 'adapter': adapter!.value,
+      if (installationId != null) 'installationId': installationId,
+      if (fallbackFile != null) 'fallbackFile': fallbackFile,
+      if (providerRepositoryId != null)
+        'providerRepositoryId': providerRepositoryId,
+      if (providerBranch != null) 'providerBranch': providerBranch,
+      if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
+      if (providerRootDirectory != null)
+        'providerRootDirectory': providerRootDirectory,
+      if (specification != null) 'specification': specification,
     };
 
     final Map<String, String> apiHeaders = {
@@ -145,21 +147,23 @@ class Sites extends Service {
     final Map<String, dynamic> apiParams = {
       'name': name,
       'framework': framework.value,
-      'enabled': enabled,
-      'logging': logging,
-      'timeout': timeout,
-      'installCommand': installCommand,
-      'buildCommand': buildCommand,
-      'outputDirectory': outputDirectory,
-      'buildRuntime': buildRuntime?.value,
-      'adapter': adapter?.value,
-      'fallbackFile': fallbackFile,
-      'installationId': installationId,
-      'providerRepositoryId': providerRepositoryId,
-      'providerBranch': providerBranch,
-      'providerSilentMode': providerSilentMode,
-      'providerRootDirectory': providerRootDirectory,
-      'specification': specification,
+      if (enabled != null) 'enabled': enabled,
+      if (logging != null) 'logging': logging,
+      if (timeout != null) 'timeout': timeout,
+      if (installCommand != null) 'installCommand': installCommand,
+      if (buildCommand != null) 'buildCommand': buildCommand,
+      if (outputDirectory != null) 'outputDirectory': outputDirectory,
+      if (buildRuntime != null) 'buildRuntime': buildRuntime!.value,
+      if (adapter != null) 'adapter': adapter!.value,
+      if (fallbackFile != null) 'fallbackFile': fallbackFile,
+      if (installationId != null) 'installationId': installationId,
+      if (providerRepositoryId != null)
+        'providerRepositoryId': providerRepositoryId,
+      if (providerBranch != null) 'providerBranch': providerBranch,
+      if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
+      if (providerRootDirectory != null)
+        'providerRootDirectory': providerRootDirectory,
+      if (specification != null) 'specification': specification,
     };
 
     final Map<String, String> apiHeaders = {
@@ -220,9 +224,9 @@ class Sites extends Service {
         '/sites/{siteId}/deployments'.replaceAll('{siteId}', siteId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'search': search,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (search != null) 'search': search,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -235,7 +239,7 @@ class Sites extends Service {
 
   /// Create a new site code deployment. Use this endpoint to upload a new
   /// version of your site code. To activate your newly uploaded code, you'll
-  /// need to update the function's deployment to use your new deployment ID.
+  /// need to update the site's deployment to use your new deployment ID.
   Future<models.Deployment> createDeployment(
       {required String siteId,
       required InputFile code,
@@ -248,9 +252,9 @@ class Sites extends Service {
         '/sites/{siteId}/deployments'.replaceAll('{siteId}', siteId);
 
     final Map<String, dynamic> apiParams = {
-      'installCommand': installCommand,
-      'buildCommand': buildCommand,
-      'outputDirectory': outputDirectory,
+      if (installCommand != null) 'installCommand': installCommand,
+      if (buildCommand != null) 'buildCommand': buildCommand,
+      if (outputDirectory != null) 'outputDirectory': outputDirectory,
       'code': code,
       'activate': activate,
     };
@@ -317,7 +321,7 @@ class Sites extends Service {
       'owner': owner,
       'rootDirectory': rootDirectory,
       'version': version,
-      'activate': activate,
+      if (activate != null) 'activate': activate,
     };
 
     final Map<String, String> apiHeaders = {
@@ -344,7 +348,7 @@ class Sites extends Service {
     final Map<String, dynamic> apiParams = {
       'type': type.value,
       'reference': reference,
-      'activate': activate,
+      if (activate != null) 'activate': activate,
     };
 
     final Map<String, String> apiHeaders = {
@@ -405,7 +409,7 @@ class Sites extends Service {
         .replaceAll('{deploymentId}', deploymentId);
 
     final Map<String, dynamic> params = {
-      'type': type?.value,
+      if (type != null) 'type': type!.value,
       'project': client.config['project'],
       'key': client.config['key'],
     };
@@ -446,8 +450,8 @@ class Sites extends Service {
         '/sites/{siteId}/logs'.replaceAll('{siteId}', siteId);
 
     final Map<String, dynamic> apiParams = {
-      'queries': queries,
-      'total': total,
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {};
@@ -521,7 +525,7 @@ class Sites extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'value': value,
-      'secret': secret,
+      if (secret != null) 'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {
@@ -564,8 +568,8 @@ class Sites extends Service {
 
     final Map<String, dynamic> apiParams = {
       'key': key,
-      'value': value,
-      'secret': secret,
+      if (value != null) 'value': value,
+      if (secret != null) 'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {
