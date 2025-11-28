@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = Framework.fromMap(map);
 
-            expect(result.key, 'sveltekit');
-                  expect(result.name, 'SvelteKit');
-                  expect(result.buildRuntime, 'node-22');
-                  expect(result.runtimes, []);
-                  expect(result.adapters, []);
-          });
+      expect(result.key, 'sveltekit');
+      expect(result.name, 'SvelteKit');
+      expect(result.buildRuntime, 'node-22');
+      expect(result.runtimes, []);
+      expect(result.adapters, []);
+    });
   });
 }
