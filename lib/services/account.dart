@@ -300,7 +300,7 @@ class Account extends Service {
       'This API has been deprecated since 1.8.0. Please use `Account.createMFAChallenge` instead.')
   Future<models.MfaChallenge> createMfaChallenge(
       {required enums.AuthenticationFactor factor}) async {
-    final String apiPath = '/account/mfa/challenge';
+    final String apiPath = '/account/mfa/challenges';
 
     final Map<String, dynamic> apiParams = {
       'factor': factor.value,
@@ -321,7 +321,7 @@ class Account extends Service {
   /// method.
   Future<models.MfaChallenge> createMFAChallenge(
       {required enums.AuthenticationFactor factor}) async {
-    final String apiPath = '/account/mfa/challenge';
+    final String apiPath = '/account/mfa/challenges';
 
     final Map<String, dynamic> apiParams = {
       'factor': factor.value,
@@ -346,7 +346,7 @@ class Account extends Service {
       'This API has been deprecated since 1.8.0. Please use `Account.updateMFAChallenge` instead.')
   Future<models.Session> updateMfaChallenge(
       {required String challengeId, required String otp}) async {
-    final String apiPath = '/account/mfa/challenge';
+    final String apiPath = '/account/mfa/challenges';
 
     final Map<String, dynamic> apiParams = {
       'challengeId': challengeId,
@@ -370,7 +370,7 @@ class Account extends Service {
   /// method.
   Future<models.Session> updateMFAChallenge(
       {required String challengeId, required String otp}) async {
-    final String apiPath = '/account/mfa/challenge';
+    final String apiPath = '/account/mfa/challenges';
 
     final Map<String, dynamic> apiParams = {
       'challengeId': challengeId,

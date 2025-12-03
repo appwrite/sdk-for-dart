@@ -35,13 +35,14 @@ class Storage extends Service {
       List<String>? allowedFileExtensions,
       enums.Compression? compression,
       bool? encryption,
-      bool? antivirus}) async {
+      bool? antivirus,
+      bool? transformations}) async {
     final String apiPath = '/storage/buckets';
 
     final Map<String, dynamic> apiParams = {
       'bucketId': bucketId,
       'name': name,
-      if (permissions != null) 'permissions': permissions,
+      'permissions': permissions,
       if (fileSecurity != null) 'fileSecurity': fileSecurity,
       if (enabled != null) 'enabled': enabled,
       if (maximumFileSize != null) 'maximumFileSize': maximumFileSize,
@@ -50,6 +51,7 @@ class Storage extends Service {
       if (compression != null) 'compression': compression!.value,
       if (encryption != null) 'encryption': encryption,
       if (antivirus != null) 'antivirus': antivirus,
+      if (transformations != null) 'transformations': transformations,
     };
 
     final Map<String, String> apiHeaders = {
@@ -89,13 +91,14 @@ class Storage extends Service {
       List<String>? allowedFileExtensions,
       enums.Compression? compression,
       bool? encryption,
-      bool? antivirus}) async {
+      bool? antivirus,
+      bool? transformations}) async {
     final String apiPath =
         '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
 
     final Map<String, dynamic> apiParams = {
       'name': name,
-      if (permissions != null) 'permissions': permissions,
+      'permissions': permissions,
       if (fileSecurity != null) 'fileSecurity': fileSecurity,
       if (enabled != null) 'enabled': enabled,
       if (maximumFileSize != null) 'maximumFileSize': maximumFileSize,
@@ -104,6 +107,7 @@ class Storage extends Service {
       if (compression != null) 'compression': compression!.value,
       if (encryption != null) 'encryption': encryption,
       if (antivirus != null) 'antivirus': antivirus,
+      if (transformations != null) 'transformations': transformations,
     };
 
     final Map<String, String> apiHeaders = {
@@ -239,8 +243,8 @@ class Storage extends Service {
         .replaceAll('{fileId}', fileId);
 
     final Map<String, dynamic> apiParams = {
-      if (name != null) 'name': name,
-      if (permissions != null) 'permissions': permissions,
+      'name': name,
+      'permissions': permissions,
     };
 
     final Map<String, String> apiHeaders = {

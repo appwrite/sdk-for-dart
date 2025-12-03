@@ -82,6 +82,7 @@ void main() {
         'compression': 'gzip',
         'encryption': true,
         'antivirus': true,
+        'transformations': true,
       };
 
       when(client.call(
@@ -109,6 +110,7 @@ void main() {
         'compression': 'gzip',
         'encryption': true,
         'antivirus': true,
+        'transformations': true,
       };
 
       when(client.call(
@@ -135,6 +137,7 @@ void main() {
         'compression': 'gzip',
         'encryption': true,
         'antivirus': true,
+        'transformations': true,
       };
 
       when(client.call(

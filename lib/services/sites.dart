@@ -311,7 +311,8 @@ class Sites extends Service {
       required String repository,
       required String owner,
       required String rootDirectory,
-      required String version,
+      required enums.TemplateReferenceType type,
+      required String reference,
       bool? activate}) async {
     final String apiPath =
         '/sites/{siteId}/deployments/template'.replaceAll('{siteId}', siteId);
@@ -320,7 +321,8 @@ class Sites extends Service {
       'repository': repository,
       'owner': owner,
       'rootDirectory': rootDirectory,
-      'version': version,
+      'type': type.value,
+      'reference': reference,
       if (activate != null) 'activate': activate,
     };
 
@@ -339,7 +341,7 @@ class Sites extends Service {
   /// This endpoint lets you create deployment from a branch, commit, or a tag.
   Future<models.Deployment> createVcsDeployment(
       {required String siteId,
-      required enums.VCSDeploymentType type,
+      required enums.VCSReferenceType type,
       required String reference,
       bool? activate}) async {
     final String apiPath =
@@ -568,8 +570,8 @@ class Sites extends Service {
 
     final Map<String, dynamic> apiParams = {
       'key': key,
-      if (value != null) 'value': value,
-      if (secret != null) 'secret': secret,
+      'value': value,
+      'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {

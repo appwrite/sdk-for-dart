@@ -17,6 +17,7 @@ void main() {
         compression: 'gzip',
         encryption: true,
         antivirus: true,
+        transformations: true,
       );
 
       final map = model.toMap();
@@ -34,6 +35,7 @@ void main() {
       expect(result.compression, 'gzip');
       expect(result.encryption, true);
       expect(result.antivirus, true);
+      expect(result.transformations, true);
     });
   });
 }

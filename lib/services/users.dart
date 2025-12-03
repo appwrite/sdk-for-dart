@@ -35,8 +35,8 @@ class Users extends Service {
 
     final Map<String, dynamic> apiParams = {
       'userId': userId,
-      if (email != null) 'email': email,
-      if (phone != null) 'phone': phone,
+      'email': email,
+      'phone': phone,
       if (password != null) 'password': password,
       if (name != null) 'name': name,
     };

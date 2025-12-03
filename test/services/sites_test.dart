@@ -440,7 +440,8 @@ void main() {
         repository: '<REPOSITORY>',
         owner: '<OWNER>',
         rootDirectory: '<ROOT_DIRECTORY>',
-        version: '<VERSION>',
+        type: enums.TemplateReferenceType.branch,
+        reference: '<REFERENCE>',
       );
       expect(response, isA<models.Deployment>());
     });
@@ -485,7 +486,7 @@ void main() {
 
       final response = await sites.createVcsDeployment(
         siteId: '<SITE_ID>',
-        type: enums.VCSDeploymentType.branch,
+        type: enums.VCSReferenceType.branch,
         reference: '<REFERENCE>',
       );
       expect(response, isA<models.Deployment>());

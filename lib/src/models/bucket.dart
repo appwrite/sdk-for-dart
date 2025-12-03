@@ -38,6 +38,9 @@ class Bucket implements Model {
   /// Virus scanning is enabled.
   final bool antivirus;
 
+  /// Image transformations are enabled.
+  final bool transformations;
+
   Bucket({
     required this.$id,
     required this.$createdAt,
@@ -51,6 +54,7 @@ class Bucket implements Model {
     required this.compression,
     required this.encryption,
     required this.antivirus,
+    required this.transformations,
   });
 
   factory Bucket.fromMap(Map<String, dynamic> map) {
@@ -67,6 +71,7 @@ class Bucket implements Model {
       compression: map['compression'].toString(),
       encryption: map['encryption'],
       antivirus: map['antivirus'],
+      transformations: map['transformations'],
     );
   }
 
@@ -85,6 +90,7 @@ class Bucket implements Model {
       "compression": compression,
       "encryption": encryption,
       "antivirus": antivirus,
+      "transformations": transformations,
     };
   }
 }
