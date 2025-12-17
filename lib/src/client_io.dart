@@ -20,7 +20,7 @@ ClientBase createClient({
     );
 
 class ClientIO extends ClientBase with ClientMixin {
-  static const int chunkSize = 5 * 1024 * 1024;
+  static const int chunkSize = 5*1024*1024;
   String _endPoint;
   Map<String, String>? _headers;
   @override
@@ -43,9 +43,8 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
       'x-sdk-version': '20.0.0',
-      'user-agent':
-          'AppwriteDartSDK/20.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format': '1.8.0',
+      'user-agent' : 'AppwriteDartSDK/20.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format' : '1.8.0',
     };
 
     config = {};
@@ -57,52 +56,47 @@ class ClientIO extends ClientBase with ClientMixin {
   @override
   String get endPoint => _endPoint;
 
-  /// Your project ID
-  @override
-  ClientIO setProject(value) {
-    config['project'] = value;
-    addHeader('X-Appwrite-Project', value);
-    return this;
-  }
-
-  /// Your secret API key
-  @override
-  ClientIO setKey(value) {
-    config['key'] = value;
-    addHeader('X-Appwrite-Key', value);
-    return this;
-  }
-
-  /// Your secret JSON Web Token
-  @override
-  ClientIO setJWT(value) {
-    config['jWT'] = value;
-    addHeader('X-Appwrite-JWT', value);
-    return this;
-  }
-
-  @override
-  ClientIO setLocale(value) {
-    config['locale'] = value;
-    addHeader('X-Appwrite-Locale', value);
-    return this;
-  }
-
-  /// The user session to authenticate with
-  @override
-  ClientIO setSession(value) {
-    config['session'] = value;
-    addHeader('X-Appwrite-Session', value);
-    return this;
-  }
-
-  /// The user agent string of the client that made the request
-  @override
-  ClientIO setForwardedUserAgent(value) {
-    config['forwardedUserAgent'] = value;
-    addHeader('X-Forwarded-User-Agent', value);
-    return this;
-  }
+     /// Your project ID
+    @override
+    ClientIO setProject(value) {
+        config['project'] = value;
+        addHeader('X-Appwrite-Project', value);
+        return this;
+    }
+     /// Your secret API key
+    @override
+    ClientIO setKey(value) {
+        config['key'] = value;
+        addHeader('X-Appwrite-Key', value);
+        return this;
+    }
+     /// Your secret JSON Web Token
+    @override
+    ClientIO setJWT(value) {
+        config['jWT'] = value;
+        addHeader('X-Appwrite-JWT', value);
+        return this;
+    }
+    @override
+    ClientIO setLocale(value) {
+        config['locale'] = value;
+        addHeader('X-Appwrite-Locale', value);
+        return this;
+    }
+     /// The user session to authenticate with
+    @override
+    ClientIO setSession(value) {
+        config['session'] = value;
+        addHeader('X-Appwrite-Session', value);
+        return this;
+    }
+     /// The user agent string of the client that made the request
+    @override
+    ClientIO setForwardedUserAgent(value) {
+        config['forwardedUserAgent'] = value;
+        addHeader('X-Forwarded-User-Agent', value);
+        return this;
+    }
 
   @override
   ClientIO setSelfSigned({bool status = true}) {
@@ -200,8 +194,8 @@ class ClientIO extends ClientBase with ClientMixin {
         raf!.setPositionSync(offset);
         chunk = raf.readSync(chunkSize);
       }
-      params[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
-          filename: file.filename);
+      params[paramName] =
+          http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       headers['content-range'] =
           'bytes $offset-${min<int>((offset + chunkSize - 1), size - 1)}/$size';
       res = await call(HttpMethod.post,
