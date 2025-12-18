@@ -259,7 +259,9 @@ class Databases extends Service {
       required String name,
       List<String>? permissions,
       bool? documentSecurity,
-      bool? enabled}) async {
+      bool? enabled,
+      List<Map>? attributes,
+      List<Map>? indexes}) async {
     final String apiPath = '/databases/{databaseId}/collections'
         .replaceAll('{databaseId}', databaseId);
 
@@ -269,6 +271,8 @@ class Databases extends Service {
       'permissions': permissions,
       if (documentSecurity != null) 'documentSecurity': documentSecurity,
       if (enabled != null) 'enabled': enabled,
+      if (attributes != null) 'attributes': attributes,
+      if (indexes != null) 'indexes': indexes,
     };
 
     final Map<String, String> apiHeaders = {

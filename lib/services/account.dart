@@ -1014,6 +1014,7 @@ class Account extends Service {
       if (failure != null) 'failure': failure,
       if (scopes != null) 'scopes': scopes,
       'project': client.config['project'],
+      'session': client.config['session'],
     };
 
     final List query = [];

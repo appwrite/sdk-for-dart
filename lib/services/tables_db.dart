@@ -243,7 +243,9 @@ class TablesDB extends Service {
       required String name,
       List<String>? permissions,
       bool? rowSecurity,
-      bool? enabled}) async {
+      bool? enabled,
+      List<Map>? columns,
+      List<Map>? indexes}) async {
     final String apiPath =
         '/tablesdb/{databaseId}/tables'.replaceAll('{databaseId}', databaseId);
 
@@ -253,6 +255,8 @@ class TablesDB extends Service {
       'permissions': permissions,
       if (rowSecurity != null) 'rowSecurity': rowSecurity,
       if (enabled != null) 'enabled': enabled,
+      if (columns != null) 'columns': columns,
+      if (indexes != null) 'indexes': indexes,
     };
 
     final Map<String, String> apiHeaders = {
