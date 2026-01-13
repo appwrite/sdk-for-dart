@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = DeploymentList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.deployments, []);
-          });
+      expect(result.total, 5);
+      expect(result.deployments, []);
+    });
   });
 }
