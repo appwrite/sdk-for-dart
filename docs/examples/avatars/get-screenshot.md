@@ -30,5 +30,5 @@ Uint8List result = await avatars.getScreenshot(
     width: 800, // (optional)
     height: 600, // (optional)
     quality: 85, // (optional)
-    output: Output.jpg, // (optional)
+    output: ImageFormat.jpg, // (optional)
 );
