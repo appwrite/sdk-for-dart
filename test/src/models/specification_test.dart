@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = Specification.fromMap(map);
 
-            expect(result.memory, 512);
-                  expect(result.cpus, 1);
-                  expect(result.enabled, true);
-                  expect(result.slug, 's-1vcpu-512mb');
-          });
+      expect(result.memory, 512);
+      expect(result.cpus, 1);
+      expect(result.enabled, true);
+      expect(result.slug, 's-1vcpu-512mb');
+    });
   });
 }
