@@ -157,7 +157,7 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'services': [],
                 'resources': [],
-                'retention': ,
+                'retention': 7,
                 'schedule': '',
                 'enabled': true,};
 
@@ -185,7 +185,7 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'services': [],
                 'resources': [],
-                'retention': ,
+                'retention': 7,
                 'schedule': '',
                 'enabled': true,};
 
@@ -210,7 +210,7 @@ void main() {
                 '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
                 'services': [],
                 'resources': [],
-                'retention': ,
+                'retention': 7,
                 'schedule': '',
                 'enabled': true,};
 
