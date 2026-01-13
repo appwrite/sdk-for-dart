@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = VariableList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.variables, []);
-          });
+      expect(result.total, 5);
+      expect(result.variables, []);
+    });
   });
 }
