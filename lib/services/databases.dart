@@ -1243,7 +1243,7 @@ class Databases extends Service {
   /// Get attribute by ID.
   @Deprecated(
       'This API has been deprecated since 1.8.0. Please use `TablesDB.getColumn` instead.')
-  Future getAttribute(
+  Future<models.AttributeBoolean> getAttribute(
       {required String databaseId,
       required String collectionId,
       required String key}) async {
@@ -1260,7 +1260,7 @@ class Databases extends Service {
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return res.data;
+    return models.AttributeBoolean.fromMap(res.data);
   }
 
   /// Deletes an attribute.
@@ -1547,7 +1547,7 @@ class Databases extends Service {
       {required String databaseId,
       required String collectionId,
       required String documentId,
-      required Map data,
+      Map? data,
       List<String>? permissions,
       String? transactionId}) async {
     final String apiPath =
@@ -1557,7 +1557,7 @@ class Databases extends Service {
             .replaceAll('{documentId}', documentId);
 
     final Map<String, dynamic> apiParams = {
-      'data': data,
+      if (data != null) 'data': data,
       'permissions': permissions,
       'transactionId': transactionId,
     };

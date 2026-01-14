@@ -29,7 +29,7 @@ class Bucket implements Model {
   /// Allowed file extensions.
   final List<String> allowedFileExtensions;
 
-  /// Compression algorithm choosen for compression. Will be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd).
+  /// Compression algorithm chosen for compression. Will be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd).
   final String compression;
 
   /// Bucket is encrypted.
@@ -40,6 +40,9 @@ class Bucket implements Model {
 
   /// Image transformations are enabled.
   final bool transformations;
+
+  /// Total size of this bucket in bytes.
+  final int totalSize;
 
   Bucket({
     required this.$id,
@@ -55,6 +58,7 @@ class Bucket implements Model {
     required this.encryption,
     required this.antivirus,
     required this.transformations,
+    required this.totalSize,
   });
 
   factory Bucket.fromMap(Map<String, dynamic> map) {
@@ -72,6 +76,7 @@ class Bucket implements Model {
       encryption: map['encryption'],
       antivirus: map['antivirus'],
       transformations: map['transformations'],
+      totalSize: map['totalSize'],
     );
   }
 
@@ -91,6 +96,7 @@ class Bucket implements Model {
       "encryption": encryption,
       "antivirus": antivirus,
       "transformations": transformations,
+      "totalSize": totalSize,
     };
   }
 }

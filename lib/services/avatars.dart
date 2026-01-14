@@ -225,7 +225,7 @@ class Avatars extends Service {
       int? width,
       int? height,
       int? quality,
-      enums.Output? output}) async {
+      enums.ImageFormat? output}) async {
     final String apiPath = '/avatars/screenshots';
 
     final Map<String, dynamic> params = {

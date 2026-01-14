@@ -79,8 +79,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(
@@ -106,8 +105,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(
@@ -131,8 +129,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(
@@ -156,8 +153,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(
@@ -181,8 +177,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(
@@ -207,8 +202,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(
@@ -233,8 +227,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(
@@ -258,8 +251,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(
@@ -283,8 +275,7 @@ void main() {
         'targets': [],
         'deliveredTotal': 1,
         'data': <String, dynamic>{},
-        'status':
-            'Message status can be one of the following: draft, processing, scheduled, sent, or failed.',
+        'status': 'processing',
       };
 
       when(client.call(

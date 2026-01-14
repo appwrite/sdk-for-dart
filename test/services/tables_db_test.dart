@@ -76,6 +76,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -201,6 +203,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -221,6 +225,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -1002,7 +1008,15 @@ void main() {
     });
 
     test('test method getColumn()', () async {
-      final data = '';
+      final Map<String, dynamic> data = {
+        'key': 'isEnabled',
+        'type': 'boolean',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
 
       when(client.call(
         HttpMethod.get,
@@ -1013,6 +1027,7 @@ void main() {
         tableId: '<TABLE_ID>',
         key: '',
       );
+      expect(response, isA<models.ColumnBoolean>());
     });
 
     test('test method deleteColumn()', () async {

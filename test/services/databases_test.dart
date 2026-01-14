@@ -76,6 +76,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -201,6 +203,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -221,6 +225,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -1002,7 +1008,15 @@ void main() {
     });
 
     test('test method getAttribute()', () async {
-      final data = '';
+      final Map<String, dynamic> data = {
+        'key': 'isEnabled',
+        'type': 'boolean',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
 
       when(client.call(
         HttpMethod.get,
@@ -1013,6 +1027,7 @@ void main() {
         collectionId: '<COLLECTION_ID>',
         key: '',
       );
+      expect(response, isA<models.AttributeBoolean>());
     });
 
     test('test method deleteAttribute()', () async {
@@ -1211,7 +1226,6 @@ void main() {
         databaseId: '<DATABASE_ID>',
         collectionId: '<COLLECTION_ID>',
         documentId: '<DOCUMENT_ID>',
-        data: {},
       );
       expect(response, isA<models.Document>());
     });

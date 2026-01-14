@@ -11,6 +11,7 @@ enum Name {
   v1Webhooks(value: 'v1-webhooks'),
   v1Certificates(value: 'v1-certificates'),
   v1Builds(value: 'v1-builds'),
+  v1Screenshots(value: 'v1-screenshots'),
   v1Messaging(value: 'v1-messaging'),
   v1Migrations(value: 'v1-migrations');
 

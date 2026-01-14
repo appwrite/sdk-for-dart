@@ -83,6 +83,7 @@ void main() {
         'encryption': true,
         'antivirus': true,
         'transformations': true,
+        'totalSize': 128,
       };
 
       when(client.call(
@@ -111,6 +112,7 @@ void main() {
         'encryption': true,
         'antivirus': true,
         'transformations': true,
+        'totalSize': 128,
       };
 
       when(client.call(
@@ -138,6 +140,7 @@ void main() {
         'encryption': true,
         'antivirus': true,
         'transformations': true,
+        'totalSize': 128,
       };
 
       when(client.call(
