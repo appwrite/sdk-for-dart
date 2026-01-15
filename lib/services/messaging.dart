@@ -324,7 +324,7 @@ if (draft != null) 'draft': draft,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1196,7 +1196,7 @@ if (from != null) 'from': from,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1346,7 +1346,7 @@ if (subscribe != null) 'subscribe': subscribe,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1451,7 +1451,7 @@ if (total != null) 'total': total,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 }

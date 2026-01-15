@@ -121,70 +121,10 @@ class Health extends Service {
 
     }
 
-  /// Get billing project aggregation queue.
-    Future<models.HealthQueue> getQueueBillingProjectAggregation({int? threshold}) async {
-        final String apiPath = '/health/queue/billing-project-aggregation';
-
-    final Map<String, dynamic> apiParams = {
-      if (threshold != null) 'threshold': threshold,
-
-      
-    };
-
-    final Map<String, String> apiHeaders = {
-      
-    };
-
-    final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
-
-    return models.HealthQueue.fromMap(res.data);
-
-    }
-
-  /// Get billing team aggregation queue.
-    Future<models.HealthQueue> getQueueBillingTeamAggregation({int? threshold}) async {
-        final String apiPath = '/health/queue/billing-team-aggregation';
-
-    final Map<String, dynamic> apiParams = {
-      if (threshold != null) 'threshold': threshold,
-
-      
-    };
-
-    final Map<String, String> apiHeaders = {
-      
-    };
-
-    final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
-
-    return models.HealthQueue.fromMap(res.data);
-
-    }
-
   /// Get the number of builds that are waiting to be processed in the Appwrite
   /// internal queue server.
     Future<models.HealthQueue> getQueueBuilds({int? threshold}) async {
         final String apiPath = '/health/queue/builds';
-
-    final Map<String, dynamic> apiParams = {
-      if (threshold != null) 'threshold': threshold,
-
-      
-    };
-
-    final Map<String, String> apiHeaders = {
-      
-    };
-
-    final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
-
-    return models.HealthQueue.fromMap(res.data);
-
-    }
-
-  /// Get the priority builds queue size.
-    Future<models.HealthQueue> getQueuePriorityBuilds({int? threshold}) async {
-        final String apiPath = '/health/queue/builds-priority';
 
     final Map<String, dynamic> apiParams = {
       if (threshold != null) 'threshold': threshold,
@@ -393,26 +333,6 @@ if (threshold != null) 'threshold': threshold,
 
     }
 
-  /// Get region manager queue.
-    Future<models.HealthQueue> getQueueRegionManager({int? threshold}) async {
-        final String apiPath = '/health/queue/region-manager';
-
-    final Map<String, dynamic> apiParams = {
-      if (threshold != null) 'threshold': threshold,
-
-      
-    };
-
-    final Map<String, String> apiHeaders = {
-      
-    };
-
-    final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
-
-    return models.HealthQueue.fromMap(res.data);
-
-    }
-
   /// Get the number of metrics that are waiting to be processed in the Appwrite
   /// stats resources queue.
     Future<models.HealthQueue> getQueueStatsResources({int? threshold}) async {
@@ -438,26 +358,6 @@ if (threshold != null) 'threshold': threshold,
   /// internal queue server.
     Future<models.HealthQueue> getQueueUsage({int? threshold}) async {
         final String apiPath = '/health/queue/stats-usage';
-
-    final Map<String, dynamic> apiParams = {
-      if (threshold != null) 'threshold': threshold,
-
-      
-    };
-
-    final Map<String, String> apiHeaders = {
-      
-    };
-
-    final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
-
-    return models.HealthQueue.fromMap(res.data);
-
-    }
-
-  /// Get threats queue.
-    Future<models.HealthQueue> getQueueThreats({int? threshold}) async {
-        final String apiPath = '/health/queue/threats';
 
     final Map<String, dynamic> apiParams = {
       if (threshold != null) 'threshold': threshold,

@@ -176,7 +176,7 @@ if (specification != null) 'specification': specification,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -376,7 +376,7 @@ if (activate != null) 'activate': activate,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -479,7 +479,7 @@ if (total != null) 'total': total,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -584,7 +584,7 @@ if (secret != null) 'secret': secret,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 }

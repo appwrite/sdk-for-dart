@@ -148,7 +148,7 @@ if (rollback != null) 'rollback': rollback,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -232,7 +232,7 @@ if (enabled != null) 'enabled': enabled,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -350,7 +350,7 @@ if (enabled != null) 'enabled': enabled,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1007,7 +1007,7 @@ if (array != null) 'array': array,
     }
 
   /// Get column by ID.
-    Future<models.ColumnBoolean> getColumn({required String databaseId, required String tableId, required String key}) async {
+    Future getColumn({required String databaseId, required String tableId, required String key}) async {
         final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{tableId}', tableId).replaceAll('{key}', key);
 
     final Map<String, dynamic> apiParams = {
@@ -1021,7 +1021,7 @@ if (array != null) 'array': array,
 
     final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return models.ColumnBoolean.fromMap(res.data);
+    return res.data;
 
     }
 
@@ -1041,7 +1041,7 @@ if (array != null) 'array': array,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1152,7 +1152,7 @@ if (lengths != null) 'lengths': lengths,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1393,7 +1393,7 @@ if (transactionId != null) 'transactionId': transactionId,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 

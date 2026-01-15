@@ -152,7 +152,7 @@ if (rollback != null) 'rollback': rollback,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -239,7 +239,7 @@ if (enabled != null) 'enabled': enabled,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -362,7 +362,7 @@ if (enabled != null) 'enabled': enabled,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1047,7 +1047,7 @@ if (array != null) 'array': array,
 
   /// Get attribute by ID.
     @Deprecated('This API has been deprecated since 1.8.0. Please use `TablesDB.getColumn` instead.')
-    Future<models.AttributeBoolean> getAttribute({required String databaseId, required String collectionId, required String key}) async {
+    Future getAttribute({required String databaseId, required String collectionId, required String key}) async {
         final String apiPath = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'.replaceAll('{databaseId}', databaseId).replaceAll('{collectionId}', collectionId).replaceAll('{key}', key);
 
     final Map<String, dynamic> apiParams = {
@@ -1061,7 +1061,7 @@ if (array != null) 'array': array,
 
     final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return models.AttributeBoolean.fromMap(res.data);
+    return res.data;
 
     }
 
@@ -1082,7 +1082,7 @@ if (array != null) 'array': array,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1359,7 +1359,7 @@ if (transactionId != null) 'transactionId': transactionId,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -1498,7 +1498,7 @@ if (lengths != null) 'lengths': lengths,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 }

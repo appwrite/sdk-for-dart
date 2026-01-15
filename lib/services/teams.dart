@@ -110,7 +110,7 @@ if (roles != null) 'roles': roles,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
@@ -247,7 +247,7 @@ if (name != null) 'name': name,
 
     final res = await client.call(HttpMethod.delete, path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return  res.data;
+    return res.data;
 
     }
 
