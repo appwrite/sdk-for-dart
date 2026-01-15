@@ -1163,7 +1163,7 @@ class TablesDB extends Service {
   }
 
   /// Get column by ID.
-  Future<models.ColumnBoolean> getColumn(
+  Future getColumn(
       {required String databaseId,
       required String tableId,
       required String key}) async {
@@ -1180,7 +1180,7 @@ class TablesDB extends Service {
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return models.ColumnBoolean.fromMap(res.data);
+    return res.data;
   }
 
   /// Deletes a column.

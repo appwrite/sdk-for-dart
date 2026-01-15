@@ -195,6 +195,8 @@ void main() {
         'sizeOriginal': 17890,
         'chunksTotal': 17890,
         'chunksUploaded': 17890,
+        'encryption': true,
+        'compression': 'gzip',
       };
 
       when(client.chunkedUpload(
@@ -226,6 +228,8 @@ void main() {
         'sizeOriginal': 17890,
         'chunksTotal': 17890,
         'chunksUploaded': 17890,
+        'encryption': true,
+        'compression': 'gzip',
       };
 
       when(client.call(
@@ -252,6 +256,8 @@ void main() {
         'sizeOriginal': 17890,
         'chunksTotal': 17890,
         'chunksUploaded': 17890,
+        'encryption': true,
+        'compression': 'gzip',
       };
 
       when(client.call(

@@ -146,32 +146,6 @@ void main() {
       expect(response, isA<models.HealthStatus>());
     });
 
-    test('test method getQueueBillingProjectAggregation()', () async {
-      final Map<String, dynamic> data = {
-        'size': 8,
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await health.getQueueBillingProjectAggregation();
-      expect(response, isA<models.HealthQueue>());
-    });
-
-    test('test method getQueueBillingTeamAggregation()', () async {
-      final Map<String, dynamic> data = {
-        'size': 8,
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await health.getQueueBillingTeamAggregation();
-      expect(response, isA<models.HealthQueue>());
-    });
-
     test('test method getQueueBuilds()', () async {
       final Map<String, dynamic> data = {
         'size': 8,
@@ -182,19 +156,6 @@ void main() {
       )).thenAnswer((_) async => Response(data: data));
 
       final response = await health.getQueueBuilds();
-      expect(response, isA<models.HealthQueue>());
-    });
-
-    test('test method getQueuePriorityBuilds()', () async {
-      final Map<String, dynamic> data = {
-        'size': 8,
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await health.getQueuePriorityBuilds();
       expect(response, isA<models.HealthQueue>());
     });
 
@@ -317,19 +278,6 @@ void main() {
       expect(response, isA<models.HealthQueue>());
     });
 
-    test('test method getQueueRegionManager()', () async {
-      final Map<String, dynamic> data = {
-        'size': 8,
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await health.getQueueRegionManager();
-      expect(response, isA<models.HealthQueue>());
-    });
-
     test('test method getQueueStatsResources()', () async {
       final Map<String, dynamic> data = {
         'size': 8,
@@ -353,19 +301,6 @@ void main() {
       )).thenAnswer((_) async => Response(data: data));
 
       final response = await health.getQueueUsage();
-      expect(response, isA<models.HealthQueue>());
-    });
-
-    test('test method getQueueThreats()', () async {
-      final Map<String, dynamic> data = {
-        'size': 8,
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await health.getQueueThreats();
       expect(response, isA<models.HealthQueue>());
     });
 

@@ -1,5 +1,13 @@
 # Change Log
 
+## 20.1.2
+
+* Update SDK as per latest server specs, these include -
+    * Updates to Runtime enums
+    * `Output` is now renamed to `ImageFormat` - Note that this is a breaking change
+    * Introduces Backups module for managing Database backups
+    * Introduces Organization module
+
 ## 20.1.1
 
 * Fix boolean parameter not handled correctly in Client requests
@@ -11,7 +19,8 @@
 ## 20.0.0
 
 * Rename `VCSDeploymentType` enum to `VCSReferenceType`
-* Change `createTemplateDeployment` method signature: replace `version` parameter with `type` (TemplateReferenceType) and `reference` parameters
+* Change `createTemplateDeployment` method signature: replace `version` parameter with `type` (TemplateReferenceType)
+  and `reference` parameters
 * Add `Theme`, `Timezone` and `Output` enums
 
 ## 19.4.0
@@ -65,10 +74,10 @@
 * Deprecated `updateMagicURLSession`
 * Deprecated `updatePhoneSession`
 * Deprecated Databases service
+
 > The TablesDB service is the new recommended way to work with databases.
 > Existing databases/collections/attributes/documents can be managed using the TablesDB service.
 > Existing Databases service will continue to work, but new features may only be added to the TablesDB service.
-  
 
 ## 16.2.0
 
@@ -99,7 +108,8 @@
 ## 14.0.0
 
 * Breaking changes:
-  * Changed the typing of `AppwriteException`'s response parameter from a `dynamic` object to an optional string (`?String`).
+    * Changed the typing of `AppwriteException`'s response parameter from a `dynamic` object to an optional string (
+      `?String`).
 
 ## 13.0.0
 
@@ -124,14 +134,16 @@
 * Added `updateDeploymentBuild()`: Enables cancelling a deployment.
 * Added `scheduledAt` parameter to `createExecution()`: Enables creating a delayed execution
 * Breaking changes:
-  * Removed `otp` parameter from `deleteMFAAuthenticator`.
-  * Added `scopes` parameter for create/update function.
-  * Renamed `templateBranch` to `templateVersion`  in `createFunction()`.
-  * Renamed `downloadDeployment()` to `getDeploymentDownload()`
+    * Removed `otp` parameter from `deleteMFAAuthenticator`.
+    * Added `scopes` parameter for create/update function.
+    * Renamed `templateBranch` to `templateVersion`  in `createFunction()`.
+    * Renamed `downloadDeployment()` to `getDeploymentDownload()`
 
-You can find the new syntax for breaking changes in the [Appwrite API references](https://appwrite.io/docs/references). Select version `1.6.x`.
+You can find the new syntax for breaking changes in the [Appwrite API references](https://appwrite.io/docs/references).
+Select version `1.6.x`.
 
-**Please note: This version is compatible with Appwrite 1.6 and later only. If you do not update your Appwrite SDK, old SDKs will not break your app. Appwrite APIs are backwards compatible.**
+**Please note: This version is compatible with Appwrite 1.6 and later only. If you do not update your Appwrite SDK, old
+SDKs will not break your app. Appwrite APIs are backwards compatible.**
 
 ## 11.0.3
 
@@ -177,12 +189,12 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 * New endpoint for downloading a function deployment
 * Updated documentation
 * Breaking changes:
-  * The `createFunction` method has a new signature.
-  * The `createExecution` method has a new signature.
-  * The `updateFunction` method has a new signature.
-  * The `createDeployment` method no longer requires an entrypoint.
-  * The `updateFile` method now includes the ability to update the file name.
-  * The `updateMembershipRoles` method has been renamed to `updateMembership`.
+    * The `createFunction` method has a new signature.
+    * The `createExecution` method has a new signature.
+    * The `updateFunction` method has a new signature.
+    * The `createDeployment` method no longer requires an entrypoint.
+    * The `updateFile` method now includes the ability to update the file name.
+    * The `updateMembershipRoles` method has been renamed to `updateMembership`.
 
 ## 8.0.1
 
@@ -193,7 +205,8 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 ## 8.0.0
 
 * Added relationships support
-* Added support for new queries: `isNull`, `isNotNull`, `startsWith`, `notStartsWith`, `endsWith`, `between` and `select`.
+* Added support for new queries: `isNull`, `isNotNull`, `startsWith`, `notStartsWith`, `endsWith`, `between` and
+  `select`.
 * Added update attribute support
 * Added team prefs support
 * Changed function create/update `execute` parameter to optional
@@ -203,7 +216,8 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 ## 7.3.0
 
 * Improve helper classes
-* Deprecated `InputFile` default constructor and introduced `InputFile.fromPath` and `InputFile.fromBytes` for consistency with other SDKs
+* Deprecated `InputFile` default constructor and introduced `InputFile.fromPath` and `InputFile.fromBytes` for
+  consistency with other SDKs
 
 ## 7.2.0
 
@@ -216,8 +230,10 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 ## 7.0.0
 
 ### NEW
+
 * Support for Appwrite 1.0.0
-* More verbose headers have been included in the Clients - `x-sdk-name`, `x-sdk-platform`, `x-sdk-language`, `x-sdk-version`
+* More verbose headers have been included in the Clients - `x-sdk-name`, `x-sdk-platform`, `x-sdk-language`,
+  `x-sdk-version`
 * Helper classes and methods for Permissions, Roles and IDs
 * Helper methods to suport new queries
 * All Dates and times are now returned in the ISO 8601 format
@@ -229,27 +245,31 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 
 ### BREAKING CHANGES
 
-* `databaseId` is no longer part of the `Database` Service constructor. `databaseId` will be part of the respective methods of the database service.
+* `databaseId` is no longer part of the `Database` Service constructor. `databaseId` will be part of the respective
+  methods of the database service.
 * The `Users.create()` method signature has now been updated to include a `phone` parameter
 * `color` attribute is no longer supported in the Avatars Service
 * The `number` argument in phone endpoints have been renamed to `phone`
-* List endpoints no longer support `limit`, `offset`, `cursor`, `cursorDirection`, `orderAttributes`, `orderTypes` as they have been moved to the `queries` array
+* List endpoints no longer support `limit`, `offset`, `cursor`, `cursorDirection`, `orderAttributes`, `orderTypes` as
+  they have been moved to the `queries` array
 * `read` and `write` permission have been deprecated and they are now included in the `permissions` array
 * Parameter `permission` for collections and buckets are now renamed to `documentSecurity` & `fileSecurity` respectively
 * Renamed methods of the Query helper
-    1.  `lesser` renamed to `lessThan`
-    2.  `lesserEqual` renamed to `lessThanEqual`
-    3.  `greater` renamed to `greaterThan`
-    4.  `greaterEqual` renamed to `greaterThanEqual`
+    1. `lesser` renamed to `lessThan`
+    2. `lesserEqual` renamed to `lessThanEqual`
+    3. `greater` renamed to `greaterThan`
+    4. `greaterEqual` renamed to `greaterThanEqual`
 
 **Full Changelog for Appwrite 1.0.0 can be found here**: https://github.com/appwrite/appwrite/blob/master/CHANGES.md
 
 ## 6.0.1
+
 * Dependency upgrades
 * Doc comments updates
 * Cleanup code
 
 ## 6.0.0
+
 * Support for Appwrite 0.15
 * **BREAKING** `Database` -> `Databases`
 * **BREAKING** `account.createSession()` -> `account.createEmailSession()`
@@ -259,12 +279,15 @@ You can find the new syntax for breaking changes in the [Appwrite API references
     * collections.[COLLECTION_ID] is now databases.[DATABASE_ID].collections.[COLLECTION_ID]
     * collections.[COLLECTION_ID].documents is now databases.[DATABASE_ID].collections.[COLLECTION_ID].documents
 
-**Full Changelog for Appwrite 0.15 can be found here**: https://github.com/appwrite/appwrite/blob/master/CHANGES.md#version-0150
+**Full Changelog for Appwrite 0.15 can be found here
+**: https://github.com/appwrite/appwrite/blob/master/CHANGES.md#version-0150
 
 ## 5.0.1
+
 * Code formatting fix
 
 ## 5.0.0
+
 * Support for Appwrite 0.14
 * **BREAKING** `account.delete()` -> `account.updateStatus()`
 * **BREAKING** Execution model `stdout` renamed to `response`
@@ -273,53 +296,69 @@ You can find the new syntax for breaking changes in the [Appwrite API references
 * New `users.getMemberships` function
 
 ## 4.0.2
-* Fix null issues with float attributes (https://github.com/appwrite/sdk-for-dart/issues/17 and https://github.com/appwrite/sdk-for-dart/issues/16)
+
+* Fix null issues with float attributes (https://github.com/appwrite/sdk-for-dart/issues/17
+  and https://github.com/appwrite/sdk-for-dart/issues/16)
 
 ## 4.0.1
+
 * Fix InputFile filename param
 * Fix examples
 
 ## 4.0.0
+
 * Support for Appwrite 0.13
 * **BREAKING** **Tags** have been renamed to **Deployments**
 * **BREAKING** `createFile` function expects Bucket ID as the first parameter
-* **BREAKING** `createDeployment` and `createFile` functions expect an instance **InputFile** rather than the instance of **MultipartFile**
+* **BREAKING** `createDeployment` and `createFile` functions expect an instance **InputFile** rather than the instance
+  of **MultipartFile**
 * **BREAKING** `list<Entity>` endpoints now contain a `total` attribute instead of `sum`
 * `onProgress()` callback function for endpoints supporting file uploads
 * Support for synchronous function executions
 * Bug fixes and Improvements
 
-**Full Changelog for Appwrite 0.13 can be found here**: https://github.com/appwrite/appwrite/blob/master/CHANGES.md#version-0130
+**Full Changelog for Appwrite 0.13 can be found here
+**: https://github.com/appwrite/appwrite/blob/master/CHANGES.md#version-0130
 
 ## 3.0.2
+
 - String Attribute Type got fixed
 
 ## 3.0.1
+
 - Export Query Builder
 
 ## 3.0.0
+
 - Support for Appwrite 0.12
 - **BREAKING** Updated database service to adapt 0.12 API
 - **BREAKING** Custom ID support while creating resources
 - [View all the changes](https://github.com/appwrite/appwrite/blob/master/CHANGES.md#version-0120)
 
 ## 2.0.0
+
 - BREAKING All services and methods now return structured response objects instead of `Response` object
 
 ## 1.0.2
+
 - Support for Appwrite 0.11
 
 ## 1.0.1
+
 - Export, separate IO and Browser clients for Flutter (Client and Realtime as well) and Dart (Client)
 
 ## 1.0.0
+
 - Support for Appwrite 0.10
 - Refactored for better cross platform support
 - Exception implements `toString()` to get proper error message for unhandled exceptions
-- **Breaking** - Signature for `MultipartFile` has changed as we have dropped Dio in favor of [http](https://pub.dev/packages/http) package. [Here is the new signature for MultipartFile](https://pub.dev/documentation/http/latest/http/MultipartFile-class.html)
+- **Breaking** - Signature for `MultipartFile` has changed as we have dropped Dio in favor
+  of [http](https://pub.dev/packages/http)
+  package. [Here is the new signature for MultipartFile](https://pub.dev/documentation/http/latest/http/MultipartFile-class.html)
 - **Breaking** - Signature for `Response` has changed, now it only exposes the data.
 
 ## 0.7.0
+
 - Support for Appwrite 0.9
 - Breaking - removed order type enum, now you should pass string 'ASC' or 'DESC'
 - Breaking - changed param name from `env` to `runtime` in the **Functions** API
