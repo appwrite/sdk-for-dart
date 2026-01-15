@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = BackupRestorationList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.restorations, []);
-          });
+      expect(result.total, 5);
+      expect(result.restorations, []);
+    });
   });
 }
