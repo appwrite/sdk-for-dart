@@ -5,8 +5,8 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Backups backups = Backups(client);
+Health health = Health(client);
 
-BackupArchiveList result = await backups.listArchives(
-    queries: [], // (optional)
+HealthQueue result = await health.getQueueAudits(
+    threshold: 0, // (optional)
 );
