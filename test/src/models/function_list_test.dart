@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = FunctionList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.functions, []);
-    });
+            expect(result.total, 5);
+                  expect(result.functions, []);
+          });
   });
 }
