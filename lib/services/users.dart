@@ -288,7 +288,7 @@ class Users extends Service {
       'userId': userId,
       'email': email,
       'password': password,
-      if (passwordVersion != null) 'passwordVersion': passwordVersion!.value,
+      if (passwordVersion != null) 'passwordVersion': passwordVersion.value,
       if (name != null) 'name': name,
     };
 

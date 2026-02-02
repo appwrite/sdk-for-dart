@@ -182,12 +182,12 @@ class Databases extends Service {
   @Deprecated(
       'This API has been deprecated since 1.8.0. Please use `TablesDB.update` instead.')
   Future<models.Database> update(
-      {required String databaseId, required String name, bool? enabled}) async {
+      {required String databaseId, String? name, bool? enabled}) async {
     final String apiPath =
         '/databases/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
     final Map<String, dynamic> apiParams = {
-      'name': name,
+      if (name != null) 'name': name,
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -311,7 +311,7 @@ class Databases extends Service {
   Future<models.Collection> updateCollection(
       {required String databaseId,
       required String collectionId,
-      required String name,
+      String? name,
       List<String>? permissions,
       bool? documentSecurity,
       bool? enabled}) async {
@@ -320,7 +320,7 @@ class Databases extends Service {
         .replaceAll('{collectionId}', collectionId);
 
     final Map<String, dynamic> apiParams = {
-      'name': name,
+      if (name != null) 'name': name,
       'permissions': permissions,
       if (documentSecurity != null) 'documentSecurity': documentSecurity,
       if (enabled != null) 'enabled': enabled,
@@ -936,6 +936,132 @@ class Databases extends Service {
     return models.AttributeLine.fromMap(res.data);
   }
 
+  /// Create a longtext attribute.
+  ///
+  Future<models.AttributeLongtext> createLongtextAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      String? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/longtext'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeLongtext.fromMap(res.data);
+  }
+
+  /// Update a longtext attribute. Changing the `default` value will not update
+  /// already existing documents.
+  ///
+  Future<models.AttributeLongtext> updateLongtextAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      required String? xdefault,
+      String? newKey}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/longtext/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeLongtext.fromMap(res.data);
+  }
+
+  /// Create a mediumtext attribute.
+  ///
+  Future<models.AttributeMediumtext> createMediumtextAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      String? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeMediumtext.fromMap(res.data);
+  }
+
+  /// Update a mediumtext attribute. Changing the `default` value will not update
+  /// already existing documents.
+  ///
+  Future<models.AttributeMediumtext> updateMediumtextAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      required String? xdefault,
+      String? newKey}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeMediumtext.fromMap(res.data);
+  }
+
   /// Create a geometric point attribute.
   @Deprecated(
       'This API has been deprecated since 1.8.0. Please use `TablesDB.createPointColumn` instead.')
@@ -1087,7 +1213,7 @@ class Databases extends Service {
       if (twoWay != null) 'twoWay': twoWay,
       'key': key,
       'twoWayKey': twoWayKey,
-      if (onDelete != null) 'onDelete': onDelete!.value,
+      if (onDelete != null) 'onDelete': onDelete.value,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1173,6 +1299,69 @@ class Databases extends Service {
     return models.AttributeString.fromMap(res.data);
   }
 
+  /// Create a text attribute.
+  ///
+  Future<models.AttributeText> createTextAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      String? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/text'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeText.fromMap(res.data);
+  }
+
+  /// Update a text attribute. Changing the `default` value will not update
+  /// already existing documents.
+  ///
+  Future<models.AttributeText> updateTextAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      required String? xdefault,
+      String? newKey}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/text/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeText.fromMap(res.data);
+  }
+
   /// Create a URL attribute.
   ///
   @Deprecated(
@@ -1240,10 +1429,77 @@ class Databases extends Service {
     return models.AttributeUrl.fromMap(res.data);
   }
 
+  /// Create a varchar attribute.
+  ///
+  Future<models.AttributeVarchar> createVarcharAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required int size,
+      required bool xrequired,
+      String? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/varchar'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'size': size,
+      'required': xrequired,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeVarchar.fromMap(res.data);
+  }
+
+  /// Update a varchar attribute. Changing the `default` value will not update
+  /// already existing documents.
+  ///
+  Future<models.AttributeVarchar> updateVarcharAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      required String? xdefault,
+      int? size,
+      String? newKey}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/varchar/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'size': size,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeVarchar.fromMap(res.data);
+  }
+
   /// Get attribute by ID.
   @Deprecated(
       'This API has been deprecated since 1.8.0. Please use `TablesDB.getColumn` instead.')
-  Future<models.AttributeBoolean> getAttribute(
+  Future getAttribute(
       {required String databaseId,
       required String collectionId,
       required String key}) async {
@@ -1260,7 +1516,7 @@ class Databases extends Service {
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return models.AttributeBoolean.fromMap(res.data);
+    return res.data;
   }
 
   /// Deletes an attribute.
@@ -1738,7 +1994,7 @@ class Databases extends Service {
       required String key,
       required enums.IndexType type,
       required List<String> attributes,
-      List<String>? orders,
+      List<enums.OrderBy>? orders,
       List<int>? lengths}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/indexes'
@@ -1749,7 +2005,7 @@ class Databases extends Service {
       'key': key,
       'type': type.value,
       'attributes': attributes,
-      if (orders != null) 'orders': orders,
+      if (orders != null) 'orders': orders.map((e) => e.value).toList(),
       if (lengths != null) 'lengths': lengths,
     };
 

@@ -57,7 +57,7 @@ class Sites extends Service {
       if (buildCommand != null) 'buildCommand': buildCommand,
       if (outputDirectory != null) 'outputDirectory': outputDirectory,
       'buildRuntime': buildRuntime.value,
-      if (adapter != null) 'adapter': adapter!.value,
+      if (adapter != null) 'adapter': adapter.value,
       if (installationId != null) 'installationId': installationId,
       if (fallbackFile != null) 'fallbackFile': fallbackFile,
       if (providerRepositoryId != null)
@@ -153,8 +153,8 @@ class Sites extends Service {
       if (installCommand != null) 'installCommand': installCommand,
       if (buildCommand != null) 'buildCommand': buildCommand,
       if (outputDirectory != null) 'outputDirectory': outputDirectory,
-      if (buildRuntime != null) 'buildRuntime': buildRuntime!.value,
-      if (adapter != null) 'adapter': adapter!.value,
+      if (buildRuntime != null) 'buildRuntime': buildRuntime.value,
+      if (adapter != null) 'adapter': adapter.value,
       if (fallbackFile != null) 'fallbackFile': fallbackFile,
       if (installationId != null) 'installationId': installationId,
       if (providerRepositoryId != null)
@@ -411,7 +411,7 @@ class Sites extends Service {
         .replaceAll('{deploymentId}', deploymentId);
 
     final Map<String, dynamic> params = {
-      if (type != null) 'type': type!.value,
+      if (type != null) 'type': type.value,
       'project': client.config['project'],
       'key': client.config['key'],
     };

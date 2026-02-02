@@ -20,12 +20,6 @@ class Database implements Model {
   /// Database type.
   final enums.DatabaseType type;
 
-  /// Database backup policies.
-  final List<Index> policies;
-
-  /// Database backup archives.
-  final List<Collection> archives;
-
   Database({
     required this.$id,
     required this.name,
@@ -33,8 +27,6 @@ class Database implements Model {
     required this.$updatedAt,
     required this.enabled,
     required this.type,
-    required this.policies,
-    required this.archives,
   });
 
   factory Database.fromMap(Map<String, dynamic> map) {
@@ -45,9 +37,6 @@ class Database implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       enabled: map['enabled'],
       type: enums.DatabaseType.values.firstWhere((e) => e.value == map['type']),
-      policies: List<Index>.from(map['policies'].map((p) => Index.fromMap(p))),
-      archives: List<Collection>.from(
-          map['archives'].map((p) => Collection.fromMap(p))),
     );
   }
 
@@ -60,8 +49,6 @@ class Database implements Model {
       "\$updatedAt": $updatedAt,
       "enabled": enabled,
       "type": type.value,
-      "policies": policies.map((p) => p.toMap()).toList(),
-      "archives": archives.map((p) => p.toMap()).toList(),
     };
   }
 }

@@ -44,7 +44,7 @@ class Deployment implements Model {
   /// Screenshot with dark theme preference file ID.
   final String screenshotDark;
 
-  /// The deployment status. Possible values are &quot;waiting&quot;, &quot;processing&quot;, &quot;building&quot;, &quot;ready&quot;, and &quot;failed&quot;.
+  /// The deployment status. Possible values are &quot;waiting&quot;, &quot;processing&quot;, &quot;building&quot;, &quot;ready&quot;, &quot;canceled&quot; and &quot;failed&quot;.
   final enums.DeploymentStatus status;
 
   /// The build logs.

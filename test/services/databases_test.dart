@@ -76,8 +76,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -203,8 +201,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -225,8 +221,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -235,7 +229,6 @@ void main() {
 
       final response = await databases.update(
         databaseId: '<DATABASE_ID>',
-        name: '<NAME>',
       );
       expect(response, isA<models.Database>());
     });
@@ -340,7 +333,6 @@ void main() {
       final response = await databases.updateCollection(
         databaseId: '<DATABASE_ID>',
         collectionId: '<COLLECTION_ID>',
-        name: '<NAME>',
       );
       expect(response, isA<models.Collection>());
     });
@@ -778,6 +770,104 @@ void main() {
       expect(response, isA<models.AttributeLine>());
     });
 
+    test('test method createLongtextAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.createLongtextAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+      );
+      expect(response, isA<models.AttributeLongtext>());
+    });
+
+    test('test method updateLongtextAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.updateLongtextAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: '<DEFAULT>',
+      );
+      expect(response, isA<models.AttributeLongtext>());
+    });
+
+    test('test method createMediumtextAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.createMediumtextAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+      );
+      expect(response, isA<models.AttributeMediumtext>());
+    });
+
+    test('test method updateMediumtextAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.updateMediumtextAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: '<DEFAULT>',
+      );
+      expect(response, isA<models.AttributeMediumtext>());
+    });
+
     test('test method createPointAttribute()', () async {
       final Map<String, dynamic> data = {
         'key': 'fullName',
@@ -956,6 +1046,55 @@ void main() {
       expect(response, isA<models.AttributeString>());
     });
 
+    test('test method createTextAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.createTextAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+      );
+      expect(response, isA<models.AttributeText>());
+    });
+
+    test('test method updateTextAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.updateTextAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: '<DEFAULT>',
+      );
+      expect(response, isA<models.AttributeText>());
+    });
+
     test('test method createUrlAttribute()', () async {
       final Map<String, dynamic> data = {
         'key': 'githubUrl',
@@ -1005,6 +1144,58 @@ void main() {
         xdefault: 'https://example.com',
       );
       expect(response, isA<models.AttributeUrl>());
+    });
+
+    test('test method createVarcharAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'size': 128,
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.createVarcharAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        size: 1,
+        xrequired: true,
+      );
+      expect(response, isA<models.AttributeVarchar>());
+    });
+
+    test('test method updateVarcharAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'size': 128,
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.updateVarcharAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: '<DEFAULT>',
+      );
+      expect(response, isA<models.AttributeVarchar>());
     });
 
     test('test method getAttribute()', () async {

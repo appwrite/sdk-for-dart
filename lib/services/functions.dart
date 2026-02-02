@@ -41,7 +41,7 @@ class Functions extends Service {
       bool? logging,
       String? entrypoint,
       String? commands,
-      List<String>? scopes,
+      List<enums.Scopes>? scopes,
       String? installationId,
       String? providerRepositoryId,
       String? providerBranch,
@@ -62,7 +62,7 @@ class Functions extends Service {
       if (logging != null) 'logging': logging,
       if (entrypoint != null) 'entrypoint': entrypoint,
       if (commands != null) 'commands': commands,
-      if (scopes != null) 'scopes': scopes,
+      if (scopes != null) 'scopes': scopes.map((e) => e.value).toList(),
       if (installationId != null) 'installationId': installationId,
       if (providerRepositoryId != null)
         'providerRepositoryId': providerRepositoryId,
@@ -139,7 +139,7 @@ class Functions extends Service {
       bool? logging,
       String? entrypoint,
       String? commands,
-      List<String>? scopes,
+      List<enums.Scopes>? scopes,
       String? installationId,
       String? providerRepositoryId,
       String? providerBranch,
@@ -151,7 +151,7 @@ class Functions extends Service {
 
     final Map<String, dynamic> apiParams = {
       'name': name,
-      if (runtime != null) 'runtime': runtime!.value,
+      if (runtime != null) 'runtime': runtime.value,
       if (execute != null) 'execute': execute,
       if (events != null) 'events': events,
       if (schedule != null) 'schedule': schedule,
@@ -160,7 +160,7 @@ class Functions extends Service {
       if (logging != null) 'logging': logging,
       if (entrypoint != null) 'entrypoint': entrypoint,
       if (commands != null) 'commands': commands,
-      if (scopes != null) 'scopes': scopes,
+      if (scopes != null) 'scopes': scopes.map((e) => e.value).toList(),
       if (installationId != null) 'installationId': installationId,
       'providerRepositoryId': providerRepositoryId,
       if (providerBranch != null) 'providerBranch': providerBranch,
@@ -425,7 +425,7 @@ class Functions extends Service {
             .replaceAll('{deploymentId}', deploymentId);
 
     final Map<String, dynamic> params = {
-      if (type != null) 'type': type!.value,
+      if (type != null) 'type': type.value,
       'project': client.config['project'],
       'key': client.config['key'],
     };
@@ -498,7 +498,7 @@ class Functions extends Service {
       if (body != null) 'body': body,
       if (xasync != null) 'async': xasync,
       if (path != null) 'path': path,
-      if (method != null) 'method': method!.value,
+      if (method != null) 'method': method.value,
       if (headers != null) 'headers': headers,
       'scheduledAt': scheduledAt,
     };

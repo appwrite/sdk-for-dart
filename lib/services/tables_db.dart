@@ -172,12 +172,12 @@ class TablesDB extends Service {
 
   /// Update a database by its unique ID.
   Future<models.Database> update(
-      {required String databaseId, required String name, bool? enabled}) async {
+      {required String databaseId, String? name, bool? enabled}) async {
     final String apiPath =
         '/tablesdb/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
     final Map<String, dynamic> apiParams = {
-      'name': name,
+      if (name != null) 'name': name,
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -291,7 +291,7 @@ class TablesDB extends Service {
   Future<models.Table> updateTable(
       {required String databaseId,
       required String tableId,
-      required String name,
+      String? name,
       List<String>? permissions,
       bool? rowSecurity,
       bool? enabled}) async {
@@ -300,7 +300,7 @@ class TablesDB extends Service {
         .replaceAll('{tableId}', tableId);
 
     final Map<String, dynamic> apiParams = {
-      'name': name,
+      if (name != null) 'name': name,
       'permissions': permissions,
       if (rowSecurity != null) 'rowSecurity': rowSecurity,
       if (enabled != null) 'enabled': enabled,
@@ -877,6 +877,132 @@ class TablesDB extends Service {
     return models.ColumnLine.fromMap(res.data);
   }
 
+  /// Create a longtext column.
+  ///
+  Future<models.ColumnLongtext> createLongtextColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      String? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnLongtext.fromMap(res.data);
+  }
+
+  /// Update a longtext column. Changing the `default` value will not update
+  /// already existing rows.
+  ///
+  Future<models.ColumnLongtext> updateLongtextColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      required String? xdefault,
+      String? newKey}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnLongtext.fromMap(res.data);
+  }
+
+  /// Create a mediumtext column.
+  ///
+  Future<models.ColumnMediumtext> createMediumtextColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      String? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnMediumtext.fromMap(res.data);
+  }
+
+  /// Update a mediumtext column. Changing the `default` value will not update
+  /// already existing rows.
+  ///
+  Future<models.ColumnMediumtext> updateMediumtextColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      required String? xdefault,
+      String? newKey}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnMediumtext.fromMap(res.data);
+  }
+
   /// Create a geometric point column.
   Future<models.ColumnPoint> createPointColumn(
       {required String databaseId,
@@ -1018,7 +1144,7 @@ class TablesDB extends Service {
       if (twoWay != null) 'twoWay': twoWay,
       'key': key,
       'twoWayKey': twoWayKey,
-      if (onDelete != null) 'onDelete': onDelete!.value,
+      if (onDelete != null) 'onDelete': onDelete.value,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1033,6 +1159,8 @@ class TablesDB extends Service {
 
   /// Create a string column.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.9.0. Please use `TablesDB.createTextColumn` instead.')
   Future<models.ColumnString> createStringColumn(
       {required String databaseId,
       required String tableId,
@@ -1069,6 +1197,8 @@ class TablesDB extends Service {
   /// Update a string column. Changing the `default` value will not update
   /// already existing rows.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateTextColumn` instead.')
   Future<models.ColumnString> updateStringColumn(
       {required String databaseId,
       required String tableId,
@@ -1098,6 +1228,69 @@ class TablesDB extends Service {
         path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.ColumnString.fromMap(res.data);
+  }
+
+  /// Create a text column.
+  ///
+  Future<models.ColumnText> createTextColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      String? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnText.fromMap(res.data);
+  }
+
+  /// Update a text column. Changing the `default` value will not update already
+  /// existing rows.
+  ///
+  Future<models.ColumnText> updateTextColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      required String? xdefault,
+      String? newKey}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnText.fromMap(res.data);
   }
 
   /// Create a URL column.
@@ -1162,8 +1355,75 @@ class TablesDB extends Service {
     return models.ColumnUrl.fromMap(res.data);
   }
 
+  /// Create a varchar column.
+  ///
+  Future<models.ColumnVarchar> createVarcharColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required int size,
+      required bool xrequired,
+      String? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'size': size,
+      'required': xrequired,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnVarchar.fromMap(res.data);
+  }
+
+  /// Update a varchar column. Changing the `default` value will not update
+  /// already existing rows.
+  ///
+  Future<models.ColumnVarchar> updateVarcharColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      required String? xdefault,
+      int? size,
+      String? newKey}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'default': xdefault,
+      'size': size,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnVarchar.fromMap(res.data);
+  }
+
   /// Get column by ID.
-  Future<models.ColumnBoolean> getColumn(
+  Future getColumn(
       {required String databaseId,
       required String tableId,
       required String key}) async {
@@ -1180,7 +1440,7 @@ class TablesDB extends Service {
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return models.ColumnBoolean.fromMap(res.data);
+    return res.data;
   }
 
   /// Deletes a column.
@@ -1268,7 +1528,7 @@ class TablesDB extends Service {
       required String key,
       required enums.IndexType type,
       required List<String> columns,
-      List<String>? orders,
+      List<enums.OrderBy>? orders,
       List<int>? lengths}) async {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
         .replaceAll('{databaseId}', databaseId)
@@ -1278,7 +1538,7 @@ class TablesDB extends Service {
       'key': key,
       'type': type.value,
       'columns': columns,
-      if (orders != null) 'orders': orders,
+      if (orders != null) 'orders': orders.map((e) => e.value).toList(),
       if (lengths != null) 'lengths': lengths,
     };
 

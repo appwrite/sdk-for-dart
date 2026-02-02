@@ -76,8 +76,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -203,8 +201,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -225,8 +221,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -235,7 +229,6 @@ void main() {
 
       final response = await tablesDB.update(
         databaseId: '<DATABASE_ID>',
-        name: '<NAME>',
       );
       expect(response, isA<models.Database>());
     });
@@ -340,7 +333,6 @@ void main() {
       final response = await tablesDB.updateTable(
         databaseId: '<DATABASE_ID>',
         tableId: '<TABLE_ID>',
-        name: '<NAME>',
       );
       expect(response, isA<models.Table>());
     });
@@ -778,6 +770,104 @@ void main() {
       expect(response, isA<models.ColumnLine>());
     });
 
+    test('test method createLongtextColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.createLongtextColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+      );
+      expect(response, isA<models.ColumnLongtext>());
+    });
+
+    test('test method updateLongtextColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.updateLongtextColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: '<DEFAULT>',
+      );
+      expect(response, isA<models.ColumnLongtext>());
+    });
+
+    test('test method createMediumtextColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.createMediumtextColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+      );
+      expect(response, isA<models.ColumnMediumtext>());
+    });
+
+    test('test method updateMediumtextColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.updateMediumtextColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: '<DEFAULT>',
+      );
+      expect(response, isA<models.ColumnMediumtext>());
+    });
+
     test('test method createPointColumn()', () async {
       final Map<String, dynamic> data = {
         'key': 'fullName',
@@ -956,6 +1046,55 @@ void main() {
       expect(response, isA<models.ColumnString>());
     });
 
+    test('test method createTextColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.createTextColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+      );
+      expect(response, isA<models.ColumnText>());
+    });
+
+    test('test method updateTextColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.updateTextColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: '<DEFAULT>',
+      );
+      expect(response, isA<models.ColumnText>());
+    });
+
     test('test method createUrlColumn()', () async {
       final Map<String, dynamic> data = {
         'key': 'githubUrl',
@@ -1005,6 +1144,58 @@ void main() {
         xdefault: 'https://example.com',
       );
       expect(response, isA<models.ColumnUrl>());
+    });
+
+    test('test method createVarcharColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'size': 128,
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.createVarcharColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        size: 1,
+        xrequired: true,
+      );
+      expect(response, isA<models.ColumnVarchar>());
+    });
+
+    test('test method updateVarcharColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'size': 128,
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.updateVarcharColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: '<DEFAULT>',
+      );
+      expect(response, isA<models.ColumnVarchar>());
     });
 
     test('test method getColumn()', () async {
