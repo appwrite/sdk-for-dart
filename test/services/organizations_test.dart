@@ -24,7 +24,8 @@ class MockClient extends Mock implements Client {
 
   @override
   Future<String?> webAuth(Uri url) async {
-    return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super
+        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
   @override
@@ -36,49 +37,48 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    return super.noSuchMethod(Invocation.method(#chunkedUpload, [path, params, paramName, idParamName, headers]), returnValue: Response(data: {}));
+    return super.noSuchMethod(
+        Invocation.method(
+            #chunkedUpload, [path, params, paramName, idParamName, headers]),
+        returnValue: Response(data: {}));
   }
 }
 
 void main() {
-    group('Organizations test', () {
-        late MockClient client;
-        late Organizations organizations;
+  group('Organizations test', () {
+    late MockClient client;
+    late Organizations organizations;
 
-        setUp(() {
-            client = MockClient();
-            organizations = Organizations(client);
-        });
-
-        test('test method delete()', () async {
-            final data = '';
-
-            when(client.call(
-                HttpMethod.delete,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await organizations.delete(
-                organizationId: '<ORGANIZATION_ID>',
-            );
-        });
-
-        test('test method estimationDeleteOrganization()', () async {
-            final Map<String, dynamic> data = {
-                'unpaidInvoices': [],};
-
-
-            when(client.call(
-                HttpMethod.patch,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await organizations.estimationDeleteOrganization(
-                organizationId: '<ORGANIZATION_ID>',
-            );
-            expect(response, isA<models.EstimationDeleteOrganization>());
-
-        });
-
+    setUp(() {
+      client = MockClient();
+      organizations = Organizations(client);
     });
+
+    test('test method delete()', () async {
+      final data = '';
+
+      when(client.call(
+        HttpMethod.delete,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organizations.delete(
+        organizationId: '<ORGANIZATION_ID>',
+      );
+    });
+
+    test('test method estimationDeleteOrganization()', () async {
+      final Map<String, dynamic> data = {
+        'unpaidInvoices': [],
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organizations.estimationDeleteOrganization(
+        organizationId: '<ORGANIZATION_ID>',
+      );
+      expect(response, isA<models.EstimationDeleteOrganization>());
+    });
+  });
 }
