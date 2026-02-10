@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = ColumnIndexList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.indexes, []);
-          });
+      expect(result.total, 5);
+      expect(result.indexes, []);
+    });
   });
 }
