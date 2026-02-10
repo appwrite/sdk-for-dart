@@ -133,6 +133,102 @@ class Account extends Service {
     return models.Jwt.fromMap(res.data);
   }
 
+  /// Get a list of all API keys from the current account.
+  Future<models.KeyList> listKeys({bool? total}) async {
+    final String apiPath = '/account/keys';
+
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {};
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.KeyList.fromMap(res.data);
+  }
+
+  /// Create a new account API key.
+  Future<models.Key> createKey(
+      {required String name,
+      required List<enums.Scopes> scopes,
+      String? expire}) async {
+    final String apiPath = '/account/keys';
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+      'scopes': scopes.map((e) => e.value).toList(),
+      'expire': expire,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Key.fromMap(res.data);
+  }
+
+  /// Get a key by its unique ID. This endpoint returns details about a specific
+  /// API key in your account including it's scopes.
+  Future<models.Key> getKey({required String keyId}) async {
+    final String apiPath = '/account/keys/{keyId}'.replaceAll('{keyId}', keyId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {};
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Key.fromMap(res.data);
+  }
+
+  /// Update a key by its unique ID. Use this endpoint to update the name,
+  /// scopes, or expiration time of an API key.
+  Future<models.Key> updateKey(
+      {required String keyId,
+      required String name,
+      required List<enums.Scopes> scopes,
+      String? expire}) async {
+    final String apiPath = '/account/keys/{keyId}'.replaceAll('{keyId}', keyId);
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+      'scopes': scopes.map((e) => e.value).toList(),
+      'expire': expire,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.put,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Key.fromMap(res.data);
+  }
+
+  /// Delete a key by its unique ID. Once deleted, the key can no longer be used
+  /// to authenticate API calls.
+  Future deleteKey({required String keyId}) async {
+    final String apiPath = '/account/keys/{keyId}'.replaceAll('{keyId}', keyId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return res.data;
+  }
+
   /// Get the list of latest security activity logs for the currently logged in
   /// user. Each log returns user IP address, location and date and time of log.
   Future<models.LogList> listLogs({List<String>? queries, bool? total}) async {

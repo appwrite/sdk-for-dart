@@ -185,6 +185,104 @@ void main() {
       expect(response, isA<models.Jwt>());
     });
 
+    test('test method listKeys()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'keys': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.listKeys();
+      expect(response, isA<models.KeyList>());
+    });
+
+    test('test method createKey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'name': 'My API Key',
+        'expire': '2020-10-15T06:38:00.000+00:00',
+        'scopes': [],
+        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
+        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+        'sdks': [],
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.createKey(
+        name: '<NAME>',
+        scopes: [enums.Scopes.account],
+      );
+      expect(response, isA<models.Key>());
+    });
+
+    test('test method getKey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'name': 'My API Key',
+        'expire': '2020-10-15T06:38:00.000+00:00',
+        'scopes': [],
+        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
+        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+        'sdks': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.getKey(
+        keyId: '<KEY_ID>',
+      );
+      expect(response, isA<models.Key>());
+    });
+
+    test('test method updateKey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'name': 'My API Key',
+        'expire': '2020-10-15T06:38:00.000+00:00',
+        'scopes': [],
+        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
+        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+        'sdks': [],
+      };
+
+      when(client.call(
+        HttpMethod.put,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.updateKey(
+        keyId: '<KEY_ID>',
+        name: '<NAME>',
+        scopes: [enums.Scopes.account],
+      );
+      expect(response, isA<models.Key>());
+    });
+
+    test('test method deleteKey()', () async {
+      final data = '';
+
+      when(client.call(
+        HttpMethod.delete,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.deleteKey(
+        keyId: '<KEY_ID>',
+      );
+    });
+
     test('test method listLogs()', () async {
       final Map<String, dynamic> data = {
         'total': 5,

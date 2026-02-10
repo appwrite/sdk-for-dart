@@ -1,3 +1,4 @@
+```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
 
 Client client = Client()
@@ -10,5 +11,6 @@ Teams teams = Teams(client);
 Membership result = await teams.updateMembership(
     teamId: '<TEAM_ID>',
     membershipId: '<MEMBERSHIP_ID>',
-    roles: [enums.Roles.admin],
+    roles: [],
 );
+```

@@ -15,6 +15,8 @@ void main() {
         documentSecurity: true,
         attributes: [],
         indexes: [],
+        bytesMax: 65535,
+        bytesUsed: 1500,
       );
 
       final map = model.toMap();
@@ -30,6 +32,8 @@ void main() {
       expect(result.documentSecurity, true);
       expect(result.attributes, []);
       expect(result.indexes, []);
+      expect(result.bytesMax, 65535);
+      expect(result.bytesUsed, 1500);
     });
   });
 }

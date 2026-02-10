@@ -23,9 +23,6 @@ enum BuildRuntime {
   python312(value: 'python-3.12'),
   pythonMl311(value: 'python-ml-3.11'),
   pythonMl312(value: 'python-ml-3.12'),
-  deno121(value: 'deno-1.21'),
-  deno124(value: 'deno-1.24'),
-  deno135(value: 'deno-1.35'),
   deno140(value: 'deno-1.40'),
   deno146(value: 'deno-1.46'),
   deno20(value: 'deno-2.0'),
@@ -40,6 +37,7 @@ enum BuildRuntime {
   dart35(value: 'dart-3.5'),
   dart38(value: 'dart-3.8'),
   dart39(value: 'dart-3.9'),
+  dart310(value: 'dart-3.10'),
   dotnet60(value: 'dotnet-6.0'),
   dotnet70(value: 'dotnet-7.0'),
   dotnet80(value: 'dotnet-8.0'),
@@ -67,7 +65,8 @@ enum BuildRuntime {
   flutter327(value: 'flutter-3.27'),
   flutter329(value: 'flutter-3.29'),
   flutter332(value: 'flutter-3.32'),
-  flutter335(value: 'flutter-3.35');
+  flutter335(value: 'flutter-3.35'),
+  flutter338(value: 'flutter-3.38');
 
   const BuildRuntime({required this.value});
 
