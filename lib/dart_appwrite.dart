@@ -37,7 +37,6 @@ part 'services/graphql.dart';
 part 'services/health.dart';
 part 'services/locale.dart';
 part 'services/messaging.dart';
-part 'services/organizations.dart';
 part 'services/sites.dart';
 part 'services/storage.dart';
 part 'services/tables_db.dart';
