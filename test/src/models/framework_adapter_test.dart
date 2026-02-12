@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = FrameworkAdapter.fromMap(map);
 
-            expect(result.key, 'static');
-                  expect(result.installCommand, 'npm install');
-                  expect(result.buildCommand, 'npm run build');
-                  expect(result.outputDirectory, './dist');
-                  expect(result.fallbackFile, 'index.html');
-          });
+      expect(result.key, 'static');
+      expect(result.installCommand, 'npm install');
+      expect(result.buildCommand, 'npm run build');
+      expect(result.outputDirectory, './dist');
+      expect(result.fallbackFile, 'index.html');
+    });
   });
 }

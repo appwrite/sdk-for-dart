@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = ResourceTokenList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.tokens, []);
-          });
+      expect(result.total, 5);
+      expect(result.tokens, []);
+    });
   });
 }
