@@ -29,7 +29,6 @@ part 'src/enums/build_runtime.dart';
 part 'src/enums/adapter.dart';
 part 'src/enums/compression.dart';
 part 'src/enums/image_gravity.dart';
-part 'src/enums/roles.dart';
 part 'src/enums/password_hash.dart';
 part 'src/enums/messaging_provider_type.dart';
 part 'src/enums/database_type.dart';

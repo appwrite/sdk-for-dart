@@ -15,21 +15,25 @@ void main() {
         rowSecurity: true,
         columns: [],
         indexes: [],
+        bytesMax: 65535,
+        bytesUsed: 1500,
       );
 
       final map = model.toMap();
       final result = Table.fromMap(map);
 
-      expect(result.$id, '5e5ea5c16897e');
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$permissions, []);
-      expect(result.databaseId, '5e5ea5c16897e');
-      expect(result.name, 'My Table');
-      expect(result.enabled, true);
-      expect(result.rowSecurity, true);
-      expect(result.columns, []);
-      expect(result.indexes, []);
-    });
+            expect(result.$id, '5e5ea5c16897e');
+                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.$permissions, []);
+                  expect(result.databaseId, '5e5ea5c16897e');
+                  expect(result.name, 'My Table');
+                  expect(result.enabled, true);
+                  expect(result.rowSecurity, true);
+                  expect(result.columns, []);
+                  expect(result.indexes, []);
+                  expect(result.bytesMax, 65535);
+                  expect(result.bytesUsed, 1500);
+          });
   });
 }
