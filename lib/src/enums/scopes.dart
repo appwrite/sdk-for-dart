@@ -55,7 +55,15 @@ enum Scopes {
   vcsWrite(value: 'vcs.write'),
   assistantRead(value: 'assistant.read'),
   tokensRead(value: 'tokens.read'),
-  tokensWrite(value: 'tokens.write');
+  tokensWrite(value: 'tokens.write'),
+  policiesWrite(value: 'policies.write'),
+  policiesRead(value: 'policies.read'),
+  archivesRead(value: 'archives.read'),
+  archivesWrite(value: 'archives.write'),
+  restorationsRead(value: 'restorations.read'),
+  restorationsWrite(value: 'restorations.write'),
+  domainsRead(value: 'domains.read'),
+  domainsWrite(value: 'domains.write');
 
   const Scopes({required this.value});
 

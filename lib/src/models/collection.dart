@@ -32,6 +32,12 @@ class Collection implements Model {
   /// Collection indexes.
   final List<Index> indexes;
 
+  /// Maximum document size in bytes. Returns 0 when no limit applies.
+  final int bytesMax;
+
+  /// Currently used document size in bytes based on defined attributes.
+  final int bytesUsed;
+
   Collection({
     required this.$id,
     required this.$createdAt,
@@ -43,6 +49,8 @@ class Collection implements Model {
     required this.documentSecurity,
     required this.attributes,
     required this.indexes,
+    required this.bytesMax,
+    required this.bytesUsed,
   });
 
   factory Collection.fromMap(Map<String, dynamic> map) {
@@ -57,6 +65,8 @@ class Collection implements Model {
       documentSecurity: map['documentSecurity'],
       attributes: List.from(map['attributes'] ?? []),
       indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
+      bytesMax: map['bytesMax'],
+      bytesUsed: map['bytesUsed'],
     );
   }
 
@@ -73,6 +83,8 @@ class Collection implements Model {
       "documentSecurity": documentSecurity,
       "attributes": attributes,
       "indexes": indexes.map((p) => p.toMap()).toList(),
+      "bytesMax": bytesMax,
+      "bytesUsed": bytesUsed,
     };
   }
 }

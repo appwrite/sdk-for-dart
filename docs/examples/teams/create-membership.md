@@ -1,3 +1,4 @@
+```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
 
 Client client = Client()
@@ -9,10 +10,11 @@ Teams teams = Teams(client);
 
 Membership result = await teams.createMembership(
     teamId: '<TEAM_ID>',
-    roles: [enums.Roles.admin],
+    roles: [],
     email: 'email@example.com', // (optional)
     userId: '<USER_ID>', // (optional)
     phone: '+12065550100', // (optional)
     url: 'https://example.com', // (optional)
     name: '<NAME>', // (optional)
 );
+```

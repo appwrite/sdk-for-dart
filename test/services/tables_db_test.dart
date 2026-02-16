@@ -76,6 +76,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -201,6 +203,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -221,6 +225,8 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
+        'policies': [],
+        'archives': [],
       };
 
       when(client.call(
@@ -273,6 +279,8 @@ void main() {
         'rowSecurity': true,
         'columns': [],
         'indexes': [],
+        'bytesMax': 65535,
+        'bytesUsed': 1500,
       };
 
       when(client.call(
@@ -299,6 +307,8 @@ void main() {
         'rowSecurity': true,
         'columns': [],
         'indexes': [],
+        'bytesMax': 65535,
+        'bytesUsed': 1500,
       };
 
       when(client.call(
@@ -324,6 +334,8 @@ void main() {
         'rowSecurity': true,
         'columns': [],
         'indexes': [],
+        'bytesMax': 65535,
+        'bytesUsed': 1500,
       };
 
       when(client.call(

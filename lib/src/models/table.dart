@@ -32,6 +32,12 @@ class Table implements Model {
   /// Table indexes.
   final List<ColumnIndex> indexes;
 
+  /// Maximum row size in bytes. Returns 0 when no limit applies.
+  final int bytesMax;
+
+  /// Currently used row size in bytes based on defined columns.
+  final int bytesUsed;
+
   Table({
     required this.$id,
     required this.$createdAt,
@@ -43,6 +49,8 @@ class Table implements Model {
     required this.rowSecurity,
     required this.columns,
     required this.indexes,
+    required this.bytesMax,
+    required this.bytesUsed,
   });
 
   factory Table.fromMap(Map<String, dynamic> map) {
@@ -58,6 +66,8 @@ class Table implements Model {
       columns: List.from(map['columns'] ?? []),
       indexes: List<ColumnIndex>.from(
           map['indexes'].map((p) => ColumnIndex.fromMap(p))),
+      bytesMax: map['bytesMax'],
+      bytesUsed: map['bytesUsed'],
     );
   }
 
@@ -74,6 +84,8 @@ class Table implements Model {
       "rowSecurity": rowSecurity,
       "columns": columns,
       "indexes": indexes.map((p) => p.toMap()).toList(),
+      "bytesMax": bytesMax,
+      "bytesUsed": bytesUsed,
     };
   }
 }

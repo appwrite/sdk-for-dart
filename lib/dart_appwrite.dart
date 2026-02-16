@@ -30,6 +30,7 @@ part 'id.dart';
 part 'operator.dart';
 part 'services/account.dart';
 part 'services/avatars.dart';
+part 'services/backups.dart';
 part 'services/databases.dart';
 part 'services/functions.dart';
 part 'services/graphql.dart';
