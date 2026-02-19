@@ -944,7 +944,8 @@ class Databases extends Service {
       required String key,
       required bool xrequired,
       String? xdefault,
-      bool? array}) async {
+      bool? array,
+      bool? encrypt}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/longtext'
             .replaceAll('{databaseId}', databaseId)
@@ -955,6 +956,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1007,7 +1009,8 @@ class Databases extends Service {
       required String key,
       required bool xrequired,
       String? xdefault,
-      bool? array}) async {
+      bool? array,
+      bool? encrypt}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext'
             .replaceAll('{databaseId}', databaseId)
@@ -1018,6 +1021,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1307,7 +1311,8 @@ class Databases extends Service {
       required String key,
       required bool xrequired,
       String? xdefault,
-      bool? array}) async {
+      bool? array,
+      bool? encrypt}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/text'
             .replaceAll('{databaseId}', databaseId)
@@ -1318,6 +1323,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1438,7 +1444,8 @@ class Databases extends Service {
       required int size,
       required bool xrequired,
       String? xdefault,
-      bool? array}) async {
+      bool? array,
+      bool? encrypt}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/varchar'
             .replaceAll('{databaseId}', databaseId)
@@ -1450,6 +1457,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {

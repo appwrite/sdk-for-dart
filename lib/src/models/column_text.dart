@@ -29,6 +29,9 @@ class ColumnText implements Model {
   /// Default value for column when not provided. Cannot be set when column is required.
   final String? xdefault;
 
+  /// Defines whether this column is encrypted or not.
+  final bool? encrypt;
+
   ColumnText({
     required this.key,
     required this.type,
@@ -39,6 +42,7 @@ class ColumnText implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     this.xdefault,
+    this.encrypt,
   });
 
   factory ColumnText.fromMap(Map<String, dynamic> map) {
@@ -53,6 +57,7 @@ class ColumnText implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       xdefault: map['default']?.toString(),
+      encrypt: map['encrypt'],
     );
   }
 
@@ -68,6 +73,7 @@ class ColumnText implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "default": xdefault,
+      "encrypt": encrypt,
     };
   }
 }

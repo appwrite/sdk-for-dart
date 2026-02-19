@@ -885,7 +885,8 @@ class TablesDB extends Service {
       required String key,
       required bool xrequired,
       String? xdefault,
-      bool? array}) async {
+      bool? array,
+      bool? encrypt}) async {
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
             .replaceAll('{databaseId}', databaseId)
@@ -896,6 +897,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -948,7 +950,8 @@ class TablesDB extends Service {
       required String key,
       required bool xrequired,
       String? xdefault,
-      bool? array}) async {
+      bool? array,
+      bool? encrypt}) async {
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
             .replaceAll('{databaseId}', databaseId)
@@ -959,6 +962,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1238,7 +1242,8 @@ class TablesDB extends Service {
       required String key,
       required bool xrequired,
       String? xdefault,
-      bool? array}) async {
+      bool? array,
+      bool? encrypt}) async {
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
             .replaceAll('{databaseId}', databaseId)
@@ -1249,6 +1254,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1364,7 +1370,8 @@ class TablesDB extends Service {
       required int size,
       required bool xrequired,
       String? xdefault,
-      bool? array}) async {
+      bool? array,
+      bool? encrypt}) async {
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
             .replaceAll('{databaseId}', databaseId)
@@ -1376,6 +1383,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (array != null) 'array': array,
+      if (encrypt != null) 'encrypt': encrypt,
     };
 
     final Map<String, String> apiHeaders = {

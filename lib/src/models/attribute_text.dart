@@ -29,6 +29,9 @@ class AttributeText implements Model {
   /// Default value for attribute when not provided. Cannot be set when attribute is required.
   final String? xdefault;
 
+  /// Defines whether this attribute is encrypted or not.
+  final bool? encrypt;
+
   AttributeText({
     required this.key,
     required this.type,
@@ -39,6 +42,7 @@ class AttributeText implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     this.xdefault,
+    this.encrypt,
   });
 
   factory AttributeText.fromMap(Map<String, dynamic> map) {
@@ -53,6 +57,7 @@ class AttributeText implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       xdefault: map['default']?.toString(),
+      encrypt: map['encrypt'],
     );
   }
 
@@ -68,6 +73,7 @@ class AttributeText implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "default": xdefault,
+      "encrypt": encrypt,
     };
   }
 }

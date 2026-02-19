@@ -32,6 +32,9 @@ class AttributeVarchar implements Model {
   /// Default value for attribute when not provided. Cannot be set when attribute is required.
   final String? xdefault;
 
+  /// Defines whether this attribute is encrypted or not.
+  final bool? encrypt;
+
   AttributeVarchar({
     required this.key,
     required this.type,
@@ -43,6 +46,7 @@ class AttributeVarchar implements Model {
     required this.$updatedAt,
     required this.size,
     this.xdefault,
+    this.encrypt,
   });
 
   factory AttributeVarchar.fromMap(Map<String, dynamic> map) {
@@ -58,6 +62,7 @@ class AttributeVarchar implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       size: map['size'],
       xdefault: map['default']?.toString(),
+      encrypt: map['encrypt'],
     );
   }
 
@@ -74,6 +79,7 @@ class AttributeVarchar implements Model {
       "\$updatedAt": $updatedAt,
       "size": size,
       "default": xdefault,
+      "encrypt": encrypt,
     };
   }
 }

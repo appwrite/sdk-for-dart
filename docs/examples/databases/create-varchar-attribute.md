@@ -16,5 +16,6 @@ AttributeVarchar result = await databases.createVarcharAttribute(
     xrequired: false,
     xdefault: '<DEFAULT>', // (optional)
     array: false, // (optional)
+    encrypt: false, // (optional)
 );
 ```

@@ -32,6 +32,9 @@ class ColumnVarchar implements Model {
   /// Default value for column when not provided. Cannot be set when column is required.
   final String? xdefault;
 
+  /// Defines whether this column is encrypted or not.
+  final bool? encrypt;
+
   ColumnVarchar({
     required this.key,
     required this.type,
@@ -43,6 +46,7 @@ class ColumnVarchar implements Model {
     required this.$updatedAt,
     required this.size,
     this.xdefault,
+    this.encrypt,
   });
 
   factory ColumnVarchar.fromMap(Map<String, dynamic> map) {
@@ -58,6 +62,7 @@ class ColumnVarchar implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       size: map['size'],
       xdefault: map['default']?.toString(),
+      encrypt: map['encrypt'],
     );
   }
 
@@ -74,6 +79,7 @@ class ColumnVarchar implements Model {
       "\$updatedAt": $updatedAt,
       "size": size,
       "default": xdefault,
+      "encrypt": encrypt,
     };
   }
 }
