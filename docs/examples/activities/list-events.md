@@ -6,9 +6,9 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Health health = Health(client);
+Activities activities = Activities(client);
 
-HealthQueue result = await health.getQueueRegionManager(
-    threshold: 0, // (optional)
+ActivityEventList result = await activities.listEvents(
+    queries: '', // (optional)
 );
 ```

@@ -29,6 +29,7 @@ part 'role.dart';
 part 'id.dart';
 part 'operator.dart';
 part 'services/account.dart';
+part 'services/activities.dart';
 part 'services/avatars.dart';
 part 'services/backups.dart';
 part 'services/databases.dart';
