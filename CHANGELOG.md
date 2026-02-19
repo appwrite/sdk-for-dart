@@ -5,6 +5,7 @@
 * Added optional encrypt parameter to multiple attribute and column creation APIs (default: false) to support encryption at rest in database-related operations.
 * Documentation updates across Longtext/Mediumtext/Text/Varchar attributes and corresponding database columns to include the new encrypt option.
 * README updated to reflect compatibility with Appwrite server version 1.8.x.
+* Add support for the new `Backups` service
 * Repo cleanup: removed obsolete GitHub issue templates (Bug, Documentation, Feature) and related CI workflows (autoclose, format, publish, test) to streamline maintenance.
 
 ## 21.0.1
