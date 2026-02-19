@@ -7,6 +7,17 @@
 * README updated to reflect compatibility with Appwrite server version 1.8.x.
 * Repo cleanup: removed obsolete GitHub issue templates (Bug, Documentation, Feature) and related CI workflows (autoclose, format, publish, test) to streamline maintenance.
 
+## 21.0.1
+
+* Fix doc examples with proper formatting
+
+## 21.0.0
+
+* Add array-based enum parameters (e.g., `permissions: List<BrowserPermission>`).
+* Breaking change: `Output` enum has been removed; use `ImageFormat` instead.
+* Add `getQueueAudits` support to `Health` service.
+* Add longtext/mediumtext/text/varchar attribute and column helpers to `Databases` and `TablesDB` services.
+
 ## 20.1.1
 
 * Fix boolean parameter not handled correctly in Client requests
@@ -75,7 +86,6 @@
 > The TablesDB service is the new recommended way to work with databases.
 > Existing databases/collections/attributes/documents can be managed using the TablesDB service.
 > Existing Databases service will continue to work, but new features may only be added to the TablesDB service.
-  
 
 ## 16.2.0
 
