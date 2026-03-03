@@ -12,9 +12,9 @@ Sites sites = Sites(client);
 Deployment result = await sites.createDeployment(
     siteId: '<SITE_ID>',
     code: InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg'),
-    activate: false,
     installCommand: '<INSTALL_COMMAND>', // (optional)
     buildCommand: '<BUILD_COMMAND>', // (optional)
     outputDirectory: '<OUTPUT_DIRECTORY>', // (optional)
+    activate: false, // (optional)
 );
 ```

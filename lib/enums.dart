@@ -11,7 +11,6 @@ part 'src/enums/theme.dart';
 part 'src/enums/timezone.dart';
 part 'src/enums/browser_permission.dart';
 part 'src/enums/image_format.dart';
-part 'src/enums/backup_services.dart';
 part 'src/enums/relationship_type.dart';
 part 'src/enums/relation_mutate.dart';
 part 'src/enums/index_type.dart';
