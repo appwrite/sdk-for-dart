@@ -1,5 +1,13 @@
 # Change Log
 
+## 21.2.0
+
+* Added optional encrypt parameter to multiple attribute and column creation APIs (default: false) to support encryption at rest in database-related operations.
+* Documentation updates across Longtext/Mediumtext/Text/Varchar attributes and corresponding database columns to include the new encrypt option.
+* README updated to reflect compatibility with Appwrite server version 1.8.x.
+* Add support for the new `Backups` service
+* Repo cleanup: removed obsolete GitHub issue templates (Bug, Documentation, Feature) and related CI workflows (autoclose, format, publish, test) to streamline maintenance.
+
 ## 21.0.1
 
 * Fix doc examples with proper formatting
@@ -79,7 +87,6 @@
 > The TablesDB service is the new recommended way to work with databases.
 > Existing databases/collections/attributes/documents can be managed using the TablesDB service.
 > Existing Databases service will continue to work, but new features may only be added to the TablesDB service.
-  
 
 ## 16.2.0
 
