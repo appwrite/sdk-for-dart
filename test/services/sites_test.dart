@@ -347,7 +347,6 @@ void main() {
       final response = await sites.createDeployment(
         siteId: '<SITE_ID>',
         code: InputFile.fromPath(path: './image.png'),
-        activate: true,
       );
       expect(response, isA<models.Deployment>());
     });

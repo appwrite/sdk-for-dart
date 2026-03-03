@@ -64,6 +64,26 @@ class Health extends Service {
     return models.HealthCertificate.fromMap(res.data);
   }
 
+  /// Get console pausing health status. Monitors projects approaching the pause
+  /// threshold to detect potential issues with console access tracking.
+  ///
+  Future<models.HealthStatus> getConsolePausing(
+      {int? threshold, int? inactivityDays}) async {
+    final String apiPath = '/health/console-pausing';
+
+    final Map<String, dynamic> apiParams = {
+      if (threshold != null) 'threshold': threshold,
+      if (inactivityDays != null) 'inactivityDays': inactivityDays,
+    };
+
+    final Map<String, String> apiHeaders = {};
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.HealthStatus.fromMap(res.data);
+  }
+
   /// Check the Appwrite database servers are up and connection is successful.
   Future<models.HealthStatusList> getDB() async {
     final String apiPath = '/health/db';

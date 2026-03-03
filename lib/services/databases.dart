@@ -1230,6 +1230,38 @@ class Databases extends Service {
     return models.AttributeRelationship.fromMap(res.data);
   }
 
+  /// Update relationship attribute. [Learn more about relationship
+  /// attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+  ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateRelationshipColumn` instead.')
+  Future<models.AttributeRelationship> updateRelationshipAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      enums.RelationMutate? onDelete,
+      String? newKey}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/relationship/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      if (onDelete != null) 'onDelete': onDelete.value,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeRelationship.fromMap(res.data);
+  }
+
   /// Create a string attribute.
   ///
   @Deprecated(
@@ -1552,38 +1584,6 @@ class Databases extends Service {
     return res.data;
   }
 
-  /// Update relationship attribute. [Learn more about relationship
-  /// attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-  ///
-  @Deprecated(
-      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateRelationshipColumn` instead.')
-  Future<models.AttributeRelationship> updateRelationshipAttribute(
-      {required String databaseId,
-      required String collectionId,
-      required String key,
-      enums.RelationMutate? onDelete,
-      String? newKey}) async {
-    final String apiPath =
-        '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
-            .replaceAll('{databaseId}', databaseId)
-            .replaceAll('{collectionId}', collectionId)
-            .replaceAll('{key}', key);
-
-    final Map<String, dynamic> apiParams = {
-      'onDelete': onDelete?.value,
-      'newKey': newKey,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'content-type': 'application/json',
-    };
-
-    final res = await client.call(HttpMethod.patch,
-        path: apiPath, params: apiParams, headers: apiHeaders);
-
-    return models.AttributeRelationship.fromMap(res.data);
-  }
-
   /// Get a list of all the user's documents in a given collection. You can use
   /// the query params to filter your results.
   @Deprecated(
@@ -1593,7 +1593,8 @@ class Databases extends Service {
       required String collectionId,
       List<String>? queries,
       String? transactionId,
-      bool? total}) async {
+      bool? total,
+      int? ttl}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/documents'
             .replaceAll('{databaseId}', databaseId)
@@ -1603,6 +1604,7 @@ class Databases extends Service {
       if (queries != null) 'queries': queries,
       if (transactionId != null) 'transactionId': transactionId,
       if (total != null) 'total': total,
+      if (ttl != null) 'ttl': ttl,
     };
 
     final Map<String, String> apiHeaders = {};

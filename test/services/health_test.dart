@@ -115,6 +115,21 @@ void main() {
       expect(response, isA<models.HealthCertificate>());
     });
 
+    test('test method getConsolePausing()', () async {
+      final Map<String, dynamic> data = {
+        'name': 'database',
+        'ping': 128,
+        'status': 'pass',
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await health.getConsolePausing();
+      expect(response, isA<models.HealthStatus>());
+    });
+
     test('test method getDB()', () async {
       final Map<String, dynamic> data = {
         'total': 5,

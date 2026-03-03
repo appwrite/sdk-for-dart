@@ -1006,6 +1006,35 @@ void main() {
       expect(response, isA<models.AttributeRelationship>());
     });
 
+    test('test method updateRelationshipAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'fullName',
+        'type': 'string',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'relatedCollection': 'collection',
+        'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
+        'twoWay': true,
+        'twoWayKey': 'string',
+        'onDelete': 'restrict|cascade|setNull',
+        'side': 'parent|child',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.updateRelationshipAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+      );
+      expect(response, isA<models.AttributeRelationship>());
+    });
+
     test('test method createStringAttribute()', () async {
       final Map<String, dynamic> data = {
         'key': 'fullName',
@@ -1245,35 +1274,6 @@ void main() {
         collectionId: '<COLLECTION_ID>',
         key: '',
       );
-    });
-
-    test('test method updateRelationshipAttribute()', () async {
-      final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
-        'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'relatedCollection': 'collection',
-        'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
-        'twoWay': true,
-        'twoWayKey': 'string',
-        'onDelete': 'restrict|cascade|setNull',
-        'side': 'parent|child',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await databases.updateRelationshipAttribute(
-        databaseId: '<DATABASE_ID>',
-        collectionId: '<COLLECTION_ID>',
-        key: '',
-      );
-      expect(response, isA<models.AttributeRelationship>());
     });
 
     test('test method listDocuments()', () async {

@@ -243,10 +243,10 @@ class Sites extends Service {
   Future<models.Deployment> createDeployment(
       {required String siteId,
       required InputFile code,
-      required bool activate,
       String? installCommand,
       String? buildCommand,
       String? outputDirectory,
+      bool? activate,
       Function(UploadProgress)? onProgress}) async {
     final String apiPath =
         '/sites/{siteId}/deployments'.replaceAll('{siteId}', siteId);
@@ -256,7 +256,7 @@ class Sites extends Service {
       if (buildCommand != null) 'buildCommand': buildCommand,
       if (outputDirectory != null) 'outputDirectory': outputDirectory,
       'code': code,
-      'activate': activate,
+      if (activate != null) 'activate': activate,
     };
 
     final Map<String, String> apiHeaders = {
