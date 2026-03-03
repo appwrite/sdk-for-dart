@@ -1,5 +1,11 @@
 # Change Log
 
+## 21.3.0
+
+* Added `ttl` parameter to listDocuments
+* Added `ttl` parameter to listRows
+* Added example for Health.getConsolePausing usage
+
 ## 21.2.0
 
 * Added optional encrypt parameter to multiple attribute and column creation APIs (default: false) to support encryption at rest in database-related operations.
