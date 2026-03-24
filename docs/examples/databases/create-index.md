@@ -13,7 +13,7 @@ Index result = await databases.createIndex(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
     key: '',
-    type: enums.IndexType.key,
+    type: enums.DatabasesIndexType.key,
     attributes: [],
     orders: [enums.OrderBy.asc], // (optional)
     lengths: [], // (optional)

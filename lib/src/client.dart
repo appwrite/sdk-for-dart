@@ -21,14 +21,13 @@ abstract class Client {
   factory Client({
     String endPoint = 'https://cloud.appwrite.io/v1',
     bool selfSigned = false,
-  }) =>
-      createClient(endPoint: endPoint, selfSigned: selfSigned);
+  }) => createClient(endPoint: endPoint, selfSigned: selfSigned);
 
   /// Handle OAuth2 session creation.
   Future<String?> webAuth(Uri url);
 
   /// Set self signed to [status].
-  ///
+  /// 
   /// If self signed is true, [Client] will ignore invalid certificates.
   /// This is helpful in environments where your Appwrite
   /// instance does not have a valid SSL certificate.
@@ -65,6 +64,21 @@ abstract class Client {
   /// The user agent string of the client that made the request
   Client setForwardedUserAgent(String value);
 
+  /// Set ImpersonateUserId
+  ///
+  /// Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  Client setImpersonateUserId(String value);
+
+  /// Set ImpersonateUserEmail
+  ///
+  /// Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  Client setImpersonateUserEmail(String value);
+
+  /// Set ImpersonateUserPhone
+  ///
+  /// Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  Client setImpersonateUserPhone(String value);
+
   /// Add headers that should be sent with all API calls.
   Client addHeader(String key, String value);
 
@@ -82,8 +96,7 @@ abstract class Client {
   });
 
   /// Send the API request.
-  Future<Response> call(
-    HttpMethod method, {
+  Future<Response> call(HttpMethod method, {
     String path = '',
     Map<String, String> headers = const {},
     Map<String, dynamic> params = const {},

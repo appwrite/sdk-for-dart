@@ -1,6 +1,6 @@
 /// Appwrite Dart SDK
 ///
-/// This SDK is compatible with Appwrite server version 1.8.x.
+/// This SDK is compatible with Appwrite server version 1.9.x.
 /// For older versions, please check
 /// [previous releases](https://github.com/appwrite/sdk-for-dart/releases).
 library dart_appwrite;
@@ -33,14 +33,18 @@ part 'services/activities.dart';
 part 'services/avatars.dart';
 part 'services/backups.dart';
 part 'services/databases.dart';
+part 'services/documents_db.dart';
 part 'services/functions.dart';
 part 'services/graphql.dart';
 part 'services/health.dart';
 part 'services/locale.dart';
 part 'services/messaging.dart';
+part 'services/project.dart';
 part 'services/sites.dart';
 part 'services/storage.dart';
 part 'services/tables_db.dart';
 part 'services/teams.dart';
 part 'services/tokens.dart';
 part 'services/users.dart';
+part 'services/vectors_db.dart';
+part 'services/webhooks.dart';

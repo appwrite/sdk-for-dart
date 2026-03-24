@@ -1,10 +1,10 @@
 # Change Log
 
-## 21.3.0
+## 22.0.0
 
-* Added `ttl` parameter to listDocuments
-* Added `ttl` parameter to listRows
-* Added example for Health.getConsolePausing usage
+* Breaking: Renamed `IndexType` to `DatabasesIndexType`
+* Breaking: Replaced `setKey()` with `setSession()` for authentication
+* Updated: Docs reflect API changes and new auth method
 
 ## 21.2.0
 
