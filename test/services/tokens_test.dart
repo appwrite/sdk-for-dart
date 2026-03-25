@@ -24,7 +24,8 @@ class MockClient extends Mock implements Client {
 
   @override
   Future<String?> webAuth(Uri url) async {
-    return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super
+        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
   @override
@@ -36,121 +37,117 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    return super.noSuchMethod(Invocation.method(#chunkedUpload, [path, params, paramName, idParamName, headers]), returnValue: Response(data: {}));
+    return super.noSuchMethod(
+        Invocation.method(
+            #chunkedUpload, [path, params, paramName, idParamName, headers]),
+        returnValue: Response(data: {}));
   }
 }
 
 void main() {
-    group('Tokens test', () {
-        late MockClient client;
-        late Tokens tokens;
+  group('Tokens test', () {
+    late MockClient client;
+    late Tokens tokens;
 
-        setUp(() {
-            client = MockClient();
-            tokens = Tokens(client);
-        });
-
-        test('test method list()', () async {
-            final Map<String, dynamic> data = {
-                'total': 5,
-                'tokens': [],};
-
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await tokens.list(
-                bucketId: '<BUCKET_ID>',
-                fileId: '<FILE_ID>',
-            );
-            expect(response, isA<models.ResourceTokenList>());
-
-        });
-
-        test('test method createFileToken()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': 'bb8ea5c16897e',
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                'resourceId': '5e5ea5c168bb8:5e5ea5c168bb8',
-                'resourceType': 'files',
-                'expire': '2020-10-15T06:38:00.000+00:00',
-                'secret': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
-
-
-            when(client.call(
-                HttpMethod.post,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await tokens.createFileToken(
-                bucketId: '<BUCKET_ID>',
-                fileId: '<FILE_ID>',
-            );
-            expect(response, isA<models.ResourceToken>());
-
-        });
-
-        test('test method get()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': 'bb8ea5c16897e',
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                'resourceId': '5e5ea5c168bb8:5e5ea5c168bb8',
-                'resourceType': 'files',
-                'expire': '2020-10-15T06:38:00.000+00:00',
-                'secret': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
-
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await tokens.get(
-                tokenId: '<TOKEN_ID>',
-            );
-            expect(response, isA<models.ResourceToken>());
-
-        });
-
-        test('test method update()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': 'bb8ea5c16897e',
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                'resourceId': '5e5ea5c168bb8:5e5ea5c168bb8',
-                'resourceType': 'files',
-                'expire': '2020-10-15T06:38:00.000+00:00',
-                'secret': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-                'accessedAt': '2020-10-15T06:38:00.000+00:00',};
-
-
-            when(client.call(
-                HttpMethod.patch,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await tokens.update(
-                tokenId: '<TOKEN_ID>',
-            );
-            expect(response, isA<models.ResourceToken>());
-
-        });
-
-        test('test method delete()', () async {
-            final data = '';
-
-            when(client.call(
-                HttpMethod.delete,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await tokens.delete(
-                tokenId: '<TOKEN_ID>',
-            );
-        });
-
+    setUp(() {
+      client = MockClient();
+      tokens = Tokens(client);
     });
+
+    test('test method list()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'tokens': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tokens.list(
+        bucketId: '<BUCKET_ID>',
+        fileId: '<FILE_ID>',
+      );
+      expect(response, isA<models.ResourceTokenList>());
+    });
+
+    test('test method createFileToken()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': 'bb8ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        'resourceId': '5e5ea5c168bb8:5e5ea5c168bb8',
+        'resourceType': 'files',
+        'expire': '2020-10-15T06:38:00.000+00:00',
+        'secret':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tokens.createFileToken(
+        bucketId: '<BUCKET_ID>',
+        fileId: '<FILE_ID>',
+      );
+      expect(response, isA<models.ResourceToken>());
+    });
+
+    test('test method get()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': 'bb8ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        'resourceId': '5e5ea5c168bb8:5e5ea5c168bb8',
+        'resourceType': 'files',
+        'expire': '2020-10-15T06:38:00.000+00:00',
+        'secret':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tokens.get(
+        tokenId: '<TOKEN_ID>',
+      );
+      expect(response, isA<models.ResourceToken>());
+    });
+
+    test('test method update()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': 'bb8ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        'resourceId': '5e5ea5c168bb8:5e5ea5c168bb8',
+        'resourceType': 'files',
+        'expire': '2020-10-15T06:38:00.000+00:00',
+        'secret':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tokens.update(
+        tokenId: '<TOKEN_ID>',
+      );
+      expect(response, isA<models.ResourceToken>());
+    });
+
+    test('test method delete()', () async {
+      final data = '';
+
+      when(client.call(
+        HttpMethod.delete,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tokens.delete(
+        tokenId: '<TOKEN_ID>',
+      );
+    });
+  });
 }
