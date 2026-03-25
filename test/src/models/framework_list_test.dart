@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = FrameworkList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.frameworks, []);
-          });
+      expect(result.total, 5);
+      expect(result.frameworks, []);
+    });
   });
 }
