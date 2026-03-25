@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = Embedding.fromMap(map);
 
-      expect(result.model, 'embeddinggemma');
-      expect(result.dimension, 768);
-      expect(result.embedding, []);
-      expect(result.error, 'Error message');
-    });
+            expect(result.model, 'embeddinggemma');
+                  expect(result.dimension, 768);
+                  expect(result.embedding, []);
+                  expect(result.error, 'Error message');
+          });
   });
 }
