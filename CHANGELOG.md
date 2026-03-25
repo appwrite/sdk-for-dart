@@ -2,6 +2,7 @@
 
 ## 22.0.0
 
+* [BREAKING] Changed `$sequence` type from `int` to `string` for rows and documents
 * Breaking: Renamed `IndexType` to `DatabasesIndexType`
 * Breaking: Replaced `setKey()` with `setSession()` for authentication
 * Updated: Docs reflect API changes and new auth method

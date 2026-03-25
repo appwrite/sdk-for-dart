@@ -1,14 +1,16 @@
 part of '../../enums.dart';
 
 enum DocumentsDBIndexType {
-  key(value: 'key'),
-  fulltext(value: 'fulltext'),
-  unique(value: 'unique'),
-  spatial(value: 'spatial');
+    key(value: 'key'),
+    fulltext(value: 'fulltext'),
+    unique(value: 'unique'),
+    spatial(value: 'spatial');
 
-  const DocumentsDBIndexType({required this.value});
+    const DocumentsDBIndexType({
+        required this.value
+    });
 
-  final String value;
+    final String value;
 
-  String toJson() => value;
+    String toJson() => value;
 }

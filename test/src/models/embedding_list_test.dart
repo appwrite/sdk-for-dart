@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = EmbeddingList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.embeddings, []);
-    });
+            expect(result.total, 5);
+                  expect(result.embeddings, []);
+          });
   });
 }
