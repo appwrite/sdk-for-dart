@@ -24,7 +24,8 @@ class MockClient extends Mock implements Client {
 
   @override
   Future<String?> webAuth(Uri url) async {
-    return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super
+        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
   @override
@@ -36,123 +37,115 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    return super.noSuchMethod(Invocation.method(#chunkedUpload, [path, params, paramName, idParamName, headers]), returnValue: Response(data: {}));
+    return super.noSuchMethod(
+        Invocation.method(
+            #chunkedUpload, [path, params, paramName, idParamName, headers]),
+        returnValue: Response(data: {}));
   }
 }
 
 void main() {
-    group('Project test', () {
-        late MockClient client;
-        late Project project;
+  group('Project test', () {
+    late MockClient client;
+    late Project project;
 
-        setUp(() {
-            client = MockClient();
-            project = Project(client);
-        });
-
-        test('test method listVariables()', () async {
-            final Map<String, dynamic> data = {
-                'total': 5,
-                'variables': [],};
-
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await project.listVariables(
-            );
-            expect(response, isA<models.VariableList>());
-
-        });
-
-        test('test method createVariable()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': '5e5ea5c16897e',
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'key': 'API_KEY',
-                'value': 'myPa\$\$word1',
-                'secret': true,
-                'resourceType': 'function',
-                'resourceId': 'myAwesomeFunction',};
-
-
-            when(client.call(
-                HttpMethod.post,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await project.createVariable(
-                variableId: '<VARIABLE_ID>',
-                key: '<KEY>',
-                value: '<VALUE>',
-            );
-            expect(response, isA<models.Variable>());
-
-        });
-
-        test('test method getVariable()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': '5e5ea5c16897e',
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'key': 'API_KEY',
-                'value': 'myPa\$\$word1',
-                'secret': true,
-                'resourceType': 'function',
-                'resourceId': 'myAwesomeFunction',};
-
-
-            when(client.call(
-                HttpMethod.get,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await project.getVariable(
-                variableId: '<VARIABLE_ID>',
-            );
-            expect(response, isA<models.Variable>());
-
-        });
-
-        test('test method updateVariable()', () async {
-            final Map<String, dynamic> data = {
-                '\$id': '5e5ea5c16897e',
-                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-                'key': 'API_KEY',
-                'value': 'myPa\$\$word1',
-                'secret': true,
-                'resourceType': 'function',
-                'resourceId': 'myAwesomeFunction',};
-
-
-            when(client.call(
-                HttpMethod.put,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await project.updateVariable(
-                variableId: '<VARIABLE_ID>',
-            );
-            expect(response, isA<models.Variable>());
-
-        });
-
-        test('test method deleteVariable()', () async {
-            final data = '';
-
-            when(client.call(
-                HttpMethod.delete,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await project.deleteVariable(
-                variableId: '<VARIABLE_ID>',
-            );
-        });
-
+    setUp(() {
+      client = MockClient();
+      project = Project(client);
     });
+
+    test('test method listVariables()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'variables': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.listVariables();
+      expect(response, isA<models.VariableList>());
+    });
+
+    test('test method createVariable()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'key': 'API_KEY',
+        'value': 'myPa\$\$word1',
+        'secret': true,
+        'resourceType': 'function',
+        'resourceId': 'myAwesomeFunction',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.createVariable(
+        variableId: '<VARIABLE_ID>',
+        key: '<KEY>',
+        value: '<VALUE>',
+      );
+      expect(response, isA<models.Variable>());
+    });
+
+    test('test method getVariable()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'key': 'API_KEY',
+        'value': 'myPa\$\$word1',
+        'secret': true,
+        'resourceType': 'function',
+        'resourceId': 'myAwesomeFunction',
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.getVariable(
+        variableId: '<VARIABLE_ID>',
+      );
+      expect(response, isA<models.Variable>());
+    });
+
+    test('test method updateVariable()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'key': 'API_KEY',
+        'value': 'myPa\$\$word1',
+        'secret': true,
+        'resourceType': 'function',
+        'resourceId': 'myAwesomeFunction',
+      };
+
+      when(client.call(
+        HttpMethod.put,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateVariable(
+        variableId: '<VARIABLE_ID>',
+      );
+      expect(response, isA<models.Variable>());
+    });
+
+    test('test method deleteVariable()', () async {
+      final data = '';
+
+      when(client.call(
+        HttpMethod.delete,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.deleteVariable(
+        variableId: '<VARIABLE_ID>',
+      );
+    });
+  });
 }
