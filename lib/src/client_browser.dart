@@ -16,7 +16,7 @@ ClientBase createClient({
     ClientBrowser(endPoint: endPoint, selfSigned: selfSigned);
 
 class ClientBrowser extends ClientBase with ClientMixin {
-  static const int chunkSize = 5 * 1024 * 1024;
+  static const int chunkSize = 5*1024*1024;
   String _endPoint;
   Map<String, String>? _headers;
   @override
@@ -34,7 +34,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
       'x-sdk-version': '22.0.0',
-      'X-Appwrite-Response-Format': '1.9.0',
+      'X-Appwrite-Response-Format' : '1.9.0',
     };
 
     config = {};
@@ -46,76 +46,68 @@ class ClientBrowser extends ClientBase with ClientMixin {
   @override
   String get endPoint => _endPoint;
 
-  /// Your project ID
-  @override
-  ClientBrowser setProject(value) {
-    config['project'] = value;
-    addHeader('X-Appwrite-Project', value);
-    return this;
-  }
-
-  /// Your secret API key
-  @override
-  ClientBrowser setKey(value) {
-    config['key'] = value;
-    addHeader('X-Appwrite-Key', value);
-    return this;
-  }
-
-  /// Your secret JSON Web Token
-  @override
-  ClientBrowser setJWT(value) {
-    config['jWT'] = value;
-    addHeader('X-Appwrite-JWT', value);
-    return this;
-  }
-
-  @override
-  ClientBrowser setLocale(value) {
-    config['locale'] = value;
-    addHeader('X-Appwrite-Locale', value);
-    return this;
-  }
-
-  /// The user session to authenticate with
-  @override
-  ClientBrowser setSession(value) {
-    config['session'] = value;
-    addHeader('X-Appwrite-Session', value);
-    return this;
-  }
-
-  /// The user agent string of the client that made the request
-  @override
-  ClientBrowser setForwardedUserAgent(value) {
-    config['forwardedUserAgent'] = value;
-    addHeader('X-Forwarded-User-Agent', value);
-    return this;
-  }
-
-  /// Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
-  @override
-  ClientBrowser setImpersonateUserId(value) {
-    config['impersonateUserId'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Id', value);
-    return this;
-  }
-
-  /// Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
-  @override
-  ClientBrowser setImpersonateUserEmail(value) {
-    config['impersonateUserEmail'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Email', value);
-    return this;
-  }
-
-  /// Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
-  @override
-  ClientBrowser setImpersonateUserPhone(value) {
-    config['impersonateUserPhone'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Phone', value);
-    return this;
-  }
+    /// Your project ID
+    @override
+    ClientBrowser setProject(value) {
+        config['project'] = value;
+        addHeader('X-Appwrite-Project', value);
+        return this;
+    }
+    /// Your secret API key
+    @override
+    ClientBrowser setKey(value) {
+        config['key'] = value;
+        addHeader('X-Appwrite-Key', value);
+        return this;
+    }
+    /// Your secret JSON Web Token
+    @override
+    ClientBrowser setJWT(value) {
+        config['jWT'] = value;
+        addHeader('X-Appwrite-JWT', value);
+        return this;
+    }
+    @override
+    ClientBrowser setLocale(value) {
+        config['locale'] = value;
+        addHeader('X-Appwrite-Locale', value);
+        return this;
+    }
+    /// The user session to authenticate with
+    @override
+    ClientBrowser setSession(value) {
+        config['session'] = value;
+        addHeader('X-Appwrite-Session', value);
+        return this;
+    }
+    /// The user agent string of the client that made the request
+    @override
+    ClientBrowser setForwardedUserAgent(value) {
+        config['forwardedUserAgent'] = value;
+        addHeader('X-Forwarded-User-Agent', value);
+        return this;
+    }
+    /// Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+    @override
+    ClientBrowser setImpersonateUserId(value) {
+        config['impersonateUserId'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Id', value);
+        return this;
+    }
+    /// Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+    @override
+    ClientBrowser setImpersonateUserEmail(value) {
+        config['impersonateUserEmail'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Email', value);
+        return this;
+    }
+    /// Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+    @override
+    ClientBrowser setImpersonateUserPhone(value) {
+        config['impersonateUserPhone'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Phone', value);
+        return this;
+    }
 
   @override
   ClientBrowser setSelfSigned({bool status = true}) {
@@ -164,8 +156,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
     late Response res;
     if (size <= chunkSize) {
-      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!,
-          filename: file.filename);
+      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!, filename: file.filename);
       return call(
         HttpMethod.post,
         path: path,
@@ -192,8 +183,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       List<int> chunk = [];
       final end = min(offset + chunkSize, size);
       chunk = file.bytes!.getRange(offset, end).toList();
-      params[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
-          filename: file.filename);
+      params[paramName] =
+          http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       headers['content-range'] =
           'bytes $offset-${min<int>((offset + chunkSize - 1), size - 1)}/$size';
       res = await call(HttpMethod.post,
