@@ -19,6 +19,12 @@
 * Updated `Log` model field descriptions to clarify impersonation behavior
 * Updated `X-Appwrite-Response-Format` header to `1.9.0`
 
+## 21.3.0
+
+* Added `ttl` parameter to listDocuments
+* Added `ttl` parameter to listRows
+* Added example for Health.getConsolePausing usage
+
 ## 21.2.0
 
 * Added optional encrypt parameter to multiple attribute and column creation APIs (default: false) to support encryption at rest in database-related operations.
