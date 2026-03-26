@@ -1534,7 +1534,7 @@ class TablesDB extends Service {
       {required String databaseId,
       required String tableId,
       required String key,
-      required enums.IndexType type,
+      required enums.TablesDBIndexType type,
       required List<String> columns,
       List<enums.OrderBy>? orders,
       List<int>? lengths}) async {

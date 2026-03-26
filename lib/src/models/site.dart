@@ -26,6 +26,9 @@ class Site implements Model {
   /// Site framework.
   final String framework;
 
+  /// How many days to keep the non-active deployments before they will be automatically deleted.
+  final int deploymentRetention;
+
   /// Site&#039;s active deployment ID.
   final String deploymentId;
 
@@ -59,6 +62,9 @@ class Site implements Model {
   /// The build command used to build the site.
   final String buildCommand;
 
+  /// Custom command to use when starting site runtime.
+  final String startCommand;
+
   /// The directory where the site build output is located.
   final String outputDirectory;
 
@@ -77,8 +83,11 @@ class Site implements Model {
   /// Is VCS (Version Control System) connection is in silent mode? When in silence mode, no comments will be posted on the repository pull or merge requests
   final bool providerSilentMode;
 
-  /// Machine specification for builds and executions.
-  final String specification;
+  /// Machine specification for deployment builds.
+  final String buildSpecification;
+
+  /// Machine specification for SSR executions.
+  final String runtimeSpecification;
 
   /// Site build runtime.
   final String buildRuntime;
@@ -98,6 +107,7 @@ class Site implements Model {
     required this.live,
     required this.logging,
     required this.framework,
+    required this.deploymentRetention,
     required this.deploymentId,
     required this.deploymentCreatedAt,
     required this.deploymentScreenshotLight,
@@ -109,13 +119,15 @@ class Site implements Model {
     required this.timeout,
     required this.installCommand,
     required this.buildCommand,
+    required this.startCommand,
     required this.outputDirectory,
     required this.installationId,
     required this.providerRepositoryId,
     required this.providerBranch,
     required this.providerRootDirectory,
     required this.providerSilentMode,
-    required this.specification,
+    required this.buildSpecification,
+    required this.runtimeSpecification,
     required this.buildRuntime,
     required this.adapter,
     required this.fallbackFile,
@@ -131,6 +143,7 @@ class Site implements Model {
       live: map['live'],
       logging: map['logging'],
       framework: map['framework'].toString(),
+      deploymentRetention: map['deploymentRetention'],
       deploymentId: map['deploymentId'].toString(),
       deploymentCreatedAt: map['deploymentCreatedAt'].toString(),
       deploymentScreenshotLight: map['deploymentScreenshotLight'].toString(),
@@ -142,13 +155,15 @@ class Site implements Model {
       timeout: map['timeout'],
       installCommand: map['installCommand'].toString(),
       buildCommand: map['buildCommand'].toString(),
+      startCommand: map['startCommand'].toString(),
       outputDirectory: map['outputDirectory'].toString(),
       installationId: map['installationId'].toString(),
       providerRepositoryId: map['providerRepositoryId'].toString(),
       providerBranch: map['providerBranch'].toString(),
       providerRootDirectory: map['providerRootDirectory'].toString(),
       providerSilentMode: map['providerSilentMode'],
-      specification: map['specification'].toString(),
+      buildSpecification: map['buildSpecification'].toString(),
+      runtimeSpecification: map['runtimeSpecification'].toString(),
       buildRuntime: map['buildRuntime'].toString(),
       adapter: map['adapter'].toString(),
       fallbackFile: map['fallbackFile'].toString(),
@@ -166,6 +181,7 @@ class Site implements Model {
       "live": live,
       "logging": logging,
       "framework": framework,
+      "deploymentRetention": deploymentRetention,
       "deploymentId": deploymentId,
       "deploymentCreatedAt": deploymentCreatedAt,
       "deploymentScreenshotLight": deploymentScreenshotLight,
@@ -177,13 +193,15 @@ class Site implements Model {
       "timeout": timeout,
       "installCommand": installCommand,
       "buildCommand": buildCommand,
+      "startCommand": startCommand,
       "outputDirectory": outputDirectory,
       "installationId": installationId,
       "providerRepositoryId": providerRepositoryId,
       "providerBranch": providerBranch,
       "providerRootDirectory": providerRootDirectory,
       "providerSilentMode": providerSilentMode,
-      "specification": specification,
+      "buildSpecification": buildSpecification,
+      "runtimeSpecification": runtimeSpecification,
       "buildRuntime": buildRuntime,
       "adapter": adapter,
       "fallbackFile": fallbackFile,

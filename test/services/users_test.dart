@@ -429,6 +429,37 @@ void main() {
       expect(response, isA<models.User>());
     });
 
+    test('test method updateImpersonator()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'name': 'John Doe',
+        'registration': '2020-10-15T06:38:00.000+00:00',
+        'status': true,
+        'labels': [],
+        'passwordUpdate': '2020-10-15T06:38:00.000+00:00',
+        'email': 'john@appwrite.io',
+        'phone': '+4930901820',
+        'emailVerification': true,
+        'phoneVerification': true,
+        'mfa': true,
+        'prefs': <String, dynamic>{},
+        'targets': [],
+        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await users.updateImpersonator(
+        userId: '<USER_ID>',
+        impersonator: true,
+      );
+      expect(response, isA<models.User>());
+    });
+
     test('test method createJWT()', () async {
       final Map<String, dynamic> data = {
         'jwt':

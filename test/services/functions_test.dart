@@ -79,6 +79,7 @@ void main() {
         'live': true,
         'logging': true,
         'runtime': 'python-3.8',
+        'deploymentRetention': 7,
         'deploymentId': '5e5ea5c16897e',
         'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
         'latestDeploymentId': '5e5ea5c16897e',
@@ -97,7 +98,8 @@ void main() {
         'providerBranch': 'main',
         'providerRootDirectory': 'functions/helloWorld',
         'providerSilentMode': true,
-        'specification': 's-1vcpu-512mb',
+        'buildSpecification': 's-1vcpu-512mb',
+        'runtimeSpecification': 's-1vcpu-512mb',
       };
 
       when(client.call(
@@ -151,6 +153,7 @@ void main() {
         'live': true,
         'logging': true,
         'runtime': 'python-3.8',
+        'deploymentRetention': 7,
         'deploymentId': '5e5ea5c16897e',
         'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
         'latestDeploymentId': '5e5ea5c16897e',
@@ -169,7 +172,8 @@ void main() {
         'providerBranch': 'main',
         'providerRootDirectory': 'functions/helloWorld',
         'providerSilentMode': true,
-        'specification': 's-1vcpu-512mb',
+        'buildSpecification': 's-1vcpu-512mb',
+        'runtimeSpecification': 's-1vcpu-512mb',
       };
 
       when(client.call(
@@ -193,6 +197,7 @@ void main() {
         'live': true,
         'logging': true,
         'runtime': 'python-3.8',
+        'deploymentRetention': 7,
         'deploymentId': '5e5ea5c16897e',
         'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
         'latestDeploymentId': '5e5ea5c16897e',
@@ -211,7 +216,8 @@ void main() {
         'providerBranch': 'main',
         'providerRootDirectory': 'functions/helloWorld',
         'providerSilentMode': true,
-        'specification': 's-1vcpu-512mb',
+        'buildSpecification': 's-1vcpu-512mb',
+        'runtimeSpecification': 's-1vcpu-512mb',
       };
 
       when(client.call(
@@ -248,6 +254,7 @@ void main() {
         'live': true,
         'logging': true,
         'runtime': 'python-3.8',
+        'deploymentRetention': 7,
         'deploymentId': '5e5ea5c16897e',
         'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
         'latestDeploymentId': '5e5ea5c16897e',
@@ -266,7 +273,8 @@ void main() {
         'providerBranch': 'main',
         'providerRootDirectory': 'functions/helloWorld',
         'providerSilentMode': true,
-        'specification': 's-1vcpu-512mb',
+        'buildSpecification': 's-1vcpu-512mb',
+        'runtimeSpecification': 's-1vcpu-512mb',
       };
 
       when(client.call(

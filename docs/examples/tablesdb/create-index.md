@@ -13,7 +13,7 @@ ColumnIndex result = await tablesDB.createIndex(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
     key: '',
-    type: enums.IndexType.key,
+    type: enums.TablesDBIndexType.key,
     columns: [],
     orders: [enums.OrderBy.asc], // (optional)
     lengths: [], // (optional)

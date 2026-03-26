@@ -357,6 +357,31 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
+  /// Enable or disable whether a user can impersonate other users. When
+  /// impersonation headers are used, the request runs as the target user for API
+  /// behavior, while internal audit logs still attribute the action to the
+  /// original impersonator and store the impersonated target details only in
+  /// internal audit payload data.
+  ///
+  Future<models.User> updateImpersonator(
+      {required String userId, required bool impersonator}) async {
+    final String apiPath =
+        '/users/{userId}/impersonator'.replaceAll('{userId}', userId);
+
+    final Map<String, dynamic> apiParams = {
+      'impersonator': impersonator,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.User.fromMap(res.data);
+  }
+
   /// Use this endpoint to create a JSON Web Token for user by its unique ID. You
   /// can use the resulting JWT to authenticate on behalf of the user. The JWT
   /// secret will become invalid if the session it uses gets deleted.

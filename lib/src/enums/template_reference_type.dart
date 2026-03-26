@@ -1,8 +1,8 @@
 part of '../../enums.dart';
 
 enum TemplateReferenceType {
-  branch(value: 'branch'),
   commit(value: 'commit'),
+  branch(value: 'branch'),
   tag(value: 'tag');
 
   const TemplateReferenceType({required this.value});

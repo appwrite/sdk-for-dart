@@ -47,7 +47,9 @@ class Functions extends Service {
       String? providerBranch,
       bool? providerSilentMode,
       String? providerRootDirectory,
-      String? specification}) async {
+      String? buildSpecification,
+      String? runtimeSpecification,
+      int? deploymentRetention}) async {
     final String apiPath = '/functions';
 
     final Map<String, dynamic> apiParams = {
@@ -70,7 +72,11 @@ class Functions extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
-      if (specification != null) 'specification': specification,
+      if (buildSpecification != null) 'buildSpecification': buildSpecification,
+      if (runtimeSpecification != null)
+        'runtimeSpecification': runtimeSpecification,
+      if (deploymentRetention != null)
+        'deploymentRetention': deploymentRetention,
     };
 
     final Map<String, String> apiHeaders = {
@@ -145,7 +151,9 @@ class Functions extends Service {
       String? providerBranch,
       bool? providerSilentMode,
       String? providerRootDirectory,
-      String? specification}) async {
+      String? buildSpecification,
+      String? runtimeSpecification,
+      int? deploymentRetention}) async {
     final String apiPath =
         '/functions/{functionId}'.replaceAll('{functionId}', functionId);
 
@@ -167,7 +175,11 @@ class Functions extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
-      if (specification != null) 'specification': specification,
+      if (buildSpecification != null) 'buildSpecification': buildSpecification,
+      if (runtimeSpecification != null)
+        'runtimeSpecification': runtimeSpecification,
+      if (deploymentRetention != null)
+        'deploymentRetention': deploymentRetention,
     };
 
     final Map<String, String> apiHeaders = {

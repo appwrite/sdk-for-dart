@@ -14,6 +14,7 @@ void main() {
         live: true,
         logging: true,
         runtime: 'python-3.8',
+        deploymentRetention: 7,
         deploymentId: '5e5ea5c16897e',
         deploymentCreatedAt: '2020-10-15T06:38:00.000+00:00',
         latestDeploymentId: '5e5ea5c16897e',
@@ -32,7 +33,8 @@ void main() {
         providerBranch: 'main',
         providerRootDirectory: 'functions/helloWorld',
         providerSilentMode: true,
-        specification: 's-1vcpu-512mb',
+        buildSpecification: 's-1vcpu-512mb',
+        runtimeSpecification: 's-1vcpu-512mb',
       );
 
       final map = model.toMap();
@@ -47,6 +49,7 @@ void main() {
       expect(result.live, true);
       expect(result.logging, true);
       expect(result.runtime, 'python-3.8');
+      expect(result.deploymentRetention, 7);
       expect(result.deploymentId, '5e5ea5c16897e');
       expect(result.deploymentCreatedAt, '2020-10-15T06:38:00.000+00:00');
       expect(result.latestDeploymentId, '5e5ea5c16897e');
@@ -65,7 +68,8 @@ void main() {
       expect(result.providerBranch, 'main');
       expect(result.providerRootDirectory, 'functions/helloWorld');
       expect(result.providerSilentMode, true);
-      expect(result.specification, 's-1vcpu-512mb');
+      expect(result.buildSpecification, 's-1vcpu-512mb');
+      expect(result.runtimeSpecification, 's-1vcpu-512mb');
     });
   });
 }

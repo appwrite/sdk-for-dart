@@ -35,6 +35,7 @@ class Sites extends Service {
       int? timeout,
       String? installCommand,
       String? buildCommand,
+      String? startCommand,
       String? outputDirectory,
       enums.Adapter? adapter,
       String? installationId,
@@ -43,7 +44,9 @@ class Sites extends Service {
       String? providerBranch,
       bool? providerSilentMode,
       String? providerRootDirectory,
-      String? specification}) async {
+      String? buildSpecification,
+      String? runtimeSpecification,
+      int? deploymentRetention}) async {
     final String apiPath = '/sites';
 
     final Map<String, dynamic> apiParams = {
@@ -55,6 +58,7 @@ class Sites extends Service {
       if (timeout != null) 'timeout': timeout,
       if (installCommand != null) 'installCommand': installCommand,
       if (buildCommand != null) 'buildCommand': buildCommand,
+      if (startCommand != null) 'startCommand': startCommand,
       if (outputDirectory != null) 'outputDirectory': outputDirectory,
       'buildRuntime': buildRuntime.value,
       if (adapter != null) 'adapter': adapter.value,
@@ -66,7 +70,11 @@ class Sites extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
-      if (specification != null) 'specification': specification,
+      if (buildSpecification != null) 'buildSpecification': buildSpecification,
+      if (runtimeSpecification != null)
+        'runtimeSpecification': runtimeSpecification,
+      if (deploymentRetention != null)
+        'deploymentRetention': deploymentRetention,
     };
 
     final Map<String, String> apiHeaders = {
@@ -132,6 +140,7 @@ class Sites extends Service {
       int? timeout,
       String? installCommand,
       String? buildCommand,
+      String? startCommand,
       String? outputDirectory,
       enums.BuildRuntime? buildRuntime,
       enums.Adapter? adapter,
@@ -141,7 +150,9 @@ class Sites extends Service {
       String? providerBranch,
       bool? providerSilentMode,
       String? providerRootDirectory,
-      String? specification}) async {
+      String? buildSpecification,
+      String? runtimeSpecification,
+      int? deploymentRetention}) async {
     final String apiPath = '/sites/{siteId}'.replaceAll('{siteId}', siteId);
 
     final Map<String, dynamic> apiParams = {
@@ -152,6 +163,7 @@ class Sites extends Service {
       if (timeout != null) 'timeout': timeout,
       if (installCommand != null) 'installCommand': installCommand,
       if (buildCommand != null) 'buildCommand': buildCommand,
+      if (startCommand != null) 'startCommand': startCommand,
       if (outputDirectory != null) 'outputDirectory': outputDirectory,
       if (buildRuntime != null) 'buildRuntime': buildRuntime.value,
       if (adapter != null) 'adapter': adapter.value,
@@ -163,7 +175,11 @@ class Sites extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
-      if (specification != null) 'specification': specification,
+      if (buildSpecification != null) 'buildSpecification': buildSpecification,
+      if (runtimeSpecification != null)
+        'runtimeSpecification': runtimeSpecification,
+      if (deploymentRetention != null)
+        'deploymentRetention': deploymentRetention,
     };
 
     final Map<String, String> apiHeaders = {

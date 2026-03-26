@@ -42,10 +42,10 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '21.3.0',
+      'x-sdk-version': '22.0.0',
       'user-agent':
-          'AppwriteDartSDK/21.3.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format': '1.8.0',
+          'AppwriteDartSDK/22.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format': '1.9.0',
     };
 
     config = {};
@@ -101,6 +101,30 @@ class ClientIO extends ClientBase with ClientMixin {
   ClientIO setForwardedUserAgent(value) {
     config['forwardedUserAgent'] = value;
     addHeader('X-Forwarded-User-Agent', value);
+    return this;
+  }
+
+  /// Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  @override
+  ClientIO setImpersonateUserId(value) {
+    config['impersonateUserId'] = value;
+    addHeader('X-Appwrite-Impersonate-User-Id', value);
+    return this;
+  }
+
+  /// Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  @override
+  ClientIO setImpersonateUserEmail(value) {
+    config['impersonateUserEmail'] = value;
+    addHeader('X-Appwrite-Impersonate-User-Email', value);
+    return this;
+  }
+
+  /// Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  @override
+  ClientIO setImpersonateUserPhone(value) {
+    config['impersonateUserPhone'] = value;
+    addHeader('X-Appwrite-Impersonate-User-Phone', value);
     return this;
   }
 

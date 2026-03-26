@@ -2,7 +2,9 @@ part of '../../enums.dart';
 
 enum DatabaseType {
   legacy(value: 'legacy'),
-  tablesdb(value: 'tablesdb');
+  tablesdb(value: 'tablesdb'),
+  documentsdb(value: 'documentsdb'),
+  vectorsdb(value: 'vectorsdb');
 
   const DatabaseType({required this.value});
 

@@ -29,6 +29,9 @@ class Func implements Model {
   /// Function execution and build runtime.
   final String runtime;
 
+  /// How many days to keep the non-active deployments before they will be automatically deleted.
+  final int deploymentRetention;
+
   /// Function&#039;s active deployment ID.
   final String deploymentId;
 
@@ -83,8 +86,11 @@ class Func implements Model {
   /// Is VCS (Version Control System) connection is in silent mode? When in silence mode, no comments will be posted on the repository pull or merge requests
   final bool providerSilentMode;
 
-  /// Machine specification for builds and executions.
-  final String specification;
+  /// Machine specification for deployment builds.
+  final String buildSpecification;
+
+  /// Machine specification for executions.
+  final String runtimeSpecification;
 
   Func({
     required this.$id,
@@ -96,6 +102,7 @@ class Func implements Model {
     required this.live,
     required this.logging,
     required this.runtime,
+    required this.deploymentRetention,
     required this.deploymentId,
     required this.deploymentCreatedAt,
     required this.latestDeploymentId,
@@ -114,7 +121,8 @@ class Func implements Model {
     required this.providerBranch,
     required this.providerRootDirectory,
     required this.providerSilentMode,
-    required this.specification,
+    required this.buildSpecification,
+    required this.runtimeSpecification,
   });
 
   factory Func.fromMap(Map<String, dynamic> map) {
@@ -128,6 +136,7 @@ class Func implements Model {
       live: map['live'],
       logging: map['logging'],
       runtime: map['runtime'].toString(),
+      deploymentRetention: map['deploymentRetention'],
       deploymentId: map['deploymentId'].toString(),
       deploymentCreatedAt: map['deploymentCreatedAt'].toString(),
       latestDeploymentId: map['latestDeploymentId'].toString(),
@@ -146,7 +155,8 @@ class Func implements Model {
       providerBranch: map['providerBranch'].toString(),
       providerRootDirectory: map['providerRootDirectory'].toString(),
       providerSilentMode: map['providerSilentMode'],
-      specification: map['specification'].toString(),
+      buildSpecification: map['buildSpecification'].toString(),
+      runtimeSpecification: map['runtimeSpecification'].toString(),
     );
   }
 
@@ -162,6 +172,7 @@ class Func implements Model {
       "live": live,
       "logging": logging,
       "runtime": runtime,
+      "deploymentRetention": deploymentRetention,
       "deploymentId": deploymentId,
       "deploymentCreatedAt": deploymentCreatedAt,
       "latestDeploymentId": latestDeploymentId,
@@ -180,7 +191,8 @@ class Func implements Model {
       "providerBranch": providerBranch,
       "providerRootDirectory": providerRootDirectory,
       "providerSilentMode": providerSilentMode,
-      "specification": specification,
+      "buildSpecification": buildSpecification,
+      "runtimeSpecification": runtimeSpecification,
     };
   }
 }

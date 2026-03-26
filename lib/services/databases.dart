@@ -2002,7 +2002,7 @@ class Databases extends Service {
       {required String databaseId,
       required String collectionId,
       required String key,
-      required enums.IndexType type,
+      required enums.DatabasesIndexType type,
       required List<String> attributes,
       List<enums.OrderBy>? orders,
       List<int>? lengths}) async {

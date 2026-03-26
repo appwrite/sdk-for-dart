@@ -1314,7 +1314,7 @@ void main() {
         databaseId: '<DATABASE_ID>',
         tableId: '<TABLE_ID>',
         key: '',
-        type: enums.IndexType.key,
+        type: enums.TablesDBIndexType.key,
         columns: [],
       );
       expect(response, isA<models.ColumnIndex>());
@@ -1379,7 +1379,7 @@ void main() {
     test('test method createRow()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
-        '\$sequence': 1,
+        '\$sequence': '1',
         '\$tableId': '5e5ea5c15117e',
         '\$databaseId': '5e5ea5c15117e',
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -1473,7 +1473,7 @@ void main() {
     test('test method getRow()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
-        '\$sequence': 1,
+        '\$sequence': '1',
         '\$tableId': '5e5ea5c15117e',
         '\$databaseId': '5e5ea5c15117e',
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -1496,7 +1496,7 @@ void main() {
     test('test method upsertRow()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
-        '\$sequence': 1,
+        '\$sequence': '1',
         '\$tableId': '5e5ea5c15117e',
         '\$databaseId': '5e5ea5c15117e',
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -1519,7 +1519,7 @@ void main() {
     test('test method updateRow()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
-        '\$sequence': 1,
+        '\$sequence': '1',
         '\$tableId': '5e5ea5c15117e',
         '\$databaseId': '5e5ea5c15117e',
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -1556,7 +1556,7 @@ void main() {
     test('test method decrementRowColumn()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
-        '\$sequence': 1,
+        '\$sequence': '1',
         '\$tableId': '5e5ea5c15117e',
         '\$databaseId': '5e5ea5c15117e',
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -1580,7 +1580,7 @@ void main() {
     test('test method incrementRowColumn()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
-        '\$sequence': 1,
+        '\$sequence': '1',
         '\$tableId': '5e5ea5c15117e',
         '\$databaseId': '5e5ea5c15117e',
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
