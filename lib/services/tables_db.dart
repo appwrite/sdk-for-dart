@@ -294,7 +294,8 @@ class TablesDB extends Service {
       String? name,
       List<String>? permissions,
       bool? rowSecurity,
-      bool? enabled}) async {
+      bool? enabled,
+      bool? purge}) async {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}'
         .replaceAll('{databaseId}', databaseId)
         .replaceAll('{tableId}', tableId);
@@ -304,6 +305,7 @@ class TablesDB extends Service {
       'permissions': permissions,
       if (rowSecurity != null) 'rowSecurity': rowSecurity,
       if (enabled != null) 'enabled': enabled,
+      if (purge != null) 'purge': purge,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1431,7 +1433,7 @@ class TablesDB extends Service {
   }
 
   /// Get column by ID.
-  Future getColumn(
+  Future<models.Model> getColumn(
       {required String databaseId,
       required String tableId,
       required String key}) async {
@@ -1448,7 +1450,47 @@ class TablesDB extends Service {
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return res.data;
+    return () {
+      if (res.data is! Map<String, dynamic>) {
+        throw StateError(
+            'Unable to match response to any expected response model.');
+      }
+
+      final response = res.data as Map<String, dynamic>;
+      if (response['type'] == 'string' && response['format'] == 'email') {
+        return models.ColumnEmail.fromMap(response);
+      }
+      if (response['type'] == 'string' && response['format'] == 'enum') {
+        return models.ColumnEnum.fromMap(response);
+      }
+      if (response['type'] == 'string' && response['format'] == 'url') {
+        return models.ColumnUrl.fromMap(response);
+      }
+      if (response['type'] == 'string' && response['format'] == 'ip') {
+        return models.ColumnIp.fromMap(response);
+      }
+      if (response['type'] == 'boolean') {
+        return models.ColumnBoolean.fromMap(response);
+      }
+      if (response['type'] == 'integer') {
+        return models.ColumnInteger.fromMap(response);
+      }
+      if (response['type'] == 'double') {
+        return models.ColumnFloat.fromMap(response);
+      }
+      if (response['type'] == 'datetime') {
+        return models.ColumnDatetime.fromMap(response);
+      }
+      if (response['type'] == 'relationship') {
+        return models.ColumnRelationship.fromMap(response);
+      }
+      if (response['type'] == 'string') {
+        return models.ColumnString.fromMap(response);
+      }
+
+      throw StateError(
+          'Unable to match response to any expected response model.');
+    }();
   }
 
   /// Deletes a column.

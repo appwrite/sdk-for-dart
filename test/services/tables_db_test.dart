@@ -474,7 +474,7 @@ void main() {
         tableId: '<TABLE_ID>',
         key: '',
         xrequired: true,
-        xdefault: '',
+        xdefault: '2020-10-15T06:38:00.000+00:00',
       );
       expect(response, isA<models.ColumnDatetime>());
     });
@@ -1212,13 +1212,14 @@ void main() {
 
     test('test method getColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'isEnabled',
-        'type': 'boolean',
+        'key': 'fullName',
+        'type': 'string',
         'status': 'available',
         'error': 'string',
         'required': true,
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'size': 128,
       };
 
       when(client.call(
@@ -1230,7 +1231,7 @@ void main() {
         tableId: '<TABLE_ID>',
         key: '',
       );
-      expect(response, isA<models.ColumnBoolean>());
+      expect(response, isA<models.ColumnString>());
     });
 
     test('test method deleteColumn()', () async {

@@ -29,9 +29,10 @@ class Webhooks extends Service {
       required String name,
       required List<String> events,
       bool? enabled,
-      bool? security,
-      String? httpUser,
-      String? httpPass}) async {
+      bool? tls,
+      String? authUsername,
+      String? authPassword,
+      String? secret}) async {
     final String apiPath = '/webhooks';
 
     final Map<String, dynamic> apiParams = {
@@ -40,9 +41,10 @@ class Webhooks extends Service {
       'name': name,
       'events': events,
       if (enabled != null) 'enabled': enabled,
-      if (security != null) 'security': security,
-      if (httpUser != null) 'httpUser': httpUser,
-      if (httpPass != null) 'httpPass': httpPass,
+      if (tls != null) 'tls': tls,
+      if (authUsername != null) 'authUsername': authUsername,
+      if (authPassword != null) 'authPassword': authPassword,
+      'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {
@@ -79,9 +81,9 @@ class Webhooks extends Service {
       required String url,
       required List<String> events,
       bool? enabled,
-      bool? security,
-      String? httpUser,
-      String? httpPass}) async {
+      bool? tls,
+      String? authUsername,
+      String? authPassword}) async {
     final String apiPath =
         '/webhooks/{webhookId}'.replaceAll('{webhookId}', webhookId);
 
@@ -90,9 +92,9 @@ class Webhooks extends Service {
       'url': url,
       'events': events,
       if (enabled != null) 'enabled': enabled,
-      if (security != null) 'security': security,
-      if (httpUser != null) 'httpUser': httpUser,
-      if (httpPass != null) 'httpPass': httpPass,
+      if (tls != null) 'tls': tls,
+      if (authUsername != null) 'authUsername': authUsername,
+      if (authPassword != null) 'authPassword': authPassword,
     };
 
     final Map<String, String> apiHeaders = {
@@ -123,14 +125,17 @@ class Webhooks extends Service {
     return res.data;
   }
 
-  /// Update the webhook signature key. This endpoint can be used to regenerate
-  /// the signature key used to sign and validate payload deliveries for a
-  /// specific webhook.
-  Future<models.Webhook> updateSignature({required String webhookId}) async {
+  /// Update the webhook signing key. This endpoint can be used to regenerate the
+  /// signing key used to sign and validate payload deliveries for a specific
+  /// webhook.
+  Future<models.Webhook> updateSecret(
+      {required String webhookId, String? secret}) async {
     final String apiPath =
-        '/webhooks/{webhookId}/signature'.replaceAll('{webhookId}', webhookId);
+        '/webhooks/{webhookId}/secret'.replaceAll('{webhookId}', webhookId);
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      'secret': secret,
+    };
 
     final Map<String, String> apiHeaders = {
       'content-type': 'application/json',

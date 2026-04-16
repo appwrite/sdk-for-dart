@@ -474,7 +474,7 @@ void main() {
         collectionId: '<COLLECTION_ID>',
         key: '',
         xrequired: true,
-        xdefault: '',
+        xdefault: '2020-10-15T06:38:00.000+00:00',
       );
       expect(response, isA<models.AttributeDatetime>());
     });
@@ -1241,13 +1241,14 @@ void main() {
 
     test('test method getAttribute()', () async {
       final Map<String, dynamic> data = {
-        'key': 'isEnabled',
-        'type': 'boolean',
+        'key': 'fullName',
+        'type': 'string',
         'status': 'available',
         'error': 'string',
         'required': true,
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'size': 128,
       };
 
       when(client.call(
@@ -1259,7 +1260,7 @@ void main() {
         collectionId: '<COLLECTION_ID>',
         key: '',
       );
-      expect(response, isA<models.AttributeBoolean>());
+      expect(response, isA<models.AttributeString>());
     });
 
     test('test method deleteAttribute()', () async {

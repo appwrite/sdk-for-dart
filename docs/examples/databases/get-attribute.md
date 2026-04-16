@@ -8,7 +8,7 @@ Client client = Client()
 
 Databases databases = Databases(client);
 
-AttributeBoolean result = await databases.getAttribute(
+dynamic result = await databases.getAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
     key: '',

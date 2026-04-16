@@ -76,10 +76,10 @@ void main() {
         'name': 'My Webhook',
         'url': 'https://example.com/webhook',
         'events': [],
-        'security': true,
-        'httpUser': 'username',
-        'httpPass': 'password',
-        'signatureKey': 'ad3d581ca230e2b7059c545e5a',
+        'tls': true,
+        'authUsername': 'username',
+        'authPassword': 'password',
+        'secret': 'ad3d581ca230e2b7059c545e5a',
         'enabled': true,
         'logs': 'Failed to connect to remote server.',
         'attempts': 10,
@@ -106,10 +106,10 @@ void main() {
         'name': 'My Webhook',
         'url': 'https://example.com/webhook',
         'events': [],
-        'security': true,
-        'httpUser': 'username',
-        'httpPass': 'password',
-        'signatureKey': 'ad3d581ca230e2b7059c545e5a',
+        'tls': true,
+        'authUsername': 'username',
+        'authPassword': 'password',
+        'secret': 'ad3d581ca230e2b7059c545e5a',
         'enabled': true,
         'logs': 'Failed to connect to remote server.',
         'attempts': 10,
@@ -133,10 +133,10 @@ void main() {
         'name': 'My Webhook',
         'url': 'https://example.com/webhook',
         'events': [],
-        'security': true,
-        'httpUser': 'username',
-        'httpPass': 'password',
-        'signatureKey': 'ad3d581ca230e2b7059c545e5a',
+        'tls': true,
+        'authUsername': 'username',
+        'authPassword': 'password',
+        'secret': 'ad3d581ca230e2b7059c545e5a',
         'enabled': true,
         'logs': 'Failed to connect to remote server.',
         'attempts': 10,
@@ -167,7 +167,7 @@ void main() {
       );
     });
 
-    test('test method updateSignature()', () async {
+    test('test method updateSecret()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -175,10 +175,10 @@ void main() {
         'name': 'My Webhook',
         'url': 'https://example.com/webhook',
         'events': [],
-        'security': true,
-        'httpUser': 'username',
-        'httpPass': 'password',
-        'signatureKey': 'ad3d581ca230e2b7059c545e5a',
+        'tls': true,
+        'authUsername': 'username',
+        'authPassword': 'password',
+        'secret': 'ad3d581ca230e2b7059c545e5a',
         'enabled': true,
         'logs': 'Failed to connect to remote server.',
         'attempts': 10,
@@ -188,7 +188,7 @@ void main() {
         HttpMethod.patch,
       )).thenAnswer((_) async => Response(data: data));
 
-      final response = await webhooks.updateSignature(
+      final response = await webhooks.updateSecret(
         webhookId: '<WEBHOOK_ID>',
       );
       expect(response, isA<models.Webhook>());

@@ -20,17 +20,17 @@ class Webhook implements Model {
   /// Webhook trigger events.
   final List<String> events;
 
-  /// Indicated if SSL / TLS Certificate verification is enabled.
-  final bool security;
+  /// Indicates if SSL / TLS certificate verification is enabled.
+  final bool tls;
 
   /// HTTP basic authentication username.
-  final String httpUser;
+  final String authUsername;
 
   /// HTTP basic authentication password.
-  final String httpPass;
+  final String authPassword;
 
-  /// Signature key which can be used to validated incoming
-  final String signatureKey;
+  /// Signature key which can be used to validate incoming webhook payloads. Only returned on creation and secret rotation.
+  final String secret;
 
   /// Indicates if this webhook is enabled.
   final bool enabled;
@@ -48,10 +48,10 @@ class Webhook implements Model {
     required this.name,
     required this.url,
     required this.events,
-    required this.security,
-    required this.httpUser,
-    required this.httpPass,
-    required this.signatureKey,
+    required this.tls,
+    required this.authUsername,
+    required this.authPassword,
+    required this.secret,
     required this.enabled,
     required this.logs,
     required this.attempts,
@@ -65,10 +65,10 @@ class Webhook implements Model {
       name: map['name'].toString(),
       url: map['url'].toString(),
       events: List.from(map['events'] ?? []),
-      security: map['security'],
-      httpUser: map['httpUser'].toString(),
-      httpPass: map['httpPass'].toString(),
-      signatureKey: map['signatureKey'].toString(),
+      tls: map['tls'],
+      authUsername: map['authUsername'].toString(),
+      authPassword: map['authPassword'].toString(),
+      secret: map['secret'].toString(),
       enabled: map['enabled'],
       logs: map['logs'].toString(),
       attempts: map['attempts'],
@@ -84,10 +84,10 @@ class Webhook implements Model {
       "name": name,
       "url": url,
       "events": events,
-      "security": security,
-      "httpUser": httpUser,
-      "httpPass": httpPass,
-      "signatureKey": signatureKey,
+      "tls": tls,
+      "authUsername": authUsername,
+      "authPassword": authPassword,
+      "secret": secret,
       "enabled": enabled,
       "logs": logs,
       "attempts": attempts,

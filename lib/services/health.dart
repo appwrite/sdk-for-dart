@@ -114,6 +114,7 @@ class Health extends Service {
 
   /// Get the number of audit logs that are waiting to be processed in the
   /// Appwrite internal queue server.
+  ///
   Future<models.HealthQueue> getQueueAudits({int? threshold}) async {
     final String apiPath = '/health/queue/audits';
 

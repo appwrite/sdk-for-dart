@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '22.0.0',
-      'X-Appwrite-Response-Format': '1.9.0',
+      'x-sdk-version': '23.0.0',
+      'X-Appwrite-Response-Format': '1.9.1',
     };
 
     config = {};
@@ -136,6 +136,11 @@ class ClientBrowser extends ClientBase with ClientMixin {
   ClientBrowser addHeader(String key, String value) {
     _headers![key] = value;
     return this;
+  }
+
+  @override
+  Map<String, String> getHeaders() {
+    return Map<String, String>.from(_headers!);
   }
 
   @override

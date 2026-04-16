@@ -314,7 +314,8 @@ class Databases extends Service {
       String? name,
       List<String>? permissions,
       bool? documentSecurity,
-      bool? enabled}) async {
+      bool? enabled,
+      bool? purge}) async {
     final String apiPath = '/databases/{databaseId}/collections/{collectionId}'
         .replaceAll('{databaseId}', databaseId)
         .replaceAll('{collectionId}', collectionId);
@@ -324,6 +325,7 @@ class Databases extends Service {
       'permissions': permissions,
       if (documentSecurity != null) 'documentSecurity': documentSecurity,
       if (enabled != null) 'enabled': enabled,
+      if (purge != null) 'purge': purge,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1539,7 +1541,7 @@ class Databases extends Service {
   /// Get attribute by ID.
   @Deprecated(
       'This API has been deprecated since 1.8.0. Please use `TablesDB.getColumn` instead.')
-  Future getAttribute(
+  Future<models.Model> getAttribute(
       {required String databaseId,
       required String collectionId,
       required String key}) async {
@@ -1556,7 +1558,47 @@ class Databases extends Service {
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
-    return res.data;
+    return () {
+      if (res.data is! Map<String, dynamic>) {
+        throw StateError(
+            'Unable to match response to any expected response model.');
+      }
+
+      final response = res.data as Map<String, dynamic>;
+      if (response['type'] == 'string' && response['format'] == 'email') {
+        return models.AttributeEmail.fromMap(response);
+      }
+      if (response['type'] == 'string' && response['format'] == 'enum') {
+        return models.AttributeEnum.fromMap(response);
+      }
+      if (response['type'] == 'string' && response['format'] == 'url') {
+        return models.AttributeUrl.fromMap(response);
+      }
+      if (response['type'] == 'string' && response['format'] == 'ip') {
+        return models.AttributeIp.fromMap(response);
+      }
+      if (response['type'] == 'boolean') {
+        return models.AttributeBoolean.fromMap(response);
+      }
+      if (response['type'] == 'integer') {
+        return models.AttributeInteger.fromMap(response);
+      }
+      if (response['type'] == 'double') {
+        return models.AttributeFloat.fromMap(response);
+      }
+      if (response['type'] == 'datetime') {
+        return models.AttributeDatetime.fromMap(response);
+      }
+      if (response['type'] == 'relationship') {
+        return models.AttributeRelationship.fromMap(response);
+      }
+      if (response['type'] == 'string') {
+        return models.AttributeString.fromMap(response);
+      }
+
+      throw StateError(
+          'Unable to match response to any expected response model.');
+    }();
   }
 
   /// Deletes an attribute.
