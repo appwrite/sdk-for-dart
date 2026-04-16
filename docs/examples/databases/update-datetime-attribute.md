@@ -13,7 +13,7 @@ AttributeDatetime result = await databases.updateDatetimeAttribute(
     collectionId: '<COLLECTION_ID>',
     key: '',
     xrequired: false,
-    xdefault: '',
+    xdefault: '2020-10-15T06:38:00.000+00:00',
     newKey: '', // (optional)
 );
 ```

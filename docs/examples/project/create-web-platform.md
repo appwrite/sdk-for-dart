@@ -6,9 +6,11 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Webhooks webhooks = Webhooks(client);
+Project project = Project(client);
 
-Webhook result = await webhooks.updateSignature(
-    webhookId: '<WEBHOOK_ID>',
+PlatformWeb result = await project.createWebPlatform(
+    platformId: '<PLATFORM_ID>',
+    name: '<NAME>',
+    hostname: 'app.example.com',
 );
 ```
