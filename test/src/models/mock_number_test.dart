@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = MockNumber.fromMap(map);
 
-      expect(result.phone, '+1612842323');
-      expect(result.otp, '123456');
-    });
+            expect(result.phone, '+1612842323');
+                  expect(result.otp, '123456');
+          });
   });
 }

@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = AuthProvider.fromMap(map);
 
-      expect(result.key, 'github');
-      expect(result.name, 'GitHub');
-      expect(result.appId, '259125845563242502');
-      expect(result.secret, 'Bpw_g9c2TGXxfgLshDbSaL8tsCcqgczQ');
-      expect(result.enabled, true);
-    });
+            expect(result.key, 'github');
+                  expect(result.name, 'GitHub');
+                  expect(result.appId, '259125845563242502');
+                  expect(result.secret, 'Bpw_g9c2TGXxfgLshDbSaL8tsCcqgczQ');
+                  expect(result.enabled, true);
+          });
   });
 }
