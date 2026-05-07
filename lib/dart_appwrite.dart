@@ -39,6 +39,7 @@ part 'services/health.dart';
 part 'services/locale.dart';
 part 'services/messaging.dart';
 part 'services/project.dart';
+part 'services/proxy.dart';
 part 'services/sites.dart';
 part 'services/storage.dart';
 part 'services/tables_db.dart';
