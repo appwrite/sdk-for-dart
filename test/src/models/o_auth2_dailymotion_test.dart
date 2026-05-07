@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Dailymotion.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.apiKey, '07a9000000000000067f');
-                  expect(result.apiSecret, 'a399a90000000000000000000000000000d90639');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.apiKey, '07a9000000000000067f');
+      expect(result.apiSecret, 'a399a90000000000000000000000000000d90639');
+    });
   });
 }

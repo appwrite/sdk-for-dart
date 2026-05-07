@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Bitly.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, 'd95151000000000000000000000000000067af9b');
-                  expect(result.clientSecret, 'a13e250000000000000000000000000000d73095');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, 'd95151000000000000000000000000000067af9b');
+      expect(result.clientSecret, 'a13e250000000000000000000000000000d73095');
+    });
   });
 }
