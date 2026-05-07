@@ -10,6 +10,6 @@ Client client = Client()
 Project project = Project(client);
 
 dynamic result = await project.getPolicy(
-    policyId: enums.ProjectPolicyId.passwordDictionary,
+    policyId: enums.ProjectPolicy.passwordDictionary,
 );
 ```

@@ -14,11 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Google.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(
-          result.clientId, 'your-google-client-id.apps.googleusercontent.com');
-      expect(result.clientSecret, 'your-google-client-secret');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, 'your-google-client-id.apps.googleusercontent.com');
+                  expect(result.clientSecret, 'your-google-client-secret');
+          });
   });
 }

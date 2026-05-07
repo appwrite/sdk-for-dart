@@ -26,7 +26,7 @@ part 'src/enums/name.dart';
 part 'src/enums/message_priority.dart';
 part 'src/enums/smtp_encryption.dart';
 part 'src/enums/auth_method.dart';
-part 'src/enums/project_policy_id.dart';
+part 'src/enums/project_policy.dart';
 part 'src/enums/protocol_id.dart';
 part 'src/enums/service_id.dart';
 part 'src/enums/secure.dart';
