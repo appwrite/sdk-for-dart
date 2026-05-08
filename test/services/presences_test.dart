@@ -24,8 +24,7 @@ class MockClient extends Mock implements Client {
 
   @override
   Future<String?> webAuth(Uri url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
   @override
@@ -37,116 +36,129 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+    return super.noSuchMethod(Invocation.method(#chunkedUpload, [path, params, paramName, idParamName, headers]), returnValue: Response(data: {}));
   }
 }
 
 void main() {
-  group('Presences test', () {
-    late MockClient client;
-    late Presences presences;
+    group('Presences test', () {
+        late MockClient client;
+        late Presences presences;
 
-    setUp(() {
-      client = MockClient();
-      presences = Presences(client);
+        setUp(() {
+            client = MockClient();
+            presences = Presences(client);
+        });
+
+        test('test method list()', () async {
+
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'presences': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await presences.list(
+            );
+            expect(response, isA<models.PresenceList>());
+
+        });
+
+        test('test method get()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$sequence': '1',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                '\$permissions': [],
+                'userInternalId': '1',
+                'userId': '674af8f3e12a5f9ac0be',
+                'source': 'HTTP',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await presences.get(
+                presenceId: '<PRESENCE_ID>',
+            );
+            expect(response, isA<models.Presence>());
+
+        });
+
+        test('test method upsert()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$sequence': '1',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                '\$permissions': [],
+                'userInternalId': '1',
+                'userId': '674af8f3e12a5f9ac0be',
+                'source': 'HTTP',};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await presences.upsert(
+                presenceId: '<PRESENCE_ID>',
+                userId: '<USER_ID>',
+                status: '<STATUS>',
+            );
+            expect(response, isA<models.Presence>());
+
+        });
+
+        test('test method updatePresence()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$sequence': '1',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                '\$permissions': [],
+                'userInternalId': '1',
+                'userId': '674af8f3e12a5f9ac0be',
+                'source': 'HTTP',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await presences.updatePresence(
+                presenceId: '<PRESENCE_ID>',
+                userId: '<USER_ID>',
+            );
+            expect(response, isA<models.Presence>());
+
+        });
+
+        test('test method delete()', () async {
+
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await presences.delete(
+                presenceId: '<PRESENCE_ID>',
+            );
+        });
+
     });
-
-    test('test method list()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'presences': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await presences.list();
-      expect(response, isA<models.PresenceList>());
-    });
-
-    test('test method get()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        '\$permissions': [],
-        'userInternalId': '1',
-        'userId': '674af8f3e12a5f9ac0be',
-        'source': 'HTTP',
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await presences.get(
-        presenceId: '<PRESENCE_ID>',
-      );
-      expect(response, isA<models.Presence>());
-    });
-
-    test('test method upsert()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        '\$permissions': [],
-        'userInternalId': '1',
-        'userId': '674af8f3e12a5f9ac0be',
-        'source': 'HTTP',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await presences.upsert(
-        presenceId: '<PRESENCE_ID>',
-        userId: '<USER_ID>',
-        status: '<STATUS>',
-      );
-      expect(response, isA<models.Presence>());
-    });
-
-    test('test method updatePresence()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        '\$permissions': [],
-        'userInternalId': '1',
-        'userId': '674af8f3e12a5f9ac0be',
-        'source': 'HTTP',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await presences.updatePresence(
-        presenceId: '<PRESENCE_ID>',
-        userId: '<USER_ID>',
-      );
-      expect(response, isA<models.Presence>());
-    });
-
-    test('test method delete()', () async {
-      final data = '';
-
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await presences.delete(
-        presenceId: '<PRESENCE_ID>',
-      );
-    });
-  });
 }
