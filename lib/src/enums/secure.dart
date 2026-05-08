@@ -1,14 +1,12 @@
 part of '../../enums.dart';
 
 enum Secure {
-    tls(value: 'tls'),
-    ssl(value: 'ssl');
+  tls(value: 'tls'),
+  ssl(value: 'ssl');
 
-    const Secure({
-        required this.value
-    });
+  const Secure({required this.value});
 
-    final String value;
+  final String value;
 
-    String toJson() => value;
+  String toJson() => value;
 }
