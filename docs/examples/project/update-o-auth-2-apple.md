@@ -1,6 +1,5 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
-import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -9,8 +8,11 @@ Client client = Client()
 
 Project project = Project(client);
 
-Project result = await project.updateProtocolStatus(
-    protocolId: enums.ProtocolId.rest,
-    enabled: false,
+OAuth2Apple result = await project.updateOAuth2Apple(
+    serviceId: '<SERVICE_ID>', // (optional)
+    keyId: '<KEY_ID>', // (optional)
+    teamId: '<TEAM_ID>', // (optional)
+    p8File: '<P8_FILE>', // (optional)
+    enabled: false, // (optional)
 );
 ```

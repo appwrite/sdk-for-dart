@@ -16,9 +16,12 @@ enum OAuthProvider {
   etsy(value: 'etsy'),
   facebook(value: 'facebook'),
   figma(value: 'figma'),
+  fusionauth(value: 'fusionauth'),
   github(value: 'github'),
   gitlab(value: 'gitlab'),
   google(value: 'google'),
+  keycloak(value: 'keycloak'),
+  kick(value: 'kick'),
   linkedin(value: 'linkedin'),
   microsoft(value: 'microsoft'),
   notion(value: 'notion'),
@@ -40,7 +43,9 @@ enum OAuthProvider {
   yammer(value: 'yammer'),
   yandex(value: 'yandex'),
   zoho(value: 'zoho'),
-  zoom(value: 'zoom');
+  zoom(value: 'zoom'),
+  githubImagine(value: 'githubImagine'),
+  googleImagine(value: 'googleImagine');
 
   const OAuthProvider({required this.value});
 

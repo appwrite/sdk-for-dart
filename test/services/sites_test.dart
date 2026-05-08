@@ -715,6 +715,7 @@ void main() {
 
       final response = await sites.createVariable(
         siteId: '<SITE_ID>',
+        variableId: '<VARIABLE_ID>',
         key: '<KEY>',
         value: '<VALUE>',
       );
@@ -763,7 +764,6 @@ void main() {
       final response = await sites.updateVariable(
         siteId: '<SITE_ID>',
         variableId: '<VARIABLE_ID>',
-        key: '<KEY>',
       );
       expect(response, isA<models.Variable>());
     });

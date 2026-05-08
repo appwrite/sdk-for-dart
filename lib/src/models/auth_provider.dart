@@ -11,7 +11,7 @@ class AuthProvider implements Model {
   /// OAuth 2.0 application ID.
   final String appId;
 
-  /// OAuth 2.0 application secret. Might be JSON string if provider requires extra configuration.
+  /// OAuth 2.0 application secret. Might be JSON string if provider requires extra configuration. This property is write-only and always returned empty.
   final String secret;
 
   /// Auth Provider is active and can be used to create session.

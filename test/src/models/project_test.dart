@@ -33,6 +33,8 @@ void main() {
         authMembershipsUserName: true,
         authMembershipsUserEmail: true,
         authMembershipsMfa: true,
+        authMembershipsUserId: true,
+        authMembershipsUserPhone: true,
         authInvalidateSessions: true,
         oAuthProviders: [],
         platforms: [],
@@ -42,11 +44,12 @@ void main() {
         smtpEnabled: true,
         smtpSenderName: 'John Appwrite',
         smtpSenderEmail: 'john@appwrite.io',
-        smtpReplyTo: 'support@appwrite.io',
+        smtpReplyToName: 'Support Team',
+        smtpReplyToEmail: 'support@appwrite.io',
         smtpHost: 'mail.appwrite.io',
         smtpPort: 25,
         smtpUsername: 'emailuser',
-        smtpPassword: 'securepassword',
+        smtpPassword: '',
         smtpSecure: 'tls',
         pingCount: 1,
         pingedAt: '2020-10-15T06:38:00.000+00:00',
@@ -125,6 +128,8 @@ void main() {
       expect(result.authMembershipsUserName, true);
       expect(result.authMembershipsUserEmail, true);
       expect(result.authMembershipsMfa, true);
+      expect(result.authMembershipsUserId, true);
+      expect(result.authMembershipsUserPhone, true);
       expect(result.authInvalidateSessions, true);
       expect(result.oAuthProviders, []);
       expect(result.platforms, []);
@@ -134,11 +139,12 @@ void main() {
       expect(result.smtpEnabled, true);
       expect(result.smtpSenderName, 'John Appwrite');
       expect(result.smtpSenderEmail, 'john@appwrite.io');
-      expect(result.smtpReplyTo, 'support@appwrite.io');
+      expect(result.smtpReplyToName, 'Support Team');
+      expect(result.smtpReplyToEmail, 'support@appwrite.io');
       expect(result.smtpHost, 'mail.appwrite.io');
       expect(result.smtpPort, 25);
       expect(result.smtpUsername, 'emailuser');
-      expect(result.smtpPassword, 'securepassword');
+      expect(result.smtpPassword, '');
       expect(result.smtpSecure, 'tls');
       expect(result.pingCount, 1);
       expect(result.pingedAt, '2020-10-15T06:38:00.000+00:00');

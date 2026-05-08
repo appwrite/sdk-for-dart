@@ -10,5 +10,7 @@ Functions functions = Functions(client);
 
 VariableList result = await functions.listVariables(
     functionId: '<FUNCTION_ID>',
+    queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

@@ -86,6 +86,12 @@ class Project implements Model {
   /// Whether or not to show user MFA status in the teams membership response.
   final bool authMembershipsMfa;
 
+  /// Whether or not to show user IDs in the teams membership response.
+  final bool authMembershipsUserId;
+
+  /// Whether or not to show user phone numbers in the teams membership response.
+  final bool authMembershipsUserPhone;
+
   /// Whether or not all existing sessions should be invalidated on password change
   final bool authInvalidateSessions;
 
@@ -113,8 +119,11 @@ class Project implements Model {
   /// SMTP sender email
   final String smtpSenderEmail;
 
+  /// SMTP reply to name
+  final String smtpReplyToName;
+
   /// SMTP reply to email
-  final String smtpReplyTo;
+  final String smtpReplyToEmail;
 
   /// SMTP server host name
   final String smtpHost;
@@ -125,7 +134,7 @@ class Project implements Model {
   /// SMTP server username
   final String smtpUsername;
 
-  /// SMTP server password
+  /// SMTP server password. This property is write-only and always returned empty.
   final String smtpPassword;
 
   /// SMTP server secure protocol
@@ -265,6 +274,8 @@ class Project implements Model {
     required this.authMembershipsUserName,
     required this.authMembershipsUserEmail,
     required this.authMembershipsMfa,
+    required this.authMembershipsUserId,
+    required this.authMembershipsUserPhone,
     required this.authInvalidateSessions,
     required this.oAuthProviders,
     required this.platforms,
@@ -274,7 +285,8 @@ class Project implements Model {
     required this.smtpEnabled,
     required this.smtpSenderName,
     required this.smtpSenderEmail,
-    required this.smtpReplyTo,
+    required this.smtpReplyToName,
+    required this.smtpReplyToEmail,
     required this.smtpHost,
     required this.smtpPort,
     required this.smtpUsername,
@@ -348,6 +360,8 @@ class Project implements Model {
       authMembershipsUserName: map['authMembershipsUserName'],
       authMembershipsUserEmail: map['authMembershipsUserEmail'],
       authMembershipsMfa: map['authMembershipsMfa'],
+      authMembershipsUserId: map['authMembershipsUserId'],
+      authMembershipsUserPhone: map['authMembershipsUserPhone'],
       authInvalidateSessions: map['authInvalidateSessions'],
       oAuthProviders: List<AuthProvider>.from(
           map['oAuthProviders'].map((p) => AuthProvider.fromMap(p))),
@@ -359,7 +373,8 @@ class Project implements Model {
       smtpEnabled: map['smtpEnabled'],
       smtpSenderName: map['smtpSenderName'].toString(),
       smtpSenderEmail: map['smtpSenderEmail'].toString(),
-      smtpReplyTo: map['smtpReplyTo'].toString(),
+      smtpReplyToName: map['smtpReplyToName'].toString(),
+      smtpReplyToEmail: map['smtpReplyToEmail'].toString(),
       smtpHost: map['smtpHost'].toString(),
       smtpPort: map['smtpPort'],
       smtpUsername: map['smtpUsername'].toString(),
@@ -434,6 +449,8 @@ class Project implements Model {
       "authMembershipsUserName": authMembershipsUserName,
       "authMembershipsUserEmail": authMembershipsUserEmail,
       "authMembershipsMfa": authMembershipsMfa,
+      "authMembershipsUserId": authMembershipsUserId,
+      "authMembershipsUserPhone": authMembershipsUserPhone,
       "authInvalidateSessions": authInvalidateSessions,
       "oAuthProviders": oAuthProviders.map((p) => p.toMap()).toList(),
       "platforms": platforms,
@@ -443,7 +460,8 @@ class Project implements Model {
       "smtpEnabled": smtpEnabled,
       "smtpSenderName": smtpSenderName,
       "smtpSenderEmail": smtpSenderEmail,
-      "smtpReplyTo": smtpReplyTo,
+      "smtpReplyToName": smtpReplyToName,
+      "smtpReplyToEmail": smtpReplyToEmail,
       "smtpHost": smtpHost,
       "smtpPort": smtpPort,
       "smtpUsername": smtpUsername,

@@ -361,6 +361,78 @@ class TablesDB extends Service {
     return models.ColumnList.fromMap(res.data);
   }
 
+  /// Create a bigint column. Optionally, minimum and maximum values can be
+  /// provided.
+  ///
+  Future<models.ColumnBigint> createBigIntColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      int? min,
+      int? max,
+      int? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'min': min,
+      'max': max,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnBigint.fromMap(res.data);
+  }
+
+  /// Update a bigint column. Changing the `default` value will not update
+  /// already existing rows.
+  ///
+  Future<models.ColumnBigint> updateBigIntColumn(
+      {required String databaseId,
+      required String tableId,
+      required String key,
+      required bool xrequired,
+      required int? xdefault,
+      int? min,
+      int? max,
+      String? newKey}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{tableId}', tableId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'min': min,
+      'max': max,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ColumnBigint.fromMap(res.data);
+  }
+
   /// Create a boolean column.
   ///
   Future<models.ColumnBoolean> createBooleanColumn(

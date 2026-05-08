@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '23.0.0',
-      'X-Appwrite-Response-Format': '1.9.1',
+      'x-sdk-version': '23.1.0',
+      'X-Appwrite-Response-Format': '1.9.4',
     };
 
     config = {};
@@ -90,6 +90,22 @@ class ClientBrowser extends ClientBase with ClientMixin {
   ClientBrowser setForwardedUserAgent(value) {
     config['forwardedUserAgent'] = value;
     addHeader('X-Forwarded-User-Agent', value);
+    return this;
+  }
+
+  /// Your secret dev API key
+  @override
+  ClientBrowser setDevKey(value) {
+    config['devKey'] = value;
+    addHeader('X-Appwrite-Dev-Key', value);
+    return this;
+  }
+
+  /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
+  @override
+  ClientBrowser setCookie(value) {
+    config['cookie'] = value;
+    addHeader('Cookie', value);
     return this;
   }
 

@@ -10,5 +10,7 @@ Sites sites = Sites(client);
 
 VariableList result = await sites.listVariables(
     siteId: '<SITE_ID>',
+    queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

@@ -17,7 +17,7 @@ class BackupArchive implements Model {
   /// Archive size in bytes.
   final int size;
 
-  /// The status of the archive creation. Possible values: pending, processing, uploading, completed, failed.
+  /// The status of the archive creation. Possible values: pending, processing, uploading, completed, failed, skipped.
   final String status;
 
   /// The backup start time.
