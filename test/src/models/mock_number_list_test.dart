@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = MockNumberList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.mockNumbers, []);
-          });
+      expect(result.total, 5);
+      expect(result.mockNumbers, []);
+    });
   });
 }
