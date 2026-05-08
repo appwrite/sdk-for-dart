@@ -14,10 +14,11 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Notion.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.oauthClientId, '341d8700-0000-0000-0000-000000446ee3');
-                  expect(result.oauthClientSecret, 'secret_dLUr4b000000000000000000000000000000lFHAa9');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.oauthClientId, '341d8700-0000-0000-0000-000000446ee3');
+      expect(result.oauthClientSecret,
+          'secret_dLUr4b000000000000000000000000000000lFHAa9');
+    });
   });
 }
