@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Slack.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, '23000000089.15000000000023');
-                  expect(result.clientSecret, '<CLIENT_SECRET>');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, '23000000089.15000000000023');
+      expect(result.clientSecret, '<CLIENT_SECRET>');
+    });
   });
 }

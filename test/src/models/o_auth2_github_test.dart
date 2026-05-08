@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Github.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, 'e4d87900000000540733');
-                  expect(result.clientSecret, '<CLIENT_SECRET>');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, 'e4d87900000000540733');
+      expect(result.clientSecret, '<CLIENT_SECRET>');
+    });
   });
 }

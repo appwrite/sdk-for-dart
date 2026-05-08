@@ -7,17 +7,19 @@ void main() {
       final model = OAuth2Yahoo(
         $id: 'github',
         enabled: true,
-        clientId: 'dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm',
+        clientId:
+            'dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm',
         clientSecret: '<CLIENT_SECRET>',
       );
 
       final map = model.toMap();
       final result = OAuth2Yahoo.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, 'dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm');
-                  expect(result.clientSecret, '<CLIENT_SECRET>');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId,
+          'dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm');
+      expect(result.clientSecret, '<CLIENT_SECRET>');
+    });
   });
 }

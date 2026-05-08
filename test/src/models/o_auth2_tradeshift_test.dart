@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Tradeshift.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.oauth2ClientId, 'appwrite-test-org.appwrite-test-app');
-                  expect(result.oauth2ClientSecret, '<CLIENT_SECRET>');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.oauth2ClientId, 'appwrite-test-org.appwrite-test-app');
+      expect(result.oauth2ClientSecret, '<CLIENT_SECRET>');
+    });
   });
 }

@@ -16,12 +16,12 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Keycloak.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, 'appwrite-o0000000st-app');
-                  expect(result.clientSecret, '<CLIENT_SECRET>');
-                  expect(result.endpoint, 'keycloak.example.com');
-                  expect(result.realmName, 'appwrite-realm');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, 'appwrite-o0000000st-app');
+      expect(result.clientSecret, '<CLIENT_SECRET>');
+      expect(result.endpoint, 'keycloak.example.com');
+      expect(result.realmName, 'appwrite-realm');
+    });
   });
 }

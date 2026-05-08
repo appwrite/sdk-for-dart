@@ -7,17 +7,19 @@ void main() {
       final model = OAuth2Amazon(
         $id: 'github',
         enabled: true,
-        clientId: 'amzn1.application-oa2-client.87400c00000000000000000000063d5b2',
+        clientId:
+            'amzn1.application-oa2-client.87400c00000000000000000000063d5b2',
         clientSecret: '<CLIENT_SECRET>',
       );
 
       final map = model.toMap();
       final result = OAuth2Amazon.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, 'amzn1.application-oa2-client.87400c00000000000000000000063d5b2');
-                  expect(result.clientSecret, '<CLIENT_SECRET>');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId,
+          'amzn1.application-oa2-client.87400c00000000000000000000063d5b2');
+      expect(result.clientSecret, '<CLIENT_SECRET>');
+    });
   });
 }

@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Twitch.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, 'vvi0in000000000000000000ikmt9p');
-                  expect(result.clientSecret, '<CLIENT_SECRET>');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, 'vvi0in000000000000000000ikmt9p');
+      expect(result.clientSecret, '<CLIENT_SECRET>');
+    });
   });
 }

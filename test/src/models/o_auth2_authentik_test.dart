@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Authentik.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, 'dTKOPa0000000000000000000000000000e7G8hv');
-                  expect(result.clientSecret, '<CLIENT_SECRET>');
-                  expect(result.endpoint, 'example.authentik.com');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, 'dTKOPa0000000000000000000000000000e7G8hv');
+      expect(result.clientSecret, '<CLIENT_SECRET>');
+      expect(result.endpoint, 'example.authentik.com');
+    });
   });
 }
