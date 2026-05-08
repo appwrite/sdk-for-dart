@@ -10,6 +10,6 @@ Client client = Client()
 Project project = Project(client);
 
 dynamic result = await project.getOAuth2Provider(
-    providerId: enums.ProviderId.amazon,
+    providerId: enums.OAuthProvider.amazon,
 );
 ```

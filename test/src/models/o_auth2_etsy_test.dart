@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         keyString: 'nsgzxh0000000000008j85a2',
-        sharedSecret: 'tp000000ru',
+        sharedSecret: '<CLIENT_SECRET>',
       );
 
       final map = model.toMap();
       final result = OAuth2Etsy.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.keyString, 'nsgzxh0000000000008j85a2');
-      expect(result.sharedSecret, 'tp000000ru');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.keyString, 'nsgzxh0000000000008j85a2');
+                  expect(result.sharedSecret, '<CLIENT_SECRET>');
+          });
   });
 }

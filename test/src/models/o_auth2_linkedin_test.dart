@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: '770000000000dv',
-        primaryClientSecret: 'your-linkedin-client-secret',
+        primaryClientSecret: '<CLIENT_SECRET>',
       );
 
       final map = model.toMap();
       final result = OAuth2Linkedin.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '770000000000dv');
-      expect(result.primaryClientSecret, 'your-linkedin-client-secret');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '770000000000dv');
+                  expect(result.primaryClientSecret, '<CLIENT_SECRET>');
+          });
   });
 }
