@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = PolicyPasswordHistory.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
-      expect(result.total, 5);
-    });
+            expect(result.$id, 'password-dictionary');
+                  expect(result.total, 5);
+          });
   });
 }
