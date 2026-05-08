@@ -10,6 +10,7 @@ Sites sites = Sites(client);
 
 Variable result = await sites.createVariable(
     siteId: '<SITE_ID>',
+    variableId: '<VARIABLE_ID>',
     key: '<KEY>',
     value: '<VALUE>',
     secret: false, // (optional)
