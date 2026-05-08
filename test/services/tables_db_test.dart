@@ -379,6 +379,55 @@ void main() {
       expect(response, isA<models.ColumnList>());
     });
 
+    test('test method createBigIntColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'count',
+        'type': 'bigint',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.createBigIntColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+      );
+      expect(response, isA<models.ColumnBigint>());
+    });
+
+    test('test method updateBigIntColumn()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'count',
+        'type': 'bigint',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.updateBigIntColumn(
+        databaseId: '<DATABASE_ID>',
+        tableId: '<TABLE_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: 1,
+      );
+      expect(response, isA<models.ColumnBigint>());
+    });
+
     test('test method createBooleanColumn()', () async {
       final Map<String, dynamic> data = {
         'key': 'isEnabled',

@@ -563,11 +563,14 @@ class Functions extends Service {
 
   /// Get a list of all variables of a specific function.
   Future<models.VariableList> listVariables(
-      {required String functionId}) async {
+      {required String functionId, List<String>? queries, bool? total}) async {
     final String apiPath = '/functions/{functionId}/variables'
         .replaceAll('{functionId}', functionId);
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {};
 
@@ -581,6 +584,7 @@ class Functions extends Service {
   /// in the function at runtime as environment variables.
   Future<models.Variable> createVariable(
       {required String functionId,
+      required String variableId,
       required String key,
       required String value,
       bool? secret}) async {
@@ -588,6 +592,7 @@ class Functions extends Service {
         .replaceAll('{functionId}', functionId);
 
     final Map<String, dynamic> apiParams = {
+      'variableId': variableId,
       'key': key,
       'value': value,
       if (secret != null) 'secret': secret,
@@ -624,7 +629,7 @@ class Functions extends Service {
   Future<models.Variable> updateVariable(
       {required String functionId,
       required String variableId,
-      required String key,
+      String? key,
       String? value,
       bool? secret}) async {
     final String apiPath = '/functions/{functionId}/variables/{variableId}'

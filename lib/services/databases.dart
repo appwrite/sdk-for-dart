@@ -386,6 +386,82 @@ class Databases extends Service {
     return models.AttributeList.fromMap(res.data);
   }
 
+  /// Create a bigint attribute. Optionally, minimum and maximum values can be
+  /// provided.
+  ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.createBigIntColumn` instead.')
+  Future<models.AttributeBigint> createBigIntAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      int? min,
+      int? max,
+      int? xdefault,
+      bool? array}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/bigint'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId);
+
+    final Map<String, dynamic> apiParams = {
+      'key': key,
+      'required': xrequired,
+      'min': min,
+      'max': max,
+      'default': xdefault,
+      if (array != null) 'array': array,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeBigint.fromMap(res.data);
+  }
+
+  /// Update a bigint attribute. Changing the `default` value will not update
+  /// already existing documents.
+  ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateBigIntColumn` instead.')
+  Future<models.AttributeBigint> updateBigIntAttribute(
+      {required String databaseId,
+      required String collectionId,
+      required String key,
+      required bool xrequired,
+      required int? xdefault,
+      int? min,
+      int? max,
+      String? newKey}) async {
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/attributes/bigint/{key}'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{collectionId}', collectionId)
+            .replaceAll('{key}', key);
+
+    final Map<String, dynamic> apiParams = {
+      'required': xrequired,
+      'min': min,
+      'max': max,
+      'default': xdefault,
+      'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.AttributeBigint.fromMap(res.data);
+  }
+
   /// Create a boolean attribute.
   ///
   @Deprecated(

@@ -81,6 +81,7 @@ enum Runtime {
   go124(value: 'go-1.24'),
   go125(value: 'go-1.25'),
   go126(value: 'go-1.26'),
+  rust183(value: 'rust-1.83'),
   static1(value: 'static-1'),
   flutter324(value: 'flutter-3.24'),
   flutter327(value: 'flutter-3.27'),

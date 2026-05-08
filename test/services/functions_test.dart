@@ -737,6 +737,7 @@ void main() {
 
       final response = await functions.createVariable(
         functionId: '<FUNCTION_ID>',
+        variableId: '<VARIABLE_ID>',
         key: '<KEY>',
         value: '<VALUE>',
       );
@@ -785,7 +786,6 @@ void main() {
       final response = await functions.updateVariable(
         functionId: '<FUNCTION_ID>',
         variableId: '<VARIABLE_ID>',
-        key: '<KEY>',
       );
       expect(response, isA<models.Variable>());
     });

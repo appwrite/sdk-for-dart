@@ -379,6 +379,55 @@ void main() {
       expect(response, isA<models.AttributeList>());
     });
 
+    test('test method createBigIntAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'count',
+        'type': 'bigint',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.createBigIntAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+      );
+      expect(response, isA<models.AttributeBigint>());
+    });
+
+    test('test method updateBigIntAttribute()', () async {
+      final Map<String, dynamic> data = {
+        'key': 'count',
+        'type': 'bigint',
+        'status': 'available',
+        'error': 'string',
+        'required': true,
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await databases.updateBigIntAttribute(
+        databaseId: '<DATABASE_ID>',
+        collectionId: '<COLLECTION_ID>',
+        key: '',
+        xrequired: true,
+        xdefault: 1,
+      );
+      expect(response, isA<models.AttributeBigint>());
+    });
+
     test('test method createBooleanAttribute()', () async {
       final Map<String, dynamic> data = {
         'key': 'isEnabled',
