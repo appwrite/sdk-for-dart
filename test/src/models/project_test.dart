@@ -30,15 +30,15 @@ void main() {
         protocols: [],
         region: 'fra',
         billingLimits: BillingLimits(
-    bandwidth: 5,
-    storage: 150,
-    users: 200000,
-    executions: 750000,
-    GBHours: 100,
-    imageTransformations: 100,
-    authPhone: 10,
-    budgetLimit: 100,
-  ),
+          bandwidth: 5,
+          storage: 150,
+          users: 200000,
+          executions: 750000,
+          GBHours: 100,
+          imageTransformations: 100,
+          authPhone: 10,
+          budgetLimit: 100,
+        ),
         blocks: [],
         consoleAccessedAt: '2020-10-15T06:38:00.000+00:00',
       );
@@ -46,32 +46,32 @@ void main() {
       final map = model.toMap();
       final result = Project.fromMap(map);
 
-            expect(result.$id, '5e5ea5c16897e');
-                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-                  expect(result.name, 'New Project');
-                  expect(result.teamId, '1592981250');
-                  expect(result.devKeys, []);
-                  expect(result.smtpEnabled, true);
-                  expect(result.smtpSenderName, 'John Appwrite');
-                  expect(result.smtpSenderEmail, 'john@appwrite.io');
-                  expect(result.smtpReplyToName, 'Support Team');
-                  expect(result.smtpReplyToEmail, 'support@appwrite.io');
-                  expect(result.smtpHost, 'mail.appwrite.io');
-                  expect(result.smtpPort, 25);
-                  expect(result.smtpUsername, 'emailuser');
-                  expect(result.smtpPassword, '');
-                  expect(result.smtpSecure, 'tls');
-                  expect(result.pingCount, 1);
-                  expect(result.pingedAt, '2020-10-15T06:38:00.000+00:00');
-                  expect(result.labels, []);
-                  expect(result.status, 'active');
-                  expect(result.authMethods, []);
-                  expect(result.services, []);
-                  expect(result.protocols, []);
-                  expect(result.region, 'fra');
-                        expect(result.blocks, []);
-                  expect(result.consoleAccessedAt, '2020-10-15T06:38:00.000+00:00');
-          });
+      expect(result.$id, '5e5ea5c16897e');
+      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.name, 'New Project');
+      expect(result.teamId, '1592981250');
+      expect(result.devKeys, []);
+      expect(result.smtpEnabled, true);
+      expect(result.smtpSenderName, 'John Appwrite');
+      expect(result.smtpSenderEmail, 'john@appwrite.io');
+      expect(result.smtpReplyToName, 'Support Team');
+      expect(result.smtpReplyToEmail, 'support@appwrite.io');
+      expect(result.smtpHost, 'mail.appwrite.io');
+      expect(result.smtpPort, 25);
+      expect(result.smtpUsername, 'emailuser');
+      expect(result.smtpPassword, '');
+      expect(result.smtpSecure, 'tls');
+      expect(result.pingCount, 1);
+      expect(result.pingedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.labels, []);
+      expect(result.status, 'active');
+      expect(result.authMethods, []);
+      expect(result.services, []);
+      expect(result.protocols, []);
+      expect(result.region, 'fra');
+      expect(result.blocks, []);
+      expect(result.consoleAccessedAt, '2020-10-15T06:38:00.000+00:00');
+    });
   });
 }

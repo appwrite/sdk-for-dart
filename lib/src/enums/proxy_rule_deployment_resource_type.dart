@@ -1,14 +1,12 @@
 part of '../../enums.dart';
 
 enum ProxyRuleDeploymentResourceType {
-    function(value: 'function'),
-    site(value: 'site');
+  function(value: 'function'),
+  site(value: 'site');
 
-    const ProxyRuleDeploymentResourceType({
-        required this.value
-    });
+  const ProxyRuleDeploymentResourceType({required this.value});
 
-    final String value;
+  final String value;
 
-    String toJson() => value;
+  String toJson() => value;
 }

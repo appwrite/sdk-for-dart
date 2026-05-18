@@ -20,16 +20,16 @@ void main() {
       final map = model.toMap();
       final result = UsageEvent.fromMap(map);
 
-            expect(result.metric, 'bandwidth');
-                  expect(result.value, 5000);
-                  expect(result.time, '2026-04-09T12:00:00.000+00:00');
-                  expect(result.path, '/v1/storage/files');
-                  expect(result.method, 'POST');
-                  expect(result.status, '201');
-                  expect(result.resourceType, 'bucket');
-                  expect(result.resourceId, 'abc123');
-                  expect(result.countryCode, 'US');
-                  expect(result.userAgent, 'AppwriteSDK/1.0');
-          });
+      expect(result.metric, 'bandwidth');
+      expect(result.value, 5000);
+      expect(result.time, '2026-04-09T12:00:00.000+00:00');
+      expect(result.path, '/v1/storage/files');
+      expect(result.method, 'POST');
+      expect(result.status, '201');
+      expect(result.resourceType, 'bucket');
+      expect(result.resourceId, 'abc123');
+      expect(result.countryCode, 'US');
+      expect(result.userAgent, 'AppwriteSDK/1.0');
+    });
   });
 }
