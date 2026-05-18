@@ -1,7 +1,7 @@
 part of '../dart_appwrite.dart';
 
 class Usage extends Service {
-    Usage(super.client);
+  Usage(super.client);
 
   /// Query usage event metrics from the usage database. Returns individual event
   /// rows with full metadata. Pass Query objects as JSON strings to filter,
@@ -15,25 +15,22 @@ class Usage extends Service {
   /// given; user-supplied limits are capped at 500. The `total` field is capped
   /// at 5000 to keep counts predictable — pass `total=false` to skip the count
   /// entirely.
-    Future<models.UsageEventList> listEvents({List<String>? queries, bool? total}) async {
-        final String apiPath = '/usage/events';
+  Future<models.UsageEventList> listEvents(
+      {List<String>? queries, bool? total}) async {
+    final String apiPath = '/usage/events';
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
-if (total != null) 'total': total,
-
-      
+      if (total != null) 'total': total,
     };
 
-    final Map<String, String> apiHeaders = {
-      
-    };
+    final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.UsageEventList.fromMap(res.data);
-
-    }
+  }
 
   /// Query usage gauge metrics (point-in-time resource snapshots) from the usage
   /// database. Returns individual gauge snapshots with metric, value, and
@@ -46,23 +43,20 @@ if (total != null) 'total': total,
   /// user-supplied limits are capped at 500. The `total` field is capped at 5000
   /// to keep counts predictable — pass `total=false` to skip the count
   /// entirely.
-    Future<models.UsageGaugeList> listGauges({List<String>? queries, bool? total}) async {
-        final String apiPath = '/usage/gauges';
+  Future<models.UsageGaugeList> listGauges(
+      {List<String>? queries, bool? total}) async {
+    final String apiPath = '/usage/gauges';
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
-if (total != null) 'total': total,
-
-      
+      if (total != null) 'total': total,
     };
 
-    final Map<String, String> apiHeaders = {
-      
-    };
+    final Map<String, String> apiHeaders = {};
 
-    final res = await client.call(HttpMethod.get, path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.UsageGaugeList.fromMap(res.data);
-
-    }
+  }
 }
