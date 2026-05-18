@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         key: 'Knt70000000000ByRc',
-        secret: '<CLIENT_SECRET>',
+        secret: 'NMfLZJ00000000000000000000TLQdDx',
       );
 
       final map = model.toMap();
       final result = OAuth2Bitbucket.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.key, 'Knt70000000000ByRc');
-      expect(result.secret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.key, 'Knt70000000000ByRc');
+                  expect(result.secret, 'NMfLZJ00000000000000000000TLQdDx');
+          });
   });
 }

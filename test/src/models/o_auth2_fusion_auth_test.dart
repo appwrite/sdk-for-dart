@@ -8,18 +8,18 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'b2222c00-0000-0000-0000-000000862097',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: 'Jx4s0C0000000000000000000000000000000wGqLsc',
         endpoint: 'example.fusionauth.io',
       );
 
       final map = model.toMap();
       final result = OAuth2FusionAuth.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, 'b2222c00-0000-0000-0000-000000862097');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-      expect(result.endpoint, 'example.fusionauth.io');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, 'b2222c00-0000-0000-0000-000000862097');
+                  expect(result.clientSecret, 'Jx4s0C0000000000000000000000000000000wGqLsc');
+                  expect(result.endpoint, 'example.fusionauth.io');
+          });
   });
 }

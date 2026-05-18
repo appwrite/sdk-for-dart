@@ -10,7 +10,7 @@ Client client = Client()
 Project project = Project(client);
 
 Project result = await project.updateProtocol(
-    protocolId: enums.ProtocolId.rest,
+    protocolId: enums.ProjectProtocolId.rest,
     enabled: false,
 );
 ```

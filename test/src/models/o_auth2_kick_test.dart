@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: '01KQ7C00000000000001MFHS32',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: '34ac5600000000000000000000000000000000000000000000000000e830c8b',
       );
 
       final map = model.toMap();
       final result = OAuth2Kick.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '01KQ7C00000000000001MFHS32');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '01KQ7C00000000000001MFHS32');
+                  expect(result.clientSecret, '34ac5600000000000000000000000000000000000000000000000000e830c8b');
+          });
   });
 }

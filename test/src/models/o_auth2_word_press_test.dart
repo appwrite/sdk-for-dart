@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: '130005',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: 'PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk',
       );
 
       final map = model.toMap();
       final result = OAuth2WordPress.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '130005');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '130005');
+                  expect(result.clientSecret, 'PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk');
+          });
   });
 }

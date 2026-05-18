@@ -10,7 +10,7 @@ Client client = Client()
 Project project = Project(client);
 
 Project result = await project.updateService(
-    serviceId: enums.ServiceId.account,
+    serviceId: enums.ProjectServiceId.account,
     enabled: false,
 );
 ```

@@ -10,8 +10,8 @@ Client client = Client()
 Project project = Project(client);
 
 EmailTemplate result = await project.updateEmailTemplate(
-    templateId: enums.EmailTemplateType.verification,
-    locale: enums.EmailTemplateLocale.af, // (optional)
+    templateId: enums.ProjectEmailTemplateId.verification,
+    locale: enums.ProjectEmailTemplateLocale.af, // (optional)
     subject: '<SUBJECT>', // (optional)
     message: '<MESSAGE>', // (optional)
     senderName: '<SENDER_NAME>', // (optional)

@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         oauth2ClientId: 'appwrite-test-org.appwrite-test-app',
-        oauth2ClientSecret: '<CLIENT_SECRET>',
+        oauth2ClientSecret: '7cb52700-0000-0000-0000-000000ca5b83',
       );
 
       final map = model.toMap();
       final result = OAuth2Tradeshift.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.oauth2ClientId, 'appwrite-test-org.appwrite-test-app');
-      expect(result.oauth2ClientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.oauth2ClientId, 'appwrite-test-org.appwrite-test-app');
+                  expect(result.oauth2ClientSecret, '7cb52700-0000-0000-0000-000000ca5b83');
+          });
   });
 }

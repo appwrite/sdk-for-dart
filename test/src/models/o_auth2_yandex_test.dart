@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: '6a8a6a0000000000000000000091483c',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: 'bbf98500000000000000000000c75a63',
       );
 
       final map = model.toMap();
       final result = OAuth2Yandex.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '6a8a6a0000000000000000000091483c');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '6a8a6a0000000000000000000091483c');
+                  expect(result.clientSecret, 'bbf98500000000000000000000c75a63');
+          });
   });
 }

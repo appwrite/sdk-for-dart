@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: '5zw90v00000000000000000000kVYXN7',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: '7I000000000000MW',
       );
 
       final map = model.toMap();
       final result = OAuth2Autodesk.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '5zw90v00000000000000000000kVYXN7');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '5zw90v00000000000000000000kVYXN7');
+                  expect(result.clientSecret, '7I000000000000MW');
+          });
   });
 }

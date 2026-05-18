@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'd95151000000000000000000000000000067af9b',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: 'a13e250000000000000000000000000000d73095',
       );
 
       final map = model.toMap();
       final result = OAuth2Bitly.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, 'd95151000000000000000000000000000067af9b');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, 'd95151000000000000000000000000000067af9b');
+                  expect(result.clientSecret, 'a13e250000000000000000000000000000d73095');
+          });
   });
 }

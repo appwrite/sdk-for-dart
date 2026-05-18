@@ -10,7 +10,7 @@ Client client = Client()
 Project project = Project(client);
 
 Project result = await project.updateAuthMethod(
-    methodId: enums.AuthMethod.emailPassword,
+    methodId: enums.ProjectAuthMethodId.emailPassword,
     enabled: false,
 );
 ```

@@ -7,19 +7,19 @@ void main() {
       final model = OAuth2Google(
         $id: 'github',
         enabled: true,
-        clientId:
-            '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com',
-        clientSecret: '<CLIENT_SECRET>',
+        clientId: '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com',
+        clientSecret: 'example-google-client-secret',
+        prompt: [],
       );
 
       final map = model.toMap();
       final result = OAuth2Google.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId,
-          '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com');
+                  expect(result.clientSecret, 'example-google-client-secret');
+                  expect(result.prompt, []);
+          });
   });
 }

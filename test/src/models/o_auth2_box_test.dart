@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'deglcs00000000000000000000x2og6y',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: 'OKM1f100000000000000000000eshEif',
       );
 
       final map = model.toMap();
       final result = OAuth2Box.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, 'deglcs00000000000000000000x2og6y');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, 'deglcs00000000000000000000x2og6y');
+                  expect(result.clientSecret, 'OKM1f100000000000000000000eshEif');
+          });
   });
 }

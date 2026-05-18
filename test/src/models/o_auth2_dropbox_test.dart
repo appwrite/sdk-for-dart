@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         appKey: 'jl000000000009t',
-        appSecret: '<CLIENT_SECRET>',
+        appSecret: 'g200000000000vw',
       );
 
       final map = model.toMap();
       final result = OAuth2Dropbox.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.appKey, 'jl000000000009t');
-      expect(result.appSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.appKey, 'jl000000000009t');
+                  expect(result.appSecret, 'g200000000000vw');
+          });
   });
 }

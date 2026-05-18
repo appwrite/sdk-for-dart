@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: '950722000000343754',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: 'YmPXnM000000000000000000002zFg5D',
       );
 
       final map = model.toMap();
       final result = OAuth2Discord.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '950722000000343754');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '950722000000343754');
+                  expect(result.clientSecret, 'YmPXnM000000000000000000002zFg5D');
+          });
   });
 }
