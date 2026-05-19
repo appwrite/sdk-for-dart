@@ -1,6 +1,6 @@
 part of '../../enums.dart';
 
-enum ProjectPolicy {
+enum ProjectPolicyId {
   passwordDictionary(value: 'password-dictionary'),
   passwordHistory(value: 'password-history'),
   passwordPersonalData(value: 'password-personal-data'),
@@ -11,7 +11,7 @@ enum ProjectPolicy {
   userLimit(value: 'user-limit'),
   membershipPrivacy(value: 'membership-privacy');
 
-  const ProjectPolicy({required this.value});
+  const ProjectPolicyId({required this.value});
 
   final String value;
 

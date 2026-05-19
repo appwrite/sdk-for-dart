@@ -9,7 +9,8 @@ void main() {
         enabled: true,
         publicKey:
             'cgegH70000000000000000000000000000000000000000000000000000Hr1nYX',
-        secretKey: '<CLIENT_SECRET>',
+        secretKey:
+            'W7Bykj00000000000000000000000000000000000000000000000000003o43w9',
       );
 
       final map = model.toMap();
@@ -19,7 +20,8 @@ void main() {
       expect(result.enabled, true);
       expect(result.publicKey,
           'cgegH70000000000000000000000000000000000000000000000000000Hr1nYX');
-      expect(result.secretKey, '<CLIENT_SECRET>');
+      expect(result.secretKey,
+          'W7Bykj00000000000000000000000000000000000000000000000000003o43w9');
     });
   });
 }

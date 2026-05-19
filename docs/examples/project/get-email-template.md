@@ -10,7 +10,7 @@ Client client = Client()
 Project project = Project(client);
 
 EmailTemplate result = await project.getEmailTemplate(
-    templateId: enums.EmailTemplateType.verification,
-    locale: enums.EmailTemplateLocale.af, // (optional)
+    templateId: enums.ProjectEmailTemplateId.verification,
+    locale: enums.ProjectEmailTemplateLocale.af, // (optional)
 );
 ```

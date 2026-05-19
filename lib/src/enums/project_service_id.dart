@@ -1,6 +1,6 @@
 part of '../../enums.dart';
 
-enum ServiceId {
+enum ProjectServiceId {
   account(value: 'account'),
   avatars(value: 'avatars'),
   databases(value: 'databases'),
@@ -17,9 +17,10 @@ enum ServiceId {
   proxy(value: 'proxy'),
   graphql(value: 'graphql'),
   migrations(value: 'migrations'),
-  messaging(value: 'messaging');
+  messaging(value: 'messaging'),
+  advisor(value: 'advisor');
 
-  const ServiceId({required this.value});
+  const ProjectServiceId({required this.value});
 
   final String value;
 

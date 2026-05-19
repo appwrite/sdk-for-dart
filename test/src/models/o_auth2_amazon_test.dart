@@ -9,7 +9,8 @@ void main() {
         enabled: true,
         clientId:
             'amzn1.application-oa2-client.87400c00000000000000000000063d5b2',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret:
+            '79ffe4000000000000000000000000000000000000000000000000000002de55',
       );
 
       final map = model.toMap();
@@ -19,7 +20,8 @@ void main() {
       expect(result.enabled, true);
       expect(result.clientId,
           'amzn1.application-oa2-client.87400c00000000000000000000063d5b2');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
+      expect(result.clientSecret,
+          '79ffe4000000000000000000000000000000000000000000000000000002de55');
     });
   });
 }

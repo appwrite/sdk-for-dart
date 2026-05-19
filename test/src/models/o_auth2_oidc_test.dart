@@ -8,7 +8,8 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'qibI2x0000000000000000000000000006L2YFoG',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret:
+            'Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV',
         wellKnownURL: 'https://myoauth.com/.well-known/openid-configuration',
         authorizationURL: 'https://myoauth.com/oauth2/authorize',
         tokenURL: 'https://myoauth.com/oauth2/token',
@@ -21,7 +22,8 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, 'qibI2x0000000000000000000000000006L2YFoG');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
+      expect(result.clientSecret,
+          'Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV');
       expect(result.wellKnownURL,
           'https://myoauth.com/.well-known/openid-configuration');
       expect(result.authorizationURL, 'https://myoauth.com/oauth2/authorize');

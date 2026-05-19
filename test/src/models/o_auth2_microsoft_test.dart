@@ -8,7 +8,7 @@ void main() {
         $id: 'github',
         enabled: true,
         applicationId: '00001111-aaaa-2222-bbbb-3333cccc4444',
-        applicationSecret: '<CLIENT_SECRET>',
+        applicationSecret: 'A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u',
         tenant: 'common',
       );
 
@@ -18,7 +18,7 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.applicationId, '00001111-aaaa-2222-bbbb-3333cccc4444');
-      expect(result.applicationSecret, '<CLIENT_SECRET>');
+      expect(result.applicationSecret, 'A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u');
       expect(result.tenant, 'common');
     });
   });

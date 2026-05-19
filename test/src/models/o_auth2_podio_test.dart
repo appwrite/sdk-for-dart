@@ -8,7 +8,8 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'appwrite-oauth-test-app',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret:
+            'Rn247T0000000000000000000000000000000000000000000000000000W2zWTN',
       );
 
       final map = model.toMap();
@@ -17,7 +18,8 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, 'appwrite-oauth-test-app');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
+      expect(result.clientSecret,
+          'Rn247T0000000000000000000000000000000000000000000000000000W2zWTN');
     });
   });
 }

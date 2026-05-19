@@ -21,10 +21,10 @@ class Database implements Model {
   final enums.DatabaseType type;
 
   /// Database backup policies.
-  final List<Index> policies;
+  final List<BackupPolicy> policies;
 
   /// Database backup archives.
-  final List<Collection> archives;
+  final List<BackupArchive> archives;
 
   Database({
     required this.$id,
@@ -45,9 +45,10 @@ class Database implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       enabled: map['enabled'],
       type: enums.DatabaseType.values.firstWhere((e) => e.value == map['type']),
-      policies: List<Index>.from(map['policies'].map((p) => Index.fromMap(p))),
-      archives: List<Collection>.from(
-          map['archives'].map((p) => Collection.fromMap(p))),
+      policies: List<BackupPolicy>.from(
+          map['policies'].map((p) => BackupPolicy.fromMap(p))),
+      archives: List<BackupArchive>.from(
+          map['archives'].map((p) => BackupArchive.fromMap(p))),
     );
   }
 

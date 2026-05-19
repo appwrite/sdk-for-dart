@@ -12,7 +12,7 @@ Project project = Project(client);
 Key result = await project.createKey(
     keyId: '<KEY_ID>',
     name: '<NAME>',
-    scopes: [enums.Scopes.projectRead],
+    scopes: [enums.ProjectKeyScopes.projectRead],
     expire: '2020-10-15T06:38:00.000+00:00', // (optional)
 );
 ```

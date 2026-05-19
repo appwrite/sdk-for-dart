@@ -8,7 +8,7 @@ void main() {
         $id: 'github',
         enabled: true,
         apiKey: '07a9000000000000067f',
-        apiSecret: '<CLIENT_SECRET>',
+        apiSecret: 'a399a90000000000000000000000000000d90639',
       );
 
       final map = model.toMap();
@@ -17,7 +17,7 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.apiKey, '07a9000000000000067f');
-      expect(result.apiSecret, '<CLIENT_SECRET>');
+      expect(result.apiSecret, 'a399a90000000000000000000000000000d90639');
     });
   });
 }

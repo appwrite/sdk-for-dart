@@ -1,6 +1,6 @@
 part of '../../enums.dart';
 
-enum AuthMethod {
+enum ProjectAuthMethodId {
   emailPassword(value: 'email-password'),
   magicUrl(value: 'magic-url'),
   emailOtp(value: 'email-otp'),
@@ -9,7 +9,7 @@ enum AuthMethod {
   jwt(value: 'jwt'),
   phone(value: 'phone');
 
-  const AuthMethod({required this.value});
+  const ProjectAuthMethodId({required this.value});
 
   final String value;
 

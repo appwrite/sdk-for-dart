@@ -9,7 +9,8 @@ void main() {
         enabled: true,
         applicationId:
             'd41ffe0000000000000000000000000000000000000000000000000000d5e252',
-        secret: '<CLIENT_SECRET>',
+        secret:
+            'gloas-838cfa0000000000000000000000000000000000000000000000000000ecbb38',
         endpoint: 'https://gitlab.com',
       );
 
@@ -20,7 +21,8 @@ void main() {
       expect(result.enabled, true);
       expect(result.applicationId,
           'd41ffe0000000000000000000000000000000000000000000000000000d5e252');
-      expect(result.secret, '<CLIENT_SECRET>');
+      expect(result.secret,
+          'gloas-838cfa0000000000000000000000000000000000000000000000000000ecbb38');
       expect(result.endpoint, 'https://gitlab.com');
     });
   });

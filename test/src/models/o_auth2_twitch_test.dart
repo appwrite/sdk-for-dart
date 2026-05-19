@@ -8,7 +8,7 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'vvi0in000000000000000000ikmt9p',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: 'pmapue000000000000000000zylw3v',
       );
 
       final map = model.toMap();
@@ -17,7 +17,7 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, 'vvi0in000000000000000000ikmt9p');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
+      expect(result.clientSecret, 'pmapue000000000000000000zylw3v');
     });
   });
 }

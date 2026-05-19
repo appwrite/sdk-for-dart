@@ -10,7 +10,7 @@ Client client = Client()
 Project project = Project(client);
 
 EphemeralKey result = await project.createEphemeralKey(
-    scopes: [enums.Scopes.projectRead],
+    scopes: [enums.ProjectKeyScopes.projectRead],
     duration: 600,
 );
 ```

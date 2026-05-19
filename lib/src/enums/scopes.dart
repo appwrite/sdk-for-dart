@@ -79,6 +79,12 @@ enum Scopes {
   schedulesWrite(value: 'schedules.write'),
   vcsRead(value: 'vcs.read'),
   vcsWrite(value: 'vcs.write'),
+  insightsRead(value: 'insights.read'),
+  insightsWrite(value: 'insights.write'),
+  reportsRead(value: 'reports.read'),
+  reportsWrite(value: 'reports.write'),
+  presencesRead(value: 'presences.read'),
+  presencesWrite(value: 'presences.write'),
   backupsPoliciesRead(value: 'backups.policies.read'),
   backupsPoliciesWrite(value: 'backups.policies.write'),
   archivesRead(value: 'archives.read'),
@@ -87,7 +93,8 @@ enum Scopes {
   restorationsWrite(value: 'restorations.write'),
   domainsRead(value: 'domains.read'),
   domainsWrite(value: 'domains.write'),
-  eventsRead(value: 'events.read');
+  eventsRead(value: 'events.read'),
+  usageRead(value: 'usage.read');
 
   const Scopes({required this.value});
 

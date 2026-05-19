@@ -1,11 +1,11 @@
 part of '../../enums.dart';
 
-enum ProtocolId {
+enum ProjectProtocolId {
   rest(value: 'rest'),
   graphql(value: 'graphql'),
   websocket(value: 'websocket');
 
-  const ProtocolId({required this.value});
+  const ProjectProtocolId({required this.value});
 
   final String value;
 

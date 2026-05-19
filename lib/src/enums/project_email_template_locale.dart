@@ -1,6 +1,6 @@
 part of '../../enums.dart';
 
-enum EmailTemplateLocale {
+enum ProjectEmailTemplateLocale {
   af(value: 'af'),
   arAe(value: 'ar-ae'),
   arBh(value: 'ar-bh'),
@@ -133,7 +133,7 @@ enum EmailTemplateLocale {
   zhTw(value: 'zh-tw'),
   zu(value: 'zu');
 
-  const EmailTemplateLocale({required this.value});
+  const ProjectEmailTemplateLocale({required this.value});
 
   final String value;
 

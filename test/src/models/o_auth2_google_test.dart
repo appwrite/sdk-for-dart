@@ -9,7 +9,8 @@ void main() {
         enabled: true,
         clientId:
             '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com',
-        clientSecret: '<CLIENT_SECRET>',
+        clientSecret: 'example-google-client-secret',
+        prompt: [],
       );
 
       final map = model.toMap();
@@ -19,7 +20,8 @@ void main() {
       expect(result.enabled, true);
       expect(result.clientId,
           '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com');
-      expect(result.clientSecret, '<CLIENT_SECRET>');
+      expect(result.clientSecret, 'example-google-client-secret');
+      expect(result.prompt, []);
     });
   });
 }

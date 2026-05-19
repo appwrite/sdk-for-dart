@@ -1,6 +1,6 @@
 part of '../../enums.dart';
 
-enum EmailTemplateType {
+enum ProjectEmailTemplateId {
   verification(value: 'verification'),
   magicSession(value: 'magicSession'),
   recovery(value: 'recovery'),
@@ -9,7 +9,7 @@ enum EmailTemplateType {
   sessionAlert(value: 'sessionAlert'),
   otpSession(value: 'otpSession');
 
-  const EmailTemplateType({required this.value});
+  const ProjectEmailTemplateId({required this.value});
 
   final String value;
 

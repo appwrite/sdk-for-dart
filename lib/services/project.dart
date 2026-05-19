@@ -5,6 +5,20 @@ part of '../dart_appwrite.dart';
 class Project extends Service {
   Project(super.client);
 
+  /// Get a project.
+  Future<models.Project> get() async {
+    final String apiPath = '/project';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {};
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Project.fromMap(res.data);
+  }
+
   /// Delete a project.
   Future delete() async {
     final String apiPath = '/project';
@@ -24,7 +38,8 @@ class Project extends Service {
   /// Update properties of a specific auth method. Use this endpoint to enable or
   /// disable a method in your project.
   Future<models.Project> updateAuthMethod(
-      {required enums.AuthMethod methodId, required bool enabled}) async {
+      {required enums.ProjectAuthMethodId methodId,
+      required bool enabled}) async {
     final String apiPath = '/project/auth-methods/{methodId}'
         .replaceAll('{methodId}', methodId.value);
 
@@ -67,7 +82,7 @@ class Project extends Service {
   Future<models.Key> createKey(
       {required String keyId,
       required String name,
-      required List<enums.Scopes> scopes,
+      required List<enums.ProjectKeyScopes> scopes,
       String? expire}) async {
     final String apiPath = '/project/keys';
 
@@ -94,7 +109,8 @@ class Project extends Service {
   /// You can also create a standard API key if you need a longer-lived key
   /// instead.
   Future<models.EphemeralKey> createEphemeralKey(
-      {required List<enums.Scopes> scopes, required int duration}) async {
+      {required List<enums.ProjectKeyScopes> scopes,
+      required int duration}) async {
     final String apiPath = '/project/keys/ephemeral';
 
     final Map<String, dynamic> apiParams = {
@@ -131,7 +147,7 @@ class Project extends Service {
   Future<models.Key> updateKey(
       {required String keyId,
       required String name,
-      required List<enums.Scopes> scopes,
+      required List<enums.ProjectKeyScopes> scopes,
       String? expire}) async {
     final String apiPath = '/project/keys/{keyId}'.replaceAll('{keyId}', keyId);
 
@@ -704,12 +720,16 @@ class Project extends Service {
 
   /// Update the project OAuth2 Google configuration.
   Future<models.OAuth2Google> updateOAuth2Google(
-      {String? clientId, String? clientSecret, bool? enabled}) async {
+      {String? clientId,
+      String? clientSecret,
+      List<enums.ProjectOAuth2GooglePrompt>? prompt,
+      bool? enabled}) async {
     final String apiPath = '/project/oauth2/google';
 
     final Map<String, dynamic> apiParams = {
       'clientId': clientId,
       'clientSecret': clientSecret,
+      'prompt': prompt?.map((e) => e.value).toList(),
       'enabled': enabled,
     };
 
@@ -1239,7 +1259,7 @@ class Project extends Service {
   /// Get a single OAuth2 provider configuration. Credential fields (client
   /// secret, p8 file, key/team IDs) are write-only and always returned empty.
   Future<models.Model> getOAuth2Provider(
-      {required enums.OAuthProvider providerId}) async {
+      {required enums.ProjectOAuthProviderId providerId}) async {
     final String apiPath = '/project/oauth2/{providerId}'
         .replaceAll('{providerId}', providerId.value);
 
@@ -1724,6 +1744,66 @@ class Project extends Service {
     return models.PolicyList.fromMap(res.data);
   }
 
+  /// Configures if aliased emails such as subaddresses and emails with suffixes
+  /// are denied during new users sign-ups and email updates.
+  Future<models.Project> updateDenyAliasedEmailPolicy(
+      {required bool enabled}) async {
+    final String apiPath = '/project/policies/deny-aliased-email';
+
+    final Map<String, dynamic> apiParams = {
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Configures if disposable emails from known temporary domains are denied
+  /// during new users sign-ups and email updates.
+  Future<models.Project> updateDenyDisposableEmailPolicy(
+      {required bool enabled}) async {
+    final String apiPath = '/project/policies/deny-disposable-email';
+
+    final Map<String, dynamic> apiParams = {
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Configures if emails from free providers such as Gmail or Yahoo are denied
+  /// during new users sign-ups and email updates.
+  Future<models.Project> updateDenyFreeEmailPolicy(
+      {required bool enabled}) async {
+    final String apiPath = '/project/policies/deny-free-email';
+
+    final Map<String, dynamic> apiParams = {
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Project.fromMap(res.data);
+  }
+
   /// Updating this policy allows you to control if team members can see other
   /// members information. When enabled, all team members can see ID, name,
   /// email, phone number, and MFA status of other members..
@@ -1929,7 +2009,7 @@ class Project extends Service {
   /// Get a policy by its unique ID. This endpoint returns the current
   /// configuration for the requested project policy.
   Future<models.Model> getPolicy(
-      {required enums.ProjectPolicy policyId}) async {
+      {required enums.ProjectPolicyId policyId}) async {
     final String apiPath =
         '/project/policies/{policyId}'.replaceAll('{policyId}', policyId.value);
 
@@ -1983,7 +2063,8 @@ class Project extends Service {
   /// Update properties of a specific protocol. Use this endpoint to enable or
   /// disable a protocol in your project.
   Future<models.Project> updateProtocol(
-      {required enums.ProtocolId protocolId, required bool enabled}) async {
+      {required enums.ProjectProtocolId protocolId,
+      required bool enabled}) async {
     final String apiPath = '/project/protocols/{protocolId}'
         .replaceAll('{protocolId}', protocolId.value);
 
@@ -2004,7 +2085,8 @@ class Project extends Service {
   /// Update properties of a specific service. Use this endpoint to enable or
   /// disable a service in your project.
   Future<models.Project> updateService(
-      {required enums.ServiceId serviceId, required bool enabled}) async {
+      {required enums.ProjectServiceId serviceId,
+      required bool enabled}) async {
     final String apiPath = '/project/services/{serviceId}'
         .replaceAll('{serviceId}', serviceId.value);
 
@@ -2034,7 +2116,7 @@ class Project extends Service {
       String? senderName,
       String? replyToEmail,
       String? replyToName,
-      enums.Secure? secure,
+      enums.ProjectSMTPSecure? secure,
       bool? enabled}) async {
     final String apiPath = '/project/smtp';
 
@@ -2102,8 +2184,8 @@ class Project extends Service {
   /// Update a custom email template for the specified locale and type. Use this
   /// endpoint to modify the content of your email templates.
   Future<models.EmailTemplate> updateEmailTemplate(
-      {required enums.EmailTemplateType templateId,
-      enums.EmailTemplateLocale? locale,
+      {required enums.ProjectEmailTemplateId templateId,
+      enums.ProjectEmailTemplateLocale? locale,
       String? subject,
       String? message,
       String? senderName,
@@ -2137,8 +2219,8 @@ class Project extends Service {
   /// endpoint returns the template content, subject, and other configuration
   /// details.
   Future<models.EmailTemplate> getEmailTemplate(
-      {required enums.EmailTemplateType templateId,
-      enums.EmailTemplateLocale? locale}) async {
+      {required enums.ProjectEmailTemplateId templateId,
+      enums.ProjectEmailTemplateLocale? locale}) async {
     final String apiPath = '/project/templates/email/{templateId}'
         .replaceAll('{templateId}', templateId.value);
 
