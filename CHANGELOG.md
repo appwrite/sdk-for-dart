@@ -1,5 +1,10 @@
 # Change Log
 
+## 24.0.2
+
+* Updated documentation examples to use API key authentication
+* Fixed code formatting in `Query` and `Operator` classes
+
 ## 24.0.1
 
 * Updated documentation examples to use API key authentication
