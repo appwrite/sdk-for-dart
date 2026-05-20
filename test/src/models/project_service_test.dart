@@ -13,8 +13,8 @@ void main() {
       final map = model.toMap();
       final result = ProjectService.fromMap(map);
 
-      expect(result.$id, ProjectServiceId.account);
-      expect(result.enabled, true);
-    });
+            expect(result.$id, ProjectServiceId.account);
+                  expect(result.enabled, true);
+          });
   });
 }
