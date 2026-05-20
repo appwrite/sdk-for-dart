@@ -1,14 +1,12 @@
 # Change Log
 
-## 24.0.2
+## 24.1.0
 
-* Updated documentation examples to use API key authentication
-* Fixed code formatting in `Query` and `Operator` classes
-
-## 24.0.1
-
-* Updated documentation examples to use API key authentication
-* Fixed code formatting in `Query` and `Operator` classes
+* Added `sizeActual` field to `File` model for actual stored size after compression/encryption
+* Added `deno-1.21`, `deno-1.24`, and `deno-1.35` to `BuildRuntime` and `Runtime` enums
+* Updated `BillingLimits` fields to be nullable to match the server's sparse "limits crossed" response
+* Updated `Project.billingLimits` to be nullable
+* Updated advisor example docs to use API key authentication
 
 ## 24.0.0
 
