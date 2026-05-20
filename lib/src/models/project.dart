@@ -75,7 +75,7 @@ class Project implements Model {
   final String region;
 
   /// Billing limits reached
-  final BillingLimits billingLimits;
+  final BillingLimits? billingLimits;
 
   /// Project blocks information
   final List<Block> blocks;
@@ -108,7 +108,7 @@ class Project implements Model {
     required this.services,
     required this.protocols,
     required this.region,
-    required this.billingLimits,
+    this.billingLimits,
     required this.blocks,
     required this.consoleAccessedAt,
   });

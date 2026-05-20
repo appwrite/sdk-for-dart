@@ -29,16 +29,6 @@ void main() {
         services: [],
         protocols: [],
         region: 'fra',
-        billingLimits: BillingLimits(
-          bandwidth: 5,
-          storage: 150,
-          users: 200000,
-          executions: 750000,
-          GBHours: 100,
-          imageTransformations: 100,
-          authPhone: 10,
-          budgetLimit: 100,
-        ),
         blocks: [],
         consoleAccessedAt: '2020-10-15T06:38:00.000+00:00',
       );
