@@ -16,7 +16,7 @@ ClientBase createClient({
     ClientBrowser(endPoint: endPoint, selfSigned: selfSigned);
 
 class ClientBrowser extends ClientBase with ClientMixin {
-  static const int chunkSize = 5 * 1024 * 1024;
+  static const int chunkSize = 5*1024*1024;
   String _endPoint;
   Map<String, String>? _headers;
   @override
@@ -34,7 +34,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
       'x-sdk-version': '24.1.0',
-      'X-Appwrite-Response-Format': '1.9.5',
+      'X-Appwrite-Response-Format' : '1.9.5',
     };
 
     config = {};
@@ -46,92 +46,82 @@ class ClientBrowser extends ClientBase with ClientMixin {
   @override
   String get endPoint => _endPoint;
 
-  /// Your project ID
-  @override
-  ClientBrowser setProject(value) {
-    config['project'] = value;
-    addHeader('X-Appwrite-Project', value);
-    return this;
-  }
-
-  /// Your secret API key
-  @override
-  ClientBrowser setKey(value) {
-    config['key'] = value;
-    addHeader('X-Appwrite-Key', value);
-    return this;
-  }
-
-  /// Your secret JSON Web Token
-  @override
-  ClientBrowser setJWT(value) {
-    config['jWT'] = value;
-    addHeader('X-Appwrite-JWT', value);
-    return this;
-  }
-
-  @override
-  ClientBrowser setLocale(value) {
-    config['locale'] = value;
-    addHeader('X-Appwrite-Locale', value);
-    return this;
-  }
-
-  /// The user session to authenticate with
-  @override
-  ClientBrowser setSession(value) {
-    config['session'] = value;
-    addHeader('X-Appwrite-Session', value);
-    return this;
-  }
-
-  /// The user agent string of the client that made the request
-  @override
-  ClientBrowser setForwardedUserAgent(value) {
-    config['forwardedUserAgent'] = value;
-    addHeader('X-Forwarded-User-Agent', value);
-    return this;
-  }
-
-  /// Your secret dev API key
-  @override
-  ClientBrowser setDevKey(value) {
-    config['devKey'] = value;
-    addHeader('X-Appwrite-Dev-Key', value);
-    return this;
-  }
-
-  /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
-  @override
-  ClientBrowser setCookie(value) {
-    config['cookie'] = value;
-    addHeader('Cookie', value);
-    return this;
-  }
-
-  /// Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
-  @override
-  ClientBrowser setImpersonateUserId(value) {
-    config['impersonateUserId'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Id', value);
-    return this;
-  }
-
-  /// Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
-  @override
-  ClientBrowser setImpersonateUserEmail(value) {
-    config['impersonateUserEmail'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Email', value);
-    return this;
-  }
-
-  /// Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
-  @override
-  ClientBrowser setImpersonateUserPhone(value) {
-    config['impersonateUserPhone'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Phone', value);
-    return this;
-  }
+    /// Your project ID
+    @override
+    ClientBrowser setProject(value) {
+        config['project'] = value;
+        addHeader('X-Appwrite-Project', value);
+        return this;
+    }
+    /// Your secret API key
+    @override
+    ClientBrowser setKey(value) {
+        config['key'] = value;
+        addHeader('X-Appwrite-Key', value);
+        return this;
+    }
+    /// Your secret JSON Web Token
+    @override
+    ClientBrowser setJWT(value) {
+        config['jWT'] = value;
+        addHeader('X-Appwrite-JWT', value);
+        return this;
+    }
+    @override
+    ClientBrowser setLocale(value) {
+        config['locale'] = value;
+        addHeader('X-Appwrite-Locale', value);
+        return this;
+    }
+    /// The user session to authenticate with
+    @override
+    ClientBrowser setSession(value) {
+        config['session'] = value;
+        addHeader('X-Appwrite-Session', value);
+        return this;
+    }
+    /// The user agent string of the client that made the request
+    @override
+    ClientBrowser setForwardedUserAgent(value) {
+        config['forwardedUserAgent'] = value;
+        addHeader('X-Forwarded-User-Agent', value);
+        return this;
+    }
+    /// Your secret dev API key
+    @override
+    ClientBrowser setDevKey(value) {
+        config['devKey'] = value;
+        addHeader('X-Appwrite-Dev-Key', value);
+        return this;
+    }
+    /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
+    @override
+    ClientBrowser setCookie(value) {
+        config['cookie'] = value;
+        addHeader('Cookie', value);
+        return this;
+    }
+    /// Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+    @override
+    ClientBrowser setImpersonateUserId(value) {
+        config['impersonateUserId'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Id', value);
+        return this;
+    }
+    /// Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+    @override
+    ClientBrowser setImpersonateUserEmail(value) {
+        config['impersonateUserEmail'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Email', value);
+        return this;
+    }
+    /// Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+    @override
+    ClientBrowser setImpersonateUserPhone(value) {
+        config['impersonateUserPhone'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Phone', value);
+        return this;
+    }
 
   @override
   ClientBrowser setSelfSigned({bool status = true}) {
@@ -185,8 +175,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
     late Response res;
     if (size <= chunkSize) {
-      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!,
-          filename: file.filename);
+      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!, filename: file.filename);
       return call(
         HttpMethod.post,
         path: path,
@@ -196,6 +185,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     }
 
     var offset = 0;
+    String? uploadId;
     if (idParamName.isNotEmpty) {
       //make a request to check if a file already exists
       try {
@@ -206,33 +196,103 @@ class ClientBrowser extends ClientBase with ClientMixin {
         );
         final int chunksUploaded = res.data['chunksUploaded'] as int;
         offset = chunksUploaded * chunkSize;
+        uploadId = res.data['\$id'] ?? params[idParamName]?.toString();
       } on AppwriteException catch (_) {}
     }
 
-    while (offset < size) {
-      List<int> chunk = [];
-      final end = min(offset + chunkSize, size);
-      chunk = file.bytes!.getRange(offset, end).toList();
-      params[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
-          filename: file.filename);
-      headers['content-range'] =
-          'bytes $offset-${min<int>((offset + chunkSize - 1), size - 1)}/$size';
-      res = await call(HttpMethod.post,
-          path: path, headers: headers, params: params);
-      offset += chunkSize;
-      if (offset < size) {
-        headers['x-appwrite-id'] = res.data['\$id'];
-      }
-      final progress = UploadProgress(
-        $id: res.data['\$id'] ?? '',
-        progress: min(offset, size) / size * 100,
-        sizeUploaded: min(offset, size),
-        chunksTotal: res.data['chunksTotal'] ?? 0,
-        chunksUploaded: res.data['chunksUploaded'] ?? 0,
-      );
-      onProgress?.call(progress);
+    if (offset >= size) {
+      return res;
     }
-    return res;
+
+    final totalChunks = (size / chunkSize).ceil();
+
+    Future<Response> uploadChunk(int index, int start, int end, String? id) async {
+      List<int> chunk = [];
+      chunk = file.bytes!.getRange(start, end).toList();
+
+      final chunkParams = Map<String, dynamic>.from(params);
+      chunkParams[paramName] =
+          http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
+      final chunkHeaders = Map<String, String>.from(headers);
+      if (id != null && id.isNotEmpty) {
+        chunkHeaders['x-appwrite-id'] = id;
+      }
+      chunkHeaders['content-range'] = 'bytes $start-${end - 1}/$size';
+
+      return call(
+        HttpMethod.post,
+        path: path,
+        headers: chunkHeaders,
+        params: chunkParams,
+      );
+    }
+
+    final firstStart = offset;
+    final firstEnd = min(firstStart + chunkSize, size);
+    final firstIndex = firstStart ~/ chunkSize;
+    res = await uploadChunk(firstIndex, firstStart, firstEnd, uploadId);
+    uploadId = res.data['\$id'] ?? uploadId;
+
+    var completedChunks = firstIndex + 1;
+    var uploadedBytes = firstEnd;
+    var lastResponse = res;
+
+    bool isUploadComplete(Response response) {
+      final chunksUploaded = response.data['chunksUploaded'];
+      final chunksTotal = response.data['chunksTotal'] ?? totalChunks;
+      return chunksUploaded is num && chunksTotal is num && chunksUploaded >= chunksTotal;
+    }
+
+    final progress = UploadProgress(
+      $id: uploadId ?? '',
+      progress: min(uploadedBytes, size) / size * 100,
+      sizeUploaded: min(uploadedBytes, size),
+      chunksTotal: totalChunks,
+      chunksUploaded: completedChunks,
+    );
+    onProgress?.call(progress);
+
+    final chunks = <Map<String, int>>[];
+    for (var start = firstEnd; start < size; start += chunkSize) {
+      final end = min(start + chunkSize, size);
+      chunks.add({
+        'index': start ~/ chunkSize,
+        'start': start,
+        'end': end,
+      });
+    }
+
+    var nextChunk = 0;
+    Future<void> uploadNext() async {
+      while (nextChunk < chunks.length) {
+        final chunk = chunks[nextChunk++];
+        final chunkResponse = await uploadChunk(
+          chunk['index']!,
+          chunk['start']!,
+          chunk['end']!,
+          uploadId,
+        );
+        completedChunks++;
+        uploadedBytes += chunk['end']! - chunk['start']!;
+        if (isUploadComplete(chunkResponse)) {
+          lastResponse = chunkResponse;
+        }
+
+        final progress = UploadProgress(
+          $id: uploadId ?? '',
+          progress: min(uploadedBytes, size) / size * 100,
+          sizeUploaded: min(uploadedBytes, size),
+          chunksTotal: totalChunks,
+          chunksUploaded: completedChunks,
+        );
+        onProgress?.call(progress);
+      }
+    }
+
+    final concurrency = min(8, chunks.length);
+    await Future.wait(List.generate(concurrency, (_) => uploadNext()));
+
+    return lastResponse;
   }
 
   @override
