@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Yandex.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, '6a8a6a0000000000000000000091483c');
-                  expect(result.clientSecret, 'your-oauth2-client-secret');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, '6a8a6a0000000000000000000091483c');
+      expect(result.clientSecret, 'your-oauth2-client-secret');
+    });
   });
 }
