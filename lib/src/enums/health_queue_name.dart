@@ -1,6 +1,6 @@
 part of '../../enums.dart';
 
-enum Name {
+enum HealthQueueName {
   v1Database(value: 'v1-database'),
   v1Deletes(value: 'v1-deletes'),
   v1Audits(value: 'v1-audits'),
@@ -15,7 +15,7 @@ enum Name {
   v1Messaging(value: 'v1-messaging'),
   v1Migrations(value: 'v1-migrations');
 
-  const Name({required this.value});
+  const HealthQueueName({required this.value});
 
   final String value;
 

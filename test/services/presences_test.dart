@@ -110,7 +110,7 @@ void main() {
       expect(response, isA<models.Presence>());
     });
 
-    test('test method updatePresence()', () async {
+    test('test method update()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
@@ -124,7 +124,7 @@ void main() {
         HttpMethod.patch,
       )).thenAnswer((_) async => Response(data: data));
 
-      final response = await presences.updatePresence(
+      final response = await presences.update(
         presenceId: '<PRESENCE_ID>',
         userId: '<USER_ID>',
       );

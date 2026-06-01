@@ -2054,6 +2054,15 @@ class Project extends Service {
       if (response['\$id'] == 'membership-privacy') {
         return models.PolicyMembershipPrivacy.fromMap(response);
       }
+      if (response['\$id'] == 'deny-aliased-email') {
+        return models.PolicyDenyAliasedEmail.fromMap(response);
+      }
+      if (response['\$id'] == 'deny-disposable-email') {
+        return models.PolicyDenyDisposableEmail.fromMap(response);
+      }
+      if (response['\$id'] == 'deny-free-email') {
+        return models.PolicyDenyFreeEmail.fromMap(response);
+      }
 
       throw StateError(
           'Unable to match response to any expected response model.');

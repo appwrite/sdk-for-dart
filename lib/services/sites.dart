@@ -44,6 +44,8 @@ class Sites extends Service {
       String? providerBranch,
       bool? providerSilentMode,
       String? providerRootDirectory,
+      List<String>? providerBranches,
+      List<String>? providerPaths,
       String? buildSpecification,
       String? runtimeSpecification,
       int? deploymentRetention}) async {
@@ -70,6 +72,8 @@ class Sites extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
+      if (providerBranches != null) 'providerBranches': providerBranches,
+      if (providerPaths != null) 'providerPaths': providerPaths,
       if (buildSpecification != null) 'buildSpecification': buildSpecification,
       if (runtimeSpecification != null)
         'runtimeSpecification': runtimeSpecification,
@@ -150,6 +154,8 @@ class Sites extends Service {
       String? providerBranch,
       bool? providerSilentMode,
       String? providerRootDirectory,
+      List<String>? providerBranches,
+      List<String>? providerPaths,
       String? buildSpecification,
       String? runtimeSpecification,
       int? deploymentRetention}) async {
@@ -175,6 +181,8 @@ class Sites extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
+      'providerBranches': providerBranches,
+      'providerPaths': providerPaths,
       if (buildSpecification != null) 'buildSpecification': buildSpecification,
       if (runtimeSpecification != null)
         'runtimeSpecification': runtimeSpecification,

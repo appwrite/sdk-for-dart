@@ -8,7 +8,7 @@ void main() {
         $id: 'github',
         enabled: true,
         keyString: 'nsgzxh0000000000008j85a2',
-        sharedSecret: 'tp000000ru',
+        sharedSecret: 'your-oauth2-client-secret',
       );
 
       final map = model.toMap();
@@ -17,7 +17,7 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.keyString, 'nsgzxh0000000000008j85a2');
-      expect(result.sharedSecret, 'tp000000ru');
+      expect(result.sharedSecret, 'your-oauth2-client-secret');
     });
   });
 }

@@ -5,6 +5,7 @@ enum BackupServices {
   tablesdb(value: 'tablesdb'),
   documentsdb(value: 'documentsdb'),
   vectorsdb(value: 'vectorsdb'),
+  dedicatedDatabases(value: 'dedicatedDatabases'),
   functions(value: 'functions'),
   storage(value: 'storage');
 

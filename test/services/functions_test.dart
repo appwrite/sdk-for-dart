@@ -98,6 +98,8 @@ void main() {
         'providerBranch': 'main',
         'providerRootDirectory': 'functions/helloWorld',
         'providerSilentMode': true,
+        'providerBranches': [],
+        'providerPaths': [],
         'buildSpecification': 's-1vcpu-512mb',
         'runtimeSpecification': 's-1vcpu-512mb',
       };
@@ -172,6 +174,8 @@ void main() {
         'providerBranch': 'main',
         'providerRootDirectory': 'functions/helloWorld',
         'providerSilentMode': true,
+        'providerBranches': [],
+        'providerPaths': [],
         'buildSpecification': 's-1vcpu-512mb',
         'runtimeSpecification': 's-1vcpu-512mb',
       };
@@ -216,6 +220,8 @@ void main() {
         'providerBranch': 'main',
         'providerRootDirectory': 'functions/helloWorld',
         'providerSilentMode': true,
+        'providerBranches': [],
+        'providerPaths': [],
         'buildSpecification': 's-1vcpu-512mb',
         'runtimeSpecification': 's-1vcpu-512mb',
       };
@@ -273,6 +279,8 @@ void main() {
         'providerBranch': 'main',
         'providerRootDirectory': 'functions/helloWorld',
         'providerSilentMode': true,
+        'providerBranches': [],
+        'providerPaths': [],
         'buildSpecification': 's-1vcpu-512mb',
         'runtimeSpecification': 's-1vcpu-512mb',
       };

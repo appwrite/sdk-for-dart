@@ -10,7 +10,7 @@ Client client = Client()
 Health health = Health(client);
 
 HealthQueue result = await health.getFailedJobs(
-    name: enums.Name.v1Database,
+    name: enums.HealthQueueName.v1Database,
     threshold: 0, // (optional)
 );
 ```

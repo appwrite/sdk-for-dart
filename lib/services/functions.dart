@@ -41,12 +41,14 @@ class Functions extends Service {
       bool? logging,
       String? entrypoint,
       String? commands,
-      List<enums.Scopes>? scopes,
+      List<enums.ProjectKeyScopes>? scopes,
       String? installationId,
       String? providerRepositoryId,
       String? providerBranch,
       bool? providerSilentMode,
       String? providerRootDirectory,
+      List<String>? providerBranches,
+      List<String>? providerPaths,
       String? buildSpecification,
       String? runtimeSpecification,
       int? deploymentRetention}) async {
@@ -72,6 +74,8 @@ class Functions extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
+      if (providerBranches != null) 'providerBranches': providerBranches,
+      if (providerPaths != null) 'providerPaths': providerPaths,
       if (buildSpecification != null) 'buildSpecification': buildSpecification,
       if (runtimeSpecification != null)
         'runtimeSpecification': runtimeSpecification,
@@ -145,12 +149,14 @@ class Functions extends Service {
       bool? logging,
       String? entrypoint,
       String? commands,
-      List<enums.Scopes>? scopes,
+      List<enums.ProjectKeyScopes>? scopes,
       String? installationId,
       String? providerRepositoryId,
       String? providerBranch,
       bool? providerSilentMode,
       String? providerRootDirectory,
+      List<String>? providerBranches,
+      List<String>? providerPaths,
       String? buildSpecification,
       String? runtimeSpecification,
       int? deploymentRetention}) async {
@@ -175,6 +181,8 @@ class Functions extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
+      'providerBranches': providerBranches,
+      'providerPaths': providerPaths,
       if (buildSpecification != null) 'buildSpecification': buildSpecification,
       if (runtimeSpecification != null)
         'runtimeSpecification': runtimeSpecification,

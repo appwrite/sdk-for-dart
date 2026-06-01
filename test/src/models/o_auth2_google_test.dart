@@ -9,7 +9,7 @@ void main() {
         enabled: true,
         clientId:
             '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com',
-        clientSecret: 'example-google-client-secret',
+        clientSecret: 'your-oauth2-client-secret',
         prompt: [],
       );
 
@@ -20,7 +20,7 @@ void main() {
       expect(result.enabled, true);
       expect(result.clientId,
           '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com');
-      expect(result.clientSecret, 'example-google-client-secret');
+      expect(result.clientSecret, 'your-oauth2-client-secret');
       expect(result.prompt, []);
     });
   });

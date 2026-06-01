@@ -175,7 +175,7 @@ class Project implements Model {
       "services": services.map((p) => p.toMap()).toList(),
       "protocols": protocols.map((p) => p.toMap()).toList(),
       "region": region,
-      "billingLimits": billingLimits.toMap(),
+      "billingLimits": billingLimits?.toMap(),
       "blocks": blocks.map((p) => p.toMap()).toList(),
       "consoleAccessedAt": consoleAccessedAt,
     };

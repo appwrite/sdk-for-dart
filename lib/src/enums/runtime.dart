@@ -32,9 +32,6 @@ enum Runtime {
   pythonMl311(value: 'python-ml-3.11'),
   pythonMl312(value: 'python-ml-3.12'),
   pythonMl313(value: 'python-ml-3.13'),
-  deno121(value: 'deno-1.21'),
-  deno124(value: 'deno-1.24'),
-  deno135(value: 'deno-1.35'),
   deno140(value: 'deno-1.40'),
   deno146(value: 'deno-1.46'),
   deno20(value: 'deno-2.0'),
@@ -53,6 +50,7 @@ enum Runtime {
   dart39(value: 'dart-3.9'),
   dart310(value: 'dart-3.10'),
   dart311(value: 'dart-3.11'),
+  dart312(value: 'dart-3.12'),
   dotnet60(value: 'dotnet-6.0'),
   dotnet70(value: 'dotnet-7.0'),
   dotnet80(value: 'dotnet-8.0'),
@@ -92,7 +90,8 @@ enum Runtime {
   flutter332(value: 'flutter-3.32'),
   flutter335(value: 'flutter-3.35'),
   flutter338(value: 'flutter-3.38'),
-  flutter341(value: 'flutter-3.41');
+  flutter341(value: 'flutter-3.41'),
+  flutter344(value: 'flutter-3.44');
 
   const Runtime({required this.value});
 

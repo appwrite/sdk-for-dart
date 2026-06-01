@@ -1,10 +1,10 @@
 part of '../../enums.dart';
 
 enum StatusCode {
-  movedPermanently301(value: '301'),
-  found302(value: '302'),
-  temporaryRedirect307(value: '307'),
-  permanentRedirect308(value: '308');
+  movedPermanently(value: '301'),
+  found(value: '302'),
+  temporaryRedirect(value: '307'),
+  permanentRedirect(value: '308');
 
   const StatusCode({required this.value});
 

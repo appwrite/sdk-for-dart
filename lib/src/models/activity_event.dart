@@ -5,17 +5,17 @@ class ActivityEvent implements Model {
   /// Event ID.
   final String $id;
 
-  /// User type.
-  final String userType;
+  /// Actor type.
+  final String actorType;
 
-  /// User ID.
-  final String userId;
+  /// Actor ID.
+  final String actorId;
 
-  /// User Email.
-  final String userEmail;
+  /// Actor Email.
+  final String actorEmail;
 
-  /// User Name.
-  final String userName;
+  /// Actor Name.
+  final String actorName;
 
   /// Resource parent.
   final String resourceParent;
@@ -100,10 +100,10 @@ class ActivityEvent implements Model {
 
   ActivityEvent({
     required this.$id,
-    required this.userType,
-    required this.userId,
-    required this.userEmail,
-    required this.userName,
+    required this.actorType,
+    required this.actorId,
+    required this.actorEmail,
+    required this.actorName,
     required this.resourceParent,
     required this.resourceType,
     required this.resourceId,
@@ -136,10 +136,10 @@ class ActivityEvent implements Model {
   factory ActivityEvent.fromMap(Map<String, dynamic> map) {
     return ActivityEvent(
       $id: map['\$id'].toString(),
-      userType: map['userType'].toString(),
-      userId: map['userId'].toString(),
-      userEmail: map['userEmail'].toString(),
-      userName: map['userName'].toString(),
+      actorType: map['actorType'].toString(),
+      actorId: map['actorId'].toString(),
+      actorEmail: map['actorEmail'].toString(),
+      actorName: map['actorName'].toString(),
       resourceParent: map['resourceParent'].toString(),
       resourceType: map['resourceType'].toString(),
       resourceId: map['resourceId'].toString(),
@@ -174,10 +174,10 @@ class ActivityEvent implements Model {
   Map<String, dynamic> toMap() {
     return {
       "\$id": $id,
-      "userType": userType,
-      "userId": userId,
-      "userEmail": userEmail,
-      "userName": userName,
+      "actorType": actorType,
+      "actorId": actorId,
+      "actorEmail": actorEmail,
+      "actorName": actorName,
       "resourceParent": resourceParent,
       "resourceType": resourceType,
       "resourceId": resourceId,

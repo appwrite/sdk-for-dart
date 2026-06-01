@@ -11,10 +11,18 @@ class UsageGauge implements Model {
   /// The snapshot timestamp.
   final String time;
 
+  /// The resource type.
+  final String resourceType;
+
+  /// The resource ID.
+  final String resourceId;
+
   UsageGauge({
     required this.metric,
     required this.value,
     required this.time,
+    required this.resourceType,
+    required this.resourceId,
   });
 
   factory UsageGauge.fromMap(Map<String, dynamic> map) {
@@ -22,6 +30,8 @@ class UsageGauge implements Model {
       metric: map['metric'].toString(),
       value: map['value'],
       time: map['time'].toString(),
+      resourceType: map['resourceType'].toString(),
+      resourceId: map['resourceId'].toString(),
     );
   }
 
@@ -31,6 +41,8 @@ class UsageGauge implements Model {
       "metric": metric,
       "value": value,
       "time": time,
+      "resourceType": resourceType,
+      "resourceId": resourceId,
     };
   }
 }

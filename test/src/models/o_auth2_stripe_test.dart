@@ -8,8 +8,7 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'ca_UKibXX0000000000000000000006byvR',
-        apiSecretKey:
-            'sk_51SfOd000000000000000000000000000000000000000000000000000000000000000000000000000000000000000QGWYfp',
+        apiSecretKey: 'your-oauth2-client-secret',
       );
 
       final map = model.toMap();
@@ -18,8 +17,7 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, 'ca_UKibXX0000000000000000000006byvR');
-      expect(result.apiSecretKey,
-          'sk_51SfOd000000000000000000000000000000000000000000000000000000000000000000000000000000000000000QGWYfp');
+      expect(result.apiSecretKey, 'your-oauth2-client-secret');
     });
   });
 }

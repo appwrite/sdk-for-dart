@@ -86,6 +86,12 @@ class Func implements Model {
   /// Is VCS (Version Control System) connection is in silent mode? When in silence mode, no comments will be posted on the repository pull or merge requests
   final bool providerSilentMode;
 
+  /// List of branch name patterns that trigger automatic deployments. Supports glob wildcards. Empty list deploys on all branches.
+  final List<String> providerBranches;
+
+  /// List of file path patterns that trigger automatic deployments. Supports glob wildcards. Empty list deploys on all file changes.
+  final List<String> providerPaths;
+
   /// Machine specification for deployment builds.
   final String buildSpecification;
 
@@ -121,6 +127,8 @@ class Func implements Model {
     required this.providerBranch,
     required this.providerRootDirectory,
     required this.providerSilentMode,
+    required this.providerBranches,
+    required this.providerPaths,
     required this.buildSpecification,
     required this.runtimeSpecification,
   });
@@ -155,6 +163,8 @@ class Func implements Model {
       providerBranch: map['providerBranch'].toString(),
       providerRootDirectory: map['providerRootDirectory'].toString(),
       providerSilentMode: map['providerSilentMode'],
+      providerBranches: List.from(map['providerBranches'] ?? []),
+      providerPaths: List.from(map['providerPaths'] ?? []),
       buildSpecification: map['buildSpecification'].toString(),
       runtimeSpecification: map['runtimeSpecification'].toString(),
     );
@@ -191,6 +201,8 @@ class Func implements Model {
       "providerBranch": providerBranch,
       "providerRootDirectory": providerRootDirectory,
       "providerSilentMode": providerSilentMode,
+      "providerBranches": providerBranches,
+      "providerPaths": providerPaths,
       "buildSpecification": buildSpecification,
       "runtimeSpecification": runtimeSpecification,
     };

@@ -9,7 +9,10 @@ enum ProjectPolicyId {
   sessionInvalidation(value: 'session-invalidation'),
   sessionLimit(value: 'session-limit'),
   userLimit(value: 'user-limit'),
-  membershipPrivacy(value: 'membership-privacy');
+  membershipPrivacy(value: 'membership-privacy'),
+  denyAliasedEmail(value: 'deny-aliased-email'),
+  denyDisposableEmail(value: 'deny-disposable-email'),
+  denyFreeEmail(value: 'deny-free-email');
 
   const ProjectPolicyId({required this.value});
 

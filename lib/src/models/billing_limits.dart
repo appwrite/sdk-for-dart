@@ -1,6 +1,6 @@
 part of '../../models.dart';
 
-/// BillingLimits
+/// Limits
 class BillingLimits implements Model {
   /// Bandwidth limit
   final int? bandwidth;

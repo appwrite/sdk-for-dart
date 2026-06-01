@@ -10,7 +10,7 @@ Client client = Client()
 
 Presences presences = Presences(client);
 
-Presence result = await presences.updatePresence(
+Presence result = await presences.update(
     presenceId: '<PRESENCE_ID>',
     userId: '<USER_ID>',
     status: '<STATUS>', // (optional)

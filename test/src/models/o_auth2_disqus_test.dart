@@ -9,8 +9,7 @@ void main() {
         enabled: true,
         publicKey:
             'cgegH70000000000000000000000000000000000000000000000000000Hr1nYX',
-        secretKey:
-            'W7Bykj00000000000000000000000000000000000000000000000000003o43w9',
+        secretKey: 'your-oauth2-client-secret',
       );
 
       final map = model.toMap();
@@ -20,8 +19,7 @@ void main() {
       expect(result.enabled, true);
       expect(result.publicKey,
           'cgegH70000000000000000000000000000000000000000000000000000Hr1nYX');
-      expect(result.secretKey,
-          'W7Bykj00000000000000000000000000000000000000000000000000003o43w9');
+      expect(result.secretKey, 'your-oauth2-client-secret');
     });
   });
 }

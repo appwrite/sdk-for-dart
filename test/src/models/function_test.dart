@@ -33,6 +33,8 @@ void main() {
         providerBranch: 'main',
         providerRootDirectory: 'functions/helloWorld',
         providerSilentMode: true,
+        providerBranches: [],
+        providerPaths: [],
         buildSpecification: 's-1vcpu-512mb',
         runtimeSpecification: 's-1vcpu-512mb',
       );
@@ -68,6 +70,8 @@ void main() {
       expect(result.providerBranch, 'main');
       expect(result.providerRootDirectory, 'functions/helloWorld');
       expect(result.providerSilentMode, true);
+      expect(result.providerBranches, []);
+      expect(result.providerPaths, []);
       expect(result.buildSpecification, 's-1vcpu-512mb');
       expect(result.runtimeSpecification, 's-1vcpu-512mb');
     });

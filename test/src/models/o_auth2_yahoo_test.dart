@@ -9,7 +9,7 @@ void main() {
         enabled: true,
         clientId:
             'dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm',
-        clientSecret: 'cf978f0000000000000000000000000000c5e2e9',
+        clientSecret: 'your-oauth2-client-secret',
       );
 
       final map = model.toMap();
@@ -19,7 +19,7 @@ void main() {
       expect(result.enabled, true);
       expect(result.clientId,
           'dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm');
-      expect(result.clientSecret, 'cf978f0000000000000000000000000000c5e2e9');
+      expect(result.clientSecret, 'your-oauth2-client-secret');
     });
   });
 }

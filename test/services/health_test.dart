@@ -233,7 +233,7 @@ void main() {
       )).thenAnswer((_) async => Response(data: data));
 
       final response = await health.getFailedJobs(
-        name: enums.Name.v1Database,
+        name: enums.HealthQueueName.v1Database,
       );
       expect(response, isA<models.HealthQueue>());
     });

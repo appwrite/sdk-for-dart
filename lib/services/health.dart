@@ -204,7 +204,7 @@ class Health extends Service {
   /// Returns the amount of failed jobs in a given queue.
   ///
   Future<models.HealthQueue> getFailedJobs(
-      {required enums.Name name, int? threshold}) async {
+      {required enums.HealthQueueName name, int? threshold}) async {
     final String apiPath =
         '/health/queue/failed/{name}'.replaceAll('{name}', name.value);
 

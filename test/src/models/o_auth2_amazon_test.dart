@@ -9,8 +9,7 @@ void main() {
         enabled: true,
         clientId:
             'amzn1.application-oa2-client.87400c00000000000000000000063d5b2',
-        clientSecret:
-            '79ffe4000000000000000000000000000000000000000000000000000002de55',
+        clientSecret: 'your-oauth2-client-secret',
       );
 
       final map = model.toMap();
@@ -20,8 +19,7 @@ void main() {
       expect(result.enabled, true);
       expect(result.clientId,
           'amzn1.application-oa2-client.87400c00000000000000000000063d5b2');
-      expect(result.clientSecret,
-          '79ffe4000000000000000000000000000000000000000000000000000002de55');
+      expect(result.clientSecret, 'your-oauth2-client-secret');
     });
   });
 }

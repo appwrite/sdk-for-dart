@@ -6,10 +6,10 @@ void main() {
     test('model', () {
       final model = ActivityEvent(
         $id: '5e5ea5c16897e',
-        userType: 'user',
-        userId: '610fc2f985ee0',
-        userEmail: 'john@appwrite.io',
-        userName: 'John Doe',
+        actorType: 'user',
+        actorId: '610fc2f985ee0',
+        actorEmail: 'john@appwrite.io',
+        actorName: 'John Doe',
         resourceParent: 'database/ID',
         resourceType: 'collection',
         resourceId: '610fc2f985ee0',
@@ -44,10 +44,10 @@ void main() {
       final result = ActivityEvent.fromMap(map);
 
       expect(result.$id, '5e5ea5c16897e');
-      expect(result.userType, 'user');
-      expect(result.userId, '610fc2f985ee0');
-      expect(result.userEmail, 'john@appwrite.io');
-      expect(result.userName, 'John Doe');
+      expect(result.actorType, 'user');
+      expect(result.actorId, '610fc2f985ee0');
+      expect(result.actorEmail, 'john@appwrite.io');
+      expect(result.actorName, 'John Doe');
       expect(result.resourceParent, 'database/ID');
       expect(result.resourceType, 'collection');
       expect(result.resourceId, '610fc2f985ee0');
