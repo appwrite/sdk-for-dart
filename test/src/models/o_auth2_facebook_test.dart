@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Facebook.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.appId, '260600000007694');
-      expect(result.appSecret, 'your-oauth2-client-secret');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.appId, '260600000007694');
+                  expect(result.appSecret, 'your-oauth2-client-secret');
+          });
   });
 }

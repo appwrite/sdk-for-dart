@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Autodesk.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '5zw90v00000000000000000000kVYXN7');
-      expect(result.clientSecret, 'your-oauth2-client-secret');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '5zw90v00000000000000000000kVYXN7');
+                  expect(result.clientSecret, 'your-oauth2-client-secret');
+          });
   });
 }

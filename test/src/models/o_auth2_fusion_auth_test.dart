@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = OAuth2FusionAuth.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, 'b2222c00-0000-0000-0000-000000862097');
-      expect(result.clientSecret, 'your-oauth2-client-secret');
-      expect(result.endpoint, 'example.fusionauth.io');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, 'b2222c00-0000-0000-0000-000000862097');
+                  expect(result.clientSecret, 'your-oauth2-client-secret');
+                  expect(result.endpoint, 'example.fusionauth.io');
+          });
   });
 }

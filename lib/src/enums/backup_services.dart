@@ -1,17 +1,19 @@
 part of '../../enums.dart';
 
 enum BackupServices {
-  databases(value: 'databases'),
-  tablesdb(value: 'tablesdb'),
-  documentsdb(value: 'documentsdb'),
-  vectorsdb(value: 'vectorsdb'),
-  dedicatedDatabases(value: 'dedicatedDatabases'),
-  functions(value: 'functions'),
-  storage(value: 'storage');
+    databases(value: 'databases'),
+    tablesdb(value: 'tablesdb'),
+    documentsdb(value: 'documentsdb'),
+    vectorsdb(value: 'vectorsdb'),
+    dedicatedDatabases(value: 'dedicatedDatabases'),
+    functions(value: 'functions'),
+    storage(value: 'storage');
 
-  const BackupServices({required this.value});
+    const BackupServices({
+        required this.value
+    });
 
-  final String value;
+    final String value;
 
-  String toJson() => value;
+    String toJson() => value;
 }

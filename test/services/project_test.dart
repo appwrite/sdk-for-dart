@@ -24,8 +24,7 @@ class MockClient extends Mock implements Client {
 
   @override
   Future<String?> webAuth(Uri url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
   @override
@@ -37,2143 +36,2473 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+    return super.noSuchMethod(Invocation.method(#chunkedUpload, [path, params, paramName, idParamName, headers]), returnValue: Response(data: {}));
   }
 }
 
 void main() {
-  group('Project test', () {
-    late MockClient client;
-    late Project project;
-
-    setUp(() {
-      client = MockClient();
-      project = Project(client);
-    });
+    group('Project test', () {
+        late MockClient client;
+        late Project project;
+
+        setUp(() {
+            client = MockClient();
+            project = Project(client);
+        });
+
+        test('test method get()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.get(
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method delete()', () async {
+
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.delete(
+            );
+        });
+
+        test('test method updateAuthMethod()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateAuthMethod(
+                methodId: enums.ProjectAuthMethodId.emailPassword,
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method listKeys()', () async {
+
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'keys': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.listKeys(
+            );
+            expect(response, isA<models.KeyList>());
+
+        });
+
+        test('test method createKey()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My API Key',
+                'expire': '2020-10-15T06:38:00.000+00:00',
+                'scopes': [],
+                'secret': '919c2d18fb5d4...a2ae413da83346ad2',
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',
+                'sdks': [],};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.createKey(
+                keyId: '<KEY_ID>',
+                name: '<NAME>',
+                scopes: [enums.ProjectKeyScopes.projectRead],
+            );
+            expect(response, isA<models.Key>());
+
+        });
+
+        test('test method createEphemeralKey()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My API Key',
+                'expire': '2020-10-15T06:38:00.000+00:00',
+                'scopes': [],
+                'secret': '919c2d18fb5d4...a2ae413da83346ad2',
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',
+                'sdks': [],};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.createEphemeralKey(
+                scopes: [enums.ProjectKeyScopes.projectRead],
+                duration: 1,
+            );
+            expect(response, isA<models.EphemeralKey>());
+
+        });
+
+        test('test method getKey()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My API Key',
+                'expire': '2020-10-15T06:38:00.000+00:00',
+                'scopes': [],
+                'secret': '919c2d18fb5d4...a2ae413da83346ad2',
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',
+                'sdks': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.getKey(
+                keyId: '<KEY_ID>',
+            );
+            expect(response, isA<models.Key>());
+
+        });
+
+        test('test method updateKey()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My API Key',
+                'expire': '2020-10-15T06:38:00.000+00:00',
+                'scopes': [],
+                'secret': '919c2d18fb5d4...a2ae413da83346ad2',
+                'accessedAt': '2020-10-15T06:38:00.000+00:00',
+                'sdks': [],};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateKey(
+                keyId: '<KEY_ID>',
+                name: '<NAME>',
+                scopes: [enums.ProjectKeyScopes.projectRead],
+            );
+            expect(response, isA<models.Key>());
+
+        });
+
+        test('test method deleteKey()', () async {
+
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.deleteKey(
+                keyId: '<KEY_ID>',
+            );
+        });
+
+        test('test method updateLabels()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateLabels(
+                labels: [],
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method listMockPhones()', () async {
+
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'mockNumbers': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.listMockPhones(
+            );
+            expect(response, isA<models.MockNumberList>());
+
+        });
+
+        test('test method createMockPhone()', () async {
+
+            final Map<String, dynamic> data = {
+                'number': '+1612842323',
+                'otp': '123456',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.createMockPhone(
+                number: '+12065550100',
+                otp: '<OTP>',
+            );
+            expect(response, isA<models.MockNumber>());
+
+        });
+
+        test('test method getMockPhone()', () async {
+
+            final Map<String, dynamic> data = {
+                'number': '+1612842323',
+                'otp': '123456',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.getMockPhone(
+                number: '+12065550100',
+            );
+            expect(response, isA<models.MockNumber>());
+
+        });
+
+        test('test method updateMockPhone()', () async {
+
+            final Map<String, dynamic> data = {
+                'number': '+1612842323',
+                'otp': '123456',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateMockPhone(
+                number: '+12065550100',
+                otp: '<OTP>',
+            );
+            expect(response, isA<models.MockNumber>());
+
+        });
+
+        test('test method deleteMockPhone()', () async {
+
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.deleteMockPhone(
+                number: '+12065550100',
+            );
+        });
+
+        test('test method listOAuth2Providers()', () async {
+
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'providers': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.listOAuth2Providers(
+            );
+            expect(response, isA<models.OAuth2ProviderList>());
+
+        });
+
+        test('test method updateOAuth2Amazon()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'amzn1.application-oa2-client.87400c00000000000000000000063d5b2',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Amazon(
+            );
+            expect(response, isA<models.OAuth2Amazon>());
+
+        });
+
+        test('test method updateOAuth2Apple()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'apple',
+                'enabled': true,
+                'serviceId': 'ip.appwrite.app.web',
+                'keyId': 'P4000000N8',
+                'teamId': 'D4000000R6',
+                'p8File': '-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Apple(
+            );
+            expect(response, isA<models.OAuth2Apple>());
+
+        });
+
+        test('test method updateOAuth2Auth0()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'OaOkIA000000000000000000005KLSYq',
+                'clientSecret': 'your-oauth2-client-secret',
+                'endpoint': 'example.us.auth0.com',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Auth0(
+            );
+            expect(response, isA<models.OAuth2Auth0>());
+
+        });
+
+        test('test method updateOAuth2Authentik()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'dTKOPa0000000000000000000000000000e7G8hv',
+                'clientSecret': 'your-oauth2-client-secret',
+                'endpoint': 'example.authentik.com',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Authentik(
+            );
+            expect(response, isA<models.OAuth2Authentik>());
+
+        });
+
+        test('test method updateOAuth2Autodesk()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '5zw90v00000000000000000000kVYXN7',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Autodesk(
+            );
+            expect(response, isA<models.OAuth2Autodesk>());
+
+        });
+
+        test('test method updateOAuth2Bitbucket()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'key': 'Knt70000000000ByRc',
+                'secret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Bitbucket(
+            );
+            expect(response, isA<models.OAuth2Bitbucket>());
+
+        });
+
+        test('test method updateOAuth2Bitly()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'd95151000000000000000000000000000067af9b',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Bitly(
+            );
+            expect(response, isA<models.OAuth2Bitly>());
+
+        });
+
+        test('test method updateOAuth2Box()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'deglcs00000000000000000000x2og6y',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Box(
+            );
+            expect(response, isA<models.OAuth2Box>());
+
+        });
+
+        test('test method updateOAuth2Dailymotion()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'apiKey': '07a9000000000000067f',
+                'apiSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Dailymotion(
+            );
+            expect(response, isA<models.OAuth2Dailymotion>());
+
+        });
+
+        test('test method updateOAuth2Discord()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '950722000000343754',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Discord(
+            );
+            expect(response, isA<models.OAuth2Discord>());
+
+        });
+
+        test('test method updateOAuth2Disqus()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'publicKey': 'cgegH70000000000000000000000000000000000000000000000000000Hr1nYX',
+                'secretKey': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Disqus(
+            );
+            expect(response, isA<models.OAuth2Disqus>());
+
+        });
+
+        test('test method updateOAuth2Dropbox()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'appKey': 'jl000000000009t',
+                'appSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Dropbox(
+            );
+            expect(response, isA<models.OAuth2Dropbox>());
+
+        });
+
+        test('test method updateOAuth2Etsy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'keyString': 'nsgzxh0000000000008j85a2',
+                'sharedSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Etsy(
+            );
+            expect(response, isA<models.OAuth2Etsy>());
+
+        });
+
+        test('test method updateOAuth2Facebook()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'appId': '260600000007694',
+                'appSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Facebook(
+            );
+            expect(response, isA<models.OAuth2Facebook>());
+
+        });
+
+        test('test method updateOAuth2Figma()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'byay5H0000000000VtiI40',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Figma(
+            );
+            expect(response, isA<models.OAuth2Figma>());
+
+        });
+
+        test('test method updateOAuth2FusionAuth()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'b2222c00-0000-0000-0000-000000862097',
+                'clientSecret': 'your-oauth2-client-secret',
+                'endpoint': 'example.fusionauth.io',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2FusionAuth(
+            );
+            expect(response, isA<models.OAuth2FusionAuth>());
+
+        });
+
+        test('test method updateOAuth2GitHub()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'e4d87900000000540733',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2GitHub(
+            );
+            expect(response, isA<models.OAuth2Github>());
+
+        });
+
+        test('test method updateOAuth2Gitlab()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'applicationId': 'd41ffe0000000000000000000000000000000000000000000000000000d5e252',
+                'secret': 'your-oauth2-client-secret',
+                'endpoint': 'https://gitlab.com',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Gitlab(
+            );
+            expect(response, isA<models.OAuth2Gitlab>());
+
+        });
+
+        test('test method updateOAuth2Google()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com',
+                'clientSecret': 'your-oauth2-client-secret',
+                'prompt': [],};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Google(
+            );
+            expect(response, isA<models.OAuth2Google>());
+
+        });
+
+        test('test method updateOAuth2Keycloak()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'appwrite-o0000000st-app',
+                'clientSecret': 'your-oauth2-client-secret',
+                'endpoint': 'keycloak.example.com',
+                'realmName': 'appwrite-realm',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Keycloak(
+            );
+            expect(response, isA<models.OAuth2Keycloak>());
+
+        });
+
+        test('test method updateOAuth2Kick()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '01KQ7C00000000000001MFHS32',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Kick(
+            );
+            expect(response, isA<models.OAuth2Kick>());
+
+        });
+
+        test('test method updateOAuth2Linkedin()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '770000000000dv',
+                'primaryClientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Linkedin(
+            );
+            expect(response, isA<models.OAuth2Linkedin>());
+
+        });
+
+        test('test method updateOAuth2Microsoft()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'applicationId': '00001111-aaaa-2222-bbbb-3333cccc4444',
+                'applicationSecret': 'your-oauth2-client-secret',
+                'tenant': 'common',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Microsoft(
+            );
+            expect(response, isA<models.OAuth2Microsoft>());
+
+        });
+
+        test('test method updateOAuth2Notion()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'oauthClientId': '341d8700-0000-0000-0000-000000446ee3',
+                'oauthClientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Notion(
+            );
+            expect(response, isA<models.OAuth2Notion>());
+
+        });
+
+        test('test method updateOAuth2Oidc()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'qibI2x0000000000000000000000000006L2YFoG',
+                'clientSecret': 'your-oauth2-client-secret',
+                'wellKnownURL': 'https://myoauth.com/.well-known/openid-configuration',
+                'authorizationURL': 'https://myoauth.com/oauth2/authorize',
+                'tokenURL': 'https://myoauth.com/oauth2/token',
+                'userInfoURL': 'https://myoauth.com/oauth2/userinfo',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Oidc(
+            );
+            expect(response, isA<models.OAuth2Oidc>());
+
+        });
+
+        test('test method updateOAuth2Okta()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '0oa00000000000000698',
+                'clientSecret': 'your-oauth2-client-secret',
+                'domain': 'trial-6400025.okta.com',
+                'authorizationServerId': 'aus000000000000000h7z',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Okta(
+            );
+            expect(response, isA<models.OAuth2Okta>());
+
+        });
+
+        test('test method updateOAuth2Paypal()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB',
+                'secretKey': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Paypal(
+            );
+            expect(response, isA<models.OAuth2Paypal>());
+
+        });
+
+        test('test method updateOAuth2PaypalSandbox()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB',
+                'secretKey': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2PaypalSandbox(
+            );
+            expect(response, isA<models.OAuth2Paypal>());
+
+        });
+
+        test('test method updateOAuth2Podio()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'appwrite-oauth-test-app',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Podio(
+            );
+            expect(response, isA<models.OAuth2Podio>());
+
+        });
+
+        test('test method updateOAuth2Salesforce()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'customerKey': '3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq',
+                'customerSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Salesforce(
+            );
+            expect(response, isA<models.OAuth2Salesforce>());
+
+        });
+
+        test('test method updateOAuth2Slack()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '23000000089.15000000000023',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Slack(
+            );
+            expect(response, isA<models.OAuth2Slack>());
+
+        });
+
+        test('test method updateOAuth2Spotify()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '6ec271000000000000000000009beace',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Spotify(
+            );
+            expect(response, isA<models.OAuth2Spotify>());
+
+        });
+
+        test('test method updateOAuth2Stripe()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'ca_UKibXX0000000000000000000006byvR',
+                'apiSecretKey': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Stripe(
+            );
+            expect(response, isA<models.OAuth2Stripe>());
+
+        });
+
+        test('test method updateOAuth2Tradeshift()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'oauth2ClientId': 'appwrite-test-org.appwrite-test-app',
+                'oauth2ClientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Tradeshift(
+            );
+            expect(response, isA<models.OAuth2Tradeshift>());
+
+        });
+
+        test('test method updateOAuth2TradeshiftSandbox()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'oauth2ClientId': 'appwrite-test-org.appwrite-test-app',
+                'oauth2ClientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2TradeshiftSandbox(
+            );
+            expect(response, isA<models.OAuth2Tradeshift>());
+
+        });
+
+        test('test method updateOAuth2Twitch()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'vvi0in000000000000000000ikmt9p',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Twitch(
+            );
+            expect(response, isA<models.OAuth2Twitch>());
+
+        });
+
+        test('test method updateOAuth2WordPress()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '130005',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2WordPress(
+            );
+            expect(response, isA<models.OAuth2WordPress>());
+
+        });
+
+        test('test method updateOAuth2X()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'customerKey': 'slzZV0000000000000NFLaWT',
+                'secretKey': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2X(
+            );
+            expect(response, isA<models.OAuth2X>());
+
+        });
+
+        test('test method updateOAuth2Yahoo()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Yahoo(
+            );
+            expect(response, isA<models.OAuth2Yahoo>());
+
+        });
+
+        test('test method updateOAuth2Yandex()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '6a8a6a0000000000000000000091483c',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Yandex(
+            );
+            expect(response, isA<models.OAuth2Yandex>());
+
+        });
+
+        test('test method updateOAuth2Zoho()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': '1000.83C178000000000000000000RPNX0B',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Zoho(
+            );
+            expect(response, isA<models.OAuth2Zoho>());
+
+        });
+
+        test('test method updateOAuth2Zoom()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'clientId': 'QMAC00000000000000w0AQ',
+                'clientSecret': 'your-oauth2-client-secret',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateOAuth2Zoom(
+            );
+            expect(response, isA<models.OAuth2Zoom>());
+
+        });
+
+        test('test method getOAuth2Provider()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'github',
+                'enabled': true,
+                'applicationId': '00001111-aaaa-2222-bbbb-3333cccc4444',
+                'applicationSecret': 'your-oauth2-client-secret',
+                'tenant': 'common',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
 
-    test('test method get()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.get();
-      expect(response, isA<models.Project>());
-    });
+            final response = await project.getOAuth2Provider(
+                providerId: enums.ProjectOAuthProviderId.amazon,
+            );
+            expect(response, isA<models.OAuth2Microsoft>());
 
-    test('test method delete()', () async {
-      final data = '';
+        });
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+        test('test method listPlatforms()', () async {
 
-      final response = await project.delete();
-    });
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'platforms': [],};
 
-    test('test method updateAuthMethod()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateAuthMethod(
-        methodId: enums.ProjectAuthMethodId.emailPassword,
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
 
-    test('test method listKeys()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'keys': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.listKeys();
-      expect(response, isA<models.KeyList>());
-    });
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method createKey()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My API Key',
-        'expire': '2020-10-15T06:38:00.000+00:00',
-        'scopes': [],
-        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
-        'accessedAt': '2020-10-15T06:38:00.000+00:00',
-        'sdks': [],
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createKey(
-        keyId: '<KEY_ID>',
-        name: '<NAME>',
-        scopes: [enums.ProjectKeyScopes.projectRead],
-      );
-      expect(response, isA<models.Key>());
-    });
 
-    test('test method createEphemeralKey()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My API Key',
-        'expire': '2020-10-15T06:38:00.000+00:00',
-        'scopes': [],
-        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
-        'accessedAt': '2020-10-15T06:38:00.000+00:00',
-        'sdks': [],
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createEphemeralKey(
-        scopes: [enums.ProjectKeyScopes.projectRead],
-        duration: 1,
-      );
-      expect(response, isA<models.EphemeralKey>());
-    });
+            final response = await project.listPlatforms(
+            );
+            expect(response, isA<models.PlatformList>());
 
-    test('test method getKey()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My API Key',
-        'expire': '2020-10-15T06:38:00.000+00:00',
-        'scopes': [],
-        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
-        'accessedAt': '2020-10-15T06:38:00.000+00:00',
-        'sdks': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.getKey(
-        keyId: '<KEY_ID>',
-      );
-      expect(response, isA<models.Key>());
-    });
+        });
 
-    test('test method updateKey()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My API Key',
-        'expire': '2020-10-15T06:38:00.000+00:00',
-        'scopes': [],
-        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
-        'accessedAt': '2020-10-15T06:38:00.000+00:00',
-        'sdks': [],
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateKey(
-        keyId: '<KEY_ID>',
-        name: '<NAME>',
-        scopes: [enums.ProjectKeyScopes.projectRead],
-      );
-      expect(response, isA<models.Key>());
-    });
+        test('test method createAndroidPlatform()', () async {
 
-    test('test method deleteKey()', () async {
-      final data = '';
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'applicationId': 'com.company.appname',};
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.deleteKey(
-        keyId: '<KEY_ID>',
-      );
-    });
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateLabels()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateLabels(
-        labels: [],
-      );
-      expect(response, isA<models.Project>());
-    });
 
-    test('test method listMockPhones()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'mockNumbers': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.listMockPhones();
-      expect(response, isA<models.MockNumberList>());
-    });
+            final response = await project.createAndroidPlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                applicationId: '<APPLICATION_ID>',
+            );
+            expect(response, isA<models.PlatformAndroid>());
 
-    test('test method createMockPhone()', () async {
-      final Map<String, dynamic> data = {
-        'number': '+1612842323',
-        'otp': '123456',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createMockPhone(
-        number: '+12065550100',
-        otp: '<OTP>',
-      );
-      expect(response, isA<models.MockNumber>());
-    });
+        });
 
-    test('test method getMockPhone()', () async {
-      final Map<String, dynamic> data = {
-        'number': '+1612842323',
-        'otp': '123456',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.getMockPhone(
-        number: '+12065550100',
-      );
-      expect(response, isA<models.MockNumber>());
-    });
+        test('test method updateAndroidPlatform()', () async {
 
-    test('test method updateMockPhone()', () async {
-      final Map<String, dynamic> data = {
-        'number': '+1612842323',
-        'otp': '123456',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateMockPhone(
-        number: '+12065550100',
-        otp: '<OTP>',
-      );
-      expect(response, isA<models.MockNumber>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'applicationId': 'com.company.appname',};
 
-    test('test method deleteMockPhone()', () async {
-      final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.deleteMockPhone(
-        number: '+12065550100',
-      );
-    });
 
-    test('test method listOAuth2Providers()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'providers': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.listOAuth2Providers();
-      expect(response, isA<models.OAuth2ProviderList>());
-    });
+            final response = await project.updateAndroidPlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                applicationId: '<APPLICATION_ID>',
+            );
+            expect(response, isA<models.PlatformAndroid>());
 
-    test('test method updateOAuth2Amazon()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId':
-            'amzn1.application-oa2-client.87400c00000000000000000000063d5b2',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Amazon();
-      expect(response, isA<models.OAuth2Amazon>());
-    });
+        });
 
-    test('test method updateOAuth2Apple()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'apple',
-        'enabled': true,
-        'serviceId': 'ip.appwrite.app.web',
-        'keyId': 'P4000000N8',
-        'teamId': 'D4000000R6',
-        'p8File':
-            '-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Apple();
-      expect(response, isA<models.OAuth2Apple>());
-    });
+        test('test method createApplePlatform()', () async {
 
-    test('test method updateOAuth2Auth0()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'OaOkIA000000000000000000005KLSYq',
-        'clientSecret': 'your-oauth2-client-secret',
-        'endpoint': 'example.us.auth0.com',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Auth0();
-      expect(response, isA<models.OAuth2Auth0>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'bundleIdentifier': 'com.company.appname',};
 
-    test('test method updateOAuth2Authentik()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'dTKOPa0000000000000000000000000000e7G8hv',
-        'clientSecret': 'your-oauth2-client-secret',
-        'endpoint': 'example.authentik.com',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Authentik();
-      expect(response, isA<models.OAuth2Authentik>());
-    });
 
-    test('test method updateOAuth2Autodesk()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '5zw90v00000000000000000000kVYXN7',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Autodesk();
-      expect(response, isA<models.OAuth2Autodesk>());
-    });
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateOAuth2Bitbucket()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'key': 'Knt70000000000ByRc',
-        'secret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Bitbucket();
-      expect(response, isA<models.OAuth2Bitbucket>());
-    });
 
-    test('test method updateOAuth2Bitly()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'd95151000000000000000000000000000067af9b',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Bitly();
-      expect(response, isA<models.OAuth2Bitly>());
-    });
+            final response = await project.createApplePlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                bundleIdentifier: '<BUNDLE_IDENTIFIER>',
+            );
+            expect(response, isA<models.PlatformApple>());
 
-    test('test method updateOAuth2Box()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'deglcs00000000000000000000x2og6y',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Box();
-      expect(response, isA<models.OAuth2Box>());
-    });
+        });
 
-    test('test method updateOAuth2Dailymotion()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'apiKey': '07a9000000000000067f',
-        'apiSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Dailymotion();
-      expect(response, isA<models.OAuth2Dailymotion>());
-    });
+        test('test method updateApplePlatform()', () async {
 
-    test('test method updateOAuth2Discord()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '950722000000343754',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Discord();
-      expect(response, isA<models.OAuth2Discord>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'bundleIdentifier': 'com.company.appname',};
 
-    test('test method updateOAuth2Disqus()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'publicKey':
-            'cgegH70000000000000000000000000000000000000000000000000000Hr1nYX',
-        'secretKey': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Disqus();
-      expect(response, isA<models.OAuth2Disqus>());
-    });
 
-    test('test method updateOAuth2Dropbox()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'appKey': 'jl000000000009t',
-        'appSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Dropbox();
-      expect(response, isA<models.OAuth2Dropbox>());
-    });
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateOAuth2Etsy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'keyString': 'nsgzxh0000000000008j85a2',
-        'sharedSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Etsy();
-      expect(response, isA<models.OAuth2Etsy>());
-    });
 
-    test('test method updateOAuth2Facebook()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'appId': '260600000007694',
-        'appSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Facebook();
-      expect(response, isA<models.OAuth2Facebook>());
-    });
+            final response = await project.updateApplePlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                bundleIdentifier: '<BUNDLE_IDENTIFIER>',
+            );
+            expect(response, isA<models.PlatformApple>());
 
-    test('test method updateOAuth2Figma()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'byay5H0000000000VtiI40',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Figma();
-      expect(response, isA<models.OAuth2Figma>());
-    });
+        });
 
-    test('test method updateOAuth2FusionAuth()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'b2222c00-0000-0000-0000-000000862097',
-        'clientSecret': 'your-oauth2-client-secret',
-        'endpoint': 'example.fusionauth.io',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2FusionAuth();
-      expect(response, isA<models.OAuth2FusionAuth>());
-    });
+        test('test method createLinuxPlatform()', () async {
 
-    test('test method updateOAuth2GitHub()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'e4d87900000000540733',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2GitHub();
-      expect(response, isA<models.OAuth2Github>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'packageName': 'com.company.appname',};
 
-    test('test method updateOAuth2Gitlab()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'applicationId':
-            'd41ffe0000000000000000000000000000000000000000000000000000d5e252',
-        'secret': 'your-oauth2-client-secret',
-        'endpoint': 'https://gitlab.com',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Gitlab();
-      expect(response, isA<models.OAuth2Gitlab>());
-    });
 
-    test('test method updateOAuth2Google()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId':
-            '120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com',
-        'clientSecret': 'your-oauth2-client-secret',
-        'prompt': [],
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Google();
-      expect(response, isA<models.OAuth2Google>());
-    });
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateOAuth2Keycloak()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'appwrite-o0000000st-app',
-        'clientSecret': 'your-oauth2-client-secret',
-        'endpoint': 'keycloak.example.com',
-        'realmName': 'appwrite-realm',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Keycloak();
-      expect(response, isA<models.OAuth2Keycloak>());
-    });
 
-    test('test method updateOAuth2Kick()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '01KQ7C00000000000001MFHS32',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Kick();
-      expect(response, isA<models.OAuth2Kick>());
-    });
+            final response = await project.createLinuxPlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                packageName: '<PACKAGE_NAME>',
+            );
+            expect(response, isA<models.PlatformLinux>());
 
-    test('test method updateOAuth2Linkedin()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '770000000000dv',
-        'primaryClientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Linkedin();
-      expect(response, isA<models.OAuth2Linkedin>());
-    });
+        });
 
-    test('test method updateOAuth2Microsoft()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'applicationId': '00001111-aaaa-2222-bbbb-3333cccc4444',
-        'applicationSecret': 'your-oauth2-client-secret',
-        'tenant': 'common',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Microsoft();
-      expect(response, isA<models.OAuth2Microsoft>());
-    });
+        test('test method updateLinuxPlatform()', () async {
 
-    test('test method updateOAuth2Notion()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'oauthClientId': '341d8700-0000-0000-0000-000000446ee3',
-        'oauthClientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Notion();
-      expect(response, isA<models.OAuth2Notion>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'packageName': 'com.company.appname',};
 
-    test('test method updateOAuth2Oidc()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'qibI2x0000000000000000000000000006L2YFoG',
-        'clientSecret': 'your-oauth2-client-secret',
-        'wellKnownURL': 'https://myoauth.com/.well-known/openid-configuration',
-        'authorizationURL': 'https://myoauth.com/oauth2/authorize',
-        'tokenURL': 'https://myoauth.com/oauth2/token',
-        'userInfoURL': 'https://myoauth.com/oauth2/userinfo',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Oidc();
-      expect(response, isA<models.OAuth2Oidc>());
-    });
 
-    test('test method updateOAuth2Okta()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '0oa00000000000000698',
-        'clientSecret': 'your-oauth2-client-secret',
-        'domain': 'trial-6400025.okta.com',
-        'authorizationServerId': 'aus000000000000000h7z',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Okta();
-      expect(response, isA<models.OAuth2Okta>());
-    });
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateOAuth2Paypal()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId':
-            'AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB',
-        'secretKey': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Paypal();
-      expect(response, isA<models.OAuth2Paypal>());
-    });
 
-    test('test method updateOAuth2PaypalSandbox()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId':
-            'AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB',
-        'secretKey': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2PaypalSandbox();
-      expect(response, isA<models.OAuth2Paypal>());
-    });
+            final response = await project.updateLinuxPlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                packageName: '<PACKAGE_NAME>',
+            );
+            expect(response, isA<models.PlatformLinux>());
 
-    test('test method updateOAuth2Podio()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'appwrite-oauth-test-app',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Podio();
-      expect(response, isA<models.OAuth2Podio>());
-    });
+        });
 
-    test('test method updateOAuth2Salesforce()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'customerKey':
-            '3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq',
-        'customerSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Salesforce();
-      expect(response, isA<models.OAuth2Salesforce>());
-    });
+        test('test method createWebPlatform()', () async {
 
-    test('test method updateOAuth2Slack()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '23000000089.15000000000023',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Slack();
-      expect(response, isA<models.OAuth2Slack>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'hostname': 'app.example.com',};
 
-    test('test method updateOAuth2Spotify()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '6ec271000000000000000000009beace',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Spotify();
-      expect(response, isA<models.OAuth2Spotify>());
-    });
 
-    test('test method updateOAuth2Stripe()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'ca_UKibXX0000000000000000000006byvR',
-        'apiSecretKey': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Stripe();
-      expect(response, isA<models.OAuth2Stripe>());
-    });
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateOAuth2Tradeshift()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'oauth2ClientId': 'appwrite-test-org.appwrite-test-app',
-        'oauth2ClientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Tradeshift();
-      expect(response, isA<models.OAuth2Tradeshift>());
-    });
 
-    test('test method updateOAuth2TradeshiftSandbox()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'oauth2ClientId': 'appwrite-test-org.appwrite-test-app',
-        'oauth2ClientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2TradeshiftSandbox();
-      expect(response, isA<models.OAuth2Tradeshift>());
-    });
+            final response = await project.createWebPlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                hostname: 'app.example.com',
+            );
+            expect(response, isA<models.PlatformWeb>());
 
-    test('test method updateOAuth2Twitch()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'vvi0in000000000000000000ikmt9p',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Twitch();
-      expect(response, isA<models.OAuth2Twitch>());
-    });
+        });
 
-    test('test method updateOAuth2WordPress()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '130005',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2WordPress();
-      expect(response, isA<models.OAuth2WordPress>());
-    });
+        test('test method updateWebPlatform()', () async {
 
-    test('test method updateOAuth2X()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'customerKey': 'slzZV0000000000000NFLaWT',
-        'secretKey': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2X();
-      expect(response, isA<models.OAuth2X>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'hostname': 'app.example.com',};
 
-    test('test method updateOAuth2Yahoo()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId':
-            'dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Yahoo();
-      expect(response, isA<models.OAuth2Yahoo>());
-    });
 
-    test('test method updateOAuth2Yandex()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '6a8a6a0000000000000000000091483c',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Yandex();
-      expect(response, isA<models.OAuth2Yandex>());
-    });
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateOAuth2Zoho()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': '1000.83C178000000000000000000RPNX0B',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Zoho();
-      expect(response, isA<models.OAuth2Zoho>());
-    });
 
-    test('test method updateOAuth2Zoom()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'clientId': 'QMAC00000000000000w0AQ',
-        'clientSecret': 'your-oauth2-client-secret',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateOAuth2Zoom();
-      expect(response, isA<models.OAuth2Zoom>());
-    });
+            final response = await project.updateWebPlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                hostname: 'app.example.com',
+            );
+            expect(response, isA<models.PlatformWeb>());
 
-    test('test method getOAuth2Provider()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'github',
-        'enabled': true,
-        'applicationId': '00001111-aaaa-2222-bbbb-3333cccc4444',
-        'applicationSecret': 'your-oauth2-client-secret',
-        'tenant': 'common',
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.getOAuth2Provider(
-        providerId: enums.ProjectOAuthProviderId.amazon,
-      );
-      expect(response, isA<models.OAuth2Microsoft>());
-    });
+        });
 
-    test('test method listPlatforms()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'platforms': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.listPlatforms();
-      expect(response, isA<models.PlatformList>());
-    });
+        test('test method createWindowsPlatform()', () async {
 
-    test('test method createAndroidPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'applicationId': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createAndroidPlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        applicationId: '<APPLICATION_ID>',
-      );
-      expect(response, isA<models.PlatformAndroid>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'packageIdentifierName': 'com.company.appname',};
 
-    test('test method updateAndroidPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'applicationId': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateAndroidPlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        applicationId: '<APPLICATION_ID>',
-      );
-      expect(response, isA<models.PlatformAndroid>());
-    });
 
-    test('test method createApplePlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'bundleIdentifier': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createApplePlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        bundleIdentifier: '<BUNDLE_IDENTIFIER>',
-      );
-      expect(response, isA<models.PlatformApple>());
-    });
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateApplePlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'bundleIdentifier': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateApplePlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        bundleIdentifier: '<BUNDLE_IDENTIFIER>',
-      );
-      expect(response, isA<models.PlatformApple>());
-    });
 
-    test('test method createLinuxPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'packageName': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createLinuxPlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        packageName: '<PACKAGE_NAME>',
-      );
-      expect(response, isA<models.PlatformLinux>());
-    });
+            final response = await project.createWindowsPlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                packageIdentifierName: '<PACKAGE_IDENTIFIER_NAME>',
+            );
+            expect(response, isA<models.PlatformWindows>());
 
-    test('test method updateLinuxPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'packageName': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateLinuxPlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        packageName: '<PACKAGE_NAME>',
-      );
-      expect(response, isA<models.PlatformLinux>());
-    });
+        });
 
-    test('test method createWebPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'hostname': 'app.example.com',
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createWebPlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        hostname: 'app.example.com',
-      );
-      expect(response, isA<models.PlatformWeb>());
-    });
+        test('test method updateWindowsPlatform()', () async {
 
-    test('test method updateWebPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'hostname': 'app.example.com',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateWebPlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        hostname: 'app.example.com',
-      );
-      expect(response, isA<models.PlatformWeb>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'packageIdentifierName': 'com.company.appname',};
 
-    test('test method createWindowsPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'packageIdentifierName': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createWindowsPlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        packageIdentifierName: '<PACKAGE_IDENTIFIER_NAME>',
-      );
-      expect(response, isA<models.PlatformWindows>());
-    });
 
-    test('test method updateWindowsPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'packageIdentifierName': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateWindowsPlatform(
-        platformId: '<PLATFORM_ID>',
-        name: '<NAME>',
-        packageIdentifierName: '<PACKAGE_IDENTIFIER_NAME>',
-      );
-      expect(response, isA<models.PlatformWindows>());
-    });
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method getPlatform()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Web App',
-        'type': 'web',
-        'packageName': 'com.company.appname',
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.getPlatform(
-        platformId: '<PLATFORM_ID>',
-      );
-      expect(response, isA<models.PlatformLinux>());
-    });
 
-    test('test method deletePlatform()', () async {
-      final data = '';
+            final response = await project.updateWindowsPlatform(
+                platformId: '<PLATFORM_ID>',
+                name: '<NAME>',
+                packageIdentifierName: '<PACKAGE_IDENTIFIER_NAME>',
+            );
+            expect(response, isA<models.PlatformWindows>());
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+        });
 
-      final response = await project.deletePlatform(
-        platformId: '<PLATFORM_ID>',
-      );
-    });
+        test('test method getPlatform()', () async {
 
-    test('test method listPolicies()', () async {
-      final Map<String, dynamic> data = {
-        'total': 9,
-        'policies': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.listPolicies();
-      expect(response, isA<models.PolicyList>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'My Web App',
+                'type': 'web',
+                'packageName': 'com.company.appname',};
 
-    test('test method updateDenyAliasedEmailPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateDenyAliasedEmailPolicy(
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
 
-    test('test method updateDenyDisposableEmailPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateDenyDisposableEmailPolicy(
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateDenyFreeEmailPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateDenyFreeEmailPolicy(
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
 
-    test('test method updateMembershipPrivacyPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateMembershipPrivacyPolicy();
-      expect(response, isA<models.Project>());
-    });
+            final response = await project.getPlatform(
+                platformId: '<PLATFORM_ID>',
+            );
+            expect(response, isA<models.PlatformLinux>());
 
-    test('test method updatePasswordDictionaryPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updatePasswordDictionaryPolicy(
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
+        });
 
-    test('test method updatePasswordHistoryPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updatePasswordHistoryPolicy(
-        total: 1,
-      );
-      expect(response, isA<models.Project>());
-    });
+        test('test method deletePlatform()', () async {
 
-    test('test method updatePasswordPersonalDataPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updatePasswordPersonalDataPolicy(
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
+            final data = '';
 
-    test('test method updateSessionAlertPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateSessionAlertPolicy(
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateSessionDurationPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateSessionDurationPolicy(
-        duration: 1,
-      );
-      expect(response, isA<models.Project>());
-    });
 
-    test('test method updateSessionInvalidationPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateSessionInvalidationPolicy(
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
+            final response = await project.deletePlatform(
+                platformId: '<PLATFORM_ID>',
+            );
+        });
 
-    test('test method updateSessionLimitPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateSessionLimitPolicy(
-        total: 1,
-      );
-      expect(response, isA<models.Project>());
-    });
+        test('test method listPolicies()', () async {
 
-    test('test method updateUserLimitPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateUserLimitPolicy(
-        total: 1,
-      );
-      expect(response, isA<models.Project>());
-    });
+            final Map<String, dynamic> data = {
+                'total': 9,
+                'policies': [],};
 
-    test('test method getPolicy()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': 'password-dictionary',
-        'enabled': true,
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.getPolicy(
-        policyId: enums.ProjectPolicyId.passwordDictionary,
-      );
-      expect(response, isA<models.PolicyDenyFreeEmail>());
-    });
 
-    test('test method updateProtocol()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateProtocol(
-        protocolId: enums.ProjectProtocolId.rest,
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method updateService()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateService(
-        serviceId: enums.ProjectServiceId.account,
-        enabled: true,
-      );
-      expect(response, isA<models.Project>());
-    });
 
-    test('test method updateSMTP()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'devKeys': [],
-        'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
-        'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': '',
-        'smtpSecure': 'tls',
-        'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
-        'labels': [],
-        'status': 'active',
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'region': 'fra',
-        'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateSMTP();
-      expect(response, isA<models.Project>());
-    });
+            final response = await project.listPolicies(
+            );
+            expect(response, isA<models.PolicyList>());
 
-    test('test method createSMTPTest()', () async {
-      final data = '';
+        });
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+        test('test method updateDenyAliasedEmailPolicy()', () async {
 
-      final response = await project.createSMTPTest(
-        emails: [],
-      );
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
 
-    test('test method listEmailTemplates()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'templates': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.listEmailTemplates();
-      expect(response, isA<models.EmailTemplateList>());
-    });
 
-    test('test method updateEmailTemplate()', () async {
-      final Map<String, dynamic> data = {
-        'templateId': 'verification',
-        'locale': 'en_us',
-        'message': 'Click on the link to verify your account.',
-        'senderName': 'My User',
-        'senderEmail': 'mail@appwrite.io',
-        'replyToEmail': 'emails@appwrite.io',
-        'replyToName': 'Support Team',
-        'subject': 'Please verify your email address',
-      };
-
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateEmailTemplate(
-        templateId: enums.ProjectEmailTemplateId.verification,
-      );
-      expect(response, isA<models.EmailTemplate>());
-    });
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method getEmailTemplate()', () async {
-      final Map<String, dynamic> data = {
-        'templateId': 'verification',
-        'locale': 'en_us',
-        'message': 'Click on the link to verify your account.',
-        'senderName': 'My User',
-        'senderEmail': 'mail@appwrite.io',
-        'replyToEmail': 'emails@appwrite.io',
-        'replyToName': 'Support Team',
-        'subject': 'Please verify your email address',
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.getEmailTemplate(
-        templateId: enums.ProjectEmailTemplateId.verification,
-      );
-      expect(response, isA<models.EmailTemplate>());
-    });
 
-    test('test method listVariables()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'variables': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.listVariables();
-      expect(response, isA<models.VariableList>());
-    });
+            final response = await project.updateDenyAliasedEmailPolicy(
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
 
-    test('test method createVariable()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'key': 'API_KEY',
-        'value': 'myPa\$\$word1',
-        'secret': true,
-        'resourceType': 'function',
-        'resourceId': 'myAwesomeFunction',
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createVariable(
-        variableId: '<VARIABLE_ID>',
-        key: '<KEY>',
-        value: '<VALUE>',
-      );
-      expect(response, isA<models.Variable>());
-    });
+        });
 
-    test('test method getVariable()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'key': 'API_KEY',
-        'value': 'myPa\$\$word1',
-        'secret': true,
-        'resourceType': 'function',
-        'resourceId': 'myAwesomeFunction',
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.getVariable(
-        variableId: '<VARIABLE_ID>',
-      );
-      expect(response, isA<models.Variable>());
-    });
+        test('test method updateDenyDisposableEmailPolicy()', () async {
 
-    test('test method updateVariable()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'key': 'API_KEY',
-        'value': 'myPa\$\$word1',
-        'secret': true,
-        'resourceType': 'function',
-        'resourceId': 'myAwesomeFunction',
-      };
-
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.updateVariable(
-        variableId: '<VARIABLE_ID>',
-      );
-      expect(response, isA<models.Variable>());
-    });
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateDenyDisposableEmailPolicy(
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateDenyFreeEmailPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateDenyFreeEmailPolicy(
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateMembershipPrivacyPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateMembershipPrivacyPolicy(
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updatePasswordDictionaryPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updatePasswordDictionaryPolicy(
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updatePasswordHistoryPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updatePasswordHistoryPolicy(
+                total: 1,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updatePasswordPersonalDataPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updatePasswordPersonalDataPolicy(
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateSessionAlertPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateSessionAlertPolicy(
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateSessionDurationPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateSessionDurationPolicy(
+                duration: 1,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateSessionInvalidationPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateSessionInvalidationPolicy(
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateSessionLimitPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateSessionLimitPolicy(
+                total: 1,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateUserLimitPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateUserLimitPolicy(
+                total: 1,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method getPolicy()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': 'password-dictionary',
+                'enabled': true,};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.getPolicy(
+                policyId: enums.ProjectPolicyId.passwordDictionary,
+            );
+            expect(response, isA<models.PolicyDenyFreeEmail>());
+
+        });
+
+        test('test method updateProtocol()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateProtocol(
+                protocolId: enums.ProjectProtocolId.rest,
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateService()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateService(
+                serviceId: enums.ProjectServiceId.account,
+                enabled: true,
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method updateSMTP()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'name': 'New Project',
+                'teamId': '1592981250',
+                'devKeys': [],
+                'smtpEnabled': true,
+                'smtpSenderName': 'John Appwrite',
+                'smtpSenderEmail': 'john@appwrite.io',
+                'smtpReplyToName': 'Support Team',
+                'smtpReplyToEmail': 'support@appwrite.io',
+                'smtpHost': 'mail.appwrite.io',
+                'smtpPort': 25,
+                'smtpUsername': 'emailuser',
+                'smtpPassword': '',
+                'smtpSecure': 'tls',
+                'pingCount': 1,
+                'pingedAt': '2020-10-15T06:38:00.000+00:00',
+                'labels': [],
+                'status': 'active',
+                'authMethods': [],
+                'services': [],
+                'protocols': [],
+                'region': 'fra',
+                'blocks': [],
+                'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateSMTP(
+            );
+            expect(response, isA<models.Project>());
+
+        });
+
+        test('test method createSMTPTest()', () async {
+
+            final data = '';
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.createSMTPTest(
+                emails: [],
+            );
+        });
+
+        test('test method listEmailTemplates()', () async {
+
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'templates': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.listEmailTemplates(
+            );
+            expect(response, isA<models.EmailTemplateList>());
+
+        });
+
+        test('test method updateEmailTemplate()', () async {
+
+            final Map<String, dynamic> data = {
+                'templateId': 'verification',
+                'locale': 'en_us',
+                'message': 'Click on the link to verify your account.',
+                'senderName': 'My User',
+                'senderEmail': 'mail@appwrite.io',
+                'replyToEmail': 'emails@appwrite.io',
+                'replyToName': 'Support Team',
+                'subject': 'Please verify your email address',};
+
+
+            when(client.call(
+                HttpMethod.patch,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateEmailTemplate(
+                templateId: enums.ProjectEmailTemplateId.verification,
+            );
+            expect(response, isA<models.EmailTemplate>());
+
+        });
+
+        test('test method getEmailTemplate()', () async {
+
+            final Map<String, dynamic> data = {
+                'templateId': 'verification',
+                'locale': 'en_us',
+                'message': 'Click on the link to verify your account.',
+                'senderName': 'My User',
+                'senderEmail': 'mail@appwrite.io',
+                'replyToEmail': 'emails@appwrite.io',
+                'replyToName': 'Support Team',
+                'subject': 'Please verify your email address',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.getEmailTemplate(
+                templateId: enums.ProjectEmailTemplateId.verification,
+            );
+            expect(response, isA<models.EmailTemplate>());
+
+        });
+
+        test('test method listVariables()', () async {
+
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'variables': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.listVariables(
+            );
+            expect(response, isA<models.VariableList>());
+
+        });
+
+        test('test method createVariable()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'key': 'API_KEY',
+                'value': 'myPa\$\$word1',
+                'secret': true,
+                'resourceType': 'function',
+                'resourceId': 'myAwesomeFunction',};
+
+
+            when(client.call(
+                HttpMethod.post,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.createVariable(
+                variableId: '<VARIABLE_ID>',
+                key: '<KEY>',
+                value: '<VALUE>',
+            );
+            expect(response, isA<models.Variable>());
+
+        });
+
+        test('test method getVariable()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'key': 'API_KEY',
+                'value': 'myPa\$\$word1',
+                'secret': true,
+                'resourceType': 'function',
+                'resourceId': 'myAwesomeFunction',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.getVariable(
+                variableId: '<VARIABLE_ID>',
+            );
+            expect(response, isA<models.Variable>());
+
+        });
+
+        test('test method updateVariable()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+                '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+                'key': 'API_KEY',
+                'value': 'myPa\$\$word1',
+                'secret': true,
+                'resourceType': 'function',
+                'resourceId': 'myAwesomeFunction',};
+
+
+            when(client.call(
+                HttpMethod.put,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await project.updateVariable(
+                variableId: '<VARIABLE_ID>',
+            );
+            expect(response, isA<models.Variable>());
+
+        });
+
+        test('test method deleteVariable()', () async {
+
+            final data = '';
+
+            when(client.call(
+                HttpMethod.delete,
+            )).thenAnswer((_) async => Response(data: data));
 
-    test('test method deleteVariable()', () async {
-      final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+            final response = await project.deleteVariable(
+                variableId: '<VARIABLE_ID>',
+            );
+        });
 
-      final response = await project.deleteVariable(
-        variableId: '<VARIABLE_ID>',
-      );
     });
-  });
 }

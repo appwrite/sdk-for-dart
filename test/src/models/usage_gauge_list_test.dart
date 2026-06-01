@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = UsageGaugeList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.gauges, []);
-    });
+            expect(result.total, 5);
+                  expect(result.gauges, []);
+          });
   });
 }
