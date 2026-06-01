@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Zoho.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '1000.83C178000000000000000000RPNX0B');
-      expect(result.clientSecret, 'your-oauth2-client-secret');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '1000.83C178000000000000000000RPNX0B');
+                  expect(result.clientSecret, 'your-oauth2-client-secret');
+          });
   });
 }

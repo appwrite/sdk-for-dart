@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2X.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.customerKey, 'slzZV0000000000000NFLaWT');
-      expect(result.secretKey, 'your-oauth2-client-secret');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.customerKey, 'slzZV0000000000000NFLaWT');
+                  expect(result.secretKey, 'your-oauth2-client-secret');
+          });
   });
 }
