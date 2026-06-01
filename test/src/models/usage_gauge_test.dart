@@ -8,14 +8,18 @@ void main() {
         metric: 'users',
         value: 1500,
         time: '2026-04-09T12:00:00.000+00:00',
+        resourceType: 'dedicatedDatabases',
+        resourceId: 'production',
       );
 
       final map = model.toMap();
       final result = UsageGauge.fromMap(map);
 
-      expect(result.metric, 'users');
-      expect(result.value, 1500);
-      expect(result.time, '2026-04-09T12:00:00.000+00:00');
-    });
+            expect(result.metric, 'users');
+                  expect(result.value, 1500);
+                  expect(result.time, '2026-04-09T12:00:00.000+00:00');
+                  expect(result.resourceType, 'dedicatedDatabases');
+                  expect(result.resourceId, 'production');
+          });
   });
 }

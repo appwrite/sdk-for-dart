@@ -12,7 +12,7 @@ Proxy proxy = Proxy(client);
 ProxyRule result = await proxy.createRedirectRule(
     domain: '',
     url: 'https://example.com',
-    statusCode: enums.StatusCode.movedPermanently301,
+    statusCode: enums.StatusCode.movedPermanently,
     resourceId: '<RESOURCE_ID>',
     resourceType: enums.ProxyResourceType.site,
 );
