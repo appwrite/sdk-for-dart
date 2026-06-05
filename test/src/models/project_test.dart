@@ -10,6 +10,7 @@ void main() {
         $updatedAt: '2020-10-15T06:38:00.000+00:00',
         name: 'New Project',
         teamId: '1592981250',
+        region: 'fra',
         devKeys: [],
         smtpEnabled: true,
         smtpSenderName: 'John Appwrite',
@@ -28,9 +29,19 @@ void main() {
         authMethods: [],
         services: [],
         protocols: [],
-        region: 'fra',
         blocks: [],
         consoleAccessedAt: '2020-10-15T06:38:00.000+00:00',
+        oAuth2ServerEnabled: true,
+        oAuth2ServerAuthorizationUrl:
+            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
+        oAuth2ServerScopes: [],
+        oAuth2ServerAccessTokenDuration: 3600,
+        oAuth2ServerRefreshTokenDuration: 86400,
+        oAuth2ServerPublicAccessTokenDuration: 3600,
+        oAuth2ServerPublicRefreshTokenDuration: 2592000,
+        oAuth2ServerConfidentialPkce: true,
+        oAuth2ServerDiscoveryUrl:
+            'https://auth.example.com/.well-known/openid-configuration',
       );
 
       final map = model.toMap();
@@ -41,6 +52,7 @@ void main() {
       expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
       expect(result.name, 'New Project');
       expect(result.teamId, '1592981250');
+      expect(result.region, 'fra');
       expect(result.devKeys, []);
       expect(result.smtpEnabled, true);
       expect(result.smtpSenderName, 'John Appwrite');
@@ -59,9 +71,19 @@ void main() {
       expect(result.authMethods, []);
       expect(result.services, []);
       expect(result.protocols, []);
-      expect(result.region, 'fra');
       expect(result.blocks, []);
       expect(result.consoleAccessedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.oAuth2ServerEnabled, true);
+      expect(result.oAuth2ServerAuthorizationUrl,
+          'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration');
+      expect(result.oAuth2ServerScopes, []);
+      expect(result.oAuth2ServerAccessTokenDuration, 3600);
+      expect(result.oAuth2ServerRefreshTokenDuration, 86400);
+      expect(result.oAuth2ServerPublicAccessTokenDuration, 3600);
+      expect(result.oAuth2ServerPublicRefreshTokenDuration, 2592000);
+      expect(result.oAuth2ServerConfidentialPkce, true);
+      expect(result.oAuth2ServerDiscoveryUrl,
+          'https://auth.example.com/.well-known/openid-configuration');
     });
   });
 }

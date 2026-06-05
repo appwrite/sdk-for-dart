@@ -8,7 +8,7 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'b2222c00-0000-0000-0000-000000862097',
-        clientSecret: 'your-oauth2-client-secret',
+        clientSecret: 'Jx4s0C0000000000000000000000000000000wGqLsc',
         endpoint: 'example.fusionauth.io',
       );
 
@@ -18,7 +18,8 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, 'b2222c00-0000-0000-0000-000000862097');
-      expect(result.clientSecret, 'your-oauth2-client-secret');
+      expect(
+          result.clientSecret, 'Jx4s0C0000000000000000000000000000000wGqLsc');
       expect(result.endpoint, 'example.fusionauth.io');
     });
   });

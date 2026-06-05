@@ -42,9 +42,9 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '25.0.0',
+      'x-sdk-version': '25.1.0',
       'user-agent':
-          'AppwriteDartSDK/25.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+          'AppwriteDartSDK/25.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format': '1.9.5',
     };
 
@@ -61,7 +61,6 @@ class ClientIO extends ClientBase with ClientMixin {
   @override
   ClientIO setProject(value) {
     config['project'] = value;
-    addHeader('X-Appwrite-Project', value);
     return this;
   }
 

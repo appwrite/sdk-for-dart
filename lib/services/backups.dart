@@ -11,7 +11,9 @@ class Backups extends Service {
       if (queries != null) 'queries': queries,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -31,6 +33,7 @@ class Backups extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -47,7 +50,9 @@ class Backups extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -63,6 +68,7 @@ class Backups extends Service {
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -80,7 +86,9 @@ class Backups extends Service {
       if (queries != null) 'queries': queries,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -110,6 +118,7 @@ class Backups extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -126,7 +135,9 @@ class Backups extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -152,6 +163,7 @@ class Backups extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -169,6 +181,7 @@ class Backups extends Service {
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -194,6 +207,7 @@ class Backups extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -212,7 +226,9 @@ class Backups extends Service {
       if (queries != null) 'queries': queries,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -228,7 +244,9 @@ class Backups extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);

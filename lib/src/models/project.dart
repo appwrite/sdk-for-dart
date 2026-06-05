@@ -17,6 +17,9 @@ class Project implements Model {
   /// Project team ID.
   final String teamId;
 
+  /// Project region
+  final String region;
+
   /// Deprecated since 1.9.5: List of dev keys.
   final List<DevKey> devKeys;
 
@@ -71,17 +74,41 @@ class Project implements Model {
   /// List of protocols.
   final List<ProjectProtocol> protocols;
 
-  /// Project region
-  final String region;
-
-  /// Billing limits reached
-  final BillingLimits? billingLimits;
-
   /// Project blocks information
   final List<Block> blocks;
 
   /// Last time the project was accessed via console. Used with plan&#039;s projectInactivityDays to determine if project is paused.
   final String consoleAccessedAt;
+
+  /// Billing limits reached
+  final BillingLimits? billingLimits;
+
+  /// OAuth2 server status
+  final bool oAuth2ServerEnabled;
+
+  /// OAuth2 server authorization URL
+  final String oAuth2ServerAuthorizationUrl;
+
+  /// OAuth2 server allowed scopes
+  final List<String> oAuth2ServerScopes;
+
+  /// OAuth2 server access token duration in seconds for confidential clients
+  final int oAuth2ServerAccessTokenDuration;
+
+  /// OAuth2 server refresh token duration in seconds for confidential clients
+  final int oAuth2ServerRefreshTokenDuration;
+
+  /// OAuth2 server access token duration in seconds for public clients (SPAs, mobile, native)
+  final int oAuth2ServerPublicAccessTokenDuration;
+
+  /// OAuth2 server refresh token duration in seconds for public clients (SPAs, mobile, native)
+  final int oAuth2ServerPublicRefreshTokenDuration;
+
+  /// When enabled, PKCE is required for confidential clients (server-side flows using client_secret). PKCE is always required for public clients regardless of this setting.
+  final bool oAuth2ServerConfidentialPkce;
+
+  /// OAuth2 server discovery URL
+  final String oAuth2ServerDiscoveryUrl;
 
   Project({
     required this.$id,
@@ -89,6 +116,7 @@ class Project implements Model {
     required this.$updatedAt,
     required this.name,
     required this.teamId,
+    required this.region,
     required this.devKeys,
     required this.smtpEnabled,
     required this.smtpSenderName,
@@ -107,10 +135,18 @@ class Project implements Model {
     required this.authMethods,
     required this.services,
     required this.protocols,
-    required this.region,
-    this.billingLimits,
     required this.blocks,
     required this.consoleAccessedAt,
+    this.billingLimits,
+    required this.oAuth2ServerEnabled,
+    required this.oAuth2ServerAuthorizationUrl,
+    required this.oAuth2ServerScopes,
+    required this.oAuth2ServerAccessTokenDuration,
+    required this.oAuth2ServerRefreshTokenDuration,
+    required this.oAuth2ServerPublicAccessTokenDuration,
+    required this.oAuth2ServerPublicRefreshTokenDuration,
+    required this.oAuth2ServerConfidentialPkce,
+    required this.oAuth2ServerDiscoveryUrl,
   });
 
   factory Project.fromMap(Map<String, dynamic> map) {
@@ -120,6 +156,7 @@ class Project implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
       teamId: map['teamId'].toString(),
+      region: map['region'].toString(),
       devKeys: List<DevKey>.from(map['devKeys'].map((p) => DevKey.fromMap(p))),
       smtpEnabled: map['smtpEnabled'],
       smtpSenderName: map['smtpSenderName'].toString(),
@@ -141,10 +178,21 @@ class Project implements Model {
           map['services'].map((p) => ProjectService.fromMap(p))),
       protocols: List<ProjectProtocol>.from(
           map['protocols'].map((p) => ProjectProtocol.fromMap(p))),
-      region: map['region'].toString(),
-      billingLimits: BillingLimits.fromMap(map['billingLimits']),
       blocks: List<Block>.from(map['blocks'].map((p) => Block.fromMap(p))),
       consoleAccessedAt: map['consoleAccessedAt'].toString(),
+      billingLimits: BillingLimits.fromMap(map['billingLimits']),
+      oAuth2ServerEnabled: map['oAuth2ServerEnabled'],
+      oAuth2ServerAuthorizationUrl:
+          map['oAuth2ServerAuthorizationUrl'].toString(),
+      oAuth2ServerScopes: List.from(map['oAuth2ServerScopes'] ?? []),
+      oAuth2ServerAccessTokenDuration: map['oAuth2ServerAccessTokenDuration'],
+      oAuth2ServerRefreshTokenDuration: map['oAuth2ServerRefreshTokenDuration'],
+      oAuth2ServerPublicAccessTokenDuration:
+          map['oAuth2ServerPublicAccessTokenDuration'],
+      oAuth2ServerPublicRefreshTokenDuration:
+          map['oAuth2ServerPublicRefreshTokenDuration'],
+      oAuth2ServerConfidentialPkce: map['oAuth2ServerConfidentialPkce'],
+      oAuth2ServerDiscoveryUrl: map['oAuth2ServerDiscoveryUrl'].toString(),
     );
   }
 
@@ -156,6 +204,7 @@ class Project implements Model {
       "\$updatedAt": $updatedAt,
       "name": name,
       "teamId": teamId,
+      "region": region,
       "devKeys": devKeys.map((p) => p.toMap()).toList(),
       "smtpEnabled": smtpEnabled,
       "smtpSenderName": smtpSenderName,
@@ -174,10 +223,20 @@ class Project implements Model {
       "authMethods": authMethods.map((p) => p.toMap()).toList(),
       "services": services.map((p) => p.toMap()).toList(),
       "protocols": protocols.map((p) => p.toMap()).toList(),
-      "region": region,
-      "billingLimits": billingLimits?.toMap(),
       "blocks": blocks.map((p) => p.toMap()).toList(),
       "consoleAccessedAt": consoleAccessedAt,
+      "billingLimits": billingLimits?.toMap(),
+      "oAuth2ServerEnabled": oAuth2ServerEnabled,
+      "oAuth2ServerAuthorizationUrl": oAuth2ServerAuthorizationUrl,
+      "oAuth2ServerScopes": oAuth2ServerScopes,
+      "oAuth2ServerAccessTokenDuration": oAuth2ServerAccessTokenDuration,
+      "oAuth2ServerRefreshTokenDuration": oAuth2ServerRefreshTokenDuration,
+      "oAuth2ServerPublicAccessTokenDuration":
+          oAuth2ServerPublicAccessTokenDuration,
+      "oAuth2ServerPublicRefreshTokenDuration":
+          oAuth2ServerPublicRefreshTokenDuration,
+      "oAuth2ServerConfidentialPkce": oAuth2ServerConfidentialPkce,
+      "oAuth2ServerDiscoveryUrl": oAuth2ServerDiscoveryUrl,
     };
   }
 }

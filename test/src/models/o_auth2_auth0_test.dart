@@ -8,7 +8,8 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'OaOkIA000000000000000000005KLSYq',
-        clientSecret: 'your-oauth2-client-secret',
+        clientSecret:
+            'zXz0000-00000000000000000000000000000-00000000000000000000PJafnF',
         endpoint: 'example.us.auth0.com',
       );
 
@@ -18,7 +19,8 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, 'OaOkIA000000000000000000005KLSYq');
-      expect(result.clientSecret, 'your-oauth2-client-secret');
+      expect(result.clientSecret,
+          'zXz0000-00000000000000000000000000000-00000000000000000000PJafnF');
       expect(result.endpoint, 'example.us.auth0.com');
     });
   });

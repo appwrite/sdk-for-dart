@@ -8,7 +8,7 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: '770000000000dv',
-        primaryClientSecret: 'your-oauth2-client-secret',
+        primaryClientSecret: 'WPL_AP1.2Bf0000000000000./HtlYw==',
       );
 
       final map = model.toMap();
@@ -17,7 +17,7 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, '770000000000dv');
-      expect(result.primaryClientSecret, 'your-oauth2-client-secret');
+      expect(result.primaryClientSecret, 'WPL_AP1.2Bf0000000000000./HtlYw==');
     });
   });
 }

@@ -3,6 +3,7 @@ part of '../../enums.dart';
 enum ProjectPolicyId {
   passwordDictionary(value: 'password-dictionary'),
   passwordHistory(value: 'password-history'),
+  passwordStrength(value: 'password-strength'),
   passwordPersonalData(value: 'password-personal-data'),
   sessionAlert(value: 'session-alert'),
   sessionDuration(value: 'session-duration'),

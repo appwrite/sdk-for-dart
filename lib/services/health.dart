@@ -11,7 +11,9 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -25,12 +27,33 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.HealthAntivirus.fromMap(res.data);
+  }
+
+  /// Check the database that backs the audit and activity store. When the
+  /// connection is reachable the endpoint returns a passing status with its
+  /// response time.
+  ///
+  Future<models.HealthStatusList> getAuditsDB() async {
+    final String apiPath = '/health/audits-db';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.HealthStatusList.fromMap(res.data);
   }
 
   /// Check the Appwrite in-memory cache servers are up and connection is
@@ -40,7 +63,9 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -56,7 +81,9 @@ class Health extends Service {
       if (domain != null) 'domain': domain,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -76,7 +103,9 @@ class Health extends Service {
       if (inactivityDays != null) 'inactivityDays': inactivityDays,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -90,7 +119,9 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -104,7 +135,9 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -122,7 +155,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -139,7 +174,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -157,7 +194,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -176,7 +215,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -193,7 +234,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -212,7 +255,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -229,7 +274,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -246,7 +293,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -263,7 +312,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -280,7 +331,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -297,7 +350,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -314,7 +369,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -331,7 +388,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -348,7 +407,9 @@ class Health extends Service {
       if (threshold != null) 'threshold': threshold,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -362,7 +423,9 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -376,7 +439,9 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -396,7 +461,9 @@ class Health extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);

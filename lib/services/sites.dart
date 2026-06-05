@@ -16,7 +16,9 @@ class Sites extends Service {
       if (total != null) 'total': total,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -82,6 +84,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -98,7 +101,9 @@ class Sites extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -112,7 +117,9 @@ class Sites extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -126,7 +133,9 @@ class Sites extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -191,6 +200,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -207,6 +217,7 @@ class Sites extends Service {
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -228,6 +239,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -253,7 +265,9 @@ class Sites extends Service {
       if (total != null) 'total': total,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -284,6 +298,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'multipart/form-data',
     };
 
@@ -316,6 +331,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -351,6 +367,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -378,6 +395,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -396,7 +414,9 @@ class Sites extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -414,6 +434,7 @@ class Sites extends Service {
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -459,6 +480,7 @@ class Sites extends Service {
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -480,7 +502,9 @@ class Sites extends Service {
       if (total != null) 'total': total,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -497,7 +521,9 @@ class Sites extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -514,6 +540,7 @@ class Sites extends Service {
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -534,7 +561,9 @@ class Sites extends Service {
       if (total != null) 'total': total,
     };
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -561,6 +590,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -579,7 +609,9 @@ class Sites extends Service {
 
     final Map<String, dynamic> apiParams = {};
 
-    final Map<String, String> apiHeaders = {};
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+    };
 
     final res = await client.call(HttpMethod.get,
         path: apiPath, params: apiParams, headers: apiHeaders);
@@ -605,6 +637,7 @@ class Sites extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 
@@ -624,6 +657,7 @@ class Sites extends Service {
     final Map<String, dynamic> apiParams = {};
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
     };
 

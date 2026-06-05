@@ -83,6 +83,20 @@ void main() {
       expect(response, isA<models.HealthAntivirus>());
     });
 
+    test('test method getAuditsDB()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'statuses': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await health.getAuditsDB();
+      expect(response, isA<models.HealthStatusList>());
+    });
+
     test('test method getCache()', () async {
       final Map<String, dynamic> data = {
         'total': 5,

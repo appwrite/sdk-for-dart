@@ -14,6 +14,7 @@ class Graphql extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'x-sdk-graphql': 'true',
       'content-type': 'application/json',
     };
@@ -33,6 +34,7 @@ class Graphql extends Service {
     };
 
     final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
       'x-sdk-graphql': 'true',
       'content-type': 'application/json',
     };

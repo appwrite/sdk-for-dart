@@ -94,6 +94,8 @@ enum ProjectKeyScopes {
   domainsRead(value: 'domains.read'),
   domainsWrite(value: 'domains.write'),
   eventsRead(value: 'events.read'),
+  appsRead(value: 'apps.read'),
+  appsWrite(value: 'apps.write'),
   usageRead(value: 'usage.read');
 
   const ProjectKeyScopes({required this.value});

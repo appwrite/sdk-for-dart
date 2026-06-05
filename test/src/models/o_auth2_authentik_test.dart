@@ -8,7 +8,8 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'dTKOPa0000000000000000000000000000e7G8hv',
-        clientSecret: 'your-oauth2-client-secret',
+        clientSecret:
+            'ntQadq000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000Hp5WK',
         endpoint: 'example.authentik.com',
       );
 
@@ -18,7 +19,8 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, 'dTKOPa0000000000000000000000000000e7G8hv');
-      expect(result.clientSecret, 'your-oauth2-client-secret');
+      expect(result.clientSecret,
+          'ntQadq000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000Hp5WK');
       expect(result.endpoint, 'example.authentik.com');
     });
   });

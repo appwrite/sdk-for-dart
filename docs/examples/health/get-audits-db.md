@@ -4,12 +4,9 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
-    .setSession(''); // The user session to authenticate with
+    .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Account account = Account(client);
+Health health = Health(client);
 
-User result = await account.updatePassword(
-    password: '',
-    oldPassword: '<OLD_PASSWORD>', // (optional)
-);
+HealthStatusList result = await health.getAuditsDB();
 ```

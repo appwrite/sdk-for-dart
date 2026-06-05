@@ -8,7 +8,8 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: '0oa00000000000000698',
-        clientSecret: 'your-oauth2-client-secret',
+        clientSecret:
+            'Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV',
         domain: 'trial-6400025.okta.com',
         authorizationServerId: 'aus000000000000000h7z',
       );
@@ -19,7 +20,8 @@ void main() {
       expect(result.$id, 'github');
       expect(result.enabled, true);
       expect(result.clientId, '0oa00000000000000698');
-      expect(result.clientSecret, 'your-oauth2-client-secret');
+      expect(result.clientSecret,
+          'Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV');
       expect(result.domain, 'trial-6400025.okta.com');
       expect(result.authorizationServerId, 'aus000000000000000h7z');
     });
