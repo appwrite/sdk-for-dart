@@ -177,6 +177,7 @@ part 'src/models/o_auth2_microsoft.dart';
 part 'src/models/o_auth2_provider_list.dart';
 part 'src/models/policy_password_dictionary.dart';
 part 'src/models/policy_password_history.dart';
+part 'src/models/policy_password_strength.dart';
 part 'src/models/policy_password_personal_data.dart';
 part 'src/models/policy_session_alert.dart';
 part 'src/models/policy_session_duration.dart';

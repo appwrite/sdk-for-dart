@@ -8,16 +8,16 @@ void main() {
         $id: 'github',
         enabled: true,
         clientId: 'appwrite-oauth-test-app',
-        clientSecret: 'your-oauth2-client-secret',
+        clientSecret: 'Rn247T0000000000000000000000000000000000000000000000000000W2zWTN',
       );
 
       final map = model.toMap();
       final result = OAuth2Podio.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, 'appwrite-oauth-test-app');
-      expect(result.clientSecret, 'your-oauth2-client-secret');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, 'appwrite-oauth-test-app');
+                  expect(result.clientSecret, 'Rn247T0000000000000000000000000000000000000000000000000000W2zWTN');
+          });
   });
 }
