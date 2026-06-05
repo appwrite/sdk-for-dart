@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Linkedin.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, '770000000000dv');
-                  expect(result.primaryClientSecret, 'WPL_AP1.2Bf0000000000000./HtlYw==');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, '770000000000dv');
+      expect(result.primaryClientSecret, 'WPL_AP1.2Bf0000000000000./HtlYw==');
+    });
   });
 }

@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = UsageEventList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.events, []);
-          });
+      expect(result.total, 5);
+      expect(result.events, []);
+    });
   });
 }
