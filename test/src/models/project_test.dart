@@ -1,4 +1,5 @@
 import 'package:dart_appwrite/models.dart';
+import 'package:dart_appwrite/enums.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -20,70 +21,50 @@ void main() {
         smtpHost: 'mail.appwrite.io',
         smtpPort: 25,
         smtpUsername: 'emailuser',
-        smtpPassword: '',
+        smtpPassword: 'smtp-password',
         smtpSecure: 'tls',
         pingCount: 1,
         pingedAt: '2020-10-15T06:38:00.000+00:00',
         labels: [],
         status: 'active',
+        onboarding: {},
         authMethods: [],
         services: [],
         protocols: [],
         blocks: [],
         consoleAccessedAt: '2020-10-15T06:38:00.000+00:00',
-        oAuth2ServerEnabled: true,
-        oAuth2ServerAuthorizationUrl:
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        oAuth2ServerScopes: [],
-        oAuth2ServerAccessTokenDuration: 3600,
-        oAuth2ServerRefreshTokenDuration: 86400,
-        oAuth2ServerPublicAccessTokenDuration: 3600,
-        oAuth2ServerPublicRefreshTokenDuration: 2592000,
-        oAuth2ServerConfidentialPkce: true,
-        oAuth2ServerDiscoveryUrl:
-            'https://auth.example.com/.well-known/openid-configuration',
       );
 
       final map = model.toMap();
       final result = Project.fromMap(map);
 
-      expect(result.$id, '5e5ea5c16897e');
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.name, 'New Project');
-      expect(result.teamId, '1592981250');
-      expect(result.region, 'fra');
-      expect(result.devKeys, []);
-      expect(result.smtpEnabled, true);
-      expect(result.smtpSenderName, 'John Appwrite');
-      expect(result.smtpSenderEmail, 'john@appwrite.io');
-      expect(result.smtpReplyToName, 'Support Team');
-      expect(result.smtpReplyToEmail, 'support@appwrite.io');
-      expect(result.smtpHost, 'mail.appwrite.io');
-      expect(result.smtpPort, 25);
-      expect(result.smtpUsername, 'emailuser');
-      expect(result.smtpPassword, '');
-      expect(result.smtpSecure, 'tls');
-      expect(result.pingCount, 1);
-      expect(result.pingedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.labels, []);
-      expect(result.status, 'active');
-      expect(result.authMethods, []);
-      expect(result.services, []);
-      expect(result.protocols, []);
-      expect(result.blocks, []);
-      expect(result.consoleAccessedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.oAuth2ServerEnabled, true);
-      expect(result.oAuth2ServerAuthorizationUrl,
-          'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration');
-      expect(result.oAuth2ServerScopes, []);
-      expect(result.oAuth2ServerAccessTokenDuration, 3600);
-      expect(result.oAuth2ServerRefreshTokenDuration, 86400);
-      expect(result.oAuth2ServerPublicAccessTokenDuration, 3600);
-      expect(result.oAuth2ServerPublicRefreshTokenDuration, 2592000);
-      expect(result.oAuth2ServerConfidentialPkce, true);
-      expect(result.oAuth2ServerDiscoveryUrl,
-          'https://auth.example.com/.well-known/openid-configuration');
-    });
+            expect(result.$id, '5e5ea5c16897e');
+                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.name, 'New Project');
+                  expect(result.teamId, '1592981250');
+                  expect(result.region, 'fra');
+                  expect(result.devKeys, []);
+                  expect(result.smtpEnabled, true);
+                  expect(result.smtpSenderName, 'John Appwrite');
+                  expect(result.smtpSenderEmail, 'john@appwrite.io');
+                  expect(result.smtpReplyToName, 'Support Team');
+                  expect(result.smtpReplyToEmail, 'support@appwrite.io');
+                  expect(result.smtpHost, 'mail.appwrite.io');
+                  expect(result.smtpPort, 25);
+                  expect(result.smtpUsername, 'emailuser');
+                  expect(result.smtpPassword, 'smtp-password');
+                  expect(result.smtpSecure, 'tls');
+                  expect(result.pingCount, 1);
+                  expect(result.pingedAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.labels, []);
+                  expect(result.status, 'active');
+                  expect(result.onboarding, {});
+                  expect(result.authMethods, []);
+                  expect(result.services, []);
+                  expect(result.protocols, []);
+                  expect(result.blocks, []);
+                  expect(result.consoleAccessedAt, '2020-10-15T06:38:00.000+00:00');
+          });
   });
 }

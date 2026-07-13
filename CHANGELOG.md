@@ -1,5 +1,25 @@
 # Change Log
 
+## 26.0.0
+
+* Breaking: Removed `Health` service with its health models and enums
+* Breaking: Removed `Usage` service and `UsageEvent`, `UsageGauge` models
+* Breaking: Removed `Messaging` log methods `listMessageLogs`, `listProviderLogs`, `listSubscriberLogs`, `listTopicLogs`
+* Breaking: Removed client, device, and country detail fields from `ActivityEvent` model
+* Breaking: Narrowed spatial attribute/column `xdefault` types to `List<double>`/`List<List>` in `Databases` and `TablesDB`
+* Added: `Organization` service `get`, `update`, `delete`, and membership management methods
+* Added: `Project.updateOAuth2Appwrite` and `updateDenyCorporateEmailPolicy` with `OAuth2Appwrite` and `PolicyDenyCorporateEmail` models
+* Added: `appwrite` OAuth provider to `OAuthProvider` and `ProjectOAuthProviderId` enums
+* Added: billing plan models (`BillingPlan`, `UsageBillingPlan`, `AdditionalResource`) and `BillingPlanGroup` enum
+* Added: `prompt` and `maxAge` parameters to `Project.updateOAuth2Oidc` with `ProjectOAuth2OidcPrompt` enum
+* Added: device authorization and default scope parameters to `Project.updateOAuth2Server`
+* Added: `token` parameter to `Functions.getDeploymentDownload`; `type` to `listSpecifications`
+* Added: `newSpecification` parameter to `Backups.createRestoration`; `specification` to `TablesDB.create`
+* Added: geolocation fields (`city`, `isp`, `latitude`, `longitude`, `timeZone`) to `Locale` model
+* Added: email classification fields (`emailCanonical`, `emailIsDisposable`, `emailIsFree`) to `User` model
+* Added: `userAccessedAt` to `Membership` model and membership privacy policy
+* Added: organization, dedicated database, stages, and OAuth2 key scopes; `Organization`, `Program` models; `DatabaseStatus` enum
+
 ## 25.1.0
 
 * Added: `createSesProvider` and `updateSesProvider` to `messaging`

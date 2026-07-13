@@ -12,5 +12,6 @@ Database result = await tablesDB.create(
     databaseId: '<DATABASE_ID>',
     name: '<NAME>',
     enabled: false, // (optional)
+    specification: 'serverless', // (optional)
 );
 ```

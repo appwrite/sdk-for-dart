@@ -11,6 +11,6 @@ Account account = Account(client);
 Token result = await account.updateRecovery(
     userId: '<USER_ID>',
     secret: '<SECRET>',
-    password: '',
+    password: 'password',
 );
 ```

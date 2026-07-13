@@ -14,5 +14,6 @@ BackupRestoration result = await backups.createRestoration(
     services: [enums.BackupServices.databases],
     newResourceId: '<NEW_RESOURCE_ID>', // (optional)
     newResourceName: '<NEW_RESOURCE_NAME>', // (optional)
+    newSpecification: 'serverless', // (optional)
 );
 ```

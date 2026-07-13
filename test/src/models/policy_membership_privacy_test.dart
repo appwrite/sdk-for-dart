@@ -11,17 +11,19 @@ void main() {
         userPhone: true,
         userName: true,
         userMFA: true,
+        userAccessedAt: true,
       );
 
       final map = model.toMap();
       final result = PolicyMembershipPrivacy.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
-      expect(result.userId, true);
-      expect(result.userEmail, true);
-      expect(result.userPhone, true);
-      expect(result.userName, true);
-      expect(result.userMFA, true);
-    });
+            expect(result.$id, 'password-dictionary');
+                  expect(result.userId, true);
+                  expect(result.userEmail, true);
+                  expect(result.userPhone, true);
+                  expect(result.userName, true);
+                  expect(result.userMFA, true);
+                  expect(result.userAccessedAt, true);
+          });
   });
 }
