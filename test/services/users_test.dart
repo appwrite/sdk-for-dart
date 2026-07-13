@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -810,7 +810,7 @@ void main() {
 
       final response = await users.updatePassword(
         userId: '<USER_ID>',
-        password: '',
+        password: 'password',
       );
       expect(response, isA<models.User>());
     });

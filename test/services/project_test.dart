@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -71,28 +71,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -130,28 +120,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -305,28 +285,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -452,28 +422,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -522,6 +482,23 @@ void main() {
 
       final response = await project.updateOAuth2Apple();
       expect(response, isA<models.OAuth2Apple>());
+    });
+
+    test('test method updateOAuth2Appwrite()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': 'github',
+        'enabled': true,
+        'clientId': '6a42000000000000b5a0',
+        'clientSecret':
+            'b86afd000000000000000000000000000000000000000000000000000ced5f93',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Appwrite();
+      expect(response, isA<models.OAuth2Appwrite>());
     });
 
     test('test method updateOAuth2Auth0()', () async {
@@ -904,6 +881,7 @@ void main() {
         'authorizationURL': 'https://myoauth.com/oauth2/authorize',
         'tokenURL': 'https://myoauth.com/oauth2/token',
         'userInfoURL': 'https://myoauth.com/oauth2/userinfo',
+        'prompt': [],
       };
 
       when(client.call(
@@ -1514,28 +1492,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1543,6 +1511,47 @@ void main() {
       )).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateDenyAliasedEmailPolicy(
+        enabled: true,
+      );
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method updateDenyCorporateEmailPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'name': 'New Project',
+        'teamId': '1592981250',
+        'region': 'fra',
+        'devKeys': [],
+        'smtpEnabled': true,
+        'smtpSenderName': 'John Appwrite',
+        'smtpSenderEmail': 'john@appwrite.io',
+        'smtpReplyToName': 'Support Team',
+        'smtpReplyToEmail': 'support@appwrite.io',
+        'smtpHost': 'mail.appwrite.io',
+        'smtpPort': 25,
+        'smtpUsername': 'emailuser',
+        'smtpPassword': 'smtp-password',
+        'smtpSecure': 'tls',
+        'pingCount': 1,
+        'pingedAt': '2020-10-15T06:38:00.000+00:00',
+        'labels': [],
+        'status': 'active',
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateDenyCorporateEmailPolicy(
         enabled: true,
       );
       expect(response, isA<models.Project>());
@@ -1565,28 +1574,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1616,28 +1615,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1667,28 +1656,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1716,28 +1695,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1767,28 +1736,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1818,28 +1777,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1887,28 +1836,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1938,28 +1877,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -1989,28 +1918,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -2040,28 +1959,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -2091,28 +2000,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -2138,7 +2037,7 @@ void main() {
       final response = await project.getPolicy(
         policyId: enums.ProjectPolicyId.passwordDictionary,
       );
-      expect(response, isA<models.PolicyDenyFreeEmail>());
+      expect(response, isA<models.PolicyDenyCorporateEmail>());
     });
 
     test('test method updateProtocol()', () async {
@@ -2158,28 +2057,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -2210,28 +2099,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -2262,28 +2141,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(

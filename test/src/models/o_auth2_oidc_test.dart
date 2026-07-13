@@ -14,6 +14,7 @@ void main() {
         authorizationURL: 'https://myoauth.com/oauth2/authorize',
         tokenURL: 'https://myoauth.com/oauth2/token',
         userInfoURL: 'https://myoauth.com/oauth2/userinfo',
+        prompt: [],
       );
 
       final map = model.toMap();
@@ -29,6 +30,7 @@ void main() {
       expect(result.authorizationURL, 'https://myoauth.com/oauth2/authorize');
       expect(result.tokenURL, 'https://myoauth.com/oauth2/token');
       expect(result.userInfoURL, 'https://myoauth.com/oauth2/userinfo');
+      expect(result.prompt, []);
     });
   });
 }

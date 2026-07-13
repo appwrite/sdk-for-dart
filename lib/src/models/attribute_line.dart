@@ -27,7 +27,7 @@ class AttributeLine implements Model {
   final String $updatedAt;
 
   /// Default value for attribute when not provided. Cannot be set when attribute is required.
-  final List? xdefault;
+  final List<List<double>>? xdefault;
 
   AttributeLine({
     required this.key,

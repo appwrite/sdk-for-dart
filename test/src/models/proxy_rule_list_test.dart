@@ -1,4 +1,5 @@
 import 'package:dart_appwrite/models.dart';
+import 'package:dart_appwrite/enums.dart';
 import 'package:test/test.dart';
 
 void main() {

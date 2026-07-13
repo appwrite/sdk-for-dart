@@ -15,7 +15,7 @@ Provider result = await messaging.updateSMTPProvider(
     host: '<HOST>', // (optional)
     port: 1, // (optional)
     username: '<USERNAME>', // (optional)
-    password: '<PASSWORD>', // (optional)
+    password: 'password', // (optional)
     encryption: enums.SmtpEncryption.none, // (optional)
     autoTLS: false, // (optional)
     mailer: '<MAILER>', // (optional)

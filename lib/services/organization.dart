@@ -1,7 +1,63 @@
 part of '../dart_appwrite.dart';
 
+/// The Organization service allows you to manage organization-level projects.
 class Organization extends Service {
   Organization(super.client);
+
+  /// Get the current organization.
+  Future<models.Organization> get() async {
+    final String apiPath = '/organization';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Organization.fromMap(res.data);
+  }
+
+  /// Update the current organization's name.
+  Future<models.Organization> update({required String name}) async {
+    final String apiPath = '/organization';
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.put,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Organization.fromMap(res.data);
+  }
+
+  /// Delete the current organization. All projects that belong to the
+  /// organization are deleted as well.
+  Future delete() async {
+    final String apiPath = '/organization';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return res.data;
+  }
 
   /// Get a list of all API keys from the current organization.
   Future<models.KeyList> listKeys({List<String>? queries, bool? total}) async {
@@ -14,6 +70,7 @@ class Organization extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -40,6 +97,7 @@ class Organization extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -58,6 +116,7 @@ class Organization extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -85,6 +144,7 @@ class Organization extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,
@@ -98,6 +158,122 @@ class Organization extends Service {
   Future deleteKey({required String keyId}) async {
     final String apiPath =
         '/organization/keys/{keyId}'.replaceAll('{keyId}', keyId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return res.data;
+  }
+
+  /// Get a list of all memberships from the current organization.
+  Future<models.MembershipList> listMemberships(
+      {List<String>? queries, String? search, bool? total}) async {
+    final String apiPath = '/organization/memberships';
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (search != null) 'search': search,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.MembershipList.fromMap(res.data);
+  }
+
+  /// Invite a new member to join the current organization. An email with a link
+  /// to join the organization will be sent to the new member's email address. If
+  /// member doesn't exist in the project it will be automatically created.
+  Future<models.Membership> createMembership(
+      {required List<String> roles,
+      String? email,
+      String? userId,
+      String? phone,
+      String? url,
+      String? name}) async {
+    final String apiPath = '/organization/memberships';
+
+    final Map<String, dynamic> apiParams = {
+      if (email != null) 'email': email,
+      if (userId != null) 'userId': userId,
+      if (phone != null) 'phone': phone,
+      'roles': roles,
+      if (url != null) 'url': url,
+      if (name != null) 'name': name,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Membership.fromMap(res.data);
+  }
+
+  /// Get a membership from the current organization by its unique ID.
+  Future<models.Membership> getMembership(
+      {required String membershipId}) async {
+    final String apiPath = '/organization/memberships/{membershipId}'
+        .replaceAll('{membershipId}', membershipId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Membership.fromMap(res.data);
+  }
+
+  /// Modify the roles of a member in the current organization.
+  Future<models.Membership> updateMembership(
+      {required String membershipId, required List<String> roles}) async {
+    final String apiPath = '/organization/memberships/{membershipId}'
+        .replaceAll('{membershipId}', membershipId);
+
+    final Map<String, dynamic> apiParams = {
+      'roles': roles,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Membership.fromMap(res.data);
+  }
+
+  /// Remove a member from the current organization. The member is removed
+  /// whether they accepted the invitation or not; a pending invitation is
+  /// revoked.
+  Future deleteMembership({required String membershipId}) async {
+    final String apiPath = '/organization/memberships/{membershipId}'
+        .replaceAll('{membershipId}', membershipId);
 
     final Map<String, dynamic> apiParams = {};
 
@@ -126,6 +302,7 @@ class Organization extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -150,6 +327,7 @@ class Organization extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -188,6 +366,7 @@ class Organization extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,

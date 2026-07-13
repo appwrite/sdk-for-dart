@@ -27,7 +27,7 @@ class AttributePoint implements Model {
   final String $updatedAt;
 
   /// Default value for attribute when not provided. Cannot be set when attribute is required.
-  final List? xdefault;
+  final List<double>? xdefault;
 
   AttributePoint({
     required this.key,

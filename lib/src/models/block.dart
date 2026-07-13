@@ -11,6 +11,9 @@ class Block implements Model {
   /// Resource identifier that is blocked
   final String resourceId;
 
+  /// Block mode. full blocks reads and writes; readOnly blocks writes only.
+  final String mode;
+
   /// Reason for the block. Can be null if no reason was provided.
   final String? reason;
 
@@ -36,6 +39,7 @@ class Block implements Model {
     required this.$createdAt,
     required this.resourceType,
     required this.resourceId,
+    required this.mode,
     this.reason,
     this.expiredAt,
     required this.projectName,
@@ -50,6 +54,7 @@ class Block implements Model {
       $createdAt: map['\$createdAt'].toString(),
       resourceType: map['resourceType'].toString(),
       resourceId: map['resourceId'].toString(),
+      mode: map['mode'].toString(),
       reason: map['reason']?.toString(),
       expiredAt: map['expiredAt']?.toString(),
       projectName: map['projectName'].toString(),
@@ -66,6 +71,7 @@ class Block implements Model {
       "\$createdAt": $createdAt,
       "resourceType": resourceType,
       "resourceId": resourceId,
+      "mode": mode,
       "reason": reason,
       "expiredAt": expiredAt,
       "projectName": projectName,

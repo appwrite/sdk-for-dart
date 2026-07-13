@@ -32,6 +32,9 @@ class BackupPolicy implements Model {
   /// Policy backup schedule in CRON format.
   final String schedule;
 
+  /// Backup type. Possible values: full (complete database snapshot), incremental (changes since last backup).
+  final String type;
+
   /// Is this policy enabled.
   final bool enabled;
 
@@ -46,6 +49,7 @@ class BackupPolicy implements Model {
     this.resourceType,
     required this.retention,
     required this.schedule,
+    required this.type,
     required this.enabled,
   });
 
@@ -61,6 +65,7 @@ class BackupPolicy implements Model {
       resourceType: map['resourceType']?.toString(),
       retention: map['retention'],
       schedule: map['schedule'].toString(),
+      type: map['type'].toString(),
       enabled: map['enabled'],
     );
   }
@@ -78,6 +83,7 @@ class BackupPolicy implements Model {
       "resourceType": resourceType,
       "retention": retention,
       "schedule": schedule,
+      "type": type,
       "enabled": enabled,
     };
   }

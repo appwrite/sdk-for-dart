@@ -27,7 +27,7 @@ class ColumnPoint implements Model {
   final String $updatedAt;
 
   /// Default value for column when not provided. Cannot be set when column is required.
-  final List? xdefault;
+  final List<double>? xdefault;
 
   ColumnPoint({
     required this.key,

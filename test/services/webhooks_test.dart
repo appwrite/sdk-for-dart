@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -78,7 +78,7 @@ void main() {
         'events': [],
         'tls': true,
         'authUsername': 'username',
-        'authPassword': 'password',
+        'authPassword': 'webhook-password',
         'secret': 'ad3d581ca230e2b7059c545e5a',
         'enabled': true,
         'logs': 'Failed to connect to remote server.',
@@ -108,7 +108,7 @@ void main() {
         'events': [],
         'tls': true,
         'authUsername': 'username',
-        'authPassword': 'password',
+        'authPassword': 'webhook-password',
         'secret': 'ad3d581ca230e2b7059c545e5a',
         'enabled': true,
         'logs': 'Failed to connect to remote server.',
@@ -135,7 +135,7 @@ void main() {
         'events': [],
         'tls': true,
         'authUsername': 'username',
-        'authPassword': 'password',
+        'authPassword': 'webhook-password',
         'secret': 'ad3d581ca230e2b7059c545e5a',
         'enabled': true,
         'logs': 'Failed to connect to remote server.',
@@ -177,7 +177,7 @@ void main() {
         'events': [],
         'tls': true,
         'authUsername': 'username',
-        'authPassword': 'password',
+        'authPassword': 'webhook-password',
         'secret': 'ad3d581ca230e2b7059c545e5a',
         'enabled': true,
         'logs': 'Failed to connect to remote server.',

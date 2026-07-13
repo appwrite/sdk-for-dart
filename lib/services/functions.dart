@@ -19,6 +19,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -88,6 +89,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -104,6 +106,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -113,13 +116,16 @@ class Functions extends Service {
   }
 
   /// List allowed function specifications for this instance.
-  Future<models.SpecificationList> listSpecifications() async {
+  Future<models.SpecificationList> listSpecifications({String? type}) async {
     final String apiPath = '/functions/specifications';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (type != null) 'type': type,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -137,6 +143,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -192,7 +199,7 @@ class Functions extends Service {
         'providerRootDirectory': providerRootDirectory,
       'providerBranches': providerBranches,
       'providerPaths': providerPaths,
-      if (buildSpecification != null) 'buildSpecification': buildSpecification,
+      'buildSpecification': buildSpecification,
       if (runtimeSpecification != null)
         'runtimeSpecification': runtimeSpecification,
       if (deploymentRetention != null)
@@ -202,6 +209,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,
@@ -242,6 +250,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -268,6 +277,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -306,6 +316,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'multipart/form-data',
+      'accept': 'application/json',
     };
 
     String idParamName = '';
@@ -342,6 +353,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -378,6 +390,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -406,6 +419,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -425,6 +439,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -459,7 +474,8 @@ class Functions extends Service {
   Future<Uint8List> getDeploymentDownload(
       {required String functionId,
       required String deploymentId,
-      enums.DeploymentDownloadType? type}) async {
+      enums.DeploymentDownloadType? type,
+      String? token}) async {
     final String apiPath =
         '/functions/{functionId}/deployments/{deploymentId}/download'
             .replaceAll('{functionId}', functionId)
@@ -467,8 +483,10 @@ class Functions extends Service {
 
     final Map<String, dynamic> params = {
       if (type != null) 'type': type.value,
+      if (token != null) 'token': token,
       'project': client.config['project'],
       'key': client.config['key'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -493,6 +511,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -515,6 +534,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -550,6 +570,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -569,6 +590,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -610,6 +632,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -639,6 +662,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -658,6 +682,7 @@ class Functions extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -686,6 +711,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,

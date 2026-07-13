@@ -13,6 +13,7 @@ void main() {
         resources: [],
         retention: 7,
         schedule: '0 * * * *',
+        type: 'full',
         enabled: true,
       );
 
@@ -27,6 +28,7 @@ void main() {
       expect(result.resources, []);
       expect(result.retention, 7);
       expect(result.schedule, '0 * * * *');
+      expect(result.type, 'full');
       expect(result.enabled, true);
     });
   });

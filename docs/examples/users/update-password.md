@@ -10,6 +10,6 @@ Users users = Users(client);
 
 User result = await users.updatePassword(
     userId: '<USER_ID>',
-    password: '',
+    password: 'password',
 );
 ```

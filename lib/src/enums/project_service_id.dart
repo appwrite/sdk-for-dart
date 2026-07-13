@@ -18,7 +18,8 @@ enum ProjectServiceId {
   graphql(value: 'graphql'),
   migrations(value: 'migrations'),
   messaging(value: 'messaging'),
-  advisor(value: 'advisor');
+  advisor(value: 'advisor'),
+  oauth2(value: 'oauth2');
 
   const ProjectServiceId({required this.value});
 

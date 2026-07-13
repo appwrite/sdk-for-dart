@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -109,7 +109,7 @@ void main() {
       final response = await account.create(
         userId: '<USER_ID>',
         email: 'email@example.com',
-        password: '',
+        password: 'password',
       );
       expect(response, isA<models.User>());
     });
@@ -638,7 +638,7 @@ void main() {
       )).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePassword(
-        password: '',
+        password: 'password',
       );
       expect(response, isA<models.User>());
     });
@@ -753,7 +753,7 @@ void main() {
       final response = await account.updateRecovery(
         userId: '<USER_ID>',
         secret: '<SECRET>',
-        password: '',
+        password: 'password',
       );
       expect(response, isA<models.Token>());
     });
@@ -1169,13 +1169,13 @@ void main() {
 
     test('test method createOAuth2Token()', () async {
       when(client.webAuth(
-        Uri(),
+        argThat(isNotNull),
       )).thenAnswer((_) async => 'done');
 
       final response = await account.createOAuth2Token(
         provider: enums.OAuthProvider.amazon,
       );
-      expect(response, isA<models.Token>());
+      expect(response, equals('done'));
     });
 
     test('test method createPhoneToken()', () async {

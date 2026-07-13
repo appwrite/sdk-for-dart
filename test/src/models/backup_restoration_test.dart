@@ -15,7 +15,8 @@ void main() {
         migrationId: 'did8jx6ws45jana098ab7',
         services: [],
         resources: [],
-        options: '{databases.database[{oldId, newId, newName}]}',
+        options:
+            '{databases.database[{oldId, newId, newName, newSpecification}]}',
       );
 
       final map = model.toMap();
@@ -31,7 +32,8 @@ void main() {
       expect(result.migrationId, 'did8jx6ws45jana098ab7');
       expect(result.services, []);
       expect(result.resources, []);
-      expect(result.options, '{databases.database[{oldId, newId, newName}]}');
+      expect(result.options,
+          '{databases.database[{oldId, newId, newName, newSpecification}]}');
     });
   });
 }

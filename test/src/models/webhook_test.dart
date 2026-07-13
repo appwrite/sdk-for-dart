@@ -13,7 +13,7 @@ void main() {
         events: [],
         tls: true,
         authUsername: 'username',
-        authPassword: 'password',
+        authPassword: 'webhook-password',
         secret: 'ad3d581ca230e2b7059c545e5a',
         enabled: true,
         logs: 'Failed to connect to remote server.',
@@ -31,7 +31,7 @@ void main() {
       expect(result.events, []);
       expect(result.tls, true);
       expect(result.authUsername, 'username');
-      expect(result.authPassword, 'password');
+      expect(result.authPassword, 'webhook-password');
       expect(result.secret, 'ad3d581ca230e2b7059c545e5a');
       expect(result.enabled, true);
       expect(result.logs, 'Failed to connect to remote server.');

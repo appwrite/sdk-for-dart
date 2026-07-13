@@ -56,48 +56,6 @@ class ActivityEvent implements Model {
   /// Hostname.
   final String hostname;
 
-  /// Operating system code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/os.json).
-  final String osCode;
-
-  /// Operating system name.
-  final String osName;
-
-  /// Operating system version.
-  final String osVersion;
-
-  /// Client type.
-  final String clientType;
-
-  /// Client code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/clients.json).
-  final String clientCode;
-
-  /// Client name.
-  final String clientName;
-
-  /// Client version.
-  final String clientVersion;
-
-  /// Client engine name.
-  final String clientEngine;
-
-  /// Client engine name.
-  final String clientEngineVersion;
-
-  /// Device name.
-  final String deviceName;
-
-  /// Device brand name.
-  final String deviceBrand;
-
-  /// Device model name.
-  final String deviceModel;
-
-  /// Country two-character ISO 3166-1 alpha code.
-  final String countryCode;
-
-  /// Country name.
-  final String countryName;
-
   ActivityEvent({
     required this.$id,
     required this.actorType,
@@ -117,20 +75,6 @@ class ActivityEvent implements Model {
     required this.projectId,
     required this.teamId,
     required this.hostname,
-    required this.osCode,
-    required this.osName,
-    required this.osVersion,
-    required this.clientType,
-    required this.clientCode,
-    required this.clientName,
-    required this.clientVersion,
-    required this.clientEngine,
-    required this.clientEngineVersion,
-    required this.deviceName,
-    required this.deviceBrand,
-    required this.deviceModel,
-    required this.countryCode,
-    required this.countryName,
   });
 
   factory ActivityEvent.fromMap(Map<String, dynamic> map) {
@@ -153,20 +97,6 @@ class ActivityEvent implements Model {
       projectId: map['projectId'].toString(),
       teamId: map['teamId'].toString(),
       hostname: map['hostname'].toString(),
-      osCode: map['osCode'].toString(),
-      osName: map['osName'].toString(),
-      osVersion: map['osVersion'].toString(),
-      clientType: map['clientType'].toString(),
-      clientCode: map['clientCode'].toString(),
-      clientName: map['clientName'].toString(),
-      clientVersion: map['clientVersion'].toString(),
-      clientEngine: map['clientEngine'].toString(),
-      clientEngineVersion: map['clientEngineVersion'].toString(),
-      deviceName: map['deviceName'].toString(),
-      deviceBrand: map['deviceBrand'].toString(),
-      deviceModel: map['deviceModel'].toString(),
-      countryCode: map['countryCode'].toString(),
-      countryName: map['countryName'].toString(),
     );
   }
 
@@ -191,20 +121,6 @@ class ActivityEvent implements Model {
       "projectId": projectId,
       "teamId": teamId,
       "hostname": hostname,
-      "osCode": osCode,
-      "osName": osName,
-      "osVersion": osVersion,
-      "clientType": clientType,
-      "clientCode": clientCode,
-      "clientName": clientName,
-      "clientVersion": clientVersion,
-      "clientEngine": clientEngine,
-      "clientEngineVersion": clientEngineVersion,
-      "deviceName": deviceName,
-      "deviceBrand": deviceBrand,
-      "deviceModel": deviceModel,
-      "countryCode": countryCode,
-      "countryName": countryName,
     };
   }
 }

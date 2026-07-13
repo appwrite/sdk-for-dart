@@ -27,7 +27,7 @@ class AttributePolygon implements Model {
   final String $updatedAt;
 
   /// Default value for attribute when not provided. Cannot be set when attribute is required.
-  final List? xdefault;
+  final List<List<List<double>>>? xdefault;
 
   AttributePolygon({
     required this.key,

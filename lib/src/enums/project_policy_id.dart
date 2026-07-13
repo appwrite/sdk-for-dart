@@ -13,7 +13,8 @@ enum ProjectPolicyId {
   membershipPrivacy(value: 'membership-privacy'),
   denyAliasedEmail(value: 'deny-aliased-email'),
   denyDisposableEmail(value: 'deny-disposable-email'),
-  denyFreeEmail(value: 'deny-free-email');
+  denyFreeEmail(value: 'deny-free-email'),
+  denyCorporateEmail(value: 'deny-corporate-email');
 
   const ProjectPolicyId({required this.value});
 

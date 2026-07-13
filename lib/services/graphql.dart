@@ -17,6 +17,7 @@ class Graphql extends Service {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'x-sdk-graphql': 'true',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -37,6 +38,7 @@ class Graphql extends Service {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'x-sdk-graphql': 'true',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,

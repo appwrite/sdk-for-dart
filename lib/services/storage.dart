@@ -18,6 +18,7 @@ class Storage extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -59,6 +60,7 @@ class Storage extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -77,6 +79,7 @@ class Storage extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -118,6 +121,7 @@ class Storage extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,
@@ -162,6 +166,7 @@ class Storage extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -206,6 +211,7 @@ class Storage extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'multipart/form-data',
+      'accept': 'application/json',
     };
 
     String idParamName = '';
@@ -235,6 +241,7 @@ class Storage extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -262,6 +269,7 @@ class Storage extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,
@@ -303,6 +311,7 @@ class Storage extends Service {
       if (token != null) 'token': token,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -349,6 +358,7 @@ class Storage extends Service {
       if (token != null) 'token': token,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -369,6 +379,7 @@ class Storage extends Service {
       if (token != null) 'token': token,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,

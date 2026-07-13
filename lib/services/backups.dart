@@ -13,6 +13,7 @@ class Backups extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -35,6 +36,7 @@ class Backups extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -52,6 +54,7 @@ class Backups extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -70,6 +73,7 @@ class Backups extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.delete,
@@ -88,6 +92,7 @@ class Backups extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -120,6 +125,7 @@ class Backups extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -137,6 +143,7 @@ class Backups extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -165,6 +172,7 @@ class Backups extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -183,6 +191,7 @@ class Backups extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.delete,
@@ -192,11 +201,22 @@ class Backups extends Service {
   }
 
   /// Create and trigger a new restoration for a backup on a project.
+  ///
+  /// When restoring a DocumentsDB or VectorsDB database to a new resource, pass
+  /// `newSpecification` to provision the restored database on a different
+  /// specification than the archived one (for example, restoring onto a larger
+  /// or smaller dedicated database). Use `serverless` to restore onto the shared
+  /// pool, or a dedicated specification slug to restore onto a dedicated
+  /// database of that size. The specification must be permitted by the
+  /// organization's plan. `newSpecification` is not supported for
+  /// legacy/TablesDB databases or for bucket restores.
+  ///
   Future<models.BackupRestoration> createRestoration(
       {required String archiveId,
       required List<enums.BackupServices> services,
       String? newResourceId,
-      String? newResourceName}) async {
+      String? newResourceName,
+      String? newSpecification}) async {
     final String apiPath = '/backups/restoration';
 
     final Map<String, dynamic> apiParams = {
@@ -204,11 +224,13 @@ class Backups extends Service {
       'services': services.map((e) => e.value).toList(),
       if (newResourceId != null) 'newResourceId': newResourceId,
       if (newResourceName != null) 'newResourceName': newResourceName,
+      if (newSpecification != null) 'newSpecification': newSpecification,
     };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -228,6 +250,7 @@ class Backups extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -246,6 +269,7 @@ class Backups extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,

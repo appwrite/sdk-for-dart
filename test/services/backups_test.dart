@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -152,6 +152,7 @@ void main() {
         'resources': [],
         'retention': 7,
         'schedule': '0 * * * *',
+        'type': 'full',
         'enabled': true,
       };
 
@@ -178,6 +179,7 @@ void main() {
         'resources': [],
         'retention': 7,
         'schedule': '0 * * * *',
+        'type': 'full',
         'enabled': true,
       };
 
@@ -201,6 +203,7 @@ void main() {
         'resources': [],
         'retention': 7,
         'schedule': '0 * * * *',
+        'type': 'full',
         'enabled': true,
       };
 
@@ -238,7 +241,8 @@ void main() {
         'migrationId': 'did8jx6ws45jana098ab7',
         'services': [],
         'resources': [],
-        'options': '{databases.database[{oldId, newId, newName}]}',
+        'options':
+            '{databases.database[{oldId, newId, newName, newSpecification}]}',
       };
 
       when(client.call(
@@ -278,7 +282,8 @@ void main() {
         'migrationId': 'did8jx6ws45jana098ab7',
         'services': [],
         'resources': [],
-        'options': '{databases.database[{oldId, newId, newName}]}',
+        'options':
+            '{databases.database[{oldId, newId, newName, newSpecification}]}',
       };
 
       when(client.call(

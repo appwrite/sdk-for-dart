@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -52,6 +52,240 @@ void main() {
     setUp(() {
       client = MockClient();
       organization = Organization(client);
+    });
+
+    test('test method get()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'name': 'VIP',
+        'total': 7,
+        'prefs': <String, dynamic>{},
+        'billingBudget': 50,
+        'budgetAlerts': [],
+        'billingPlan': 'tier-1',
+        'billingPlanId': 'tier-1',
+        'billingPlanDetails': <String, dynamic>{
+          '\$id': 'tier-0',
+          'name': 'Hobby',
+          'desc': 'Hobby plan',
+          'order': 0,
+          'price': 25,
+          'trial': 14,
+          'bandwidth': 25,
+          'storage': 25,
+          'imageTransformations': 100,
+          'screenshotsGenerated': 50,
+          'members': 25,
+          'webhooks': 25,
+          'projects': 2,
+          'platforms': 3,
+          'users': 25,
+          'teams': 25,
+          'databases': 25,
+          'databasesReads': 500000,
+          'databasesWrites': 250000,
+          'databasesBatchSize': 100,
+          'buckets': 25,
+          'fileSize': 25,
+          'functions': 25,
+          'sites': 1,
+          'executions': 25,
+          'executionsRetentionCount': 10000,
+          'GBHours': 100,
+          'realtime': 25,
+          'realtimeMessages': 100000,
+          'messages': 1000,
+          'topics': 1,
+          'authPhone': 10,
+          'domains': 5,
+          'activityLogs': 7,
+          'usageLogs': 30,
+          'projectInactivityDays': 7,
+          'alertLimit': 80,
+          'usage': <String, dynamic>{},
+          'addons': <String, dynamic>{},
+          'budgetCapEnabled': true,
+          'customSmtp': true,
+          'emailBranding': true,
+          'requiresPaymentMethod': true,
+          'requiresBillingAddress': true,
+          'isAvailable': true,
+          'selfService': true,
+          'premiumSupport': true,
+          'budgeting': true,
+          'supportsMockNumbers': true,
+          'supportsOrganizationRoles': true,
+          'supportsCredits': true,
+          'supportsDisposableEmailValidation': true,
+          'supportsCanonicalEmailValidation': true,
+          'supportsFreeEmailValidation': true,
+          'supportsCorporateEmailValidation': true,
+          'supportsProjectSpecificRoles': true,
+          'backupsEnabled': true,
+          'usagePerProject': true,
+          'supportedAddons': <String, dynamic>{},
+          'backupPolicies': 1,
+          'deploymentSize': 30,
+          'buildSize': 2000,
+          'databasesAllowEncrypt': true,
+          'group': 'pro',
+        },
+        'billingEmail': 'billing@org.example',
+        'billingStartDate': '2020-10-15T06:38:00.000+00:00',
+        'billingCurrentInvoiceDate': '2020-10-15T06:38:00.000+00:00',
+        'billingNextInvoiceDate': '2020-10-15T06:38:00.000+00:00',
+        'billingTrialStartDate': '2020-10-15T06:38:00.000+00:00',
+        'billingTrialDays': 14,
+        'billingAggregationId': 'adbc3de4rddfsd',
+        'billingInvoiceId': 'adbc3de4rddfsd',
+        'paymentMethodId': 'adbc3de4rddfsd',
+        'billingAddressId': 'adbc3de4rddfsd',
+        'backupPaymentMethodId': 'adbc3de4rddfsd',
+        'status': 'active',
+        'remarks': 'Pending initial payment',
+        'agreementBAA': '',
+        'programManagerName': '',
+        'programManagerCalendar': '',
+        'programDiscordChannelName': '',
+        'programDiscordChannelUrl': '',
+        'billingPlanDowngrade': 'tier-1',
+        'billingTaxId': '',
+        'markedForDeletion': true,
+        'platform': 'imagine',
+        'projects': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.get();
+      expect(response, isA<models.Organization>());
+    });
+
+    test('test method update()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'name': 'VIP',
+        'total': 7,
+        'prefs': <String, dynamic>{},
+        'billingBudget': 50,
+        'budgetAlerts': [],
+        'billingPlan': 'tier-1',
+        'billingPlanId': 'tier-1',
+        'billingPlanDetails': <String, dynamic>{
+          '\$id': 'tier-0',
+          'name': 'Hobby',
+          'desc': 'Hobby plan',
+          'order': 0,
+          'price': 25,
+          'trial': 14,
+          'bandwidth': 25,
+          'storage': 25,
+          'imageTransformations': 100,
+          'screenshotsGenerated': 50,
+          'members': 25,
+          'webhooks': 25,
+          'projects': 2,
+          'platforms': 3,
+          'users': 25,
+          'teams': 25,
+          'databases': 25,
+          'databasesReads': 500000,
+          'databasesWrites': 250000,
+          'databasesBatchSize': 100,
+          'buckets': 25,
+          'fileSize': 25,
+          'functions': 25,
+          'sites': 1,
+          'executions': 25,
+          'executionsRetentionCount': 10000,
+          'GBHours': 100,
+          'realtime': 25,
+          'realtimeMessages': 100000,
+          'messages': 1000,
+          'topics': 1,
+          'authPhone': 10,
+          'domains': 5,
+          'activityLogs': 7,
+          'usageLogs': 30,
+          'projectInactivityDays': 7,
+          'alertLimit': 80,
+          'usage': <String, dynamic>{},
+          'addons': <String, dynamic>{},
+          'budgetCapEnabled': true,
+          'customSmtp': true,
+          'emailBranding': true,
+          'requiresPaymentMethod': true,
+          'requiresBillingAddress': true,
+          'isAvailable': true,
+          'selfService': true,
+          'premiumSupport': true,
+          'budgeting': true,
+          'supportsMockNumbers': true,
+          'supportsOrganizationRoles': true,
+          'supportsCredits': true,
+          'supportsDisposableEmailValidation': true,
+          'supportsCanonicalEmailValidation': true,
+          'supportsFreeEmailValidation': true,
+          'supportsCorporateEmailValidation': true,
+          'supportsProjectSpecificRoles': true,
+          'backupsEnabled': true,
+          'usagePerProject': true,
+          'supportedAddons': <String, dynamic>{},
+          'backupPolicies': 1,
+          'deploymentSize': 30,
+          'buildSize': 2000,
+          'databasesAllowEncrypt': true,
+          'group': 'pro',
+        },
+        'billingEmail': 'billing@org.example',
+        'billingStartDate': '2020-10-15T06:38:00.000+00:00',
+        'billingCurrentInvoiceDate': '2020-10-15T06:38:00.000+00:00',
+        'billingNextInvoiceDate': '2020-10-15T06:38:00.000+00:00',
+        'billingTrialStartDate': '2020-10-15T06:38:00.000+00:00',
+        'billingTrialDays': 14,
+        'billingAggregationId': 'adbc3de4rddfsd',
+        'billingInvoiceId': 'adbc3de4rddfsd',
+        'paymentMethodId': 'adbc3de4rddfsd',
+        'billingAddressId': 'adbc3de4rddfsd',
+        'backupPaymentMethodId': 'adbc3de4rddfsd',
+        'status': 'active',
+        'remarks': 'Pending initial payment',
+        'agreementBAA': '',
+        'programManagerName': '',
+        'programManagerCalendar': '',
+        'programDiscordChannelName': '',
+        'programDiscordChannelUrl': '',
+        'billingPlanDowngrade': 'tier-1',
+        'billingTaxId': '',
+        'markedForDeletion': true,
+        'platform': 'imagine',
+        'projects': [],
+      };
+
+      when(client.call(
+        HttpMethod.put,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.update(
+        name: '<NAME>',
+      );
+      expect(response, isA<models.Organization>());
+    });
+
+    test('test method delete()', () async {
+      final data = '';
+
+      when(client.call(
+        HttpMethod.delete,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.delete();
     });
 
     test('test method listKeys()', () async {
@@ -153,6 +387,120 @@ void main() {
       );
     });
 
+    test('test method listMemberships()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'memberships': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.listMemberships();
+      expect(response, isA<models.MembershipList>());
+    });
+
+    test('test method createMembership()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'userId': '5e5ea5c16897e',
+        'userName': 'John Doe',
+        'userEmail': 'john@appwrite.io',
+        'userPhone': '+1 555 555 5555',
+        'teamId': '5e5ea5c16897e',
+        'teamName': 'VIP',
+        'invited': '2020-10-15T06:38:00.000+00:00',
+        'joined': '2020-10-15T06:38:00.000+00:00',
+        'confirm': true,
+        'mfa': true,
+        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'roles': [],
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.createMembership(
+        roles: [],
+      );
+      expect(response, isA<models.Membership>());
+    });
+
+    test('test method getMembership()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'userId': '5e5ea5c16897e',
+        'userName': 'John Doe',
+        'userEmail': 'john@appwrite.io',
+        'userPhone': '+1 555 555 5555',
+        'teamId': '5e5ea5c16897e',
+        'teamName': 'VIP',
+        'invited': '2020-10-15T06:38:00.000+00:00',
+        'joined': '2020-10-15T06:38:00.000+00:00',
+        'confirm': true,
+        'mfa': true,
+        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'roles': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.getMembership(
+        membershipId: '<MEMBERSHIP_ID>',
+      );
+      expect(response, isA<models.Membership>());
+    });
+
+    test('test method updateMembership()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'userId': '5e5ea5c16897e',
+        'userName': 'John Doe',
+        'userEmail': 'john@appwrite.io',
+        'userPhone': '+1 555 555 5555',
+        'teamId': '5e5ea5c16897e',
+        'teamName': 'VIP',
+        'invited': '2020-10-15T06:38:00.000+00:00',
+        'joined': '2020-10-15T06:38:00.000+00:00',
+        'confirm': true,
+        'mfa': true,
+        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'roles': [],
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.updateMembership(
+        membershipId: '<MEMBERSHIP_ID>',
+        roles: [],
+      );
+      expect(response, isA<models.Membership>());
+    });
+
+    test('test method deleteMembership()', () async {
+      final data = '';
+
+      when(client.call(
+        HttpMethod.delete,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.deleteMembership(
+        membershipId: '<MEMBERSHIP_ID>',
+      );
+    });
+
     test('test method listProjects()', () async {
       final Map<String, dynamic> data = {
         'total': 5,
@@ -184,28 +532,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -236,28 +574,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(
@@ -287,28 +615,18 @@ void main() {
         'smtpHost': 'mail.appwrite.io',
         'smtpPort': 25,
         'smtpUsername': 'emailuser',
-        'smtpPassword': '',
+        'smtpPassword': 'smtp-password',
         'smtpSecure': 'tls',
         'pingCount': 1,
         'pingedAt': '2020-10-15T06:38:00.000+00:00',
         'labels': [],
         'status': 'active',
+        'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'oAuth2ServerEnabled': true,
-        'oAuth2ServerAuthorizationUrl':
-            'https://cloud.appwrite.io/oauth2/.well-known/openid-configuration',
-        'oAuth2ServerScopes': [],
-        'oAuth2ServerAccessTokenDuration': 3600,
-        'oAuth2ServerRefreshTokenDuration': 86400,
-        'oAuth2ServerPublicAccessTokenDuration': 3600,
-        'oAuth2ServerPublicRefreshTokenDuration': 2592000,
-        'oAuth2ServerConfidentialPkce': true,
-        'oAuth2ServerDiscoveryUrl':
-            'https://auth.example.com/.well-known/openid-configuration',
       };
 
       when(client.call(

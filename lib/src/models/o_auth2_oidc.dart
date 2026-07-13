@@ -26,6 +26,12 @@ class OAuth2Oidc implements Model {
   /// OpenID Connect user info endpoint URL.
   final String userInfoURL;
 
+  /// OpenID Connect prompt values controlling the authentication and consent screens.
+  final List<enums.OAuth2OidcPrompt> prompt;
+
+  /// Maximum authentication age in seconds. When set, the user must have authenticated within this many seconds.
+  final int? maxAge;
+
   OAuth2Oidc({
     required this.$id,
     required this.enabled,
@@ -35,6 +41,8 @@ class OAuth2Oidc implements Model {
     required this.authorizationURL,
     required this.tokenURL,
     required this.userInfoURL,
+    required this.prompt,
+    this.maxAge,
   });
 
   factory OAuth2Oidc.fromMap(Map<String, dynamic> map) {
@@ -47,6 +55,8 @@ class OAuth2Oidc implements Model {
       authorizationURL: map['authorizationURL'].toString(),
       tokenURL: map['tokenURL'].toString(),
       userInfoURL: map['userInfoURL'].toString(),
+      prompt: List.from(map['prompt'] ?? []),
+      maxAge: map['maxAge'],
     );
   }
 
@@ -61,6 +71,8 @@ class OAuth2Oidc implements Model {
       "authorizationURL": authorizationURL,
       "tokenURL": tokenURL,
       "userInfoURL": userInfoURL,
+      "prompt": prompt,
+      "maxAge": maxAge,
     };
   }
 }

@@ -20,6 +20,9 @@ class Database implements Model {
   /// Database type.
   final enums.DatabaseType type;
 
+  /// Database status. Possible values: `provisioning`, `ready` or `failed`
+  final enums.DatabaseStatus? status;
+
   /// Database backup policies.
   final List<BackupPolicy> policies;
 
@@ -33,6 +36,7 @@ class Database implements Model {
     required this.$updatedAt,
     required this.enabled,
     required this.type,
+    this.status,
     required this.policies,
     required this.archives,
   });
@@ -45,6 +49,10 @@ class Database implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       enabled: map['enabled'],
       type: enums.DatabaseType.values.firstWhere((e) => e.value == map['type']),
+      status: map['status'] != null
+          ? enums.DatabaseStatus.values
+              .firstWhere((e) => e.value == map['status'])
+          : null,
       policies: List<BackupPolicy>.from(
           map['policies'].map((p) => BackupPolicy.fromMap(p))),
       archives: List<BackupArchive>.from(
@@ -61,6 +69,7 @@ class Database implements Model {
       "\$updatedAt": $updatedAt,
       "enabled": enabled,
       "type": type.value,
+      "status": status?.value,
       "policies": policies.map((p) => p.toMap()).toList(),
       "archives": archives.map((p) => p.toMap()).toList(),
     };

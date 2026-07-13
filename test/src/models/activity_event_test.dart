@@ -24,20 +24,6 @@ void main() {
         projectId: '610fc2f985ee0',
         teamId: '610fc2f985ee0',
         hostname: 'appwrite.io',
-        osCode: 'Mac',
-        osName: 'Mac',
-        osVersion: 'Mac',
-        clientType: 'browser',
-        clientCode: 'CM',
-        clientName: 'Chrome Mobile iOS',
-        clientVersion: '84.0',
-        clientEngine: 'WebKit',
-        clientEngineVersion: '605.1.15',
-        deviceName: 'smartphone',
-        deviceBrand: 'Google',
-        deviceModel: 'Nexus 5',
-        countryCode: 'US',
-        countryName: 'United States',
       );
 
       final map = model.toMap();
@@ -62,20 +48,6 @@ void main() {
       expect(result.projectId, '610fc2f985ee0');
       expect(result.teamId, '610fc2f985ee0');
       expect(result.hostname, 'appwrite.io');
-      expect(result.osCode, 'Mac');
-      expect(result.osName, 'Mac');
-      expect(result.osVersion, 'Mac');
-      expect(result.clientType, 'browser');
-      expect(result.clientCode, 'CM');
-      expect(result.clientName, 'Chrome Mobile iOS');
-      expect(result.clientVersion, '84.0');
-      expect(result.clientEngine, 'WebKit');
-      expect(result.clientEngineVersion, '605.1.15');
-      expect(result.deviceName, 'smartphone');
-      expect(result.deviceBrand, 'Google');
-      expect(result.deviceModel, 'Nexus 5');
-      expect(result.countryCode, 'US');
-      expect(result.countryName, 'United States');
     });
   });
 }

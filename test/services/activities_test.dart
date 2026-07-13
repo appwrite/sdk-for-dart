@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -89,20 +89,6 @@ void main() {
         'projectId': '610fc2f985ee0',
         'teamId': '610fc2f985ee0',
         'hostname': 'appwrite.io',
-        'osCode': 'Mac',
-        'osName': 'Mac',
-        'osVersion': 'Mac',
-        'clientType': 'browser',
-        'clientCode': 'CM',
-        'clientName': 'Chrome Mobile iOS',
-        'clientVersion': '84.0',
-        'clientEngine': 'WebKit',
-        'clientEngineVersion': '605.1.15',
-        'deviceName': 'smartphone',
-        'deviceBrand': 'Google',
-        'deviceModel': 'Nexus 5',
-        'countryCode': 'US',
-        'countryName': 'United States',
       };
 
       when(client.call(

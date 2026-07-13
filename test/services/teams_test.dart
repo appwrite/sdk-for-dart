@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -173,6 +173,7 @@ void main() {
         'joined': '2020-10-15T06:38:00.000+00:00',
         'confirm': true,
         'mfa': true,
+        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
         'roles': [],
       };
 
@@ -202,6 +203,7 @@ void main() {
         'joined': '2020-10-15T06:38:00.000+00:00',
         'confirm': true,
         'mfa': true,
+        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
         'roles': [],
       };
 
@@ -231,6 +233,7 @@ void main() {
         'joined': '2020-10-15T06:38:00.000+00:00',
         'confirm': true,
         'mfa': true,
+        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
         'roles': [],
       };
 
@@ -274,6 +277,7 @@ void main() {
         'joined': '2020-10-15T06:38:00.000+00:00',
         'confirm': true,
         'mfa': true,
+        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
         'roles': [],
       };
 

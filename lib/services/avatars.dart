@@ -29,6 +29,7 @@ class Avatars extends Service {
       if (quality != null) 'quality': quality,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -59,6 +60,7 @@ class Avatars extends Service {
       if (quality != null) 'quality': quality,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -77,6 +79,7 @@ class Avatars extends Service {
       'url': url,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -105,6 +108,7 @@ class Avatars extends Service {
       if (quality != null) 'quality': quality,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -133,6 +137,7 @@ class Avatars extends Service {
       if (height != null) 'height': height,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -167,6 +172,7 @@ class Avatars extends Service {
       if (background != null) 'background': background,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -188,6 +194,7 @@ class Avatars extends Service {
       if (download != null) 'download': download,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,
@@ -252,6 +259,7 @@ class Avatars extends Service {
       if (output != null) 'output': output.value,
       'project': client.config['project'],
       'session': client.config['session'],
+      'impersonateuserid': client.config['impersonateuserid'],
     };
 
     final res = await client.call(HttpMethod.get,

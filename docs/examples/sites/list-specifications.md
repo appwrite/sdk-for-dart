@@ -8,5 +8,7 @@ Client client = Client()
 
 Sites sites = Sites(client);
 
-SpecificationList result = await sites.listSpecifications();
+SpecificationList result = await sites.listSpecifications(
+    type: 'runtimes', // (optional)
+);
 ```

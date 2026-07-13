@@ -8,5 +8,7 @@ Client client = Client()
 
 Functions functions = Functions(client);
 
-SpecificationList result = await functions.listSpecifications();
+SpecificationList result = await functions.listSpecifications(
+    type: 'runtimes', // (optional)
+);
 ```

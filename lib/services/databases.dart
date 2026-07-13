@@ -21,6 +21,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -46,6 +47,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -55,6 +57,8 @@ class Databases extends Service {
   }
 
   /// List transactions across all databases.
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.listTransactions` instead.')
   Future<models.TransactionList> listTransactions(
       {List<String>? queries}) async {
     final String apiPath = '/databases/transactions';
@@ -65,6 +69,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -74,6 +79,8 @@ class Databases extends Service {
   }
 
   /// Create a new transaction.
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.createTransaction` instead.')
   Future<models.Transaction> createTransaction({int? ttl}) async {
     final String apiPath = '/databases/transactions';
 
@@ -84,6 +91,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -93,6 +101,8 @@ class Databases extends Service {
   }
 
   /// Get a transaction by its unique ID.
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.getTransaction` instead.')
   Future<models.Transaction> getTransaction(
       {required String transactionId}) async {
     final String apiPath = '/databases/transactions/{transactionId}'
@@ -102,6 +112,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -111,6 +122,8 @@ class Databases extends Service {
   }
 
   /// Update a transaction, to either commit or roll back its operations.
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateTransaction` instead.')
   Future<models.Transaction> updateTransaction(
       {required String transactionId, bool? commit, bool? rollback}) async {
     final String apiPath = '/databases/transactions/{transactionId}'
@@ -124,6 +137,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -133,6 +147,8 @@ class Databases extends Service {
   }
 
   /// Delete a transaction by its unique ID.
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.deleteTransaction` instead.')
   Future deleteTransaction({required String transactionId}) async {
     final String apiPath = '/databases/transactions/{transactionId}'
         .replaceAll('{transactionId}', transactionId);
@@ -151,6 +167,8 @@ class Databases extends Service {
   }
 
   /// Create multiple operations in a single transaction.
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.createOperations` instead.')
   Future<models.Transaction> createOperations(
       {required String transactionId, List<Map>? operations}) async {
     final String apiPath = '/databases/transactions/{transactionId}/operations'
@@ -163,6 +181,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -183,6 +202,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -207,6 +227,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,
@@ -256,6 +277,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -295,6 +317,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -317,6 +340,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -351,6 +375,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,
@@ -402,6 +427,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -441,6 +467,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -480,6 +507,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -514,6 +542,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -548,6 +577,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -581,6 +611,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -615,6 +646,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -649,6 +681,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -684,6 +717,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -721,6 +755,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -758,6 +793,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -797,6 +833,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -836,6 +873,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -875,6 +913,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -914,6 +953,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -948,6 +988,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -983,6 +1024,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -999,7 +1041,7 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      List? xdefault}) async {
+      List<List>? xdefault}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/line'
             .replaceAll('{databaseId}', databaseId)
@@ -1014,6 +1056,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1031,7 +1074,7 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      List? xdefault,
+      List<List>? xdefault,
       String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/line/{key}'
@@ -1048,6 +1091,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1058,6 +1102,8 @@ class Databases extends Service {
 
   /// Create a longtext attribute.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.createLongtextColumn` instead.')
   Future<models.AttributeLongtext> createLongtextAttribute(
       {required String databaseId,
       required String collectionId,
@@ -1082,6 +1128,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1093,6 +1140,8 @@ class Databases extends Service {
   /// Update a longtext attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateLongtextColumn` instead.')
   Future<models.AttributeLongtext> updateLongtextAttribute(
       {required String databaseId,
       required String collectionId,
@@ -1115,6 +1164,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1125,6 +1175,8 @@ class Databases extends Service {
 
   /// Create a mediumtext attribute.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.createMediumtextColumn` instead.')
   Future<models.AttributeMediumtext> createMediumtextAttribute(
       {required String databaseId,
       required String collectionId,
@@ -1149,6 +1201,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1160,6 +1213,8 @@ class Databases extends Service {
   /// Update a mediumtext attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateMediumtextColumn` instead.')
   Future<models.AttributeMediumtext> updateMediumtextAttribute(
       {required String databaseId,
       required String collectionId,
@@ -1182,6 +1237,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1198,7 +1254,7 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      List? xdefault}) async {
+      List<double>? xdefault}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/point'
             .replaceAll('{databaseId}', databaseId)
@@ -1213,6 +1269,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1230,7 +1287,7 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      List? xdefault,
+      List<double>? xdefault,
       String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/point/{key}'
@@ -1247,6 +1304,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1263,7 +1321,7 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      List? xdefault}) async {
+      List<List>? xdefault}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/polygon'
             .replaceAll('{databaseId}', databaseId)
@@ -1278,6 +1336,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1295,7 +1354,7 @@ class Databases extends Service {
       required String collectionId,
       required String key,
       required bool xrequired,
-      List? xdefault,
+      List<List>? xdefault,
       String? newKey}) async {
     final String apiPath =
         '/databases/{databaseId}/collections/{collectionId}/attributes/polygon/{key}'
@@ -1312,6 +1371,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1351,6 +1411,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1384,6 +1445,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1422,6 +1484,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1459,6 +1522,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1469,6 +1533,8 @@ class Databases extends Service {
 
   /// Create a text attribute.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.createTextColumn` instead.')
   Future<models.AttributeText> createTextAttribute(
       {required String databaseId,
       required String collectionId,
@@ -1493,6 +1559,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1504,6 +1571,8 @@ class Databases extends Service {
   /// Update a text attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateTextColumn` instead.')
   Future<models.AttributeText> updateTextAttribute(
       {required String databaseId,
       required String collectionId,
@@ -1526,6 +1595,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1560,6 +1630,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1595,6 +1666,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1605,6 +1677,8 @@ class Databases extends Service {
 
   /// Create a varchar attribute.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.createVarcharColumn` instead.')
   Future<models.AttributeVarchar> createVarcharAttribute(
       {required String databaseId,
       required String collectionId,
@@ -1631,6 +1705,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1642,6 +1717,8 @@ class Databases extends Service {
   /// Update a varchar attribute. Changing the `default` value will not update
   /// already existing documents.
   ///
+  @Deprecated(
+      'This API has been deprecated since 1.8.0. Please use `TablesDB.updateVarcharColumn` instead.')
   Future<models.AttributeVarchar> updateVarcharAttribute(
       {required String databaseId,
       required String collectionId,
@@ -1666,6 +1743,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1691,6 +1769,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -1790,6 +1869,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -1826,6 +1906,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1858,6 +1939,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -1891,6 +1973,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,
@@ -1924,6 +2007,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -1948,12 +2032,13 @@ class Databases extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
-      'transactionId': transactionId,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.delete,
@@ -1985,6 +2070,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -2021,6 +2107,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.put,
@@ -2055,6 +2142,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -2078,7 +2166,7 @@ class Databases extends Service {
             .replaceAll('{documentId}', documentId);
 
     final Map<String, dynamic> apiParams = {
-      'transactionId': transactionId,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2119,6 +2207,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -2154,6 +2243,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.patch,
@@ -2182,6 +2272,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,
@@ -2219,6 +2310,7 @@ class Databases extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.post,
@@ -2244,6 +2336,7 @@ class Databases extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(HttpMethod.get,

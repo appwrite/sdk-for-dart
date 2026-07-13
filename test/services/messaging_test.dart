@@ -23,7 +23,7 @@ class MockClient extends Mock implements Client {
   }
 
   @override
-  Future<String?> webAuth(Uri url) async {
+  Future<String?> webAuth(Uri? url) async {
     return super
         .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
@@ -298,22 +298,6 @@ void main() {
       final response = await messaging.delete(
         messageId: '<MESSAGE_ID>',
       );
-    });
-
-    test('test method listMessageLogs()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'logs': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await messaging.listMessageLogs(
-        messageId: '<MESSAGE_ID>',
-      );
-      expect(response, isA<models.LogList>());
     });
 
     test('test method listTargets()', () async {
@@ -1057,38 +1041,6 @@ void main() {
       );
     });
 
-    test('test method listProviderLogs()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'logs': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await messaging.listProviderLogs(
-        providerId: '<PROVIDER_ID>',
-      );
-      expect(response, isA<models.LogList>());
-    });
-
-    test('test method listSubscriberLogs()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'logs': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await messaging.listSubscriberLogs(
-        subscriberId: '<SUBSCRIBER_ID>',
-      );
-      expect(response, isA<models.LogList>());
-    });
-
     test('test method listTopics()', () async {
       final Map<String, dynamic> data = {
         'total': 5,
@@ -1180,22 +1132,6 @@ void main() {
       final response = await messaging.deleteTopic(
         topicId: '<TOPIC_ID>',
       );
-    });
-
-    test('test method listTopicLogs()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'logs': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await messaging.listTopicLogs(
-        topicId: '<TOPIC_ID>',
-      );
-      expect(response, isA<models.LogList>());
     });
 
     test('test method listSubscribers()', () async {

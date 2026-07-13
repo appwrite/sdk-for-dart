@@ -20,6 +20,9 @@ class PolicyMembershipPrivacy implements Model {
   /// Whether user MFA status is visible in memberships.
   final bool userMFA;
 
+  /// Whether user last access time is visible in memberships.
+  final bool userAccessedAt;
+
   PolicyMembershipPrivacy({
     required this.$id,
     required this.userId,
@@ -27,6 +30,7 @@ class PolicyMembershipPrivacy implements Model {
     required this.userPhone,
     required this.userName,
     required this.userMFA,
+    required this.userAccessedAt,
   });
 
   factory PolicyMembershipPrivacy.fromMap(Map<String, dynamic> map) {
@@ -37,6 +41,7 @@ class PolicyMembershipPrivacy implements Model {
       userPhone: map['userPhone'],
       userName: map['userName'],
       userMFA: map['userMFA'],
+      userAccessedAt: map['userAccessedAt'],
     );
   }
 
@@ -49,6 +54,7 @@ class PolicyMembershipPrivacy implements Model {
       "userPhone": userPhone,
       "userName": userName,
       "userMFA": userMFA,
+      "userAccessedAt": userAccessedAt,
     };
   }
 }

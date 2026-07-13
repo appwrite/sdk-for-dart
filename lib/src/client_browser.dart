@@ -33,7 +33,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '25.1.0',
+      'x-sdk-version': '26.0.0',
       'X-Appwrite-Response-Format': '1.9.5',
     };
 
@@ -66,6 +66,14 @@ class ClientBrowser extends ClientBase with ClientMixin {
   ClientBrowser setJWT(value) {
     config['jWT'] = value;
     addHeader('X-Appwrite-JWT', value);
+    return this;
+  }
+
+  /// The OAuth access token to authenticate with
+  @override
+  ClientBrowser setBearer(value) {
+    config['bearer'] = value;
+    addHeader('Authorization', 'Bearer $value');
     return this;
   }
 
@@ -108,7 +116,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     return this;
   }
 
-  /// Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  /// Impersonate a user by ID
   @override
   ClientBrowser setImpersonateUserId(value) {
     config['impersonateUserId'] = value;
@@ -116,7 +124,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     return this;
   }
 
-  /// Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  /// Impersonate a user by email
   @override
   ClientBrowser setImpersonateUserEmail(value) {
     config['impersonateUserEmail'] = value;
@@ -124,7 +132,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     return this;
   }
 
-  /// Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+  /// Impersonate a user by phone
   @override
   ClientBrowser setImpersonateUserPhone(value) {
     config['impersonateUserPhone'] = value;
