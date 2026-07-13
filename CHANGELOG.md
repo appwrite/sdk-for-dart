@@ -5,7 +5,7 @@
 * Breaking: Removed `Health` service with its health models and enums
 * Breaking: Removed `Usage` service and `UsageEvent`, `UsageGauge` models
 * Breaking: Removed `Messaging` log methods `listMessageLogs`, `listProviderLogs`, `listSubscriberLogs`, `listTopicLogs`
-* Breaking: Removed client, device, and country detail fields from `ActivityEvent` model
+* Breaking: Removed OS, client, and device fields plus `countryCode`/`countryName` from `ActivityEvent` (`country` remains)
 * Breaking: Narrowed spatial attribute/column `xdefault` types to `List<double>`/`List<List>` in `Databases` and `TablesDB`
 * Added: `Organization` service `get`, `update`, `delete`, and membership management methods
 * Added: `Project.updateOAuth2Appwrite` and `updateDenyCorporateEmailPolicy` with `OAuth2Appwrite` and `PolicyDenyCorporateEmail` models
