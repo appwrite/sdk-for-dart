@@ -2,7 +2,7 @@ import 'response.dart';
 import 'client.dart';
 import 'enums.dart';
 
-abstract class ClientBase implements Client {
+abstract class ClientBase implements Client {  
   /// Your project ID
   @override
   ClientBase setProject(value);
@@ -18,6 +18,7 @@ abstract class ClientBase implements Client {
   /// The OAuth access token to authenticate with
   @override
   ClientBase setBearer(value);
+
   @override
   ClientBase setLocale(value);
 
@@ -48,6 +49,7 @@ abstract class ClientBase implements Client {
   /// Impersonate a user by phone
   @override
   ClientBase setImpersonateUserPhone(value);
+
 
   @override
   ClientBase setSelfSigned({bool status = true});

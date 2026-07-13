@@ -16,12 +16,12 @@ void main() {
       final map = model.toMap();
       final result = PolicyPasswordStrength.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
-      expect(result.min, 12);
-      expect(result.uppercase, true);
-      expect(result.lowercase, true);
-      expect(result.number, true);
-      expect(result.symbols, true);
-    });
+            expect(result.$id, 'password-dictionary');
+                  expect(result.min, 12);
+                  expect(result.uppercase, true);
+                  expect(result.lowercase, true);
+                  expect(result.number, true);
+                  expect(result.symbols, true);
+          });
   });
 }
