@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = DedicatedDatabaseMember.fromMap(map);
 
-            expect(result.$id, '1');
-                  expect(result.role, 'replica');
-                  expect(result.status, 'active');
-                  expect(result.lagSeconds, 0.5);
-          });
+      expect(result.$id, '1');
+      expect(result.role, 'replica');
+      expect(result.status, 'active');
+      expect(result.lagSeconds, 0.5);
+    });
   });
 }
