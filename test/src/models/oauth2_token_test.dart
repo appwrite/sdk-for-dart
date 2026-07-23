@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = Oauth2Token.fromMap(map);
 
-            expect(result.access_token, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...');
-                  expect(result.token_type, 'Bearer');
-                  expect(result.expires_in, 3600);
-                  expect(result.refresh_token, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...');
-                  expect(result.scope, 'openid email profile');
-          });
+      expect(result.access_token, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...');
+      expect(result.token_type, 'Bearer');
+      expect(result.expires_in, 3600);
+      expect(result.refresh_token, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...');
+      expect(result.scope, 'openid email profile');
+    });
   });
 }

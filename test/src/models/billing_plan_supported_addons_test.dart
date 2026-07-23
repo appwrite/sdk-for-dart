@@ -13,9 +13,9 @@ void main() {
       final map = model.toMap();
       final result = BillingPlanSupportedAddons.fromMap(map);
 
-            expect(result.baa, true);
-                  expect(result.premiumGeoDB, true);
-                  expect(result.premiumGeoDBOrg, true);
-          });
+      expect(result.baa, true);
+      expect(result.premiumGeoDB, true);
+      expect(result.premiumGeoDBOrg, true);
+    });
   });
 }

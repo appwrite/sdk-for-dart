@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = DedicatedDatabaseSpecificationPricing.fromMap(map);
 
-            expect(result.storageOverageRate, 0.125);
-                  expect(result.bandwidthOverageRate, 0.08);
-                  expect(result.replicaRate, 1);
-                  expect(result.crossRegionReplicaRate, 1);
-                  expect(result.pitrRate, 0.2);
-          });
+      expect(result.storageOverageRate, 0.125);
+      expect(result.bandwidthOverageRate, 0.08);
+      expect(result.replicaRate, 1);
+      expect(result.crossRegionReplicaRate, 1);
+      expect(result.pitrRate, 0.2);
+    });
   });
 }

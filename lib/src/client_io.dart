@@ -20,7 +20,7 @@ ClientBase createClient({
     );
 
 class ClientIO extends ClientBase with ClientMixin {
-  static const int chunkSize = 5*1024*1024;
+  static const int chunkSize = 5 * 1024 * 1024;
   String _endPoint;
   Map<String, String>? _headers;
   @override
@@ -43,8 +43,9 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
       'x-sdk-version': '26.1.0',
-      'user-agent' : 'AppwriteDartSDK/26.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format' : '1.9.5',
+      'user-agent':
+          'AppwriteDartSDK/26.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format': '1.9.5',
     };
 
     config = {};
@@ -56,88 +57,99 @@ class ClientIO extends ClientBase with ClientMixin {
   @override
   String get endPoint => _endPoint;
 
-     /// Your project ID
-    @override
+  /// Your project ID
+  @override
   ClientIO setProject(value) {
-        config['project'] = value;
-        return this;
-    }
-     /// Your secret API key
-    @override
+    config['project'] = value;
+    return this;
+  }
+
+  /// Your secret API key
+  @override
   ClientIO setKey(value) {
-        config['key'] = value;
-        addHeader('X-Appwrite-Key', value);
-        return this;
-    }
-     /// Your secret JSON Web Token
-    @override
+    config['key'] = value;
+    addHeader('X-Appwrite-Key', value);
+    return this;
+  }
+
+  /// Your secret JSON Web Token
+  @override
   ClientIO setJWT(value) {
-        config['jWT'] = value;
-        addHeader('X-Appwrite-JWT', value);
-        return this;
-    }
-     /// The OAuth access token to authenticate with
-    @override
+    config['jWT'] = value;
+    addHeader('X-Appwrite-JWT', value);
+    return this;
+  }
+
+  /// The OAuth access token to authenticate with
+  @override
   ClientIO setBearer(value) {
-        config['bearer'] = value;
-        addHeader('Authorization', 'Bearer $value');
-        return this;
-    }
-    @override
+    config['bearer'] = value;
+    addHeader('Authorization', 'Bearer $value');
+    return this;
+  }
+
+  @override
   ClientIO setLocale(value) {
-        config['locale'] = value;
-        addHeader('X-Appwrite-Locale', value);
-        return this;
-    }
-     /// The user session to authenticate with
-    @override
+    config['locale'] = value;
+    addHeader('X-Appwrite-Locale', value);
+    return this;
+  }
+
+  /// The user session to authenticate with
+  @override
   ClientIO setSession(value) {
-        config['session'] = value;
-        addHeader('X-Appwrite-Session', value);
-        return this;
-    }
-     /// The user agent string of the client that made the request
-    @override
+    config['session'] = value;
+    addHeader('X-Appwrite-Session', value);
+    return this;
+  }
+
+  /// The user agent string of the client that made the request
+  @override
   ClientIO setForwardedUserAgent(value) {
-        config['forwardedUserAgent'] = value;
-        addHeader('X-Forwarded-User-Agent', value);
-        return this;
-    }
-     /// Your secret dev API key
-    @override
+    config['forwardedUserAgent'] = value;
+    addHeader('X-Forwarded-User-Agent', value);
+    return this;
+  }
+
+  /// Your secret dev API key
+  @override
   ClientIO setDevKey(value) {
-        config['devKey'] = value;
-        addHeader('X-Appwrite-Dev-Key', value);
-        return this;
-    }
-     /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
-    @override
+    config['devKey'] = value;
+    addHeader('X-Appwrite-Dev-Key', value);
+    return this;
+  }
+
+  /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
+  @override
   ClientIO setCookie(value) {
-        config['cookie'] = value;
-        addHeader('Cookie', value);
-        return this;
-    }
-     /// Impersonate a user by ID
-    @override
+    config['cookie'] = value;
+    addHeader('Cookie', value);
+    return this;
+  }
+
+  /// Impersonate a user by ID
+  @override
   ClientIO setImpersonateUserId(value) {
-        config['impersonateUserId'] = value;
-        addHeader('X-Appwrite-Impersonate-User-Id', value);
-        return this;
-    }
-     /// Impersonate a user by email
-    @override
+    config['impersonateUserId'] = value;
+    addHeader('X-Appwrite-Impersonate-User-Id', value);
+    return this;
+  }
+
+  /// Impersonate a user by email
+  @override
   ClientIO setImpersonateUserEmail(value) {
-        config['impersonateUserEmail'] = value;
-        addHeader('X-Appwrite-Impersonate-User-Email', value);
-        return this;
-    }
-     /// Impersonate a user by phone
-    @override
+    config['impersonateUserEmail'] = value;
+    addHeader('X-Appwrite-Impersonate-User-Email', value);
+    return this;
+  }
+
+  /// Impersonate a user by phone
+  @override
   ClientIO setImpersonateUserPhone(value) {
-        config['impersonateUserPhone'] = value;
-        addHeader('X-Appwrite-Impersonate-User-Phone', value);
-        return this;
-    }
+    config['impersonateUserPhone'] = value;
+    addHeader('X-Appwrite-Impersonate-User-Phone', value);
+    return this;
+  }
 
   @override
   ClientIO setSelfSigned({bool status = true}) {
@@ -254,8 +266,8 @@ class ClientIO extends ClientBase with ClientMixin {
       }
 
       final chunkParams = Map<String, dynamic>.from(params);
-      chunkParams[paramName] =
-          http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
+      chunkParams[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
+          filename: file.filename);
       final chunkHeaders = Map<String, String>.from(headers);
       if (id != null && id.isNotEmpty) {
         chunkHeaders['x-appwrite-id'] = id;
@@ -284,7 +296,9 @@ class ClientIO extends ClientBase with ClientMixin {
     bool isUploadComplete(Response response) {
       final chunksUploaded = response.data['chunksUploaded'];
       final chunksTotal = response.data['chunksTotal'] ?? totalChunks;
-      return chunksUploaded is num && chunksTotal is num && chunksUploaded >= chunksTotal;
+      return chunksUploaded is num &&
+          chunksTotal is num &&
+          chunksUploaded >= chunksTotal;
     }
 
     final progress = UploadProgress(
@@ -308,7 +322,8 @@ class ClientIO extends ClientBase with ClientMixin {
 
     var nextChunk = 0;
     Future<void> uploadNext() async {
-      final raf = file.bytes == null ? await iofile!.open(mode: FileMode.read) : null;
+      final raf =
+          file.bytes == null ? await iofile!.open(mode: FileMode.read) : null;
       try {
         while (nextChunk < chunks.length) {
           final chunk = chunks[nextChunk++];
