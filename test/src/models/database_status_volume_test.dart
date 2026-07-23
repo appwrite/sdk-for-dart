@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = DatabaseStatusVolume.fromMap(map);
 
-      expect(result.path, '/var/lib/postgresql/data');
-      expect(result.usedPercent, '45%');
-      expect(result.available, '55GB');
-      expect(result.mounted, true);
-    });
+            expect(result.path, '/var/lib/postgresql/data');
+                  expect(result.usedPercent, '45%');
+                  expect(result.available, '55GB');
+                  expect(result.mounted, true);
+          });
   });
 }

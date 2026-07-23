@@ -13,9 +13,9 @@ void main() {
       final map = model.toMap();
       final result = Oauth2Project.fromMap(map);
 
-      expect(result.$id, '5e5ea5c16897e');
-      expect(result.region, 'fra');
-      expect(result.endpoint, 'https://fra.cloud.appwrite.io/v1');
-    });
+            expect(result.$id, '5e5ea5c16897e');
+                  expect(result.region, 'fra');
+                  expect(result.endpoint, 'https://fra.cloud.appwrite.io/v1');
+          });
   });
 }
