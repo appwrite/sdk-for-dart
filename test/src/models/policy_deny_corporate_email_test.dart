@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = PolicyDenyCorporateEmail.fromMap(map);
 
-            expect(result.$id, 'password-dictionary');
-                  expect(result.enabled, true);
-          });
+      expect(result.$id, 'password-dictionary');
+      expect(result.enabled, true);
+    });
   });
 }
