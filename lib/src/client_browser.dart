@@ -16,7 +16,7 @@ ClientBase createClient({
     ClientBrowser(endPoint: endPoint, selfSigned: selfSigned);
 
 class ClientBrowser extends ClientBase with ClientMixin {
-  static const int chunkSize = 5 * 1024 * 1024;
+  static const int chunkSize = 5*1024*1024;
   String _endPoint;
   Map<String, String>? _headers;
   @override
@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '26.0.0',
-      'X-Appwrite-Response-Format': '1.9.5',
+      'x-sdk-version': '26.1.0',
+      'X-Appwrite-Response-Format' : '1.9.5',
     };
 
     config = {};
@@ -46,99 +46,88 @@ class ClientBrowser extends ClientBase with ClientMixin {
   @override
   String get endPoint => _endPoint;
 
-  /// Your project ID
-  @override
+    /// Your project ID
+    @override
   ClientBrowser setProject(value) {
-    config['project'] = value;
-    return this;
-  }
-
-  /// Your secret API key
-  @override
+        config['project'] = value;
+        return this;
+    }
+    /// Your secret API key
+    @override
   ClientBrowser setKey(value) {
-    config['key'] = value;
-    addHeader('X-Appwrite-Key', value);
-    return this;
-  }
-
-  /// Your secret JSON Web Token
-  @override
+        config['key'] = value;
+        addHeader('X-Appwrite-Key', value);
+        return this;
+    }
+    /// Your secret JSON Web Token
+    @override
   ClientBrowser setJWT(value) {
-    config['jWT'] = value;
-    addHeader('X-Appwrite-JWT', value);
-    return this;
-  }
-
-  /// The OAuth access token to authenticate with
-  @override
+        config['jWT'] = value;
+        addHeader('X-Appwrite-JWT', value);
+        return this;
+    }
+    /// The OAuth access token to authenticate with
+    @override
   ClientBrowser setBearer(value) {
-    config['bearer'] = value;
-    addHeader('Authorization', 'Bearer $value');
-    return this;
-  }
-
-  @override
+        config['bearer'] = value;
+        addHeader('Authorization', 'Bearer $value');
+        return this;
+    }
+    @override
   ClientBrowser setLocale(value) {
-    config['locale'] = value;
-    addHeader('X-Appwrite-Locale', value);
-    return this;
-  }
-
-  /// The user session to authenticate with
-  @override
+        config['locale'] = value;
+        addHeader('X-Appwrite-Locale', value);
+        return this;
+    }
+    /// The user session to authenticate with
+    @override
   ClientBrowser setSession(value) {
-    config['session'] = value;
-    addHeader('X-Appwrite-Session', value);
-    return this;
-  }
-
-  /// The user agent string of the client that made the request
-  @override
+        config['session'] = value;
+        addHeader('X-Appwrite-Session', value);
+        return this;
+    }
+    /// The user agent string of the client that made the request
+    @override
   ClientBrowser setForwardedUserAgent(value) {
-    config['forwardedUserAgent'] = value;
-    addHeader('X-Forwarded-User-Agent', value);
-    return this;
-  }
-
-  /// Your secret dev API key
-  @override
+        config['forwardedUserAgent'] = value;
+        addHeader('X-Forwarded-User-Agent', value);
+        return this;
+    }
+    /// Your secret dev API key
+    @override
   ClientBrowser setDevKey(value) {
-    config['devKey'] = value;
-    addHeader('X-Appwrite-Dev-Key', value);
-    return this;
-  }
-
-  /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
-  @override
+        config['devKey'] = value;
+        addHeader('X-Appwrite-Dev-Key', value);
+        return this;
+    }
+    /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
+    @override
   ClientBrowser setCookie(value) {
-    config['cookie'] = value;
-    addHeader('Cookie', value);
-    return this;
-  }
-
-  /// Impersonate a user by ID
-  @override
+        config['cookie'] = value;
+        addHeader('Cookie', value);
+        return this;
+    }
+    /// Impersonate a user by ID
+    @override
   ClientBrowser setImpersonateUserId(value) {
-    config['impersonateUserId'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Id', value);
-    return this;
-  }
-
-  /// Impersonate a user by email
-  @override
+        config['impersonateUserId'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Id', value);
+        return this;
+    }
+    /// Impersonate a user by email
+    @override
   ClientBrowser setImpersonateUserEmail(value) {
-    config['impersonateUserEmail'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Email', value);
-    return this;
-  }
-
-  /// Impersonate a user by phone
-  @override
+        config['impersonateUserEmail'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Email', value);
+        return this;
+    }
+    /// Impersonate a user by phone
+    @override
   ClientBrowser setImpersonateUserPhone(value) {
-    config['impersonateUserPhone'] = value;
-    addHeader('X-Appwrite-Impersonate-User-Phone', value);
-    return this;
-  }
+        config['impersonateUserPhone'] = value;
+        addHeader('X-Appwrite-Impersonate-User-Phone', value);
+        return this;
+    }
 
   @override
   ClientBrowser setSelfSigned({bool status = true}) {
@@ -192,8 +181,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
     late Response res;
     if (size <= chunkSize) {
-      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!,
-          filename: file.filename);
+      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!, filename: file.filename);
       return call(
         HttpMethod.post,
         path: path,
@@ -224,14 +212,13 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
     final totalChunks = (size / chunkSize).ceil();
 
-    Future<Response> uploadChunk(
-        int index, int start, int end, String? id) async {
+    Future<Response> uploadChunk(int index, int start, int end, String? id) async {
       List<int> chunk = [];
       chunk = file.bytes!.getRange(start, end).toList();
 
       final chunkParams = Map<String, dynamic>.from(params);
-      chunkParams[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
-          filename: file.filename);
+      chunkParams[paramName] =
+          http.MultipartFile.fromBytes(paramName, chunk, filename: file.filename);
       final chunkHeaders = Map<String, String>.from(headers);
       if (id != null && id.isNotEmpty) {
         chunkHeaders['x-appwrite-id'] = id;
@@ -260,9 +247,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     bool isUploadComplete(Response response) {
       final chunksUploaded = response.data['chunksUploaded'];
       final chunksTotal = response.data['chunksTotal'] ?? totalChunks;
-      return chunksUploaded is num &&
-          chunksTotal is num &&
-          chunksUploaded >= chunksTotal;
+      return chunksUploaded is num && chunksTotal is num && chunksUploaded >= chunksTotal;
     }
 
     final progress = UploadProgress(

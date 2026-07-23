@@ -24,8 +24,7 @@ class MockClient extends Mock implements Client {
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
   @override
@@ -37,68 +36,83 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+    return super.noSuchMethod(Invocation.method(#chunkedUpload, [path, params, paramName, idParamName, headers]), returnValue: Response(data: {}));
   }
 }
 
 void main() {
-  group('Activities test', () {
-    late MockClient client;
-    late Activities activities;
+    group('Activities test', () {
+        late MockClient client;
+        late Activities activities;
 
-    setUp(() {
-      client = MockClient();
-      activities = Activities(client);
+        setUp(() {
+            client = MockClient();
+            activities = Activities(client);
+        });
+
+        test('test method listEvents()', () async {
+
+            final Map<String, dynamic> data = {
+                'total': 5,
+                'events': [],};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await activities.listEvents(
+            );
+            expect(response, isA<models.ActivityEventList>());
+
+        });
+
+        test('test method getEvent()', () async {
+
+            final Map<String, dynamic> data = {
+                '\$id': '5e5ea5c16897e',
+                'actorType': 'user',
+                'actorId': '610fc2f985ee0',
+                'actorEmail': 'john@appwrite.io',
+                'actorName': 'John Doe',
+                'resourceParent': 'database/ID',
+                'resourceType': 'collection',
+                'resourceId': '610fc2f985ee0',
+                'resource': 'collections/610fc2f985ee0',
+                'event': 'account.sessions.create',
+                'userAgent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+                'ip': '127.0.0.1',
+                'mode': 'admin',
+                'country': 'US',
+                'continentCode': 'NA',
+                'city': 'Mountain View',
+                'subdivisions': 'California',
+                'isp': 'Google',
+                'autonomousSystemNumber': '15169',
+                'autonomousSystemOrganization': 'GOOGLE',
+                'connectionType': 'cable',
+                'connectionUsageType': 'residential',
+                'connectionOrganization': 'Google LLC',
+                'time': '2020-10-15T06:38:00.000+00:00',
+                'projectId': '610fc2f985ee0',
+                'teamId': '610fc2f985ee0',
+                'hostname': 'appwrite.io',
+                'sdk': 'web',
+                'sdkVersion': '14.0.0',};
+
+
+            when(client.call(
+                HttpMethod.get,
+            )).thenAnswer((_) async => Response(data: data));
+
+
+            final response = await activities.getEvent(
+                eventId: '<EVENT_ID>',
+            );
+            expect(response, isA<models.ActivityEvent>());
+
+        });
+
     });
-
-    test('test method listEvents()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'events': [],
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await activities.listEvents();
-      expect(response, isA<models.ActivityEventList>());
-    });
-
-    test('test method getEvent()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        'actorType': 'user',
-        'actorId': '610fc2f985ee0',
-        'actorEmail': 'john@appwrite.io',
-        'actorName': 'John Doe',
-        'resourceParent': 'database/ID',
-        'resourceType': 'collection',
-        'resourceId': '610fc2f985ee0',
-        'resource': 'collections/610fc2f985ee0',
-        'event': 'account.sessions.create',
-        'userAgent':
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
-        'ip': '127.0.0.1',
-        'mode': 'admin',
-        'country': 'US',
-        'time': '2020-10-15T06:38:00.000+00:00',
-        'projectId': '610fc2f985ee0',
-        'teamId': '610fc2f985ee0',
-        'hostname': 'appwrite.io',
-      };
-
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await activities.getEvent(
-        eventId: '<EVENT_ID>',
-      );
-      expect(response, isA<models.ActivityEvent>());
-    });
-  });
 }

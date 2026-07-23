@@ -1,0 +1,27 @@
+```dart
+import 'package:dart_appwrite/dart_appwrite.dart';
+
+Client client = Client()
+    .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
+    .setSession('') // The user session to authenticate with
+    .setProject('<YOUR_PROJECT_ID>'); // Your project ID
+
+Oauth2 oauth2 = Oauth2(client);
+
+Oauth2Authorize result = await oauth2.authorizePost(
+    clientId: '<CLIENT_ID>', // (optional)
+    redirectUri: 'https://example.com', // (optional)
+    responseType: '', // (optional)
+    scope: '<SCOPE>', // (optional)
+    state: '<STATE>', // (optional)
+    nonce: '<NONCE>', // (optional)
+    codeChallenge: '<CODE_CHALLENGE>', // (optional)
+    codeChallengeMethod: 's256', // (optional)
+    prompt: '<PROMPT>', // (optional)
+    maxAge: 0, // (optional)
+    authorizationDetails: '<AUTHORIZATION_DETAILS>', // (optional)
+    resource: '', // (optional)
+    audience: '<AUDIENCE>', // (optional)
+    requestUri: '<REQUEST_URI>', // (optional)
+);
+```
