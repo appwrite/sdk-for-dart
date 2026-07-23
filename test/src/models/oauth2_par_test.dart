@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = Oauth2PAR.fromMap(map);
 
-      expect(result.request_uri, 'urn:appwrite:oauth2:request:5e5ea5c16897e');
-      expect(result.expires_in, 600);
-    });
+            expect(result.request_uri, 'urn:appwrite:oauth2:request:5e5ea5c16897e');
+                  expect(result.expires_in, 600);
+          });
   });
 }

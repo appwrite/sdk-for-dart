@@ -2,59 +2,59 @@ part of '../../models.dart';
 
 /// Policy Membership Privacy
 class PolicyMembershipPrivacy implements Model {
-  /// Policy ID.
-  final String $id;
+    /// Policy ID.
+    final String $id;
 
-  /// Whether user ID is visible in memberships.
-  final bool userId;
+    /// Whether user ID is visible in memberships.
+    final bool userId;
 
-  /// Whether user email is visible in memberships.
-  final bool userEmail;
+    /// Whether user email is visible in memberships.
+    final bool userEmail;
 
-  /// Whether user phone is visible in memberships.
-  final bool userPhone;
+    /// Whether user phone is visible in memberships.
+    final bool userPhone;
 
-  /// Whether user name is visible in memberships.
-  final bool userName;
+    /// Whether user name is visible in memberships.
+    final bool userName;
 
-  /// Whether user MFA status is visible in memberships.
-  final bool userMFA;
+    /// Whether user MFA status is visible in memberships.
+    final bool userMFA;
 
-  /// Whether user last access time is visible in memberships.
-  final bool userAccessedAt;
+    /// Whether user last access time is visible in memberships.
+    final bool userAccessedAt;
 
-  PolicyMembershipPrivacy({
-    required this.$id,
-    required this.userId,
-    required this.userEmail,
-    required this.userPhone,
-    required this.userName,
-    required this.userMFA,
-    required this.userAccessedAt,
-  });
+    PolicyMembershipPrivacy({
+        required this.$id,
+        required this.userId,
+        required this.userEmail,
+        required this.userPhone,
+        required this.userName,
+        required this.userMFA,
+        required this.userAccessedAt,
+    });
 
-  factory PolicyMembershipPrivacy.fromMap(Map<String, dynamic> map) {
-    return PolicyMembershipPrivacy(
-      $id: map['\$id'].toString(),
-      userId: map['userId'],
-      userEmail: map['userEmail'],
-      userPhone: map['userPhone'],
-      userName: map['userName'],
-      userMFA: map['userMFA'],
-      userAccessedAt: map['userAccessedAt'],
-    );
-  }
+    factory PolicyMembershipPrivacy.fromMap(Map<String, dynamic> map) {
+        return PolicyMembershipPrivacy(
+            $id: map['\$id'].toString(),
+            userId: map['userId'],
+            userEmail: map['userEmail'],
+            userPhone: map['userPhone'],
+            userName: map['userName'],
+            userMFA: map['userMFA'],
+            userAccessedAt: map['userAccessedAt'],
+        );
+    }
 
-  @override
-  Map<String, dynamic> toMap() {
-    return {
-      "\$id": $id,
-      "userId": userId,
-      "userEmail": userEmail,
-      "userPhone": userPhone,
-      "userName": userName,
-      "userMFA": userMFA,
-      "userAccessedAt": userAccessedAt,
-    };
-  }
+    @override
+    Map<String, dynamic> toMap() {
+        return {
+            "\$id": $id,
+            "userId": userId,
+            "userEmail": userEmail,
+            "userPhone": userPhone,
+            "userName": userName,
+            "userMFA": userMFA,
+            "userAccessedAt": userAccessedAt,
+        };
+    }
 }
