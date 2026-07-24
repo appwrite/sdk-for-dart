@@ -33,6 +33,7 @@ void main() {
         protocols: [],
         blocks: [],
         consoleAccessedAt: '2020-10-15T06:38:00.000+00:00',
+        wafEnabled: true,
       );
 
       final map = model.toMap();
@@ -65,6 +66,7 @@ void main() {
       expect(result.protocols, []);
       expect(result.blocks, []);
       expect(result.consoleAccessedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.wafEnabled, true);
     });
   });
 }

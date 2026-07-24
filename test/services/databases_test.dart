@@ -76,8 +76,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -203,8 +201,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -225,8 +221,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -1291,13 +1285,13 @@ void main() {
     test('test method getAttribute()', () async {
       final Map<String, dynamic> data = {
         'key': 'fullName',
-        'type': 'string',
         'status': 'available',
         'error': 'string',
         'required': true,
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'size': 128,
+        'type': 'string',
       };
 
       when(client.call(

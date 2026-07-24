@@ -12,8 +12,6 @@ void main() {
         $updatedAt: '2020-10-15T06:38:00.000+00:00',
         enabled: true,
         type: DatabaseType.legacy,
-        policies: [],
-        archives: [],
       );
 
       final map = model.toMap();
@@ -25,8 +23,6 @@ void main() {
       expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
       expect(result.enabled, true);
       expect(result.type, DatabaseType.legacy);
-      expect(result.policies, []);
-      expect(result.archives, []);
     });
   });
 }

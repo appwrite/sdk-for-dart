@@ -83,6 +83,9 @@ class Project implements Model {
   /// Last time the project was accessed via console. Used with plan&#039;s projectInactivityDays to determine if project is paused.
   final String consoleAccessedAt;
 
+  /// Whether WAF enforcement is enabled for the project.
+  final bool wafEnabled;
+
   /// Billing limits reached
   final BillingLimits? billingLimits;
 
@@ -112,6 +115,9 @@ class Project implements Model {
 
   /// OAuth2 server refresh token duration in seconds for public clients (SPAs, mobile, native)
   final int? oAuth2ServerPublicRefreshTokenDuration;
+
+  /// OAuth2 server access token duration in seconds for app installation access tokens
+  final int? oAuth2ServerInstallationAccessTokenDuration;
 
   /// When enabled, PKCE is required for confidential clients (server-side flows using client_secret). PKCE is always required for public clients regardless of this setting.
   final bool? oAuth2ServerConfidentialPkce;
@@ -159,6 +165,7 @@ class Project implements Model {
     required this.protocols,
     required this.blocks,
     required this.consoleAccessedAt,
+    required this.wafEnabled,
     this.billingLimits,
     this.oAuth2ServerEnabled,
     this.oAuth2ServerAuthorizationUrl,
@@ -169,6 +176,7 @@ class Project implements Model {
     this.oAuth2ServerRefreshTokenDuration,
     this.oAuth2ServerPublicAccessTokenDuration,
     this.oAuth2ServerPublicRefreshTokenDuration,
+    this.oAuth2ServerInstallationAccessTokenDuration,
     this.oAuth2ServerConfidentialPkce,
     this.oAuth2ServerVerificationUrl,
     this.oAuth2ServerUserCodeLength,
@@ -209,6 +217,7 @@ class Project implements Model {
           map['protocols'].map((p) => ProjectProtocol.fromMap(p))),
       blocks: List<Block>.from(map['blocks'].map((p) => Block.fromMap(p))),
       consoleAccessedAt: map['consoleAccessedAt'].toString(),
+      wafEnabled: map['wafEnabled'],
       billingLimits: map['billingLimits'] != null
           ? BillingLimits.fromMap(map['billingLimits'])
           : null,
@@ -226,6 +235,8 @@ class Project implements Model {
           map['oAuth2ServerPublicAccessTokenDuration'],
       oAuth2ServerPublicRefreshTokenDuration:
           map['oAuth2ServerPublicRefreshTokenDuration'],
+      oAuth2ServerInstallationAccessTokenDuration:
+          map['oAuth2ServerInstallationAccessTokenDuration'],
       oAuth2ServerConfidentialPkce: map['oAuth2ServerConfidentialPkce'],
       oAuth2ServerVerificationUrl:
           map['oAuth2ServerVerificationUrl']?.toString(),
@@ -266,6 +277,7 @@ class Project implements Model {
       "protocols": protocols.map((p) => p.toMap()).toList(),
       "blocks": blocks.map((p) => p.toMap()).toList(),
       "consoleAccessedAt": consoleAccessedAt,
+      "wafEnabled": wafEnabled,
       "billingLimits": billingLimits?.toMap(),
       "oAuth2ServerEnabled": oAuth2ServerEnabled,
       "oAuth2ServerAuthorizationUrl": oAuth2ServerAuthorizationUrl,
@@ -279,6 +291,8 @@ class Project implements Model {
           oAuth2ServerPublicAccessTokenDuration,
       "oAuth2ServerPublicRefreshTokenDuration":
           oAuth2ServerPublicRefreshTokenDuration,
+      "oAuth2ServerInstallationAccessTokenDuration":
+          oAuth2ServerInstallationAccessTokenDuration,
       "oAuth2ServerConfidentialPkce": oAuth2ServerConfidentialPkce,
       "oAuth2ServerVerificationUrl": oAuth2ServerVerificationUrl,
       "oAuth2ServerUserCodeLength": oAuth2ServerUserCodeLength,

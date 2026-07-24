@@ -7,6 +7,8 @@ enum OrganizationKeyScopes {
   devKeysWrite(value: 'devKeys.write'),
   organizationKeysRead(value: 'organization.keys.read'),
   organizationKeysWrite(value: 'organization.keys.write'),
+  organizationInstallationsRead(value: 'organization.installations.read'),
+  organizationInstallationsWrite(value: 'organization.installations.write'),
   organizationMembershipsRead(value: 'organization.memberships.read'),
   organizationMembershipsWrite(value: 'organization.memberships.write'),
   organizationRead(value: 'organization.read'),

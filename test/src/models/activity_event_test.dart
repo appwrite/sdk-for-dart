@@ -20,10 +20,21 @@ void main() {
         ip: '127.0.0.1',
         mode: 'admin',
         country: 'US',
+        continentCode: 'NA',
+        city: 'Mountain View',
+        subdivisions: 'California',
+        isp: 'Google',
+        autonomousSystemNumber: '15169',
+        autonomousSystemOrganization: 'GOOGLE',
+        connectionType: 'cable',
+        connectionUsageType: 'residential',
+        connectionOrganization: 'Google LLC',
         time: '2020-10-15T06:38:00.000+00:00',
         projectId: '610fc2f985ee0',
         teamId: '610fc2f985ee0',
         hostname: 'appwrite.io',
+        sdk: 'web',
+        sdkVersion: '14.0.0',
       );
 
       final map = model.toMap();
@@ -44,10 +55,21 @@ void main() {
       expect(result.ip, '127.0.0.1');
       expect(result.mode, 'admin');
       expect(result.country, 'US');
+      expect(result.continentCode, 'NA');
+      expect(result.city, 'Mountain View');
+      expect(result.subdivisions, 'California');
+      expect(result.isp, 'Google');
+      expect(result.autonomousSystemNumber, '15169');
+      expect(result.autonomousSystemOrganization, 'GOOGLE');
+      expect(result.connectionType, 'cable');
+      expect(result.connectionUsageType, 'residential');
+      expect(result.connectionOrganization, 'Google LLC');
       expect(result.time, '2020-10-15T06:38:00.000+00:00');
       expect(result.projectId, '610fc2f985ee0');
       expect(result.teamId, '610fc2f985ee0');
       expect(result.hostname, 'appwrite.io');
+      expect(result.sdk, 'web');
+      expect(result.sdkVersion, '14.0.0');
     });
   });
 }

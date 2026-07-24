@@ -4,7 +4,10 @@ enum DatabaseType {
   legacy(value: 'legacy'),
   tablesdb(value: 'tablesdb'),
   documentsdb(value: 'documentsdb'),
-  vectorsdb(value: 'vectorsdb');
+  vectorsdb(value: 'vectorsdb'),
+  mysql(value: 'mysql'),
+  postgresql(value: 'postgresql'),
+  mongodb(value: 'mongodb');
 
   const DatabaseType({required this.value});
 

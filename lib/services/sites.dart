@@ -197,9 +197,9 @@ class Sites extends Service {
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
-      'providerBranches': providerBranches,
-      'providerPaths': providerPaths,
-      'buildSpecification': buildSpecification,
+      if (providerBranches != null) 'providerBranches': providerBranches,
+      if (providerPaths != null) 'providerPaths': providerPaths,
+      if (buildSpecification != null) 'buildSpecification': buildSpecification,
       if (runtimeSpecification != null)
         'runtimeSpecification': runtimeSpecification,
       if (deploymentRetention != null)
@@ -465,13 +465,15 @@ class Sites extends Service {
   Future<Uint8List> getDeploymentDownload(
       {required String siteId,
       required String deploymentId,
-      enums.DeploymentDownloadType? type}) async {
+      enums.DeploymentDownloadType? type,
+      String? token}) async {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}/download'
         .replaceAll('{siteId}', siteId)
         .replaceAll('{deploymentId}', deploymentId);
 
     final Map<String, dynamic> params = {
       if (type != null) 'type': type.value,
+      if (token != null) 'token': token,
       'project': client.config['project'],
       'key': client.config['key'],
       'impersonateuserid': client.config['impersonateuserid'],
@@ -654,9 +656,9 @@ class Sites extends Service {
         .replaceAll('{variableId}', variableId);
 
     final Map<String, dynamic> apiParams = {
-      'key': key,
-      'value': value,
-      'secret': secret,
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+      if (secret != null) 'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {

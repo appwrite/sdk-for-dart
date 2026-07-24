@@ -1,5 +1,6 @@
 part of '../dart_appwrite.dart';
 
+/// The Webhooks service allows you to manage your project webhooks.
 class Webhooks extends Service {
   Webhooks(super.client);
 
@@ -47,7 +48,7 @@ class Webhooks extends Service {
       if (tls != null) 'tls': tls,
       if (authUsername != null) 'authUsername': authUsername,
       if (authPassword != null) 'authPassword': authPassword,
-      'secret': secret,
+      if (secret != null) 'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {
@@ -145,7 +146,7 @@ class Webhooks extends Service {
         '/webhooks/{webhookId}/secret'.replaceAll('{webhookId}', webhookId);
 
     final Map<String, dynamic> apiParams = {
-      'secret': secret,
+      if (secret != null) 'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {

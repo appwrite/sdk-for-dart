@@ -96,11 +96,14 @@ enum ProjectKeyScopes {
   dedicatedDatabasesExecute(value: 'dedicatedDatabases.execute'),
   domainsRead(value: 'domains.read'),
   domainsWrite(value: 'domains.write'),
+  wafRulesRead(value: 'wafRules.read'),
+  wafRulesWrite(value: 'wafRules.write'),
   eventsRead(value: 'events.read'),
   appsRead(value: 'apps.read'),
   appsWrite(value: 'apps.write'),
   oauth2Read(value: 'oauth2.read'),
   oauth2Write(value: 'oauth2.write'),
+  oauth2Introspect(value: 'oauth2.introspect'),
   usageRead(value: 'usage.read');
 
   const ProjectKeyScopes({required this.value});

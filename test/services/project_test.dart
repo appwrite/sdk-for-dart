@@ -83,6 +83,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -132,6 +133,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -297,6 +299,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -434,6 +437,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1178,11 +1182,11 @@ void main() {
 
     test('test method getOAuth2Provider()', () async {
       final Map<String, dynamic> data = {
-        '\$id': 'github',
         'enabled': true,
         'applicationId': '00001111-aaaa-2222-bbbb-3333cccc4444',
         'applicationSecret': 'A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u',
         'tenant': 'common',
+        '\$id': 'microsoft',
       };
 
       when(client.call(
@@ -1435,8 +1439,8 @@ void main() {
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'name': 'My Web App',
-        'type': 'web',
         'packageName': 'com.company.appname',
+        'type': 'linux',
       };
 
       when(client.call(
@@ -1504,6 +1508,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1545,6 +1550,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1586,6 +1592,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1627,6 +1634,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1668,6 +1676,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1707,6 +1716,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1748,6 +1758,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1789,6 +1800,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1848,6 +1860,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1889,6 +1902,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1930,6 +1944,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -1971,6 +1986,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -2012,6 +2028,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -2026,8 +2043,8 @@ void main() {
 
     test('test method getPolicy()', () async {
       final Map<String, dynamic> data = {
-        '\$id': 'password-dictionary',
         'enabled': true,
+        '\$id': 'deny-corporate-email',
       };
 
       when(client.call(
@@ -2069,6 +2086,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -2111,6 +2129,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(
@@ -2153,6 +2172,7 @@ void main() {
         'protocols': [],
         'blocks': [],
         'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
       };
 
       when(client.call(

@@ -29,6 +29,7 @@ void main() {
           screenshotsGenerated: 50,
           members: 25,
           webhooks: 25,
+          wafRules: 2,
           projects: 2,
           platforms: 3,
           users: 25,

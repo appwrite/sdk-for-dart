@@ -55,7 +55,7 @@ class Messaging extends Service {
       if (attachments != null) 'attachments': attachments,
       if (draft != null) 'draft': draft,
       if (html != null) 'html': html,
-      'scheduledAt': scheduledAt,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -91,17 +91,17 @@ class Messaging extends Service {
         .replaceAll('{messageId}', messageId);
 
     final Map<String, dynamic> apiParams = {
-      'topics': topics,
-      'users': users,
-      'targets': targets,
-      'subject': subject,
-      'content': content,
-      'draft': draft,
-      'html': html,
-      'cc': cc,
-      'bcc': bcc,
-      'scheduledAt': scheduledAt,
-      'attachments': attachments,
+      if (topics != null) 'topics': topics,
+      if (users != null) 'users': users,
+      if (targets != null) 'targets': targets,
+      if (subject != null) 'subject': subject,
+      if (content != null) 'content': content,
+      if (draft != null) 'draft': draft,
+      if (html != null) 'html': html,
+      if (cc != null) 'cc': cc,
+      if (bcc != null) 'bcc': bcc,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
+      if (attachments != null) 'attachments': attachments,
     };
 
     final Map<String, String> apiHeaders = {
@@ -146,7 +146,7 @@ class Messaging extends Service {
       if (topics != null) 'topics': topics,
       if (users != null) 'users': users,
       if (targets != null) 'targets': targets,
-      'data': data,
+      if (data != null) 'data': data,
       if (action != null) 'action': action,
       if (image != null) 'image': image,
       if (icon != null) 'icon': icon,
@@ -155,7 +155,7 @@ class Messaging extends Service {
       if (tag != null) 'tag': tag,
       if (badge != null) 'badge': badge,
       if (draft != null) 'draft': draft,
-      'scheduledAt': scheduledAt,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
       if (contentAvailable != null) 'contentAvailable': contentAvailable,
       if (critical != null) 'critical': critical,
       if (priority != null) 'priority': priority.value,
@@ -201,24 +201,24 @@ class Messaging extends Service {
         .replaceAll('{messageId}', messageId);
 
     final Map<String, dynamic> apiParams = {
-      'topics': topics,
-      'users': users,
-      'targets': targets,
-      'title': title,
-      'body': body,
-      'data': data,
-      'action': action,
-      'image': image,
-      'icon': icon,
-      'sound': sound,
-      'color': color,
-      'tag': tag,
-      'badge': badge,
-      'draft': draft,
-      'scheduledAt': scheduledAt,
-      'contentAvailable': contentAvailable,
-      'critical': critical,
-      'priority': priority?.value,
+      if (topics != null) 'topics': topics,
+      if (users != null) 'users': users,
+      if (targets != null) 'targets': targets,
+      if (title != null) 'title': title,
+      if (body != null) 'body': body,
+      if (data != null) 'data': data,
+      if (action != null) 'action': action,
+      if (image != null) 'image': image,
+      if (icon != null) 'icon': icon,
+      if (sound != null) 'sound': sound,
+      if (color != null) 'color': color,
+      if (tag != null) 'tag': tag,
+      if (badge != null) 'badge': badge,
+      if (draft != null) 'draft': draft,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
+      if (contentAvailable != null) 'contentAvailable': contentAvailable,
+      if (critical != null) 'critical': critical,
+      if (priority != null) 'priority': priority.value,
     };
 
     final Map<String, String> apiHeaders = {
@@ -253,7 +253,7 @@ class Messaging extends Service {
       if (users != null) 'users': users,
       if (targets != null) 'targets': targets,
       if (draft != null) 'draft': draft,
-      'scheduledAt': scheduledAt,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -286,7 +286,7 @@ class Messaging extends Service {
       if (users != null) 'users': users,
       if (targets != null) 'targets': targets,
       if (draft != null) 'draft': draft,
-      'scheduledAt': scheduledAt,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -319,12 +319,12 @@ class Messaging extends Service {
         .replaceAll('{messageId}', messageId);
 
     final Map<String, dynamic> apiParams = {
-      'topics': topics,
-      'users': users,
-      'targets': targets,
-      'content': content,
-      'draft': draft,
-      'scheduledAt': scheduledAt,
+      if (topics != null) 'topics': topics,
+      if (users != null) 'users': users,
+      if (targets != null) 'targets': targets,
+      if (content != null) 'content': content,
+      if (draft != null) 'draft': draft,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -355,12 +355,12 @@ class Messaging extends Service {
         .replaceAll('{messageId}', messageId);
 
     final Map<String, dynamic> apiParams = {
-      'topics': topics,
-      'users': users,
-      'targets': targets,
-      'content': content,
-      'draft': draft,
-      'scheduledAt': scheduledAt,
+      if (topics != null) 'topics': topics,
+      if (users != null) 'users': users,
+      if (targets != null) 'targets': targets,
+      if (content != null) 'content': content,
+      if (draft != null) 'draft': draft,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -479,7 +479,7 @@ class Messaging extends Service {
       if (teamId != null) 'teamId': teamId,
       if (bundleId != null) 'bundleId': bundleId,
       if (sandbox != null) 'sandbox': sandbox,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -514,7 +514,7 @@ class Messaging extends Service {
       if (teamId != null) 'teamId': teamId,
       if (bundleId != null) 'bundleId': bundleId,
       if (sandbox != null) 'sandbox': sandbox,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -546,12 +546,12 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (authKey != null) 'authKey': authKey,
       if (authKeyId != null) 'authKeyId': authKeyId,
       if (teamId != null) 'teamId': teamId,
       if (bundleId != null) 'bundleId': bundleId,
-      'sandbox': sandbox,
+      if (sandbox != null) 'sandbox': sandbox,
     };
 
     final Map<String, String> apiHeaders = {
@@ -581,12 +581,12 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (authKey != null) 'authKey': authKey,
       if (authKeyId != null) 'authKeyId': authKeyId,
       if (teamId != null) 'teamId': teamId,
       if (bundleId != null) 'bundleId': bundleId,
-      'sandbox': sandbox,
+      if (sandbox != null) 'sandbox': sandbox,
     };
 
     final Map<String, String> apiHeaders = {
@@ -614,8 +614,8 @@ class Messaging extends Service {
     final Map<String, dynamic> apiParams = {
       'providerId': providerId,
       'name': name,
-      'serviceAccountJSON': serviceAccountJSON,
-      'enabled': enabled,
+      if (serviceAccountJSON != null) 'serviceAccountJSON': serviceAccountJSON,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -641,8 +641,8 @@ class Messaging extends Service {
     final Map<String, dynamic> apiParams = {
       'providerId': providerId,
       'name': name,
-      'serviceAccountJSON': serviceAccountJSON,
-      'enabled': enabled,
+      if (serviceAccountJSON != null) 'serviceAccountJSON': serviceAccountJSON,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -670,8 +670,8 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
-      'serviceAccountJSON': serviceAccountJSON,
+      if (enabled != null) 'enabled': enabled,
+      if (serviceAccountJSON != null) 'serviceAccountJSON': serviceAccountJSON,
     };
 
     final Map<String, String> apiHeaders = {
@@ -697,8 +697,8 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
-      'serviceAccountJSON': serviceAccountJSON,
+      if (enabled != null) 'enabled': enabled,
+      if (serviceAccountJSON != null) 'serviceAccountJSON': serviceAccountJSON,
     };
 
     final Map<String, String> apiHeaders = {
@@ -732,12 +732,12 @@ class Messaging extends Service {
       'name': name,
       if (apiKey != null) 'apiKey': apiKey,
       if (domain != null) 'domain': domain,
-      'isEuRegion': isEuRegion,
+      if (isEuRegion != null) 'isEuRegion': isEuRegion,
       if (fromName != null) 'fromName': fromName,
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -771,8 +771,8 @@ class Messaging extends Service {
       if (name != null) 'name': name,
       if (apiKey != null) 'apiKey': apiKey,
       if (domain != null) 'domain': domain,
-      'isEuRegion': isEuRegion,
-      'enabled': enabled,
+      if (isEuRegion != null) 'isEuRegion': isEuRegion,
+      if (enabled != null) 'enabled': enabled,
       if (fromName != null) 'fromName': fromName,
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
@@ -807,7 +807,7 @@ class Messaging extends Service {
       if (templateId != null) 'templateId': templateId,
       if (senderId != null) 'senderId': senderId,
       if (authKey != null) 'authKey': authKey,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -835,7 +835,7 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (templateId != null) 'templateId': templateId,
       if (senderId != null) 'senderId': senderId,
       if (authKey != null) 'authKey': authKey,
@@ -873,7 +873,7 @@ class Messaging extends Service {
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -903,7 +903,7 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (apiKey != null) 'apiKey': apiKey,
       if (fromName != null) 'fromName': fromName,
       if (fromEmail != null) 'fromEmail': fromEmail,
@@ -943,7 +943,7 @@ class Messaging extends Service {
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -973,7 +973,7 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (apiKey != null) 'apiKey': apiKey,
       if (fromName != null) 'fromName': fromName,
       if (fromEmail != null) 'fromEmail': fromEmail,
@@ -1017,7 +1017,7 @@ class Messaging extends Service {
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1049,7 +1049,7 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (accessKey != null) 'accessKey': accessKey,
       if (secretKey != null) 'secretKey': secretKey,
       if (region != null) 'region': region,
@@ -1105,7 +1105,7 @@ class Messaging extends Service {
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1152,7 +1152,7 @@ class Messaging extends Service {
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1191,17 +1191,17 @@ class Messaging extends Service {
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
       if (host != null) 'host': host,
-      'port': port,
+      if (port != null) 'port': port,
       if (username != null) 'username': username,
       if (password != null) 'password': password,
       if (encryption != null) 'encryption': encryption.value,
-      'autoTLS': autoTLS,
+      if (autoTLS != null) 'autoTLS': autoTLS,
       if (mailer != null) 'mailer': mailer,
       if (fromName != null) 'fromName': fromName,
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1238,17 +1238,17 @@ class Messaging extends Service {
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
       if (host != null) 'host': host,
-      'port': port,
+      if (port != null) 'port': port,
       if (username != null) 'username': username,
       if (password != null) 'password': password,
       if (encryption != null) 'encryption': encryption.value,
-      'autoTLS': autoTLS,
+      if (autoTLS != null) 'autoTLS': autoTLS,
       if (mailer != null) 'mailer': mailer,
       if (fromName != null) 'fromName': fromName,
       if (fromEmail != null) 'fromEmail': fromEmail,
       if (replyToName != null) 'replyToName': replyToName,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1279,7 +1279,7 @@ class Messaging extends Service {
       if (from != null) 'from': from,
       if (customerId != null) 'customerId': customerId,
       if (apiKey != null) 'apiKey': apiKey,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1307,7 +1307,7 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (customerId != null) 'customerId': customerId,
       if (apiKey != null) 'apiKey': apiKey,
       if (from != null) 'from': from,
@@ -1341,7 +1341,7 @@ class Messaging extends Service {
       if (from != null) 'from': from,
       if (username != null) 'username': username,
       if (apiKey != null) 'apiKey': apiKey,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1369,7 +1369,7 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (username != null) 'username': username,
       if (apiKey != null) 'apiKey': apiKey,
       if (from != null) 'from': from,
@@ -1403,7 +1403,7 @@ class Messaging extends Service {
       if (from != null) 'from': from,
       if (accountSid != null) 'accountSid': accountSid,
       if (authToken != null) 'authToken': authToken,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1431,7 +1431,7 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (accountSid != null) 'accountSid': accountSid,
       if (authToken != null) 'authToken': authToken,
       if (from != null) 'from': from,
@@ -1465,7 +1465,7 @@ class Messaging extends Service {
       if (from != null) 'from': from,
       if (apiKey != null) 'apiKey': apiKey,
       if (apiSecret != null) 'apiSecret': apiSecret,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1493,7 +1493,7 @@ class Messaging extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
       if (apiKey != null) 'apiKey': apiKey,
       if (apiSecret != null) 'apiSecret': apiSecret,
       if (from != null) 'from': from,
@@ -1622,8 +1622,8 @@ class Messaging extends Service {
         '/messaging/topics/{topicId}'.replaceAll('{topicId}', topicId);
 
     final Map<String, dynamic> apiParams = {
-      'name': name,
-      'subscribe': subscribe,
+      if (name != null) 'name': name,
+      if (subscribe != null) 'subscribe': subscribe,
     };
 
     final Map<String, String> apiHeaders = {

@@ -98,7 +98,7 @@ class Project extends Service {
       'keyId': keyId,
       'name': name,
       'scopes': scopes.map((e) => e.value).toList(),
-      'expire': expire,
+      if (expire != null) 'expire': expire,
     };
 
     final Map<String, String> apiHeaders = {
@@ -169,7 +169,7 @@ class Project extends Service {
     final Map<String, dynamic> apiParams = {
       'name': name,
       'scopes': scopes.map((e) => e.value).toList(),
-      'expire': expire,
+      if (expire != null) 'expire': expire,
     };
 
     final Map<String, String> apiHeaders = {
@@ -362,6 +362,7 @@ class Project extends Service {
       int? refreshTokenDuration,
       int? publicAccessTokenDuration,
       int? publicRefreshTokenDuration,
+      int? installationAccessTokenDuration,
       bool? confidentialPkce,
       String? verificationUrl,
       int? userCodeLength,
@@ -376,15 +377,21 @@ class Project extends Service {
       if (scopes != null) 'scopes': scopes,
       if (authorizationDetailsTypes != null)
         'authorizationDetailsTypes': authorizationDetailsTypes,
-      'accessTokenDuration': accessTokenDuration,
-      'refreshTokenDuration': refreshTokenDuration,
-      'publicAccessTokenDuration': publicAccessTokenDuration,
-      'publicRefreshTokenDuration': publicRefreshTokenDuration,
-      'confidentialPkce': confidentialPkce,
+      if (accessTokenDuration != null)
+        'accessTokenDuration': accessTokenDuration,
+      if (refreshTokenDuration != null)
+        'refreshTokenDuration': refreshTokenDuration,
+      if (publicAccessTokenDuration != null)
+        'publicAccessTokenDuration': publicAccessTokenDuration,
+      if (publicRefreshTokenDuration != null)
+        'publicRefreshTokenDuration': publicRefreshTokenDuration,
+      if (installationAccessTokenDuration != null)
+        'installationAccessTokenDuration': installationAccessTokenDuration,
+      if (confidentialPkce != null) 'confidentialPkce': confidentialPkce,
       if (verificationUrl != null) 'verificationUrl': verificationUrl,
-      'userCodeLength': userCodeLength,
+      if (userCodeLength != null) 'userCodeLength': userCodeLength,
       if (userCodeFormat != null) 'userCodeFormat': userCodeFormat,
-      'deviceCodeDuration': deviceCodeDuration,
+      if (deviceCodeDuration != null) 'deviceCodeDuration': deviceCodeDuration,
       if (defaultScopes != null) 'defaultScopes': defaultScopes,
     };
 
@@ -406,9 +413,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/amazon';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -433,11 +440,11 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/apple';
 
     final Map<String, dynamic> apiParams = {
-      'serviceId': serviceId,
-      'keyId': keyId,
-      'teamId': teamId,
-      'p8File': p8File,
-      'enabled': enabled,
+      if (serviceId != null) 'serviceId': serviceId,
+      if (keyId != null) 'keyId': keyId,
+      if (teamId != null) 'teamId': teamId,
+      if (p8File != null) 'p8File': p8File,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -458,9 +465,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/appwrite';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -484,10 +491,10 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/auth0';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'endpoint': endpoint,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (endpoint != null) 'endpoint': endpoint,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -511,10 +518,10 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/authentik';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'endpoint': endpoint,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (endpoint != null) 'endpoint': endpoint,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -535,9 +542,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/autodesk';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -558,9 +565,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/bitbucket';
 
     final Map<String, dynamic> apiParams = {
-      'key': key,
-      'secret': secret,
-      'enabled': enabled,
+      if (key != null) 'key': key,
+      if (secret != null) 'secret': secret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -581,9 +588,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/bitly';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -604,9 +611,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/box';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -627,9 +634,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/dailymotion';
 
     final Map<String, dynamic> apiParams = {
-      'apiKey': apiKey,
-      'apiSecret': apiSecret,
-      'enabled': enabled,
+      if (apiKey != null) 'apiKey': apiKey,
+      if (apiSecret != null) 'apiSecret': apiSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -650,9 +657,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/discord';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -673,9 +680,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/disqus';
 
     final Map<String, dynamic> apiParams = {
-      'publicKey': publicKey,
-      'secretKey': secretKey,
-      'enabled': enabled,
+      if (publicKey != null) 'publicKey': publicKey,
+      if (secretKey != null) 'secretKey': secretKey,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -696,9 +703,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/dropbox';
 
     final Map<String, dynamic> apiParams = {
-      'appKey': appKey,
-      'appSecret': appSecret,
-      'enabled': enabled,
+      if (appKey != null) 'appKey': appKey,
+      if (appSecret != null) 'appSecret': appSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -719,9 +726,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/etsy';
 
     final Map<String, dynamic> apiParams = {
-      'keyString': keyString,
-      'sharedSecret': sharedSecret,
-      'enabled': enabled,
+      if (keyString != null) 'keyString': keyString,
+      if (sharedSecret != null) 'sharedSecret': sharedSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -742,9 +749,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/facebook';
 
     final Map<String, dynamic> apiParams = {
-      'appId': appId,
-      'appSecret': appSecret,
-      'enabled': enabled,
+      if (appId != null) 'appId': appId,
+      if (appSecret != null) 'appSecret': appSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -765,9 +772,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/figma';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -791,10 +798,10 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/fusionauth';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'endpoint': endpoint,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (endpoint != null) 'endpoint': endpoint,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -815,9 +822,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/github';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -841,10 +848,10 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/gitlab';
 
     final Map<String, dynamic> apiParams = {
-      'applicationId': applicationId,
-      'secret': secret,
-      'endpoint': endpoint,
-      'enabled': enabled,
+      if (applicationId != null) 'applicationId': applicationId,
+      if (secret != null) 'secret': secret,
+      if (endpoint != null) 'endpoint': endpoint,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -868,10 +875,10 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/google';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'prompt': prompt?.map((e) => e.value).toList(),
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (prompt != null) 'prompt': prompt.map((e) => e.value).toList(),
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -896,11 +903,11 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/keycloak';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'endpoint': endpoint,
-      'realmName': realmName,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (endpoint != null) 'endpoint': endpoint,
+      if (realmName != null) 'realmName': realmName,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -921,9 +928,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/kick';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -944,9 +951,10 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/linkedin';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'primaryClientSecret': primaryClientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (primaryClientSecret != null)
+        'primaryClientSecret': primaryClientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -970,10 +978,10 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/microsoft';
 
     final Map<String, dynamic> apiParams = {
-      'applicationId': applicationId,
-      'applicationSecret': applicationSecret,
-      'tenant': tenant,
-      'enabled': enabled,
+      if (applicationId != null) 'applicationId': applicationId,
+      if (applicationSecret != null) 'applicationSecret': applicationSecret,
+      if (tenant != null) 'tenant': tenant,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -994,9 +1002,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/notion';
 
     final Map<String, dynamic> apiParams = {
-      'oauthClientId': oauthClientId,
-      'oauthClientSecret': oauthClientSecret,
-      'enabled': enabled,
+      if (oauthClientId != null) 'oauthClientId': oauthClientId,
+      if (oauthClientSecret != null) 'oauthClientSecret': oauthClientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1025,15 +1033,15 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/oidc';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'wellKnownURL': wellKnownURL,
-      'authorizationURL': authorizationURL,
-      'tokenURL': tokenURL,
-      'userInfoURL': userInfoURL,
-      'prompt': prompt?.map((e) => e.value).toList(),
-      'maxAge': maxAge,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (wellKnownURL != null) 'wellKnownURL': wellKnownURL,
+      if (authorizationURL != null) 'authorizationURL': authorizationURL,
+      if (tokenURL != null) 'tokenURL': tokenURL,
+      if (userInfoURL != null) 'userInfoURL': userInfoURL,
+      if (prompt != null) 'prompt': prompt.map((e) => e.value).toList(),
+      if (maxAge != null) 'maxAge': maxAge,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1058,11 +1066,12 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/okta';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'domain': domain,
-      'authorizationServerId': authorizationServerId,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (domain != null) 'domain': domain,
+      if (authorizationServerId != null)
+        'authorizationServerId': authorizationServerId,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1083,9 +1092,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/paypal';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'secretKey': secretKey,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (secretKey != null) 'secretKey': secretKey,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1106,9 +1115,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/paypalSandbox';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'secretKey': secretKey,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (secretKey != null) 'secretKey': secretKey,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1129,9 +1138,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/podio';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1152,9 +1161,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/salesforce';
 
     final Map<String, dynamic> apiParams = {
-      'customerKey': customerKey,
-      'customerSecret': customerSecret,
-      'enabled': enabled,
+      if (customerKey != null) 'customerKey': customerKey,
+      if (customerSecret != null) 'customerSecret': customerSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1175,9 +1184,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/slack';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1198,9 +1207,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/spotify';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1221,9 +1230,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/stripe';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'apiSecretKey': apiSecretKey,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (apiSecretKey != null) 'apiSecretKey': apiSecretKey,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1246,9 +1255,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/tradeshift';
 
     final Map<String, dynamic> apiParams = {
-      'oauth2ClientId': oauth2ClientId,
-      'oauth2ClientSecret': oauth2ClientSecret,
-      'enabled': enabled,
+      if (oauth2ClientId != null) 'oauth2ClientId': oauth2ClientId,
+      if (oauth2ClientSecret != null) 'oauth2ClientSecret': oauth2ClientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1271,9 +1280,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/tradeshiftBox';
 
     final Map<String, dynamic> apiParams = {
-      'oauth2ClientId': oauth2ClientId,
-      'oauth2ClientSecret': oauth2ClientSecret,
-      'enabled': enabled,
+      if (oauth2ClientId != null) 'oauth2ClientId': oauth2ClientId,
+      if (oauth2ClientSecret != null) 'oauth2ClientSecret': oauth2ClientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1294,9 +1303,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/twitch';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1317,9 +1326,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/wordpress';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1340,9 +1349,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/x';
 
     final Map<String, dynamic> apiParams = {
-      'customerKey': customerKey,
-      'secretKey': secretKey,
-      'enabled': enabled,
+      if (customerKey != null) 'customerKey': customerKey,
+      if (secretKey != null) 'secretKey': secretKey,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1363,9 +1372,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/yahoo';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1386,9 +1395,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/yandex';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1409,9 +1418,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/zoho';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1432,9 +1441,9 @@ class Project extends Service {
     final String apiPath = '/project/oauth2/zoom';
 
     final Map<String, dynamic> apiParams = {
-      'clientId': clientId,
-      'clientSecret': clientSecret,
-      'enabled': enabled,
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2446,16 +2455,16 @@ class Project extends Service {
     final String apiPath = '/project/smtp';
 
     final Map<String, dynamic> apiParams = {
-      'host': host,
-      'port': port,
-      'username': username,
-      'password': password,
-      'senderEmail': senderEmail,
-      'senderName': senderName,
-      'replyToEmail': replyToEmail,
-      'replyToName': replyToName,
-      'secure': secure?.value,
-      'enabled': enabled,
+      if (host != null) 'host': host,
+      if (port != null) 'port': port,
+      if (username != null) 'username': username,
+      if (password != null) 'password': password,
+      if (senderEmail != null) 'senderEmail': senderEmail,
+      if (senderName != null) 'senderName': senderName,
+      if (replyToEmail != null) 'replyToEmail': replyToEmail,
+      if (replyToName != null) 'replyToName': replyToName,
+      if (secure != null) 'secure': secure.value,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2528,12 +2537,12 @@ class Project extends Service {
     final Map<String, dynamic> apiParams = {
       'templateId': templateId.value,
       if (locale != null) 'locale': locale.value,
-      'subject': subject,
-      'message': message,
-      'senderName': senderName,
-      'senderEmail': senderEmail,
-      'replyToEmail': replyToEmail,
-      'replyToName': replyToName,
+      if (subject != null) 'subject': subject,
+      if (message != null) 'message': message,
+      if (senderName != null) 'senderName': senderName,
+      if (senderEmail != null) 'senderEmail': senderEmail,
+      if (replyToEmail != null) 'replyToEmail': replyToEmail,
+      if (replyToName != null) 'replyToName': replyToName,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2649,9 +2658,9 @@ class Project extends Service {
         .replaceAll('{variableId}', variableId);
 
     final Map<String, dynamic> apiParams = {
-      'key': key,
-      'value': value,
-      'secret': secret,
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+      if (secret != null) 'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {

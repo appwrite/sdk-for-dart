@@ -20,14 +20,23 @@ class Database implements Model {
   /// Database type.
   final enums.DatabaseType type;
 
-  /// Database status. Possible values: `provisioning`, `ready` or `failed`
+  /// Dedicated database lifecycle status. Null when the database has no valid dedicated backing.
   final enums.DatabaseStatus? status;
 
+  /// Underlying engine of the dedicated backing: postgresql, mysql, mariadb, or mongodb. A managed product (tablesdb, documentsdb, vectorsdb) reports the engine it runs on, so its type and engine can differ. Null when the database has no dedicated backing.
+  final String? engine;
+
+  /// Compute specification identifier of the dedicated backing, e.g. s-2vcpu-2gb. Null when the database has no dedicated backing.
+  final String? specification;
+
+  /// Number of secondary high availability replicas, excluding the primary. Null when backing configuration is unavailable.
+  final int? replicas;
+
   /// Database backup policies.
-  final List<BackupPolicy> policies;
+  final List<BackupPolicy>? policies;
 
   /// Database backup archives.
-  final List<BackupArchive> archives;
+  final List<BackupArchive>? archives;
 
   Database({
     required this.$id,
@@ -37,8 +46,11 @@ class Database implements Model {
     required this.enabled,
     required this.type,
     this.status,
-    required this.policies,
-    required this.archives,
+    this.engine,
+    this.specification,
+    this.replicas,
+    this.policies,
+    this.archives,
   });
 
   factory Database.fromMap(Map<String, dynamic> map) {
@@ -53,10 +65,17 @@ class Database implements Model {
           ? enums.DatabaseStatus.values
               .firstWhere((e) => e.value == map['status'])
           : null,
-      policies: List<BackupPolicy>.from(
-          map['policies'].map((p) => BackupPolicy.fromMap(p))),
-      archives: List<BackupArchive>.from(
-          map['archives'].map((p) => BackupArchive.fromMap(p))),
+      engine: map['engine']?.toString(),
+      specification: map['specification']?.toString(),
+      replicas: map['replicas'],
+      policies: map['policies'] != null
+          ? List<BackupPolicy>.from(
+              map['policies'].map((p) => BackupPolicy.fromMap(p)))
+          : null,
+      archives: map['archives'] != null
+          ? List<BackupArchive>.from(
+              map['archives'].map((p) => BackupArchive.fromMap(p)))
+          : null,
     );
   }
 
@@ -70,8 +89,11 @@ class Database implements Model {
       "enabled": enabled,
       "type": type.value,
       "status": status?.value,
-      "policies": policies.map((p) => p.toMap()).toList(),
-      "archives": archives.map((p) => p.toMap()).toList(),
+      "engine": engine,
+      "specification": specification,
+      "replicas": replicas,
+      "policies": policies?.map((p) => p.toMap()).toList(),
+      "archives": archives?.map((p) => p.toMap()).toList(),
     };
   }
 }

@@ -18,6 +18,7 @@ void main() {
         screenshotsGenerated: 50,
         members: 25,
         webhooks: 25,
+        wafRules: 2,
         projects: 2,
         platforms: 3,
         users: 25,
@@ -201,6 +202,7 @@ void main() {
       expect(result.screenshotsGenerated, 50);
       expect(result.members, 25);
       expect(result.webhooks, 25);
+      expect(result.wafRules, 2);
       expect(result.projects, 2);
       expect(result.platforms, 3);
       expect(result.users, 25);

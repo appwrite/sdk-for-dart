@@ -241,8 +241,7 @@ void main() {
         'migrationId': 'did8jx6ws45jana098ab7',
         'services': [],
         'resources': [],
-        'options':
-            '{databases.database[{oldId, newId, newName, newSpecification}]}',
+        'options': '{databases.database[{oldId, newId, newName}]}',
       };
 
       when(client.call(
@@ -282,8 +281,7 @@ void main() {
         'migrationId': 'did8jx6ws45jana098ab7',
         'services': [],
         'resources': [],
-        'options':
-            '{databases.database[{oldId, newId, newName, newSpecification}]}',
+        'options': '{databases.database[{oldId, newId, newName}]}',
       };
 
       when(client.call(

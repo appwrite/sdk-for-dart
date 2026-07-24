@@ -1,5 +1,7 @@
 part of '../dart_appwrite.dart';
 
+/// The TablesDB service allows you to create structured tables of columns,
+/// query and filter lists of rows
 class TablesDB extends Service {
   TablesDB(super.client);
 
@@ -32,7 +34,8 @@ class TablesDB extends Service {
       {required String databaseId,
       required String name,
       bool? enabled,
-      String? specification}) async {
+      String? specification,
+      int? replicas}) async {
     final String apiPath = '/tablesdb';
 
     final Map<String, dynamic> apiParams = {
@@ -40,6 +43,7 @@ class TablesDB extends Service {
       'name': name,
       if (enabled != null) 'enabled': enabled,
       if (specification != null) 'specification': specification,
+      if (replicas != null) 'replicas': replicas,
     };
 
     final Map<String, String> apiHeaders = {
@@ -52,6 +56,25 @@ class TablesDB extends Service {
         path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.Database.fromMap(res.data);
+  }
+
+  /// List the dedicated database specifications available on the current plan.
+  /// Each specification reports its resource limits, pricing, and whether it is
+  /// enabled for the organization.
+  Future<models.DedicatedDatabaseSpecificationList> listSpecifications() async {
+    final String apiPath = '/tablesdb/specifications';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DedicatedDatabaseSpecificationList.fromMap(res.data);
   }
 
   /// List transactions across all databases.
@@ -197,13 +220,17 @@ class TablesDB extends Service {
 
   /// Update a database by its unique ID.
   Future<models.Database> update(
-      {required String databaseId, String? name, bool? enabled}) async {
+      {required String databaseId,
+      String? name,
+      bool? enabled,
+      int? replicas}) async {
     final String apiPath =
         '/tablesdb/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
       if (enabled != null) 'enabled': enabled,
+      if (replicas != null) 'replicas': replicas,
     };
 
     final Map<String, String> apiHeaders = {
@@ -235,6 +262,70 @@ class TablesDB extends Service {
         path: apiPath, params: apiParams, headers: apiHeaders);
 
     return res.data;
+  }
+
+  /// Trigger a manual failover for a dedicated database with high availability
+  /// enabled. Promotes a replica to primary. The failover runs asynchronously;
+  /// poll the database document for status updates.
+  Future<models.DedicatedDatabase> createFailover(
+      {required String databaseId, String? targetReplicaId}) async {
+    final String apiPath = '/tablesdb/{databaseId}/failovers'
+        .replaceAll('{databaseId}', databaseId);
+
+    final Map<String, dynamic> apiParams = {
+      if (targetReplicaId != null) 'targetReplicaId': targetReplicaId,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DedicatedDatabase.fromMap(res.data);
+  }
+
+  /// Get high availability status for a dedicated database. Returns replica
+  /// statuses, replication lag, and sync mode.
+  Future<models.DedicatedDatabaseReplicas> getReplicas(
+      {required String databaseId}) async {
+    final String apiPath = '/tablesdb/{databaseId}/replicas'
+        .replaceAll('{databaseId}', databaseId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DedicatedDatabaseReplicas.fromMap(res.data);
+  }
+
+  /// Get real-time health and status information for a dedicated database.
+  /// Returns health status, readiness, uptime, connection info, replica status,
+  /// and volume information.
+  Future<models.DatabaseStatus> getStatus({required String databaseId}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/status'.replaceAll('{databaseId}', databaseId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DatabaseStatus.fromMap(res.data);
   }
 
   /// Get a list of all tables that belong to the provided databaseId. You can
@@ -283,7 +374,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'tableId': tableId,
       'name': name,
-      'permissions': permissions,
+      if (permissions != null) 'permissions': permissions,
       if (rowSecurity != null) 'rowSecurity': rowSecurity,
       if (enabled != null) 'enabled': enabled,
       if (columns != null) 'columns': columns,
@@ -338,7 +429,7 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'permissions': permissions,
+      if (permissions != null) 'permissions': permissions,
       if (rowSecurity != null) 'rowSecurity': rowSecurity,
       if (enabled != null) 'enabled': enabled,
       if (purge != null) 'purge': purge,
@@ -423,9 +514,9 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'min': min,
-      'max': max,
-      'default': xdefault,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -461,10 +552,10 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
-      'min': min,
-      'max': max,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -496,7 +587,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -530,7 +621,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -561,7 +652,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -595,7 +686,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -627,7 +718,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -662,7 +753,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -696,7 +787,7 @@ class TablesDB extends Service {
       'key': key,
       'elements': elements,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -733,7 +824,7 @@ class TablesDB extends Service {
       'elements': elements,
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -768,9 +859,9 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'min': min,
-      'max': max,
-      'default': xdefault,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -806,10 +897,10 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
-      'min': min,
-      'max': max,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -844,9 +935,9 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'min': min,
-      'max': max,
-      'default': xdefault,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -882,10 +973,10 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
-      'min': min,
-      'max': max,
+      if (min != null) 'min': min,
+      if (max != null) 'max': max,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -916,7 +1007,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -951,7 +1042,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -981,7 +1072,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1013,8 +1104,8 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
-      'default': xdefault,
-      'newKey': newKey,
+      if (xdefault != null) 'default': xdefault,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1047,7 +1138,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
     };
@@ -1083,7 +1174,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1116,7 +1207,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
     };
@@ -1152,7 +1243,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1182,7 +1273,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1214,8 +1305,8 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
-      'default': xdefault,
-      'newKey': newKey,
+      if (xdefault != null) 'default': xdefault,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1245,7 +1336,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1277,8 +1368,8 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
-      'default': xdefault,
-      'newKey': newKey,
+      if (xdefault != null) 'default': xdefault,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1314,8 +1405,8 @@ class TablesDB extends Service {
       'relatedTableId': relatedTableId,
       'type': type.value,
       if (twoWay != null) 'twoWay': twoWay,
-      'key': key,
-      'twoWayKey': twoWayKey,
+      if (key != null) 'key': key,
+      if (twoWayKey != null) 'twoWayKey': twoWayKey,
       if (onDelete != null) 'onDelete': onDelete.value,
     };
 
@@ -1353,7 +1444,7 @@ class TablesDB extends Service {
       'key': key,
       'size': size,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
     };
@@ -1392,8 +1483,8 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'size': size,
-      'newKey': newKey,
+      if (size != null) 'size': size,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1426,7 +1517,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
     };
@@ -1462,7 +1553,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1493,7 +1584,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'key': key,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
     };
 
@@ -1528,7 +1619,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'newKey': newKey,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1563,7 +1654,7 @@ class TablesDB extends Service {
       'key': key,
       'size': size,
       'required': xrequired,
-      'default': xdefault,
+      if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
     };
@@ -1600,8 +1691,8 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'required': xrequired,
       'default': xdefault,
-      'size': size,
-      'newKey': newKey,
+      if (size != null) 'size': size,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1720,8 +1811,8 @@ class TablesDB extends Service {
             .replaceAll('{key}', key);
 
     final Map<String, dynamic> apiParams = {
-      'onDelete': onDelete?.value,
-      'newKey': newKey,
+      if (onDelete != null) 'onDelete': onDelete.value,
+      if (newKey != null) 'newKey': newKey,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1894,8 +1985,8 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       'rowId': rowId,
       'data': data,
-      'permissions': permissions,
-      'transactionId': transactionId,
+      if (permissions != null) 'permissions': permissions,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1925,7 +2016,7 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'rows': rows,
-      'transactionId': transactionId,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1956,7 +2047,7 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'rows': rows,
-      'transactionId': transactionId,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1986,7 +2077,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       if (data != null) 'data': data,
       if (queries != null) 'queries': queries,
-      'transactionId': transactionId,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2078,8 +2169,8 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (data != null) 'data': data,
-      'permissions': permissions,
-      'transactionId': transactionId,
+      if (permissions != null) 'permissions': permissions,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2111,8 +2202,8 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (data != null) 'data': data,
-      'permissions': permissions,
-      'transactionId': transactionId,
+      if (permissions != null) 'permissions': permissions,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2172,8 +2263,8 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (value != null) 'value': value,
-      'min': min,
-      'transactionId': transactionId,
+      if (min != null) 'min': min,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2206,8 +2297,8 @@ class TablesDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (value != null) 'value': value,
-      'max': max,
-      'transactionId': transactionId,
+      if (max != null) 'max': max,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {

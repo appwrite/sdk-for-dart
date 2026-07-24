@@ -1,5 +1,7 @@
 part of '../dart_appwrite.dart';
 
+/// The Presences service allows you to track and manage real-time user
+/// presence in your project.
 class Presences extends Service {
   Presences(super.client);
 

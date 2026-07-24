@@ -1,5 +1,7 @@
 part of '../dart_appwrite.dart';
 
+/// The Tokens service allows you to create and manage resource tokens for
+/// secure file access.
 class Tokens extends Service {
   Tokens(super.client);
 
@@ -41,7 +43,7 @@ class Tokens extends Service {
         .replaceAll('{fileId}', fileId);
 
     final Map<String, dynamic> apiParams = {
-      'expire': expire,
+      if (expire != null) 'expire': expire,
     };
 
     final Map<String, String> apiHeaders = {
@@ -80,7 +82,7 @@ class Tokens extends Service {
     final String apiPath = '/tokens/{tokenId}'.replaceAll('{tokenId}', tokenId);
 
     final Map<String, dynamic> apiParams = {
-      'expire': expire,
+      if (expire != null) 'expire': expire,
     };
 
     final Map<String, String> apiHeaders = {

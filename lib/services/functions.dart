@@ -192,14 +192,15 @@ class Functions extends Service {
       if (commands != null) 'commands': commands,
       if (scopes != null) 'scopes': scopes.map((e) => e.value).toList(),
       if (installationId != null) 'installationId': installationId,
-      'providerRepositoryId': providerRepositoryId,
+      if (providerRepositoryId != null)
+        'providerRepositoryId': providerRepositoryId,
       if (providerBranch != null) 'providerBranch': providerBranch,
       if (providerSilentMode != null) 'providerSilentMode': providerSilentMode,
       if (providerRootDirectory != null)
         'providerRootDirectory': providerRootDirectory,
-      'providerBranches': providerBranches,
-      'providerPaths': providerPaths,
-      'buildSpecification': buildSpecification,
+      if (providerBranches != null) 'providerBranches': providerBranches,
+      if (providerPaths != null) 'providerPaths': providerPaths,
+      if (buildSpecification != null) 'buildSpecification': buildSpecification,
       if (runtimeSpecification != null)
         'runtimeSpecification': runtimeSpecification,
       if (deploymentRetention != null)
@@ -564,7 +565,7 @@ class Functions extends Service {
       if (path != null) 'path': path,
       if (method != null) 'method': method.value,
       if (headers != null) 'headers': headers,
-      'scheduledAt': scheduledAt,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -703,9 +704,9 @@ class Functions extends Service {
         .replaceAll('{variableId}', variableId);
 
     final Map<String, dynamic> apiParams = {
-      'key': key,
-      'value': value,
-      'secret': secret,
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+      if (secret != null) 'secret': secret,
     };
 
     final Map<String, String> apiHeaders = {

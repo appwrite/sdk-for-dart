@@ -76,8 +76,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -89,6 +87,27 @@ void main() {
         name: '<NAME>',
       );
       expect(response, isA<models.Database>());
+    });
+
+    test('test method listSpecifications()', () async {
+      final Map<String, dynamic> data = {
+        'specifications': [],
+        'total': 9,
+        'pricing': <String, dynamic>{
+          'storageOverageRate': 0.125,
+          'bandwidthOverageRate': 0.08,
+          'replicaRate': 1,
+          'crossRegionReplicaRate': 1,
+          'pitrRate': 0.2,
+        },
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.listSpecifications();
+      expect(response, isA<models.DedicatedDatabaseSpecificationList>());
     });
 
     test('test method listTransactions()', () async {
@@ -203,8 +222,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -225,8 +242,6 @@ void main() {
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'enabled': true,
         'type': 'legacy',
-        'policies': [],
-        'archives': [],
       };
 
       when(client.call(
@@ -249,6 +264,110 @@ void main() {
       final response = await tablesDB.delete(
         databaseId: '<DATABASE_ID>',
       );
+    });
+
+    test('test method createFailover()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'projectId': '5e5ea5c16897e',
+        'name': 'My Production Database',
+        'api': 'postgresql',
+        'engine': 'postgresql',
+        'version': '16',
+        'specification': 's-2vcpu-2gb',
+        'backend': 'edge',
+        'hostname': 'db-myproject-mydb.fra.appwrite.center',
+        'connectionPort': 5432,
+        'connectionUser': 'appwrite_user',
+        'connectionPassword': '••••••••',
+        'connectionString':
+            'postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require',
+        'ssl': true,
+        'status': 'ready',
+        'containerStatus': 'active',
+        'lifecycleState': 'active',
+        'idleTimeoutMinutes': 15,
+        'cpu': 2000,
+        'memory': 4096,
+        'storage': 100,
+        'storageClass': 'ssd',
+        'storageMaxGb': 100,
+        'nodePool': 'db-pool-4vcpu-8gb',
+        'replicas': 2,
+        'syncMode': 'async',
+        'crossRegionReplicas': 1,
+        'networkMaxConnections': 500,
+        'networkIdleTimeoutSeconds': 900,
+        'networkIPAllowlist': [],
+        'backupEnabled': true,
+        'pitr': true,
+        'pitrRetentionDays': 14,
+        'storageAutoscaling': true,
+        'storageAutoscalingThresholdPercent': 85,
+        'storageAutoscalingMaxGb': 500,
+        'maintenanceWindowDay': 'sun',
+        'maintenanceWindowHourUtc': 3,
+        'metricsEnabled': true,
+        'sqlApiEnabled': true,
+        'sqlApiAllowedStatements': [],
+        'sqlApiMaxRows': 10000,
+        'sqlApiMaxBytes': 10485760,
+        'sqlApiTimeoutSeconds': 30,
+        'error': '',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.createFailover(
+        databaseId: '<DATABASE_ID>',
+      );
+      expect(response, isA<models.DedicatedDatabase>());
+    });
+
+    test('test method getReplicas()', () async {
+      final Map<String, dynamic> data = {
+        'replicas': 2,
+        'syncMode': 'async',
+        'members': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.getReplicas(
+        databaseId: '<DATABASE_ID>',
+      );
+      expect(response, isA<models.DedicatedDatabaseReplicas>());
+    });
+
+    test('test method getStatus()', () async {
+      final Map<String, dynamic> data = {
+        'health': 'healthy',
+        'ready': true,
+        'engine': 'postgresql',
+        'version': '17',
+        'uptime': 86400,
+        'connections': <String, dynamic>{
+          'current': 12,
+          'max': 100,
+        },
+        'replicas': [],
+        'volumes': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.getStatus(
+        databaseId: '<DATABASE_ID>',
+      );
+      expect(response, isA<models.DatabaseStatus>());
     });
 
     test('test method listTables()', () async {
@@ -1262,13 +1381,13 @@ void main() {
     test('test method getColumn()', () async {
       final Map<String, dynamic> data = {
         'key': 'fullName',
-        'type': 'string',
         'status': 'available',
         'error': 'string',
         'required': true,
         '\$createdAt': '2020-10-15T06:38:00.000+00:00',
         '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
         'size': 128,
+        'type': 'string',
       };
 
       when(client.call(

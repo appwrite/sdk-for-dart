@@ -38,6 +38,9 @@ class BillingPlan implements Model {
   /// Webhooks
   final int webhooks;
 
+  /// Maximum WAF rules per project
+  final int wafRules;
+
   /// Projects
   final int projects;
 
@@ -219,6 +222,7 @@ class BillingPlan implements Model {
     required this.screenshotsGenerated,
     required this.members,
     required this.webhooks,
+    required this.wafRules,
     required this.projects,
     required this.platforms,
     required this.users,
@@ -291,6 +295,7 @@ class BillingPlan implements Model {
       screenshotsGenerated: map['screenshotsGenerated'],
       members: map['members'],
       webhooks: map['webhooks'],
+      wafRules: map['wafRules'],
       projects: map['projects'],
       platforms: map['platforms'],
       users: map['users'],
@@ -373,6 +378,7 @@ class BillingPlan implements Model {
       "screenshotsGenerated": screenshotsGenerated,
       "members": members,
       "webhooks": webhooks,
+      "wafRules": wafRules,
       "projects": projects,
       "platforms": platforms,
       "users": users,

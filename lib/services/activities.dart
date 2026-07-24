@@ -1,5 +1,7 @@
 part of '../dart_appwrite.dart';
 
+/// The Activities service allows you to list and inspect project activity
+/// events.
 class Activities extends Service {
   Activities(super.client);
 

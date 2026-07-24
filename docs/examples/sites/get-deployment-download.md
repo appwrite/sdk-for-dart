@@ -13,5 +13,6 @@ Uint8List result = await sites.getDeploymentDownload(
     siteId: '<SITE_ID>',
     deploymentId: '<DEPLOYMENT_ID>',
     type: enums.DeploymentDownloadType.source, // (optional)
+    token: '<TOKEN>', // (optional)
 );
 ```

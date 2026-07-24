@@ -45,7 +45,7 @@ class Storage extends Service {
     final Map<String, dynamic> apiParams = {
       'bucketId': bucketId,
       'name': name,
-      'permissions': permissions,
+      if (permissions != null) 'permissions': permissions,
       if (fileSecurity != null) 'fileSecurity': fileSecurity,
       if (enabled != null) 'enabled': enabled,
       if (maximumFileSize != null) 'maximumFileSize': maximumFileSize,
@@ -106,7 +106,7 @@ class Storage extends Service {
 
     final Map<String, dynamic> apiParams = {
       'name': name,
-      'permissions': permissions,
+      if (permissions != null) 'permissions': permissions,
       if (fileSecurity != null) 'fileSecurity': fileSecurity,
       if (enabled != null) 'enabled': enabled,
       if (maximumFileSize != null) 'maximumFileSize': maximumFileSize,
@@ -263,7 +263,7 @@ class Storage extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
-      'permissions': permissions,
+      if (permissions != null) 'permissions': permissions,
     };
 
     final Map<String, String> apiHeaders = {

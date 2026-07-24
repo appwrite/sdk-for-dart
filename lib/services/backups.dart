@@ -1,5 +1,7 @@
 part of '../dart_appwrite.dart';
 
+/// The Backups service allows you to manage backup policies, archives, and
+/// restorations for your project.
 class Backups extends Service {
   Backups(super.client);
 
@@ -30,7 +32,7 @@ class Backups extends Service {
 
     final Map<String, dynamic> apiParams = {
       'services': services.map((e) => e.value).toList(),
-      'resourceId': resourceId,
+      if (resourceId != null) 'resourceId': resourceId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -116,7 +118,7 @@ class Backups extends Service {
       'policyId': policyId,
       if (name != null) 'name': name,
       'services': services.map((e) => e.value).toList(),
-      'resourceId': resourceId,
+      if (resourceId != null) 'resourceId': resourceId,
       if (enabled != null) 'enabled': enabled,
       'retention': retention,
       'schedule': schedule,
@@ -163,10 +165,10 @@ class Backups extends Service {
         '/backups/policies/{policyId}'.replaceAll('{policyId}', policyId);
 
     final Map<String, dynamic> apiParams = {
-      'name': name,
-      'retention': retention,
+      if (name != null) 'name': name,
+      if (retention != null) 'retention': retention,
       if (schedule != null) 'schedule': schedule,
-      'enabled': enabled,
+      if (enabled != null) 'enabled': enabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -202,21 +204,35 @@ class Backups extends Service {
 
   /// Create and trigger a new restoration for a backup on a project.
   ///
-  /// When restoring a DocumentsDB or VectorsDB database to a new resource, pass
-  /// `newSpecification` to provision the restored database on a different
-  /// specification than the archived one (for example, restoring onto a larger
-  /// or smaller dedicated database). Use `serverless` to restore onto the shared
-  /// pool, or a dedicated specification slug to restore onto a dedicated
-  /// database of that size. The specification must be permitted by the
-  /// organization's plan. `newSpecification` is not supported for
-  /// legacy/TablesDB databases or for bucket restores.
+  /// For a backup of one database, the restoration resolves its destination
+  /// before it is queued. Pass `newResourceId` to restore into that database ID,
+  /// including the archived database ID to overwrite it. When `newResourceId` is
+  /// omitted, a new database ID is generated and returned in `options`.
+  ///
+  /// The restoration migration records the archived database in `resourceId` and
+  /// `resourceType`, and the resolved database in `destinationResourceId` and
+  /// `destinationResourceType`. Database types are stored canonically as
+  /// `database`, `documentsdb`, or `vectorsdb`. Project-wide restorations leave
+  /// these fields empty because they do not have a single source or destination
+  /// database.
+  ///
+  /// To list every migration related to one database, use its canonical type in
+  /// a nested `OR(AND(...), AND(...), AND(...))` across the root, parent, and
+  /// destination relation pairs: `(resourceType, resourceId)`,
+  /// `(parentResourceType, parentResourceId)`, and `(destinationResourceType,
+  /// destinationResourceId)`. Legacy and TablesDB databases use `database`; the
+  /// operational `resourceType` of a table migration is not rewritten to
+  /// `tablesdb`.
+  ///
+  /// When restoring a DocumentsDB or VectorsDB database to a new resource from a
+  /// dedicated source, the restore provisions a fresh dedicated backing database
+  /// at the source database's own specification.
   ///
   Future<models.BackupRestoration> createRestoration(
       {required String archiveId,
       required List<enums.BackupServices> services,
       String? newResourceId,
-      String? newResourceName,
-      String? newSpecification}) async {
+      String? newResourceName}) async {
     final String apiPath = '/backups/restoration';
 
     final Map<String, dynamic> apiParams = {
@@ -224,7 +240,6 @@ class Backups extends Service {
       'services': services.map((e) => e.value).toList(),
       if (newResourceId != null) 'newResourceId': newResourceId,
       if (newResourceName != null) 'newResourceName': newResourceName,
-      if (newSpecification != null) 'newSpecification': newSpecification,
     };
 
     final Map<String, String> apiHeaders = {
