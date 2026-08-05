@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = AppScopeList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.scopes, []);
-          });
+      expect(result.total, 5);
+      expect(result.scopes, []);
+    });
   });
 }

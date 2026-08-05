@@ -1,15 +1,13 @@
 part of '../../enums.dart';
 
 enum InvalidationType {
-    tag(value: 'tag'),
-    path(value: 'path'),
-    all(value: 'all');
+  tag(value: 'tag'),
+  path(value: 'path'),
+  all(value: 'all');
 
-    const InvalidationType({
-        required this.value
-    });
+  const InvalidationType({required this.value});
 
-    final String value;
+  final String value;
 
-    String toJson() => value;
+  String toJson() => value;
 }

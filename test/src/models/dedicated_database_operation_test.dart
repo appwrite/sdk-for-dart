@@ -18,14 +18,14 @@ void main() {
       final map = model.toMap();
       final result = DedicatedDatabaseOperation.fromMap(map);
 
-            expect(result.$id, '5e5ea5c16897e');
-                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-                  expect(result.databaseId, '5e5ea5c16897e');
-                  expect(result.type, 'update');
-                  expect(result.status, 'completed');
-                  expect(result.attempts, 1);
-                  expect(result.errorCode, 'LockLost');
-                  expect(result.errorMessage, '');
-          });
+      expect(result.$id, '5e5ea5c16897e');
+      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.databaseId, '5e5ea5c16897e');
+      expect(result.type, 'update');
+      expect(result.status, 'completed');
+      expect(result.attempts, 1);
+      expect(result.errorCode, 'LockLost');
+      expect(result.errorMessage, '');
+    });
   });
 }
