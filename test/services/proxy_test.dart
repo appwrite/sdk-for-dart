@@ -54,6 +54,25 @@ void main() {
       proxy = Proxy(client);
     });
 
+    test('test method createInvalidation()', () async {
+      final Map<String, dynamic> data = {
+        'domain': 'appwrite.company.com',
+        'type': 'tag',
+        'reference': 'products',
+        'status': 'success',
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await proxy.createInvalidation(
+        domain: '',
+        type: enums.InvalidationType.tag,
+      );
+      expect(response, isA<models.ProxyInvalidation>());
+    });
+
     test('test method listRules()', () async {
       final Map<String, dynamic> data = {
         'total': 5,

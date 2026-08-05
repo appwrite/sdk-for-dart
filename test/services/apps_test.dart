@@ -271,6 +271,19 @@ void main() {
       expect(response, isA<models.AppInstallation>());
     });
 
+    test('test method deleteInstallation()', () async {
+      final data = '';
+
+      when(client.call(
+        HttpMethod.delete,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await apps.deleteInstallation(
+        appId: '<APP_ID>',
+        installationId: '<INSTALLATION_ID>',
+      );
+    });
+
     test('test method createInstallationToken()', () async {
       final Map<String, dynamic> data = {
         'access_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...',

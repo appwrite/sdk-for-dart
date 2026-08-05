@@ -471,16 +471,21 @@ class Sites extends Service {
         .replaceAll('{siteId}', siteId)
         .replaceAll('{deploymentId}', deploymentId);
 
-    final Map<String, dynamic> params = {
+    final Map<String, dynamic> apiParams = {
       if (type != null) 'type': type.value,
       if (token != null) 'token': token,
-      'project': client.config['project'],
-      'key': client.config['key'],
-      'impersonateuserid': client.config['impersonateuserid'],
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': '*/*',
     };
 
     final res = await client.call(HttpMethod.get,
-        path: apiPath, params: params, responseType: ResponseType.bytes);
+        path: apiPath,
+        params: apiParams,
+        headers: apiHeaders,
+        responseType: ResponseType.bytes);
     return res.data;
   }
 

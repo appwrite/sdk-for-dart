@@ -15,7 +15,7 @@ class BillingPlanAddonDetails implements Model {
   final String type;
 
   /// Price currency
-  final String currency;
+  final String? currency;
 
   /// Price
   final double price;
@@ -31,7 +31,7 @@ class BillingPlanAddonDetails implements Model {
     required this.planIncluded,
     required this.limit,
     required this.type,
-    required this.currency,
+    this.currency,
     required this.price,
     required this.value,
     required this.invoiceDesc,
@@ -43,7 +43,7 @@ class BillingPlanAddonDetails implements Model {
       planIncluded: map['planIncluded'],
       limit: map['limit'],
       type: map['type'].toString(),
-      currency: map['currency'].toString(),
+      currency: map['currency']?.toString(),
       price: map['price'].toDouble(),
       value: map['value'],
       invoiceDesc: map['invoiceDesc'].toString(),

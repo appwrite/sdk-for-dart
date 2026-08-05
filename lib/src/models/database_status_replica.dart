@@ -2,10 +2,10 @@ part of '../../models.dart';
 
 /// Replica
 class DatabaseStatusReplica implements Model {
-  /// StatefulSet pod index (0 = primary, 1+ = replicas).
+  /// Member index within the database. Read `role` for which member accepts writes: a failover moves the primary without renumbering the indexes.
   final int index;
 
-  /// Replica role: primary or replica.
+  /// Member role. Possible values: primary (accepts reads and writes), replica (read-only follower), unknown (placement not established; reported while a transition is moving or restarting the topology, so no member can be named the write target).
   final String role;
 
   /// Whether the replica is healthy.

@@ -33,7 +33,7 @@ class BillingPlan implements Model {
   final int screenshotsGenerated;
 
   /// Members
-  final int members;
+  final int? members;
 
   /// Webhooks
   final int webhooks;
@@ -105,7 +105,7 @@ class BillingPlan implements Model {
   final int domains;
 
   /// Activity log days
-  final int activityLogs;
+  final int? activityLogs;
 
   /// Usage history days
   final int usageLogs;
@@ -177,7 +177,7 @@ class BillingPlan implements Model {
   final bool supportsProjectSpecificRoles;
 
   /// Does plan support backup policies.
-  final bool backupsEnabled;
+  final bool? backupsEnabled;
 
   /// Whether usage addons are calculated per project.
   final bool usagePerProject;
@@ -186,7 +186,7 @@ class BillingPlan implements Model {
   final BillingPlanSupportedAddons supportedAddons;
 
   /// How many policies does plan support
-  final int backupPolicies;
+  final int? backupPolicies;
 
   /// Maximum function and site deployment size in MB
   final int deploymentSize;
@@ -220,7 +220,7 @@ class BillingPlan implements Model {
     required this.storage,
     required this.imageTransformations,
     required this.screenshotsGenerated,
-    required this.members,
+    this.members,
     required this.webhooks,
     required this.wafRules,
     required this.projects,
@@ -244,7 +244,7 @@ class BillingPlan implements Model {
     required this.topics,
     required this.authPhone,
     required this.domains,
-    required this.activityLogs,
+    this.activityLogs,
     required this.usageLogs,
     this.usageLogsIntervals,
     required this.projectInactivityDays,
@@ -268,10 +268,10 @@ class BillingPlan implements Model {
     required this.supportsFreeEmailValidation,
     required this.supportsCorporateEmailValidation,
     required this.supportsProjectSpecificRoles,
-    required this.backupsEnabled,
+    this.backupsEnabled,
     required this.usagePerProject,
     required this.supportedAddons,
-    required this.backupPolicies,
+    this.backupPolicies,
     required this.deploymentSize,
     required this.buildSize,
     required this.databasesAllowEncrypt,

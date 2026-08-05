@@ -2277,7 +2277,7 @@ class Project extends Service {
 
   /// Update the maximum number of sessions allowed per user. When the limit is
   /// hit, the oldest session will be deleted to make room for new one.
-  Future<models.Project> updateSessionLimitPolicy({required int? total}) async {
+  Future<models.Project> updateSessionLimitPolicy({required int total}) async {
     final String apiPath = '/project/policies/session-limit';
 
     final Map<String, dynamic> apiParams = {

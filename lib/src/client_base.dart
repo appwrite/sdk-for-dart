@@ -11,6 +11,10 @@ abstract class ClientBase implements Client {
   @override
   ClientBase setKey(value);
 
+  /// Your organization ID
+  @override
+  ClientBase setOrganization(value);
+
   /// Your secret JSON Web Token
   @override
   ClientBase setJWT(value);

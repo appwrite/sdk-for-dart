@@ -11,6 +11,7 @@ enum Runtime {
   node23(value: 'node-23'),
   node24(value: 'node-24'),
   node25(value: 'node-25'),
+  node26(value: 'node-26'),
   php80(value: 'php-8.0'),
   php81(value: 'php-8.1'),
   php82(value: 'php-8.2'),

@@ -20,7 +20,7 @@ class DedicatedDatabase implements Model {
   /// Product API that owns this database: tablesdb, documentsdb, vectorsdb, mysql, postgresql, or mongodb.
   final String api;
 
-  /// Database engine: postgresql, mysql, mariadb, or mongodb.
+  /// Database engine: postgresql, mysql, or mongodb. Null until the backing reports one.
   final String engine;
 
   /// Database engine version.
@@ -35,7 +35,7 @@ class DedicatedDatabase implements Model {
   /// Database hostname for connections.
   final String hostname;
 
-  /// Database port for connections.
+  /// Database port for connections. Derived from the engine when the backing has not reported one yet.
   final int connectionPort;
 
   /// Database username for connections.
@@ -95,7 +95,7 @@ class DedicatedDatabase implements Model {
   /// Number of cross-region replicas. Cross-region availability is enabled when greater than 0.
   final int crossRegionReplicas;
 
-  /// Maximum concurrent connections.
+  /// Maximum concurrent client connections. This is the limit a client pool may reach; the engine&#039;s own max_connections reported by the status endpoint is a smaller backend limit the pooler multiplexes onto and does not constrain a client pool.
   final int networkMaxConnections;
 
   /// Connection idle timeout in seconds.

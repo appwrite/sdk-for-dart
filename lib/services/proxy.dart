@@ -5,6 +5,35 @@ part of '../dart_appwrite.dart';
 class Proxy extends Service {
   Proxy(super.client);
 
+  /// Create a new CDN cache invalidation for a domain. Executes a hard purge of
+  /// cached content.
+  ///
+  /// Depending on type, the invalidation purges a single cache tag, a single URL
+  /// path, or all cached content for the domain.
+  Future<models.ProxyInvalidation> createInvalidation(
+      {required String domain,
+      required enums.InvalidationType type,
+      String? reference}) async {
+    final String apiPath = '/proxy/invalidations';
+
+    final Map<String, dynamic> apiParams = {
+      'domain': domain,
+      'type': type.value,
+      if (reference != null) 'reference': reference,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.ProxyInvalidation.fromMap(res.data);
+  }
+
   /// Get a list of all the proxy rules. You can use the query params to filter
   /// your results.
   Future<models.ProxyRuleList> listRules(

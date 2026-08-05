@@ -1,5 +1,24 @@
 # Change Log
 
+## 26.2.0
+
+* Added: `Embeddings` service with `createTextEmbeddings` and the `EmbeddingModel` enum
+* Added: `proxy.createInvalidation` with `ProxyInvalidation` model and `InvalidationType` enum
+* Added: `tablesdb.listOperations` with `DedicatedDatabaseOperation` models
+* Added: `apps.deleteInstallation` to revoke an app installation and its tokens
+* Added: `Client.setOrganization()` for organization-scoped requests
+* Added: `syncMode` parameter to `tablesdb.create` and `tablesdb.update`
+* Added: `folder` parameter to `storage.createFile`, and `folder` and `key` to `File`
+* Added: replication sync fields to `DatabaseStatus` and `DedicatedDatabaseReplicas`
+* Added: `node-26` to the `Runtime` and `BuildRuntime` enums
+* Added: `proxy.invalidations.write` to the `ProjectKeyScopes` enum
+* Fixed: Binary download endpoints now authenticate with headers, not query parameters
+* Fixed: `activities.listEvents` `queries` parameter now accepts a list of queries
+* Fixed: `project.updateSessionLimitPolicy` `total` parameter is no longer nullable
+* Fixed: `Organization` billing and program fields are nullable, matching the API
+* Fixed: `BillingPlan`, `BillingPlanAddon`, and `UsageBillingPlan` optional fields are nullable
+* Fixed: `DedicatedDatabaseMember.lagSeconds` is nullable when the lag is unknown
+
 ## 26.1.0
 
 * Added: `Apps` service for managing OAuth2 applications, keys, and installations

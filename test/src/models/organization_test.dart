@@ -12,7 +12,6 @@ void main() {
         name: 'VIP',
         total: 7,
         prefs: Preferences(data: {}),
-        billingBudget: 50,
         budgetAlerts: [],
         billingPlan: 'tier-1',
         billingPlanId: 'tier-1',
@@ -27,7 +26,6 @@ void main() {
           storage: 25,
           imageTransformations: 100,
           screenshotsGenerated: 50,
-          members: 25,
           webhooks: 25,
           wafRules: 2,
           projects: 2,
@@ -51,7 +49,6 @@ void main() {
           topics: 1,
           authPhone: 10,
           domains: 5,
-          activityLogs: 7,
           usageLogs: 30,
           projectInactivityDays: 7,
           alertLimit: 80,
@@ -72,14 +69,6 @@ void main() {
               value: 25,
               invoiceDesc: '',
             ),
-            member: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
-              price: 5,
-              value: 25,
-              invoiceDesc: '',
-            ),
             realtime: AdditionalResource(
               name: '',
               unit: 'GB',
@@ -89,14 +78,6 @@ void main() {
               invoiceDesc: '',
             ),
             realtimeMessages: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
-              price: 5,
-              value: 25,
-              invoiceDesc: '',
-            ),
-            realtimeBandwidth: AdditionalResource(
               name: '',
               unit: 'GB',
               currency: 'USD',
@@ -136,37 +117,8 @@ void main() {
               value: 25,
               invoiceDesc: '',
             ),
-            credits: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
-              price: 5,
-              value: 25,
-              invoiceDesc: '',
-            ),
           ),
-          addons: BillingPlanAddon(
-            seats: BillingPlanAddonDetails(
-              supported: true,
-              planIncluded: 1,
-              limit: 5,
-              type: 'numeric',
-              currency: 'USD',
-              price: 5,
-              value: 25,
-              invoiceDesc: '',
-            ),
-            projects: BillingPlanAddonDetails(
-              supported: true,
-              planIncluded: 1,
-              limit: 5,
-              type: 'numeric',
-              currency: 'USD',
-              price: 5,
-              value: 25,
-              invoiceDesc: '',
-            ),
-          ),
+          addons: BillingPlanAddon(),
           budgetCapEnabled: true,
           customSmtp: true,
           emailBranding: true,
@@ -184,14 +136,12 @@ void main() {
           supportsFreeEmailValidation: true,
           supportsCorporateEmailValidation: true,
           supportsProjectSpecificRoles: true,
-          backupsEnabled: true,
           usagePerProject: true,
           supportedAddons: BillingPlanSupportedAddons(
             baa: true,
             premiumGeoDB: true,
             premiumGeoDBOrg: true,
           ),
-          backupPolicies: 1,
           deploymentSize: 30,
           buildSize: 2000,
           databasesAllowEncrypt: true,
@@ -201,22 +151,11 @@ void main() {
         billingStartDate: '2020-10-15T06:38:00.000+00:00',
         billingCurrentInvoiceDate: '2020-10-15T06:38:00.000+00:00',
         billingNextInvoiceDate: '2020-10-15T06:38:00.000+00:00',
-        billingTrialStartDate: '2020-10-15T06:38:00.000+00:00',
         billingTrialDays: 14,
         billingAggregationId: 'adbc3de4rddfsd',
         billingInvoiceId: 'adbc3de4rddfsd',
         paymentMethodId: 'adbc3de4rddfsd',
-        billingAddressId: 'adbc3de4rddfsd',
-        backupPaymentMethodId: 'adbc3de4rddfsd',
         status: 'active',
-        remarks: 'Pending initial payment',
-        agreementBAA: '',
-        programManagerName: '',
-        programManagerCalendar: '',
-        programDiscordChannelName: '',
-        programDiscordChannelUrl: '',
-        billingPlanDowngrade: 'tier-1',
-        billingTaxId: '',
         markedForDeletion: true,
         platform: 'imagine',
         projects: [],
@@ -230,7 +169,6 @@ void main() {
       expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
       expect(result.name, 'VIP');
       expect(result.total, 7);
-      expect(result.billingBudget, 50);
       expect(result.budgetAlerts, []);
       expect(result.billingPlan, 'tier-1');
       expect(result.billingPlanId, 'tier-1');
@@ -238,22 +176,11 @@ void main() {
       expect(result.billingStartDate, '2020-10-15T06:38:00.000+00:00');
       expect(result.billingCurrentInvoiceDate, '2020-10-15T06:38:00.000+00:00');
       expect(result.billingNextInvoiceDate, '2020-10-15T06:38:00.000+00:00');
-      expect(result.billingTrialStartDate, '2020-10-15T06:38:00.000+00:00');
       expect(result.billingTrialDays, 14);
       expect(result.billingAggregationId, 'adbc3de4rddfsd');
       expect(result.billingInvoiceId, 'adbc3de4rddfsd');
       expect(result.paymentMethodId, 'adbc3de4rddfsd');
-      expect(result.billingAddressId, 'adbc3de4rddfsd');
-      expect(result.backupPaymentMethodId, 'adbc3de4rddfsd');
       expect(result.status, 'active');
-      expect(result.remarks, 'Pending initial payment');
-      expect(result.agreementBAA, '');
-      expect(result.programManagerName, '');
-      expect(result.programManagerCalendar, '');
-      expect(result.programDiscordChannelName, '');
-      expect(result.programDiscordChannelUrl, '');
-      expect(result.billingPlanDowngrade, 'tier-1');
-      expect(result.billingTaxId, '');
       expect(result.markedForDeletion, true);
       expect(result.platform, 'imagine');
       expect(result.projects, []);

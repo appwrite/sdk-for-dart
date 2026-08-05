@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '26.1.0',
-      'X-Appwrite-Response-Format': '1.9.5',
+      'x-sdk-version': '26.2.0',
+      'X-Appwrite-Response-Format': '1.9.6',
     };
 
     config = {};
@@ -58,6 +58,14 @@ class ClientBrowser extends ClientBase with ClientMixin {
   ClientBrowser setKey(value) {
     config['key'] = value;
     addHeader('X-Appwrite-Key', value);
+    return this;
+  }
+
+  /// Your organization ID
+  @override
+  ClientBrowser setOrganization(value) {
+    config['organization'] = value;
+    addHeader('X-Appwrite-Organization', value);
     return this;
   }
 

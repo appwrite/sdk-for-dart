@@ -47,6 +47,11 @@ abstract class Client {
   /// Your secret API key
   Client setKey(String value);
 
+  /// Set Organization
+  ///
+  /// Your organization ID
+  Client setOrganization(String value);
+
   /// Set JWT
   ///
   /// Your secret JSON Web Token

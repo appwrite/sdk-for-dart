@@ -1,5 +1,7 @@
 part of '../dart_appwrite.dart';
 
+/// The Apps service allows you to manage OAuth2 applications, their keys,
+/// secrets, scopes, and installations.
 class Apps extends Service {
   Apps(super.client);
 
@@ -211,7 +213,8 @@ class Apps extends Service {
   }
 
   /// List installations of an application. Requires an app key sent in the
-  /// `X-Appwrite-Key` header alongside the `X-Appwrite-App` header.
+  /// `X-Appwrite-Key` header alongside the `X-Appwrite-App` header, or a caller
+  /// with update access to the app.
   Future<models.AppInstallationList> listInstallations(
       {required String appId, List<String>? queries, bool? total}) async {
     final String apiPath =
@@ -234,7 +237,8 @@ class Apps extends Service {
   }
 
   /// Get an installation of an application by its unique ID. Requires an app key
-  /// sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header.
+  /// sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header,
+  /// or a caller with update access to the app.
   Future<models.AppInstallation> getInstallation(
       {required String appId, required String installationId}) async {
     final String apiPath = '/apps/{appId}/installations/{installationId}'
@@ -254,13 +258,37 @@ class Apps extends Service {
     return models.AppInstallation.fromMap(res.data);
   }
 
+  /// Delete an installation of an application by its unique ID. Requires a
+  /// caller with update access to the app. Previously issued installation access
+  /// tokens are revoked.
+  Future deleteInstallation(
+      {required String appId, required String installationId}) async {
+    final String apiPath = '/apps/{appId}/installations/{installationId}'
+        .replaceAll('{appId}', appId)
+        .replaceAll('{installationId}', installationId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return res.data;
+  }
+
   /// Create a token for an installation of an application. Requires an app key
-  /// sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header.
-  /// The returned token carries the scopes and authorization details granted to
-  /// the installation, and can be used as an `Authorization: Bearer` header
-  /// everywhere OAuth2 access tokens are accepted. Multiple tokens can be active
-  /// for the same installation at once; each token stays valid until it expires
-  /// or the installation is updated or deleted.
+  /// sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header,
+  /// or a caller with update access to the app. The returned token carries the
+  /// scopes and authorization details granted to the installation, and can be
+  /// used as an `Authorization: Bearer` header everywhere OAuth2 access tokens
+  /// are accepted. Multiple tokens can be active for the same installation at
+  /// once; each token stays valid until it expires or the installation is
+  /// updated or deleted.
   Future<models.Oauth2Token> createInstallationToken(
       {required String appId, required String installationId}) async {
     final String apiPath = '/apps/{appId}/installations/{installationId}/tokens'

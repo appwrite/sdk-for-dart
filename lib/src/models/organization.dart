@@ -20,8 +20,8 @@ class Organization implements Model {
   /// Team preferences as a key-value object
   final Preferences prefs;
 
-  /// Project budget limit
-  final int billingBudget;
+  /// Project budget limit. Null when no budget is set.
+  final int? billingBudget;
 
   /// Project budget limit
   final List<int> budgetAlerts;
@@ -48,7 +48,7 @@ class Organization implements Model {
   final String billingNextInvoiceDate;
 
   /// Start date of trial.
-  final String billingTrialStartDate;
+  final String? billingTrialStartDate;
 
   /// Number of trial days.
   final int billingTrialDays;
@@ -63,40 +63,40 @@ class Organization implements Model {
   final String paymentMethodId;
 
   /// Default payment method.
-  final String billingAddressId;
+  final String? billingAddressId;
 
   /// Backup payment method.
-  final String backupPaymentMethodId;
+  final String? backupPaymentMethodId;
 
   /// Team status.
   final String status;
 
   /// Remarks on team status.
-  final String remarks;
+  final String? remarks;
 
   /// Organization agreements
-  final String agreementBAA;
+  final String? agreementBAA;
 
   /// Program manager&#039;s name.
-  final String programManagerName;
+  final String? programManagerName;
 
   /// Program manager&#039;s calendar link.
-  final String programManagerCalendar;
+  final String? programManagerCalendar;
 
   /// Program&#039;s discord channel name.
-  final String programDiscordChannelName;
+  final String? programDiscordChannelName;
 
   /// Program&#039;s discord channel URL.
-  final String programDiscordChannelUrl;
+  final String? programDiscordChannelUrl;
 
   /// Billing limits reached
   final BillingLimits? billingLimits;
 
   /// Billing plan selected for downgrade.
-  final String billingPlanDowngrade;
+  final String? billingPlanDowngrade;
 
   /// Tax Id
-  final String billingTaxId;
+  final String? billingTaxId;
 
   /// Marked for deletion
   final bool markedForDeletion;
@@ -114,7 +114,7 @@ class Organization implements Model {
     required this.name,
     required this.total,
     required this.prefs,
-    required this.billingBudget,
+    this.billingBudget,
     required this.budgetAlerts,
     required this.billingPlan,
     required this.billingPlanId,
@@ -123,23 +123,23 @@ class Organization implements Model {
     required this.billingStartDate,
     required this.billingCurrentInvoiceDate,
     required this.billingNextInvoiceDate,
-    required this.billingTrialStartDate,
+    this.billingTrialStartDate,
     required this.billingTrialDays,
     required this.billingAggregationId,
     required this.billingInvoiceId,
     required this.paymentMethodId,
-    required this.billingAddressId,
-    required this.backupPaymentMethodId,
+    this.billingAddressId,
+    this.backupPaymentMethodId,
     required this.status,
-    required this.remarks,
-    required this.agreementBAA,
-    required this.programManagerName,
-    required this.programManagerCalendar,
-    required this.programDiscordChannelName,
-    required this.programDiscordChannelUrl,
+    this.remarks,
+    this.agreementBAA,
+    this.programManagerName,
+    this.programManagerCalendar,
+    this.programDiscordChannelName,
+    this.programDiscordChannelUrl,
     this.billingLimits,
-    required this.billingPlanDowngrade,
-    required this.billingTaxId,
+    this.billingPlanDowngrade,
+    this.billingTaxId,
     required this.markedForDeletion,
     required this.platform,
     required this.projects,
@@ -162,25 +162,25 @@ class Organization implements Model {
       billingStartDate: map['billingStartDate'].toString(),
       billingCurrentInvoiceDate: map['billingCurrentInvoiceDate'].toString(),
       billingNextInvoiceDate: map['billingNextInvoiceDate'].toString(),
-      billingTrialStartDate: map['billingTrialStartDate'].toString(),
+      billingTrialStartDate: map['billingTrialStartDate']?.toString(),
       billingTrialDays: map['billingTrialDays'],
       billingAggregationId: map['billingAggregationId'].toString(),
       billingInvoiceId: map['billingInvoiceId'].toString(),
       paymentMethodId: map['paymentMethodId'].toString(),
-      billingAddressId: map['billingAddressId'].toString(),
-      backupPaymentMethodId: map['backupPaymentMethodId'].toString(),
+      billingAddressId: map['billingAddressId']?.toString(),
+      backupPaymentMethodId: map['backupPaymentMethodId']?.toString(),
       status: map['status'].toString(),
-      remarks: map['remarks'].toString(),
-      agreementBAA: map['agreementBAA'].toString(),
-      programManagerName: map['programManagerName'].toString(),
-      programManagerCalendar: map['programManagerCalendar'].toString(),
-      programDiscordChannelName: map['programDiscordChannelName'].toString(),
-      programDiscordChannelUrl: map['programDiscordChannelUrl'].toString(),
+      remarks: map['remarks']?.toString(),
+      agreementBAA: map['agreementBAA']?.toString(),
+      programManagerName: map['programManagerName']?.toString(),
+      programManagerCalendar: map['programManagerCalendar']?.toString(),
+      programDiscordChannelName: map['programDiscordChannelName']?.toString(),
+      programDiscordChannelUrl: map['programDiscordChannelUrl']?.toString(),
       billingLimits: map['billingLimits'] != null
           ? BillingLimits.fromMap(map['billingLimits'])
           : null,
-      billingPlanDowngrade: map['billingPlanDowngrade'].toString(),
-      billingTaxId: map['billingTaxId'].toString(),
+      billingPlanDowngrade: map['billingPlanDowngrade']?.toString(),
+      billingTaxId: map['billingTaxId']?.toString(),
       markedForDeletion: map['markedForDeletion'],
       platform: map['platform'].toString(),
       projects: List.from(map['projects'] ?? []),

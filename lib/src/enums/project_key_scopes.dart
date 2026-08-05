@@ -99,6 +99,7 @@ enum ProjectKeyScopes {
   wafRulesRead(value: 'wafRules.read'),
   wafRulesWrite(value: 'wafRules.write'),
   eventsRead(value: 'events.read'),
+  proxyInvalidationsWrite(value: 'proxy.invalidations.write'),
   appsRead(value: 'apps.read'),
   appsWrite(value: 'apps.write'),
   oauth2Read(value: 'oauth2.read'),

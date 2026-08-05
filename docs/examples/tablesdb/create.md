@@ -14,5 +14,6 @@ Database result = await tablesDB.create(
     enabled: false, // (optional)
     specification: 'serverless', // (optional)
     replicas: 0, // (optional)
+    syncMode: 'async', // (optional)
 );
 ```

@@ -9,7 +9,6 @@ void main() {
         planIncluded: 1,
         limit: 5,
         type: 'numeric',
-        currency: 'USD',
         price: 5,
         value: 25,
         invoiceDesc: '',
@@ -22,7 +21,6 @@ void main() {
       expect(result.planIncluded, 1);
       expect(result.limit, 5);
       expect(result.type, 'numeric');
-      expect(result.currency, 'USD');
       expect(result.price, 5);
       expect(result.value, 25);
       expect(result.invoiceDesc, '');

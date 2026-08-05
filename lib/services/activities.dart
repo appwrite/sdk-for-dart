@@ -6,7 +6,7 @@ class Activities extends Service {
   Activities(super.client);
 
   /// List all events for selected filters.
-  Future<models.ActivityEventList> listEvents({String? queries}) async {
+  Future<models.ActivityEventList> listEvents({List<String>? queries}) async {
     final String apiPath = '/activities/events';
 
     final Map<String, dynamic> apiParams = {

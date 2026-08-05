@@ -8,7 +8,6 @@ void main() {
         $id: '1',
         role: 'replica',
         status: 'active',
-        lagSeconds: 0.5,
       );
 
       final map = model.toMap();
@@ -17,7 +16,6 @@ void main() {
       expect(result.$id, '1');
       expect(result.role, 'replica');
       expect(result.status, 'active');
-      expect(result.lagSeconds, 0.5);
     });
   });
 }

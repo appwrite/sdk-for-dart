@@ -35,7 +35,8 @@ class TablesDB extends Service {
       required String name,
       bool? enabled,
       String? specification,
-      int? replicas}) async {
+      int? replicas,
+      String? syncMode}) async {
     final String apiPath = '/tablesdb';
 
     final Map<String, dynamic> apiParams = {
@@ -44,6 +45,7 @@ class TablesDB extends Service {
       if (enabled != null) 'enabled': enabled,
       if (specification != null) 'specification': specification,
       if (replicas != null) 'replicas': replicas,
+      if (syncMode != null) 'syncMode': syncMode,
     };
 
     final Map<String, String> apiHeaders = {
@@ -223,14 +225,18 @@ class TablesDB extends Service {
       {required String databaseId,
       String? name,
       bool? enabled,
-      int? replicas}) async {
+      String? specification,
+      int? replicas,
+      String? syncMode}) async {
     final String apiPath =
         '/tablesdb/{databaseId}'.replaceAll('{databaseId}', databaseId);
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
       if (enabled != null) 'enabled': enabled,
+      if (specification != null) 'specification': specification,
       if (replicas != null) 'replicas': replicas,
+      if (syncMode != null) 'syncMode': syncMode,
     };
 
     final Map<String, String> apiHeaders = {
@@ -266,7 +272,9 @@ class TablesDB extends Service {
 
   /// Trigger a manual failover for a dedicated database with high availability
   /// enabled. Promotes a replica to primary. The failover runs asynchronously;
-  /// poll the database document for status updates.
+  /// poll the database document for status updates. A database left
+  /// mid-operation by a failover that did not finish also accepts this call as a
+  /// repair, provided `targetReplicaId` names the member to promote.
   Future<models.DedicatedDatabase> createFailover(
       {required String databaseId, String? targetReplicaId}) async {
     final String apiPath = '/tablesdb/{databaseId}/failovers'
@@ -286,6 +294,35 @@ class TablesDB extends Service {
         path: apiPath, params: apiParams, headers: apiHeaders);
 
     return models.DedicatedDatabase.fromMap(res.data);
+  }
+
+  /// List the lifecycle operations recorded for a dedicated database, newest
+  /// first. Every provision, update, restore, backup and replication action is
+  /// recorded here with its outcome, including an attempt that was abandoned
+  /// because another worker took over the database.
+  Future<models.DedicatedDatabaseOperationList> listOperations(
+      {required String databaseId,
+      String? status,
+      int? limit,
+      int? offset}) async {
+    final String apiPath = '/tablesdb/{databaseId}/operations'
+        .replaceAll('{databaseId}', databaseId);
+
+    final Map<String, dynamic> apiParams = {
+      if (status != null) 'status': status,
+      if (limit != null) 'limit': limit,
+      if (offset != null) 'offset': offset,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DedicatedDatabaseOperationList.fromMap(res.data);
   }
 
   /// Get high availability status for a dedicated database. Returns replica

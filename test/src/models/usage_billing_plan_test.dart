@@ -21,14 +21,6 @@ void main() {
           value: 25,
           invoiceDesc: '',
         ),
-        member: AdditionalResource(
-          name: '',
-          unit: 'GB',
-          currency: 'USD',
-          price: 5,
-          value: 25,
-          invoiceDesc: '',
-        ),
         realtime: AdditionalResource(
           name: '',
           unit: 'GB',
@@ -38,14 +30,6 @@ void main() {
           invoiceDesc: '',
         ),
         realtimeMessages: AdditionalResource(
-          name: '',
-          unit: 'GB',
-          currency: 'USD',
-          price: 5,
-          value: 25,
-          invoiceDesc: '',
-        ),
-        realtimeBandwidth: AdditionalResource(
           name: '',
           unit: 'GB',
           currency: 'USD',
@@ -78,14 +62,6 @@ void main() {
           invoiceDesc: '',
         ),
         imageTransformations: AdditionalResource(
-          name: '',
-          unit: 'GB',
-          currency: 'USD',
-          price: 5,
-          value: 25,
-          invoiceDesc: '',
-        ),
-        credits: AdditionalResource(
           name: '',
           unit: 'GB',
           currency: 'USD',

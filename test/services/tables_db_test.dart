@@ -328,10 +328,30 @@ void main() {
       expect(response, isA<models.DedicatedDatabase>());
     });
 
+    test('test method listOperations()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'operations': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.listOperations(
+        databaseId: '<DATABASE_ID>',
+      );
+      expect(response, isA<models.DedicatedDatabaseOperationList>());
+    });
+
     test('test method getReplicas()', () async {
       final Map<String, dynamic> data = {
         'replicas': 2,
         'syncMode': 'async',
+        'syncDegraded': true,
+        'syncAcknowledgements': 1,
+        'syncStandbyCount': 2,
+        'syncStateConfirmed': true,
         'members': [],
       };
 
@@ -356,6 +376,11 @@ void main() {
           'current': 12,
           'max': 100,
         },
+        'syncMode': 'async',
+        'syncDegraded': true,
+        'syncAcknowledgements': 1,
+        'syncStandbyCount': 2,
+        'syncStateConfirmed': true,
         'replicas': [],
         'volumes': [],
       };

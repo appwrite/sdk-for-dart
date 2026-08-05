@@ -9,7 +9,7 @@ class UsageBillingPlan implements Model {
   final AdditionalResource executions;
 
   /// Member additional resources
-  final AdditionalResource member;
+  final AdditionalResource? member;
 
   /// Realtime additional resources
   final AdditionalResource realtime;
@@ -18,7 +18,7 @@ class UsageBillingPlan implements Model {
   final AdditionalResource realtimeMessages;
 
   /// Realtime bandwidth additional resources
-  final AdditionalResource realtimeBandwidth;
+  final AdditionalResource? realtimeBandwidth;
 
   /// Storage additional resources
   final AdditionalResource storage;
@@ -33,36 +33,42 @@ class UsageBillingPlan implements Model {
   final AdditionalResource imageTransformations;
 
   /// Credits additional resources
-  final AdditionalResource credits;
+  final AdditionalResource? credits;
 
   UsageBillingPlan({
     required this.bandwidth,
     required this.executions,
-    required this.member,
+    this.member,
     required this.realtime,
     required this.realtimeMessages,
-    required this.realtimeBandwidth,
+    this.realtimeBandwidth,
     required this.storage,
     required this.users,
     required this.GBHours,
     required this.imageTransformations,
-    required this.credits,
+    this.credits,
   });
 
   factory UsageBillingPlan.fromMap(Map<String, dynamic> map) {
     return UsageBillingPlan(
       bandwidth: AdditionalResource.fromMap(map['bandwidth']),
       executions: AdditionalResource.fromMap(map['executions']),
-      member: AdditionalResource.fromMap(map['member']),
+      member: map['member'] != null
+          ? AdditionalResource.fromMap(map['member'])
+          : null,
       realtime: AdditionalResource.fromMap(map['realtime']),
       realtimeMessages: AdditionalResource.fromMap(map['realtimeMessages']),
-      realtimeBandwidth: AdditionalResource.fromMap(map['realtimeBandwidth']),
+      realtimeBandwidth: map['realtimeBandwidth'] != null
+          ? AdditionalResource.fromMap(map['realtimeBandwidth'])
+          : null,
       storage: AdditionalResource.fromMap(map['storage']),
       users: AdditionalResource.fromMap(map['users']),
       GBHours: AdditionalResource.fromMap(map['GBHours']),
       imageTransformations:
           AdditionalResource.fromMap(map['imageTransformations']),
-      credits: AdditionalResource.fromMap(map['credits']),
+      credits: map['credits'] != null
+          ? AdditionalResource.fromMap(map['credits'])
+          : null,
     );
   }
 
@@ -71,15 +77,15 @@ class UsageBillingPlan implements Model {
     return {
       "bandwidth": bandwidth.toMap(),
       "executions": executions.toMap(),
-      "member": member.toMap(),
+      "member": member?.toMap(),
       "realtime": realtime.toMap(),
       "realtimeMessages": realtimeMessages.toMap(),
-      "realtimeBandwidth": realtimeBandwidth.toMap(),
+      "realtimeBandwidth": realtimeBandwidth?.toMap(),
       "storage": storage.toMap(),
       "users": users.toMap(),
       "GBHours": GBHours.toMap(),
       "imageTransformations": imageTransformations.toMap(),
-      "credits": credits.toMap(),
+      "credits": credits?.toMap(),
     };
   }
 }

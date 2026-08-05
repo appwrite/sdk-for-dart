@@ -16,7 +16,6 @@ void main() {
         storage: 25,
         imageTransformations: 100,
         screenshotsGenerated: 50,
-        members: 25,
         webhooks: 25,
         wafRules: 2,
         projects: 2,
@@ -40,7 +39,6 @@ void main() {
         topics: 1,
         authPhone: 10,
         domains: 5,
-        activityLogs: 7,
         usageLogs: 30,
         projectInactivityDays: 7,
         alertLimit: 80,
@@ -61,14 +59,6 @@ void main() {
             value: 25,
             invoiceDesc: '',
           ),
-          member: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
-            price: 5,
-            value: 25,
-            invoiceDesc: '',
-          ),
           realtime: AdditionalResource(
             name: '',
             unit: 'GB',
@@ -78,14 +68,6 @@ void main() {
             invoiceDesc: '',
           ),
           realtimeMessages: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
-            price: 5,
-            value: 25,
-            invoiceDesc: '',
-          ),
-          realtimeBandwidth: AdditionalResource(
             name: '',
             unit: 'GB',
             currency: 'USD',
@@ -125,37 +107,8 @@ void main() {
             value: 25,
             invoiceDesc: '',
           ),
-          credits: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
-            price: 5,
-            value: 25,
-            invoiceDesc: '',
-          ),
         ),
-        addons: BillingPlanAddon(
-          seats: BillingPlanAddonDetails(
-            supported: true,
-            planIncluded: 1,
-            limit: 5,
-            type: 'numeric',
-            currency: 'USD',
-            price: 5,
-            value: 25,
-            invoiceDesc: '',
-          ),
-          projects: BillingPlanAddonDetails(
-            supported: true,
-            planIncluded: 1,
-            limit: 5,
-            type: 'numeric',
-            currency: 'USD',
-            price: 5,
-            value: 25,
-            invoiceDesc: '',
-          ),
-        ),
+        addons: BillingPlanAddon(),
         budgetCapEnabled: true,
         customSmtp: true,
         emailBranding: true,
@@ -173,14 +126,12 @@ void main() {
         supportsFreeEmailValidation: true,
         supportsCorporateEmailValidation: true,
         supportsProjectSpecificRoles: true,
-        backupsEnabled: true,
         usagePerProject: true,
         supportedAddons: BillingPlanSupportedAddons(
           baa: true,
           premiumGeoDB: true,
           premiumGeoDBOrg: true,
         ),
-        backupPolicies: 1,
         deploymentSize: 30,
         buildSize: 2000,
         databasesAllowEncrypt: true,
@@ -200,7 +151,6 @@ void main() {
       expect(result.storage, 25);
       expect(result.imageTransformations, 100);
       expect(result.screenshotsGenerated, 50);
-      expect(result.members, 25);
       expect(result.webhooks, 25);
       expect(result.wafRules, 2);
       expect(result.projects, 2);
@@ -224,7 +174,6 @@ void main() {
       expect(result.topics, 1);
       expect(result.authPhone, 10);
       expect(result.domains, 5);
-      expect(result.activityLogs, 7);
       expect(result.usageLogs, 30);
       expect(result.projectInactivityDays, 7);
       expect(result.alertLimit, 80);
@@ -245,9 +194,7 @@ void main() {
       expect(result.supportsFreeEmailValidation, true);
       expect(result.supportsCorporateEmailValidation, true);
       expect(result.supportsProjectSpecificRoles, true);
-      expect(result.backupsEnabled, true);
       expect(result.usagePerProject, true);
-      expect(result.backupPolicies, 1);
       expect(result.deploymentSize, 30);
       expect(result.buildSize, 2000);
       expect(result.databasesAllowEncrypt, true);

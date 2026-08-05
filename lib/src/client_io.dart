@@ -42,10 +42,10 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '26.1.0',
+      'x-sdk-version': '26.2.0',
       'user-agent':
-          'AppwriteDartSDK/26.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format': '1.9.5',
+          'AppwriteDartSDK/26.2.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format': '1.9.6',
     };
 
     config = {};
@@ -69,6 +69,14 @@ class ClientIO extends ClientBase with ClientMixin {
   ClientIO setKey(value) {
     config['key'] = value;
     addHeader('X-Appwrite-Key', value);
+    return this;
+  }
+
+  /// Your organization ID
+  @override
+  ClientIO setOrganization(value) {
+    config['organization'] = value;
+    addHeader('X-Appwrite-Organization', value);
     return this;
   }
 
