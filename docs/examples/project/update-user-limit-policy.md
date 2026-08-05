@@ -9,6 +9,6 @@ Client client = Client()
 Project project = Project(client);
 
 Project result = await project.updateUserLimitPolicy(
-    total: 1,
+    total: 0,
 );
 ```

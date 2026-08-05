@@ -9,6 +9,6 @@ Client client = Client()
 Activities activities = Activities(client);
 
 ActivityEventList result = await activities.listEvents(
-    queries: '', // (optional)
+    queries: [], // (optional)
 );
 ```

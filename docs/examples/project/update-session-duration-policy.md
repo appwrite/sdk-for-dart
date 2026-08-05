@@ -9,6 +9,6 @@ Client client = Client()
 Project project = Project(client);
 
 Project result = await project.updateSessionDurationPolicy(
-    duration: 5,
+    duration: 60,
 );
 ```

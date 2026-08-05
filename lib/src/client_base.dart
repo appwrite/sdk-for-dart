@@ -2,7 +2,7 @@ import 'response.dart';
 import 'client.dart';
 import 'enums.dart';
 
-abstract class ClientBase implements Client {
+abstract class ClientBase implements Client {  
   /// Your project ID
   @override
   ClientBase setProject(value);
@@ -10,6 +10,10 @@ abstract class ClientBase implements Client {
   /// Your secret API key
   @override
   ClientBase setKey(value);
+
+  /// Your organization ID
+  @override
+  ClientBase setOrganization(value);
 
   /// Your secret JSON Web Token
   @override
@@ -49,6 +53,7 @@ abstract class ClientBase implements Client {
   /// Impersonate a user by phone
   @override
   ClientBase setImpersonateUserPhone(value);
+
 
   @override
   ClientBase setSelfSigned({bool status = true});

@@ -21,14 +21,13 @@ abstract class Client {
   factory Client({
     String endPoint = 'https://cloud.appwrite.io/v1',
     bool selfSigned = false,
-  }) =>
-      createClient(endPoint: endPoint, selfSigned: selfSigned);
+  }) => createClient(endPoint: endPoint, selfSigned: selfSigned);
 
   /// Handle OAuth2 session creation.
   Future<String?> webAuth(Uri url);
 
   /// Set self signed to [status].
-  ///
+  /// 
   /// If self signed is true, [Client] will ignore invalid certificates.
   /// This is helpful in environments where your Appwrite
   /// instance does not have a valid SSL certificate.
@@ -46,6 +45,11 @@ abstract class Client {
   ///
   /// Your secret API key
   Client setKey(String value);
+
+  /// Set Organization
+  ///
+  /// Your organization ID
+  Client setOrganization(String value);
 
   /// Set JWT
   ///
@@ -104,6 +108,7 @@ abstract class Client {
   /// Send a ping to project as part of onboarding.
   Future<String> ping();
 
+
   /// Upload a file in chunks.
   Future<Response> chunkedUpload({
     required String path,
@@ -115,8 +120,7 @@ abstract class Client {
   });
 
   /// Send the API request.
-  Future<Response> call(
-    HttpMethod method, {
+  Future<Response> call(HttpMethod method, {
     String path = '',
     Map<String, String> headers = const {},
     Map<String, dynamic> params = const {},

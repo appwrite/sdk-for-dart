@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = AppScope.fromMap(map);
 
-      expect(result.value, 'organization:organization.read');
-      expect(result.description, 'Access to read the organization');
-      expect(result.type, 'organization');
-      expect(result.category, 'Organization');
-      expect(result.deprecated, true);
-    });
+            expect(result.value, 'organization:organization.read');
+                  expect(result.description, 'Access to read the organization');
+                  expect(result.type, 'organization');
+                  expect(result.category, 'Organization');
+                  expect(result.deprecated, true);
+          });
   });
 }

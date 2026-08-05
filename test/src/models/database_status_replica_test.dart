@@ -13,9 +13,9 @@ void main() {
       final map = model.toMap();
       final result = DatabaseStatusReplica.fromMap(map);
 
-      expect(result.index, 0);
-      expect(result.role, 'primary');
-      expect(result.healthy, true);
-    });
+            expect(result.index, 0);
+                  expect(result.role, 'primary');
+                  expect(result.healthy, true);
+          });
   });
 }
