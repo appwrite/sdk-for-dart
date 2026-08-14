@@ -29,7 +29,7 @@ class DedicatedDatabaseOperation implements Model {
   /// Time the operation reached a terminal state, in ISO 8601 format.
   final String? completedAt;
 
-  /// Machine-readable failure code. `LockLost` marks an attempt that was fenced and abandoned because another worker took over the database.
+  /// Machine-readable failure code. `Interrupted` marks an attempt that ended before its outcome could be confirmed.
   final String errorCode;
 
   /// Failure message if the operation failed.

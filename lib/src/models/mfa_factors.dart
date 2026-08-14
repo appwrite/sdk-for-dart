@@ -14,11 +14,15 @@ class MfaFactors implements Model {
   /// Can recovery code be used for MFA challenge for this account.
   final bool recoveryCode;
 
+  /// Can custom factor be used for MFA challenge for this account.
+  final bool custom;
+
   MfaFactors({
     required this.totp,
     required this.phone,
     required this.email,
     required this.recoveryCode,
+    required this.custom,
   });
 
   factory MfaFactors.fromMap(Map<String, dynamic> map) {
@@ -27,6 +31,7 @@ class MfaFactors implements Model {
       phone: map['phone'],
       email: map['email'],
       recoveryCode: map['recoveryCode'],
+      custom: map['custom'],
     );
   }
 
@@ -37,6 +42,7 @@ class MfaFactors implements Model {
       "phone": phone,
       "email": email,
       "recoveryCode": recoveryCode,
+      "custom": custom,
     };
   }
 }

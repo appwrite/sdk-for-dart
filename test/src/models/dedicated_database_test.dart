@@ -34,7 +34,6 @@ void main() {
         nodePool: 'db-pool-4vcpu-8gb',
         replicas: 2,
         syncMode: 'async',
-        crossRegionReplicas: 1,
         networkMaxConnections: 500,
         networkIdleTimeoutSeconds: 900,
         networkIPAllowlist: [],
@@ -87,7 +86,6 @@ void main() {
       expect(result.nodePool, 'db-pool-4vcpu-8gb');
       expect(result.replicas, 2);
       expect(result.syncMode, 'async');
-      expect(result.crossRegionReplicas, 1);
       expect(result.networkMaxConnections, 500);
       expect(result.networkIdleTimeoutSeconds, 900);
       expect(result.networkIPAllowlist, []);

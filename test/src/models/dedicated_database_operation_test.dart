@@ -11,7 +11,7 @@ void main() {
         type: 'update',
         status: 'completed',
         attempts: 1,
-        errorCode: 'LockLost',
+        errorCode: 'Interrupted',
         errorMessage: '',
       );
 
@@ -24,7 +24,7 @@ void main() {
       expect(result.type, 'update');
       expect(result.status, 'completed');
       expect(result.attempts, 1);
-      expect(result.errorCode, 'LockLost');
+      expect(result.errorCode, 'Interrupted');
       expect(result.errorMessage, '');
     });
   });

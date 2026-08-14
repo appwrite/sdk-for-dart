@@ -24,5 +24,6 @@ Project result = await project.updateOAuth2Server(
     userCodeFormat: 'numeric', // (optional)
     deviceCodeDuration: 60, // (optional)
     defaultScopes: [], // (optional)
+    installationScopes: [], // (optional)
 );
 ```

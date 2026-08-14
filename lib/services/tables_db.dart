@@ -296,6 +296,122 @@ class TablesDB extends Service {
     return models.DedicatedDatabase.fromMap(res.data);
   }
 
+  /// List the dedicated migrations for a TablesDB database. A database has at
+  /// most one in-flight migration.
+  Future<models.DatabaseMigrationList> listMigrations(
+      {required String databaseId}) async {
+    final String apiPath = '/tablesdb/{databaseId}/migrations'
+        .replaceAll('{databaseId}', databaseId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DatabaseMigrationList.fromMap(res.data);
+  }
+
+  /// Start migrating a serverless TablesDB database onto a dedicated MySQL
+  /// compute. Data is copied to the target while the source stays live, with a
+  /// brief read-only window during cutover.
+  Future<models.DatabaseMigration> createMigration(
+      {required String databaseId,
+      required String specification,
+      bool? autoCutover}) async {
+    final String apiPath = '/tablesdb/{databaseId}/migrations'
+        .replaceAll('{databaseId}', databaseId);
+
+    final Map<String, dynamic> apiParams = {
+      'specification': specification,
+      if (autoCutover != null) 'autoCutover': autoCutover,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DatabaseMigration.fromMap(res.data);
+  }
+
+  /// Get a single dedicated migration for a TablesDB database by its ID.
+  Future<models.DatabaseMigration> getMigration(
+      {required String databaseId, required String migrationId}) async {
+    final String apiPath = '/tablesdb/{databaseId}/migrations/{migrationId}'
+        .replaceAll('{databaseId}', databaseId)
+        .replaceAll('{migrationId}', migrationId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DatabaseMigration.fromMap(res.data);
+  }
+
+  /// Abort an in-flight TablesDB dedicated migration. Only allowed before
+  /// cutover; once the migration has cut over it cannot be aborted.
+  Future deleteMigration(
+      {required String databaseId, required String migrationId}) async {
+    final String apiPath = '/tablesdb/{databaseId}/migrations/{migrationId}'
+        .replaceAll('{databaseId}', databaseId)
+        .replaceAll('{migrationId}', migrationId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.delete,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return res.data;
+  }
+
+  /// Cut a verified TablesDB migration over to its dedicated compute. Only
+  /// applies to a migration created with `autoCutover` disabled, which waits at
+  /// `ready_to_cutover` until this is called. The routing flip happens shortly
+  /// after this returns, with a brief read-only window. One call buys one
+  /// attempt: a cutover that fails a check returns the migration to `verifying`
+  /// and parks it again, so call this once more to retry.
+  Future<models.DatabaseMigration> cutoverMigration(
+      {required String databaseId, required String migrationId}) async {
+    final String apiPath =
+        '/tablesdb/{databaseId}/migrations/{migrationId}/cutover'
+            .replaceAll('{databaseId}', databaseId)
+            .replaceAll('{migrationId}', migrationId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.post,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.DatabaseMigration.fromMap(res.data);
+  }
+
   /// List the lifecycle operations recorded for a dedicated database, newest
   /// first. Every provision, update, restore, backup and replication action is
   /// recorded here with its outcome, including an attempt that was abandoned

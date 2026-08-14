@@ -1,5 +1,16 @@
 # Change Log
 
+## 27.0.0
+
+* Breaking: removed `account.createJWT`; use `users.createJWT` instead. A leaked JWT could mint further JWTs, letting a credential outlive its own expiry — a session cannot duplicate itself to live forever either
+* Breaking: removed `project.createKey`. A leaked key could mint further hidden keys, making a compromise far harder to contain and revoke
+* Added: TablesDB migration methods `listMigrations`, `createMigration`, `getMigration`, `deleteMigration`, and `cutoverMigration`, plus the `DatabaseMigration` and `DatabaseMigrationList` models
+* Added: `users.getMFAChallenge` and the `MfaChallengeSecret` model
+* Added: `project.updateMFAFactorsPolicy` and the `PolicyMfaFactors` model
+* Added: `installationScopes` parameter to `project.updateOAuth2Server`
+* Added: `custom` authentication factor, `mfa-factors` project policy, and the `embeddings.write` key scope
+* Updated: dedicated database status, replicas, operation, and pricing models
+
 ## 26.2.0
 
 * Added: `Embeddings` service with `createTextEmbeddings` and the `EmbeddingModel` enum

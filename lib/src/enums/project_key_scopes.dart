@@ -35,6 +35,7 @@ enum ProjectKeyScopes {
   indexesWrite(value: 'indexes.write'),
   rowsRead(value: 'rows.read'),
   rowsWrite(value: 'rows.write'),
+  embeddingsWrite(value: 'embeddings.write'),
   collectionsRead(value: 'collections.read'),
   collectionsWrite(value: 'collections.write'),
   attributesRead(value: 'attributes.read'),

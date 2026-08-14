@@ -101,6 +101,9 @@ class Project implements Model {
   /// OAuth2 server scopes used when an authorization request omits the scope parameter
   final List<String>? oAuth2ServerDefaultScopes;
 
+  /// Scopes an application may request when installed on a team
+  final List<String>? oAuth2ServerInstallationScopes;
+
   /// OAuth2 server accepted RFC 9396 authorization_details types
   final List<String>? oAuth2ServerAuthorizationDetailsTypes;
 
@@ -171,6 +174,7 @@ class Project implements Model {
     this.oAuth2ServerAuthorizationUrl,
     this.oAuth2ServerScopes,
     this.oAuth2ServerDefaultScopes,
+    this.oAuth2ServerInstallationScopes,
     this.oAuth2ServerAuthorizationDetailsTypes,
     this.oAuth2ServerAccessTokenDuration,
     this.oAuth2ServerRefreshTokenDuration,
@@ -227,6 +231,8 @@ class Project implements Model {
       oAuth2ServerScopes: List.from(map['oAuth2ServerScopes'] ?? []),
       oAuth2ServerDefaultScopes:
           List.from(map['oAuth2ServerDefaultScopes'] ?? []),
+      oAuth2ServerInstallationScopes:
+          List.from(map['oAuth2ServerInstallationScopes'] ?? []),
       oAuth2ServerAuthorizationDetailsTypes:
           List.from(map['oAuth2ServerAuthorizationDetailsTypes'] ?? []),
       oAuth2ServerAccessTokenDuration: map['oAuth2ServerAccessTokenDuration'],
@@ -283,6 +289,7 @@ class Project implements Model {
       "oAuth2ServerAuthorizationUrl": oAuth2ServerAuthorizationUrl,
       "oAuth2ServerScopes": oAuth2ServerScopes,
       "oAuth2ServerDefaultScopes": oAuth2ServerDefaultScopes,
+      "oAuth2ServerInstallationScopes": oAuth2ServerInstallationScopes,
       "oAuth2ServerAuthorizationDetailsTypes":
           oAuth2ServerAuthorizationDetailsTypes,
       "oAuth2ServerAccessTokenDuration": oAuth2ServerAccessTokenDuration,

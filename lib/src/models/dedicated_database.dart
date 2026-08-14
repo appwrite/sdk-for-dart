@@ -92,9 +92,6 @@ class DedicatedDatabase implements Model {
   /// Replication sync mode: async, sync, or quorum.
   final String syncMode;
 
-  /// Number of cross-region replicas. Cross-region availability is enabled when greater than 0.
-  final int crossRegionReplicas;
-
   /// Maximum concurrent client connections. This is the limit a client pool may reach; the engine&#039;s own max_connections reported by the status endpoint is a smaller backend limit the pooler multiplexes onto and does not constrain a client pool.
   final int networkMaxConnections;
 
@@ -180,7 +177,6 @@ class DedicatedDatabase implements Model {
     required this.nodePool,
     required this.replicas,
     required this.syncMode,
-    required this.crossRegionReplicas,
     required this.networkMaxConnections,
     required this.networkIdleTimeoutSeconds,
     required this.networkIPAllowlist,
@@ -233,7 +229,6 @@ class DedicatedDatabase implements Model {
       nodePool: map['nodePool'].toString(),
       replicas: map['replicas'],
       syncMode: map['syncMode'].toString(),
-      crossRegionReplicas: map['crossRegionReplicas'],
       networkMaxConnections: map['networkMaxConnections'],
       networkIdleTimeoutSeconds: map['networkIdleTimeoutSeconds'],
       networkIPAllowlist: List.from(map['networkIPAllowlist'] ?? []),
@@ -289,7 +284,6 @@ class DedicatedDatabase implements Model {
       "nodePool": nodePool,
       "replicas": replicas,
       "syncMode": syncMode,
-      "crossRegionReplicas": crossRegionReplicas,
       "networkMaxConnections": networkMaxConnections,
       "networkIdleTimeoutSeconds": networkIdleTimeoutSeconds,
       "networkIPAllowlist": networkIPAllowlist,

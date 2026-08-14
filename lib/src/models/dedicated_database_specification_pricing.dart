@@ -11,9 +11,6 @@ class DedicatedDatabaseSpecificationPricing implements Model {
   /// High availability replica price as a fraction of the specification cost.
   final double replicaRate;
 
-  /// Cross-region replica price as a fraction of the specification cost.
-  final double crossRegionReplicaRate;
-
   /// Point-in-time recovery price as a fraction of the specification cost.
   final double pitrRate;
 
@@ -21,7 +18,6 @@ class DedicatedDatabaseSpecificationPricing implements Model {
     required this.storageOverageRate,
     required this.bandwidthOverageRate,
     required this.replicaRate,
-    required this.crossRegionReplicaRate,
     required this.pitrRate,
   });
 
@@ -31,7 +27,6 @@ class DedicatedDatabaseSpecificationPricing implements Model {
       storageOverageRate: map['storageOverageRate'].toDouble(),
       bandwidthOverageRate: map['bandwidthOverageRate'].toDouble(),
       replicaRate: map['replicaRate'].toDouble(),
-      crossRegionReplicaRate: map['crossRegionReplicaRate'].toDouble(),
       pitrRate: map['pitrRate'].toDouble(),
     );
   }
@@ -42,7 +37,6 @@ class DedicatedDatabaseSpecificationPricing implements Model {
       "storageOverageRate": storageOverageRate,
       "bandwidthOverageRate": bandwidthOverageRate,
       "replicaRate": replicaRate,
-      "crossRegionReplicaRate": crossRegionReplicaRate,
       "pitrRate": pitrRate,
     };
   }

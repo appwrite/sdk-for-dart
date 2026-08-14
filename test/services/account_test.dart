@@ -278,20 +278,6 @@ void main() {
       );
     });
 
-    test('test method createJWT()', () async {
-      final Map<String, dynamic> data = {
-        'jwt':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await account.createJWT();
-      expect(response, isA<models.Jwt>());
-    });
-
     test('test method listLogs()', () async {
       final Map<String, dynamic> data = {
         'total': 5,
@@ -586,6 +572,7 @@ void main() {
         'phone': true,
         'email': true,
         'recoveryCode': true,
+        'custom': true,
       };
 
       when(client.call(
@@ -602,6 +589,7 @@ void main() {
         'phone': true,
         'email': true,
         'recoveryCode': true,
+        'custom': true,
       };
 
       when(client.call(

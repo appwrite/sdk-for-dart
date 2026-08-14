@@ -11,6 +11,7 @@ enum ProjectPolicyId {
   sessionLimit(value: 'session-limit'),
   userLimit(value: 'user-limit'),
   membershipPrivacy(value: 'membership-privacy'),
+  mfaFactors(value: 'mfa-factors'),
   denyAliasedEmail(value: 'deny-aliased-email'),
   denyDisposableEmail(value: 'deny-disposable-email'),
   denyFreeEmail(value: 'deny-free-email'),

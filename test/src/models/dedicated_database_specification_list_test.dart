@@ -11,7 +11,6 @@ void main() {
           storageOverageRate: 0.125,
           bandwidthOverageRate: 0.08,
           replicaRate: 1,
-          crossRegionReplicaRate: 1,
           pitrRate: 0.2,
         ),
       );

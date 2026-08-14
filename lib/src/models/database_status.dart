@@ -2,7 +2,7 @@ part of '../../models.dart';
 
 /// Status
 class DatabaseStatus implements Model {
-  /// Overall health status: healthy, degraded, or unhealthy.
+  /// Overall health status: healthy, degraded, unhealthy, or unknown when nothing could be measured.
   final String health;
 
   /// Whether the database is ready to accept connections.
@@ -35,8 +35,8 @@ class DatabaseStatus implements Model {
   /// Number of standbys registered with the primary for synchronous replication.
   final int syncStandbyCount;
 
-  /// Whether the reported sync state was read from the engine. When false the state could not be confirmed and the other sync fields carry no reading.
-  final bool syncStateConfirmed;
+  /// Whether the other sync fields are an engine reading rather than a recorded estimate. True when the primary answered what it is enforcing, including when that answer contradicted the record, in which case the contradicted values are replaced by the ones the engine reports. False when the reading could not be taken: the probe did not answer, there was no engine to ask, or the values describe a configuration change just applied rather than anything measured. Absent when no engine was asked at all, so an unprobed database is distinguishable from an unconfirmed one. False never means a standby was found lagging, because it is the absence of a reading rather than a negative one, so draw no conclusion about replication health from it or from a response that omits it.
+  final bool? syncStateConfirmed;
 
   /// List of database replicas and their status. Every configured member appears, including one the backend has not brought up, which is reported as not healthy.
   final List<DatabaseStatusReplica> replicas;
@@ -56,7 +56,7 @@ class DatabaseStatus implements Model {
     required this.syncDegraded,
     required this.syncAcknowledgements,
     required this.syncStandbyCount,
-    required this.syncStateConfirmed,
+    this.syncStateConfirmed,
     required this.replicas,
     required this.volumes,
   });

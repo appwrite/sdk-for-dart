@@ -82,37 +82,6 @@ class Project extends Service {
     return models.KeyList.fromMap(res.data);
   }
 
-  /// Create a new API key. It's recommended to have multiple API keys with
-  /// strict scopes for separate functions within your project.
-  ///
-  /// You can also create an ephemeral API key if you need a short-lived key
-  /// instead.
-  Future<models.Key> createKey(
-      {required String keyId,
-      required String name,
-      required List<enums.ProjectKeyScopes> scopes,
-      String? expire}) async {
-    final String apiPath = '/project/keys';
-
-    final Map<String, dynamic> apiParams = {
-      'keyId': keyId,
-      'name': name,
-      'scopes': scopes.map((e) => e.value).toList(),
-      if (expire != null) 'expire': expire,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'content-type': 'application/json',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
-
-    return models.Key.fromMap(res.data);
-  }
-
   /// Create a new ephemeral API key. It's recommended to have multiple API keys
   /// with strict scopes for separate functions within your project.
   ///
@@ -368,7 +337,8 @@ class Project extends Service {
       int? userCodeLength,
       String? userCodeFormat,
       int? deviceCodeDuration,
-      List<String>? defaultScopes}) async {
+      List<String>? defaultScopes,
+      List<String>? installationScopes}) async {
     final String apiPath = '/project/oauth2-server';
 
     final Map<String, dynamic> apiParams = {
@@ -393,6 +363,7 @@ class Project extends Service {
       if (userCodeFormat != null) 'userCodeFormat': userCodeFormat,
       if (deviceCodeDuration != null) 'deviceCodeDuration': deviceCodeDuration,
       if (defaultScopes != null) 'defaultScopes': defaultScopes,
+      if (installationScopes != null) 'installationScopes': installationScopes,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2100,6 +2071,34 @@ class Project extends Service {
     return models.Project.fromMap(res.data);
   }
 
+  /// Updating this policy allows you to control which factors users can use to
+  /// complete an MFA challenge. Disabled factors cannot be used to create a
+  /// challenge and are reported as unavailable when listing factors. The custom
+  /// factor is disabled by default; enable it to deliver challenge codes through
+  /// your own channel. Recovery codes always remain available as a fallback.
+  Future<models.Project> updateMFAFactorsPolicy(
+      {bool? totp, bool? email, bool? phone, bool? custom}) async {
+    final String apiPath = '/project/policies/mfa-factors';
+
+    final Map<String, dynamic> apiParams = {
+      if (totp != null) 'totp': totp,
+      if (email != null) 'email': email,
+      if (phone != null) 'phone': phone,
+      if (custom != null) 'custom': custom,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.patch,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.Project.fromMap(res.data);
+  }
+
   /// Updating this policy allows you to control if new passwords are checked
   /// against most common passwords dictionary. When enabled, and user changes
   /// their password, password must not be contained in the dictionary.
@@ -2371,6 +2370,9 @@ class Project extends Service {
       }
       if (response['\$id'] == 'membership-privacy') {
         return models.PolicyMembershipPrivacy.fromMap(response);
+      }
+      if (response['\$id'] == 'mfa-factors') {
+        return models.PolicyMfaFactors.fromMap(response);
       }
       if (response['\$id'] == 'deny-aliased-email') {
         return models.PolicyDenyAliasedEmail.fromMap(response);

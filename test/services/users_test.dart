@@ -627,12 +627,33 @@ void main() {
       );
     });
 
+    test('test method getMFAChallenge()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': 'bb8ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        'userId': '5e5ea5c168bb8',
+        'expire': '2020-10-15T06:38:00.000+00:00',
+        'code': '446372',
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await users.getMFAChallenge(
+        userId: '<USER_ID>',
+        challengeId: '<CHALLENGE_ID>',
+      );
+      expect(response, isA<models.MfaChallengeSecret>());
+    });
+
     test('test method listMfaFactors()', () async {
       final Map<String, dynamic> data = {
         'totp': true,
         'phone': true,
         'email': true,
         'recoveryCode': true,
+        'custom': true,
       };
 
       when(client.call(
@@ -651,6 +672,7 @@ void main() {
         'phone': true,
         'email': true,
         'recoveryCode': true,
+        'custom': true,
       };
 
       when(client.call(

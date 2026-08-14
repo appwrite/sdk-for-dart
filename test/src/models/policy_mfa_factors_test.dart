@@ -2,23 +2,23 @@ import 'package:dart_appwrite/models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('MfaFactors', () {
+  group('PolicyMfaFactors', () {
     test('model', () {
-      final model = MfaFactors(
+      final model = PolicyMfaFactors(
+        $id: 'password-dictionary',
         totp: true,
-        phone: true,
         email: true,
-        recoveryCode: true,
+        phone: true,
         custom: true,
       );
 
       final map = model.toMap();
-      final result = MfaFactors.fromMap(map);
+      final result = PolicyMfaFactors.fromMap(map);
 
+      expect(result.$id, 'password-dictionary');
       expect(result.totp, true);
-      expect(result.phone, true);
       expect(result.email, true);
-      expect(result.recoveryCode, true);
+      expect(result.phone, true);
       expect(result.custom, true);
     });
   });

@@ -97,7 +97,6 @@ void main() {
           'storageOverageRate': 0.125,
           'bandwidthOverageRate': 0.08,
           'replicaRate': 1,
-          'crossRegionReplicaRate': 1,
           'pitrRate': 0.2,
         },
       };
@@ -297,7 +296,6 @@ void main() {
         'nodePool': 'db-pool-4vcpu-8gb',
         'replicas': 2,
         'syncMode': 'async',
-        'crossRegionReplicas': 1,
         'networkMaxConnections': 500,
         'networkIdleTimeoutSeconds': 900,
         'networkIPAllowlist': [],
@@ -328,6 +326,128 @@ void main() {
       expect(response, isA<models.DedicatedDatabase>());
     });
 
+    test('test method listMigrations()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'migrations': [],
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.listMigrations(
+        databaseId: '<DATABASE_ID>',
+      );
+      expect(response, isA<models.DatabaseMigrationList>());
+    });
+
+    test('test method createMigration()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'projectId': '5e5ea5c16897e',
+        'databaseId': '5e5ea5c16897e',
+        'specification': 's-2vcpu-4gb',
+        'phase': 'pending',
+        'attempt': 0,
+        'lastError': '',
+        'lagDocuments': 0,
+        'verifiedAt': '2020-10-15T06:38:00.000+00:00',
+        'cutoverAt': '2020-10-15T06:38:00.000+00:00',
+        'soakUntil': '2020-10-15T06:38:00.000+00:00',
+        'autoCutover': true,
+        'cutoverRequested': true,
+        'paused': true,
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.createMigration(
+        databaseId: '<DATABASE_ID>',
+        specification: 's-1vcpu-1gb',
+      );
+      expect(response, isA<models.DatabaseMigration>());
+    });
+
+    test('test method getMigration()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'projectId': '5e5ea5c16897e',
+        'databaseId': '5e5ea5c16897e',
+        'specification': 's-2vcpu-4gb',
+        'phase': 'pending',
+        'attempt': 0,
+        'lastError': '',
+        'lagDocuments': 0,
+        'verifiedAt': '2020-10-15T06:38:00.000+00:00',
+        'cutoverAt': '2020-10-15T06:38:00.000+00:00',
+        'soakUntil': '2020-10-15T06:38:00.000+00:00',
+        'autoCutover': true,
+        'cutoverRequested': true,
+        'paused': true,
+      };
+
+      when(client.call(
+        HttpMethod.get,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.getMigration(
+        databaseId: '<DATABASE_ID>',
+        migrationId: '<MIGRATION_ID>',
+      );
+      expect(response, isA<models.DatabaseMigration>());
+    });
+
+    test('test method deleteMigration()', () async {
+      final data = '';
+
+      when(client.call(
+        HttpMethod.delete,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.deleteMigration(
+        databaseId: '<DATABASE_ID>',
+        migrationId: '<MIGRATION_ID>',
+      );
+    });
+
+    test('test method cutoverMigration()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'projectId': '5e5ea5c16897e',
+        'databaseId': '5e5ea5c16897e',
+        'specification': 's-2vcpu-4gb',
+        'phase': 'pending',
+        'attempt': 0,
+        'lastError': '',
+        'lagDocuments': 0,
+        'verifiedAt': '2020-10-15T06:38:00.000+00:00',
+        'cutoverAt': '2020-10-15T06:38:00.000+00:00',
+        'soakUntil': '2020-10-15T06:38:00.000+00:00',
+        'autoCutover': true,
+        'cutoverRequested': true,
+        'paused': true,
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.cutoverMigration(
+        databaseId: '<DATABASE_ID>',
+        migrationId: '<MIGRATION_ID>',
+      );
+      expect(response, isA<models.DatabaseMigration>());
+    });
+
     test('test method listOperations()', () async {
       final Map<String, dynamic> data = {
         'total': 5,
@@ -351,7 +471,6 @@ void main() {
         'syncDegraded': true,
         'syncAcknowledgements': 1,
         'syncStandbyCount': 2,
-        'syncStateConfirmed': true,
         'members': [],
       };
 
@@ -380,7 +499,6 @@ void main() {
         'syncDegraded': true,
         'syncAcknowledgements': 1,
         'syncStandbyCount': 2,
-        'syncStateConfirmed': true,
         'replicas': [],
         'volumes': [],
       };

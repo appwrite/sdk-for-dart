@@ -18,7 +18,6 @@ void main() {
         syncDegraded: true,
         syncAcknowledgements: 1,
         syncStandbyCount: 2,
-        syncStateConfirmed: true,
         replicas: [],
         volumes: [],
       );
@@ -35,7 +34,6 @@ void main() {
       expect(result.syncDegraded, true);
       expect(result.syncAcknowledgements, 1);
       expect(result.syncStandbyCount, 2);
-      expect(result.syncStateConfirmed, true);
       expect(result.replicas, []);
       expect(result.volumes, []);
     });

@@ -161,31 +161,6 @@ void main() {
       expect(response, isA<models.KeyList>());
     });
 
-    test('test method createKey()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My API Key',
-        'expire': '2020-10-15T06:38:00.000+00:00',
-        'scopes': [],
-        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
-        'accessedAt': '2020-10-15T06:38:00.000+00:00',
-        'sdks': [],
-      };
-
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
-
-      final response = await project.createKey(
-        keyId: '<KEY_ID>',
-        name: '<NAME>',
-        scopes: [enums.ProjectKeyScopes.projectRead],
-      );
-      expect(response, isA<models.Key>());
-    });
-
     test('test method createEphemeralKey()', () async {
       final Map<String, dynamic> data = {
         '\$id': '5e5ea5c16897e',
@@ -1684,6 +1659,46 @@ void main() {
       )).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateMembershipPrivacyPolicy();
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method updateMFAFactorsPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': '5e5ea5c16897e',
+        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
+        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        'name': 'New Project',
+        'teamId': '1592981250',
+        'region': 'fra',
+        'devKeys': [],
+        'smtpEnabled': true,
+        'smtpSenderName': 'John Appwrite',
+        'smtpSenderEmail': 'john@appwrite.io',
+        'smtpReplyToName': 'Support Team',
+        'smtpReplyToEmail': 'support@appwrite.io',
+        'smtpHost': 'mail.appwrite.io',
+        'smtpPort': 25,
+        'smtpUsername': 'emailuser',
+        'smtpPassword': 'smtp-password',
+        'smtpSecure': 'tls',
+        'pingCount': 1,
+        'pingedAt': '2020-10-15T06:38:00.000+00:00',
+        'labels': [],
+        'status': 'active',
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'wafEnabled': true,
+      };
+
+      when(client.call(
+        HttpMethod.patch,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateMFAFactorsPolicy();
       expect(response, isA<models.Project>());
     });
 

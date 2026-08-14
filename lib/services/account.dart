@@ -252,30 +252,6 @@ class Account extends Service {
     return res.data;
   }
 
-  /// Use this endpoint to create a JSON Web Token. You can use the resulting JWT
-  /// to authenticate on behalf of the current user when working with the
-  /// Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes
-  /// from its creation and will be invalid if the user will logout in that time
-  /// frame.
-  Future<models.Jwt> createJWT({int? duration}) async {
-    final String apiPath = '/account/jwts';
-
-    final Map<String, dynamic> apiParams = {
-      if (duration != null) 'duration': duration,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'content-type': 'application/json',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
-
-    return models.Jwt.fromMap(res.data);
-  }
-
   /// Get the list of latest security activity logs for the currently logged in
   /// user. Each log returns user IP address, location and date and time of log.
   Future<models.LogList> listLogs({List<String>? queries, bool? total}) async {

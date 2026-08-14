@@ -599,6 +599,27 @@ class Users extends Service {
     return res.data;
   }
 
+  /// Get a custom MFA challenge for a user, including the code to be delivered
+  /// through your own channel.
+  Future<models.MfaChallengeSecret> getMFAChallenge(
+      {required String userId, required String challengeId}) async {
+    final String apiPath = '/users/{userId}/mfa/challenges/{challengeId}'
+        .replaceAll('{userId}', userId)
+        .replaceAll('{challengeId}', challengeId);
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(HttpMethod.get,
+        path: apiPath, params: apiParams, headers: apiHeaders);
+
+    return models.MfaChallengeSecret.fromMap(res.data);
+  }
+
   /// List the factors available on the account to be used as a MFA challange.
   @Deprecated(
       'This API has been deprecated since 1.8.0. Please use `Users.listMFAFactors` instead.')
