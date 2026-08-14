@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = ActivityEventList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.events, []);
-    });
+            expect(result.total, 5);
+                  expect(result.events, []);
+          });
   });
 }

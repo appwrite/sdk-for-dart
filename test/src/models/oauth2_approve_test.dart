@@ -11,8 +11,7 @@ void main() {
       final map = model.toMap();
       final result = Oauth2Approve.fromMap(map);
 
-      expect(result.redirectUrl,
-          'https://example.com/callback?code=abcde&state=fghij');
-    });
+            expect(result.redirectUrl, 'https://example.com/callback?code=abcde&state=fghij');
+          });
   });
 }

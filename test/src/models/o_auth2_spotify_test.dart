@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Spotify.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, '6ec271000000000000000000009beace');
-      expect(result.clientSecret, 'db068a000000000000000000008b5b9f');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, '6ec271000000000000000000009beace');
+                  expect(result.clientSecret, 'db068a000000000000000000008b5b9f');
+          });
   });
 }

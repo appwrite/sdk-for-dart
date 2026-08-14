@@ -9,15 +9,17 @@ void main() {
         phone: true,
         email: true,
         recoveryCode: true,
+        custom: true,
       );
 
       final map = model.toMap();
       final result = MfaFactors.fromMap(map);
 
-      expect(result.totp, true);
-      expect(result.phone, true);
-      expect(result.email, true);
-      expect(result.recoveryCode, true);
-    });
+            expect(result.totp, true);
+                  expect(result.phone, true);
+                  expect(result.email, true);
+                  expect(result.recoveryCode, true);
+                  expect(result.custom, true);
+          });
   });
 }

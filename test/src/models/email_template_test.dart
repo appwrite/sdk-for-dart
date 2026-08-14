@@ -18,14 +18,14 @@ void main() {
       final map = model.toMap();
       final result = EmailTemplate.fromMap(map);
 
-      expect(result.templateId, 'verification');
-      expect(result.locale, 'en_us');
-      expect(result.message, 'Click on the link to verify your account.');
-      expect(result.senderName, 'My User');
-      expect(result.senderEmail, 'mail@appwrite.io');
-      expect(result.replyToEmail, 'emails@appwrite.io');
-      expect(result.replyToName, 'Support Team');
-      expect(result.subject, 'Please verify your email address');
-    });
+            expect(result.templateId, 'verification');
+                  expect(result.locale, 'en_us');
+                  expect(result.message, 'Click on the link to verify your account.');
+                  expect(result.senderName, 'My User');
+                  expect(result.senderEmail, 'mail@appwrite.io');
+                  expect(result.replyToEmail, 'emails@appwrite.io');
+                  expect(result.replyToName, 'Support Team');
+                  expect(result.subject, 'Please verify your email address');
+          });
   });
 }

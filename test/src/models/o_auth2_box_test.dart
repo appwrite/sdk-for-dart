@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Box.fromMap(map);
 
-      expect(result.$id, 'github');
-      expect(result.enabled, true);
-      expect(result.clientId, 'deglcs00000000000000000000x2og6y');
-      expect(result.clientSecret, 'OKM1f100000000000000000000eshEif');
-    });
+            expect(result.$id, 'github');
+                  expect(result.enabled, true);
+                  expect(result.clientId, 'deglcs00000000000000000000x2og6y');
+                  expect(result.clientSecret, 'OKM1f100000000000000000000eshEif');
+          });
   });
 }

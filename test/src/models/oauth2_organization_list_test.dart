@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = Oauth2OrganizationList.fromMap(map);
 
-      expect(result.total, 5);
-      expect(result.organizations, []);
-    });
+            expect(result.total, 5);
+                  expect(result.organizations, []);
+          });
   });
 }

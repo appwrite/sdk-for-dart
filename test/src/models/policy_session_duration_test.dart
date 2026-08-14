@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = PolicySessionDuration.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
-      expect(result.duration, 3600);
-    });
+            expect(result.$id, 'password-dictionary');
+                  expect(result.duration, 3600);
+          });
   });
 }

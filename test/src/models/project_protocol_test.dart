@@ -13,8 +13,8 @@ void main() {
       final map = model.toMap();
       final result = ProjectProtocol.fromMap(map);
 
-      expect(result.$id, ProjectProtocolId.rest);
-      expect(result.enabled, true);
-    });
+            expect(result.$id, ProjectProtocolId.rest);
+                  expect(result.enabled, true);
+          });
   });
 }

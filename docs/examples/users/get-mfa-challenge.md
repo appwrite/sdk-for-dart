@@ -4,11 +4,12 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
-    .setSession(''); // The user session to authenticate with
+    .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Account account = Account(client);
+Users users = Users(client);
 
-Jwt result = await account.createJWT(
-    duration: 0, // (optional)
+MfaChallengeSecret result = await users.getMFAChallenge(
+    userId: '<USER_ID>',
+    challengeId: '<CHALLENGE_ID>',
 );
 ```

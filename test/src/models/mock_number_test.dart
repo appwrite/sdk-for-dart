@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = MockNumber.fromMap(map);
 
-      expect(result.number, '+1612842323');
-      expect(result.otp, '123456');
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-    });
+            expect(result.number, '+1612842323');
+                  expect(result.otp, '123456');
+                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+          });
   });
 }
