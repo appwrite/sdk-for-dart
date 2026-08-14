@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = BucketList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.buckets, []);
-          });
+      expect(result.total, 5);
+      expect(result.buckets, []);
+    });
   });
 }

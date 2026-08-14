@@ -13,8 +13,8 @@ void main() {
       final map = model.toMap();
       final result = ProjectAuthMethod.fromMap(map);
 
-            expect(result.$id, ProjectAuthMethodId.emailPassword);
-                  expect(result.enabled, true);
-          });
+      expect(result.$id, ProjectAuthMethodId.emailPassword);
+      expect(result.enabled, true);
+    });
   });
 }

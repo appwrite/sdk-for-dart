@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = DatabaseStatusConnections.fromMap(map);
 
-            expect(result.current, 12);
-                  expect(result.max, 100);
-          });
+      expect(result.current, 12);
+      expect(result.max, 100);
+    });
   });
 }

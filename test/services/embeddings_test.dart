@@ -24,7 +24,8 @@ class MockClient extends Mock implements Client {
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super.noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super
+        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
   }
 
   @override
@@ -36,40 +37,37 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
   }) async {
-    return super.noSuchMethod(Invocation.method(#chunkedUpload, [path, params, paramName, idParamName, headers]), returnValue: Response(data: {}));
+    return super.noSuchMethod(
+        Invocation.method(
+            #chunkedUpload, [path, params, paramName, idParamName, headers]),
+        returnValue: Response(data: {}));
   }
 }
 
 void main() {
-    group('Embeddings test', () {
-        late MockClient client;
-        late Embeddings embeddings;
+  group('Embeddings test', () {
+    late MockClient client;
+    late Embeddings embeddings;
 
-        setUp(() {
-            client = MockClient();
-            embeddings = Embeddings(client);
-        });
-
-        test('test method createTextEmbeddings()', () async {
-
-            final Map<String, dynamic> data = {
-                'total': 5,
-                'embeddings': [],
-
-            };
-
-
-            when(client.call(
-                HttpMethod.post,
-            )).thenAnswer((_) async => Response(data: data));
-
-
-            final response = await embeddings.createTextEmbeddings(
-                texts: [],
-            );
-            expect(response, isA<models.EmbeddingList>());
-
-        });
-
+    setUp(() {
+      client = MockClient();
+      embeddings = Embeddings(client);
     });
+
+    test('test method createTextEmbeddings()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'embeddings': [],
+      };
+
+      when(client.call(
+        HttpMethod.post,
+      )).thenAnswer((_) async => Response(data: data));
+
+      final response = await embeddings.createTextEmbeddings(
+        texts: [],
+      );
+      expect(response, isA<models.EmbeddingList>());
+    });
+  });
 }

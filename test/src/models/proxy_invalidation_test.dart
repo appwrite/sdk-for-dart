@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = ProxyInvalidation.fromMap(map);
 
-            expect(result.domain, 'appwrite.company.com');
-                  expect(result.type, 'tag');
-                  expect(result.reference, 'products');
-                  expect(result.status, 'success');
-          });
+      expect(result.domain, 'appwrite.company.com');
+      expect(result.type, 'tag');
+      expect(result.reference, 'products');
+      expect(result.status, 'success');
+    });
   });
 }

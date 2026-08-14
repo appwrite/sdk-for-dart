@@ -16,12 +16,12 @@ void main() {
       final map = model.toMap();
       final result = DedicatedDatabaseReplicas.fromMap(map);
 
-            expect(result.replicas, 2);
-                  expect(result.syncMode, 'async');
-                  expect(result.syncDegraded, true);
-                  expect(result.syncAcknowledgements, 1);
-                  expect(result.syncStandbyCount, 2);
-                  expect(result.members, []);
-          });
+      expect(result.replicas, 2);
+      expect(result.syncMode, 'async');
+      expect(result.syncDegraded, true);
+      expect(result.syncAcknowledgements, 1);
+      expect(result.syncStandbyCount, 2);
+      expect(result.members, []);
+    });
   });
 }

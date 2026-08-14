@@ -15,11 +15,11 @@ void main() {
       final map = model.toMap();
       final result = PolicyMfaFactors.fromMap(map);
 
-            expect(result.$id, 'password-dictionary');
-                  expect(result.totp, true);
-                  expect(result.email, true);
-                  expect(result.phone, true);
-                  expect(result.custom, true);
-          });
+      expect(result.$id, 'password-dictionary');
+      expect(result.totp, true);
+      expect(result.email, true);
+      expect(result.phone, true);
+      expect(result.custom, true);
+    });
   });
 }

@@ -17,12 +17,12 @@ void main() {
       final map = model.toMap();
       final result = PlatformApple.fromMap(map);
 
-            expect(result.$id, '5e5ea5c16897e');
-                  expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-                  expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-                  expect(result.name, 'My Web App');
-                  expect(result.type, PlatformType.windows);
-                  expect(result.bundleIdentifier, 'com.company.appname');
-          });
+      expect(result.$id, '5e5ea5c16897e');
+      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.name, 'My Web App');
+      expect(result.type, PlatformType.windows);
+      expect(result.bundleIdentifier, 'com.company.appname');
+    });
   });
 }

@@ -11,7 +11,7 @@ void main() {
       final map = model.toMap();
       final result = Oauth2Organization.fromMap(map);
 
-            expect(result.$id, '5e5ea5c16897e');
-          });
+      expect(result.$id, '5e5ea5c16897e');
+    });
   });
 }

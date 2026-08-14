@@ -16,12 +16,12 @@ void main() {
       final map = model.toMap();
       final result = AdditionalResource.fromMap(map);
 
-            expect(result.name, '');
-                  expect(result.unit, 'GB');
-                  expect(result.currency, 'USD');
-                  expect(result.price, 5);
-                  expect(result.value, 25);
-                  expect(result.invoiceDesc, '');
-          });
+      expect(result.name, '');
+      expect(result.unit, 'GB');
+      expect(result.currency, 'USD');
+      expect(result.price, 5);
+      expect(result.value, 25);
+      expect(result.invoiceDesc, '');
+    });
   });
 }

@@ -12,8 +12,8 @@ void main() {
       final map = model.toMap();
       final result = EmailTemplateList.fromMap(map);
 
-            expect(result.total, 5);
-                  expect(result.templates, []);
-          });
+      expect(result.total, 5);
+      expect(result.templates, []);
+    });
   });
 }

@@ -14,10 +14,10 @@ void main() {
       final map = model.toMap();
       final result = OAuth2Zoom.fromMap(map);
 
-            expect(result.$id, 'github');
-                  expect(result.enabled, true);
-                  expect(result.clientId, 'QMAC00000000000000w0AQ');
-                  expect(result.clientSecret, 'GAWsG4000000000000000000007U01ON');
-          });
+      expect(result.$id, 'github');
+      expect(result.enabled, true);
+      expect(result.clientId, 'QMAC00000000000000w0AQ');
+      expect(result.clientSecret, 'GAWsG4000000000000000000007U01ON');
+    });
   });
 }
