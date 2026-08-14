@@ -34,6 +34,7 @@ part 'services/apps.dart';
 part 'services/avatars.dart';
 part 'services/backups.dart';
 part 'services/databases.dart';
+part 'services/embeddings.dart';
 part 'services/functions.dart';
 part 'services/graphql.dart';
 part 'services/locale.dart';

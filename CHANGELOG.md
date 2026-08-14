@@ -2,7 +2,6 @@
 
 ## 27.0.0
 
-* Breaking: removed the `embeddings` service; it is no longer exposed in the server SDKs
 * Breaking: removed `account.createJWT`; use `users.createJWT` instead. A leaked JWT could mint further JWTs, letting a credential outlive its own expiry — a session cannot duplicate itself to live forever either
 * Breaking: removed `project.createKey`. A leaked key could mint further hidden keys, making a compromise far harder to contain and revoke
 * Added: TablesDB migration methods `listMigrations`, `createMigration`, `getMigration`, `deleteMigration`, and `cutoverMigration`, plus the `DatabaseMigration` and `DatabaseMigrationList` models
