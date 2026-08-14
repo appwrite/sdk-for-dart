@@ -16,7 +16,6 @@ part 'src/enums/relationship_type.dart';
 part 'src/enums/relation_mutate.dart';
 part 'src/enums/databases_index_type.dart';
 part 'src/enums/order_by.dart';
-part 'src/enums/embedding_model.dart';
 part 'src/enums/runtime.dart';
 part 'src/enums/project_key_scopes.dart';
 part 'src/enums/template_reference_type.dart';
