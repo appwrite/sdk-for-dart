@@ -1,7 +1,8 @@
 # Change Log
 
-## 27.1.0
+## 28.0.0
 
+* Breaking: `Execution.functionId` replaced by `resourceId` and `resourceType`, now that executions cover both functions and sites
 * Added: `avatars.getPhoto` returning the user's best available profile photo
 * Added: `project.updateOAuth2HuggingFace` and the `OAuth2HuggingFace` model
 * Added: `huggingface` OAuth provider
