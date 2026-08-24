@@ -112,8 +112,9 @@ class Deployment implements Model {
     required this.providerBranch,
     required this.providerBranchUrl,
   });
-
-  factory Deployment.fromMap(Map<String, dynamic> map) {
+  factory Deployment.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Deployment(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -129,8 +130,9 @@ class Deployment implements Model {
       activate: map['activate'],
       screenshotLight: map['screenshotLight'].toString(),
       screenshotDark: map['screenshotDark'].toString(),
-      status: enums.DeploymentStatus.values
-          .firstWhere((e) => e.value == map['status']),
+      status: enums.DeploymentStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       buildLogs: map['buildLogs'].toString(),
       buildDuration: map['buildDuration'],
       providerRepositoryName: map['providerRepositoryName'].toString(),

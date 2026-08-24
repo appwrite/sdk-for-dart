@@ -48,13 +48,15 @@ class ColumnFloat implements Model {
     this.max,
     this.xdefault,
   });
-
-  factory ColumnFloat.fromMap(Map<String, dynamic> map) {
+  factory ColumnFloat.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ColumnFloat(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status:
-          enums.ColumnStatus.values.firstWhere((e) => e.value == map['status']),
+      status: enums.ColumnStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],

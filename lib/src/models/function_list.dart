@@ -12,11 +12,14 @@ class FunctionList implements Model {
     required this.total,
     required this.functions,
   });
-
-  factory FunctionList.fromMap(Map<String, dynamic> map) {
+  factory FunctionList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return FunctionList(
       total: map['total'],
-      functions: List<Func>.from(map['functions'].map((p) => Func.fromMap(p))),
+      functions: List<Func>.from(
+        map['functions'].map((p) => Func.fromMap(p)),
+      ),
     );
   }
 

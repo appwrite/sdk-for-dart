@@ -158,6 +158,7 @@ part 'src/models/o_auth2_podio.dart';
 part 'src/models/o_auth2_notion.dart';
 part 'src/models/o_auth2_salesforce.dart';
 part 'src/models/o_auth2_yahoo.dart';
+part 'src/models/o_auth2_hugging_face.dart';
 part 'src/models/o_auth2_linkedin.dart';
 part 'src/models/o_auth2_disqus.dart';
 part 'src/models/o_auth2_amazon.dart';

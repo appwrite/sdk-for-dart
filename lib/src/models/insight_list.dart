@@ -12,12 +12,14 @@ class InsightList implements Model {
     required this.total,
     required this.insights,
   });
-
-  factory InsightList.fromMap(Map<String, dynamic> map) {
+  factory InsightList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return InsightList(
       total: map['total'],
-      insights:
-          List<Insight>.from(map['insights'].map((p) => Insight.fromMap(p))),
+      insights: List<Insight>.from(
+        map['insights'].map((p) => Insight.fromMap(p)),
+      ),
     );
   }
 

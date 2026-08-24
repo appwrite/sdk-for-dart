@@ -52,8 +52,9 @@ class BackupArchive implements Model {
     this.resourceId,
     this.resourceType,
   });
-
-  factory BackupArchive.fromMap(Map<String, dynamic> map) {
+  factory BackupArchive.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BackupArchive(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

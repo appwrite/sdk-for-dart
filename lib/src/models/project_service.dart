@@ -12,11 +12,13 @@ class ProjectService implements Model {
     required this.$id,
     required this.enabled,
   });
-
-  factory ProjectService.fromMap(Map<String, dynamic> map) {
+  factory ProjectService.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ProjectService(
-      $id: enums.ProjectServiceId.values
-          .firstWhere((e) => e.value == map['\$id']),
+      $id: enums.ProjectServiceId.values.firstWhere(
+        (e) => e.value == map['\$id'],
+      ),
       enabled: map['enabled'],
     );
   }

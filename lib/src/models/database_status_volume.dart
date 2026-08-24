@@ -20,8 +20,9 @@ class DatabaseStatusVolume implements Model {
     required this.available,
     required this.mounted,
   });
-
-  factory DatabaseStatusVolume.fromMap(Map<String, dynamic> map) {
+  factory DatabaseStatusVolume.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DatabaseStatusVolume(
       path: map['path'].toString(),
       usedPercent: map['usedPercent'].toString(),

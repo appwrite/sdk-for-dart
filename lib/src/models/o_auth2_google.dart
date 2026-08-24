@@ -24,14 +24,20 @@ class OAuth2Google implements Model {
     required this.clientSecret,
     required this.prompt,
   });
-
-  factory OAuth2Google.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Google.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Google(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
-      prompt: List.from(map['prompt'] ?? []),
+      prompt: List<enums.OAuth2GooglePrompt>.from(
+        map['prompt'].map(
+          (p) =>
+              enums.OAuth2GooglePrompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
     );
   }
 
@@ -42,7 +48,7 @@ class OAuth2Google implements Model {
       "enabled": enabled,
       "clientId": clientId,
       "clientSecret": clientSecret,
-      "prompt": prompt,
+      "prompt": prompt.map((p) => p.value).toList(),
     };
   }
 }

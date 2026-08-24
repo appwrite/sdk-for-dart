@@ -40,8 +40,9 @@ class AppKey implements Model {
     required this.createdByName,
     this.lastAccessedAt,
   });
-
-  factory AppKey.fromMap(Map<String, dynamic> map) {
+  factory AppKey.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AppKey(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

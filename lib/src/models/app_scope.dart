@@ -24,8 +24,9 @@ class AppScope implements Model {
     required this.category,
     required this.deprecated,
   });
-
-  factory AppScope.fromMap(Map<String, dynamic> map) {
+  factory AppScope.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AppScope(
       value: map['value'].toString(),
       description: map['description'].toString(),

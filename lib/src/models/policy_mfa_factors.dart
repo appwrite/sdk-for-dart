@@ -24,8 +24,9 @@ class PolicyMfaFactors implements Model {
     required this.phone,
     required this.custom,
   });
-
-  factory PolicyMfaFactors.fromMap(Map<String, dynamic> map) {
+  factory PolicyMfaFactors.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicyMfaFactors(
       $id: map['\$id'].toString(),
       totp: map['totp'],

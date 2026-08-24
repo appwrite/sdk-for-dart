@@ -12,12 +12,14 @@ class BackupArchiveList implements Model {
     required this.total,
     required this.archives,
   });
-
-  factory BackupArchiveList.fromMap(Map<String, dynamic> map) {
+  factory BackupArchiveList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BackupArchiveList(
       total: map['total'],
       archives: List<BackupArchive>.from(
-          map['archives'].map((p) => BackupArchive.fromMap(p))),
+        map['archives'].map((p) => BackupArchive.fromMap(p)),
+      ),
     );
   }
 

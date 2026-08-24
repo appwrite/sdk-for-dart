@@ -5,14 +5,14 @@ void main() {
   group('PolicyDenyAliasedEmail', () {
     test('model', () {
       final model = PolicyDenyAliasedEmail(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         enabled: true,
       );
 
       final map = model.toMap();
       final result = PolicyDenyAliasedEmail.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.enabled, true);
     });
   });

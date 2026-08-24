@@ -12,8 +12,9 @@ class ColumnList implements Model {
     required this.total,
     required this.columns,
   });
-
-  factory ColumnList.fromMap(Map<String, dynamic> map) {
+  factory ColumnList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ColumnList(
       total: map['total'],
       columns: List.from(map['columns'] ?? []),

@@ -20,8 +20,9 @@ class OAuth2Figma implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Figma.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Figma.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Figma(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

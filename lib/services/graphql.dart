@@ -6,7 +6,9 @@ class Graphql extends Service {
   Graphql(super.client);
 
   /// Execute a GraphQL mutation.
-  Future query({required Map query}) async {
+  Future query({
+    required Map query,
+  }) async {
     final String apiPath = '/graphql';
 
     final Map<String, dynamic> apiParams = {
@@ -20,14 +22,20 @@ class Graphql extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Execute a GraphQL mutation.
-  Future mutation({required Map query}) async {
+  Future mutation({
+    required Map query,
+  }) async {
     final String apiPath = '/graphql/mutation';
 
     final Map<String, dynamic> apiParams = {
@@ -41,8 +49,12 @@ class Graphql extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }

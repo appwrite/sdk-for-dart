@@ -24,8 +24,9 @@ class MfaChallengeSecret implements Model {
     required this.expire,
     required this.code,
   });
-
-  factory MfaChallengeSecret.fromMap(Map<String, dynamic> map) {
+  factory MfaChallengeSecret.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return MfaChallengeSecret(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

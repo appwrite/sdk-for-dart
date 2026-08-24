@@ -44,16 +44,18 @@ class Index implements Model {
     required this.lengths,
     this.orders,
   });
-
-  factory Index.fromMap(Map<String, dynamic> map) {
+  factory Index.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Index(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status:
-          enums.IndexStatus.values.firstWhere((e) => e.value == map['status']),
+      status: enums.IndexStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       attributes: List.from(map['attributes'] ?? []),
       lengths: List.from(map['lengths'] ?? []),

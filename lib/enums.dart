@@ -54,6 +54,7 @@ part 'src/enums/attribute_status.dart';
 part 'src/enums/column_status.dart';
 part 'src/enums/index_status.dart';
 part 'src/enums/deployment_status.dart';
+part 'src/enums/execution_resource_type.dart';
 part 'src/enums/execution_trigger.dart';
 part 'src/enums/execution_status.dart';
 part 'src/enums/o_auth2_google_prompt.dart';

@@ -52,8 +52,9 @@ class Oauth2Grant implements Model {
     required this.authTime,
     required this.expire,
   });
-
-  factory Oauth2Grant.fromMap(Map<String, dynamic> map) {
+  factory Oauth2Grant.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2Grant(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

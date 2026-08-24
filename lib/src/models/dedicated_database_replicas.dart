@@ -36,8 +36,9 @@ class DedicatedDatabaseReplicas implements Model {
     this.syncStateConfirmed,
     required this.members,
   });
-
-  factory DedicatedDatabaseReplicas.fromMap(Map<String, dynamic> map) {
+  factory DedicatedDatabaseReplicas.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DedicatedDatabaseReplicas(
       replicas: map['replicas'],
       syncMode: map['syncMode'].toString(),
@@ -47,7 +48,8 @@ class DedicatedDatabaseReplicas implements Model {
       syncStandbyCount: map['syncStandbyCount'],
       syncStateConfirmed: map['syncStateConfirmed'],
       members: List<DedicatedDatabaseMember>.from(
-          map['members'].map((p) => DedicatedDatabaseMember.fromMap(p))),
+        map['members'].map((p) => DedicatedDatabaseMember.fromMap(p)),
+      ),
     );
   }
 

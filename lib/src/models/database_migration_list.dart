@@ -12,12 +12,14 @@ class DatabaseMigrationList implements Model {
     required this.total,
     required this.migrations,
   });
-
-  factory DatabaseMigrationList.fromMap(Map<String, dynamic> map) {
+  factory DatabaseMigrationList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DatabaseMigrationList(
       total: map['total'],
       migrations: List<DatabaseMigration>.from(
-          map['migrations'].map((p) => DatabaseMigration.fromMap(p))),
+        map['migrations'].map((p) => DatabaseMigration.fromMap(p)),
+      ),
     );
   }
 

@@ -12,11 +12,14 @@ class SiteList implements Model {
     required this.total,
     required this.sites,
   });
-
-  factory SiteList.fromMap(Map<String, dynamic> map) {
+  factory SiteList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return SiteList(
       total: map['total'],
-      sites: List<Site>.from(map['sites'].map((p) => Site.fromMap(p))),
+      sites: List<Site>.from(
+        map['sites'].map((p) => Site.fromMap(p)),
+      ),
     );
   }
 

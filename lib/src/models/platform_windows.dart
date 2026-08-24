@@ -28,14 +28,17 @@ class PlatformWindows implements Model {
     required this.type,
     required this.packageIdentifierName,
   });
-
-  factory PlatformWindows.fromMap(Map<String, dynamic> map) {
+  factory PlatformWindows.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PlatformWindows(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
-      type: enums.PlatformType.values.firstWhere((e) => e.value == map['type']),
+      type: enums.PlatformType.values.firstWhere(
+        (e) => e.value == map['type'],
+      ),
       packageIdentifierName: map['packageIdentifierName'].toString(),
     );
   }

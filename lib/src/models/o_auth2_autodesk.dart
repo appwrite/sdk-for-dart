@@ -20,8 +20,9 @@ class OAuth2Autodesk implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Autodesk.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Autodesk.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Autodesk(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

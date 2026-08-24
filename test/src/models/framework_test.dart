@@ -5,9 +5,9 @@ void main() {
   group('Framework', () {
     test('model', () {
       final model = Framework(
-        key: 'sveltekit',
-        name: 'SvelteKit',
-        buildRuntime: 'node-22',
+        key: "sveltekit",
+        name: "SvelteKit",
+        buildRuntime: "node-22",
         runtimes: [],
         adapters: [],
       );
@@ -15,9 +15,9 @@ void main() {
       final map = model.toMap();
       final result = Framework.fromMap(map);
 
-      expect(result.key, 'sveltekit');
-      expect(result.name, 'SvelteKit');
-      expect(result.buildRuntime, 'node-22');
+      expect(result.key, "sveltekit");
+      expect(result.name, "SvelteKit");
+      expect(result.buildRuntime, "node-22");
       expect(result.runtimes, []);
       expect(result.adapters, []);
     });

@@ -28,8 +28,9 @@ class AdditionalResource implements Model {
     required this.value,
     required this.invoiceDesc,
   });
-
-  factory AdditionalResource.fromMap(Map<String, dynamic> map) {
+  factory AdditionalResource.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AdditionalResource(
       name: map['name'].toString(),
       unit: map['unit'].toString(),

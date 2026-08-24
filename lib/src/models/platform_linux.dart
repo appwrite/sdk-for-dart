@@ -28,14 +28,17 @@ class PlatformLinux implements Model {
     required this.type,
     required this.packageName,
   });
-
-  factory PlatformLinux.fromMap(Map<String, dynamic> map) {
+  factory PlatformLinux.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PlatformLinux(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
-      type: enums.PlatformType.values.firstWhere((e) => e.value == map['type']),
+      type: enums.PlatformType.values.firstWhere(
+        (e) => e.value == map['type'],
+      ),
       packageName: map['packageName'].toString(),
     );
   }

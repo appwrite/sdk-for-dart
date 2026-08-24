@@ -72,8 +72,9 @@ class Insight implements Model {
     this.dismissedAt,
     this.dismissedBy,
   });
-
-  factory Insight.fromMap(Map<String, dynamic> map) {
+  factory Insight.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Insight(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -88,8 +89,9 @@ class Insight implements Model {
       parentResourceId: map['parentResourceId'].toString(),
       title: map['title'].toString(),
       summary: map['summary'].toString(),
-      ctas:
-          List<InsightCTA>.from(map['ctas'].map((p) => InsightCTA.fromMap(p))),
+      ctas: List<InsightCTA>.from(
+        map['ctas'].map((p) => InsightCTA.fromMap(p)),
+      ),
       analyzedAt: map['analyzedAt']?.toString(),
       dismissedAt: map['dismissedAt']?.toString(),
       dismissedBy: map['dismissedBy']?.toString(),

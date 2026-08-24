@@ -1,10 +1,10 @@
 part of '../../enums.dart';
 
 enum TablesDBIndexType {
-  key(value: 'key'),
-  fulltext(value: 'fulltext'),
-  unique(value: 'unique'),
-  spatial(value: 'spatial');
+  key(value: "key"),
+  fulltext(value: "fulltext"),
+  unique(value: "unique"),
+  spatial(value: "spatial");
 
   const TablesDBIndexType({required this.value});
 

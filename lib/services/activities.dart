@@ -6,7 +6,9 @@ class Activities extends Service {
   Activities(super.client);
 
   /// List all events for selected filters.
-  Future<models.ActivityEventList> listEvents({List<String>? queries}) async {
+  Future<models.ActivityEventList> listEvents({
+    List<String>? queries,
+  }) async {
     final String apiPath = '/activities/events';
 
     final Map<String, dynamic> apiParams = {
@@ -18,17 +20,24 @@ class Activities extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.ActivityEventList.fromMap(res.data);
   }
 
   /// Get event by ID.
-  ///
-  Future<models.ActivityEvent> getEvent({required String eventId}) async {
-    final String apiPath =
-        '/activities/events/{eventId}'.replaceAll('{eventId}', eventId);
+  Future<models.ActivityEvent> getEvent({
+    required String eventId,
+  }) async {
+    final String apiPath = '/activities/events/{eventId}'.replaceAll(
+      '{eventId}',
+      eventId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -37,8 +46,12 @@ class Activities extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.ActivityEvent.fromMap(res.data);
   }

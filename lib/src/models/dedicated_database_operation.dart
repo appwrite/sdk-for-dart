@@ -48,8 +48,9 @@ class DedicatedDatabaseOperation implements Model {
     required this.errorCode,
     required this.errorMessage,
   });
-
-  factory DedicatedDatabaseOperation.fromMap(Map<String, dynamic> map) {
+  factory DedicatedDatabaseOperation.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DedicatedDatabaseOperation(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

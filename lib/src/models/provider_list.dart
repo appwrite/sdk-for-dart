@@ -12,12 +12,14 @@ class ProviderList implements Model {
     required this.total,
     required this.providers,
   });
-
-  factory ProviderList.fromMap(Map<String, dynamic> map) {
+  factory ProviderList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ProviderList(
       total: map['total'],
-      providers:
-          List<Provider>.from(map['providers'].map((p) => Provider.fromMap(p))),
+      providers: List<Provider>.from(
+        map['providers'].map((p) => Provider.fromMap(p)),
+      ),
     );
   }
 

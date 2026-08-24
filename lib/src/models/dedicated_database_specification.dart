@@ -40,8 +40,9 @@ class DedicatedDatabaseSpecification implements Model {
     required this.includedBandwidth,
     required this.enabled,
   });
-
-  factory DedicatedDatabaseSpecification.fromMap(Map<String, dynamic> map) {
+  factory DedicatedDatabaseSpecification.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DedicatedDatabaseSpecification(
       slug: map['slug'].toString(),
       name: map['name'].toString(),

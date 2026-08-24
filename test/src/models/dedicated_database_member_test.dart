@@ -5,17 +5,17 @@ void main() {
   group('DedicatedDatabaseMember', () {
     test('model', () {
       final model = DedicatedDatabaseMember(
-        $id: '1',
-        role: 'replica',
-        status: 'active',
+        $id: "1",
+        role: "replica",
+        status: "active",
       );
 
       final map = model.toMap();
       final result = DedicatedDatabaseMember.fromMap(map);
 
-      expect(result.$id, '1');
-      expect(result.role, 'replica');
-      expect(result.status, 'active');
+      expect(result.$id, "1");
+      expect(result.role, "replica");
+      expect(result.status, "active");
     });
   });
 }

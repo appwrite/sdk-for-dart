@@ -12,12 +12,14 @@ class BackupRestorationList implements Model {
     required this.total,
     required this.restorations,
   });
-
-  factory BackupRestorationList.fromMap(Map<String, dynamic> map) {
+  factory BackupRestorationList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BackupRestorationList(
       total: map['total'],
       restorations: List<BackupRestoration>.from(
-          map['restorations'].map((p) => BackupRestoration.fromMap(p))),
+        map['restorations'].map((p) => BackupRestoration.fromMap(p)),
+      ),
     );
   }
 

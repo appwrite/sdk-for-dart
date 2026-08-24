@@ -12,8 +12,9 @@ class PolicyPasswordHistory implements Model {
     required this.$id,
     required this.total,
   });
-
-  factory PolicyPasswordHistory.fromMap(Map<String, dynamic> map) {
+  factory PolicyPasswordHistory.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicyPasswordHistory(
       $id: map['\$id'].toString(),
       total: map['total'],

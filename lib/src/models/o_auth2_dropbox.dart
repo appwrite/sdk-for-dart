@@ -20,8 +20,9 @@ class OAuth2Dropbox implements Model {
     required this.appKey,
     required this.appSecret,
   });
-
-  factory OAuth2Dropbox.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Dropbox.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Dropbox(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

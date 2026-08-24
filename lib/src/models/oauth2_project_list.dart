@@ -12,12 +12,14 @@ class Oauth2ProjectList implements Model {
     required this.total,
     required this.projects,
   });
-
-  factory Oauth2ProjectList.fromMap(Map<String, dynamic> map) {
+  factory Oauth2ProjectList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2ProjectList(
       total: map['total'],
       projects: List<Oauth2Project>.from(
-          map['projects'].map((p) => Oauth2Project.fromMap(p))),
+        map['projects'].map((p) => Oauth2Project.fromMap(p)),
+      ),
     );
   }
 

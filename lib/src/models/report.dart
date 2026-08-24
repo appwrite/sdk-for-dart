@@ -52,8 +52,9 @@ class Report implements Model {
     required this.insights,
     this.analyzedAt,
   });
-
-  factory Report.fromMap(Map<String, dynamic> map) {
+  factory Report.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Report(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -65,8 +66,9 @@ class Report implements Model {
       targetType: map['targetType'].toString(),
       target: map['target'].toString(),
       categories: List.from(map['categories'] ?? []),
-      insights:
-          List<Insight>.from(map['insights'].map((p) => Insight.fromMap(p))),
+      insights: List<Insight>.from(
+        map['insights'].map((p) => Insight.fromMap(p)),
+      ),
       analyzedAt: map['analyzedAt']?.toString(),
     );
   }

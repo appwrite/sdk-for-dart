@@ -12,12 +12,14 @@ class SpecificationList implements Model {
     required this.total,
     required this.specifications,
   });
-
-  factory SpecificationList.fromMap(Map<String, dynamic> map) {
+  factory SpecificationList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return SpecificationList(
       total: map['total'],
       specifications: List<Specification>.from(
-          map['specifications'].map((p) => Specification.fromMap(p))),
+        map['specifications'].map((p) => Specification.fromMap(p)),
+      ),
     );
   }
 

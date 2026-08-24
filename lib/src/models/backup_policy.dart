@@ -52,8 +52,9 @@ class BackupPolicy implements Model {
     required this.type,
     required this.enabled,
   });
-
-  factory BackupPolicy.fromMap(Map<String, dynamic> map) {
+  factory BackupPolicy.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BackupPolicy(
       $id: map['\$id'].toString(),
       name: map['name'].toString(),

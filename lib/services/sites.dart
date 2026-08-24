@@ -6,8 +6,11 @@ class Sites extends Service {
 
   /// Get a list of all the project's sites. You can use the query params to
   /// filter your results.
-  Future<models.SiteList> list(
-      {List<String>? queries, String? search, bool? total}) async {
+  Future<models.SiteList> list({
+    List<String>? queries,
+    String? search,
+    bool? total,
+  }) async {
     final String apiPath = '/sites';
 
     final Map<String, dynamic> apiParams = {
@@ -21,37 +24,43 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.SiteList.fromMap(res.data);
   }
 
   /// Create a new site.
-  Future<models.Site> create(
-      {required String siteId,
-      required String name,
-      required enums.Framework framework,
-      required enums.BuildRuntime buildRuntime,
-      bool? enabled,
-      bool? logging,
-      int? timeout,
-      String? installCommand,
-      String? buildCommand,
-      String? startCommand,
-      String? outputDirectory,
-      enums.Adapter? adapter,
-      String? installationId,
-      String? fallbackFile,
-      String? providerRepositoryId,
-      String? providerBranch,
-      bool? providerSilentMode,
-      String? providerRootDirectory,
-      List<String>? providerBranches,
-      List<String>? providerPaths,
-      String? buildSpecification,
-      String? runtimeSpecification,
-      int? deploymentRetention}) async {
+  Future<models.Site> create({
+    required String siteId,
+    required String name,
+    required enums.Framework framework,
+    required enums.BuildRuntime buildRuntime,
+    bool? enabled,
+    bool? logging,
+    int? timeout,
+    String? installCommand,
+    String? buildCommand,
+    String? startCommand,
+    String? outputDirectory,
+    enums.Adapter? adapter,
+    String? installationId,
+    String? fallbackFile,
+    String? providerRepositoryId,
+    String? providerBranch,
+    bool? providerSilentMode,
+    String? providerRootDirectory,
+    List<String>? providerBranches,
+    List<String>? providerPaths,
+    String? buildSpecification,
+    String? runtimeSpecification,
+    int? deploymentRetention,
+    List<enums.ProjectKeyScopes>? scopes,
+  }) async {
     final String apiPath = '/sites';
 
     final Map<String, dynamic> apiParams = {
@@ -66,7 +75,7 @@ class Sites extends Service {
       if (startCommand != null) 'startCommand': startCommand,
       if (outputDirectory != null) 'outputDirectory': outputDirectory,
       'buildRuntime': buildRuntime.value,
-      if (adapter != null) 'adapter': adapter.value,
+      if (adapter != null) 'adapter': adapter?.value,
       if (installationId != null) 'installationId': installationId,
       if (fallbackFile != null) 'fallbackFile': fallbackFile,
       if (providerRepositoryId != null)
@@ -82,6 +91,7 @@ class Sites extends Service {
         'runtimeSpecification': runtimeSpecification,
       if (deploymentRetention != null)
         'deploymentRetention': deploymentRetention,
+      if (scopes != null) 'scopes': scopes?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -90,8 +100,12 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Site.fromMap(res.data);
   }
@@ -108,14 +122,20 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.FrameworkList.fromMap(res.data);
   }
 
   /// List allowed site specifications for this instance.
-  Future<models.SpecificationList> listSpecifications({String? type}) async {
+  Future<models.SpecificationList> listSpecifications({
+    String? type,
+  }) async {
     final String apiPath = '/sites/specifications';
 
     final Map<String, dynamic> apiParams = {
@@ -127,15 +147,24 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.SpecificationList.fromMap(res.data);
   }
 
   /// Get a site by its unique ID.
-  Future<models.Site> get({required String siteId}) async {
-    final String apiPath = '/sites/{siteId}'.replaceAll('{siteId}', siteId);
+  Future<models.Site> get({
+    required String siteId,
+  }) async {
+    final String apiPath = '/sites/{siteId}'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -144,38 +173,47 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Site.fromMap(res.data);
   }
 
   /// Update site by its unique ID.
-  Future<models.Site> update(
-      {required String siteId,
-      required String name,
-      required enums.Framework framework,
-      bool? enabled,
-      bool? logging,
-      int? timeout,
-      String? installCommand,
-      String? buildCommand,
-      String? startCommand,
-      String? outputDirectory,
-      enums.BuildRuntime? buildRuntime,
-      enums.Adapter? adapter,
-      String? fallbackFile,
-      String? installationId,
-      String? providerRepositoryId,
-      String? providerBranch,
-      bool? providerSilentMode,
-      String? providerRootDirectory,
-      List<String>? providerBranches,
-      List<String>? providerPaths,
-      String? buildSpecification,
-      String? runtimeSpecification,
-      int? deploymentRetention}) async {
-    final String apiPath = '/sites/{siteId}'.replaceAll('{siteId}', siteId);
+  Future<models.Site> update({
+    required String siteId,
+    required String name,
+    required enums.Framework framework,
+    bool? enabled,
+    bool? logging,
+    int? timeout,
+    String? installCommand,
+    String? buildCommand,
+    String? startCommand,
+    String? outputDirectory,
+    enums.BuildRuntime? buildRuntime,
+    enums.Adapter? adapter,
+    String? fallbackFile,
+    String? installationId,
+    String? providerRepositoryId,
+    String? providerBranch,
+    bool? providerSilentMode,
+    String? providerRootDirectory,
+    List<String>? providerBranches,
+    List<String>? providerPaths,
+    String? buildSpecification,
+    String? runtimeSpecification,
+    int? deploymentRetention,
+    List<enums.ProjectKeyScopes>? scopes,
+  }) async {
+    final String apiPath = '/sites/{siteId}'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'name': name,
@@ -187,8 +225,8 @@ class Sites extends Service {
       if (buildCommand != null) 'buildCommand': buildCommand,
       if (startCommand != null) 'startCommand': startCommand,
       if (outputDirectory != null) 'outputDirectory': outputDirectory,
-      if (buildRuntime != null) 'buildRuntime': buildRuntime.value,
-      if (adapter != null) 'adapter': adapter.value,
+      if (buildRuntime != null) 'buildRuntime': buildRuntime?.value,
+      if (adapter != null) 'adapter': adapter?.value,
       if (fallbackFile != null) 'fallbackFile': fallbackFile,
       if (installationId != null) 'installationId': installationId,
       if (providerRepositoryId != null)
@@ -204,6 +242,7 @@ class Sites extends Service {
         'runtimeSpecification': runtimeSpecification,
       if (deploymentRetention != null)
         'deploymentRetention': deploymentRetention,
+      if (scopes != null) 'scopes': scopes?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -212,15 +251,24 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Site.fromMap(res.data);
   }
 
   /// Delete a site by its unique ID.
-  Future delete({required String siteId}) async {
-    final String apiPath = '/sites/{siteId}'.replaceAll('{siteId}', siteId);
+  Future delete({
+    required String siteId,
+  }) async {
+    final String apiPath = '/sites/{siteId}'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -229,18 +277,26 @@ class Sites extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Update the site active deployment. Use this endpoint to switch the code
   /// deployment that should be used when visitor opens your site.
-  Future<models.Site> updateSiteDeployment(
-      {required String siteId, required String deploymentId}) async {
-    final String apiPath =
-        '/sites/{siteId}/deployment'.replaceAll('{siteId}', siteId);
+  Future<models.Site> updateSiteDeployment({
+    required String siteId,
+    required String deploymentId,
+  }) async {
+    final String apiPath = '/sites/{siteId}/deployment'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'deploymentId': deploymentId,
@@ -252,21 +308,28 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.patch,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Site.fromMap(res.data);
   }
 
   /// Get a list of all the site's code deployments. You can use the query params
   /// to filter your results.
-  Future<models.DeploymentList> listDeployments(
-      {required String siteId,
-      List<String>? queries,
-      String? search,
-      bool? total}) async {
-    final String apiPath =
-        '/sites/{siteId}/deployments'.replaceAll('{siteId}', siteId);
+  Future<models.DeploymentList> listDeployments({
+    required String siteId,
+    List<String>? queries,
+    String? search,
+    bool? total,
+  }) async {
+    final String apiPath = '/sites/{siteId}/deployments'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
@@ -279,8 +342,12 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.DeploymentList.fromMap(res.data);
   }
@@ -288,16 +355,19 @@ class Sites extends Service {
   /// Create a new site code deployment. Use this endpoint to upload a new
   /// version of your site code. To activate your newly uploaded code, you'll
   /// need to update the site's deployment to use your new deployment ID.
-  Future<models.Deployment> createDeployment(
-      {required String siteId,
-      required InputFile code,
-      String? installCommand,
-      String? buildCommand,
-      String? outputDirectory,
-      bool? activate,
-      Function(UploadProgress)? onProgress}) async {
-    final String apiPath =
-        '/sites/{siteId}/deployments'.replaceAll('{siteId}', siteId);
+  Future<models.Deployment> createDeployment({
+    required String siteId,
+    required InputFile code,
+    String? installCommand,
+    String? buildCommand,
+    String? outputDirectory,
+    bool? activate,
+    Function(UploadProgress)? onProgress,
+  }) async {
+    final String apiPath = '/sites/{siteId}/deployments'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (installCommand != null) 'installCommand': installCommand,
@@ -332,10 +402,14 @@ class Sites extends Service {
   /// its commands and output directory if they have been modified. The build
   /// process will be queued and executed asynchronously. The original
   /// deployment's code will be preserved and used for the new build.
-  Future<models.Deployment> createDuplicateDeployment(
-      {required String siteId, required String deploymentId}) async {
-    final String apiPath =
-        '/sites/{siteId}/deployments/duplicate'.replaceAll('{siteId}', siteId);
+  Future<models.Deployment> createDuplicateDeployment({
+    required String siteId,
+    required String deploymentId,
+  }) async {
+    final String apiPath = '/sites/{siteId}/deployments/duplicate'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'deploymentId': deploymentId,
@@ -347,8 +421,12 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Deployment.fromMap(res.data);
   }
@@ -358,16 +436,19 @@ class Sites extends Service {
   /// Use this endpoint with combination of
   /// [listTemplates](https://appwrite.io/docs/products/sites/templates) to find
   /// the template details.
-  Future<models.Deployment> createTemplateDeployment(
-      {required String siteId,
-      required String repository,
-      required String owner,
-      required String rootDirectory,
-      required enums.TemplateReferenceType type,
-      required String reference,
-      bool? activate}) async {
-    final String apiPath =
-        '/sites/{siteId}/deployments/template'.replaceAll('{siteId}', siteId);
+  Future<models.Deployment> createTemplateDeployment({
+    required String siteId,
+    required String repository,
+    required String owner,
+    required String rootDirectory,
+    required enums.TemplateReferenceType type,
+    required String reference,
+    bool? activate,
+  }) async {
+    final String apiPath = '/sites/{siteId}/deployments/template'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'repository': repository,
@@ -384,8 +465,12 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Deployment.fromMap(res.data);
   }
@@ -393,13 +478,16 @@ class Sites extends Service {
   /// Create a deployment when a site is connected to VCS.
   ///
   /// This endpoint lets you create deployment from a branch, commit, or a tag.
-  Future<models.Deployment> createVcsDeployment(
-      {required String siteId,
-      required enums.VCSReferenceType type,
-      required String reference,
-      bool? activate}) async {
-    final String apiPath =
-        '/sites/{siteId}/deployments/vcs'.replaceAll('{siteId}', siteId);
+  Future<models.Deployment> createVcsDeployment({
+    required String siteId,
+    required enums.VCSReferenceType type,
+    required String reference,
+    bool? activate,
+  }) async {
+    final String apiPath = '/sites/{siteId}/deployments/vcs'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'type': type.value,
@@ -413,18 +501,30 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Deployment.fromMap(res.data);
   }
 
   /// Get a site deployment by its unique ID.
-  Future<models.Deployment> getDeployment(
-      {required String siteId, required String deploymentId}) async {
+  Future<models.Deployment> getDeployment({
+    required String siteId,
+    required String deploymentId,
+  }) async {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{deploymentId}', deploymentId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{deploymentId}',
+          deploymentId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -433,18 +533,30 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Deployment.fromMap(res.data);
   }
 
   /// Delete a site deployment by its unique ID.
-  Future deleteDeployment(
-      {required String siteId, required String deploymentId}) async {
+  Future deleteDeployment({
+    required String siteId,
+    required String deploymentId,
+  }) async {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{deploymentId}', deploymentId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{deploymentId}',
+          deploymentId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -453,8 +565,12 @@ class Sites extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
@@ -462,17 +578,24 @@ class Sites extends Service {
   /// Get a site deployment content by its unique ID. The endpoint response
   /// return with a 'Content-Disposition: attachment' header that tells the
   /// browser to start downloading the file to user downloads directory.
-  Future<Uint8List> getDeploymentDownload(
-      {required String siteId,
-      required String deploymentId,
-      enums.DeploymentDownloadType? type,
-      String? token}) async {
+  Future<Uint8List> getDeploymentDownload({
+    required String siteId,
+    required String deploymentId,
+    enums.DeploymentDownloadType? type,
+    String? token,
+  }) async {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}/download'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{deploymentId}', deploymentId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{deploymentId}',
+          deploymentId,
+        );
 
     final Map<String, dynamic> apiParams = {
-      if (type != null) 'type': type.value,
+      if (type != null) 'type': type?.value,
       if (token != null) 'token': token,
     };
 
@@ -481,11 +604,13 @@ class Sites extends Service {
       'accept': '*/*',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath,
-        params: apiParams,
-        headers: apiHeaders,
-        responseType: ResponseType.bytes);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+      responseType: ResponseType.bytes,
+    );
     return res.data;
   }
 
@@ -494,11 +619,19 @@ class Sites extends Service {
   /// started yet, it will be marked as canceled without executing. You cannot
   /// cancel builds that have already completed (status 'ready') or failed. The
   /// response includes the final build status and details.
-  Future<models.Deployment> updateDeploymentStatus(
-      {required String siteId, required String deploymentId}) async {
+  Future<models.Deployment> updateDeploymentStatus({
+    required String siteId,
+    required String deploymentId,
+  }) async {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}/status'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{deploymentId}', deploymentId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{deploymentId}',
+          deploymentId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -508,18 +641,27 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.patch,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Deployment.fromMap(res.data);
   }
 
   /// Get a list of all site logs. You can use the query params to filter your
   /// results.
-  Future<models.ExecutionList> listLogs(
-      {required String siteId, List<String>? queries, bool? total}) async {
-    final String apiPath =
-        '/sites/{siteId}/logs'.replaceAll('{siteId}', siteId);
+  Future<models.ExecutionList> listLogs({
+    required String siteId,
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/sites/{siteId}/logs'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
@@ -531,18 +673,30 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.ExecutionList.fromMap(res.data);
   }
 
   /// Get a site request log by its unique ID.
-  Future<models.Execution> getLog(
-      {required String siteId, required String logId}) async {
+  Future<models.Execution> getLog({
+    required String siteId,
+    required String logId,
+  }) async {
     final String apiPath = '/sites/{siteId}/logs/{logId}'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{logId}', logId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{logId}',
+          logId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -551,17 +705,30 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Execution.fromMap(res.data);
   }
 
   /// Delete a site log by its unique ID.
-  Future deleteLog({required String siteId, required String logId}) async {
+  Future deleteLog({
+    required String siteId,
+    required String logId,
+  }) async {
     final String apiPath = '/sites/{siteId}/logs/{logId}'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{logId}', logId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{logId}',
+          logId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -571,17 +738,26 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Get a list of all variables of a specific site.
-  Future<models.VariableList> listVariables(
-      {required String siteId, List<String>? queries, bool? total}) async {
-    final String apiPath =
-        '/sites/{siteId}/variables'.replaceAll('{siteId}', siteId);
+  Future<models.VariableList> listVariables({
+    required String siteId,
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/sites/{siteId}/variables'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
@@ -593,22 +769,29 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.VariableList.fromMap(res.data);
   }
 
   /// Create a new site variable. These variables can be accessed during build
   /// and runtime (server-side rendering) as environment variables.
-  Future<models.Variable> createVariable(
-      {required String siteId,
-      required String variableId,
-      required String key,
-      required String value,
-      bool? secret}) async {
-    final String apiPath =
-        '/sites/{siteId}/variables'.replaceAll('{siteId}', siteId);
+  Future<models.Variable> createVariable({
+    required String siteId,
+    required String variableId,
+    required String key,
+    required String value,
+    bool? secret,
+  }) async {
+    final String apiPath = '/sites/{siteId}/variables'.replaceAll(
+      '{siteId}',
+      siteId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'variableId': variableId,
@@ -623,18 +806,30 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Variable.fromMap(res.data);
   }
 
   /// Get a variable by its unique ID.
-  Future<models.Variable> getVariable(
-      {required String siteId, required String variableId}) async {
+  Future<models.Variable> getVariable({
+    required String siteId,
+    required String variableId,
+  }) async {
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{variableId}', variableId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{variableId}',
+          variableId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -643,22 +838,33 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Variable.fromMap(res.data);
   }
 
   /// Update variable by its unique ID.
-  Future<models.Variable> updateVariable(
-      {required String siteId,
-      required String variableId,
-      String? key,
-      String? value,
-      bool? secret}) async {
+  Future<models.Variable> updateVariable({
+    required String siteId,
+    required String variableId,
+    String? key,
+    String? value,
+    bool? secret,
+  }) async {
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{variableId}', variableId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{variableId}',
+          variableId,
+        );
 
     final Map<String, dynamic> apiParams = {
       if (key != null) 'key': key,
@@ -672,18 +878,30 @@ class Sites extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Variable.fromMap(res.data);
   }
 
   /// Delete a variable by its unique ID.
-  Future deleteVariable(
-      {required String siteId, required String variableId}) async {
+  Future deleteVariable({
+    required String siteId,
+    required String variableId,
+  }) async {
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
-        .replaceAll('{siteId}', siteId)
-        .replaceAll('{variableId}', variableId);
+        .replaceAll(
+          '{siteId}',
+          siteId,
+        )
+        .replaceAll(
+          '{variableId}',
+          variableId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -692,8 +910,12 @@ class Sites extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }

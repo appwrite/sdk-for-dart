@@ -28,8 +28,9 @@ class Oauth2DeviceAuthorization implements Model {
     required this.expires_in,
     required this.interval,
   });
-
-  factory Oauth2DeviceAuthorization.fromMap(Map<String, dynamic> map) {
+  factory Oauth2DeviceAuthorization.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2DeviceAuthorization(
       device_code: map['device_code'].toString(),
       user_code: map['user_code'].toString(),

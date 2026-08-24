@@ -20,8 +20,9 @@ class OAuth2Podio implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Podio.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Podio.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Podio(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

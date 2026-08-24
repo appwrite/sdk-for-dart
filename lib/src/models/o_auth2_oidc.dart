@@ -44,8 +44,9 @@ class OAuth2Oidc implements Model {
     required this.prompt,
     this.maxAge,
   });
-
-  factory OAuth2Oidc.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Oidc.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Oidc(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
@@ -55,7 +56,11 @@ class OAuth2Oidc implements Model {
       authorizationURL: map['authorizationURL'].toString(),
       tokenURL: map['tokenURL'].toString(),
       userInfoURL: map['userInfoURL'].toString(),
-      prompt: List.from(map['prompt'] ?? []),
+      prompt: List<enums.OAuth2OidcPrompt>.from(
+        map['prompt'].map(
+          (p) => enums.OAuth2OidcPrompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
       maxAge: map['maxAge'],
     );
   }
@@ -71,7 +76,7 @@ class OAuth2Oidc implements Model {
       "authorizationURL": authorizationURL,
       "tokenURL": tokenURL,
       "userInfoURL": userInfoURL,
-      "prompt": prompt,
+      "prompt": prompt.map((p) => p.value).toList(),
       "maxAge": maxAge,
     };
   }

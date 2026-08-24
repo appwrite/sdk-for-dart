@@ -32,6 +32,9 @@ class DatabaseMigration implements Model {
   /// Number of documents still pending replication to the target.
   final int lagDocuments;
 
+  /// Highest source changelog sequence applied to the target so far.
+  final int changelogWatermark;
+
   /// Time the migrated data was verified against the source in ISO 8601 format.
   final String verifiedAt;
 
@@ -61,6 +64,7 @@ class DatabaseMigration implements Model {
     required this.attempt,
     required this.lastError,
     required this.lagDocuments,
+    required this.changelogWatermark,
     required this.verifiedAt,
     required this.cutoverAt,
     required this.soakUntil,
@@ -68,8 +72,9 @@ class DatabaseMigration implements Model {
     required this.cutoverRequested,
     required this.paused,
   });
-
-  factory DatabaseMigration.fromMap(Map<String, dynamic> map) {
+  factory DatabaseMigration.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DatabaseMigration(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -81,6 +86,7 @@ class DatabaseMigration implements Model {
       attempt: map['attempt'],
       lastError: map['lastError'].toString(),
       lagDocuments: map['lagDocuments'],
+      changelogWatermark: map['changelogWatermark'],
       verifiedAt: map['verifiedAt'].toString(),
       cutoverAt: map['cutoverAt'].toString(),
       soakUntil: map['soakUntil'].toString(),
@@ -103,6 +109,7 @@ class DatabaseMigration implements Model {
       "attempt": attempt,
       "lastError": lastError,
       "lagDocuments": lagDocuments,
+      "changelogWatermark": changelogWatermark,
       "verifiedAt": verifiedAt,
       "cutoverAt": cutoverAt,
       "soakUntil": soakUntil,

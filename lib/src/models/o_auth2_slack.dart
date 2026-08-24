@@ -20,8 +20,9 @@ class OAuth2Slack implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Slack.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Slack.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Slack(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

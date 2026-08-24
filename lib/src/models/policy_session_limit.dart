@@ -12,8 +12,9 @@ class PolicySessionLimit implements Model {
     required this.$id,
     required this.total,
   });
-
-  factory PolicySessionLimit.fromMap(Map<String, dynamic> map) {
+  factory PolicySessionLimit.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicySessionLimit(
       $id: map['\$id'].toString(),
       total: map['total'],

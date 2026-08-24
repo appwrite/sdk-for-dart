@@ -12,8 +12,9 @@ class PolicySessionDuration implements Model {
     required this.$id,
     required this.duration,
   });
-
-  factory PolicySessionDuration.fromMap(Map<String, dynamic> map) {
+  factory PolicySessionDuration.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicySessionDuration(
       $id: map['\$id'].toString(),
       duration: map['duration'],

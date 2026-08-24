@@ -12,11 +12,14 @@ class KeyList implements Model {
     required this.total,
     required this.keys,
   });
-
-  factory KeyList.fromMap(Map<String, dynamic> map) {
+  factory KeyList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return KeyList(
       total: map['total'],
-      keys: List<Key>.from(map['keys'].map((p) => Key.fromMap(p))),
+      keys: List<Key>.from(
+        map['keys'].map((p) => Key.fromMap(p)),
+      ),
     );
   }
 

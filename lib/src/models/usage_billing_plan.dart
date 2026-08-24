@@ -48,26 +48,48 @@ class UsageBillingPlan implements Model {
     required this.imageTransformations,
     this.credits,
   });
-
-  factory UsageBillingPlan.fromMap(Map<String, dynamic> map) {
+  factory UsageBillingPlan.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return UsageBillingPlan(
-      bandwidth: AdditionalResource.fromMap(map['bandwidth']),
-      executions: AdditionalResource.fromMap(map['executions']),
+      bandwidth: AdditionalResource.fromMap(
+        map['bandwidth'],
+      ),
+      executions: AdditionalResource.fromMap(
+        map['executions'],
+      ),
       member: map['member'] != null
-          ? AdditionalResource.fromMap(map['member'])
+          ? AdditionalResource.fromMap(
+              map['member'],
+            )
           : null,
-      realtime: AdditionalResource.fromMap(map['realtime']),
-      realtimeMessages: AdditionalResource.fromMap(map['realtimeMessages']),
+      realtime: AdditionalResource.fromMap(
+        map['realtime'],
+      ),
+      realtimeMessages: AdditionalResource.fromMap(
+        map['realtimeMessages'],
+      ),
       realtimeBandwidth: map['realtimeBandwidth'] != null
-          ? AdditionalResource.fromMap(map['realtimeBandwidth'])
+          ? AdditionalResource.fromMap(
+              map['realtimeBandwidth'],
+            )
           : null,
-      storage: AdditionalResource.fromMap(map['storage']),
-      users: AdditionalResource.fromMap(map['users']),
-      GBHours: AdditionalResource.fromMap(map['GBHours']),
-      imageTransformations:
-          AdditionalResource.fromMap(map['imageTransformations']),
+      storage: AdditionalResource.fromMap(
+        map['storage'],
+      ),
+      users: AdditionalResource.fromMap(
+        map['users'],
+      ),
+      GBHours: AdditionalResource.fromMap(
+        map['GBHours'],
+      ),
+      imageTransformations: AdditionalResource.fromMap(
+        map['imageTransformations'],
+      ),
       credits: map['credits'] != null
-          ? AdditionalResource.fromMap(map['credits'])
+          ? AdditionalResource.fromMap(
+              map['credits'],
+            )
           : null,
     );
   }

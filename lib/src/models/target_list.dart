@@ -12,11 +12,14 @@ class TargetList implements Model {
     required this.total,
     required this.targets,
   });
-
-  factory TargetList.fromMap(Map<String, dynamic> map) {
+  factory TargetList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return TargetList(
       total: map['total'],
-      targets: List<Target>.from(map['targets'].map((p) => Target.fromMap(p))),
+      targets: List<Target>.from(
+        map['targets'].map((p) => Target.fromMap(p)),
+      ),
     );
   }
 

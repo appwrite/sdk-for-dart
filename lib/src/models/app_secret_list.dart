@@ -12,12 +12,14 @@ class AppSecretList implements Model {
     required this.total,
     required this.secrets,
   });
-
-  factory AppSecretList.fromMap(Map<String, dynamic> map) {
+  factory AppSecretList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AppSecretList(
       total: map['total'],
-      secrets:
-          List<AppSecret>.from(map['secrets'].map((p) => AppSecret.fromMap(p))),
+      secrets: List<AppSecret>.from(
+        map['secrets'].map((p) => AppSecret.fromMap(p)),
+      ),
     );
   }
 

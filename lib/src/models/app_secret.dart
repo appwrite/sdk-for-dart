@@ -40,8 +40,9 @@ class AppSecret implements Model {
     required this.createdByName,
     this.lastAccessedAt,
   });
-
-  factory AppSecret.fromMap(Map<String, dynamic> map) {
+  factory AppSecret.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AppSecret(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

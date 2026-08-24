@@ -36,8 +36,9 @@ class EmailTemplate implements Model {
     required this.replyToName,
     required this.subject,
   });
-
-  factory EmailTemplate.fromMap(Map<String, dynamic> map) {
+  factory EmailTemplate.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return EmailTemplate(
       templateId: map['templateId'].toString(),
       locale: map['locale'].toString(),

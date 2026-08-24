@@ -161,6 +161,9 @@ class BillingPlan implements Model {
   /// Does plan support credit
   final bool supportsCredits;
 
+  /// Does plan support dedicated databases.
+  final bool supportsDedicatedDatabases;
+
   /// Does plan support blocking disposable email addresses.
   final bool supportsDisposableEmailValidation;
 
@@ -205,6 +208,9 @@ class BillingPlan implements Model {
 
   /// Details of the program this plan is a part of.
   final Program? program;
+
+  /// Included monthly dedicated-database compute credit in USD. Resets each billing cycle with no roll-over.
+  final double databaseComputeCredit;
 
   /// Dedicated database limits available to this plan.
   final BillingPlanDedicatedDatabaseLimits? dedicatedDatabases;
@@ -263,6 +269,7 @@ class BillingPlan implements Model {
     required this.supportsMockNumbers,
     required this.supportsOrganizationRoles,
     required this.supportsCredits,
+    required this.supportsDedicatedDatabases,
     required this.supportsDisposableEmailValidation,
     required this.supportsCanonicalEmailValidation,
     required this.supportsFreeEmailValidation,
@@ -278,10 +285,12 @@ class BillingPlan implements Model {
     this.limits,
     required this.group,
     this.program,
+    required this.databaseComputeCredit,
     this.dedicatedDatabases,
   });
-
-  factory BillingPlan.fromMap(Map<String, dynamic> map) {
+  factory BillingPlan.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BillingPlan(
       $id: map['\$id'].toString(),
       name: map['name'].toString(),
@@ -322,8 +331,12 @@ class BillingPlan implements Model {
       usageLogsIntervals: List.from(map['usageLogsIntervals'] ?? []),
       projectInactivityDays: map['projectInactivityDays'],
       alertLimit: map['alertLimit'],
-      usage: UsageBillingPlan.fromMap(map['usage']),
-      addons: BillingPlanAddon.fromMap(map['addons']),
+      usage: UsageBillingPlan.fromMap(
+        map['usage'],
+      ),
+      addons: BillingPlanAddon.fromMap(
+        map['addons'],
+      ),
       budgetCapEnabled: map['budgetCapEnabled'],
       customSmtp: map['customSmtp'],
       emailBranding: map['emailBranding'],
@@ -336,6 +349,7 @@ class BillingPlan implements Model {
       supportsMockNumbers: map['supportsMockNumbers'],
       supportsOrganizationRoles: map['supportsOrganizationRoles'],
       supportsCredits: map['supportsCredits'],
+      supportsDedicatedDatabases: map['supportsDedicatedDatabases'],
       supportsDisposableEmailValidation:
           map['supportsDisposableEmailValidation'],
       supportsCanonicalEmailValidation: map['supportsCanonicalEmailValidation'],
@@ -344,21 +358,31 @@ class BillingPlan implements Model {
       supportsProjectSpecificRoles: map['supportsProjectSpecificRoles'],
       backupsEnabled: map['backupsEnabled'],
       usagePerProject: map['usagePerProject'],
-      supportedAddons:
-          BillingPlanSupportedAddons.fromMap(map['supportedAddons']),
+      supportedAddons: BillingPlanSupportedAddons.fromMap(
+        map['supportedAddons'],
+      ),
       backupPolicies: map['backupPolicies'],
       deploymentSize: map['deploymentSize'],
       buildSize: map['buildSize'],
       databasesAllowEncrypt: map['databasesAllowEncrypt'],
       limits: map['limits'] != null
-          ? BillingPlanLimits.fromMap(map['limits'])
+          ? BillingPlanLimits.fromMap(
+              map['limits'],
+            )
           : null,
-      group: enums.BillingPlanGroup.values
-          .firstWhere((e) => e.value == map['group']),
-      program: map['program'] != null ? Program.fromMap(map['program']) : null,
+      group: enums.BillingPlanGroup.values.firstWhere(
+        (e) => e.value == map['group'],
+      ),
+      program: map['program'] != null
+          ? Program.fromMap(
+              map['program'],
+            )
+          : null,
+      databaseComputeCredit: map['databaseComputeCredit'].toDouble(),
       dedicatedDatabases: map['dedicatedDatabases'] != null
           ? BillingPlanDedicatedDatabaseLimits.fromMap(
-              map['dedicatedDatabases'])
+              map['dedicatedDatabases'],
+            )
           : null,
     );
   }
@@ -419,6 +443,7 @@ class BillingPlan implements Model {
       "supportsMockNumbers": supportsMockNumbers,
       "supportsOrganizationRoles": supportsOrganizationRoles,
       "supportsCredits": supportsCredits,
+      "supportsDedicatedDatabases": supportsDedicatedDatabases,
       "supportsDisposableEmailValidation": supportsDisposableEmailValidation,
       "supportsCanonicalEmailValidation": supportsCanonicalEmailValidation,
       "supportsFreeEmailValidation": supportsFreeEmailValidation,
@@ -434,6 +459,7 @@ class BillingPlan implements Model {
       "limits": limits?.toMap(),
       "group": group.value,
       "program": program?.toMap(),
+      "databaseComputeCredit": databaseComputeCredit,
       "dedicatedDatabases": dedicatedDatabases?.toMap(),
     };
   }

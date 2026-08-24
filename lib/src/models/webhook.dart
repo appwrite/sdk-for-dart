@@ -56,8 +56,9 @@ class Webhook implements Model {
     required this.logs,
     required this.attempts,
   });
-
-  factory Webhook.fromMap(Map<String, dynamic> map) {
+  factory Webhook.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Webhook(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

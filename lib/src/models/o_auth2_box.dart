@@ -20,8 +20,9 @@ class OAuth2Box implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Box.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Box.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Box(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

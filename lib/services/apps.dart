@@ -6,7 +6,10 @@ class Apps extends Service {
   Apps(super.client);
 
   /// List applications.
-  Future<models.AppsList> list({List<String>? queries, bool? total}) async {
+  Future<models.AppsList> list({
+    List<String>? queries,
+    bool? total,
+  }) async {
     final String apiPath = '/apps';
 
     final Map<String, dynamic> apiParams = {
@@ -19,33 +22,38 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppsList.fromMap(res.data);
   }
 
   /// Create a new application.
-  Future<models.App> create(
-      {required String appId,
-      required String name,
-      required List<String> redirectUris,
-      String? description,
-      String? clientUri,
-      String? logoUri,
-      String? privacyPolicyUrl,
-      String? termsUrl,
-      List<String>? contacts,
-      String? tagline,
-      List<String>? tags,
-      List<String>? images,
-      String? supportUrl,
-      String? dataDeletionUrl,
-      List<String>? postLogoutRedirectUris,
-      bool? enabled,
-      String? type,
-      bool? deviceFlow,
-      String? teamId}) async {
+  Future<models.App> create({
+    required String appId,
+    required String name,
+    required List<String> redirectUris,
+    String? description,
+    String? clientUri,
+    String? logoUri,
+    String? privacyPolicyUrl,
+    String? termsUrl,
+    List<String>? contacts,
+    String? tagline,
+    List<String>? tags,
+    List<String>? images,
+    String? supportUrl,
+    String? dataDeletionUrl,
+    List<String>? postLogoutRedirectUris,
+    bool? enabled,
+    String? type,
+    bool? deviceFlow,
+    String? teamId,
+  }) async {
     final String apiPath = '/apps';
 
     final Map<String, dynamic> apiParams = {
@@ -77,8 +85,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.App.fromMap(res.data);
   }
@@ -94,8 +106,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppScopeList.fromMap(res.data);
   }
@@ -111,15 +127,24 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppScopeList.fromMap(res.data);
   }
 
   /// Get an application by its unique ID.
-  Future<models.App> get({required String appId}) async {
-    final String apiPath = '/apps/{appId}'.replaceAll('{appId}', appId);
+  Future<models.App> get({
+    required String appId,
+  }) async {
+    final String apiPath = '/apps/{appId}'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -128,35 +153,43 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.App.fromMap(res.data);
   }
 
   /// Update an application by its unique ID.
-  Future<models.App> update(
-      {required String appId,
-      required String name,
-      String? description,
-      String? clientUri,
-      String? logoUri,
-      String? privacyPolicyUrl,
-      String? termsUrl,
-      List<String>? contacts,
-      String? tagline,
-      List<String>? tags,
-      List<String>? images,
-      String? supportUrl,
-      String? dataDeletionUrl,
-      bool? enabled,
-      List<String>? redirectUris,
-      List<String>? postLogoutRedirectUris,
-      String? type,
-      bool? deviceFlow,
-      List<String>? installationScopes,
-      String? installationRedirectUrl}) async {
-    final String apiPath = '/apps/{appId}'.replaceAll('{appId}', appId);
+  Future<models.App> update({
+    required String appId,
+    required String name,
+    String? description,
+    String? clientUri,
+    String? logoUri,
+    String? privacyPolicyUrl,
+    String? termsUrl,
+    List<String>? contacts,
+    String? tagline,
+    List<String>? tags,
+    List<String>? images,
+    String? supportUrl,
+    String? dataDeletionUrl,
+    bool? enabled,
+    List<String>? redirectUris,
+    List<String>? postLogoutRedirectUris,
+    String? type,
+    bool? deviceFlow,
+    List<String>? installationScopes,
+    String? installationRedirectUrl,
+  }) async {
+    final String apiPath = '/apps/{appId}'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'name': name,
@@ -188,15 +221,24 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.App.fromMap(res.data);
   }
 
   /// Delete an application by its unique ID.
-  Future delete({required String appId}) async {
-    final String apiPath = '/apps/{appId}'.replaceAll('{appId}', appId);
+  Future delete({
+    required String appId,
+  }) async {
+    final String apiPath = '/apps/{appId}'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -206,8 +248,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
@@ -215,10 +261,15 @@ class Apps extends Service {
   /// List installations of an application. Requires an app key sent in the
   /// `X-Appwrite-Key` header alongside the `X-Appwrite-App` header, or a caller
   /// with update access to the app.
-  Future<models.AppInstallationList> listInstallations(
-      {required String appId, List<String>? queries, bool? total}) async {
-    final String apiPath =
-        '/apps/{appId}/installations'.replaceAll('{appId}', appId);
+  Future<models.AppInstallationList> listInstallations({
+    required String appId,
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/apps/{appId}/installations'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
@@ -230,8 +281,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppInstallationList.fromMap(res.data);
   }
@@ -239,11 +294,19 @@ class Apps extends Service {
   /// Get an installation of an application by its unique ID. Requires an app key
   /// sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header,
   /// or a caller with update access to the app.
-  Future<models.AppInstallation> getInstallation(
-      {required String appId, required String installationId}) async {
+  Future<models.AppInstallation> getInstallation({
+    required String appId,
+    required String installationId,
+  }) async {
     final String apiPath = '/apps/{appId}/installations/{installationId}'
-        .replaceAll('{appId}', appId)
-        .replaceAll('{installationId}', installationId);
+        .replaceAll(
+          '{appId}',
+          appId,
+        )
+        .replaceAll(
+          '{installationId}',
+          installationId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -252,8 +315,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppInstallation.fromMap(res.data);
   }
@@ -261,11 +328,19 @@ class Apps extends Service {
   /// Delete an installation of an application by its unique ID. Requires a
   /// caller with update access to the app. Previously issued installation access
   /// tokens are revoked.
-  Future deleteInstallation(
-      {required String appId, required String installationId}) async {
+  Future deleteInstallation({
+    required String appId,
+    required String installationId,
+  }) async {
     final String apiPath = '/apps/{appId}/installations/{installationId}'
-        .replaceAll('{appId}', appId)
-        .replaceAll('{installationId}', installationId);
+        .replaceAll(
+          '{appId}',
+          appId,
+        )
+        .replaceAll(
+          '{installationId}',
+          installationId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -275,8 +350,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
@@ -289,11 +368,19 @@ class Apps extends Service {
   /// are accepted. Multiple tokens can be active for the same installation at
   /// once; each token stays valid until it expires or the installation is
   /// updated or deleted.
-  Future<models.Oauth2Token> createInstallationToken(
-      {required String appId, required String installationId}) async {
+  Future<models.Oauth2Token> createInstallationToken({
+    required String appId,
+    required String installationId,
+  }) async {
     final String apiPath = '/apps/{appId}/installations/{installationId}/tokens'
-        .replaceAll('{appId}', appId)
-        .replaceAll('{installationId}', installationId);
+        .replaceAll(
+          '{appId}',
+          appId,
+        )
+        .replaceAll(
+          '{installationId}',
+          installationId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -303,16 +390,26 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2Token.fromMap(res.data);
   }
 
   /// List app keys for an application.
-  Future<models.AppKeyList> listKeys(
-      {required String appId, List<String>? queries, bool? total}) async {
-    final String apiPath = '/apps/{appId}/keys'.replaceAll('{appId}', appId);
+  Future<models.AppKeyList> listKeys({
+    required String appId,
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/apps/{appId}/keys'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
@@ -324,8 +421,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppKeyList.fromMap(res.data);
   }
@@ -333,8 +434,13 @@ class Apps extends Service {
   /// Create a new app key for an application. App keys carry no scopes; send one
   /// in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header to
   /// list the application's installations and create installation access tokens.
-  Future<models.AppKey> createKey({required String appId}) async {
-    final String apiPath = '/apps/{appId}/keys'.replaceAll('{appId}', appId);
+  Future<models.AppKey> createKey({
+    required String appId,
+  }) async {
+    final String apiPath = '/apps/{appId}/keys'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -344,18 +450,30 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppKey.fromMap(res.data);
   }
 
   /// Get an app key by its unique ID.
-  Future<models.AppKey> getKey(
-      {required String appId, required String keyId}) async {
+  Future<models.AppKey> getKey({
+    required String appId,
+    required String keyId,
+  }) async {
     final String apiPath = '/apps/{appId}/keys/{keyId}'
-        .replaceAll('{appId}', appId)
-        .replaceAll('{keyId}', keyId);
+        .replaceAll(
+          '{appId}',
+          appId,
+        )
+        .replaceAll(
+          '{keyId}',
+          keyId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -364,17 +482,30 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppKey.fromMap(res.data);
   }
 
   /// Delete an app key by its unique ID.
-  Future deleteKey({required String appId, required String keyId}) async {
+  Future deleteKey({
+    required String appId,
+    required String keyId,
+  }) async {
     final String apiPath = '/apps/{appId}/keys/{keyId}'
-        .replaceAll('{appId}', appId)
-        .replaceAll('{keyId}', keyId);
+        .replaceAll(
+          '{appId}',
+          appId,
+        )
+        .replaceAll(
+          '{keyId}',
+          keyId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -384,8 +515,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
@@ -393,9 +528,14 @@ class Apps extends Service {
   /// Update the labels of an application. Labels are read-only for clients; only
   /// a server SDK using a project API key can set them. Replaces the previous
   /// labels.
-  Future<models.App> updateLabels(
-      {required String appId, required List<String> labels}) async {
-    final String apiPath = '/apps/{appId}/labels'.replaceAll('{appId}', appId);
+  Future<models.App> updateLabels({
+    required String appId,
+    required List<String> labels,
+  }) async {
+    final String apiPath = '/apps/{appId}/labels'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'labels': labels,
@@ -407,16 +547,26 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.App.fromMap(res.data);
   }
 
   /// List client secrets for an application.
-  Future<models.AppSecretList> listSecrets(
-      {required String appId, List<String>? queries, bool? total}) async {
-    final String apiPath = '/apps/{appId}/secrets'.replaceAll('{appId}', appId);
+  Future<models.AppSecretList> listSecrets({
+    required String appId,
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/apps/{appId}/secrets'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
@@ -428,16 +578,24 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppSecretList.fromMap(res.data);
   }
 
   /// Create a new client secret for an application.
-  Future<models.AppSecretPlaintext> createSecret(
-      {required String appId}) async {
-    final String apiPath = '/apps/{appId}/secrets'.replaceAll('{appId}', appId);
+  Future<models.AppSecretPlaintext> createSecret({
+    required String appId,
+  }) async {
+    final String apiPath = '/apps/{appId}/secrets'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -447,18 +605,30 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppSecretPlaintext.fromMap(res.data);
   }
 
   /// Get an application client secret by its unique ID.
-  Future<models.AppSecret> getSecret(
-      {required String appId, required String secretId}) async {
+  Future<models.AppSecret> getSecret({
+    required String appId,
+    required String secretId,
+  }) async {
     final String apiPath = '/apps/{appId}/secrets/{secretId}'
-        .replaceAll('{appId}', appId)
-        .replaceAll('{secretId}', secretId);
+        .replaceAll(
+          '{appId}',
+          appId,
+        )
+        .replaceAll(
+          '{secretId}',
+          secretId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -467,17 +637,30 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppSecret.fromMap(res.data);
   }
 
   /// Delete an application client secret by its unique ID.
-  Future deleteSecret({required String appId, required String secretId}) async {
+  Future deleteSecret({
+    required String appId,
+    required String secretId,
+  }) async {
     final String apiPath = '/apps/{appId}/secrets/{secretId}'
-        .replaceAll('{appId}', appId)
-        .replaceAll('{secretId}', secretId);
+        .replaceAll(
+          '{appId}',
+          appId,
+        )
+        .replaceAll(
+          '{secretId}',
+          secretId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -487,16 +670,25 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Transfer an application to another team by its unique ID.
-  Future<models.App> updateTeam(
-      {required String appId, required String teamId}) async {
-    final String apiPath = '/apps/{appId}/team'.replaceAll('{appId}', appId);
+  Future<models.App> updateTeam({
+    required String appId,
+    required String teamId,
+  }) async {
+    final String apiPath = '/apps/{appId}/team'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'teamId': teamId,
@@ -508,15 +700,24 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.patch,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.App.fromMap(res.data);
   }
 
   /// Revoke all tokens for an application by its unique ID.
-  Future deleteTokens({required String appId}) async {
-    final String apiPath = '/apps/{appId}/tokens'.replaceAll('{appId}', appId);
+  Future deleteTokens({
+    required String appId,
+  }) async {
+    final String apiPath = '/apps/{appId}/tokens'.replaceAll(
+      '{appId}',
+      appId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -526,8 +727,12 @@ class Apps extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }

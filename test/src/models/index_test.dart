@@ -6,13 +6,13 @@ void main() {
   group('Index', () {
     test('model', () {
       final model = Index(
-        $id: '5e5ea5c16897e',
-        $createdAt: '2020-10-15T06:38:00.000+00:00',
-        $updatedAt: '2020-10-15T06:38:00.000+00:00',
-        key: 'index1',
-        type: 'primary',
+        $id: "5e5ea5c16897e",
+        $createdAt: "2020-10-15T06:38:00.000+00:00",
+        $updatedAt: "2020-10-15T06:38:00.000+00:00",
+        key: "index1",
+        type: "primary",
         status: IndexStatus.available,
-        error: 'string',
+        error: "string",
         attributes: [],
         lengths: [],
       );
@@ -20,13 +20,13 @@ void main() {
       final map = model.toMap();
       final result = Index.fromMap(map);
 
-      expect(result.$id, '5e5ea5c16897e');
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.key, 'index1');
-      expect(result.type, 'primary');
+      expect(result.$id, "5e5ea5c16897e");
+      expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.key, "index1");
+      expect(result.type, "primary");
       expect(result.status, IndexStatus.available);
-      expect(result.error, 'string');
+      expect(result.error, "string");
       expect(result.attributes, []);
       expect(result.lengths, []);
     });

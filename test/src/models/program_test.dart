@@ -5,29 +5,29 @@ void main() {
   group('Program', () {
     test('model', () {
       final model = Program(
-        $id: '',
-        title: '',
-        description: '',
-        tag: '',
-        icon: '',
-        url: '',
+        $id: "",
+        title: "",
+        description: "",
+        tag: "",
+        icon: "",
+        url: "",
         active: true,
         xexternal: true,
-        billingPlanId: '',
+        billingPlanId: "",
       );
 
       final map = model.toMap();
       final result = Program.fromMap(map);
 
-      expect(result.$id, '');
-      expect(result.title, '');
-      expect(result.description, '');
-      expect(result.tag, '');
-      expect(result.icon, '');
-      expect(result.url, '');
+      expect(result.$id, "");
+      expect(result.title, "");
+      expect(result.description, "");
+      expect(result.tag, "");
+      expect(result.icon, "");
+      expect(result.url, "");
       expect(result.active, true);
       expect(result.xexternal, true);
-      expect(result.billingPlanId, '');
+      expect(result.billingPlanId, "");
     });
   });
 }

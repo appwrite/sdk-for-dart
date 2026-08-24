@@ -24,8 +24,9 @@ class MfaFactors implements Model {
     required this.recoveryCode,
     required this.custom,
   });
-
-  factory MfaFactors.fromMap(Map<String, dynamic> map) {
+  factory MfaFactors.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return MfaFactors(
       totp: map['totp'],
       phone: map['phone'],

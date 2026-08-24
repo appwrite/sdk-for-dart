@@ -120,8 +120,9 @@ class ActivityEvent implements Model {
     required this.sdk,
     required this.sdkVersion,
   });
-
-  factory ActivityEvent.fromMap(Map<String, dynamic> map) {
+  factory ActivityEvent.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ActivityEvent(
       $id: map['\$id'].toString(),
       actorType: map['actorType'].toString(),

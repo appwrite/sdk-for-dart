@@ -12,12 +12,14 @@ class RuntimeList implements Model {
     required this.total,
     required this.runtimes,
   });
-
-  factory RuntimeList.fromMap(Map<String, dynamic> map) {
+  factory RuntimeList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return RuntimeList(
       total: map['total'],
-      runtimes:
-          List<Runtime>.from(map['runtimes'].map((p) => Runtime.fromMap(p))),
+      runtimes: List<Runtime>.from(
+        map['runtimes'].map((p) => Runtime.fromMap(p)),
+      ),
     );
   }
 

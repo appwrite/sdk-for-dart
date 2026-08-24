@@ -84,7 +84,7 @@ class Project implements Model {
   final String consoleAccessedAt;
 
   /// Whether WAF enforcement is enabled for the project.
-  final bool wafEnabled;
+  final bool? wafEnabled;
 
   /// Billing limits reached
   final BillingLimits? billingLimits;
@@ -168,7 +168,7 @@ class Project implements Model {
     required this.protocols,
     required this.blocks,
     required this.consoleAccessedAt,
-    required this.wafEnabled,
+    this.wafEnabled,
     this.billingLimits,
     this.oAuth2ServerEnabled,
     this.oAuth2ServerAuthorizationUrl,
@@ -188,8 +188,9 @@ class Project implements Model {
     this.oAuth2ServerDeviceCodeDuration,
     this.oAuth2ServerDiscoveryUrl,
   });
-
-  factory Project.fromMap(Map<String, dynamic> map) {
+  factory Project.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Project(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -197,7 +198,9 @@ class Project implements Model {
       name: map['name'].toString(),
       teamId: map['teamId'].toString(),
       region: map['region'].toString(),
-      devKeys: List<DevKey>.from(map['devKeys'].map((p) => DevKey.fromMap(p))),
+      devKeys: List<DevKey>.from(
+        map['devKeys'].map((p) => DevKey.fromMap(p)),
+      ),
       smtpEnabled: map['smtpEnabled'],
       smtpSenderName: map['smtpSenderName'].toString(),
       smtpSenderEmail: map['smtpSenderEmail'].toString(),
@@ -214,16 +217,23 @@ class Project implements Model {
       status: map['status'].toString(),
       onboarding: map['onboarding'],
       authMethods: List<ProjectAuthMethod>.from(
-          map['authMethods'].map((p) => ProjectAuthMethod.fromMap(p))),
+        map['authMethods'].map((p) => ProjectAuthMethod.fromMap(p)),
+      ),
       services: List<ProjectService>.from(
-          map['services'].map((p) => ProjectService.fromMap(p))),
+        map['services'].map((p) => ProjectService.fromMap(p)),
+      ),
       protocols: List<ProjectProtocol>.from(
-          map['protocols'].map((p) => ProjectProtocol.fromMap(p))),
-      blocks: List<Block>.from(map['blocks'].map((p) => Block.fromMap(p))),
+        map['protocols'].map((p) => ProjectProtocol.fromMap(p)),
+      ),
+      blocks: List<Block>.from(
+        map['blocks'].map((p) => Block.fromMap(p)),
+      ),
       consoleAccessedAt: map['consoleAccessedAt'].toString(),
       wafEnabled: map['wafEnabled'],
       billingLimits: map['billingLimits'] != null
-          ? BillingLimits.fromMap(map['billingLimits'])
+          ? BillingLimits.fromMap(
+              map['billingLimits'],
+            )
           : null,
       oAuth2ServerEnabled: map['oAuth2ServerEnabled'],
       oAuth2ServerAuthorizationUrl:

@@ -12,12 +12,14 @@ class ResourceTokenList implements Model {
     required this.total,
     required this.tokens,
   });
-
-  factory ResourceTokenList.fromMap(Map<String, dynamic> map) {
+  factory ResourceTokenList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ResourceTokenList(
       total: map['total'],
       tokens: List<ResourceToken>.from(
-          map['tokens'].map((p) => ResourceToken.fromMap(p))),
+        map['tokens'].map((p) => ResourceToken.fromMap(p)),
+      ),
     );
   }
 

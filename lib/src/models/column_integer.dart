@@ -48,13 +48,15 @@ class ColumnInteger implements Model {
     this.max,
     this.xdefault,
   });
-
-  factory ColumnInteger.fromMap(Map<String, dynamic> map) {
+  factory ColumnInteger.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ColumnInteger(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status:
-          enums.ColumnStatus.values.firstWhere((e) => e.value == map['status']),
+      status: enums.ColumnStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],

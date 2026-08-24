@@ -12,8 +12,9 @@ class Oauth2PAR implements Model {
     required this.request_uri,
     required this.expires_in,
   });
-
-  factory Oauth2PAR.fromMap(Map<String, dynamic> map) {
+  factory Oauth2PAR.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2PAR(
       request_uri: map['request_uri'].toString(),
       expires_in: map['expires_in'],

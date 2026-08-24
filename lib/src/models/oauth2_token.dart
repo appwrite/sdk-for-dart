@@ -32,8 +32,9 @@ class Oauth2Token implements Model {
     this.authorization_details,
     this.id_token,
   });
-
-  factory Oauth2Token.fromMap(Map<String, dynamic> map) {
+  factory Oauth2Token.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2Token(
       access_token: map['access_token'].toString(),
       token_type: map['token_type'].toString(),

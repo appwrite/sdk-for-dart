@@ -8,8 +8,9 @@ class Oauth2Organization implements Model {
   Oauth2Organization({
     required this.$id,
   });
-
-  factory Oauth2Organization.fromMap(Map<String, dynamic> map) {
+  factory Oauth2Organization.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2Organization(
       $id: map['\$id'].toString(),
     );

@@ -144,20 +144,25 @@ class Organization implements Model {
     required this.platform,
     required this.projects,
   });
-
-  factory Organization.fromMap(Map<String, dynamic> map) {
+  factory Organization.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Organization(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
       total: map['total'],
-      prefs: Preferences.fromMap(map['prefs']),
+      prefs: Preferences.fromMap(
+        map['prefs'],
+      ),
       billingBudget: map['billingBudget'],
       budgetAlerts: List.from(map['budgetAlerts'] ?? []),
       billingPlan: map['billingPlan'].toString(),
       billingPlanId: map['billingPlanId'].toString(),
-      billingPlanDetails: BillingPlan.fromMap(map['billingPlanDetails']),
+      billingPlanDetails: BillingPlan.fromMap(
+        map['billingPlanDetails'],
+      ),
       billingEmail: map['billingEmail'].toString(),
       billingStartDate: map['billingStartDate'].toString(),
       billingCurrentInvoiceDate: map['billingCurrentInvoiceDate'].toString(),
@@ -177,7 +182,9 @@ class Organization implements Model {
       programDiscordChannelName: map['programDiscordChannelName']?.toString(),
       programDiscordChannelUrl: map['programDiscordChannelUrl']?.toString(),
       billingLimits: map['billingLimits'] != null
-          ? BillingLimits.fromMap(map['billingLimits'])
+          ? BillingLimits.fromMap(
+              map['billingLimits'],
+            )
           : null,
       billingPlanDowngrade: map['billingPlanDowngrade']?.toString(),
       billingTaxId: map['billingTaxId']?.toString(),

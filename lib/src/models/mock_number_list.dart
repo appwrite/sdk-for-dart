@@ -12,12 +12,14 @@ class MockNumberList implements Model {
     required this.total,
     required this.mockNumbers,
   });
-
-  factory MockNumberList.fromMap(Map<String, dynamic> map) {
+  factory MockNumberList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return MockNumberList(
       total: map['total'],
       mockNumbers: List<MockNumber>.from(
-          map['mockNumbers'].map((p) => MockNumber.fromMap(p))),
+        map['mockNumbers'].map((p) => MockNumber.fromMap(p)),
+      ),
     );
   }
 

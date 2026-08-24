@@ -20,8 +20,9 @@ class OAuth2Facebook implements Model {
     required this.appId,
     required this.appSecret,
   });
-
-  factory OAuth2Facebook.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Facebook.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Facebook(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

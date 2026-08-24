@@ -33,5 +33,6 @@ Site result = await sites.update(
     buildSpecification: '', // (optional)
     runtimeSpecification: '', // (optional)
     deploymentRetention: 0, // (optional)
+    scopes: [enums.ProjectKeyScopes.projectRead], // (optional)
 );
 ```

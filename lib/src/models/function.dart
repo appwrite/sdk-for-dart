@@ -132,8 +132,9 @@ class Func implements Model {
     required this.buildSpecification,
     required this.runtimeSpecification,
   });
-
-  factory Func.fromMap(Map<String, dynamic> map) {
+  factory Func.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Func(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -151,7 +152,9 @@ class Func implements Model {
       latestDeploymentCreatedAt: map['latestDeploymentCreatedAt'].toString(),
       latestDeploymentStatus: map['latestDeploymentStatus'].toString(),
       scopes: List.from(map['scopes'] ?? []),
-      vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
+      vars: List<Variable>.from(
+        map['vars'].map((p) => Variable.fromMap(p)),
+      ),
       events: List.from(map['events'] ?? []),
       schedule: map['schedule'].toString(),
       timeout: map['timeout'],

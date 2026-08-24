@@ -20,8 +20,9 @@ class Embedding implements Model {
     required this.embedding,
     required this.error,
   });
-
-  factory Embedding.fromMap(Map<String, dynamic> map) {
+  factory Embedding.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Embedding(
       model: map['model'].toString(),
       dimension: map['dimension'],

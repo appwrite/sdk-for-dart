@@ -24,8 +24,9 @@ class OAuth2Auth0 implements Model {
     required this.clientSecret,
     required this.endpoint,
   });
-
-  factory OAuth2Auth0.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Auth0.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Auth0(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

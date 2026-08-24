@@ -12,12 +12,14 @@ class ActivityEventList implements Model {
     required this.total,
     required this.events,
   });
-
-  factory ActivityEventList.fromMap(Map<String, dynamic> map) {
+  factory ActivityEventList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ActivityEventList(
       total: map['total'],
       events: List<ActivityEvent>.from(
-          map['events'].map((p) => ActivityEvent.fromMap(p))),
+        map['events'].map((p) => ActivityEvent.fromMap(p)),
+      ),
     );
   }
 

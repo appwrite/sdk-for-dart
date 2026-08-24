@@ -12,12 +12,14 @@ class EmbeddingList implements Model {
     required this.total,
     required this.embeddings,
   });
-
-  factory EmbeddingList.fromMap(Map<String, dynamic> map) {
+  factory EmbeddingList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return EmbeddingList(
       total: map['total'],
       embeddings: List<Embedding>.from(
-          map['embeddings'].map((p) => Embedding.fromMap(p))),
+        map['embeddings'].map((p) => Embedding.fromMap(p)),
+      ),
     );
   }
 

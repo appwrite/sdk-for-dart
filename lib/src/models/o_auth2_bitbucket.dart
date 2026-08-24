@@ -20,8 +20,9 @@ class OAuth2Bitbucket implements Model {
     required this.key,
     required this.secret,
   });
-
-  factory OAuth2Bitbucket.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Bitbucket.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Bitbucket(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

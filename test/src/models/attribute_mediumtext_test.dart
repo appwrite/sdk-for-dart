@@ -6,25 +6,25 @@ void main() {
   group('AttributeMediumtext', () {
     test('model', () {
       final model = AttributeMediumtext(
-        key: 'fullName',
-        type: 'string',
+        key: "fullName",
+        type: "string",
         status: AttributeStatus.available,
-        error: 'string',
+        error: "string",
         xrequired: true,
-        $createdAt: '2020-10-15T06:38:00.000+00:00',
-        $updatedAt: '2020-10-15T06:38:00.000+00:00',
+        $createdAt: "2020-10-15T06:38:00.000+00:00",
+        $updatedAt: "2020-10-15T06:38:00.000+00:00",
       );
 
       final map = model.toMap();
       final result = AttributeMediumtext.fromMap(map);
 
-      expect(result.key, 'fullName');
-      expect(result.type, 'string');
+      expect(result.key, "fullName");
+      expect(result.type, "string");
       expect(result.status, AttributeStatus.available);
-      expect(result.error, 'string');
+      expect(result.error, "string");
       expect(result.xrequired, true);
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
     });
   });
 }

@@ -40,8 +40,9 @@ class Provider implements Model {
     required this.credentials,
     this.options,
   });
-
-  factory Provider.fromMap(Map<String, dynamic> map) {
+  factory Provider.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Provider(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

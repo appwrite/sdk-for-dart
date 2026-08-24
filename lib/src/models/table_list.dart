@@ -12,11 +12,14 @@ class TableList implements Model {
     required this.total,
     required this.tables,
   });
-
-  factory TableList.fromMap(Map<String, dynamic> map) {
+  factory TableList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return TableList(
       total: map['total'],
-      tables: List<Table>.from(map['tables'].map((p) => Table.fromMap(p))),
+      tables: List<Table>.from(
+        map['tables'].map((p) => Table.fromMap(p)),
+      ),
     );
   }
 

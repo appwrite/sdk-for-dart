@@ -5,7 +5,7 @@ void main() {
   group('PolicyMembershipPrivacy', () {
     test('model', () {
       final model = PolicyMembershipPrivacy(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         userId: true,
         userEmail: true,
         userPhone: true,
@@ -17,7 +17,7 @@ void main() {
       final map = model.toMap();
       final result = PolicyMembershipPrivacy.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.userId, true);
       expect(result.userEmail, true);
       expect(result.userPhone, true);

@@ -33,7 +33,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '27.0.0',
+      'x-sdk-version': '27.1.0',
       'X-Appwrite-Response-Format': '1.9.6',
     };
 
@@ -200,8 +200,11 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
     late Response res;
     if (size <= chunkSize) {
-      params[paramName] = http.MultipartFile.fromBytes(paramName, file.bytes!,
-          filename: file.filename);
+      params[paramName] = http.MultipartFile.fromBytes(
+        paramName,
+        file.bytes!,
+        filename: file.filename,
+      );
       return call(
         HttpMethod.post,
         path: path,
@@ -212,7 +215,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
     var offset = 0;
     String? uploadId;
-    if (idParamName.isNotEmpty) {
+    if (idParamName.isNotEmpty && params[idParamName] != null) {
       //make a request to check if a file already exists
       try {
         res = await call(
@@ -233,13 +236,20 @@ class ClientBrowser extends ClientBase with ClientMixin {
     final totalChunks = (size / chunkSize).ceil();
 
     Future<Response> uploadChunk(
-        int index, int start, int end, String? id) async {
+      int index,
+      int start,
+      int end,
+      String? id,
+    ) async {
       List<int> chunk = [];
       chunk = file.bytes!.getRange(start, end).toList();
 
       final chunkParams = Map<String, dynamic>.from(params);
-      chunkParams[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
-          filename: file.filename);
+      chunkParams[paramName] = http.MultipartFile.fromBytes(
+        paramName,
+        chunk,
+        filename: file.filename,
+      );
       final chunkHeaders = Map<String, String>.from(headers);
       if (id != null && id.isNotEmpty) {
         chunkHeaders['x-appwrite-id'] = id;

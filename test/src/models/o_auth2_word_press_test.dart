@@ -5,21 +5,23 @@ void main() {
   group('OAuth2WordPress', () {
     test('model', () {
       final model = OAuth2WordPress(
-        $id: 'github',
+        $id: "github",
         enabled: true,
-        clientId: '130005',
+        clientId: "130005",
         clientSecret:
-            'PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk',
+            "PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk",
       );
 
       final map = model.toMap();
       final result = OAuth2WordPress.fromMap(map);
 
-      expect(result.$id, 'github');
+      expect(result.$id, "github");
       expect(result.enabled, true);
-      expect(result.clientId, '130005');
-      expect(result.clientSecret,
-          'PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk');
+      expect(result.clientId, "130005");
+      expect(
+        result.clientSecret,
+        "PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk",
+      );
     });
   });
 }

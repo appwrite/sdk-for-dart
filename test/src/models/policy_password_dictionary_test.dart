@@ -5,14 +5,14 @@ void main() {
   group('PolicyPasswordDictionary', () {
     test('model', () {
       final model = PolicyPasswordDictionary(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         enabled: true,
       );
 
       final map = model.toMap();
       final result = PolicyPasswordDictionary.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.enabled, true);
     });
   });

@@ -20,8 +20,9 @@ class ProxyInvalidation implements Model {
     required this.reference,
     required this.status,
   });
-
-  factory ProxyInvalidation.fromMap(Map<String, dynamic> map) {
+  factory ProxyInvalidation.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ProxyInvalidation(
       domain: map['domain'].toString(),
       type: map['type'].toString(),

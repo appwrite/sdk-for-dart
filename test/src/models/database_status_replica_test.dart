@@ -6,7 +6,7 @@ void main() {
     test('model', () {
       final model = DatabaseStatusReplica(
         index: 0,
-        role: 'primary',
+        role: "primary",
         healthy: true,
       );
 
@@ -14,7 +14,7 @@ void main() {
       final result = DatabaseStatusReplica.fromMap(map);
 
       expect(result.index, 0);
-      expect(result.role, 'primary');
+      expect(result.role, "primary");
       expect(result.healthy, true);
     });
   });

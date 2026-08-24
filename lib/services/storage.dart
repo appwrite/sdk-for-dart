@@ -6,8 +6,11 @@ class Storage extends Service {
 
   /// Get a list of all the storage buckets. You can use the query params to
   /// filter your results.
-  Future<models.BucketList> listBuckets(
-      {List<String>? queries, String? search, bool? total}) async {
+  Future<models.BucketList> listBuckets({
+    List<String>? queries,
+    String? search,
+    bool? total,
+  }) async {
     final String apiPath = '/storage/buckets';
 
     final Map<String, dynamic> apiParams = {
@@ -21,25 +24,30 @@ class Storage extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BucketList.fromMap(res.data);
   }
 
   /// Create a new storage bucket.
-  Future<models.Bucket> createBucket(
-      {required String bucketId,
-      required String name,
-      List<String>? permissions,
-      bool? fileSecurity,
-      bool? enabled,
-      int? maximumFileSize,
-      List<String>? allowedFileExtensions,
-      enums.Compression? compression,
-      bool? encryption,
-      bool? antivirus,
-      bool? transformations}) async {
+  Future<models.Bucket> createBucket({
+    required String bucketId,
+    required String name,
+    List<String>? permissions,
+    bool? fileSecurity,
+    bool? enabled,
+    int? maximumFileSize,
+    List<String>? allowedFileExtensions,
+    enums.Compression? compression,
+    bool? encryption,
+    bool? antivirus,
+    bool? transformations,
+  }) async {
     final String apiPath = '/storage/buckets';
 
     final Map<String, dynamic> apiParams = {
@@ -51,7 +59,7 @@ class Storage extends Service {
       if (maximumFileSize != null) 'maximumFileSize': maximumFileSize,
       if (allowedFileExtensions != null)
         'allowedFileExtensions': allowedFileExtensions,
-      if (compression != null) 'compression': compression.value,
+      if (compression != null) 'compression': compression?.value,
       if (encryption != null) 'encryption': encryption,
       if (antivirus != null) 'antivirus': antivirus,
       if (transformations != null) 'transformations': transformations,
@@ -63,17 +71,25 @@ class Storage extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Bucket.fromMap(res.data);
   }
 
   /// Get a storage bucket by its unique ID. This endpoint response returns a
   /// JSON object with the storage bucket metadata.
-  Future<models.Bucket> getBucket({required String bucketId}) async {
-    final String apiPath =
-        '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
+  Future<models.Bucket> getBucket({
+    required String bucketId,
+  }) async {
+    final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
+      '{bucketId}',
+      bucketId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -82,27 +98,34 @@ class Storage extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Bucket.fromMap(res.data);
   }
 
   /// Update a storage bucket by its unique ID.
-  Future<models.Bucket> updateBucket(
-      {required String bucketId,
-      required String name,
-      List<String>? permissions,
-      bool? fileSecurity,
-      bool? enabled,
-      int? maximumFileSize,
-      List<String>? allowedFileExtensions,
-      enums.Compression? compression,
-      bool? encryption,
-      bool? antivirus,
-      bool? transformations}) async {
-    final String apiPath =
-        '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
+  Future<models.Bucket> updateBucket({
+    required String bucketId,
+    required String name,
+    List<String>? permissions,
+    bool? fileSecurity,
+    bool? enabled,
+    int? maximumFileSize,
+    List<String>? allowedFileExtensions,
+    enums.Compression? compression,
+    bool? encryption,
+    bool? antivirus,
+    bool? transformations,
+  }) async {
+    final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
+      '{bucketId}',
+      bucketId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'name': name,
@@ -112,7 +135,7 @@ class Storage extends Service {
       if (maximumFileSize != null) 'maximumFileSize': maximumFileSize,
       if (allowedFileExtensions != null)
         'allowedFileExtensions': allowedFileExtensions,
-      if (compression != null) 'compression': compression.value,
+      if (compression != null) 'compression': compression?.value,
       if (encryption != null) 'encryption': encryption,
       if (antivirus != null) 'antivirus': antivirus,
       if (transformations != null) 'transformations': transformations,
@@ -124,16 +147,24 @@ class Storage extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Bucket.fromMap(res.data);
   }
 
   /// Delete a storage bucket by its unique ID.
-  Future deleteBucket({required String bucketId}) async {
-    final String apiPath =
-        '/storage/buckets/{bucketId}'.replaceAll('{bucketId}', bucketId);
+  Future deleteBucket({
+    required String bucketId,
+  }) async {
+    final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
+      '{bucketId}',
+      bucketId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -142,21 +173,28 @@ class Storage extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Get a list of all the user files. You can use the query params to filter
   /// your results.
-  Future<models.FileList> listFiles(
-      {required String bucketId,
-      List<String>? queries,
-      String? search,
-      bool? total}) async {
-    final String apiPath =
-        '/storage/buckets/{bucketId}/files'.replaceAll('{bucketId}', bucketId);
+  Future<models.FileList> listFiles({
+    required String bucketId,
+    List<String>? queries,
+    String? search,
+    bool? total,
+  }) async {
+    final String apiPath = '/storage/buckets/{bucketId}/files'.replaceAll(
+      '{bucketId}',
+      bucketId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
@@ -169,8 +207,12 @@ class Storage extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.FileList.fromMap(res.data);
   }
@@ -192,16 +234,18 @@ class Storage extends Service {
   ///
   /// If you're creating a new file using one of the Appwrite SDKs, all the
   /// chunking logic will be managed by the SDK internally.
-  ///
-  Future<models.File> createFile(
-      {required String bucketId,
-      required String fileId,
-      required InputFile file,
-      List<String>? permissions,
-      String? folder,
-      Function(UploadProgress)? onProgress}) async {
-    final String apiPath =
-        '/storage/buckets/{bucketId}/files'.replaceAll('{bucketId}', bucketId);
+  Future<models.File> createFile({
+    required String bucketId,
+    required String fileId,
+    required InputFile file,
+    List<String>? permissions,
+    String? folder,
+    Function(UploadProgress)? onProgress,
+  }) async {
+    final String apiPath = '/storage/buckets/{bucketId}/files'.replaceAll(
+      '{bucketId}',
+      bucketId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'fileId': fileId,
@@ -217,8 +261,8 @@ class Storage extends Service {
     };
 
     String idParamName = '';
-    idParamName = 'fileId';
     final paramName = 'file';
+    idParamName = 'fileId';
     final res = await client.chunkedUpload(
       path: apiPath,
       params: apiParams,
@@ -233,11 +277,19 @@ class Storage extends Service {
 
   /// Get a file by its unique ID. This endpoint response returns a JSON object
   /// with the file metadata.
-  Future<models.File> getFile(
-      {required String bucketId, required String fileId}) async {
+  Future<models.File> getFile({
+    required String bucketId,
+    required String fileId,
+  }) async {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
-        .replaceAll('{bucketId}', bucketId)
-        .replaceAll('{fileId}', fileId);
+        .replaceAll(
+          '{bucketId}',
+          bucketId,
+        )
+        .replaceAll(
+          '{fileId}',
+          fileId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -246,22 +298,33 @@ class Storage extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.File.fromMap(res.data);
   }
 
   /// Update a file by its unique ID. Only users with write permissions have
   /// access to update this resource.
-  Future<models.File> updateFile(
-      {required String bucketId,
-      required String fileId,
-      String? name,
-      List<String>? permissions}) async {
+  Future<models.File> updateFile({
+    required String bucketId,
+    required String fileId,
+    String? name,
+    List<String>? permissions,
+  }) async {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
-        .replaceAll('{bucketId}', bucketId)
-        .replaceAll('{fileId}', fileId);
+        .replaceAll(
+          '{bucketId}',
+          bucketId,
+        )
+        .replaceAll(
+          '{fileId}',
+          fileId,
+        );
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
@@ -274,18 +337,31 @@ class Storage extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.File.fromMap(res.data);
   }
 
   /// Delete a file by its unique ID. Only users with write permissions have
   /// access to delete this resource.
-  Future deleteFile({required String bucketId, required String fileId}) async {
+  Future deleteFile({
+    required String bucketId,
+    required String fileId,
+  }) async {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
-        .replaceAll('{bucketId}', bucketId)
-        .replaceAll('{fileId}', fileId);
+        .replaceAll(
+          '{bucketId}',
+          bucketId,
+        )
+        .replaceAll(
+          '{fileId}',
+          fileId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -294,8 +370,12 @@ class Storage extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
@@ -303,11 +383,20 @@ class Storage extends Service {
   /// Get a file content by its unique ID. The endpoint response return with a
   /// 'Content-Disposition: attachment' header that tells the browser to start
   /// downloading the file to user downloads directory.
-  Future<Uint8List> getFileDownload(
-      {required String bucketId, required String fileId, String? token}) async {
+  Future<Uint8List> getFileDownload({
+    required String bucketId,
+    required String fileId,
+    String? token,
+  }) async {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/download'
-        .replaceAll('{bucketId}', bucketId)
-        .replaceAll('{fileId}', fileId);
+        .replaceAll(
+          '{bucketId}',
+          bucketId,
+        )
+        .replaceAll(
+          '{fileId}',
+          fileId,
+        );
 
     final Map<String, dynamic> apiParams = {
       if (token != null) 'token': token,
@@ -318,11 +407,13 @@ class Storage extends Service {
       'accept': '*/*',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath,
-        params: apiParams,
-        headers: apiHeaders,
-        responseType: ResponseType.bytes);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+      responseType: ResponseType.bytes,
+    );
     return res.data;
   }
 
@@ -331,29 +422,36 @@ class Storage extends Service {
   /// and spreadsheets, will return the file icon image. You can also pass query
   /// string arguments for cutting and resizing your preview image. Preview is
   /// supported only for image files smaller than 10MB.
-  Future<Uint8List> getFilePreview(
-      {required String bucketId,
-      required String fileId,
-      int? width,
-      int? height,
-      enums.ImageGravity? gravity,
-      int? quality,
-      int? borderWidth,
-      String? borderColor,
-      int? borderRadius,
-      double? opacity,
-      int? rotation,
-      String? background,
-      enums.ImageFormat? output,
-      String? token}) async {
+  Future<Uint8List> getFilePreview({
+    required String bucketId,
+    required String fileId,
+    int? width,
+    int? height,
+    enums.ImageGravity? gravity,
+    int? quality,
+    int? borderWidth,
+    String? borderColor,
+    int? borderRadius,
+    double? opacity,
+    int? rotation,
+    String? background,
+    enums.ImageFormat? output,
+    String? token,
+  }) async {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/preview'
-        .replaceAll('{bucketId}', bucketId)
-        .replaceAll('{fileId}', fileId);
+        .replaceAll(
+          '{bucketId}',
+          bucketId,
+        )
+        .replaceAll(
+          '{fileId}',
+          fileId,
+        );
 
     final Map<String, dynamic> apiParams = {
       if (width != null) 'width': width,
       if (height != null) 'height': height,
-      if (gravity != null) 'gravity': gravity.value,
+      if (gravity != null) 'gravity': gravity?.value,
       if (quality != null) 'quality': quality,
       if (borderWidth != null) 'borderWidth': borderWidth,
       if (borderColor != null) 'borderColor': borderColor,
@@ -361,7 +459,7 @@ class Storage extends Service {
       if (opacity != null) 'opacity': opacity,
       if (rotation != null) 'rotation': rotation,
       if (background != null) 'background': background,
-      if (output != null) 'output': output.value,
+      if (output != null) 'output': output?.value,
       if (token != null) 'token': token,
     };
 
@@ -370,22 +468,33 @@ class Storage extends Service {
       'accept': 'image/*',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath,
-        params: apiParams,
-        headers: apiHeaders,
-        responseType: ResponseType.bytes);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+      responseType: ResponseType.bytes,
+    );
     return res.data;
   }
 
   /// Get a file content by its unique ID. This endpoint is similar to the
   /// download method but returns with no  'Content-Disposition: attachment'
   /// header.
-  Future<Uint8List> getFileView(
-      {required String bucketId, required String fileId, String? token}) async {
+  Future<Uint8List> getFileView({
+    required String bucketId,
+    required String fileId,
+    String? token,
+  }) async {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/view'
-        .replaceAll('{bucketId}', bucketId)
-        .replaceAll('{fileId}', fileId);
+        .replaceAll(
+          '{bucketId}',
+          bucketId,
+        )
+        .replaceAll(
+          '{fileId}',
+          fileId,
+        );
 
     final Map<String, dynamic> apiParams = {
       if (token != null) 'token': token,
@@ -396,11 +505,13 @@ class Storage extends Service {
       'accept': '*/*',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath,
-        params: apiParams,
-        headers: apiHeaders,
-        responseType: ResponseType.bytes);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+      responseType: ResponseType.bytes,
+    );
     return res.data;
   }
 }
