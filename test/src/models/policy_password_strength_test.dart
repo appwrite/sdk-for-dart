@@ -5,7 +5,7 @@ void main() {
   group('PolicyPasswordStrength', () {
     test('model', () {
       final model = PolicyPasswordStrength(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         min: 12,
         uppercase: true,
         lowercase: true,
@@ -16,7 +16,7 @@ void main() {
       final map = model.toMap();
       final result = PolicyPasswordStrength.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.min, 12);
       expect(result.uppercase, true);
       expect(result.lowercase, true);

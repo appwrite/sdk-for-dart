@@ -48,8 +48,9 @@ class Block implements Model {
     required this.organizationId,
     required this.billingPlan,
   });
-
-  factory Block.fromMap(Map<String, dynamic> map) {
+  factory Block.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Block(
       $createdAt: map['\$createdAt'].toString(),
       resourceType: map['resourceType'].toString(),

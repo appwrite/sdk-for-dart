@@ -20,8 +20,9 @@ class InsightCTA implements Model {
     required this.method,
     required this.params,
   });
-
-  factory InsightCTA.fromMap(Map<String, dynamic> map) {
+  factory InsightCTA.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return InsightCTA(
       label: map['label'].toString(),
       service: map['service'].toString(),

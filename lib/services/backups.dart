@@ -6,7 +6,9 @@ class Backups extends Service {
   Backups(super.client);
 
   /// List all archives for a project.
-  Future<models.BackupArchiveList> listArchives({List<String>? queries}) async {
+  Future<models.BackupArchiveList> listArchives({
+    List<String>? queries,
+  }) async {
     final String apiPath = '/backups/archives';
 
     final Map<String, dynamic> apiParams = {
@@ -18,16 +20,21 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupArchiveList.fromMap(res.data);
   }
 
   /// Create a new archive asynchronously for a project.
-  Future<models.BackupArchive> createArchive(
-      {required List<enums.BackupServices> services,
-      String? resourceId}) async {
+  Future<models.BackupArchive> createArchive({
+    required List<enums.BackupServices> services,
+    String? resourceId,
+  }) async {
     final String apiPath = '/backups/archives';
 
     final Map<String, dynamic> apiParams = {
@@ -41,16 +48,24 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupArchive.fromMap(res.data);
   }
 
   /// Get a backup archive using it's ID.
-  Future<models.BackupArchive> getArchive({required String archiveId}) async {
-    final String apiPath =
-        '/backups/archives/{archiveId}'.replaceAll('{archiveId}', archiveId);
+  Future<models.BackupArchive> getArchive({
+    required String archiveId,
+  }) async {
+    final String apiPath = '/backups/archives/{archiveId}'.replaceAll(
+      '{archiveId}',
+      archiveId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -59,16 +74,24 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupArchive.fromMap(res.data);
   }
 
   /// Delete an existing archive for a project.
-  Future deleteArchive({required String archiveId}) async {
-    final String apiPath =
-        '/backups/archives/{archiveId}'.replaceAll('{archiveId}', archiveId);
+  Future deleteArchive({
+    required String archiveId,
+  }) async {
+    final String apiPath = '/backups/archives/{archiveId}'.replaceAll(
+      '{archiveId}',
+      archiveId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -78,14 +101,20 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// List all policies for a project.
-  Future<models.BackupPolicyList> listPolicies({List<String>? queries}) async {
+  Future<models.BackupPolicyList> listPolicies({
+    List<String>? queries,
+  }) async {
     final String apiPath = '/backups/policies';
 
     final Map<String, dynamic> apiParams = {
@@ -97,21 +126,26 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupPolicyList.fromMap(res.data);
   }
 
   /// Create a new backup policy.
-  Future<models.BackupPolicy> createPolicy(
-      {required String policyId,
-      required List<enums.BackupServices> services,
-      required int retention,
-      required String schedule,
-      String? name,
-      String? resourceId,
-      bool? enabled}) async {
+  Future<models.BackupPolicy> createPolicy({
+    required String policyId,
+    required List<enums.BackupServices> services,
+    required int retention,
+    required String schedule,
+    String? name,
+    String? resourceId,
+    bool? enabled,
+  }) async {
     final String apiPath = '/backups/policies';
 
     final Map<String, dynamic> apiParams = {
@@ -130,16 +164,24 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupPolicy.fromMap(res.data);
   }
 
   /// Get a backup policy using it's ID.
-  Future<models.BackupPolicy> getPolicy({required String policyId}) async {
-    final String apiPath =
-        '/backups/policies/{policyId}'.replaceAll('{policyId}', policyId);
+  Future<models.BackupPolicy> getPolicy({
+    required String policyId,
+  }) async {
+    final String apiPath = '/backups/policies/{policyId}'.replaceAll(
+      '{policyId}',
+      policyId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -148,21 +190,28 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupPolicy.fromMap(res.data);
   }
 
   /// Update an existing policy using it's ID.
-  Future<models.BackupPolicy> updatePolicy(
-      {required String policyId,
-      String? name,
-      int? retention,
-      String? schedule,
-      bool? enabled}) async {
-    final String apiPath =
-        '/backups/policies/{policyId}'.replaceAll('{policyId}', policyId);
+  Future<models.BackupPolicy> updatePolicy({
+    required String policyId,
+    String? name,
+    int? retention,
+    String? schedule,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/backups/policies/{policyId}'.replaceAll(
+      '{policyId}',
+      policyId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
@@ -177,16 +226,24 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.patch,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupPolicy.fromMap(res.data);
   }
 
   /// Delete a policy using it's ID.
-  Future deletePolicy({required String policyId}) async {
-    final String apiPath =
-        '/backups/policies/{policyId}'.replaceAll('{policyId}', policyId);
+  Future deletePolicy({
+    required String policyId,
+  }) async {
+    final String apiPath = '/backups/policies/{policyId}'.replaceAll(
+      '{policyId}',
+      policyId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -196,8 +253,12 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
@@ -233,12 +294,12 @@ class Backups extends Service {
   /// the source keeps serving its own data until the restored data is in place
   /// and any failure leaves it untouched. A serverless source has no dedicated
   /// backing to clone and restores onto the archived database instead.
-  ///
-  Future<models.BackupRestoration> createRestoration(
-      {required String archiveId,
-      required List<enums.BackupServices> services,
-      String? newResourceId,
-      String? newResourceName}) async {
+  Future<models.BackupRestoration> createRestoration({
+    required String archiveId,
+    required List<enums.BackupServices> services,
+    String? newResourceId,
+    String? newResourceName,
+  }) async {
     final String apiPath = '/backups/restoration';
 
     final Map<String, dynamic> apiParams = {
@@ -254,15 +315,20 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupRestoration.fromMap(res.data);
   }
 
   /// List all backup restorations for a project.
-  Future<models.BackupRestorationList> listRestorations(
-      {List<String>? queries}) async {
+  Future<models.BackupRestorationList> listRestorations({
+    List<String>? queries,
+  }) async {
     final String apiPath = '/backups/restorations';
 
     final Map<String, dynamic> apiParams = {
@@ -274,17 +340,24 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupRestorationList.fromMap(res.data);
   }
 
   /// Get the current status of a backup restoration.
-  Future<models.BackupRestoration> getRestoration(
-      {required String restorationId}) async {
-    final String apiPath = '/backups/restorations/{restorationId}'
-        .replaceAll('{restorationId}', restorationId);
+  Future<models.BackupRestoration> getRestoration({
+    required String restorationId,
+  }) async {
+    final String apiPath = '/backups/restorations/{restorationId}'.replaceAll(
+      '{restorationId}',
+      restorationId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -293,8 +366,12 @@ class Backups extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.BackupRestoration.fromMap(res.data);
   }

@@ -12,8 +12,9 @@ class OAuth2ProviderList implements Model {
     required this.total,
     required this.providers,
   });
-
-  factory OAuth2ProviderList.fromMap(Map<String, dynamic> map) {
+  factory OAuth2ProviderList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2ProviderList(
       total: map['total'],
       providers: List.from(map['providers'] ?? []),

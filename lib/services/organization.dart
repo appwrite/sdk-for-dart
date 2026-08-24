@@ -15,14 +15,20 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Organization.fromMap(res.data);
   }
 
   /// Update the current organization's name.
-  Future<models.Organization> update({required String name}) async {
+  Future<models.Organization> update({
+    required String name,
+  }) async {
     final String apiPath = '/organization';
 
     final Map<String, dynamic> apiParams = {
@@ -35,8 +41,12 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Organization.fromMap(res.data);
   }
@@ -53,16 +63,22 @@ class Organization extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// List app installations on the organization. Any organization member can
   /// read installations.
-  Future<models.AppInstallationList> listInstallations(
-      {List<String>? queries, bool? total}) async {
+  Future<models.AppInstallationList> listInstallations({
+    List<String>? queries,
+    bool? total,
+  }) async {
     final String apiPath = '/organization/installations';
 
     final Map<String, dynamic> apiParams = {
@@ -75,8 +91,12 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppInstallationList.fromMap(res.data);
   }
@@ -84,8 +104,10 @@ class Organization extends Service {
   /// Install an app on the organization. Only organization members with the
   /// owner role can install apps. The installation is granted the scopes the app
   /// currently requests.
-  Future<models.AppInstallation> createInstallation(
-      {required String appId, String? authorizationDetails}) async {
+  Future<models.AppInstallation> createInstallation({
+    required String appId,
+    String? authorizationDetails,
+  }) async {
     final String apiPath = '/organization/installations';
 
     final Map<String, dynamic> apiParams = {
@@ -100,18 +122,26 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppInstallation.fromMap(res.data);
   }
 
   /// Get an app installation on the organization by its unique ID. Any
   /// organization member can read installations.
-  Future<models.AppInstallation> getInstallation(
-      {required String installationId}) async {
-    final String apiPath = '/organization/installations/{installationId}'
-        .replaceAll('{installationId}', installationId);
+  Future<models.AppInstallation> getInstallation({
+    required String installationId,
+  }) async {
+    final String apiPath =
+        '/organization/installations/{installationId}'.replaceAll(
+      '{installationId}',
+      installationId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -120,8 +150,12 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppInstallation.fromMap(res.data);
   }
@@ -130,10 +164,15 @@ class Organization extends Service {
   /// with the owner role can update installations. The installation's granted
   /// scopes are refreshed to the scopes the app currently requests; previously
   /// issued installation access tokens are revoked.
-  Future<models.AppInstallation> updateInstallation(
-      {required String installationId, String? authorizationDetails}) async {
-    final String apiPath = '/organization/installations/{installationId}'
-        .replaceAll('{installationId}', installationId);
+  Future<models.AppInstallation> updateInstallation({
+    required String installationId,
+    String? authorizationDetails,
+  }) async {
+    final String apiPath =
+        '/organization/installations/{installationId}'.replaceAll(
+      '{installationId}',
+      installationId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (authorizationDetails != null)
@@ -146,8 +185,12 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.AppInstallation.fromMap(res.data);
   }
@@ -155,9 +198,14 @@ class Organization extends Service {
   /// Uninstall an app from the organization by its installation ID. Only
   /// organization members with the owner role can remove installations.
   /// Previously issued installation access tokens are revoked.
-  Future deleteInstallation({required String installationId}) async {
-    final String apiPath = '/organization/installations/{installationId}'
-        .replaceAll('{installationId}', installationId);
+  Future deleteInstallation({
+    required String installationId,
+  }) async {
+    final String apiPath =
+        '/organization/installations/{installationId}'.replaceAll(
+      '{installationId}',
+      installationId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -167,14 +215,21 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Get a list of all API keys from the current organization.
-  Future<models.KeyList> listKeys({List<String>? queries, bool? total}) async {
+  Future<models.KeyList> listKeys({
+    List<String>? queries,
+    bool? total,
+  }) async {
     final String apiPath = '/organization/keys';
 
     final Map<String, dynamic> apiParams = {
@@ -187,18 +242,23 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.KeyList.fromMap(res.data);
   }
 
   /// Create a new organization API key.
-  Future<models.Key> createKey(
-      {required String keyId,
-      required String name,
-      required List<enums.OrganizationKeyScopes> scopes,
-      String? expire}) async {
+  Future<models.Key> createKey({
+    required String keyId,
+    required String name,
+    required List<enums.OrganizationKeyScopes> scopes,
+    String? expire,
+  }) async {
     final String apiPath = '/organization/keys';
 
     final Map<String, dynamic> apiParams = {
@@ -214,17 +274,25 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Key.fromMap(res.data);
   }
 
   /// Get a key by its unique ID. This endpoint returns details about a specific
   /// API key in your organization including its scopes.
-  Future<models.Key> getKey({required String keyId}) async {
-    final String apiPath =
-        '/organization/keys/{keyId}'.replaceAll('{keyId}', keyId);
+  Future<models.Key> getKey({
+    required String keyId,
+  }) async {
+    final String apiPath = '/organization/keys/{keyId}'.replaceAll(
+      '{keyId}',
+      keyId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -233,21 +301,28 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Key.fromMap(res.data);
   }
 
   /// Update a key by its unique ID. Use this endpoint to update the name,
   /// scopes, or expiration time of an API key.
-  Future<models.Key> updateKey(
-      {required String keyId,
-      required String name,
-      required List<enums.OrganizationKeyScopes> scopes,
-      String? expire}) async {
-    final String apiPath =
-        '/organization/keys/{keyId}'.replaceAll('{keyId}', keyId);
+  Future<models.Key> updateKey({
+    required String keyId,
+    required String name,
+    required List<enums.OrganizationKeyScopes> scopes,
+    String? expire,
+  }) async {
+    final String apiPath = '/organization/keys/{keyId}'.replaceAll(
+      '{keyId}',
+      keyId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'name': name,
@@ -261,17 +336,25 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Key.fromMap(res.data);
   }
 
   /// Delete a key by its unique ID. Once deleted, the key can no longer be used
   /// to authenticate API calls.
-  Future deleteKey({required String keyId}) async {
-    final String apiPath =
-        '/organization/keys/{keyId}'.replaceAll('{keyId}', keyId);
+  Future deleteKey({
+    required String keyId,
+  }) async {
+    final String apiPath = '/organization/keys/{keyId}'.replaceAll(
+      '{keyId}',
+      keyId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -280,15 +363,22 @@ class Organization extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Get a list of all memberships from the current organization.
-  Future<models.MembershipList> listMemberships(
-      {List<String>? queries, String? search, bool? total}) async {
+  Future<models.MembershipList> listMemberships({
+    List<String>? queries,
+    String? search,
+    bool? total,
+  }) async {
     final String apiPath = '/organization/memberships';
 
     final Map<String, dynamic> apiParams = {
@@ -302,8 +392,12 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.MembershipList.fromMap(res.data);
   }
@@ -311,13 +405,14 @@ class Organization extends Service {
   /// Invite a new member to join the current organization. An email with a link
   /// to join the organization will be sent to the new member's email address. If
   /// member doesn't exist in the project it will be automatically created.
-  Future<models.Membership> createMembership(
-      {required List<String> roles,
-      String? email,
-      String? userId,
-      String? phone,
-      String? url,
-      String? name}) async {
+  Future<models.Membership> createMembership({
+    required List<String> roles,
+    String? email,
+    String? userId,
+    String? phone,
+    String? url,
+    String? name,
+  }) async {
     final String apiPath = '/organization/memberships';
 
     final Map<String, dynamic> apiParams = {
@@ -335,17 +430,25 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Membership.fromMap(res.data);
   }
 
   /// Get a membership from the current organization by its unique ID.
-  Future<models.Membership> getMembership(
-      {required String membershipId}) async {
-    final String apiPath = '/organization/memberships/{membershipId}'
-        .replaceAll('{membershipId}', membershipId);
+  Future<models.Membership> getMembership({
+    required String membershipId,
+  }) async {
+    final String apiPath =
+        '/organization/memberships/{membershipId}'.replaceAll(
+      '{membershipId}',
+      membershipId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -354,17 +457,26 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Membership.fromMap(res.data);
   }
 
   /// Modify the roles of a member in the current organization.
-  Future<models.Membership> updateMembership(
-      {required String membershipId, required List<String> roles}) async {
-    final String apiPath = '/organization/memberships/{membershipId}'
-        .replaceAll('{membershipId}', membershipId);
+  Future<models.Membership> updateMembership({
+    required String membershipId,
+    required List<String> roles,
+  }) async {
+    final String apiPath =
+        '/organization/memberships/{membershipId}'.replaceAll(
+      '{membershipId}',
+      membershipId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'roles': roles,
@@ -376,8 +488,12 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.patch,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Membership.fromMap(res.data);
   }
@@ -385,9 +501,14 @@ class Organization extends Service {
   /// Remove a member from the current organization. The member is removed
   /// whether they accepted the invitation or not; a pending invitation is
   /// revoked.
-  Future deleteMembership({required String membershipId}) async {
-    final String apiPath = '/organization/memberships/{membershipId}'
-        .replaceAll('{membershipId}', membershipId);
+  Future deleteMembership({
+    required String membershipId,
+  }) async {
+    final String apiPath =
+        '/organization/memberships/{membershipId}'.replaceAll(
+      '{membershipId}',
+      membershipId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -396,16 +517,23 @@ class Organization extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Get a list of all projects. You can use the query params to filter your
   /// results.
-  Future<models.ProjectList> listProjects(
-      {List<String>? queries, String? search, bool? total}) async {
+  Future<models.ProjectList> listProjects({
+    List<String>? queries,
+    String? search,
+    bool? total,
+  }) async {
     final String apiPath = '/organization/projects';
 
     final Map<String, dynamic> apiParams = {
@@ -419,23 +547,28 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.ProjectList.fromMap(res.data);
   }
 
   /// Create a new project.
-  Future<models.Project> createProject(
-      {required String projectId,
-      required String name,
-      enums.Region? region}) async {
+  Future<models.Project> createProject({
+    required String projectId,
+    required String name,
+    enums.Region? region,
+  }) async {
     final String apiPath = '/organization/projects';
 
     final Map<String, dynamic> apiParams = {
       'projectId': projectId,
       'name': name,
-      if (region != null) 'region': region.value,
+      if (region != null) 'region': region?.value,
     };
 
     final Map<String, String> apiHeaders = {
@@ -444,16 +577,24 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Project.fromMap(res.data);
   }
 
   /// Get a project.
-  Future<models.Project> getProject({required String projectId}) async {
-    final String apiPath = '/organization/projects/{projectId}'
-        .replaceAll('{projectId}', projectId);
+  Future<models.Project> getProject({
+    required String projectId,
+  }) async {
+    final String apiPath = '/organization/projects/{projectId}'.replaceAll(
+      '{projectId}',
+      projectId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -461,17 +602,25 @@ class Organization extends Service {
       'X-Appwrite-Project': client.config['project'] ?? '',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Project.fromMap(res.data);
   }
 
   /// Update a project by its unique ID.
-  Future<models.Project> updateProject(
-      {required String projectId, required String name}) async {
-    final String apiPath = '/organization/projects/{projectId}'
-        .replaceAll('{projectId}', projectId);
+  Future<models.Project> updateProject({
+    required String projectId,
+    required String name,
+  }) async {
+    final String apiPath = '/organization/projects/{projectId}'.replaceAll(
+      '{projectId}',
+      projectId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'name': name,
@@ -483,16 +632,24 @@ class Organization extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.patch,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Project.fromMap(res.data);
   }
 
   /// Delete a project by its unique ID.
-  Future deleteProject({required String projectId}) async {
-    final String apiPath = '/organization/projects/{projectId}'
-        .replaceAll('{projectId}', projectId);
+  Future deleteProject({
+    required String projectId,
+  }) async {
+    final String apiPath = '/organization/projects/{projectId}'.replaceAll(
+      '{projectId}',
+      projectId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -501,8 +658,12 @@ class Organization extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }

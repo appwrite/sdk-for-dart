@@ -20,8 +20,9 @@ class OAuth2Salesforce implements Model {
     required this.customerKey,
     required this.customerSecret,
   });
-
-  factory OAuth2Salesforce.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Salesforce.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Salesforce(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

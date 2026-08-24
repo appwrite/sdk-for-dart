@@ -20,8 +20,9 @@ class OAuth2Zoho implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Zoho.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Zoho.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Zoho(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

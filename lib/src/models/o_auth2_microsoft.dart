@@ -24,8 +24,9 @@ class OAuth2Microsoft implements Model {
     required this.applicationSecret,
     required this.tenant,
   });
-
-  factory OAuth2Microsoft.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Microsoft.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Microsoft(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

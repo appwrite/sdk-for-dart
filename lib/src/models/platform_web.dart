@@ -28,14 +28,17 @@ class PlatformWeb implements Model {
     required this.type,
     required this.hostname,
   });
-
-  factory PlatformWeb.fromMap(Map<String, dynamic> map) {
+  factory PlatformWeb.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PlatformWeb(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
-      type: enums.PlatformType.values.firstWhere((e) => e.value == map['type']),
+      type: enums.PlatformType.values.firstWhere(
+        (e) => e.value == map['type'],
+      ),
       hostname: map['hostname'].toString(),
     );
   }

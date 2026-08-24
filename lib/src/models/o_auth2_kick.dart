@@ -20,8 +20,9 @@ class OAuth2Kick implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Kick.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Kick.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Kick(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

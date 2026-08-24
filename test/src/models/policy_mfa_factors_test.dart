@@ -5,7 +5,7 @@ void main() {
   group('PolicyMfaFactors', () {
     test('model', () {
       final model = PolicyMfaFactors(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         totp: true,
         email: true,
         phone: true,
@@ -15,7 +15,7 @@ void main() {
       final map = model.toMap();
       final result = PolicyMfaFactors.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.totp, true);
       expect(result.email, true);
       expect(result.phone, true);

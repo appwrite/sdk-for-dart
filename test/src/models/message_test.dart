@@ -6,10 +6,10 @@ void main() {
   group('Message', () {
     test('model', () {
       final model = Message(
-        $id: '5e5ea5c16897e',
-        $createdAt: '2020-10-15T06:38:00.000+00:00',
-        $updatedAt: '2020-10-15T06:38:00.000+00:00',
-        providerType: 'email',
+        $id: "5e5ea5c16897e",
+        $createdAt: "2020-10-15T06:38:00.000+00:00",
+        $updatedAt: "2020-10-15T06:38:00.000+00:00",
+        providerType: "email",
         topics: [],
         users: [],
         targets: [],
@@ -21,10 +21,10 @@ void main() {
       final map = model.toMap();
       final result = Message.fromMap(map);
 
-      expect(result.$id, '5e5ea5c16897e');
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.providerType, 'email');
+      expect(result.$id, "5e5ea5c16897e");
+      expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.providerType, "email");
       expect(result.topics, []);
       expect(result.users, []);
       expect(result.targets, []);

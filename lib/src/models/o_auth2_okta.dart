@@ -28,8 +28,9 @@ class OAuth2Okta implements Model {
     required this.domain,
     required this.authorizationServerId,
   });
-
-  factory OAuth2Okta.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Okta.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Okta(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

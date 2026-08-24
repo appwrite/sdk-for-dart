@@ -12,12 +12,14 @@ class DatabaseList implements Model {
     required this.total,
     required this.databases,
   });
-
-  factory DatabaseList.fromMap(Map<String, dynamic> map) {
+  factory DatabaseList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DatabaseList(
       total: map['total'],
-      databases:
-          List<Database>.from(map['databases'].map((p) => Database.fromMap(p))),
+      databases: List<Database>.from(
+        map['databases'].map((p) => Database.fromMap(p)),
+      ),
     );
   }
 

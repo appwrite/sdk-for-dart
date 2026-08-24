@@ -36,8 +36,9 @@ class BillingLimits implements Model {
     this.authPhone,
     this.budgetLimit,
   });
-
-  factory BillingLimits.fromMap(Map<String, dynamic> map) {
+  factory BillingLimits.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BillingLimits(
       bandwidth: map['bandwidth'],
       storage: map['storage'],

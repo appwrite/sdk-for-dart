@@ -36,8 +36,9 @@ class Runtime implements Model {
     required this.logo,
     required this.supports,
   });
-
-  factory Runtime.fromMap(Map<String, dynamic> map) {
+  factory Runtime.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Runtime(
       $id: map['\$id'].toString(),
       key: map['key'].toString(),

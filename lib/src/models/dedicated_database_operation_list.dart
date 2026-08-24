@@ -12,12 +12,14 @@ class DedicatedDatabaseOperationList implements Model {
     required this.total,
     required this.operations,
   });
-
-  factory DedicatedDatabaseOperationList.fromMap(Map<String, dynamic> map) {
+  factory DedicatedDatabaseOperationList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DedicatedDatabaseOperationList(
       total: map['total'],
       operations: List<DedicatedDatabaseOperation>.from(
-          map['operations'].map((p) => DedicatedDatabaseOperation.fromMap(p))),
+        map['operations'].map((p) => DedicatedDatabaseOperation.fromMap(p)),
+      ),
     );
   }
 

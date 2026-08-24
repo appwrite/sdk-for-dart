@@ -20,8 +20,9 @@ class OAuth2Disqus implements Model {
     required this.publicKey,
     required this.secretKey,
   });
-
-  factory OAuth2Disqus.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Disqus.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Disqus(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

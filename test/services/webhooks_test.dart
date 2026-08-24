@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -60,9 +71,9 @@ void main() {
         'webhooks': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await webhooks.list();
       expect(response, isA<models.WebhookList>());
@@ -70,29 +81,29 @@ void main() {
 
     test('test method create()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Webhook',
-        'url': 'https://example.com/webhook',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Webhook",
+        'url': "https://example.com/webhook",
         'events': [],
         'tls': true,
-        'authUsername': 'username',
-        'authPassword': 'webhook-password',
-        'secret': 'ad3d581ca230e2b7059c545e5a',
+        'authUsername': "username",
+        'authPassword': "webhook-password",
+        'secret': "ad3d581ca230e2b7059c545e5a",
         'enabled': true,
-        'logs': 'Failed to connect to remote server.',
+        'logs': "Failed to connect to remote server.",
         'attempts': 10,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await webhooks.create(
-        webhookId: '<WEBHOOK_ID>',
+        webhookId: "<WEBHOOK_ID>",
         url: '',
-        name: '<NAME>',
+        name: "<NAME>",
         events: [],
       );
       expect(response, isA<models.Webhook>());
@@ -100,55 +111,55 @@ void main() {
 
     test('test method get()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Webhook',
-        'url': 'https://example.com/webhook',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Webhook",
+        'url': "https://example.com/webhook",
         'events': [],
         'tls': true,
-        'authUsername': 'username',
-        'authPassword': 'webhook-password',
-        'secret': 'ad3d581ca230e2b7059c545e5a',
+        'authUsername': "username",
+        'authPassword': "webhook-password",
+        'secret': "ad3d581ca230e2b7059c545e5a",
         'enabled': true,
-        'logs': 'Failed to connect to remote server.',
+        'logs': "Failed to connect to remote server.",
         'attempts': 10,
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await webhooks.get(
-        webhookId: '<WEBHOOK_ID>',
+        webhookId: "<WEBHOOK_ID>",
       );
       expect(response, isA<models.Webhook>());
     });
 
     test('test method update()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Webhook',
-        'url': 'https://example.com/webhook',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Webhook",
+        'url': "https://example.com/webhook",
         'events': [],
         'tls': true,
-        'authUsername': 'username',
-        'authPassword': 'webhook-password',
-        'secret': 'ad3d581ca230e2b7059c545e5a',
+        'authUsername': "username",
+        'authPassword': "webhook-password",
+        'secret': "ad3d581ca230e2b7059c545e5a",
         'enabled': true,
-        'logs': 'Failed to connect to remote server.',
+        'logs': "Failed to connect to remote server.",
         'attempts': 10,
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await webhooks.update(
-        webhookId: '<WEBHOOK_ID>',
-        name: '<NAME>',
+        webhookId: "<WEBHOOK_ID>",
+        name: "<NAME>",
         url: '',
         events: [],
       );
@@ -158,38 +169,38 @@ void main() {
     test('test method delete()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await webhooks.delete(
-        webhookId: '<WEBHOOK_ID>',
+        webhookId: "<WEBHOOK_ID>",
       );
     });
 
     test('test method updateSecret()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Webhook',
-        'url': 'https://example.com/webhook',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Webhook",
+        'url': "https://example.com/webhook",
         'events': [],
         'tls': true,
-        'authUsername': 'username',
-        'authPassword': 'webhook-password',
-        'secret': 'ad3d581ca230e2b7059c545e5a',
+        'authUsername': "username",
+        'authPassword': "webhook-password",
+        'secret': "ad3d581ca230e2b7059c545e5a",
         'enabled': true,
-        'logs': 'Failed to connect to remote server.',
+        'logs': "Failed to connect to remote server.",
         'attempts': 10,
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await webhooks.updateSecret(
-        webhookId: '<WEBHOOK_ID>',
+        webhookId: "<WEBHOOK_ID>",
       );
       expect(response, isA<models.Webhook>());
     });

@@ -20,8 +20,9 @@ class OAuth2Bitly implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Bitly.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Bitly.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Bitly(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

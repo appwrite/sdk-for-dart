@@ -1,8 +1,8 @@
 part of '../../enums.dart';
 
 enum MessagePriority {
-  normal(value: 'normal'),
-  high(value: 'high');
+  normal(value: "normal"),
+  high(value: "high");
 
   const MessagePriority({required this.value});
 

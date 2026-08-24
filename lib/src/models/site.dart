@@ -50,6 +50,9 @@ class Site implements Model {
   /// Status of latest deployment. Possible values are &quot;waiting&quot;, &quot;processing&quot;, &quot;building&quot;, &quot;ready&quot;, and &quot;failed&quot;.
   final String latestDeploymentStatus;
 
+  /// Allowed permission scopes.
+  final List<String> scopes;
+
   /// Site variables.
   final List<Variable> vars;
 
@@ -121,6 +124,7 @@ class Site implements Model {
     required this.latestDeploymentId,
     required this.latestDeploymentCreatedAt,
     required this.latestDeploymentStatus,
+    required this.scopes,
     required this.vars,
     required this.timeout,
     required this.installCommand,
@@ -140,8 +144,9 @@ class Site implements Model {
     required this.adapter,
     required this.fallbackFile,
   });
-
-  factory Site.fromMap(Map<String, dynamic> map) {
+  factory Site.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Site(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -159,7 +164,10 @@ class Site implements Model {
       latestDeploymentId: map['latestDeploymentId'].toString(),
       latestDeploymentCreatedAt: map['latestDeploymentCreatedAt'].toString(),
       latestDeploymentStatus: map['latestDeploymentStatus'].toString(),
-      vars: List<Variable>.from(map['vars'].map((p) => Variable.fromMap(p))),
+      scopes: List.from(map['scopes'] ?? []),
+      vars: List<Variable>.from(
+        map['vars'].map((p) => Variable.fromMap(p)),
+      ),
       timeout: map['timeout'],
       installCommand: map['installCommand'].toString(),
       buildCommand: map['buildCommand'].toString(),
@@ -199,6 +207,7 @@ class Site implements Model {
       "latestDeploymentId": latestDeploymentId,
       "latestDeploymentCreatedAt": latestDeploymentCreatedAt,
       "latestDeploymentStatus": latestDeploymentStatus,
+      "scopes": scopes,
       "vars": vars.map((p) => p.toMap()).toList(),
       "timeout": timeout,
       "installCommand": installCommand,

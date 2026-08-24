@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -60,9 +71,9 @@ void main() {
         'reports': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.listReports();
       expect(response, isA<models.ReportList>());
@@ -70,25 +81,25 @@ void main() {
 
     test('test method getReport()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
-        'type': 'lighthouse',
-        'title': 'Lighthouse audit for https://appwrite.io/',
-        'summary': 'Performance score 78. 4 opportunities found.',
-        'targetType': 'urls',
-        'target': 'https://appwrite.io/',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
+        'type': "lighthouse",
+        'title': "Lighthouse audit for https://appwrite.io/",
+        'summary': "Performance score 78. 4 opportunities found.",
+        'targetType': "urls",
+        'target': "https://appwrite.io/",
         'categories': [],
         'insights': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.getReport(
-        reportId: '<REPORT_ID>',
+        reportId: "<REPORT_ID>",
       );
       expect(response, isA<models.Report>());
     });
@@ -96,12 +107,12 @@ void main() {
     test('test method deleteReport()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.deleteReport(
-        reportId: '<REPORT_ID>',
+        reportId: "<REPORT_ID>",
       );
     });
 
@@ -111,42 +122,42 @@ void main() {
         'insights': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.listInsights(
-        reportId: '<REPORT_ID>',
+        reportId: "<REPORT_ID>",
       );
       expect(response, isA<models.InsightList>());
     });
 
     test('test method getInsight()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'reportId': '5e5ea5c16897e',
-        'type': 'tablesDBIndex',
-        'severity': 'warning',
-        'status': 'active',
-        'resourceType': 'databases',
-        'resourceId': 'main',
-        'parentResourceType': 'tables',
-        'parentResourceId': 'orders',
-        'title': 'Missing index on collection orders',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'reportId': "5e5ea5c16897e",
+        'type': "tablesDBIndex",
+        'severity': "warning",
+        'status': "active",
+        'resourceType': "databases",
+        'resourceId': "main",
+        'parentResourceType': "tables",
+        'parentResourceId': "orders",
+        'title': "Missing index on collection orders",
         'summary':
-            'Queries against `orders.status` are scanning the full collection.',
+            "Queries against `orders.status` are scanning the full collection.",
         'ctas': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.getInsight(
-        reportId: '<REPORT_ID>',
-        insightId: '<INSIGHT_ID>',
+        reportId: "<REPORT_ID>",
+        insightId: "<INSIGHT_ID>",
       );
       expect(response, isA<models.Insight>());
     });

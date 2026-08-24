@@ -12,8 +12,9 @@ class PolicyDenyDisposableEmail implements Model {
     required this.$id,
     required this.enabled,
   });
-
-  factory PolicyDenyDisposableEmail.fromMap(Map<String, dynamic> map) {
+  factory PolicyDenyDisposableEmail.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicyDenyDisposableEmail(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

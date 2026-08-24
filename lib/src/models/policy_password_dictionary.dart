@@ -12,8 +12,9 @@ class PolicyPasswordDictionary implements Model {
     required this.$id,
     required this.enabled,
   });
-
-  factory PolicyPasswordDictionary.fromMap(Map<String, dynamic> map) {
+  factory PolicyPasswordDictionary.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicyPasswordDictionary(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

@@ -1,8 +1,8 @@
 part of '../../enums.dart';
 
 enum Adapter {
-  xstatic(value: 'static'),
-  ssr(value: 'ssr');
+  xstatic(value: "static"),
+  ssr(value: "ssr");
 
   const Adapter({required this.value});
 

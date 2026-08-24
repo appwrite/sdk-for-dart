@@ -5,14 +5,14 @@ void main() {
   group('PolicyUserLimit', () {
     test('model', () {
       final model = PolicyUserLimit(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         total: 100,
       );
 
       final map = model.toMap();
       final result = PolicyUserLimit.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.total, 100);
     });
   });

@@ -48,8 +48,9 @@ class BackupRestoration implements Model {
     required this.resources,
     required this.options,
   });
-
-  factory BackupRestoration.fromMap(Map<String, dynamic> map) {
+  factory BackupRestoration.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BackupRestoration(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

@@ -60,15 +60,18 @@ class DatabaseStatus implements Model {
     required this.replicas,
     required this.volumes,
   });
-
-  factory DatabaseStatus.fromMap(Map<String, dynamic> map) {
+  factory DatabaseStatus.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DatabaseStatus(
       health: map['health'].toString(),
       ready: map['ready'],
       engine: map['engine'].toString(),
       version: map['version'].toString(),
       uptime: map['uptime'],
-      connections: DatabaseStatusConnections.fromMap(map['connections']),
+      connections: DatabaseStatusConnections.fromMap(
+        map['connections'],
+      ),
       syncMode: map['syncMode'].toString(),
       effectiveSyncMode: map['effectiveSyncMode']?.toString(),
       syncDegraded: map['syncDegraded'],
@@ -76,9 +79,11 @@ class DatabaseStatus implements Model {
       syncStandbyCount: map['syncStandbyCount'],
       syncStateConfirmed: map['syncStateConfirmed'],
       replicas: List<DatabaseStatusReplica>.from(
-          map['replicas'].map((p) => DatabaseStatusReplica.fromMap(p))),
+        map['replicas'].map((p) => DatabaseStatusReplica.fromMap(p)),
+      ),
       volumes: List<DatabaseStatusVolume>.from(
-          map['volumes'].map((p) => DatabaseStatusVolume.fromMap(p))),
+        map['volumes'].map((p) => DatabaseStatusVolume.fromMap(p)),
+      ),
     );
   }
 

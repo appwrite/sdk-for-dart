@@ -12,8 +12,9 @@ class BillingPlanLimits implements Model {
     this.credits,
     this.dailyCredits,
   });
-
-  factory BillingPlanLimits.fromMap(Map<String, dynamic> map) {
+  factory BillingPlanLimits.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BillingPlanLimits(
       credits: map['credits'],
       dailyCredits: map['dailyCredits'],

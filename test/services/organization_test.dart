@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -56,19 +67,19 @@ void main() {
 
     test('test method get()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'VIP',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "VIP",
         'total': 7,
         'prefs': <String, dynamic>{},
         'budgetAlerts': [],
-        'billingPlan': 'tier-1',
-        'billingPlanId': 'tier-1',
+        'billingPlan': "tier-1",
+        'billingPlanId': "tier-1",
         'billingPlanDetails': <String, dynamic>{
-          '\$id': 'tier-0',
-          'name': 'Hobby',
-          'desc': 'Hobby plan',
+          '\$id': "tier-0",
+          'name': "Hobby",
+          'desc': "Hobby plan",
           'order': 0,
           'price': 25,
           'trial': 14,
@@ -104,68 +115,68 @@ void main() {
           'alertLimit': 80,
           'usage': <String, dynamic>{
             'bandwidth': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'executions': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'realtime': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'realtimeMessages': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'storage': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'users': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'GBHours': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'imageTransformations': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
           },
           'addons': <String, dynamic>{},
@@ -181,6 +192,7 @@ void main() {
           'supportsMockNumbers': true,
           'supportsOrganizationRoles': true,
           'supportsCredits': true,
+          'supportsDedicatedDatabases': true,
           'supportsDisposableEmailValidation': true,
           'supportsCanonicalEmailValidation': true,
           'supportsFreeEmailValidation': true,
@@ -195,25 +207,26 @@ void main() {
           'deploymentSize': 30,
           'buildSize': 2000,
           'databasesAllowEncrypt': true,
-          'group': 'pro',
+          'group': "pro",
+          'databaseComputeCredit': 10,
         },
-        'billingEmail': 'billing@org.example',
-        'billingStartDate': '2020-10-15T06:38:00.000+00:00',
-        'billingCurrentInvoiceDate': '2020-10-15T06:38:00.000+00:00',
-        'billingNextInvoiceDate': '2020-10-15T06:38:00.000+00:00',
+        'billingEmail': "billing@org.example",
+        'billingStartDate': "2020-10-15T06:38:00.000+00:00",
+        'billingCurrentInvoiceDate': "2020-10-15T06:38:00.000+00:00",
+        'billingNextInvoiceDate': "2020-10-15T06:38:00.000+00:00",
         'billingTrialDays': 14,
-        'billingAggregationId': 'adbc3de4rddfsd',
-        'billingInvoiceId': 'adbc3de4rddfsd',
-        'paymentMethodId': 'adbc3de4rddfsd',
-        'status': 'active',
+        'billingAggregationId': "adbc3de4rddfsd",
+        'billingInvoiceId': "adbc3de4rddfsd",
+        'paymentMethodId': "adbc3de4rddfsd",
+        'status': "active",
         'markedForDeletion': true,
-        'platform': 'imagine',
+        'platform': "imagine",
         'projects': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.get();
       expect(response, isA<models.Organization>());
@@ -221,19 +234,19 @@ void main() {
 
     test('test method update()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'VIP',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "VIP",
         'total': 7,
         'prefs': <String, dynamic>{},
         'budgetAlerts': [],
-        'billingPlan': 'tier-1',
-        'billingPlanId': 'tier-1',
+        'billingPlan': "tier-1",
+        'billingPlanId': "tier-1",
         'billingPlanDetails': <String, dynamic>{
-          '\$id': 'tier-0',
-          'name': 'Hobby',
-          'desc': 'Hobby plan',
+          '\$id': "tier-0",
+          'name': "Hobby",
+          'desc': "Hobby plan",
           'order': 0,
           'price': 25,
           'trial': 14,
@@ -269,68 +282,68 @@ void main() {
           'alertLimit': 80,
           'usage': <String, dynamic>{
             'bandwidth': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'executions': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'realtime': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'realtimeMessages': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'storage': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'users': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'GBHours': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
             'imageTransformations': <String, dynamic>{
-              'name': '',
-              'unit': 'GB',
-              'currency': 'USD',
+              'name': "",
+              'unit': "GB",
+              'currency': "USD",
               'price': 5,
               'value': 25,
-              'invoiceDesc': '',
+              'invoiceDesc': "",
             },
           },
           'addons': <String, dynamic>{},
@@ -346,6 +359,7 @@ void main() {
           'supportsMockNumbers': true,
           'supportsOrganizationRoles': true,
           'supportsCredits': true,
+          'supportsDedicatedDatabases': true,
           'supportsDisposableEmailValidation': true,
           'supportsCanonicalEmailValidation': true,
           'supportsFreeEmailValidation': true,
@@ -360,28 +374,29 @@ void main() {
           'deploymentSize': 30,
           'buildSize': 2000,
           'databasesAllowEncrypt': true,
-          'group': 'pro',
+          'group': "pro",
+          'databaseComputeCredit': 10,
         },
-        'billingEmail': 'billing@org.example',
-        'billingStartDate': '2020-10-15T06:38:00.000+00:00',
-        'billingCurrentInvoiceDate': '2020-10-15T06:38:00.000+00:00',
-        'billingNextInvoiceDate': '2020-10-15T06:38:00.000+00:00',
+        'billingEmail': "billing@org.example",
+        'billingStartDate': "2020-10-15T06:38:00.000+00:00",
+        'billingCurrentInvoiceDate': "2020-10-15T06:38:00.000+00:00",
+        'billingNextInvoiceDate': "2020-10-15T06:38:00.000+00:00",
         'billingTrialDays': 14,
-        'billingAggregationId': 'adbc3de4rddfsd',
-        'billingInvoiceId': 'adbc3de4rddfsd',
-        'paymentMethodId': 'adbc3de4rddfsd',
-        'status': 'active',
+        'billingAggregationId': "adbc3de4rddfsd",
+        'billingInvoiceId': "adbc3de4rddfsd",
+        'paymentMethodId': "adbc3de4rddfsd",
+        'status': "active",
         'markedForDeletion': true,
-        'platform': 'imagine',
+        'platform': "imagine",
         'projects': [],
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.update(
-        name: '<NAME>',
+        name: "<NAME>",
       );
       expect(response, isA<models.Organization>());
     });
@@ -389,9 +404,9 @@ void main() {
     test('test method delete()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.delete();
     });
@@ -402,9 +417,9 @@ void main() {
         'installations': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.listInstallations();
       expect(response, isA<models.AppInstallationList>());
@@ -412,69 +427,69 @@ void main() {
 
     test('test method createInstallation()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
-        'teamId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
+        'teamId': "5e5ea5c16897e",
         'scopes': [],
-        'authorizationDetails': <String, dynamic>{},
-        'createdById': '5e5ea5c16897e',
-        'createdByName': 'Walter White',
+        'authorizationDetails': [],
+        'createdById': "5e5ea5c16897e",
+        'createdByName': "Walter White",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createInstallation(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
       expect(response, isA<models.AppInstallation>());
     });
 
     test('test method getInstallation()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
-        'teamId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
+        'teamId': "5e5ea5c16897e",
         'scopes': [],
-        'authorizationDetails': <String, dynamic>{},
-        'createdById': '5e5ea5c16897e',
-        'createdByName': 'Walter White',
+        'authorizationDetails': [],
+        'createdById': "5e5ea5c16897e",
+        'createdByName': "Walter White",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.getInstallation(
-        installationId: '<INSTALLATION_ID>',
+        installationId: "<INSTALLATION_ID>",
       );
       expect(response, isA<models.AppInstallation>());
     });
 
     test('test method updateInstallation()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
-        'teamId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
+        'teamId': "5e5ea5c16897e",
         'scopes': [],
-        'authorizationDetails': <String, dynamic>{},
-        'createdById': '5e5ea5c16897e',
-        'createdByName': 'Walter White',
+        'authorizationDetails': [],
+        'createdById': "5e5ea5c16897e",
+        'createdByName': "Walter White",
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.updateInstallation(
-        installationId: '<INSTALLATION_ID>',
+        installationId: "<INSTALLATION_ID>",
       );
       expect(response, isA<models.AppInstallation>());
     });
@@ -482,12 +497,12 @@ void main() {
     test('test method deleteInstallation()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.deleteInstallation(
-        installationId: '<INSTALLATION_ID>',
+        installationId: "<INSTALLATION_ID>",
       );
     });
 
@@ -497,9 +512,9 @@ void main() {
         'keys': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.listKeys();
       expect(response, isA<models.KeyList>());
@@ -507,24 +522,24 @@ void main() {
 
     test('test method createKey()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My API Key',
-        'expire': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My API Key",
+        'expire': "2020-10-15T06:38:00.000+00:00",
         'scopes': [],
-        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
-        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
         'sdks': [],
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createKey(
-        keyId: '<KEY_ID>',
-        name: '<NAME>',
+        keyId: "<KEY_ID>",
+        name: "<NAME>",
         scopes: [enums.OrganizationKeyScopes.projectsRead],
       );
       expect(response, isA<models.Key>());
@@ -532,47 +547,47 @@ void main() {
 
     test('test method getKey()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My API Key',
-        'expire': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My API Key",
+        'expire': "2020-10-15T06:38:00.000+00:00",
         'scopes': [],
-        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
-        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
         'sdks': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.getKey(
-        keyId: '<KEY_ID>',
+        keyId: "<KEY_ID>",
       );
       expect(response, isA<models.Key>());
     });
 
     test('test method updateKey()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My API Key',
-        'expire': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My API Key",
+        'expire': "2020-10-15T06:38:00.000+00:00",
         'scopes': [],
-        'secret': '919c2d18fb5d4...a2ae413da83346ad2',
-        'accessedAt': '2020-10-15T06:38:00.000+00:00',
+        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
         'sdks': [],
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.updateKey(
-        keyId: '<KEY_ID>',
-        name: '<NAME>',
+        keyId: "<KEY_ID>",
+        name: "<NAME>",
         scopes: [enums.OrganizationKeyScopes.projectsRead],
       );
       expect(response, isA<models.Key>());
@@ -581,12 +596,12 @@ void main() {
     test('test method deleteKey()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.deleteKey(
-        keyId: '<KEY_ID>',
+        keyId: "<KEY_ID>",
       );
     });
 
@@ -596,9 +611,9 @@ void main() {
         'memberships': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.listMemberships();
       expect(response, isA<models.MembershipList>());
@@ -606,26 +621,26 @@ void main() {
 
     test('test method createMembership()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'userId': '5e5ea5c16897e',
-        'userName': 'John Doe',
-        'userEmail': 'john@appwrite.io',
-        'userPhone': '+1 555 555 5555',
-        'teamId': '5e5ea5c16897e',
-        'teamName': 'VIP',
-        'invited': '2020-10-15T06:38:00.000+00:00',
-        'joined': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c16897e",
+        'userName': "John Doe",
+        'userEmail': "john@appwrite.io",
+        'userPhone': "+1 555 555 5555",
+        'teamId': "5e5ea5c16897e",
+        'teamName': "VIP",
+        'invited': "2020-10-15T06:38:00.000+00:00",
+        'joined': "2020-10-15T06:38:00.000+00:00",
         'confirm': true,
         'mfa': true,
-        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'userAccessedAt': "2020-10-15T06:38:00.000+00:00",
         'roles': [],
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createMembership(
         roles: [],
@@ -635,58 +650,58 @@ void main() {
 
     test('test method getMembership()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'userId': '5e5ea5c16897e',
-        'userName': 'John Doe',
-        'userEmail': 'john@appwrite.io',
-        'userPhone': '+1 555 555 5555',
-        'teamId': '5e5ea5c16897e',
-        'teamName': 'VIP',
-        'invited': '2020-10-15T06:38:00.000+00:00',
-        'joined': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c16897e",
+        'userName': "John Doe",
+        'userEmail': "john@appwrite.io",
+        'userPhone': "+1 555 555 5555",
+        'teamId': "5e5ea5c16897e",
+        'teamName': "VIP",
+        'invited': "2020-10-15T06:38:00.000+00:00",
+        'joined': "2020-10-15T06:38:00.000+00:00",
         'confirm': true,
         'mfa': true,
-        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'userAccessedAt': "2020-10-15T06:38:00.000+00:00",
         'roles': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.getMembership(
-        membershipId: '<MEMBERSHIP_ID>',
+        membershipId: "<MEMBERSHIP_ID>",
       );
       expect(response, isA<models.Membership>());
     });
 
     test('test method updateMembership()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'userId': '5e5ea5c16897e',
-        'userName': 'John Doe',
-        'userEmail': 'john@appwrite.io',
-        'userPhone': '+1 555 555 5555',
-        'teamId': '5e5ea5c16897e',
-        'teamName': 'VIP',
-        'invited': '2020-10-15T06:38:00.000+00:00',
-        'joined': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c16897e",
+        'userName': "John Doe",
+        'userEmail': "john@appwrite.io",
+        'userPhone': "+1 555 555 5555",
+        'teamId': "5e5ea5c16897e",
+        'teamName': "VIP",
+        'invited': "2020-10-15T06:38:00.000+00:00",
+        'joined': "2020-10-15T06:38:00.000+00:00",
         'confirm': true,
         'mfa': true,
-        'userAccessedAt': '2020-10-15T06:38:00.000+00:00',
+        'userAccessedAt': "2020-10-15T06:38:00.000+00:00",
         'roles': [],
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.updateMembership(
-        membershipId: '<MEMBERSHIP_ID>',
+        membershipId: "<MEMBERSHIP_ID>",
         roles: [],
       );
       expect(response, isA<models.Membership>());
@@ -695,12 +710,12 @@ void main() {
     test('test method deleteMembership()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.deleteMembership(
-        membershipId: '<MEMBERSHIP_ID>',
+        membershipId: "<MEMBERSHIP_ID>",
       );
     });
 
@@ -710,9 +725,9 @@ void main() {
         'projects': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.listProjects();
       expect(response, isA<models.ProjectList>());
@@ -720,128 +735,125 @@ void main() {
 
     test('test method createProject()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'region': 'fra',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
         'devKeys': [],
         'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
         'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': 'smtp-password',
-        'smtpSecure': 'tls',
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
         'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
         'labels': [],
-        'status': 'active',
+        'status': "active",
         'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'wafEnabled': true,
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createProject(
         projectId: '',
-        name: '<NAME>',
+        name: "<NAME>",
       );
       expect(response, isA<models.Project>());
     });
 
     test('test method getProject()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'region': 'fra',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
         'devKeys': [],
         'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
         'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': 'smtp-password',
-        'smtpSecure': 'tls',
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
         'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
         'labels': [],
-        'status': 'active',
+        'status': "active",
         'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'wafEnabled': true,
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.getProject(
-        projectId: '<PROJECT_ID>',
+        projectId: "<PROJECT_ID>",
       );
       expect(response, isA<models.Project>());
     });
 
     test('test method updateProject()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'New Project',
-        'teamId': '1592981250',
-        'region': 'fra',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
         'devKeys': [],
         'smtpEnabled': true,
-        'smtpSenderName': 'John Appwrite',
-        'smtpSenderEmail': 'john@appwrite.io',
-        'smtpReplyToName': 'Support Team',
-        'smtpReplyToEmail': 'support@appwrite.io',
-        'smtpHost': 'mail.appwrite.io',
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
         'smtpPort': 25,
-        'smtpUsername': 'emailuser',
-        'smtpPassword': 'smtp-password',
-        'smtpSecure': 'tls',
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
         'pingCount': 1,
-        'pingedAt': '2020-10-15T06:38:00.000+00:00',
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
         'labels': [],
-        'status': 'active',
+        'status': "active",
         'onboarding': <String, dynamic>{},
         'authMethods': [],
         'services': [],
         'protocols': [],
         'blocks': [],
-        'consoleAccessedAt': '2020-10-15T06:38:00.000+00:00',
-        'wafEnabled': true,
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.updateProject(
-        projectId: '<PROJECT_ID>',
-        name: '<NAME>',
+        projectId: "<PROJECT_ID>",
+        name: "<NAME>",
       );
       expect(response, isA<models.Project>());
     });
@@ -849,12 +861,12 @@ void main() {
     test('test method deleteProject()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.deleteProject(
-        projectId: '<PROJECT_ID>',
+        projectId: "<PROJECT_ID>",
       );
     });
   });

@@ -20,8 +20,9 @@ class OAuth2Yandex implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Yandex.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Yandex.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Yandex(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

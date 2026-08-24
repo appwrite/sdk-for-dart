@@ -12,11 +12,14 @@ class UserList implements Model {
     required this.total,
     required this.users,
   });
-
-  factory UserList.fromMap(Map<String, dynamic> map) {
+  factory UserList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return UserList(
       total: map['total'],
-      users: List<User>.from(map['users'].map((p) => User.fromMap(p))),
+      users: List<User>.from(
+        map['users'].map((p) => User.fromMap(p)),
+      ),
     );
   }
 

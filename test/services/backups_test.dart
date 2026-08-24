@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -60,9 +71,9 @@ void main() {
         'archives': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.listArchives();
       expect(response, isA<models.BackupArchiveList>());
@@ -70,21 +81,21 @@ void main() {
 
     test('test method createArchive()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'policyId': 'did8jx6ws45jana098ab7',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'policyId': "did8jx6ws45jana098ab7",
         'size': 100000,
-        'status': 'completed',
-        'startedAt': '2020-10-15T06:38:00.000+00:00',
-        'migrationId': 'did8jx6ws45jana098ab7',
+        'status': "completed",
+        'startedAt': "2020-10-15T06:38:00.000+00:00",
+        'migrationId': "did8jx6ws45jana098ab7",
         'services': [],
         'resources': [],
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.createArchive(
         services: [enums.BackupServices.databases],
@@ -94,24 +105,24 @@ void main() {
 
     test('test method getArchive()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'policyId': 'did8jx6ws45jana098ab7',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'policyId': "did8jx6ws45jana098ab7",
         'size': 100000,
-        'status': 'completed',
-        'startedAt': '2020-10-15T06:38:00.000+00:00',
-        'migrationId': 'did8jx6ws45jana098ab7',
+        'status': "completed",
+        'startedAt': "2020-10-15T06:38:00.000+00:00",
+        'migrationId': "did8jx6ws45jana098ab7",
         'services': [],
         'resources': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.getArchive(
-        archiveId: '<ARCHIVE_ID>',
+        archiveId: "<ARCHIVE_ID>",
       );
       expect(response, isA<models.BackupArchive>());
     });
@@ -119,12 +130,12 @@ void main() {
     test('test method deleteArchive()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.deleteArchive(
-        archiveId: '<ARCHIVE_ID>',
+        archiveId: "<ARCHIVE_ID>",
       );
     });
 
@@ -134,9 +145,9 @@ void main() {
         'policies': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.listPolicies();
       expect(response, isA<models.BackupPolicyList>());
@@ -144,24 +155,24 @@ void main() {
 
     test('test method createPolicy()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        'name': 'Hourly backups',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        'name': "Hourly backups",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'services': [],
         'resources': [],
         'retention': 7,
-        'schedule': '0 * * * *',
-        'type': 'full',
+        'schedule': "0 * * * *",
+        'type': "full",
         'enabled': true,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.createPolicy(
-        policyId: '<POLICY_ID>',
+        policyId: "<POLICY_ID>",
         services: [enums.BackupServices.databases],
         retention: 1,
         schedule: '',
@@ -171,48 +182,48 @@ void main() {
 
     test('test method getPolicy()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        'name': 'Hourly backups',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        'name': "Hourly backups",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'services': [],
         'resources': [],
         'retention': 7,
-        'schedule': '0 * * * *',
-        'type': 'full',
+        'schedule': "0 * * * *",
+        'type': "full",
         'enabled': true,
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.getPolicy(
-        policyId: '<POLICY_ID>',
+        policyId: "<POLICY_ID>",
       );
       expect(response, isA<models.BackupPolicy>());
     });
 
     test('test method updatePolicy()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        'name': 'Hourly backups',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        'name': "Hourly backups",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'services': [],
         'resources': [],
         'retention': 7,
-        'schedule': '0 * * * *',
-        'type': 'full',
+        'schedule': "0 * * * *",
+        'type': "full",
         'enabled': true,
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.updatePolicy(
-        policyId: '<POLICY_ID>',
+        policyId: "<POLICY_ID>",
       );
       expect(response, isA<models.BackupPolicy>());
     });
@@ -220,36 +231,36 @@ void main() {
     test('test method deletePolicy()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.deletePolicy(
-        policyId: '<POLICY_ID>',
+        policyId: "<POLICY_ID>",
       );
     });
 
     test('test method createRestoration()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'archiveId': 'did8jx6ws45jana098ab7',
-        'policyId': 'did8jx6ws45jana098ab7',
-        'status': 'completed',
-        'startedAt': '2020-10-15T06:38:00.000+00:00',
-        'migrationId': 'did8jx6ws45jana098ab7',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'archiveId': "did8jx6ws45jana098ab7",
+        'policyId': "did8jx6ws45jana098ab7",
+        'status': "completed",
+        'startedAt': "2020-10-15T06:38:00.000+00:00",
+        'migrationId': "did8jx6ws45jana098ab7",
         'services': [],
         'resources': [],
-        'options': '{databases.database[{oldId, newId, newName}]}',
+        'options': "{databases.database[{oldId, newId, newName}]}",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.createRestoration(
-        archiveId: '<ARCHIVE_ID>',
+        archiveId: "<ARCHIVE_ID>",
         services: [enums.BackupServices.databases],
       );
       expect(response, isA<models.BackupRestoration>());
@@ -261,9 +272,9 @@ void main() {
         'restorations': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.listRestorations();
       expect(response, isA<models.BackupRestorationList>());
@@ -271,25 +282,25 @@ void main() {
 
     test('test method getRestoration()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'archiveId': 'did8jx6ws45jana098ab7',
-        'policyId': 'did8jx6ws45jana098ab7',
-        'status': 'completed',
-        'startedAt': '2020-10-15T06:38:00.000+00:00',
-        'migrationId': 'did8jx6ws45jana098ab7',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'archiveId': "did8jx6ws45jana098ab7",
+        'policyId': "did8jx6ws45jana098ab7",
+        'status': "completed",
+        'startedAt': "2020-10-15T06:38:00.000+00:00",
+        'migrationId': "did8jx6ws45jana098ab7",
         'services': [],
         'resources': [],
-        'options': '{databases.database[{oldId, newId, newName}]}',
+        'options': "{databases.database[{oldId, newId, newName}]}",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await backups.getRestoration(
-        restorationId: '<RESTORATION_ID>',
+        restorationId: "<RESTORATION_ID>",
       );
       expect(response, isA<models.BackupRestoration>());
     });

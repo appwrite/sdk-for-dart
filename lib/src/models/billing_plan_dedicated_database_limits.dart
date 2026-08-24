@@ -80,8 +80,9 @@ class BillingPlanDedicatedDatabaseLimits implements Model {
     this.allowedStorageClasses,
     this.allowedSyncModes,
   });
-
-  factory BillingPlanDedicatedDatabaseLimits.fromMap(Map<String, dynamic> map) {
+  factory BillingPlanDedicatedDatabaseLimits.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BillingPlanDedicatedDatabaseLimits(
       minCpu: map['minCpu'],
       maxCpu: map['maxCpu'],

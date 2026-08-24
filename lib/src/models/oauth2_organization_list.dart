@@ -12,12 +12,14 @@ class Oauth2OrganizationList implements Model {
     required this.total,
     required this.organizations,
   });
-
-  factory Oauth2OrganizationList.fromMap(Map<String, dynamic> map) {
+  factory Oauth2OrganizationList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2OrganizationList(
       total: map['total'],
       organizations: List<Oauth2Organization>.from(
-          map['organizations'].map((p) => Oauth2Organization.fromMap(p))),
+        map['organizations'].map((p) => Oauth2Organization.fromMap(p)),
+      ),
     );
   }
 

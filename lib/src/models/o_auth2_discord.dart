@@ -20,8 +20,9 @@ class OAuth2Discord implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Discord.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Discord.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Discord(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

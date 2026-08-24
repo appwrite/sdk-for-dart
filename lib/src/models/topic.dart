@@ -36,8 +36,9 @@ class Topic implements Model {
     required this.pushTotal,
     required this.subscribe,
   });
-
-  factory Topic.fromMap(Map<String, dynamic> map) {
+  factory Topic.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Topic(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

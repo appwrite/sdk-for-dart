@@ -56,8 +56,9 @@ class Message implements Model {
     required this.data,
     required this.status,
   });
-
-  factory Message.fromMap(Map<String, dynamic> map) {
+  factory Message.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Message(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -71,8 +72,9 @@ class Message implements Model {
       deliveryErrors: List.from(map['deliveryErrors'] ?? []),
       deliveredTotal: map['deliveredTotal'],
       data: map['data'],
-      status: enums.MessageStatus.values
-          .firstWhere((e) => e.value == map['status']),
+      status: enums.MessageStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
     );
   }
 

@@ -28,8 +28,9 @@ class OAuth2Apple implements Model {
     required this.teamId,
     required this.p8File,
   });
-
-  factory OAuth2Apple.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Apple.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Apple(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

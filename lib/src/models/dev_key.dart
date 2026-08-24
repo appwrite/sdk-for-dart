@@ -36,8 +36,9 @@ class DevKey implements Model {
     required this.accessedAt,
     required this.sdks,
   });
-
-  factory DevKey.fromMap(Map<String, dynamic> map) {
+  factory DevKey.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DevKey(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

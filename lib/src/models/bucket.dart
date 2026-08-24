@@ -60,8 +60,9 @@ class Bucket implements Model {
     required this.transformations,
     required this.totalSize,
   });
-
-  factory Bucket.fromMap(Map<String, dynamic> map) {
+  factory Bucket.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Bucket(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

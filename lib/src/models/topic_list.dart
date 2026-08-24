@@ -12,11 +12,14 @@ class TopicList implements Model {
     required this.total,
     required this.topics,
   });
-
-  factory TopicList.fromMap(Map<String, dynamic> map) {
+  factory TopicList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return TopicList(
       total: map['total'],
-      topics: List<Topic>.from(map['topics'].map((p) => Topic.fromMap(p))),
+      topics: List<Topic>.from(
+        map['topics'].map((p) => Topic.fromMap(p)),
+      ),
     );
   }
 

@@ -12,12 +12,14 @@ class WebhookList implements Model {
     required this.total,
     required this.webhooks,
   });
-
-  factory WebhookList.fromMap(Map<String, dynamic> map) {
+  factory WebhookList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return WebhookList(
       total: map['total'],
-      webhooks:
-          List<Webhook>.from(map['webhooks'].map((p) => Webhook.fromMap(p))),
+      webhooks: List<Webhook>.from(
+        map['webhooks'].map((p) => Webhook.fromMap(p)),
+      ),
     );
   }
 

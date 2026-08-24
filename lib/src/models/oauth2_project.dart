@@ -16,8 +16,9 @@ class Oauth2Project implements Model {
     required this.region,
     required this.endpoint,
   });
-
-  factory Oauth2Project.fromMap(Map<String, dynamic> map) {
+  factory Oauth2Project.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2Project(
       $id: map['\$id'].toString(),
       region: map['region'].toString(),

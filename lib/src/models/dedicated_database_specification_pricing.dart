@@ -20,9 +20,9 @@ class DedicatedDatabaseSpecificationPricing implements Model {
     required this.replicaRate,
     required this.pitrRate,
   });
-
   factory DedicatedDatabaseSpecificationPricing.fromMap(
-      Map<String, dynamic> map) {
+    Map<String, dynamic> map,
+  ) {
     return DedicatedDatabaseSpecificationPricing(
       storageOverageRate: map['storageOverageRate'].toDouble(),
       bandwidthOverageRate: map['bandwidthOverageRate'].toDouble(),

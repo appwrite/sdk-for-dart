@@ -108,8 +108,9 @@ class App implements Model {
     required this.installationRedirectUrl,
     required this.secrets,
   });
-
-  factory App.fromMap(Map<String, dynamic> map) {
+  factory App.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return App(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -136,8 +137,9 @@ class App implements Model {
       userId: map['userId'].toString(),
       installationScopes: List.from(map['installationScopes'] ?? []),
       installationRedirectUrl: map['installationRedirectUrl'].toString(),
-      secrets:
-          List<AppSecret>.from(map['secrets'].map((p) => AppSecret.fromMap(p))),
+      secrets: List<AppSecret>.from(
+        map['secrets'].map((p) => AppSecret.fromMap(p)),
+      ),
     );
   }
 

@@ -20,8 +20,9 @@ class OAuth2Github implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Github.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Github.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Github(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

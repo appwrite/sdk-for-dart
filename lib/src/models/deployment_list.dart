@@ -12,12 +12,14 @@ class DeploymentList implements Model {
     required this.total,
     required this.deployments,
   });
-
-  factory DeploymentList.fromMap(Map<String, dynamic> map) {
+  factory DeploymentList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DeploymentList(
       total: map['total'],
       deployments: List<Deployment>.from(
-          map['deployments'].map((p) => Deployment.fromMap(p))),
+        map['deployments'].map((p) => Deployment.fromMap(p)),
+      ),
     );
   }
 

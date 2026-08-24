@@ -12,12 +12,14 @@ class FrameworkList implements Model {
     required this.total,
     required this.frameworks,
   });
-
-  factory FrameworkList.fromMap(Map<String, dynamic> map) {
+  factory FrameworkList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return FrameworkList(
       total: map['total'],
       frameworks: List<Framework>.from(
-          map['frameworks'].map((p) => Framework.fromMap(p))),
+        map['frameworks'].map((p) => Framework.fromMap(p)),
+      ),
     );
   }
 

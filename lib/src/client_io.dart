@@ -42,9 +42,9 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '27.0.0',
+      'x-sdk-version': '28.0.0',
       'user-agent':
-          'AppwriteDartSDK/27.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+          'AppwriteDartSDK/28.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format': '1.9.6',
     };
 
@@ -233,7 +233,7 @@ class ClientIO extends ClientBase with ClientMixin {
 
     var offset = 0;
     String? uploadId;
-    if (idParamName.isNotEmpty) {
+    if (idParamName.isNotEmpty && params[idParamName] != null) {
       //make a request to check if a file already exists
       try {
         res = await call(
@@ -274,8 +274,11 @@ class ClientIO extends ClientBase with ClientMixin {
       }
 
       final chunkParams = Map<String, dynamic>.from(params);
-      chunkParams[paramName] = http.MultipartFile.fromBytes(paramName, chunk,
-          filename: file.filename);
+      chunkParams[paramName] = http.MultipartFile.fromBytes(
+        paramName,
+        chunk,
+        filename: file.filename,
+      );
       final chunkHeaders = Map<String, String>.from(headers);
       if (id != null && id.isNotEmpty) {
         chunkHeaders['x-appwrite-id'] = id;

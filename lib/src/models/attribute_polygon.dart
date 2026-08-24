@@ -40,13 +40,15 @@ class AttributePolygon implements Model {
     required this.$updatedAt,
     this.xdefault,
   });
-
-  factory AttributePolygon.fromMap(Map<String, dynamic> map) {
+  factory AttributePolygon.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AttributePolygon(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: enums.AttributeStatus.values
-          .firstWhere((e) => e.value == map['status']),
+      status: enums.AttributeStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],

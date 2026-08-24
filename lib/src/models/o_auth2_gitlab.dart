@@ -24,8 +24,9 @@ class OAuth2Gitlab implements Model {
     required this.secret,
     required this.endpoint,
   });
-
-  factory OAuth2Gitlab.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Gitlab.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Gitlab(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -60,9 +71,9 @@ void main() {
         'databases': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.list();
       expect(response, isA<models.DatabaseList>());
@@ -70,21 +81,21 @@ void main() {
 
     test('test method create()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        'name': 'My Database',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        'name': "My Database",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
-        'type': 'legacy',
+        'type': "legacy",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.create(
-        databaseId: '<DATABASE_ID>',
-        name: '<NAME>',
+        databaseId: "<DATABASE_ID>",
+        name: "<NAME>",
       );
       expect(response, isA<models.Database>());
     });
@@ -101,9 +112,9 @@ void main() {
         },
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listSpecifications();
       expect(response, isA<models.DedicatedDatabaseSpecificationList>());
@@ -115,9 +126,9 @@ void main() {
         'transactions': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listTransactions();
       expect(response, isA<models.TransactionList>());
@@ -125,17 +136,17 @@ void main() {
 
     test('test method createTransaction()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '259125845563242502',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'status': 'pending',
+        '\$id': "259125845563242502",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'status': "pending",
         'operations': 5,
-        'expiresAt': '2020-10-15T06:38:00.000+00:00',
+        'expiresAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createTransaction();
       expect(response, isA<models.Transaction>());
@@ -143,40 +154,40 @@ void main() {
 
     test('test method getTransaction()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '259125845563242502',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'status': 'pending',
+        '\$id': "259125845563242502",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'status': "pending",
         'operations': 5,
-        'expiresAt': '2020-10-15T06:38:00.000+00:00',
+        'expiresAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getTransaction(
-        transactionId: '<TRANSACTION_ID>',
+        transactionId: "<TRANSACTION_ID>",
       );
       expect(response, isA<models.Transaction>());
     });
 
     test('test method updateTransaction()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '259125845563242502',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'status': 'pending',
+        '\$id': "259125845563242502",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'status': "pending",
         'operations': 5,
-        'expiresAt': '2020-10-15T06:38:00.000+00:00',
+        'expiresAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateTransaction(
-        transactionId: '<TRANSACTION_ID>',
+        transactionId: "<TRANSACTION_ID>",
       );
       expect(response, isA<models.Transaction>());
     });
@@ -184,71 +195,71 @@ void main() {
     test('test method deleteTransaction()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteTransaction(
-        transactionId: '<TRANSACTION_ID>',
+        transactionId: "<TRANSACTION_ID>",
       );
     });
 
     test('test method createOperations()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '259125845563242502',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'status': 'pending',
+        '\$id': "259125845563242502",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'status': "pending",
         'operations': 5,
-        'expiresAt': '2020-10-15T06:38:00.000+00:00',
+        'expiresAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createOperations(
-        transactionId: '<TRANSACTION_ID>',
+        transactionId: "<TRANSACTION_ID>",
       );
       expect(response, isA<models.Transaction>());
     });
 
     test('test method get()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        'name': 'My Database',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        'name': "My Database",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
-        'type': 'legacy',
+        'type': "legacy",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.get(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
       expect(response, isA<models.Database>());
     });
 
     test('test method update()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        'name': 'My Database',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        'name': "My Database",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
-        'type': 'legacy',
+        'type': "legacy",
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.update(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
       expect(response, isA<models.Database>());
     });
@@ -256,46 +267,46 @@ void main() {
     test('test method delete()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.delete(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
     });
 
     test('test method createFailover()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'projectId': '5e5ea5c16897e',
-        'name': 'My Production Database',
-        'api': 'postgresql',
-        'engine': 'postgresql',
-        'version': '16',
-        'specification': 's-2vcpu-2gb',
-        'backend': 'edge',
-        'hostname': 'db-myproject-mydb.fra.appwrite.center',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'projectId': "5e5ea5c16897e",
+        'name': "My Production Database",
+        'api': "postgresql",
+        'engine': "postgresql",
+        'version': "16",
+        'specification': "s-2vcpu-2gb",
+        'backend': "edge",
+        'hostname': "db-myproject-mydb.fra.appwrite.center",
         'connectionPort': 5432,
-        'connectionUser': 'appwrite_user',
-        'connectionPassword': '••••••••',
+        'connectionUser': "appwrite_user",
+        'connectionPassword': "••••••••",
         'connectionString':
-            'postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require',
+            "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
-        'status': 'ready',
-        'containerStatus': 'active',
-        'lifecycleState': 'active',
+        'status': "ready",
+        'containerStatus': "active",
+        'lifecycleState': "active",
         'idleTimeoutMinutes': 15,
         'cpu': 2000,
         'memory': 4096,
         'storage': 100,
-        'storageClass': 'ssd',
+        'storageClass': "ssd",
         'storageMaxGb': 100,
-        'nodePool': 'db-pool-4vcpu-8gb',
+        'nodePool': "db-pool-4vcpu-8gb",
         'replicas': 2,
-        'syncMode': 'async',
+        'syncMode': "async",
         'networkMaxConnections': 500,
         'networkIdleTimeoutSeconds': 900,
         'networkIPAllowlist': [],
@@ -305,7 +316,7 @@ void main() {
         'storageAutoscaling': true,
         'storageAutoscalingThresholdPercent': 85,
         'storageAutoscalingMaxGb': 500,
-        'maintenanceWindowDay': 'sun',
+        'maintenanceWindowDay': "sun",
         'maintenanceWindowHourUtc': 3,
         'metricsEnabled': true,
         'sqlApiEnabled': true,
@@ -313,15 +324,15 @@ void main() {
         'sqlApiMaxRows': 10000,
         'sqlApiMaxBytes': 10485760,
         'sqlApiTimeoutSeconds': 30,
-        'error': '',
+        'error': "",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createFailover(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
       expect(response, isA<models.DedicatedDatabase>());
     });
@@ -332,74 +343,76 @@ void main() {
         'migrations': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listMigrations(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
       expect(response, isA<models.DatabaseMigrationList>());
     });
 
     test('test method createMigration()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'projectId': '5e5ea5c16897e',
-        'databaseId': '5e5ea5c16897e',
-        'specification': 's-2vcpu-4gb',
-        'phase': 'pending',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'projectId': "5e5ea5c16897e",
+        'databaseId': "5e5ea5c16897e",
+        'specification': "s-2vcpu-4gb",
+        'phase': "pending",
         'attempt': 0,
-        'lastError': '',
+        'lastError': "",
         'lagDocuments': 0,
-        'verifiedAt': '2020-10-15T06:38:00.000+00:00',
-        'cutoverAt': '2020-10-15T06:38:00.000+00:00',
-        'soakUntil': '2020-10-15T06:38:00.000+00:00',
+        'changelogWatermark': 0,
+        'verifiedAt': "2020-10-15T06:38:00.000+00:00",
+        'cutoverAt': "2020-10-15T06:38:00.000+00:00",
+        'soakUntil': "2020-10-15T06:38:00.000+00:00",
         'autoCutover': true,
         'cutoverRequested': true,
         'paused': true,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createMigration(
-        databaseId: '<DATABASE_ID>',
-        specification: 's-1vcpu-1gb',
+        databaseId: "<DATABASE_ID>",
+        specification: "s-1vcpu-1gb",
       );
       expect(response, isA<models.DatabaseMigration>());
     });
 
     test('test method getMigration()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'projectId': '5e5ea5c16897e',
-        'databaseId': '5e5ea5c16897e',
-        'specification': 's-2vcpu-4gb',
-        'phase': 'pending',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'projectId': "5e5ea5c16897e",
+        'databaseId': "5e5ea5c16897e",
+        'specification': "s-2vcpu-4gb",
+        'phase': "pending",
         'attempt': 0,
-        'lastError': '',
+        'lastError': "",
         'lagDocuments': 0,
-        'verifiedAt': '2020-10-15T06:38:00.000+00:00',
-        'cutoverAt': '2020-10-15T06:38:00.000+00:00',
-        'soakUntil': '2020-10-15T06:38:00.000+00:00',
+        'changelogWatermark': 0,
+        'verifiedAt': "2020-10-15T06:38:00.000+00:00",
+        'cutoverAt': "2020-10-15T06:38:00.000+00:00",
+        'soakUntil': "2020-10-15T06:38:00.000+00:00",
         'autoCutover': true,
         'cutoverRequested': true,
         'paused': true,
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getMigration(
-        databaseId: '<DATABASE_ID>',
-        migrationId: '<MIGRATION_ID>',
+        databaseId: "<DATABASE_ID>",
+        migrationId: "<MIGRATION_ID>",
       );
       expect(response, isA<models.DatabaseMigration>());
     });
@@ -407,43 +420,44 @@ void main() {
     test('test method deleteMigration()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteMigration(
-        databaseId: '<DATABASE_ID>',
-        migrationId: '<MIGRATION_ID>',
+        databaseId: "<DATABASE_ID>",
+        migrationId: "<MIGRATION_ID>",
       );
     });
 
     test('test method cutoverMigration()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'projectId': '5e5ea5c16897e',
-        'databaseId': '5e5ea5c16897e',
-        'specification': 's-2vcpu-4gb',
-        'phase': 'pending',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'projectId': "5e5ea5c16897e",
+        'databaseId': "5e5ea5c16897e",
+        'specification': "s-2vcpu-4gb",
+        'phase': "pending",
         'attempt': 0,
-        'lastError': '',
+        'lastError': "",
         'lagDocuments': 0,
-        'verifiedAt': '2020-10-15T06:38:00.000+00:00',
-        'cutoverAt': '2020-10-15T06:38:00.000+00:00',
-        'soakUntil': '2020-10-15T06:38:00.000+00:00',
+        'changelogWatermark': 0,
+        'verifiedAt': "2020-10-15T06:38:00.000+00:00",
+        'cutoverAt': "2020-10-15T06:38:00.000+00:00",
+        'soakUntil': "2020-10-15T06:38:00.000+00:00",
         'autoCutover': true,
         'cutoverRequested': true,
         'paused': true,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.cutoverMigration(
-        databaseId: '<DATABASE_ID>',
-        migrationId: '<MIGRATION_ID>',
+        databaseId: "<DATABASE_ID>",
+        migrationId: "<MIGRATION_ID>",
       );
       expect(response, isA<models.DatabaseMigration>());
     });
@@ -454,12 +468,12 @@ void main() {
         'operations': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listOperations(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
       expect(response, isA<models.DedicatedDatabaseOperationList>());
     });
@@ -467,35 +481,35 @@ void main() {
     test('test method getReplicas()', () async {
       final Map<String, dynamic> data = {
         'replicas': 2,
-        'syncMode': 'async',
+        'syncMode': "async",
         'syncDegraded': true,
         'syncAcknowledgements': 1,
         'syncStandbyCount': 2,
         'members': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getReplicas(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
       expect(response, isA<models.DedicatedDatabaseReplicas>());
     });
 
     test('test method getStatus()', () async {
       final Map<String, dynamic> data = {
-        'health': 'healthy',
+        'health': "healthy",
         'ready': true,
-        'engine': 'postgresql',
-        'version': '17',
+        'engine': "postgresql",
+        'version': "17",
         'uptime': 86400,
         'connections': <String, dynamic>{
           'current': 12,
           'max': 100,
         },
-        'syncMode': 'async',
+        'syncMode': "async",
         'syncDegraded': true,
         'syncAcknowledgements': 1,
         'syncStandbyCount': 2,
@@ -503,12 +517,12 @@ void main() {
         'volumes': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getStatus(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
       expect(response, isA<models.DatabaseStatus>());
     });
@@ -519,24 +533,24 @@ void main() {
         'tables': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listTables(
-        databaseId: '<DATABASE_ID>',
+        databaseId: "<DATABASE_ID>",
       );
       expect(response, isA<models.TableList>());
     });
 
     test('test method createTable()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
-        'databaseId': '5e5ea5c16897e',
-        'name': 'My Table',
+        'databaseId': "5e5ea5c16897e",
+        'name': "My Table",
         'enabled': true,
         'rowSecurity': true,
         'columns': [],
@@ -545,26 +559,26 @@ void main() {
         'bytesUsed': 1500,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createTable(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        name: '<NAME>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        name: "<NAME>",
       );
       expect(response, isA<models.Table>());
     });
 
     test('test method getTable()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
-        'databaseId': '5e5ea5c16897e',
-        'name': 'My Table',
+        'databaseId': "5e5ea5c16897e",
+        'name': "My Table",
         'enabled': true,
         'rowSecurity': true,
         'columns': [],
@@ -573,25 +587,25 @@ void main() {
         'bytesUsed': 1500,
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getTable(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
       );
       expect(response, isA<models.Table>());
     });
 
     test('test method updateTable()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
-        'databaseId': '5e5ea5c16897e',
-        'name': 'My Table',
+        'databaseId': "5e5ea5c16897e",
+        'name': "My Table",
         'enabled': true,
         'rowSecurity': true,
         'columns': [],
@@ -600,13 +614,13 @@ void main() {
         'bytesUsed': 1500,
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateTable(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
       );
       expect(response, isA<models.Table>());
     });
@@ -614,13 +628,13 @@ void main() {
     test('test method deleteTable()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteTable(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
       );
     });
 
@@ -630,35 +644,35 @@ void main() {
         'columns': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listColumns(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
       );
       expect(response, isA<models.ColumnList>());
     });
 
     test('test method createBigIntColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'count',
-        'type': 'bigint',
-        'status': 'available',
-        'error': 'string',
+        'key': "count",
+        'type': "bigint",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createBigIntColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -667,22 +681,22 @@ void main() {
 
     test('test method updateBigIntColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'count',
-        'type': 'bigint',
-        'status': 'available',
-        'error': 'string',
+        'key': "count",
+        'type': "bigint",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateBigIntColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
         xdefault: 1,
@@ -692,22 +706,22 @@ void main() {
 
     test('test method createBooleanColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'isEnabled',
-        'type': 'boolean',
-        'status': 'available',
-        'error': 'string',
+        'key': "isEnabled",
+        'type': "boolean",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createBooleanColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -716,22 +730,22 @@ void main() {
 
     test('test method updateBooleanColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'isEnabled',
-        'type': 'boolean',
-        'status': 'available',
-        'error': 'string',
+        'key': "isEnabled",
+        'type': "boolean",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateBooleanColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
         xdefault: true,
@@ -741,23 +755,23 @@ void main() {
 
     test('test method createDatetimeColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'birthDay',
-        'type': 'datetime',
-        'status': 'available',
-        'error': 'string',
+        'key': "birthDay",
+        'type': "datetime",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'format': 'datetime',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'format': "datetime",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createDatetimeColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -766,49 +780,49 @@ void main() {
 
     test('test method updateDatetimeColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'birthDay',
-        'type': 'datetime',
-        'status': 'available',
-        'error': 'string',
+        'key': "birthDay",
+        'type': "datetime",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'format': 'datetime',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'format': "datetime",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateDatetimeColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
-        xdefault: '2020-10-15T06:38:00.000+00:00',
+        xdefault: "2020-10-15T06:38:00.000+00:00",
       );
       expect(response, isA<models.ColumnDatetime>());
     });
 
     test('test method createEmailColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'userEmail',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "userEmail",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'format': 'email',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'format': "email",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createEmailColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -817,50 +831,50 @@ void main() {
 
     test('test method updateEmailColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'userEmail',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "userEmail",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'format': 'email',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'format': "email",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateEmailColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
-        xdefault: 'email@example.com',
+        xdefault: "email@example.com",
       );
       expect(response, isA<models.ColumnEmail>());
     });
 
     test('test method createEnumColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'status',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "status",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'elements': [],
-        'format': 'enum',
+        'format': "enum",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createEnumColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         elements: [],
         xrequired: true,
@@ -870,50 +884,50 @@ void main() {
 
     test('test method updateEnumColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'status',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "status",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'elements': [],
-        'format': 'enum',
+        'format': "enum",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateEnumColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         elements: [],
         xrequired: true,
-        xdefault: '<DEFAULT>',
+        xdefault: "<DEFAULT>",
       );
       expect(response, isA<models.ColumnEnum>());
     });
 
     test('test method createFloatColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'percentageCompleted',
-        'type': 'double',
-        'status': 'available',
-        'error': 'string',
+        'key': "percentageCompleted",
+        'type': "double",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createFloatColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -922,22 +936,22 @@ void main() {
 
     test('test method updateFloatColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'percentageCompleted',
-        'type': 'double',
-        'status': 'available',
-        'error': 'string',
+        'key': "percentageCompleted",
+        'type': "double",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateFloatColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
         xdefault: 1.0,
@@ -947,22 +961,22 @@ void main() {
 
     test('test method createIntegerColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'count',
-        'type': 'integer',
-        'status': 'available',
-        'error': 'string',
+        'key': "count",
+        'type': "integer",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createIntegerColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -971,22 +985,22 @@ void main() {
 
     test('test method updateIntegerColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'count',
-        'type': 'integer',
-        'status': 'available',
-        'error': 'string',
+        'key': "count",
+        'type': "integer",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateIntegerColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
         xdefault: 1,
@@ -996,23 +1010,23 @@ void main() {
 
     test('test method createIpColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'ipAddress',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "ipAddress",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'format': 'ip',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'format': "ip",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createIpColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1021,23 +1035,23 @@ void main() {
 
     test('test method updateIpColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'ipAddress',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "ipAddress",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'format': 'ip',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'format': "ip",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateIpColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
         xdefault: '',
@@ -1047,22 +1061,22 @@ void main() {
 
     test('test method createLineColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createLineColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1071,22 +1085,22 @@ void main() {
 
     test('test method updateLineColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateLineColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1095,22 +1109,22 @@ void main() {
 
     test('test method createLongtextColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createLongtextColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1119,47 +1133,47 @@ void main() {
 
     test('test method updateLongtextColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateLongtextColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
-        xdefault: '<DEFAULT>',
+        xdefault: "<DEFAULT>",
       );
       expect(response, isA<models.ColumnLongtext>());
     });
 
     test('test method createMediumtextColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createMediumtextColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1168,47 +1182,47 @@ void main() {
 
     test('test method updateMediumtextColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateMediumtextColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
-        xdefault: '<DEFAULT>',
+        xdefault: "<DEFAULT>",
       );
       expect(response, isA<models.ColumnMediumtext>());
     });
 
     test('test method createPointColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createPointColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1217,22 +1231,22 @@ void main() {
 
     test('test method updatePointColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updatePointColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1241,22 +1255,22 @@ void main() {
 
     test('test method createPolygonColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createPolygonColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1265,22 +1279,22 @@ void main() {
 
     test('test method updatePolygonColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updatePolygonColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1289,29 +1303,29 @@ void main() {
 
     test('test method createRelationshipColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'relatedTable': 'table',
-        'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'relatedTable': "table",
+        'relationType': "oneToOne|oneToMany|manyToOne|manyToMany",
         'twoWay': true,
-        'twoWayKey': 'string',
-        'onDelete': 'restrict|cascade|setNull',
-        'side': 'parent|child',
+        'twoWayKey': "string",
+        'onDelete': "restrict|cascade|setNull",
+        'side': "parent|child",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createRelationshipColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        relatedTableId: '<RELATED_TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        relatedTableId: "<RELATED_TABLE_ID>",
         type: enums.RelationshipType.oneToOne,
       );
       expect(response, isA<models.ColumnRelationship>());
@@ -1319,23 +1333,23 @@ void main() {
 
     test('test method createStringColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'size': 128,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createStringColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         size: 1,
         xrequired: true,
@@ -1345,48 +1359,48 @@ void main() {
 
     test('test method updateStringColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'size': 128,
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateStringColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
-        xdefault: '<DEFAULT>',
+        xdefault: "<DEFAULT>",
       );
       expect(response, isA<models.ColumnString>());
     });
 
     test('test method createTextColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createTextColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1395,48 +1409,48 @@ void main() {
 
     test('test method updateTextColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateTextColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
-        xdefault: '<DEFAULT>',
+        xdefault: "<DEFAULT>",
       );
       expect(response, isA<models.ColumnText>());
     });
 
     test('test method createUrlColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'githubUrl',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "githubUrl",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'format': 'url',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'format': "url",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createUrlColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
       );
@@ -1445,49 +1459,49 @@ void main() {
 
     test('test method updateUrlColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'githubUrl',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "githubUrl",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'format': 'url',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'format': "url",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateUrlColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
-        xdefault: 'https://example.com',
+        xdefault: "https://example.com",
       );
       expect(response, isA<models.ColumnUrl>());
     });
 
     test('test method createVarcharColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'size': 128,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createVarcharColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         size: 1,
         xrequired: true,
@@ -1497,49 +1511,49 @@ void main() {
 
     test('test method updateVarcharColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'size': 128,
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateVarcharColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         xrequired: true,
-        xdefault: '<DEFAULT>',
+        xdefault: "<DEFAULT>",
       );
       expect(response, isA<models.ColumnVarchar>());
     });
 
     test('test method getColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'size': 128,
-        'type': 'string',
+        'type': "string",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
       );
       expect(response, isA<models.ColumnString>());
@@ -1548,41 +1562,41 @@ void main() {
     test('test method deleteColumn()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
       );
     });
 
     test('test method updateRelationshipColumn()', () async {
       final Map<String, dynamic> data = {
-        'key': 'fullName',
-        'type': 'string',
-        'status': 'available',
-        'error': 'string',
+        'key': "fullName",
+        'type': "string",
+        'status': "available",
+        'error': "string",
         'required': true,
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'relatedTable': 'table',
-        'relationType': 'oneToOne|oneToMany|manyToOne|manyToMany',
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'relatedTable': "table",
+        'relationType': "oneToOne|oneToMany|manyToOne|manyToMany",
         'twoWay': true,
-        'twoWayKey': 'string',
-        'onDelete': 'restrict|cascade|setNull',
-        'side': 'parent|child',
+        'twoWayKey': "string",
+        'onDelete': "restrict|cascade|setNull",
+        'side': "parent|child",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateRelationshipColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
       );
       expect(response, isA<models.ColumnRelationship>());
@@ -1594,37 +1608,37 @@ void main() {
         'indexes': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listIndexes(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
       );
       expect(response, isA<models.ColumnIndexList>());
     });
 
     test('test method createIndex()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'key': 'index1',
-        'type': 'primary',
-        'status': 'available',
-        'error': 'string',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'key': "index1",
+        'type': "primary",
+        'status': "available",
+        'error': "string",
         'columns': [],
         'lengths': [],
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createIndex(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
         type: enums.TablesDBIndexType.key,
         columns: [],
@@ -1634,24 +1648,24 @@ void main() {
 
     test('test method getIndex()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'key': 'index1',
-        'type': 'primary',
-        'status': 'available',
-        'error': 'string',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'key': "index1",
+        'type': "primary",
+        'status': "available",
+        'error': "string",
         'columns': [],
         'lengths': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getIndex(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
       );
       expect(response, isA<models.ColumnIndex>());
@@ -1660,13 +1674,13 @@ void main() {
     test('test method deleteIndex()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteIndex(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         key: '',
       );
     });
@@ -1677,36 +1691,36 @@ void main() {
         'rows': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listRows(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
       );
       expect(response, isA<models.RowList>());
     });
 
     test('test method createRow()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$tableId': '5e5ea5c15117e',
-        '\$databaseId': '5e5ea5c15117e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$sequence': "1",
+        '\$tableId': "5e5ea5c15117e",
+        '\$databaseId': "5e5ea5c15117e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createRow(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        rowId: '<ROW_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        rowId: "<ROW_ID>",
         data: {},
       );
       expect(response, isA<models.Row>());
@@ -1718,13 +1732,13 @@ void main() {
         'rows': [],
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createRows(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         rows: [],
       );
       expect(response, isA<models.RowList>());
@@ -1736,13 +1750,13 @@ void main() {
         'rows': [],
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.upsertRows(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
         rows: [],
       );
       expect(response, isA<models.RowList>());
@@ -1754,13 +1768,13 @@ void main() {
         'rows': [],
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateRows(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
       );
       expect(response, isA<models.RowList>());
     });
@@ -1771,82 +1785,82 @@ void main() {
         'rows': [],
       };
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteRows(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
       );
       expect(response, isA<models.RowList>());
     });
 
     test('test method getRow()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$tableId': '5e5ea5c15117e',
-        '\$databaseId': '5e5ea5c15117e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$sequence': "1",
+        '\$tableId': "5e5ea5c15117e",
+        '\$databaseId': "5e5ea5c15117e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getRow(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        rowId: '<ROW_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        rowId: "<ROW_ID>",
       );
       expect(response, isA<models.Row>());
     });
 
     test('test method upsertRow()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$tableId': '5e5ea5c15117e',
-        '\$databaseId': '5e5ea5c15117e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$sequence': "1",
+        '\$tableId': "5e5ea5c15117e",
+        '\$databaseId': "5e5ea5c15117e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.upsertRow(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        rowId: '<ROW_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        rowId: "<ROW_ID>",
       );
       expect(response, isA<models.Row>());
     });
 
     test('test method updateRow()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$tableId': '5e5ea5c15117e',
-        '\$databaseId': '5e5ea5c15117e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$sequence': "1",
+        '\$tableId': "5e5ea5c15117e",
+        '\$databaseId': "5e5ea5c15117e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateRow(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        rowId: '<ROW_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        rowId: "<ROW_ID>",
       );
       expect(response, isA<models.Row>());
     });
@@ -1854,36 +1868,36 @@ void main() {
     test('test method deleteRow()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteRow(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        rowId: '<ROW_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        rowId: "<ROW_ID>",
       );
     });
 
     test('test method decrementRowColumn()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$tableId': '5e5ea5c15117e',
-        '\$databaseId': '5e5ea5c15117e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$sequence': "1",
+        '\$tableId': "5e5ea5c15117e",
+        '\$databaseId': "5e5ea5c15117e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.decrementRowColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        rowId: '<ROW_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        rowId: "<ROW_ID>",
         column: '',
       );
       expect(response, isA<models.Row>());
@@ -1891,23 +1905,23 @@ void main() {
 
     test('test method incrementRowColumn()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$sequence': '1',
-        '\$tableId': '5e5ea5c15117e',
-        '\$databaseId': '5e5ea5c15117e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$sequence': "1",
+        '\$tableId': "5e5ea5c15117e",
+        '\$databaseId': "5e5ea5c15117e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.incrementRowColumn(
-        databaseId: '<DATABASE_ID>',
-        tableId: '<TABLE_ID>',
-        rowId: '<ROW_ID>',
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+        rowId: "<ROW_ID>",
         column: '',
       );
       expect(response, isA<models.Row>());

@@ -20,8 +20,9 @@ class OAuth2WordPress implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2WordPress.fromMap(Map<String, dynamic> map) {
+  factory OAuth2WordPress.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2WordPress(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

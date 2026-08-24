@@ -40,8 +40,9 @@ class Program implements Model {
     required this.xexternal,
     required this.billingPlanId,
   });
-
-  factory Program.fromMap(Map<String, dynamic> map) {
+  factory Program.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Program(
       $id: map['\$id'].toString(),
       title: map['title'].toString(),

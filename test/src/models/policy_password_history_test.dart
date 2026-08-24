@@ -5,14 +5,14 @@ void main() {
   group('PolicyPasswordHistory', () {
     test('model', () {
       final model = PolicyPasswordHistory(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         total: 5,
       );
 
       final map = model.toMap();
       final result = PolicyPasswordHistory.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.total, 5);
     });
   });

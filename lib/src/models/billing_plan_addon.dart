@@ -12,14 +12,19 @@ class BillingPlanAddon implements Model {
     this.seats,
     this.projects,
   });
-
-  factory BillingPlanAddon.fromMap(Map<String, dynamic> map) {
+  factory BillingPlanAddon.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BillingPlanAddon(
       seats: map['seats'] != null
-          ? BillingPlanAddonDetails.fromMap(map['seats'])
+          ? BillingPlanAddonDetails.fromMap(
+              map['seats'],
+            )
           : null,
       projects: map['projects'] != null
-          ? BillingPlanAddonDetails.fromMap(map['projects'])
+          ? BillingPlanAddonDetails.fromMap(
+              map['projects'],
+            )
           : null,
     );
   }

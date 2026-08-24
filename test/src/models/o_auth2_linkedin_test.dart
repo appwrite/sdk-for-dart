@@ -5,19 +5,19 @@ void main() {
   group('OAuth2Linkedin', () {
     test('model', () {
       final model = OAuth2Linkedin(
-        $id: 'github',
+        $id: "github",
         enabled: true,
-        clientId: '770000000000dv',
-        primaryClientSecret: 'WPL_AP1.2Bf0000000000000./HtlYw==',
+        clientId: "770000000000dv",
+        primaryClientSecret: "WPL_AP1.2Bf0000000000000./HtlYw==",
       );
 
       final map = model.toMap();
       final result = OAuth2Linkedin.fromMap(map);
 
-      expect(result.$id, 'github');
+      expect(result.$id, "github");
       expect(result.enabled, true);
-      expect(result.clientId, '770000000000dv');
-      expect(result.primaryClientSecret, 'WPL_AP1.2Bf0000000000000./HtlYw==');
+      expect(result.clientId, "770000000000dv");
+      expect(result.primaryClientSecret, "WPL_AP1.2Bf0000000000000./HtlYw==");
     });
   });
 }

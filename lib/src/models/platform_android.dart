@@ -28,14 +28,17 @@ class PlatformAndroid implements Model {
     required this.type,
     required this.applicationId,
   });
-
-  factory PlatformAndroid.fromMap(Map<String, dynamic> map) {
+  factory PlatformAndroid.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PlatformAndroid(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
-      type: enums.PlatformType.values.firstWhere((e) => e.value == map['type']),
+      type: enums.PlatformType.values.firstWhere(
+        (e) => e.value == map['type'],
+      ),
       applicationId: map['applicationId'].toString(),
     );
   }

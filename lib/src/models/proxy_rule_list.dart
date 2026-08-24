@@ -12,12 +12,14 @@ class ProxyRuleList implements Model {
     required this.total,
     required this.rules,
   });
-
-  factory ProxyRuleList.fromMap(Map<String, dynamic> map) {
+  factory ProxyRuleList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ProxyRuleList(
       total: map['total'],
-      rules:
-          List<ProxyRule>.from(map['rules'].map((p) => ProxyRule.fromMap(p))),
+      rules: List<ProxyRule>.from(
+        map['rules'].map((p) => ProxyRule.fromMap(p)),
+      ),
     );
   }
 

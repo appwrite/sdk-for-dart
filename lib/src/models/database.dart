@@ -32,6 +32,15 @@ class Database implements Model {
   /// Number of secondary high availability replicas, excluding the primary. Null when backing configuration is unavailable.
   final int? replicas;
 
+  /// Error message when the dedicated backing failed. Null when the database has no dedicated backing or has not failed.
+  final String? error;
+
+  /// Container status of the dedicated backing: active or inactive. Null when the database has no dedicated backing or the runtime has not reported one.
+  final String? containerStatus;
+
+  /// Idle-lifecycle state of the dedicated backing: active, warm, cold, or hibernated. Null when the database has no dedicated backing or the runtime has not reported one.
+  final String? lifecycleState;
+
   /// Database backup policies.
   final List<BackupPolicy>? policies;
 
@@ -49,32 +58,44 @@ class Database implements Model {
     this.engine,
     this.specification,
     this.replicas,
+    this.error,
+    this.containerStatus,
+    this.lifecycleState,
     this.policies,
     this.archives,
   });
-
-  factory Database.fromMap(Map<String, dynamic> map) {
+  factory Database.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Database(
       $id: map['\$id'].toString(),
       name: map['name'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       enabled: map['enabled'],
-      type: enums.DatabaseType.values.firstWhere((e) => e.value == map['type']),
+      type: enums.DatabaseType.values.firstWhere(
+        (e) => e.value == map['type'],
+      ),
       status: map['status'] != null
-          ? enums.DatabaseStatus.values
-              .firstWhere((e) => e.value == map['status'])
+          ? enums.DatabaseStatus.values.firstWhere(
+              (e) => e.value == map['status'],
+            )
           : null,
       engine: map['engine']?.toString(),
       specification: map['specification']?.toString(),
       replicas: map['replicas'],
+      error: map['error']?.toString(),
+      containerStatus: map['containerStatus']?.toString(),
+      lifecycleState: map['lifecycleState']?.toString(),
       policies: map['policies'] != null
           ? List<BackupPolicy>.from(
-              map['policies'].map((p) => BackupPolicy.fromMap(p)))
+              map['policies'].map((p) => BackupPolicy.fromMap(p)),
+            )
           : null,
       archives: map['archives'] != null
           ? List<BackupArchive>.from(
-              map['archives'].map((p) => BackupArchive.fromMap(p)))
+              map['archives'].map((p) => BackupArchive.fromMap(p)),
+            )
           : null,
     );
   }
@@ -92,6 +113,9 @@ class Database implements Model {
       "engine": engine,
       "specification": specification,
       "replicas": replicas,
+      "error": error,
+      "containerStatus": containerStatus,
+      "lifecycleState": lifecycleState,
       "policies": policies?.map((p) => p.toMap()).toList(),
       "archives": archives?.map((p) => p.toMap()).toList(),
     };

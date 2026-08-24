@@ -40,8 +40,9 @@ class AppSecretPlaintext implements Model {
     required this.createdByName,
     this.lastAccessedAt,
   });
-
-  factory AppSecretPlaintext.fromMap(Map<String, dynamic> map) {
+  factory AppSecretPlaintext.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AppSecretPlaintext(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

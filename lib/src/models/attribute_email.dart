@@ -44,13 +44,15 @@ class AttributeEmail implements Model {
     required this.format,
     this.xdefault,
   });
-
-  factory AttributeEmail.fromMap(Map<String, dynamic> map) {
+  factory AttributeEmail.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AttributeEmail(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: enums.AttributeStatus.values
-          .firstWhere((e) => e.value == map['status']),
+      status: enums.AttributeStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],

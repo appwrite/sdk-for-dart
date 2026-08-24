@@ -20,8 +20,9 @@ class MockNumber implements Model {
     required this.$createdAt,
     required this.$updatedAt,
   });
-
-  factory MockNumber.fromMap(Map<String, dynamic> map) {
+  factory MockNumber.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return MockNumber(
       number: map['number'].toString(),
       otp: map['otp'].toString(),

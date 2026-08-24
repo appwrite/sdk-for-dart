@@ -12,12 +12,14 @@ class BackupPolicyList implements Model {
     required this.total,
     required this.policies,
   });
-
-  factory BackupPolicyList.fromMap(Map<String, dynamic> map) {
+  factory BackupPolicyList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BackupPolicyList(
       total: map['total'],
       policies: List<BackupPolicy>.from(
-          map['policies'].map((p) => BackupPolicy.fromMap(p))),
+        map['policies'].map((p) => BackupPolicy.fromMap(p)),
+      ),
     );
   }
 

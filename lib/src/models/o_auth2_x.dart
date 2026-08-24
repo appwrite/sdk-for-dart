@@ -20,8 +20,9 @@ class OAuth2X implements Model {
     required this.customerKey,
     required this.secretKey,
   });
-
-  factory OAuth2X.fromMap(Map<String, dynamic> map) {
+  factory OAuth2X.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2X(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

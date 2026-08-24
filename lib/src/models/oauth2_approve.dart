@@ -8,8 +8,9 @@ class Oauth2Approve implements Model {
   Oauth2Approve({
     required this.redirectUrl,
   });
-
-  factory Oauth2Approve.fromMap(Map<String, dynamic> map) {
+  factory Oauth2Approve.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Oauth2Approve(
       redirectUrl: map['redirectUrl'].toString(),
     );

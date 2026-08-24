@@ -12,8 +12,9 @@ class PolicySessionInvalidation implements Model {
     required this.$id,
     required this.enabled,
   });
-
-  factory PolicySessionInvalidation.fromMap(Map<String, dynamic> map) {
+  factory PolicySessionInvalidation.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicySessionInvalidation(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

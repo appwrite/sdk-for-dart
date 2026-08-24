@@ -52,8 +52,9 @@ class Collection implements Model {
     required this.bytesMax,
     required this.bytesUsed,
   });
-
-  factory Collection.fromMap(Map<String, dynamic> map) {
+  factory Collection.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Collection(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -64,7 +65,9 @@ class Collection implements Model {
       enabled: map['enabled'],
       documentSecurity: map['documentSecurity'],
       attributes: List.from(map['attributes'] ?? []),
-      indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
+      indexes: List<Index>.from(
+        map['indexes'].map((p) => Index.fromMap(p)),
+      ),
       bytesMax: map['bytesMax'],
       bytesUsed: map['bytesUsed'],
     );

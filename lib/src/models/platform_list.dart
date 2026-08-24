@@ -12,8 +12,9 @@ class PlatformList implements Model {
     required this.total,
     required this.platforms,
   });
-
-  factory PlatformList.fromMap(Map<String, dynamic> map) {
+  factory PlatformList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PlatformList(
       total: map['total'],
       platforms: List.from(map['platforms'] ?? []),

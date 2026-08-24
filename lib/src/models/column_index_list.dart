@@ -12,12 +12,14 @@ class ColumnIndexList implements Model {
     required this.total,
     required this.indexes,
   });
-
-  factory ColumnIndexList.fromMap(Map<String, dynamic> map) {
+  factory ColumnIndexList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ColumnIndexList(
       total: map['total'],
       indexes: List<ColumnIndex>.from(
-          map['indexes'].map((p) => ColumnIndex.fromMap(p))),
+        map['indexes'].map((p) => ColumnIndex.fromMap(p)),
+      ),
     );
   }
 

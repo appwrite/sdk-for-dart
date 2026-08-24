@@ -12,11 +12,13 @@ class ProjectAuthMethod implements Model {
     required this.$id,
     required this.enabled,
   });
-
-  factory ProjectAuthMethod.fromMap(Map<String, dynamic> map) {
+  factory ProjectAuthMethod.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ProjectAuthMethod(
-      $id: enums.ProjectAuthMethodId.values
-          .firstWhere((e) => e.value == map['\$id']),
+      $id: enums.ProjectAuthMethodId.values.firstWhere(
+        (e) => e.value == map['\$id'],
+      ),
       enabled: map['enabled'],
     );
   }

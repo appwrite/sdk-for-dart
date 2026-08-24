@@ -6,7 +6,10 @@ class Webhooks extends Service {
 
   /// Get a list of all webhooks belonging to the project. You can use the query
   /// params to filter your results.
-  Future<models.WebhookList> list({List<String>? queries, bool? total}) async {
+  Future<models.WebhookList> list({
+    List<String>? queries,
+    bool? total,
+  }) async {
     final String apiPath = '/webhooks';
 
     final Map<String, dynamic> apiParams = {
@@ -19,24 +22,29 @@ class Webhooks extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.WebhookList.fromMap(res.data);
   }
 
   /// Create a new webhook. Use this endpoint to configure a URL that will
   /// receive events from Appwrite when specific events occur.
-  Future<models.Webhook> create(
-      {required String webhookId,
-      required String url,
-      required String name,
-      required List<String> events,
-      bool? enabled,
-      bool? tls,
-      String? authUsername,
-      String? authPassword,
-      String? secret}) async {
+  Future<models.Webhook> create({
+    required String webhookId,
+    required String url,
+    required String name,
+    required List<String> events,
+    bool? enabled,
+    bool? tls,
+    String? authUsername,
+    String? authPassword,
+    String? secret,
+  }) async {
     final String apiPath = '/webhooks';
 
     final Map<String, dynamic> apiParams = {
@@ -57,17 +65,25 @@ class Webhooks extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Webhook.fromMap(res.data);
   }
 
   /// Get a webhook by its unique ID. This endpoint returns details about a
   /// specific webhook configured for a project.
-  Future<models.Webhook> get({required String webhookId}) async {
-    final String apiPath =
-        '/webhooks/{webhookId}'.replaceAll('{webhookId}', webhookId);
+  Future<models.Webhook> get({
+    required String webhookId,
+  }) async {
+    final String apiPath = '/webhooks/{webhookId}'.replaceAll(
+      '{webhookId}',
+      webhookId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -76,25 +92,32 @@ class Webhooks extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Webhook.fromMap(res.data);
   }
 
   /// Update a webhook by its unique ID. Use this endpoint to update the URL,
   /// events, or status of an existing webhook.
-  Future<models.Webhook> update(
-      {required String webhookId,
-      required String name,
-      required String url,
-      required List<String> events,
-      bool? enabled,
-      bool? tls,
-      String? authUsername,
-      String? authPassword}) async {
-    final String apiPath =
-        '/webhooks/{webhookId}'.replaceAll('{webhookId}', webhookId);
+  Future<models.Webhook> update({
+    required String webhookId,
+    required String name,
+    required String url,
+    required List<String> events,
+    bool? enabled,
+    bool? tls,
+    String? authUsername,
+    String? authPassword,
+  }) async {
+    final String apiPath = '/webhooks/{webhookId}'.replaceAll(
+      '{webhookId}',
+      webhookId,
+    );
 
     final Map<String, dynamic> apiParams = {
       'name': name,
@@ -112,17 +135,25 @@ class Webhooks extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.put,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Webhook.fromMap(res.data);
   }
 
   /// Delete a webhook by its unique ID. Once deleted, the webhook will no longer
   /// receive project events.
-  Future delete({required String webhookId}) async {
-    final String apiPath =
-        '/webhooks/{webhookId}'.replaceAll('{webhookId}', webhookId);
+  Future delete({
+    required String webhookId,
+  }) async {
+    final String apiPath = '/webhooks/{webhookId}'.replaceAll(
+      '{webhookId}',
+      webhookId,
+    );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -131,8 +162,12 @@ class Webhooks extends Service {
       'content-type': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.delete,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
@@ -140,10 +175,14 @@ class Webhooks extends Service {
   /// Update the webhook signing key. This endpoint can be used to regenerate the
   /// signing key used to sign and validate payload deliveries for a specific
   /// webhook.
-  Future<models.Webhook> updateSecret(
-      {required String webhookId, String? secret}) async {
-    final String apiPath =
-        '/webhooks/{webhookId}/secret'.replaceAll('{webhookId}', webhookId);
+  Future<models.Webhook> updateSecret({
+    required String webhookId,
+    String? secret,
+  }) async {
+    final String apiPath = '/webhooks/{webhookId}/secret'.replaceAll(
+      '{webhookId}',
+      webhookId,
+    );
 
     final Map<String, dynamic> apiParams = {
       if (secret != null) 'secret': secret,
@@ -155,8 +194,12 @@ class Webhooks extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.patch,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Webhook.fromMap(res.data);
   }

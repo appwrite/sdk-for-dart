@@ -12,11 +12,14 @@ class BucketList implements Model {
     required this.total,
     required this.buckets,
   });
-
-  factory BucketList.fromMap(Map<String, dynamic> map) {
+  factory BucketList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return BucketList(
       total: map['total'],
-      buckets: List<Bucket>.from(map['buckets'].map((p) => Bucket.fromMap(p))),
+      buckets: List<Bucket>.from(
+        map['buckets'].map((p) => Bucket.fromMap(p)),
+      ),
     );
   }
 

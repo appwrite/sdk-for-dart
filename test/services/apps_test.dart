@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -60,9 +71,9 @@ void main() {
         'apps': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.list();
       expect(response, isA<models.AppsList>());
@@ -70,41 +81,41 @@ void main() {
 
     test('test method create()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Application',
-        'description': 'Connect your workspace to My Application.',
-        'clientUri': 'https://example.com',
-        'logoUri': 'https://example.com/logo.png',
-        'privacyPolicyUrl': 'https://example.com/privacy',
-        'termsUrl': 'https://example.com/terms',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Application",
+        'description': "Connect your workspace to My Application.",
+        'clientUri': "https://example.com",
+        'logoUri': "https://example.com/logo.png",
+        'privacyPolicyUrl': "https://example.com/privacy",
+        'termsUrl': "https://example.com/terms",
         'contacts': [],
-        'tagline': 'Automate your workspace.',
+        'tagline': "Automate your workspace.",
         'tags': [],
         'labels': [],
         'images': [],
-        'supportUrl': 'https://example.com/support',
-        'dataDeletionUrl': 'https://example.com/data-deletion',
+        'supportUrl': "https://example.com/support",
+        'dataDeletionUrl': "https://example.com/data-deletion",
         'redirectUris': [],
         'postLogoutRedirectUris': [],
         'enabled': true,
-        'type': 'confidential',
+        'type': "confidential",
         'deviceFlow': true,
-        'teamId': '5e5ea5c16897e',
-        'userId': '5e5ea5c16897e',
+        'teamId': "5e5ea5c16897e",
+        'userId': "5e5ea5c16897e",
         'installationScopes': [],
-        'installationRedirectUrl': 'https://example.com/setup',
+        'installationRedirectUrl': "https://example.com/setup",
         'secrets': [],
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.create(
-        appId: '<APP_ID>',
-        name: '<NAME>',
+        appId: "<APP_ID>",
+        name: "<NAME>",
         redirectUris: [],
       );
       expect(response, isA<models.App>());
@@ -116,9 +127,9 @@ void main() {
         'scopes': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.listInstallationScopes();
       expect(response, isA<models.AppScopeList>());
@@ -130,9 +141,9 @@ void main() {
         'scopes': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.listOAuth2Scopes();
       expect(response, isA<models.AppScopeList>());
@@ -140,81 +151,81 @@ void main() {
 
     test('test method get()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Application',
-        'description': 'Connect your workspace to My Application.',
-        'clientUri': 'https://example.com',
-        'logoUri': 'https://example.com/logo.png',
-        'privacyPolicyUrl': 'https://example.com/privacy',
-        'termsUrl': 'https://example.com/terms',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Application",
+        'description': "Connect your workspace to My Application.",
+        'clientUri': "https://example.com",
+        'logoUri': "https://example.com/logo.png",
+        'privacyPolicyUrl': "https://example.com/privacy",
+        'termsUrl': "https://example.com/terms",
         'contacts': [],
-        'tagline': 'Automate your workspace.',
+        'tagline': "Automate your workspace.",
         'tags': [],
         'labels': [],
         'images': [],
-        'supportUrl': 'https://example.com/support',
-        'dataDeletionUrl': 'https://example.com/data-deletion',
+        'supportUrl': "https://example.com/support",
+        'dataDeletionUrl': "https://example.com/data-deletion",
         'redirectUris': [],
         'postLogoutRedirectUris': [],
         'enabled': true,
-        'type': 'confidential',
+        'type': "confidential",
         'deviceFlow': true,
-        'teamId': '5e5ea5c16897e',
-        'userId': '5e5ea5c16897e',
+        'teamId': "5e5ea5c16897e",
+        'userId': "5e5ea5c16897e",
         'installationScopes': [],
-        'installationRedirectUrl': 'https://example.com/setup',
+        'installationRedirectUrl': "https://example.com/setup",
         'secrets': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.get(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
       expect(response, isA<models.App>());
     });
 
     test('test method update()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Application',
-        'description': 'Connect your workspace to My Application.',
-        'clientUri': 'https://example.com',
-        'logoUri': 'https://example.com/logo.png',
-        'privacyPolicyUrl': 'https://example.com/privacy',
-        'termsUrl': 'https://example.com/terms',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Application",
+        'description': "Connect your workspace to My Application.",
+        'clientUri': "https://example.com",
+        'logoUri': "https://example.com/logo.png",
+        'privacyPolicyUrl': "https://example.com/privacy",
+        'termsUrl': "https://example.com/terms",
         'contacts': [],
-        'tagline': 'Automate your workspace.',
+        'tagline': "Automate your workspace.",
         'tags': [],
         'labels': [],
         'images': [],
-        'supportUrl': 'https://example.com/support',
-        'dataDeletionUrl': 'https://example.com/data-deletion',
+        'supportUrl': "https://example.com/support",
+        'dataDeletionUrl': "https://example.com/data-deletion",
         'redirectUris': [],
         'postLogoutRedirectUris': [],
         'enabled': true,
-        'type': 'confidential',
+        'type': "confidential",
         'deviceFlow': true,
-        'teamId': '5e5ea5c16897e',
-        'userId': '5e5ea5c16897e',
+        'teamId': "5e5ea5c16897e",
+        'userId': "5e5ea5c16897e",
         'installationScopes': [],
-        'installationRedirectUrl': 'https://example.com/setup',
+        'installationRedirectUrl': "https://example.com/setup",
         'secrets': [],
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.update(
-        appId: '<APP_ID>',
-        name: '<NAME>',
+        appId: "<APP_ID>",
+        name: "<NAME>",
       );
       expect(response, isA<models.App>());
     });
@@ -222,12 +233,12 @@ void main() {
     test('test method delete()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.delete(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
     });
 
@@ -237,36 +248,36 @@ void main() {
         'installations': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.listInstallations(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
       expect(response, isA<models.AppInstallationList>());
     });
 
     test('test method getInstallation()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
-        'teamId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
+        'teamId': "5e5ea5c16897e",
         'scopes': [],
-        'authorizationDetails': <String, dynamic>{},
-        'createdById': '5e5ea5c16897e',
-        'createdByName': 'Walter White',
+        'authorizationDetails': [],
+        'createdById': "5e5ea5c16897e",
+        'createdByName': "Walter White",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.getInstallation(
-        appId: '<APP_ID>',
-        installationId: '<INSTALLATION_ID>',
+        appId: "<APP_ID>",
+        installationId: "<INSTALLATION_ID>",
       );
       expect(response, isA<models.AppInstallation>());
     });
@@ -274,32 +285,32 @@ void main() {
     test('test method deleteInstallation()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.deleteInstallation(
-        appId: '<APP_ID>',
-        installationId: '<INSTALLATION_ID>',
+        appId: "<APP_ID>",
+        installationId: "<INSTALLATION_ID>",
       );
     });
 
     test('test method createInstallationToken()', () async {
       final Map<String, dynamic> data = {
-        'access_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...',
-        'token_type': 'Bearer',
+        'access_token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...",
+        'token_type': "Bearer",
         'expires_in': 3600,
-        'refresh_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...',
-        'scope': 'openid email profile',
+        'refresh_token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+        'scope': "openid email profile",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.createInstallationToken(
-        appId: '<APP_ID>',
-        installationId: '<INSTALLATION_ID>',
+        appId: "<APP_ID>",
+        installationId: "<INSTALLATION_ID>",
       );
       expect(response, isA<models.Oauth2Token>());
     });
@@ -310,59 +321,59 @@ void main() {
         'keys': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.listKeys(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
       expect(response, isA<models.AppKeyList>());
     });
 
     test('test method createKey()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
         'secret':
-            '5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a',
-        'hint': 'f5c6c7',
-        'createdById': '5e5ea5c16897e',
-        'createdByName': 'Walter White',
+            "5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a",
+        'hint': "f5c6c7",
+        'createdById': "5e5ea5c16897e",
+        'createdByName': "Walter White",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.createKey(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
       expect(response, isA<models.AppKey>());
     });
 
     test('test method getKey()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
         'secret':
-            '5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a',
-        'hint': 'f5c6c7',
-        'createdById': '5e5ea5c16897e',
-        'createdByName': 'Walter White',
+            "5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a",
+        'hint': "f5c6c7",
+        'createdById': "5e5ea5c16897e",
+        'createdByName': "Walter White",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.getKey(
-        appId: '<APP_ID>',
-        keyId: '<KEY_ID>',
+        appId: "<APP_ID>",
+        keyId: "<KEY_ID>",
       );
       expect(response, isA<models.AppKey>());
     });
@@ -370,52 +381,52 @@ void main() {
     test('test method deleteKey()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.deleteKey(
-        appId: '<APP_ID>',
-        keyId: '<KEY_ID>',
+        appId: "<APP_ID>",
+        keyId: "<KEY_ID>",
       );
     });
 
     test('test method updateLabels()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Application',
-        'description': 'Connect your workspace to My Application.',
-        'clientUri': 'https://example.com',
-        'logoUri': 'https://example.com/logo.png',
-        'privacyPolicyUrl': 'https://example.com/privacy',
-        'termsUrl': 'https://example.com/terms',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Application",
+        'description': "Connect your workspace to My Application.",
+        'clientUri': "https://example.com",
+        'logoUri': "https://example.com/logo.png",
+        'privacyPolicyUrl': "https://example.com/privacy",
+        'termsUrl': "https://example.com/terms",
         'contacts': [],
-        'tagline': 'Automate your workspace.',
+        'tagline': "Automate your workspace.",
         'tags': [],
         'labels': [],
         'images': [],
-        'supportUrl': 'https://example.com/support',
-        'dataDeletionUrl': 'https://example.com/data-deletion',
+        'supportUrl': "https://example.com/support",
+        'dataDeletionUrl': "https://example.com/data-deletion",
         'redirectUris': [],
         'postLogoutRedirectUris': [],
         'enabled': true,
-        'type': 'confidential',
+        'type': "confidential",
         'deviceFlow': true,
-        'teamId': '5e5ea5c16897e',
-        'userId': '5e5ea5c16897e',
+        'teamId': "5e5ea5c16897e",
+        'userId': "5e5ea5c16897e",
         'installationScopes': [],
-        'installationRedirectUrl': 'https://example.com/setup',
+        'installationRedirectUrl': "https://example.com/setup",
         'secrets': [],
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.updateLabels(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
         labels: [],
       );
       expect(response, isA<models.App>());
@@ -427,58 +438,58 @@ void main() {
         'secrets': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.listSecrets(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
       expect(response, isA<models.AppSecretList>());
     });
 
     test('test method createSecret()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
         'secret':
-            '5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a',
-        'hint': 'f5c6c7',
-        'createdById': '5e5ea5c16897e',
-        'createdByName': 'Walter White',
+            "5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a",
+        'hint': "f5c6c7",
+        'createdById': "5e5ea5c16897e",
+        'createdByName': "Walter White",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.createSecret(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
       expect(response, isA<models.AppSecretPlaintext>());
     });
 
     test('test method getSecret()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'appId': '5e5ea5c16897e',
-        'secret': '',
-        'hint': 'f5c6c7',
-        'createdById': '5e5ea5c16897e',
-        'createdByName': 'Walter White',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'appId': "5e5ea5c16897e",
+        'secret': "",
+        'hint': "f5c6c7",
+        'createdById': "5e5ea5c16897e",
+        'createdByName': "Walter White",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.getSecret(
-        appId: '<APP_ID>',
-        secretId: '<SECRET_ID>',
+        appId: "<APP_ID>",
+        secretId: "<SECRET_ID>",
       );
       expect(response, isA<models.AppSecret>());
     });
@@ -486,53 +497,53 @@ void main() {
     test('test method deleteSecret()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.deleteSecret(
-        appId: '<APP_ID>',
-        secretId: '<SECRET_ID>',
+        appId: "<APP_ID>",
+        secretId: "<SECRET_ID>",
       );
     });
 
     test('test method updateTeam()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Application',
-        'description': 'Connect your workspace to My Application.',
-        'clientUri': 'https://example.com',
-        'logoUri': 'https://example.com/logo.png',
-        'privacyPolicyUrl': 'https://example.com/privacy',
-        'termsUrl': 'https://example.com/terms',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Application",
+        'description': "Connect your workspace to My Application.",
+        'clientUri': "https://example.com",
+        'logoUri': "https://example.com/logo.png",
+        'privacyPolicyUrl': "https://example.com/privacy",
+        'termsUrl': "https://example.com/terms",
         'contacts': [],
-        'tagline': 'Automate your workspace.',
+        'tagline': "Automate your workspace.",
         'tags': [],
         'labels': [],
         'images': [],
-        'supportUrl': 'https://example.com/support',
-        'dataDeletionUrl': 'https://example.com/data-deletion',
+        'supportUrl': "https://example.com/support",
+        'dataDeletionUrl': "https://example.com/data-deletion",
         'redirectUris': [],
         'postLogoutRedirectUris': [],
         'enabled': true,
-        'type': 'confidential',
+        'type': "confidential",
         'deviceFlow': true,
-        'teamId': '5e5ea5c16897e',
-        'userId': '5e5ea5c16897e',
+        'teamId': "5e5ea5c16897e",
+        'userId': "5e5ea5c16897e",
         'installationScopes': [],
-        'installationRedirectUrl': 'https://example.com/setup',
+        'installationRedirectUrl': "https://example.com/setup",
         'secrets': [],
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.updateTeam(
-        appId: '<APP_ID>',
-        teamId: '<TEAM_ID>',
+        appId: "<APP_ID>",
+        teamId: "<TEAM_ID>",
       );
       expect(response, isA<models.App>());
     });
@@ -540,12 +551,12 @@ void main() {
     test('test method deleteTokens()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await apps.deleteTokens(
-        appId: '<APP_ID>',
+        appId: "<APP_ID>",
       );
     });
   });

@@ -12,11 +12,14 @@ class AppKeyList implements Model {
     required this.total,
     required this.keys,
   });
-
-  factory AppKeyList.fromMap(Map<String, dynamic> map) {
+  factory AppKeyList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AppKeyList(
       total: map['total'],
-      keys: List<AppKey>.from(map['keys'].map((p) => AppKey.fromMap(p))),
+      keys: List<AppKey>.from(
+        map['keys'].map((p) => AppKey.fromMap(p)),
+      ),
     );
   }
 

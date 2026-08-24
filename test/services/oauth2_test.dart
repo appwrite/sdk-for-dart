@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -56,28 +67,28 @@ void main() {
 
     test('test method approve()', () async {
       final Map<String, dynamic> data = {
-        'redirectUrl': 'https://example.com/callback?code=abcde&state=fghij',
+        'redirectUrl': "https://example.com/callback?code=abcde&state=fghij",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.approve(
-        grantId: '<GRANT_ID>',
+        grantId: "<GRANT_ID>",
       );
       expect(response, isA<models.Oauth2Approve>());
     });
 
     test('test method authorize()', () async {
       final Map<String, dynamic> data = {
-        'grantId': '5e5ea5c16897e',
-        'redirectUrl': 'https://example.com/callback?code=abcde&state=fghij',
+        'grantId': "5e5ea5c16897e",
+        'redirectUrl': "https://example.com/callback?code=abcde&state=fghij",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.authorize();
       expect(response, isA<models.Oauth2Authorize>());
@@ -85,13 +96,13 @@ void main() {
 
     test('test method authorizePost()', () async {
       final Map<String, dynamic> data = {
-        'grantId': '5e5ea5c16897e',
-        'redirectUrl': 'https://example.com/callback?code=abcde&state=fghij',
+        'grantId': "5e5ea5c16897e",
+        'redirectUrl': "https://example.com/callback?code=abcde&state=fghij",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.authorizePost();
       expect(response, isA<models.Oauth2Authorize>());
@@ -100,18 +111,18 @@ void main() {
     test('test method createDeviceAuthorization()', () async {
       final Map<String, dynamic> data = {
         'device_code':
-            '5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a',
-        'user_code': 'ABCD-EFGH',
-        'verification_uri': 'https://cloud.appwrite.io/console/oauth2/device',
+            "5f3c8d2a1b9e4f7a6c8b2d1e9f4a7b3c5d8e1f2a9b4c7d6e3f5a8b1c4d7e2f9a",
+        'user_code': "ABCD-EFGH",
+        'verification_uri': "https://cloud.appwrite.io/console/oauth2/device",
         'verification_uri_complete':
-            'https://cloud.appwrite.io/console/oauth2/device?user_code=ABCD-EFGH',
+            "https://cloud.appwrite.io/console/oauth2/device?user_code=ABCD-EFGH",
         'expires_in': 900,
         'interval': 5,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.createDeviceAuthorization();
       expect(response, isA<models.Oauth2DeviceAuthorization>());
@@ -119,54 +130,54 @@ void main() {
 
     test('test method createGrant()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'userId': '5e5ea5c16897e',
-        'appId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c16897e",
+        'appId': "5e5ea5c16897e",
         'scopes': [],
         'resources': [],
         'authorizationDetails':
-            '[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]',
-        'prompt': 'login',
-        'redirectUri': 'https://example.com/callback',
+            "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
+        'prompt': "login",
+        'redirectUri': "https://example.com/callback",
         'authTime': 1592981250,
-        'expire': '2020-10-15T06:38:00.000+00:00',
+        'expire': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.createGrant(
-        userCode: '<USER_CODE>',
+        userCode: "<USER_CODE>",
       );
       expect(response, isA<models.Oauth2Grant>());
     });
 
     test('test method getGrant()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'userId': '5e5ea5c16897e',
-        'appId': '5e5ea5c16897e',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c16897e",
+        'appId': "5e5ea5c16897e",
         'scopes': [],
         'resources': [],
         'authorizationDetails':
-            '[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]',
-        'prompt': 'login',
-        'redirectUri': 'https://example.com/callback',
+            "[{\"type\":\"calendar\",\"identifier\":\"primary\",\"actions\":[\"read_events\",\"create_event\"]}]",
+        'prompt': "login",
+        'redirectUri': "https://example.com/callback",
         'authTime': 1592981250,
-        'expire': '2020-10-15T06:38:00.000+00:00',
+        'expire': "2020-10-15T06:38:00.000+00:00",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.getGrant(
-        grantId: '<GRANT_ID>',
+        grantId: "<GRANT_ID>",
       );
       expect(response, isA<models.Oauth2Grant>());
     });
@@ -177,9 +188,9 @@ void main() {
         'organizations': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.listOrganizations();
       expect(response, isA<models.Oauth2OrganizationList>());
@@ -187,18 +198,18 @@ void main() {
 
     test('test method createPAR()', () async {
       final Map<String, dynamic> data = {
-        'request_uri': 'urn:appwrite:oauth2:request:5e5ea5c16897e',
+        'request_uri': "urn:appwrite:oauth2:request:5e5ea5c16897e",
         'expires_in': 600,
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.createPAR(
-        clientId: '<CLIENT_ID>',
-        redirectUri: 'https://example.com',
-        responseType: 'code',
+        clientId: "<CLIENT_ID>",
+        redirectUri: "https://example.com",
+        responseType: "code",
       );
       expect(response, isA<models.Oauth2PAR>());
     });
@@ -209,9 +220,9 @@ void main() {
         'projects': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.listProjects();
       expect(response, isA<models.Oauth2ProjectList>());
@@ -220,15 +231,15 @@ void main() {
     test('test method reject()', () async {
       final Map<String, dynamic> data = {
         'redirectUrl':
-            'https://example.com/callback?error=access_denied&state=fghij',
+            "https://example.com/callback?error=access_denied&state=fghij",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.reject(
-        grantId: '<GRANT_ID>',
+        grantId: "<GRANT_ID>",
       );
       expect(response, isA<models.Oauth2Reject>());
     });
@@ -236,30 +247,30 @@ void main() {
     test('test method revoke()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.revoke(
-        token: '<TOKEN>',
+        token: "<TOKEN>",
       );
     });
 
     test('test method createToken()', () async {
       final Map<String, dynamic> data = {
-        'access_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...',
-        'token_type': 'Bearer',
+        'access_token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...",
+        'token_type': "Bearer",
         'expires_in': 3600,
-        'refresh_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...',
-        'scope': 'openid email profile',
+        'refresh_token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+        'scope': "openid email profile",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.createToken(
-        grantType: '<GRANT_TYPE>',
+        grantType: "<GRANT_TYPE>",
       );
       expect(response, isA<models.Oauth2Token>());
     });

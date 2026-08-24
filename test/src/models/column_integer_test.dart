@@ -6,25 +6,25 @@ void main() {
   group('ColumnInteger', () {
     test('model', () {
       final model = ColumnInteger(
-        key: 'count',
-        type: 'integer',
+        key: "count",
+        type: "integer",
         status: ColumnStatus.available,
-        error: 'string',
+        error: "string",
         xrequired: true,
-        $createdAt: '2020-10-15T06:38:00.000+00:00',
-        $updatedAt: '2020-10-15T06:38:00.000+00:00',
+        $createdAt: "2020-10-15T06:38:00.000+00:00",
+        $updatedAt: "2020-10-15T06:38:00.000+00:00",
       );
 
       final map = model.toMap();
       final result = ColumnInteger.fromMap(map);
 
-      expect(result.key, 'count');
-      expect(result.type, 'integer');
+      expect(result.key, "count");
+      expect(result.type, "integer");
       expect(result.status, ColumnStatus.available);
-      expect(result.error, 'string');
+      expect(result.error, "string");
       expect(result.xrequired, true);
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
+      expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
     });
   });
 }

@@ -12,11 +12,14 @@ class ReportList implements Model {
     required this.total,
     required this.reports,
   });
-
-  factory ReportList.fromMap(Map<String, dynamic> map) {
+  factory ReportList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ReportList(
       total: map['total'],
-      reports: List<Report>.from(map['reports'].map((p) => Report.fromMap(p))),
+      reports: List<Report>.from(
+        map['reports'].map((p) => Report.fromMap(p)),
+      ),
     );
   }
 

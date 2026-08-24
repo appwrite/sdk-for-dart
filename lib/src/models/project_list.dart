@@ -12,12 +12,14 @@ class ProjectList implements Model {
     required this.total,
     required this.projects,
   });
-
-  factory ProjectList.fromMap(Map<String, dynamic> map) {
+  factory ProjectList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ProjectList(
       total: map['total'],
-      projects:
-          List<Project>.from(map['projects'].map((p) => Project.fromMap(p))),
+      projects: List<Project>.from(
+        map['projects'].map((p) => Project.fromMap(p)),
+      ),
     );
   }
 

@@ -1,5 +1,14 @@
 # Change Log
 
+## 28.0.0
+
+* Breaking: `Execution.functionId` replaced by `resourceId` and `resourceType`, now that executions cover both functions and sites
+* Added: `avatars.getPhoto` returning the user's best available profile photo
+* Added: `project.updateOAuth2HuggingFace` and the `OAuth2HuggingFace` model
+* Added: `huggingface` OAuth provider
+* Added: `ExecutionResourceType` enum and `resourceType` attribute on the `Execution` model
+* Fixed: empty JSON error responses no longer throw `FormatException`
+
 ## 27.0.0
 
 * Breaking: removed `account.createJWT`; use `users.createJWT` instead. A leaked JWT could mint further JWTs, letting a credential outlive its own expiry — a session cannot duplicate itself to live forever either

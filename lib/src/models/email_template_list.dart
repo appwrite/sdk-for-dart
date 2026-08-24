@@ -12,12 +12,14 @@ class EmailTemplateList implements Model {
     required this.total,
     required this.templates,
   });
-
-  factory EmailTemplateList.fromMap(Map<String, dynamic> map) {
+  factory EmailTemplateList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return EmailTemplateList(
       total: map['total'],
       templates: List<EmailTemplate>.from(
-          map['templates'].map((p) => EmailTemplate.fromMap(p))),
+        map['templates'].map((p) => EmailTemplate.fromMap(p)),
+      ),
     );
   }
 

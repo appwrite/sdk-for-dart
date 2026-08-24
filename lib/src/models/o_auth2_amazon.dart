@@ -20,8 +20,9 @@ class OAuth2Amazon implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Amazon.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Amazon.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Amazon(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

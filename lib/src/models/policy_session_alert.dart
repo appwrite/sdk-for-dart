@@ -12,8 +12,9 @@ class PolicySessionAlert implements Model {
     required this.$id,
     required this.enabled,
   });
-
-  factory PolicySessionAlert.fromMap(Map<String, dynamic> map) {
+  factory PolicySessionAlert.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicySessionAlert(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

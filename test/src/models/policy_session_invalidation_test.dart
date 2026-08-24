@@ -5,14 +5,14 @@ void main() {
   group('PolicySessionInvalidation', () {
     test('model', () {
       final model = PolicySessionInvalidation(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         enabled: true,
       );
 
       final map = model.toMap();
       final result = PolicySessionInvalidation.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.enabled, true);
     });
   });

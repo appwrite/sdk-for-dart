@@ -44,8 +44,9 @@ class ColumnIndex implements Model {
     required this.lengths,
     this.orders,
   });
-
-  factory ColumnIndex.fromMap(Map<String, dynamic> map) {
+  factory ColumnIndex.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ColumnIndex(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

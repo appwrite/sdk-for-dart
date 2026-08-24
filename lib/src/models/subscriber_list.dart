@@ -12,12 +12,14 @@ class SubscriberList implements Model {
     required this.total,
     required this.subscribers,
   });
-
-  factory SubscriberList.fromMap(Map<String, dynamic> map) {
+  factory SubscriberList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return SubscriberList(
       total: map['total'],
       subscribers: List<Subscriber>.from(
-          map['subscribers'].map((p) => Subscriber.fromMap(p))),
+        map['subscribers'].map((p) => Subscriber.fromMap(p)),
+      ),
     );
   }
 

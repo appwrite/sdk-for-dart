@@ -36,8 +36,9 @@ class Variable implements Model {
     required this.resourceType,
     required this.resourceId,
   });
-
-  factory Variable.fromMap(Map<String, dynamic> map) {
+  factory Variable.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Variable(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

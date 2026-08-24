@@ -6,19 +6,19 @@ void main() {
   group('Organization', () {
     test('model', () {
       final model = Organization(
-        $id: '5e5ea5c16897e',
-        $createdAt: '2020-10-15T06:38:00.000+00:00',
-        $updatedAt: '2020-10-15T06:38:00.000+00:00',
-        name: 'VIP',
+        $id: "5e5ea5c16897e",
+        $createdAt: "2020-10-15T06:38:00.000+00:00",
+        $updatedAt: "2020-10-15T06:38:00.000+00:00",
+        name: "VIP",
         total: 7,
         prefs: Preferences(data: {}),
         budgetAlerts: [],
-        billingPlan: 'tier-1',
-        billingPlanId: 'tier-1',
+        billingPlan: "tier-1",
+        billingPlanId: "tier-1",
         billingPlanDetails: BillingPlan(
-          $id: 'tier-0',
-          name: 'Hobby',
-          desc: 'Hobby plan',
+          $id: "tier-0",
+          name: "Hobby",
+          desc: "Hobby plan",
           order: 0,
           price: 25,
           trial: 14,
@@ -54,68 +54,68 @@ void main() {
           alertLimit: 80,
           usage: UsageBillingPlan(
             bandwidth: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
+              name: "",
+              unit: "GB",
+              currency: "USD",
               price: 5,
               value: 25,
-              invoiceDesc: '',
+              invoiceDesc: "",
             ),
             executions: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
+              name: "",
+              unit: "GB",
+              currency: "USD",
               price: 5,
               value: 25,
-              invoiceDesc: '',
+              invoiceDesc: "",
             ),
             realtime: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
+              name: "",
+              unit: "GB",
+              currency: "USD",
               price: 5,
               value: 25,
-              invoiceDesc: '',
+              invoiceDesc: "",
             ),
             realtimeMessages: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
+              name: "",
+              unit: "GB",
+              currency: "USD",
               price: 5,
               value: 25,
-              invoiceDesc: '',
+              invoiceDesc: "",
             ),
             storage: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
+              name: "",
+              unit: "GB",
+              currency: "USD",
               price: 5,
               value: 25,
-              invoiceDesc: '',
+              invoiceDesc: "",
             ),
             users: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
+              name: "",
+              unit: "GB",
+              currency: "USD",
               price: 5,
               value: 25,
-              invoiceDesc: '',
+              invoiceDesc: "",
             ),
             GBHours: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
+              name: "",
+              unit: "GB",
+              currency: "USD",
               price: 5,
               value: 25,
-              invoiceDesc: '',
+              invoiceDesc: "",
             ),
             imageTransformations: AdditionalResource(
-              name: '',
-              unit: 'GB',
-              currency: 'USD',
+              name: "",
+              unit: "GB",
+              currency: "USD",
               price: 5,
               value: 25,
-              invoiceDesc: '',
+              invoiceDesc: "",
             ),
           ),
           addons: BillingPlanAddon(),
@@ -131,6 +131,7 @@ void main() {
           supportsMockNumbers: true,
           supportsOrganizationRoles: true,
           supportsCredits: true,
+          supportsDedicatedDatabases: true,
           supportsDisposableEmailValidation: true,
           supportsCanonicalEmailValidation: true,
           supportsFreeEmailValidation: true,
@@ -146,43 +147,44 @@ void main() {
           buildSize: 2000,
           databasesAllowEncrypt: true,
           group: BillingPlanGroup.starter,
+          databaseComputeCredit: 10,
         ),
-        billingEmail: 'billing@org.example',
-        billingStartDate: '2020-10-15T06:38:00.000+00:00',
-        billingCurrentInvoiceDate: '2020-10-15T06:38:00.000+00:00',
-        billingNextInvoiceDate: '2020-10-15T06:38:00.000+00:00',
+        billingEmail: "billing@org.example",
+        billingStartDate: "2020-10-15T06:38:00.000+00:00",
+        billingCurrentInvoiceDate: "2020-10-15T06:38:00.000+00:00",
+        billingNextInvoiceDate: "2020-10-15T06:38:00.000+00:00",
         billingTrialDays: 14,
-        billingAggregationId: 'adbc3de4rddfsd',
-        billingInvoiceId: 'adbc3de4rddfsd',
-        paymentMethodId: 'adbc3de4rddfsd',
-        status: 'active',
+        billingAggregationId: "adbc3de4rddfsd",
+        billingInvoiceId: "adbc3de4rddfsd",
+        paymentMethodId: "adbc3de4rddfsd",
+        status: "active",
         markedForDeletion: true,
-        platform: 'imagine',
+        platform: "imagine",
         projects: [],
       );
 
       final map = model.toMap();
       final result = Organization.fromMap(map);
 
-      expect(result.$id, '5e5ea5c16897e');
-      expect(result.$createdAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.$updatedAt, '2020-10-15T06:38:00.000+00:00');
-      expect(result.name, 'VIP');
+      expect(result.$id, "5e5ea5c16897e");
+      expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.name, "VIP");
       expect(result.total, 7);
       expect(result.budgetAlerts, []);
-      expect(result.billingPlan, 'tier-1');
-      expect(result.billingPlanId, 'tier-1');
-      expect(result.billingEmail, 'billing@org.example');
-      expect(result.billingStartDate, '2020-10-15T06:38:00.000+00:00');
-      expect(result.billingCurrentInvoiceDate, '2020-10-15T06:38:00.000+00:00');
-      expect(result.billingNextInvoiceDate, '2020-10-15T06:38:00.000+00:00');
+      expect(result.billingPlan, "tier-1");
+      expect(result.billingPlanId, "tier-1");
+      expect(result.billingEmail, "billing@org.example");
+      expect(result.billingStartDate, "2020-10-15T06:38:00.000+00:00");
+      expect(result.billingCurrentInvoiceDate, "2020-10-15T06:38:00.000+00:00");
+      expect(result.billingNextInvoiceDate, "2020-10-15T06:38:00.000+00:00");
       expect(result.billingTrialDays, 14);
-      expect(result.billingAggregationId, 'adbc3de4rddfsd');
-      expect(result.billingInvoiceId, 'adbc3de4rddfsd');
-      expect(result.paymentMethodId, 'adbc3de4rddfsd');
-      expect(result.status, 'active');
+      expect(result.billingAggregationId, "adbc3de4rddfsd");
+      expect(result.billingInvoiceId, "adbc3de4rddfsd");
+      expect(result.paymentMethodId, "adbc3de4rddfsd");
+      expect(result.status, "active");
       expect(result.markedForDeletion, true);
-      expect(result.platform, 'imagine');
+      expect(result.platform, "imagine");
       expect(result.projects, []);
     });
   });

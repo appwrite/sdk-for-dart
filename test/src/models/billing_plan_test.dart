@@ -6,9 +6,9 @@ void main() {
   group('BillingPlan', () {
     test('model', () {
       final model = BillingPlan(
-        $id: 'tier-0',
-        name: 'Hobby',
-        desc: 'Hobby plan',
+        $id: "tier-0",
+        name: "Hobby",
+        desc: "Hobby plan",
         order: 0,
         price: 25,
         trial: 14,
@@ -44,68 +44,68 @@ void main() {
         alertLimit: 80,
         usage: UsageBillingPlan(
           bandwidth: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
+            name: "",
+            unit: "GB",
+            currency: "USD",
             price: 5,
             value: 25,
-            invoiceDesc: '',
+            invoiceDesc: "",
           ),
           executions: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
+            name: "",
+            unit: "GB",
+            currency: "USD",
             price: 5,
             value: 25,
-            invoiceDesc: '',
+            invoiceDesc: "",
           ),
           realtime: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
+            name: "",
+            unit: "GB",
+            currency: "USD",
             price: 5,
             value: 25,
-            invoiceDesc: '',
+            invoiceDesc: "",
           ),
           realtimeMessages: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
+            name: "",
+            unit: "GB",
+            currency: "USD",
             price: 5,
             value: 25,
-            invoiceDesc: '',
+            invoiceDesc: "",
           ),
           storage: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
+            name: "",
+            unit: "GB",
+            currency: "USD",
             price: 5,
             value: 25,
-            invoiceDesc: '',
+            invoiceDesc: "",
           ),
           users: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
+            name: "",
+            unit: "GB",
+            currency: "USD",
             price: 5,
             value: 25,
-            invoiceDesc: '',
+            invoiceDesc: "",
           ),
           GBHours: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
+            name: "",
+            unit: "GB",
+            currency: "USD",
             price: 5,
             value: 25,
-            invoiceDesc: '',
+            invoiceDesc: "",
           ),
           imageTransformations: AdditionalResource(
-            name: '',
-            unit: 'GB',
-            currency: 'USD',
+            name: "",
+            unit: "GB",
+            currency: "USD",
             price: 5,
             value: 25,
-            invoiceDesc: '',
+            invoiceDesc: "",
           ),
         ),
         addons: BillingPlanAddon(),
@@ -121,6 +121,7 @@ void main() {
         supportsMockNumbers: true,
         supportsOrganizationRoles: true,
         supportsCredits: true,
+        supportsDedicatedDatabases: true,
         supportsDisposableEmailValidation: true,
         supportsCanonicalEmailValidation: true,
         supportsFreeEmailValidation: true,
@@ -136,14 +137,15 @@ void main() {
         buildSize: 2000,
         databasesAllowEncrypt: true,
         group: BillingPlanGroup.starter,
+        databaseComputeCredit: 10,
       );
 
       final map = model.toMap();
       final result = BillingPlan.fromMap(map);
 
-      expect(result.$id, 'tier-0');
-      expect(result.name, 'Hobby');
-      expect(result.desc, 'Hobby plan');
+      expect(result.$id, "tier-0");
+      expect(result.name, "Hobby");
+      expect(result.desc, "Hobby plan");
       expect(result.order, 0);
       expect(result.price, 25);
       expect(result.trial, 14);
@@ -189,6 +191,7 @@ void main() {
       expect(result.supportsMockNumbers, true);
       expect(result.supportsOrganizationRoles, true);
       expect(result.supportsCredits, true);
+      expect(result.supportsDedicatedDatabases, true);
       expect(result.supportsDisposableEmailValidation, true);
       expect(result.supportsCanonicalEmailValidation, true);
       expect(result.supportsFreeEmailValidation, true);
@@ -199,6 +202,7 @@ void main() {
       expect(result.buildSize, 2000);
       expect(result.databasesAllowEncrypt, true);
       expect(result.group, BillingPlanGroup.starter);
+      expect(result.databaseComputeCredit, 10);
     });
   });
 }

@@ -20,8 +20,9 @@ class OAuth2Zoom implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Zoom.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Zoom.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Zoom(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

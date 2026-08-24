@@ -12,8 +12,9 @@ class PolicyUserLimit implements Model {
     required this.$id,
     required this.total,
   });
-
-  factory PolicyUserLimit.fromMap(Map<String, dynamic> map) {
+  factory PolicyUserLimit.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicyUserLimit(
       $id: map['\$id'].toString(),
       total: map['total'],

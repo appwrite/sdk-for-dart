@@ -52,8 +52,9 @@ class Table implements Model {
     required this.bytesMax,
     required this.bytesUsed,
   });
-
-  factory Table.fromMap(Map<String, dynamic> map) {
+  factory Table.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Table(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -65,7 +66,8 @@ class Table implements Model {
       rowSecurity: map['rowSecurity'],
       columns: List.from(map['columns'] ?? []),
       indexes: List<ColumnIndex>.from(
-          map['indexes'].map((p) => ColumnIndex.fromMap(p))),
+        map['indexes'].map((p) => ColumnIndex.fromMap(p)),
+      ),
       bytesMax: map['bytesMax'],
       bytesUsed: map['bytesUsed'],
     );

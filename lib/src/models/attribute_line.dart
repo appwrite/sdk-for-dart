@@ -40,13 +40,15 @@ class AttributeLine implements Model {
     required this.$updatedAt,
     this.xdefault,
   });
-
-  factory AttributeLine.fromMap(Map<String, dynamic> map) {
+  factory AttributeLine.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AttributeLine(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: enums.AttributeStatus.values
-          .firstWhere((e) => e.value == map['status']),
+      status: enums.AttributeStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],

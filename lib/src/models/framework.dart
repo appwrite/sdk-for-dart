@@ -24,15 +24,17 @@ class Framework implements Model {
     required this.runtimes,
     required this.adapters,
   });
-
-  factory Framework.fromMap(Map<String, dynamic> map) {
+  factory Framework.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Framework(
       key: map['key'].toString(),
       name: map['name'].toString(),
       buildRuntime: map['buildRuntime'].toString(),
       runtimes: List.from(map['runtimes'] ?? []),
       adapters: List<FrameworkAdapter>.from(
-          map['adapters'].map((p) => FrameworkAdapter.fromMap(p))),
+        map['adapters'].map((p) => FrameworkAdapter.fromMap(p)),
+      ),
     );
   }
 

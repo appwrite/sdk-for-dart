@@ -20,8 +20,9 @@ class OAuth2Twitch implements Model {
     required this.clientId,
     required this.clientSecret,
   });
-
-  factory OAuth2Twitch.fromMap(Map<String, dynamic> map) {
+  factory OAuth2Twitch.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return OAuth2Twitch(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

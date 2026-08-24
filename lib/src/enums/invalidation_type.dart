@@ -1,9 +1,9 @@
 part of '../../enums.dart';
 
 enum InvalidationType {
-  tag(value: 'tag'),
-  path(value: 'path'),
-  all(value: 'all');
+  tag(value: "tag"),
+  path(value: "path"),
+  all(value: "all");
 
   const InvalidationType({required this.value});
 

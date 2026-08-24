@@ -10,12 +10,15 @@ class Oauth2 extends Service {
   /// optionally pass enriched `authorization_details` to record the concrete
   /// resources the user selected. You can pass Accept header of
   /// `application/json` to receive a JSON response instead of a redirect.
-  Future<models.Oauth2Approve> approve(
-      {required String grantId,
-      String? authorizationDetails,
-      String? scope}) async {
-    final String apiPath = '/oauth2/{project_id}/approve'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2Approve> approve({
+    required String grantId,
+    String? authorizationDetails,
+    String? scope,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/approve'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       'grant_id': grantId,
@@ -29,8 +32,12 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2Approve.fromMap(res.data);
   }
@@ -40,23 +47,26 @@ class Oauth2 extends Service {
   /// a session, the redirect URL includes param for grant ID. You can pass
   /// Accept header of `application/json` to receive a JSON response instead of a
   /// redirect.
-  Future<models.Oauth2Authorize> authorize(
-      {String? clientId,
-      String? redirectUri,
-      String? responseType,
-      String? scope,
-      String? state,
-      String? nonce,
-      String? codeChallenge,
-      String? codeChallengeMethod,
-      String? prompt,
-      int? maxAge,
-      String? authorizationDetails,
-      String? resource,
-      String? audience,
-      String? requestUri}) async {
-    final String apiPath = '/oauth2/{project_id}/authorize'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2Authorize> authorize({
+    String? clientId,
+    String? redirectUri,
+    String? responseType,
+    String? scope,
+    String? state,
+    String? nonce,
+    String? codeChallenge,
+    String? codeChallengeMethod,
+    String? prompt,
+    int? maxAge,
+    String? authorizationDetails,
+    String? resource,
+    String? audience,
+    String? requestUri,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/authorize'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       if (clientId != null) 'client_id': clientId,
@@ -81,8 +91,12 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2Authorize.fromMap(res.data);
   }
@@ -92,23 +106,26 @@ class Oauth2 extends Service {
   /// a session, the redirect URL includes param for grant ID. You can pass
   /// Accept header of `application/json` to receive a JSON response instead of a
   /// redirect.
-  Future<models.Oauth2Authorize> authorizePost(
-      {String? clientId,
-      String? redirectUri,
-      String? responseType,
-      String? scope,
-      String? state,
-      String? nonce,
-      String? codeChallenge,
-      String? codeChallengeMethod,
-      String? prompt,
-      int? maxAge,
-      String? authorizationDetails,
-      String? resource,
-      String? audience,
-      String? requestUri}) async {
-    final String apiPath = '/oauth2/{project_id}/authorize'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2Authorize> authorizePost({
+    String? clientId,
+    String? redirectUri,
+    String? responseType,
+    String? scope,
+    String? state,
+    String? nonce,
+    String? codeChallenge,
+    String? codeChallengeMethod,
+    String? prompt,
+    int? maxAge,
+    String? authorizationDetails,
+    String? resource,
+    String? audience,
+    String? requestUri,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/authorize'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       if (clientId != null) 'client_id': clientId,
@@ -134,22 +151,30 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2Authorize.fromMap(res.data);
   }
 
   /// Start the OAuth2 Device Authorization Grant. Returns the device code, user
   /// code, verification URL, expiration, and polling interval.
-  Future<models.Oauth2DeviceAuthorization> createDeviceAuthorization(
-      {String? clientId,
-      String? scope,
-      String? authorizationDetails,
-      String? resource,
-      String? audience}) async {
-    final String apiPath = '/oauth2/{project_id}/device_authorization'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2DeviceAuthorization> createDeviceAuthorization({
+    String? clientId,
+    String? scope,
+    String? authorizationDetails,
+    String? resource,
+    String? audience,
+  }) async {
+    final String apiPath =
+        '/oauth2/{project_id}/device_authorization'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       if (clientId != null) 'client_id': clientId,
@@ -165,8 +190,12 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2DeviceAuthorization.fromMap(res.data);
   }
@@ -175,9 +204,13 @@ class Oauth2 extends Service {
   /// user is bound to the pending grant. Pass the returned grant ID to the get
   /// grant endpoint to render the consent screen, then to the approve or reject
   /// endpoint to complete the flow.
-  Future<models.Oauth2Grant> createGrant({required String userCode}) async {
-    final String apiPath = '/oauth2/{project_id}/grants'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2Grant> createGrant({
+    required String userCode,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/grants'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       'user_code': userCode,
@@ -188,8 +221,12 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2Grant.fromMap(res.data);
   }
@@ -197,10 +234,18 @@ class Oauth2 extends Service {
   /// Get an OAuth2 grant by its ID. Used by the consent screen to display the
   /// details of the authorization the user is being asked to approve. A grant
   /// can only be read by the user it belongs to, or by server SDK.
-  Future<models.Oauth2Grant> getGrant({required String grantId}) async {
+  Future<models.Oauth2Grant> getGrant({
+    required String grantId,
+  }) async {
     final String apiPath = '/oauth2/{project_id}/grants/{grant_id}'
-        .replaceAll('{project_id}', client.config['project'] ?? '')
-        .replaceAll('{grant_id}', grantId);
+        .replaceAll(
+          '{project_id}',
+          client.config['project'] ?? '',
+        )
+        .replaceAll(
+          '{grant_id}',
+          grantId,
+        );
 
     final Map<String, dynamic> apiParams = {};
 
@@ -208,8 +253,12 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2Grant.fromMap(res.data);
   }
@@ -217,10 +266,15 @@ class Oauth2 extends Service {
   /// List the organizations the OAuth2 access token can access. Resolves the
   /// token's `organization` authorization details, expanding the `*` wildcard
   /// into the concrete set of organizations the user can see.
-  Future<models.Oauth2OrganizationList> listOrganizations(
-      {int? limit, int? offset, String? search}) async {
-    final String apiPath = '/oauth2/{project_id}/organizations'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2OrganizationList> listOrganizations({
+    int? limit,
+    int? offset,
+    String? search,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/organizations'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       if (limit != null) 'limit': limit,
@@ -232,30 +286,37 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2OrganizationList.fromMap(res.data);
   }
 
   /// Store an OAuth2 authorization request server-side and receive a short-lived
   /// request_uri handle for the authorize endpoint.
-  Future<models.Oauth2PAR> createPAR(
-      {required String clientId,
-      required String redirectUri,
-      required String responseType,
-      String? scope,
-      String? state,
-      String? nonce,
-      String? codeChallenge,
-      String? codeChallengeMethod,
-      String? prompt,
-      int? maxAge,
-      String? authorizationDetails,
-      String? resource,
-      String? audience}) async {
-    final String apiPath = '/oauth2/{project_id}/par'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2PAR> createPAR({
+    required String clientId,
+    required String redirectUri,
+    required String responseType,
+    String? scope,
+    String? state,
+    String? nonce,
+    String? codeChallenge,
+    String? codeChallengeMethod,
+    String? prompt,
+    int? maxAge,
+    String? authorizationDetails,
+    String? resource,
+    String? audience,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/par'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       'client_id': clientId,
@@ -280,8 +341,12 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2PAR.fromMap(res.data);
   }
@@ -289,10 +354,15 @@ class Oauth2 extends Service {
   /// List the projects the OAuth2 access token can access. Resolves the token's
   /// `project` authorization details, expanding the `*` wildcard into the
   /// concrete set of projects the user can see.
-  Future<models.Oauth2ProjectList> listProjects(
-      {int? limit, int? offset, String? search}) async {
-    final String apiPath = '/oauth2/{project_id}/projects'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2ProjectList> listProjects({
+    int? limit,
+    int? offset,
+    String? search,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/projects'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       if (limit != null) 'limit': limit,
@@ -304,8 +374,12 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.get,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2ProjectList.fromMap(res.data);
   }
@@ -314,9 +388,13 @@ class Oauth2 extends Service {
   /// `redirectUrl` the end user should be sent to with an `access_denied` error.
   /// You can pass Accept header of `application/json` to receive a JSON response
   /// instead of a redirect.
-  Future<models.Oauth2Reject> reject({required String grantId}) async {
-    final String apiPath = '/oauth2/{project_id}/reject'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2Reject> reject({
+    required String grantId,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/reject'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       'grant_id': grantId,
@@ -327,20 +405,27 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2Reject.fromMap(res.data);
   }
 
   /// Revoke an OAuth2 access token or refresh token.
-  Future revoke(
-      {required String token,
-      String? tokenTypeHint,
-      String? clientId,
-      String? clientSecret}) async {
-    final String apiPath = '/oauth2/{project_id}/revoke'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future revoke({
+    required String token,
+    String? tokenTypeHint,
+    String? clientId,
+    String? clientSecret,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/revoke'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       'token': token,
@@ -354,27 +439,34 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return res.data;
   }
 
   /// Exchange an OAuth2 authorization code, refresh token, or device code for
   /// access and refresh tokens.
-  Future<models.Oauth2Token> createToken(
-      {required String grantType,
-      String? code,
-      String? refreshToken,
-      String? deviceCode,
-      String? clientId,
-      String? clientSecret,
-      String? codeVerifier,
-      String? redirectUri,
-      String? resource,
-      String? audience}) async {
-    final String apiPath = '/oauth2/{project_id}/token'
-        .replaceAll('{project_id}', client.config['project'] ?? '');
+  Future<models.Oauth2Token> createToken({
+    required String grantType,
+    String? code,
+    String? refreshToken,
+    String? deviceCode,
+    String? clientId,
+    String? clientSecret,
+    String? codeVerifier,
+    String? redirectUri,
+    String? resource,
+    String? audience,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/token'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
 
     final Map<String, dynamic> apiParams = {
       'grant_type': grantType,
@@ -394,8 +486,12 @@ class Oauth2 extends Service {
       'accept': 'application/json',
     };
 
-    final res = await client.call(HttpMethod.post,
-        path: apiPath, params: apiParams, headers: apiHeaders);
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
 
     return models.Oauth2Token.fromMap(res.data);
   }

@@ -40,8 +40,9 @@ class EphemeralKey implements Model {
     required this.accessedAt,
     required this.sdks,
   });
-
-  factory EphemeralKey.fromMap(Map<String, dynamic> map) {
+  factory EphemeralKey.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return EphemeralKey(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

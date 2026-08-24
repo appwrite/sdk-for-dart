@@ -196,8 +196,9 @@ class DedicatedDatabase implements Model {
     required this.sqlApiTimeoutSeconds,
     required this.error,
   });
-
-  factory DedicatedDatabase.fromMap(Map<String, dynamic> map) {
+  factory DedicatedDatabase.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DedicatedDatabase(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

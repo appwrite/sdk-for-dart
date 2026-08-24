@@ -5,14 +5,14 @@ void main() {
   group('PolicySessionAlert', () {
     test('model', () {
       final model = PolicySessionAlert(
-        $id: 'password-dictionary',
+        $id: "password-dictionary",
         enabled: true,
       );
 
       final map = model.toMap();
       final result = PolicySessionAlert.fromMap(map);
 
-      expect(result.$id, 'password-dictionary');
+      expect(result.$id, "password-dictionary");
       expect(result.enabled, true);
     });
   });

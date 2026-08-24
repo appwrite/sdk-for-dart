@@ -8,10 +8,10 @@ void main() {
         supported: true,
         planIncluded: 1,
         limit: 5,
-        type: 'numeric',
+        type: "numeric",
         price: 5,
         value: 25,
-        invoiceDesc: '',
+        invoiceDesc: "",
       );
 
       final map = model.toMap();
@@ -20,10 +20,10 @@ void main() {
       expect(result.supported, true);
       expect(result.planIncluded, 1);
       expect(result.limit, 5);
-      expect(result.type, 'numeric');
+      expect(result.type, "numeric");
       expect(result.price, 5);
       expect(result.value, 25);
-      expect(result.invoiceDesc, '');
+      expect(result.invoiceDesc, "");
     });
   });
 }

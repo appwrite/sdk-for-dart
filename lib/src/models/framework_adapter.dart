@@ -24,8 +24,9 @@ class FrameworkAdapter implements Model {
     required this.outputDirectory,
     required this.fallbackFile,
   });
-
-  factory FrameworkAdapter.fromMap(Map<String, dynamic> map) {
+  factory FrameworkAdapter.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return FrameworkAdapter(
       key: map['key'].toString(),
       installCommand: map['installCommand'].toString(),

@@ -6,14 +6,16 @@ void main() {
     test('model', () {
       final model = Oauth2Reject(
         redirectUrl:
-            'https://example.com/callback?error=access_denied&state=fghij',
+            "https://example.com/callback?error=access_denied&state=fghij",
       );
 
       final map = model.toMap();
       final result = Oauth2Reject.fromMap(map);
 
-      expect(result.redirectUrl,
-          'https://example.com/callback?error=access_denied&state=fghij');
+      expect(
+        result.redirectUrl,
+        "https://example.com/callback?error=access_denied&state=fghij",
+      );
     });
   });
 }

@@ -44,13 +44,15 @@ class AttributeMediumtext implements Model {
     this.xdefault,
     this.encrypt,
   });
-
-  factory AttributeMediumtext.fromMap(Map<String, dynamic> map) {
+  factory AttributeMediumtext.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return AttributeMediumtext(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status: enums.AttributeStatus.values
-          .firstWhere((e) => e.value == map['status']),
+      status: enums.AttributeStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],

@@ -64,8 +64,9 @@ class ProxyRule implements Model {
     required this.logs,
     required this.renewAt,
   });
-
-  factory ProxyRule.fromMap(Map<String, dynamic> map) {
+  factory ProxyRule.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ProxyRule(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -77,14 +78,16 @@ class ProxyRule implements Model {
       redirectStatusCode: map['redirectStatusCode'],
       deploymentId: map['deploymentId'].toString(),
       deploymentResourceType: map['deploymentResourceType'] != null
-          ? enums.ProxyRuleDeploymentResourceType.values
-              .firstWhere((e) => e.value == map['deploymentResourceType'])
+          ? enums.ProxyRuleDeploymentResourceType.values.firstWhere(
+              (e) => e.value == map['deploymentResourceType'],
+            )
           : null,
       deploymentResourceId: map['deploymentResourceId'].toString(),
       deploymentVcsProviderBranch:
           map['deploymentVcsProviderBranch'].toString(),
-      status: enums.ProxyRuleStatus.values
-          .firstWhere((e) => e.value == map['status']),
+      status: enums.ProxyRuleStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       logs: map['logs'].toString(),
       renewAt: map['renewAt'].toString(),
     );

@@ -32,8 +32,9 @@ class PolicyMembershipPrivacy implements Model {
     required this.userMFA,
     required this.userAccessedAt,
   });
-
-  factory PolicyMembershipPrivacy.fromMap(Map<String, dynamic> map) {
+  factory PolicyMembershipPrivacy.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicyMembershipPrivacy(
       $id: map['\$id'].toString(),
       userId: map['userId'],

@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -57,9 +68,9 @@ void main() {
     test('test method getBrowser()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await avatars.getBrowser(
         code: enums.Browser.avantBrowser,
@@ -70,9 +81,9 @@ void main() {
     test('test method getCreditCard()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await avatars.getCreditCard(
         code: enums.CreditCard.americanExpress,
@@ -83,12 +94,12 @@ void main() {
     test('test method getFavicon()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await avatars.getFavicon(
-        url: 'https://example.com',
+        url: "https://example.com",
       );
       expect(response, isA<Uint8List>());
     });
@@ -96,9 +107,9 @@ void main() {
     test('test method getFlag()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await avatars.getFlag(
         code: enums.Flag.afghanistan,
@@ -109,12 +120,12 @@ void main() {
     test('test method getImage()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await avatars.getImage(
-        url: 'https://example.com',
+        url: "https://example.com",
       );
       expect(response, isA<Uint8List>());
     });
@@ -122,23 +133,34 @@ void main() {
     test('test method getInitials()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await avatars.getInitials();
+      expect(response, isA<Uint8List>());
+    });
+
+    test('test method getPhoto()', () async {
+      final Uint8List data = Uint8List.fromList([]);
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await avatars.getPhoto();
       expect(response, isA<Uint8List>());
     });
 
     test('test method getQR()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await avatars.getQR(
-        text: '<TEXT>',
+        text: "<TEXT>",
       );
       expect(response, isA<Uint8List>());
     });
@@ -146,12 +168,12 @@ void main() {
     test('test method getScreenshot()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await avatars.getScreenshot(
-        url: 'https://example.com',
+        url: "https://example.com",
       );
       expect(response, isA<Uint8List>());
     });

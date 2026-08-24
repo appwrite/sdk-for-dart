@@ -28,8 +28,9 @@ class PolicyPasswordStrength implements Model {
     required this.number,
     required this.symbols,
   });
-
-  factory PolicyPasswordStrength.fromMap(Map<String, dynamic> map) {
+  factory PolicyPasswordStrength.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return PolicyPasswordStrength(
       $id: map['\$id'].toString(),
       min: map['min'],

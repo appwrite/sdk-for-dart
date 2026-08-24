@@ -20,8 +20,9 @@ class Specification implements Model {
     required this.enabled,
     required this.slug,
   });
-
-  factory Specification.fromMap(Map<String, dynamic> map) {
+  factory Specification.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Specification(
       memory: map['memory'],
       cpus: map['cpus'].toDouble(),

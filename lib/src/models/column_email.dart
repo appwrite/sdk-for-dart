@@ -44,13 +44,15 @@ class ColumnEmail implements Model {
     required this.format,
     this.xdefault,
   });
-
-  factory ColumnEmail.fromMap(Map<String, dynamic> map) {
+  factory ColumnEmail.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ColumnEmail(
       key: map['key'].toString(),
       type: map['type'].toString(),
-      status:
-          enums.ColumnStatus.values.firstWhere((e) => e.value == map['status']),
+      status: enums.ColumnStatus.values.firstWhere(
+        (e) => e.value == map['status'],
+      ),
       error: map['error'].toString(),
       xrequired: map['required'],
       array: map['array'],

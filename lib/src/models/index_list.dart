@@ -12,11 +12,14 @@ class IndexList implements Model {
     required this.total,
     required this.indexes,
   });
-
-  factory IndexList.fromMap(Map<String, dynamic> map) {
+  factory IndexList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return IndexList(
       total: map['total'],
-      indexes: List<Index>.from(map['indexes'].map((p) => Index.fromMap(p))),
+      indexes: List<Index>.from(
+        map['indexes'].map((p) => Index.fromMap(p)),
+      ),
     );
   }
 

@@ -1,8 +1,8 @@
 part of '../../enums.dart';
 
 enum DeploymentDownloadType {
-  source(value: 'source'),
-  output(value: 'output');
+  source(value: "source"),
+  output(value: "output");
 
   const DeploymentDownloadType({required this.value});
 

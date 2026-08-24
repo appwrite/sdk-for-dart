@@ -10,6 +10,7 @@ import 'package:dart_appwrite/dart_appwrite.dart';
 class MockClient extends Mock implements Client {
   Map<String, String> config = {'project': 'testproject'};
   String endPoint = 'https://localhost/v1';
+
   @override
   Future<Response> call(
     HttpMethod? method, {
@@ -18,14 +19,18 @@ class MockClient extends Mock implements Client {
     Map<String, dynamic> params = const {},
     ResponseType? responseType,
   }) async {
-    return super.noSuchMethod(Invocation.method(#call, [method]),
-        returnValue: Response());
+    return super.noSuchMethod(
+      Invocation.method(#call, [method]),
+      returnValue: Response(),
+    );
   }
 
   @override
   Future<String?> webAuth(Uri? url) async {
-    return super
-        .noSuchMethod(Invocation.method(#webAuth, [url]), returnValue: 'done');
+    return super.noSuchMethod(
+      Invocation.method(#webAuth, [url]),
+      returnValue: 'done',
+    );
   }
 
   @override
@@ -38,9 +43,15 @@ class MockClient extends Mock implements Client {
     Function(UploadProgress)? onProgress,
   }) async {
     return super.noSuchMethod(
-        Invocation.method(
-            #chunkedUpload, [path, params, paramName, idParamName, headers]),
-        returnValue: Response(data: {}));
+      Invocation.method(#chunkedUpload, [
+        path,
+        params,
+        paramName,
+        idParamName,
+        headers,
+      ]),
+      returnValue: Response(data: {}),
+    );
   }
 }
 
@@ -60,9 +71,9 @@ void main() {
         'sites': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.list();
       expect(response, isA<models.SiteList>());
@@ -70,49 +81,50 @@ void main() {
 
     test('test method create()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Site',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Site",
         'enabled': true,
         'live': true,
         'logging': true,
-        'framework': 'react',
+        'framework': "react",
         'deploymentRetention': 7,
-        'deploymentId': '5e5ea5c16897e',
-        'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
-        'deploymentScreenshotLight': '5e5ea5c16897e',
-        'deploymentScreenshotDark': '5e5ea5c16897e',
-        'latestDeploymentId': '5e5ea5c16897e',
-        'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
-        'latestDeploymentStatus': 'ready',
+        'deploymentId': "5e5ea5c16897e",
+        'deploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'deploymentScreenshotLight': "5e5ea5c16897e",
+        'deploymentScreenshotDark': "5e5ea5c16897e",
+        'latestDeploymentId': "5e5ea5c16897e",
+        'latestDeploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'latestDeploymentStatus': "ready",
+        'scopes': [],
         'vars': [],
         'timeout': 300,
-        'installCommand': 'npm install',
-        'buildCommand': 'npm run build',
-        'startCommand': 'node custom-server.mjs',
-        'outputDirectory': 'build',
-        'installationId': '6m40at4ejk5h2u9s1hboo',
-        'providerRepositoryId': 'appwrite',
-        'providerBranch': 'main',
-        'providerRootDirectory': 'sites/helloWorld',
+        'installCommand': "npm install",
+        'buildCommand': "npm run build",
+        'startCommand': "node custom-server.mjs",
+        'outputDirectory': "build",
+        'installationId': "6m40at4ejk5h2u9s1hboo",
+        'providerRepositoryId': "appwrite",
+        'providerBranch': "main",
+        'providerRootDirectory': "sites/helloWorld",
         'providerSilentMode': true,
         'providerBranches': [],
         'providerPaths': [],
-        'buildSpecification': 's-1vcpu-512mb',
-        'runtimeSpecification': 's-1vcpu-512mb',
-        'buildRuntime': 'node-22',
-        'adapter': 'static',
-        'fallbackFile': 'index.html',
+        'buildSpecification': "s-1vcpu-512mb",
+        'runtimeSpecification': "s-1vcpu-512mb",
+        'buildRuntime': "node-22",
+        'adapter': "static",
+        'fallbackFile': "index.html",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.create(
-        siteId: '<SITE_ID>',
-        name: '<NAME>',
+        siteId: "<SITE_ID>",
+        name: "<NAME>",
         framework: enums.Framework.analog,
         buildRuntime: enums.BuildRuntime.node145,
       );
@@ -125,9 +137,9 @@ void main() {
         'frameworks': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.listFrameworks();
       expect(response, isA<models.FrameworkList>());
@@ -139,9 +151,9 @@ void main() {
         'specifications': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.listSpecifications();
       expect(response, isA<models.SpecificationList>());
@@ -149,97 +161,99 @@ void main() {
 
     test('test method get()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Site',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Site",
         'enabled': true,
         'live': true,
         'logging': true,
-        'framework': 'react',
+        'framework': "react",
         'deploymentRetention': 7,
-        'deploymentId': '5e5ea5c16897e',
-        'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
-        'deploymentScreenshotLight': '5e5ea5c16897e',
-        'deploymentScreenshotDark': '5e5ea5c16897e',
-        'latestDeploymentId': '5e5ea5c16897e',
-        'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
-        'latestDeploymentStatus': 'ready',
+        'deploymentId': "5e5ea5c16897e",
+        'deploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'deploymentScreenshotLight': "5e5ea5c16897e",
+        'deploymentScreenshotDark': "5e5ea5c16897e",
+        'latestDeploymentId': "5e5ea5c16897e",
+        'latestDeploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'latestDeploymentStatus': "ready",
+        'scopes': [],
         'vars': [],
         'timeout': 300,
-        'installCommand': 'npm install',
-        'buildCommand': 'npm run build',
-        'startCommand': 'node custom-server.mjs',
-        'outputDirectory': 'build',
-        'installationId': '6m40at4ejk5h2u9s1hboo',
-        'providerRepositoryId': 'appwrite',
-        'providerBranch': 'main',
-        'providerRootDirectory': 'sites/helloWorld',
+        'installCommand': "npm install",
+        'buildCommand': "npm run build",
+        'startCommand': "node custom-server.mjs",
+        'outputDirectory': "build",
+        'installationId': "6m40at4ejk5h2u9s1hboo",
+        'providerRepositoryId': "appwrite",
+        'providerBranch': "main",
+        'providerRootDirectory': "sites/helloWorld",
         'providerSilentMode': true,
         'providerBranches': [],
         'providerPaths': [],
-        'buildSpecification': 's-1vcpu-512mb',
-        'runtimeSpecification': 's-1vcpu-512mb',
-        'buildRuntime': 'node-22',
-        'adapter': 'static',
-        'fallbackFile': 'index.html',
+        'buildSpecification': "s-1vcpu-512mb",
+        'runtimeSpecification': "s-1vcpu-512mb",
+        'buildRuntime': "node-22",
+        'adapter': "static",
+        'fallbackFile': "index.html",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.get(
-        siteId: '<SITE_ID>',
+        siteId: "<SITE_ID>",
       );
       expect(response, isA<models.Site>());
     });
 
     test('test method update()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Site',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Site",
         'enabled': true,
         'live': true,
         'logging': true,
-        'framework': 'react',
+        'framework': "react",
         'deploymentRetention': 7,
-        'deploymentId': '5e5ea5c16897e',
-        'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
-        'deploymentScreenshotLight': '5e5ea5c16897e',
-        'deploymentScreenshotDark': '5e5ea5c16897e',
-        'latestDeploymentId': '5e5ea5c16897e',
-        'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
-        'latestDeploymentStatus': 'ready',
+        'deploymentId': "5e5ea5c16897e",
+        'deploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'deploymentScreenshotLight': "5e5ea5c16897e",
+        'deploymentScreenshotDark': "5e5ea5c16897e",
+        'latestDeploymentId': "5e5ea5c16897e",
+        'latestDeploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'latestDeploymentStatus': "ready",
+        'scopes': [],
         'vars': [],
         'timeout': 300,
-        'installCommand': 'npm install',
-        'buildCommand': 'npm run build',
-        'startCommand': 'node custom-server.mjs',
-        'outputDirectory': 'build',
-        'installationId': '6m40at4ejk5h2u9s1hboo',
-        'providerRepositoryId': 'appwrite',
-        'providerBranch': 'main',
-        'providerRootDirectory': 'sites/helloWorld',
+        'installCommand': "npm install",
+        'buildCommand': "npm run build",
+        'startCommand': "node custom-server.mjs",
+        'outputDirectory': "build",
+        'installationId': "6m40at4ejk5h2u9s1hboo",
+        'providerRepositoryId': "appwrite",
+        'providerBranch': "main",
+        'providerRootDirectory': "sites/helloWorld",
         'providerSilentMode': true,
         'providerBranches': [],
         'providerPaths': [],
-        'buildSpecification': 's-1vcpu-512mb',
-        'runtimeSpecification': 's-1vcpu-512mb',
-        'buildRuntime': 'node-22',
-        'adapter': 'static',
-        'fallbackFile': 'index.html',
+        'buildSpecification': "s-1vcpu-512mb",
+        'runtimeSpecification': "s-1vcpu-512mb",
+        'buildRuntime': "node-22",
+        'adapter': "static",
+        'fallbackFile': "index.html",
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.update(
-        siteId: '<SITE_ID>',
-        name: '<NAME>',
+        siteId: "<SITE_ID>",
+        name: "<NAME>",
         framework: enums.Framework.analog,
       );
       expect(response, isA<models.Site>());
@@ -248,60 +262,61 @@ void main() {
     test('test method delete()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.delete(
-        siteId: '<SITE_ID>',
+        siteId: "<SITE_ID>",
       );
     });
 
     test('test method updateSiteDeployment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'name': 'My Site',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Site",
         'enabled': true,
         'live': true,
         'logging': true,
-        'framework': 'react',
+        'framework': "react",
         'deploymentRetention': 7,
-        'deploymentId': '5e5ea5c16897e',
-        'deploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
-        'deploymentScreenshotLight': '5e5ea5c16897e',
-        'deploymentScreenshotDark': '5e5ea5c16897e',
-        'latestDeploymentId': '5e5ea5c16897e',
-        'latestDeploymentCreatedAt': '2020-10-15T06:38:00.000+00:00',
-        'latestDeploymentStatus': 'ready',
+        'deploymentId': "5e5ea5c16897e",
+        'deploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'deploymentScreenshotLight': "5e5ea5c16897e",
+        'deploymentScreenshotDark': "5e5ea5c16897e",
+        'latestDeploymentId': "5e5ea5c16897e",
+        'latestDeploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'latestDeploymentStatus': "ready",
+        'scopes': [],
         'vars': [],
         'timeout': 300,
-        'installCommand': 'npm install',
-        'buildCommand': 'npm run build',
-        'startCommand': 'node custom-server.mjs',
-        'outputDirectory': 'build',
-        'installationId': '6m40at4ejk5h2u9s1hboo',
-        'providerRepositoryId': 'appwrite',
-        'providerBranch': 'main',
-        'providerRootDirectory': 'sites/helloWorld',
+        'installCommand': "npm install",
+        'buildCommand': "npm run build",
+        'startCommand': "node custom-server.mjs",
+        'outputDirectory': "build",
+        'installationId': "6m40at4ejk5h2u9s1hboo",
+        'providerRepositoryId': "appwrite",
+        'providerBranch': "main",
+        'providerRootDirectory': "sites/helloWorld",
         'providerSilentMode': true,
         'providerBranches': [],
         'providerPaths': [],
-        'buildSpecification': 's-1vcpu-512mb',
-        'runtimeSpecification': 's-1vcpu-512mb',
-        'buildRuntime': 'node-22',
-        'adapter': 'static',
-        'fallbackFile': 'index.html',
+        'buildSpecification': "s-1vcpu-512mb",
+        'runtimeSpecification': "s-1vcpu-512mb",
+        'buildRuntime': "node-22",
+        'adapter': "static",
+        'fallbackFile': "index.html",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.updateSiteDeployment(
-        siteId: '<SITE_ID>',
-        deploymentId: '<DEPLOYMENT_ID>',
+        siteId: "<SITE_ID>",
+        deploymentId: "<DEPLOYMENT_ID>",
       );
       expect(response, isA<models.Site>());
     });
@@ -312,60 +327,62 @@ void main() {
         'deployments': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.listDeployments(
-        siteId: '<SITE_ID>',
+        siteId: "<SITE_ID>",
       );
       expect(response, isA<models.DeploymentList>());
     });
 
     test('test method createDeployment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'type': 'vcs',
-        'resourceId': '5e5ea6g16897e',
-        'resourceType': 'functions',
-        'entrypoint': 'index.js',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'type': "vcs",
+        'resourceId': "5e5ea6g16897e",
+        'resourceType': "functions",
+        'entrypoint': "index.js",
         'sourceSize': 128,
         'buildSize': 128,
         'totalSize': 128,
-        'buildId': '5e5ea5c16897e',
+        'buildId': "5e5ea5c16897e",
         'activate': true,
-        'screenshotLight': '5e5ea5c16897e',
-        'screenshotDark': '5e5ea5c16897e',
-        'status': 'ready',
-        'buildLogs': 'Compiling source files...',
+        'screenshotLight': "5e5ea5c16897e",
+        'screenshotDark': "5e5ea5c16897e",
+        'status': "ready",
+        'buildLogs': "Compiling source files...",
         'buildDuration': 128,
-        'providerRepositoryName': 'database',
-        'providerRepositoryOwner': 'utopia',
+        'providerRepositoryName': "database",
+        'providerRepositoryOwner': "utopia",
         'providerRepositoryUrl':
-            'https://github.com/vermakhushboo/g4-node-function',
-        'providerCommitHash': '7c3f25d',
-        'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
-        'providerCommitAuthor': 'Khushboo Verma',
-        'providerCommitMessage': 'Update index.js',
+            "https://github.com/vermakhushboo/g4-node-function",
+        'providerCommitHash': "7c3f25d",
+        'providerCommitAuthorUrl': "https://github.com/vermakhushboo",
+        'providerCommitAuthor': "Khushboo Verma",
+        'providerCommitMessage': "Update index.js",
         'providerCommitUrl':
-            'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
-        'providerBranch': '0.7.x',
+            "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+        'providerBranch': "0.7.x",
         'providerBranchUrl':
-            'https://github.com/vermakhushboo/appwrite/tree/0.7.x',
+            "https://github.com/vermakhushboo/appwrite/tree/0.7.x",
       };
 
-      when(client.chunkedUpload(
-        path: argThat(isNotNull),
-        params: argThat(isNotNull),
-        paramName: argThat(isNotNull),
-        idParamName: argThat(isNotNull),
-        headers: argThat(isNotNull),
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.chunkedUpload(
+          path: argThat(isNotNull),
+          params: argThat(isNotNull),
+          paramName: argThat(isNotNull),
+          idParamName: argThat(isNotNull),
+          headers: argThat(isNotNull),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createDeployment(
-        siteId: '<SITE_ID>',
+        siteId: "<SITE_ID>",
         code: InputFile.fromPath(path: './image.png'),
       );
       expect(response, isA<models.Deployment>());
@@ -373,185 +390,185 @@ void main() {
 
     test('test method createDuplicateDeployment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'type': 'vcs',
-        'resourceId': '5e5ea6g16897e',
-        'resourceType': 'functions',
-        'entrypoint': 'index.js',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'type': "vcs",
+        'resourceId': "5e5ea6g16897e",
+        'resourceType': "functions",
+        'entrypoint': "index.js",
         'sourceSize': 128,
         'buildSize': 128,
         'totalSize': 128,
-        'buildId': '5e5ea5c16897e',
+        'buildId': "5e5ea5c16897e",
         'activate': true,
-        'screenshotLight': '5e5ea5c16897e',
-        'screenshotDark': '5e5ea5c16897e',
-        'status': 'ready',
-        'buildLogs': 'Compiling source files...',
+        'screenshotLight': "5e5ea5c16897e",
+        'screenshotDark': "5e5ea5c16897e",
+        'status': "ready",
+        'buildLogs': "Compiling source files...",
         'buildDuration': 128,
-        'providerRepositoryName': 'database',
-        'providerRepositoryOwner': 'utopia',
+        'providerRepositoryName': "database",
+        'providerRepositoryOwner': "utopia",
         'providerRepositoryUrl':
-            'https://github.com/vermakhushboo/g4-node-function',
-        'providerCommitHash': '7c3f25d',
-        'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
-        'providerCommitAuthor': 'Khushboo Verma',
-        'providerCommitMessage': 'Update index.js',
+            "https://github.com/vermakhushboo/g4-node-function",
+        'providerCommitHash': "7c3f25d",
+        'providerCommitAuthorUrl': "https://github.com/vermakhushboo",
+        'providerCommitAuthor': "Khushboo Verma",
+        'providerCommitMessage': "Update index.js",
         'providerCommitUrl':
-            'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
-        'providerBranch': '0.7.x',
+            "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+        'providerBranch': "0.7.x",
         'providerBranchUrl':
-            'https://github.com/vermakhushboo/appwrite/tree/0.7.x',
+            "https://github.com/vermakhushboo/appwrite/tree/0.7.x",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createDuplicateDeployment(
-        siteId: '<SITE_ID>',
-        deploymentId: '<DEPLOYMENT_ID>',
+        siteId: "<SITE_ID>",
+        deploymentId: "<DEPLOYMENT_ID>",
       );
       expect(response, isA<models.Deployment>());
     });
 
     test('test method createTemplateDeployment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'type': 'vcs',
-        'resourceId': '5e5ea6g16897e',
-        'resourceType': 'functions',
-        'entrypoint': 'index.js',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'type': "vcs",
+        'resourceId': "5e5ea6g16897e",
+        'resourceType': "functions",
+        'entrypoint': "index.js",
         'sourceSize': 128,
         'buildSize': 128,
         'totalSize': 128,
-        'buildId': '5e5ea5c16897e',
+        'buildId': "5e5ea5c16897e",
         'activate': true,
-        'screenshotLight': '5e5ea5c16897e',
-        'screenshotDark': '5e5ea5c16897e',
-        'status': 'ready',
-        'buildLogs': 'Compiling source files...',
+        'screenshotLight': "5e5ea5c16897e",
+        'screenshotDark': "5e5ea5c16897e",
+        'status': "ready",
+        'buildLogs': "Compiling source files...",
         'buildDuration': 128,
-        'providerRepositoryName': 'database',
-        'providerRepositoryOwner': 'utopia',
+        'providerRepositoryName': "database",
+        'providerRepositoryOwner': "utopia",
         'providerRepositoryUrl':
-            'https://github.com/vermakhushboo/g4-node-function',
-        'providerCommitHash': '7c3f25d',
-        'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
-        'providerCommitAuthor': 'Khushboo Verma',
-        'providerCommitMessage': 'Update index.js',
+            "https://github.com/vermakhushboo/g4-node-function",
+        'providerCommitHash': "7c3f25d",
+        'providerCommitAuthorUrl': "https://github.com/vermakhushboo",
+        'providerCommitAuthor': "Khushboo Verma",
+        'providerCommitMessage': "Update index.js",
         'providerCommitUrl':
-            'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
-        'providerBranch': '0.7.x',
+            "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+        'providerBranch': "0.7.x",
         'providerBranchUrl':
-            'https://github.com/vermakhushboo/appwrite/tree/0.7.x',
+            "https://github.com/vermakhushboo/appwrite/tree/0.7.x",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createTemplateDeployment(
-        siteId: '<SITE_ID>',
-        repository: '<REPOSITORY>',
-        owner: '<OWNER>',
-        rootDirectory: '<ROOT_DIRECTORY>',
+        siteId: "<SITE_ID>",
+        repository: "<REPOSITORY>",
+        owner: "<OWNER>",
+        rootDirectory: "<ROOT_DIRECTORY>",
         type: enums.TemplateReferenceType.branch,
-        reference: '<REFERENCE>',
+        reference: "<REFERENCE>",
       );
       expect(response, isA<models.Deployment>());
     });
 
     test('test method createVcsDeployment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'type': 'vcs',
-        'resourceId': '5e5ea6g16897e',
-        'resourceType': 'functions',
-        'entrypoint': 'index.js',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'type': "vcs",
+        'resourceId': "5e5ea6g16897e",
+        'resourceType': "functions",
+        'entrypoint': "index.js",
         'sourceSize': 128,
         'buildSize': 128,
         'totalSize': 128,
-        'buildId': '5e5ea5c16897e',
+        'buildId': "5e5ea5c16897e",
         'activate': true,
-        'screenshotLight': '5e5ea5c16897e',
-        'screenshotDark': '5e5ea5c16897e',
-        'status': 'ready',
-        'buildLogs': 'Compiling source files...',
+        'screenshotLight': "5e5ea5c16897e",
+        'screenshotDark': "5e5ea5c16897e",
+        'status': "ready",
+        'buildLogs': "Compiling source files...",
         'buildDuration': 128,
-        'providerRepositoryName': 'database',
-        'providerRepositoryOwner': 'utopia',
+        'providerRepositoryName': "database",
+        'providerRepositoryOwner': "utopia",
         'providerRepositoryUrl':
-            'https://github.com/vermakhushboo/g4-node-function',
-        'providerCommitHash': '7c3f25d',
-        'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
-        'providerCommitAuthor': 'Khushboo Verma',
-        'providerCommitMessage': 'Update index.js',
+            "https://github.com/vermakhushboo/g4-node-function",
+        'providerCommitHash': "7c3f25d",
+        'providerCommitAuthorUrl': "https://github.com/vermakhushboo",
+        'providerCommitAuthor': "Khushboo Verma",
+        'providerCommitMessage': "Update index.js",
         'providerCommitUrl':
-            'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
-        'providerBranch': '0.7.x',
+            "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+        'providerBranch': "0.7.x",
         'providerBranchUrl':
-            'https://github.com/vermakhushboo/appwrite/tree/0.7.x',
+            "https://github.com/vermakhushboo/appwrite/tree/0.7.x",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createVcsDeployment(
-        siteId: '<SITE_ID>',
+        siteId: "<SITE_ID>",
         type: enums.VCSReferenceType.branch,
-        reference: '<REFERENCE>',
+        reference: "<REFERENCE>",
       );
       expect(response, isA<models.Deployment>());
     });
 
     test('test method getDeployment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'type': 'vcs',
-        'resourceId': '5e5ea6g16897e',
-        'resourceType': 'functions',
-        'entrypoint': 'index.js',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'type': "vcs",
+        'resourceId': "5e5ea6g16897e",
+        'resourceType': "functions",
+        'entrypoint': "index.js",
         'sourceSize': 128,
         'buildSize': 128,
         'totalSize': 128,
-        'buildId': '5e5ea5c16897e',
+        'buildId': "5e5ea5c16897e",
         'activate': true,
-        'screenshotLight': '5e5ea5c16897e',
-        'screenshotDark': '5e5ea5c16897e',
-        'status': 'ready',
-        'buildLogs': 'Compiling source files...',
+        'screenshotLight': "5e5ea5c16897e",
+        'screenshotDark': "5e5ea5c16897e",
+        'status': "ready",
+        'buildLogs': "Compiling source files...",
         'buildDuration': 128,
-        'providerRepositoryName': 'database',
-        'providerRepositoryOwner': 'utopia',
+        'providerRepositoryName': "database",
+        'providerRepositoryOwner': "utopia",
         'providerRepositoryUrl':
-            'https://github.com/vermakhushboo/g4-node-function',
-        'providerCommitHash': '7c3f25d',
-        'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
-        'providerCommitAuthor': 'Khushboo Verma',
-        'providerCommitMessage': 'Update index.js',
+            "https://github.com/vermakhushboo/g4-node-function",
+        'providerCommitHash': "7c3f25d",
+        'providerCommitAuthorUrl': "https://github.com/vermakhushboo",
+        'providerCommitAuthor': "Khushboo Verma",
+        'providerCommitMessage': "Update index.js",
         'providerCommitUrl':
-            'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
-        'providerBranch': '0.7.x',
+            "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+        'providerBranch': "0.7.x",
         'providerBranchUrl':
-            'https://github.com/vermakhushboo/appwrite/tree/0.7.x',
+            "https://github.com/vermakhushboo/appwrite/tree/0.7.x",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.getDeployment(
-        siteId: '<SITE_ID>',
-        deploymentId: '<DEPLOYMENT_ID>',
+        siteId: "<SITE_ID>",
+        deploymentId: "<DEPLOYMENT_ID>",
       );
       expect(response, isA<models.Deployment>());
     });
@@ -559,71 +576,71 @@ void main() {
     test('test method deleteDeployment()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.deleteDeployment(
-        siteId: '<SITE_ID>',
-        deploymentId: '<DEPLOYMENT_ID>',
+        siteId: "<SITE_ID>",
+        deploymentId: "<DEPLOYMENT_ID>",
       );
     });
 
     test('test method getDeploymentDownload()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.getDeploymentDownload(
-        siteId: '<SITE_ID>',
-        deploymentId: '<DEPLOYMENT_ID>',
+        siteId: "<SITE_ID>",
+        deploymentId: "<DEPLOYMENT_ID>",
       );
       expect(response, isA<Uint8List>());
     });
 
     test('test method updateDeploymentStatus()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'type': 'vcs',
-        'resourceId': '5e5ea6g16897e',
-        'resourceType': 'functions',
-        'entrypoint': 'index.js',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'type': "vcs",
+        'resourceId': "5e5ea6g16897e",
+        'resourceType': "functions",
+        'entrypoint': "index.js",
         'sourceSize': 128,
         'buildSize': 128,
         'totalSize': 128,
-        'buildId': '5e5ea5c16897e',
+        'buildId': "5e5ea5c16897e",
         'activate': true,
-        'screenshotLight': '5e5ea5c16897e',
-        'screenshotDark': '5e5ea5c16897e',
-        'status': 'ready',
-        'buildLogs': 'Compiling source files...',
+        'screenshotLight': "5e5ea5c16897e",
+        'screenshotDark': "5e5ea5c16897e",
+        'status': "ready",
+        'buildLogs': "Compiling source files...",
         'buildDuration': 128,
-        'providerRepositoryName': 'database',
-        'providerRepositoryOwner': 'utopia',
+        'providerRepositoryName': "database",
+        'providerRepositoryOwner': "utopia",
         'providerRepositoryUrl':
-            'https://github.com/vermakhushboo/g4-node-function',
-        'providerCommitHash': '7c3f25d',
-        'providerCommitAuthorUrl': 'https://github.com/vermakhushboo',
-        'providerCommitAuthor': 'Khushboo Verma',
-        'providerCommitMessage': 'Update index.js',
+            "https://github.com/vermakhushboo/g4-node-function",
+        'providerCommitHash': "7c3f25d",
+        'providerCommitAuthorUrl': "https://github.com/vermakhushboo",
+        'providerCommitAuthor': "Khushboo Verma",
+        'providerCommitMessage': "Update index.js",
         'providerCommitUrl':
-            'https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb',
-        'providerBranch': '0.7.x',
+            "https://github.com/vermakhushboo/g4-node-function/commit/60c0416257a9cbcdd96b2d370c38d8f8d150ccfb",
+        'providerBranch': "0.7.x",
         'providerBranchUrl':
-            'https://github.com/vermakhushboo/appwrite/tree/0.7.x',
+            "https://github.com/vermakhushboo/appwrite/tree/0.7.x",
       };
 
-      when(client.call(
-        HttpMethod.patch,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.updateDeploymentStatus(
-        siteId: '<SITE_ID>',
-        deploymentId: '<DEPLOYMENT_ID>',
+        siteId: "<SITE_ID>",
+        deploymentId: "<DEPLOYMENT_ID>",
       );
       expect(response, isA<models.Deployment>());
     });
@@ -634,44 +651,45 @@ void main() {
         'executions': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.listLogs(
-        siteId: '<SITE_ID>',
+        siteId: "<SITE_ID>",
       );
       expect(response, isA<models.ExecutionList>());
     });
 
     test('test method getLog()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         '\$permissions': [],
-        'functionId': '5e5ea6g16897e',
-        'deploymentId': '5e5ea5c16897e',
-        'trigger': 'http',
-        'status': 'processing',
-        'requestMethod': 'GET',
-        'requestPath': '/articles?id=5',
+        'resourceId': "5e5ea6g16897e",
+        'resourceType': "functions",
+        'deploymentId': "5e5ea5c16897e",
+        'trigger': "http",
+        'status': "processing",
+        'requestMethod': "GET",
+        'requestPath': "/articles?id=5",
         'requestHeaders': [],
         'responseStatusCode': 200,
-        'responseBody': '',
+        'responseBody': "",
         'responseHeaders': [],
-        'logs': '',
-        'errors': '',
+        'logs': "",
+        'errors': "",
         'duration': 0.4,
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.getLog(
-        siteId: '<SITE_ID>',
-        logId: '<LOG_ID>',
+        siteId: "<SITE_ID>",
+        logId: "<LOG_ID>",
       );
       expect(response, isA<models.Execution>());
     });
@@ -679,13 +697,13 @@ void main() {
     test('test method deleteLog()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.deleteLog(
-        siteId: '<SITE_ID>',
-        logId: '<LOG_ID>',
+        siteId: "<SITE_ID>",
+        logId: "<LOG_ID>",
       );
     });
 
@@ -695,83 +713,83 @@ void main() {
         'variables': [],
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.listVariables(
-        siteId: '<SITE_ID>',
+        siteId: "<SITE_ID>",
       );
       expect(response, isA<models.VariableList>());
     });
 
     test('test method createVariable()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'key': 'API_KEY',
-        'value': 'myPa\$\$word1',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'key': "API_KEY",
+        'value': "myPa\$\$word1",
         'secret': true,
-        'resourceType': 'function',
-        'resourceId': 'myAwesomeFunction',
+        'resourceType': "function",
+        'resourceId': "myAwesomeFunction",
       };
 
-      when(client.call(
-        HttpMethod.post,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createVariable(
-        siteId: '<SITE_ID>',
-        variableId: '<VARIABLE_ID>',
-        key: '<KEY>',
-        value: '<VALUE>',
+        siteId: "<SITE_ID>",
+        variableId: "<VARIABLE_ID>",
+        key: "<KEY>",
+        value: "<VALUE>",
       );
       expect(response, isA<models.Variable>());
     });
 
     test('test method getVariable()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'key': 'API_KEY',
-        'value': 'myPa\$\$word1',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'key': "API_KEY",
+        'value': "myPa\$\$word1",
         'secret': true,
-        'resourceType': 'function',
-        'resourceId': 'myAwesomeFunction',
+        'resourceType': "function",
+        'resourceId': "myAwesomeFunction",
       };
 
-      when(client.call(
-        HttpMethod.get,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.getVariable(
-        siteId: '<SITE_ID>',
-        variableId: '<VARIABLE_ID>',
+        siteId: "<SITE_ID>",
+        variableId: "<VARIABLE_ID>",
       );
       expect(response, isA<models.Variable>());
     });
 
     test('test method updateVariable()', () async {
       final Map<String, dynamic> data = {
-        '\$id': '5e5ea5c16897e',
-        '\$createdAt': '2020-10-15T06:38:00.000+00:00',
-        '\$updatedAt': '2020-10-15T06:38:00.000+00:00',
-        'key': 'API_KEY',
-        'value': 'myPa\$\$word1',
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'key': "API_KEY",
+        'value': "myPa\$\$word1",
         'secret': true,
-        'resourceType': 'function',
-        'resourceId': 'myAwesomeFunction',
+        'resourceType': "function",
+        'resourceId': "myAwesomeFunction",
       };
 
-      when(client.call(
-        HttpMethod.put,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.updateVariable(
-        siteId: '<SITE_ID>',
-        variableId: '<VARIABLE_ID>',
+        siteId: "<SITE_ID>",
+        variableId: "<VARIABLE_ID>",
       );
       expect(response, isA<models.Variable>());
     });
@@ -779,13 +797,13 @@ void main() {
     test('test method deleteVariable()', () async {
       final data = '';
 
-      when(client.call(
-        HttpMethod.delete,
-      )).thenAnswer((_) async => Response(data: data));
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.deleteVariable(
-        siteId: '<SITE_ID>',
-        variableId: '<VARIABLE_ID>',
+        siteId: "<SITE_ID>",
+        variableId: "<VARIABLE_ID>",
       );
     });
   });

@@ -16,14 +16,18 @@ class DedicatedDatabaseSpecificationList implements Model {
     required this.total,
     required this.pricing,
   });
-
-  factory DedicatedDatabaseSpecificationList.fromMap(Map<String, dynamic> map) {
+  factory DedicatedDatabaseSpecificationList.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return DedicatedDatabaseSpecificationList(
       specifications: List<DedicatedDatabaseSpecification>.from(
-          map['specifications']
-              .map((p) => DedicatedDatabaseSpecification.fromMap(p))),
+        map['specifications']
+            .map((p) => DedicatedDatabaseSpecification.fromMap(p)),
+      ),
       total: map['total'],
-      pricing: DedicatedDatabaseSpecificationPricing.fromMap(map['pricing']),
+      pricing: DedicatedDatabaseSpecificationPricing.fromMap(
+        map['pricing'],
+      ),
     );
   }
 

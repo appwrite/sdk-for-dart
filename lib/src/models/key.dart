@@ -40,8 +40,9 @@ class Key implements Model {
     required this.accessedAt,
     required this.sdks,
   });
-
-  factory Key.fromMap(Map<String, dynamic> map) {
+  factory Key.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return Key(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
