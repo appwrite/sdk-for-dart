@@ -14,5 +14,8 @@ Uint8List result = await avatars.getPhoto(
     quality: 0, // (optional)
     output: 'png', // (optional)
     rating: 'g', // (optional)
+    userId: 'current()', // (optional)
+    emailHash: '<EMAIL_HASH>', // (optional)
+    name: '<NAME>', // (optional)
 );
 ```

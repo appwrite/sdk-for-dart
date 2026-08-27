@@ -10,7 +10,7 @@ Client client = Client()
 Organization organization = Organization(client);
 
 Project result = await organization.createProject(
-    projectId: '',
+    projectId: '<PROJECT_ID>',
     name: '<NAME>',
     region: enums.Region.fra, // (optional)
 );

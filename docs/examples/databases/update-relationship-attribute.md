@@ -12,8 +12,8 @@ Databases databases = Databases(client);
 AttributeRelationship result = await databases.updateRelationshipAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     onDelete: enums.RelationMutate.cascade, // (optional)
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

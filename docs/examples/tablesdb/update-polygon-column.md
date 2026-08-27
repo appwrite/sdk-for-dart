@@ -11,9 +11,9 @@ TablesDB tablesDB = TablesDB(client);
 ColumnPolygon result = await tablesDB.updatePolygonColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: [[[1, 2], [3, 4], [5, 6], [1, 2]]], // (optional)
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

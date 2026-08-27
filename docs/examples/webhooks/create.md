@@ -10,7 +10,7 @@ Webhooks webhooks = Webhooks(client);
 
 Webhook result = await webhooks.create(
     webhookId: '<WEBHOOK_ID>',
-    url: '',
+    url: 'https://example.com/webhook',
     name: '<NAME>',
     events: [],
     enabled: false, // (optional)

@@ -11,6 +11,6 @@ TablesDB tablesDB = TablesDB(client);
 dynamic result = await tablesDB.getColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
 );
 ```

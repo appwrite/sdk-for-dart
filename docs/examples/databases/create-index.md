@@ -12,7 +12,7 @@ Databases databases = Databases(client);
 Index result = await databases.createIndex(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     type: enums.DatabasesIndexType.key,
     attributes: [],
     orders: [enums.OrderBy.asc], // (optional)

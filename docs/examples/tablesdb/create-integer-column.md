@@ -11,11 +11,11 @@ TablesDB tablesDB = TablesDB(client);
 ColumnInteger result = await tablesDB.createIntegerColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     min: 0, // (optional)
-    max: 0, // (optional)
-    xdefault: 0, // (optional)
+    max: 100, // (optional)
+    xdefault: 10, // (optional)
     array: false, // (optional)
 );
 ```

@@ -10,7 +10,7 @@ Users users = Users(client);
 
 Jwt result = await users.createJWT(
     userId: '<USER_ID>',
-    sessionId: '<SESSION_ID>', // (optional)
+    sessionId: 'recent()', // (optional)
     duration: 0, // (optional)
 );
 ```

@@ -78,7 +78,7 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await proxy.createInvalidation(
-        domain: '',
+        domain: "example.com",
         type: enums.InvalidationType.tag,
       );
       expect(response, isA<models.ProxyInvalidation>());
@@ -122,7 +122,7 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await proxy.createAPIRule(
-        domain: '',
+        domain: "example.com",
       );
       expect(response, isA<models.ProxyRule>());
     });
@@ -151,7 +151,7 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await proxy.createFunctionRule(
-        domain: '',
+        domain: "example.com",
         functionId: "<FUNCTION_ID>",
       );
       expect(response, isA<models.ProxyRule>());
@@ -181,7 +181,7 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await proxy.createRedirectRule(
-        domain: '',
+        domain: "example.com",
         url: "https://example.com",
         statusCode: enums.StatusCode.movedPermanently,
         resourceId: "<RESOURCE_ID>",
@@ -214,7 +214,7 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await proxy.createSiteRule(
-        domain: '',
+        domain: "example.com",
         siteId: "<SITE_ID>",
       );
       expect(response, isA<models.ProxyRule>());

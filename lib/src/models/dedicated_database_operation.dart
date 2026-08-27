@@ -14,7 +14,7 @@ class DedicatedDatabaseOperation implements Model {
   /// Operation type, such as provision, update, restore, pausing, resuming, failover, backup-create or cross-region-enable.
   final String type;
 
-  /// Operation status. Possible values: running (in progress), completed (finished successfully), failed (ended in an error).
+  /// Operation status. Possible values: queued (accepted and waiting to resume), running (in progress), completed (finished successfully), failed (ended in an error).
   final String status;
 
   /// Number of times this operation has been attempted.

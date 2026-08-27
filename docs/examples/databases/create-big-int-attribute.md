@@ -11,10 +11,10 @@ Databases databases = Databases(client);
 AttributeBigint result = await databases.createBigIntAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     min: 0, // (optional)
-    max: 0, // (optional)
+    max: 1000000, // (optional)
     xdefault: 0, // (optional)
     array: false, // (optional)
 );

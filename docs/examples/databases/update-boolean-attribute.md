@@ -11,9 +11,9 @@ Databases databases = Databases(client);
 AttributeBoolean result = await databases.updateBooleanAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: false,
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

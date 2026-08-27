@@ -11,9 +11,9 @@ Databases databases = Databases(client);
 AttributeIp result = await databases.createIpAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
-    xdefault: '', // (optional)
+    xdefault: '192.0.2.0', // (optional)
     array: false, // (optional)
 );
 ```

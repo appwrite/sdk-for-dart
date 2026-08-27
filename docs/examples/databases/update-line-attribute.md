@@ -11,9 +11,9 @@ Databases databases = Databases(client);
 AttributeLine result = await databases.updateLineAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: [[1, 2], [3, 4], [5, 6]], // (optional)
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

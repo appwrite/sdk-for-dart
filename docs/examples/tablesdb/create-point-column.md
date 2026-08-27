@@ -11,7 +11,7 @@ TablesDB tablesDB = TablesDB(client);
 ColumnPoint result = await tablesDB.createPointColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: [1, 2], // (optional)
 );

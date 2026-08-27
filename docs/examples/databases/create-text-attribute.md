@@ -11,9 +11,9 @@ Databases databases = Databases(client);
 AttributeText result = await databases.createTextAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
-    xdefault: '<DEFAULT>', // (optional)
+    xdefault: 'Hello World', // (optional)
     array: false, // (optional)
     encrypt: false, // (optional)
 );

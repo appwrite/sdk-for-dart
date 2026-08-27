@@ -11,7 +11,7 @@ Databases databases = Databases(client);
 AttributeUrl result = await databases.createUrlAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: 'https://example.com', // (optional)
     array: false, // (optional)

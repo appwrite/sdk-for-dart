@@ -9,6 +9,6 @@ Client client = Client()
 Proxy proxy = Proxy(client);
 
 ProxyRule result = await proxy.createAPIRule(
-    domain: '',
+    domain: 'example.com',
 );
 ```

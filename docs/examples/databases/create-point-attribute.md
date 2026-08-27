@@ -11,7 +11,7 @@ Databases databases = Databases(client);
 AttributePoint result = await databases.createPointAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: [1, 2], // (optional)
 );

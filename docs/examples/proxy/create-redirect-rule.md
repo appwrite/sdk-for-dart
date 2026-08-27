@@ -10,7 +10,7 @@ Client client = Client()
 Proxy proxy = Proxy(client);
 
 ProxyRule result = await proxy.createRedirectRule(
-    domain: '',
+    domain: 'example.com',
     url: 'https://example.com',
     statusCode: enums.StatusCode.movedPermanently,
     resourceId: '<RESOURCE_ID>',

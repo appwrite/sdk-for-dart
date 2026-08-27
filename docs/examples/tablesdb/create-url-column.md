@@ -11,7 +11,7 @@ TablesDB tablesDB = TablesDB(client);
 ColumnUrl result = await tablesDB.createUrlColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: 'https://example.com', // (optional)
     array: false, // (optional)

@@ -11,11 +11,11 @@ Databases databases = Databases(client);
 AttributeFloat result = await databases.updateFloatAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
-    xdefault: 0,
+    xdefault: 10.5,
     min: 0, // (optional)
-    max: 0, // (optional)
-    newKey: '', // (optional)
+    max: 100, // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

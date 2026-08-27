@@ -11,9 +11,9 @@ TablesDB tablesDB = TablesDB(client);
 ColumnMediumtext result = await tablesDB.updateMediumtextColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
-    xdefault: '<DEFAULT>',
-    newKey: '', // (optional)
+    xdefault: 'Hello World',
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

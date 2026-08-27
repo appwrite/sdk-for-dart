@@ -11,9 +11,9 @@ TablesDB tablesDB = TablesDB(client);
 ColumnIp result = await tablesDB.createIpColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
-    xdefault: '', // (optional)
+    xdefault: '192.0.2.0', // (optional)
     array: false, // (optional)
 );
 ```
