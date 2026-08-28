@@ -11,9 +11,9 @@ TablesDB tablesDB = TablesDB(client);
 ColumnIp result = await tablesDB.updateIpColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
-    xdefault: '',
-    newKey: '', // (optional)
+    xdefault: '192.0.2.0',
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

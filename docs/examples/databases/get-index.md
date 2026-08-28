@@ -11,6 +11,6 @@ Databases databases = Databases(client);
 Index result = await databases.getIndex(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
 );
 ```

@@ -102,7 +102,7 @@ void main() {
 
       final response = await webhooks.create(
         webhookId: "<WEBHOOK_ID>",
-        url: '',
+        url: "https://example.com/webhook",
         name: "<NAME>",
         events: [],
       );
@@ -160,7 +160,7 @@ void main() {
       final response = await webhooks.update(
         webhookId: "<WEBHOOK_ID>",
         name: "<NAME>",
-        url: '',
+        url: "https://example.com/webhook",
         events: [],
       );
       expect(response, isA<models.Webhook>());

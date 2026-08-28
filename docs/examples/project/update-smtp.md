@@ -10,8 +10,8 @@ Client client = Client()
 Project project = Project(client);
 
 Project result = await project.updateSMTP(
-    host: '', // (optional)
-    port: 0, // (optional)
+    host: 'example.com', // (optional)
+    port: 587, // (optional)
     username: '<USERNAME>', // (optional)
     password: 'password', // (optional)
     senderEmail: 'email@example.com', // (optional)

@@ -9,7 +9,7 @@ Client client = Client()
 Proxy proxy = Proxy(client);
 
 ProxyRule result = await proxy.createSiteRule(
-    domain: '',
+    domain: 'example.com',
     siteId: '<SITE_ID>',
     branch: '<BRANCH>', // (optional)
 );

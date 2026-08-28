@@ -11,6 +11,6 @@ TablesDB tablesDB = TablesDB(client);
 ColumnIndex result = await tablesDB.getIndex(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
 );
 ```

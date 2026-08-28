@@ -673,7 +673,7 @@ void main() {
       final response = await tablesDB.createBigIntColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnBigint>());
@@ -697,7 +697,7 @@ void main() {
       final response = await tablesDB.updateBigIntColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: 1,
       );
@@ -722,7 +722,7 @@ void main() {
       final response = await tablesDB.createBooleanColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnBoolean>());
@@ -746,7 +746,7 @@ void main() {
       final response = await tablesDB.updateBooleanColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: true,
       );
@@ -772,7 +772,7 @@ void main() {
       final response = await tablesDB.createDatetimeColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnDatetime>());
@@ -797,7 +797,7 @@ void main() {
       final response = await tablesDB.updateDatetimeColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: "2020-10-15T06:38:00.000+00:00",
       );
@@ -823,7 +823,7 @@ void main() {
       final response = await tablesDB.createEmailColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnEmail>());
@@ -848,7 +848,7 @@ void main() {
       final response = await tablesDB.updateEmailColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: "email@example.com",
       );
@@ -875,7 +875,7 @@ void main() {
       final response = await tablesDB.createEnumColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         elements: [],
         xrequired: true,
       );
@@ -902,10 +902,10 @@ void main() {
       final response = await tablesDB.updateEnumColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         elements: [],
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "active",
       );
       expect(response, isA<models.ColumnEnum>());
     });
@@ -928,7 +928,7 @@ void main() {
       final response = await tablesDB.createFloatColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnFloat>());
@@ -952,7 +952,7 @@ void main() {
       final response = await tablesDB.updateFloatColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: 1.0,
       );
@@ -977,7 +977,7 @@ void main() {
       final response = await tablesDB.createIntegerColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnInteger>());
@@ -1001,7 +1001,7 @@ void main() {
       final response = await tablesDB.updateIntegerColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: 1,
       );
@@ -1027,7 +1027,7 @@ void main() {
       final response = await tablesDB.createIpColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnIp>());
@@ -1052,9 +1052,9 @@ void main() {
       final response = await tablesDB.updateIpColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: '',
+        xdefault: "192.0.2.0",
       );
       expect(response, isA<models.ColumnIp>());
     });
@@ -1077,7 +1077,7 @@ void main() {
       final response = await tablesDB.createLineColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnLine>());
@@ -1101,7 +1101,7 @@ void main() {
       final response = await tablesDB.updateLineColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnLine>());
@@ -1125,7 +1125,7 @@ void main() {
       final response = await tablesDB.createLongtextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnLongtext>());
@@ -1149,9 +1149,9 @@ void main() {
       final response = await tablesDB.updateLongtextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.ColumnLongtext>());
     });
@@ -1174,7 +1174,7 @@ void main() {
       final response = await tablesDB.createMediumtextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnMediumtext>());
@@ -1198,9 +1198,9 @@ void main() {
       final response = await tablesDB.updateMediumtextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.ColumnMediumtext>());
     });
@@ -1223,7 +1223,7 @@ void main() {
       final response = await tablesDB.createPointColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnPoint>());
@@ -1247,7 +1247,7 @@ void main() {
       final response = await tablesDB.updatePointColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnPoint>());
@@ -1271,7 +1271,7 @@ void main() {
       final response = await tablesDB.createPolygonColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnPolygon>());
@@ -1295,7 +1295,7 @@ void main() {
       final response = await tablesDB.updatePolygonColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnPolygon>());
@@ -1350,7 +1350,7 @@ void main() {
       final response = await tablesDB.createStringColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         size: 1,
         xrequired: true,
       );
@@ -1376,9 +1376,9 @@ void main() {
       final response = await tablesDB.updateStringColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.ColumnString>());
     });
@@ -1401,7 +1401,7 @@ void main() {
       final response = await tablesDB.createTextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnText>());
@@ -1425,9 +1425,9 @@ void main() {
       final response = await tablesDB.updateTextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.ColumnText>());
     });
@@ -1451,7 +1451,7 @@ void main() {
       final response = await tablesDB.createUrlColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.ColumnUrl>());
@@ -1476,7 +1476,7 @@ void main() {
       final response = await tablesDB.updateUrlColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: "https://example.com",
       );
@@ -1502,7 +1502,7 @@ void main() {
       final response = await tablesDB.createVarcharColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         size: 1,
         xrequired: true,
       );
@@ -1528,9 +1528,9 @@ void main() {
       final response = await tablesDB.updateVarcharColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.ColumnVarchar>());
     });
@@ -1554,7 +1554,7 @@ void main() {
       final response = await tablesDB.getColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
       );
       expect(response, isA<models.ColumnString>());
     });
@@ -1569,7 +1569,7 @@ void main() {
       final response = await tablesDB.deleteColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
       );
     });
 
@@ -1597,7 +1597,7 @@ void main() {
       final response = await tablesDB.updateRelationshipColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
       );
       expect(response, isA<models.ColumnRelationship>());
     });
@@ -1639,7 +1639,7 @@ void main() {
       final response = await tablesDB.createIndex(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
         type: enums.TablesDBIndexType.key,
         columns: [],
       );
@@ -1666,7 +1666,7 @@ void main() {
       final response = await tablesDB.getIndex(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
       );
       expect(response, isA<models.ColumnIndex>());
     });
@@ -1681,7 +1681,7 @@ void main() {
       final response = await tablesDB.deleteIndex(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
-        key: '',
+        key: "<KEY>",
       );
     });
 
@@ -1898,7 +1898,7 @@ void main() {
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
-        column: '',
+        column: "<COLUMN>",
       );
       expect(response, isA<models.Row>());
     });
@@ -1922,7 +1922,7 @@ void main() {
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
-        column: '',
+        column: "<COLUMN>",
       );
       expect(response, isA<models.Row>());
     });

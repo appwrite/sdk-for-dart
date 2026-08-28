@@ -11,9 +11,9 @@ TablesDB tablesDB = TablesDB(client);
 ColumnPoint result = await tablesDB.updatePointColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: [1, 2], // (optional)
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

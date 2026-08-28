@@ -11,10 +11,10 @@ Databases databases = Databases(client);
 AttributeVarchar result = await databases.createVarcharAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     size: 1,
     xrequired: false,
-    xdefault: '<DEFAULT>', // (optional)
+    xdefault: 'Hello World', // (optional)
     array: false, // (optional)
     encrypt: false, // (optional)
 );

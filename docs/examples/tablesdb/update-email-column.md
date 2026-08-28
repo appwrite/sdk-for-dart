@@ -11,9 +11,9 @@ TablesDB tablesDB = TablesDB(client);
 ColumnEmail result = await tablesDB.updateEmailColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: 'email@example.com',
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

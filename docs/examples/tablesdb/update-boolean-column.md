@@ -11,9 +11,9 @@ TablesDB tablesDB = TablesDB(client);
 ColumnBoolean result = await tablesDB.updateBooleanColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: false,
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

@@ -11,6 +11,6 @@ TablesDB tablesDB = TablesDB(client);
 await tablesDB.deleteIndex(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
 );
 ```

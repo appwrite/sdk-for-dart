@@ -769,7 +769,7 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createProject(
-        projectId: '',
+        projectId: "<PROJECT_ID>",
         name: "<NAME>",
       );
       expect(response, isA<models.Project>());

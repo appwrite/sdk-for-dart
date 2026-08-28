@@ -402,7 +402,7 @@ void main() {
       final response = await databases.createBigIntAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeBigint>());
@@ -426,7 +426,7 @@ void main() {
       final response = await databases.updateBigIntAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: 1,
       );
@@ -451,7 +451,7 @@ void main() {
       final response = await databases.createBooleanAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeBoolean>());
@@ -475,7 +475,7 @@ void main() {
       final response = await databases.updateBooleanAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: true,
       );
@@ -501,7 +501,7 @@ void main() {
       final response = await databases.createDatetimeAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeDatetime>());
@@ -526,7 +526,7 @@ void main() {
       final response = await databases.updateDatetimeAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: "2020-10-15T06:38:00.000+00:00",
       );
@@ -552,7 +552,7 @@ void main() {
       final response = await databases.createEmailAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeEmail>());
@@ -577,7 +577,7 @@ void main() {
       final response = await databases.updateEmailAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: "email@example.com",
       );
@@ -604,7 +604,7 @@ void main() {
       final response = await databases.createEnumAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         elements: [],
         xrequired: true,
       );
@@ -631,10 +631,10 @@ void main() {
       final response = await databases.updateEnumAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         elements: [],
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "active",
       );
       expect(response, isA<models.AttributeEnum>());
     });
@@ -657,7 +657,7 @@ void main() {
       final response = await databases.createFloatAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeFloat>());
@@ -681,7 +681,7 @@ void main() {
       final response = await databases.updateFloatAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: 1.0,
       );
@@ -706,7 +706,7 @@ void main() {
       final response = await databases.createIntegerAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeInteger>());
@@ -730,7 +730,7 @@ void main() {
       final response = await databases.updateIntegerAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: 1,
       );
@@ -756,7 +756,7 @@ void main() {
       final response = await databases.createIpAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeIp>());
@@ -781,9 +781,9 @@ void main() {
       final response = await databases.updateIpAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: '',
+        xdefault: "192.0.2.0",
       );
       expect(response, isA<models.AttributeIp>());
     });
@@ -806,7 +806,7 @@ void main() {
       final response = await databases.createLineAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeLine>());
@@ -830,7 +830,7 @@ void main() {
       final response = await databases.updateLineAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeLine>());
@@ -854,7 +854,7 @@ void main() {
       final response = await databases.createLongtextAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeLongtext>());
@@ -878,9 +878,9 @@ void main() {
       final response = await databases.updateLongtextAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.AttributeLongtext>());
     });
@@ -903,7 +903,7 @@ void main() {
       final response = await databases.createMediumtextAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeMediumtext>());
@@ -927,9 +927,9 @@ void main() {
       final response = await databases.updateMediumtextAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.AttributeMediumtext>());
     });
@@ -952,7 +952,7 @@ void main() {
       final response = await databases.createPointAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributePoint>());
@@ -976,7 +976,7 @@ void main() {
       final response = await databases.updatePointAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributePoint>());
@@ -1000,7 +1000,7 @@ void main() {
       final response = await databases.createPolygonAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributePolygon>());
@@ -1024,7 +1024,7 @@ void main() {
       final response = await databases.updatePolygonAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributePolygon>());
@@ -1084,7 +1084,7 @@ void main() {
       final response = await databases.updateRelationshipAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
       );
       expect(response, isA<models.AttributeRelationship>());
     });
@@ -1108,7 +1108,7 @@ void main() {
       final response = await databases.createStringAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         size: 1,
         xrequired: true,
       );
@@ -1134,9 +1134,9 @@ void main() {
       final response = await databases.updateStringAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.AttributeString>());
     });
@@ -1159,7 +1159,7 @@ void main() {
       final response = await databases.createTextAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeText>());
@@ -1183,9 +1183,9 @@ void main() {
       final response = await databases.updateTextAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.AttributeText>());
     });
@@ -1209,7 +1209,7 @@ void main() {
       final response = await databases.createUrlAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
       );
       expect(response, isA<models.AttributeUrl>());
@@ -1234,7 +1234,7 @@ void main() {
       final response = await databases.updateUrlAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
         xdefault: "https://example.com",
       );
@@ -1260,7 +1260,7 @@ void main() {
       final response = await databases.createVarcharAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         size: 1,
         xrequired: true,
       );
@@ -1286,9 +1286,9 @@ void main() {
       final response = await databases.updateVarcharAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         xrequired: true,
-        xdefault: "<DEFAULT>",
+        xdefault: "Hello World",
       );
       expect(response, isA<models.AttributeVarchar>());
     });
@@ -1312,7 +1312,7 @@ void main() {
       final response = await databases.getAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
       );
       expect(response, isA<models.AttributeString>());
     });
@@ -1327,7 +1327,7 @@ void main() {
       final response = await databases.deleteAttribute(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
       );
     });
 
@@ -1544,7 +1544,7 @@ void main() {
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         documentId: "<DOCUMENT_ID>",
-        attribute: '',
+        attribute: "<ATTRIBUTE>",
       );
       expect(response, isA<models.Document>());
     });
@@ -1568,7 +1568,7 @@ void main() {
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         documentId: "<DOCUMENT_ID>",
-        attribute: '',
+        attribute: "<ATTRIBUTE>",
       );
       expect(response, isA<models.Document>());
     });
@@ -1610,7 +1610,7 @@ void main() {
       final response = await databases.createIndex(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
         type: enums.DatabasesIndexType.key,
         attributes: [],
       );
@@ -1637,7 +1637,7 @@ void main() {
       final response = await databases.getIndex(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
       );
       expect(response, isA<models.Index>());
     });
@@ -1652,7 +1652,7 @@ void main() {
       final response = await databases.deleteIndex(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
-        key: '',
+        key: "<KEY>",
       );
     });
   });

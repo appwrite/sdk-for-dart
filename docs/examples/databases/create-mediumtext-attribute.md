@@ -11,9 +11,9 @@ Databases databases = Databases(client);
 AttributeMediumtext result = await databases.createMediumtextAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
-    xdefault: '<DEFAULT>', // (optional)
+    xdefault: 'Hello World', // (optional)
     array: false, // (optional)
     encrypt: false, // (optional)
 );

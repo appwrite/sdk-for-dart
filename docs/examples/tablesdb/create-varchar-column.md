@@ -11,10 +11,10 @@ TablesDB tablesDB = TablesDB(client);
 ColumnVarchar result = await tablesDB.createVarcharColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     size: 1,
     xrequired: false,
-    xdefault: '<DEFAULT>', // (optional)
+    xdefault: 'Hello World', // (optional)
     array: false, // (optional)
     encrypt: false, // (optional)
 );

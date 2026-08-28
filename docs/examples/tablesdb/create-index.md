@@ -12,7 +12,7 @@ TablesDB tablesDB = TablesDB(client);
 ColumnIndex result = await tablesDB.createIndex(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     type: enums.TablesDBIndexType.key,
     columns: [],
     orders: [enums.OrderBy.asc], // (optional)

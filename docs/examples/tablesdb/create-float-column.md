@@ -11,11 +11,11 @@ TablesDB tablesDB = TablesDB(client);
 ColumnFloat result = await tablesDB.createFloatColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     min: 0, // (optional)
-    max: 0, // (optional)
-    xdefault: 0, // (optional)
+    max: 100, // (optional)
+    xdefault: 10.5, // (optional)
     array: false, // (optional)
 );
 ```

@@ -11,10 +11,10 @@ Databases databases = Databases(client);
 AttributeEnum result = await databases.updateEnumAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
-    elements: [],
+    key: '<KEY>',
+    elements: ["active", "inactive"],
     xrequired: false,
-    xdefault: '<DEFAULT>',
-    newKey: '', // (optional)
+    xdefault: 'active',
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

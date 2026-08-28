@@ -9,7 +9,7 @@ Client client = Client()
 Proxy proxy = Proxy(client);
 
 ProxyRule result = await proxy.createFunctionRule(
-    domain: '',
+    domain: 'example.com',
     functionId: '<FUNCTION_ID>',
     branch: '<BRANCH>', // (optional)
 );

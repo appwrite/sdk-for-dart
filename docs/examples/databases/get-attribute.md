@@ -11,6 +11,6 @@ Databases databases = Databases(client);
 dynamic result = await databases.getAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
 );
 ```

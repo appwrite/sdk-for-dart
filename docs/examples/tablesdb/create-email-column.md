@@ -11,7 +11,7 @@ TablesDB tablesDB = TablesDB(client);
 ColumnEmail result = await tablesDB.createEmailColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: 'email@example.com', // (optional)
     array: false, // (optional)

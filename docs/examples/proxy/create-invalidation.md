@@ -10,7 +10,7 @@ Client client = Client()
 Proxy proxy = Proxy(client);
 
 ProxyInvalidation result = await proxy.createInvalidation(
-    domain: '',
+    domain: 'example.com',
     type: enums.InvalidationType.tag,
     reference: '<REFERENCE>', // (optional)
 );

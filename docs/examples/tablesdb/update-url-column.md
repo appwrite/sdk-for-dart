@@ -11,9 +11,9 @@ TablesDB tablesDB = TablesDB(client);
 ColumnUrl result = await tablesDB.updateUrlColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: 'https://example.com',
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

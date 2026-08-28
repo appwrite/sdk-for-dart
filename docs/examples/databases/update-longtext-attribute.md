@@ -11,9 +11,9 @@ Databases databases = Databases(client);
 AttributeLongtext result = await databases.updateLongtextAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
-    xdefault: '<DEFAULT>',
-    newKey: '', // (optional)
+    xdefault: 'Hello World',
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

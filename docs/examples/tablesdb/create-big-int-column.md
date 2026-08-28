@@ -11,10 +11,10 @@ TablesDB tablesDB = TablesDB(client);
 ColumnBigint result = await tablesDB.createBigIntColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     min: 0, // (optional)
-    max: 0, // (optional)
+    max: 1000000, // (optional)
     xdefault: 0, // (optional)
     array: false, // (optional)
 );

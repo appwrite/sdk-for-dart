@@ -11,7 +11,7 @@ Databases databases = Databases(client);
 AttributeBoolean result = await databases.createBooleanAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: false, // (optional)
     array: false, // (optional)

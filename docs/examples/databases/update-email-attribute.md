@@ -11,9 +11,9 @@ Databases databases = Databases(client);
 AttributeEmail result = await databases.updateEmailAttribute(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     xrequired: false,
     xdefault: 'email@example.com',
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```

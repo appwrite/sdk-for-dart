@@ -12,8 +12,8 @@ TablesDB tablesDB = TablesDB(client);
 ColumnRelationship result = await tablesDB.updateRelationshipColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     onDelete: enums.RelationMutate.cascade, // (optional)
-    newKey: '', // (optional)
+    newKey: '<NEW_KEY>', // (optional)
 );
 ```
