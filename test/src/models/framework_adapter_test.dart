@@ -9,7 +9,6 @@ void main() {
         installCommand: "npm install",
         buildCommand: "npm run build",
         outputDirectory: "./dist",
-        fallbackFile: "index.html",
       );
 
       final map = model.toMap();
@@ -19,7 +18,6 @@ void main() {
       expect(result.installCommand, "npm install");
       expect(result.buildCommand, "npm run build");
       expect(result.outputDirectory, "./dist");
-      expect(result.fallbackFile, "index.html");
     });
   });
 }

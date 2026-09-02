@@ -8,7 +8,7 @@ Client client = Client()
 
 Postgresql postgresql = Postgresql(client);
 
-DedicatedDatabase result = await postgresql.updateCredentials(
+DedicatedDatabaseOperation result = await postgresql.updateCredentials(
     databaseId: '<DATABASE_ID>',
 );
 ```

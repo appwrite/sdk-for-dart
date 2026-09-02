@@ -697,11 +697,11 @@ class Postgresql extends Service {
     return models.DedicatedDatabase.fromMap(res.data);
   }
 
-  /// Rotate the primary connection credentials for a dedicated database.
-  /// Generates a new password and updates the database atomically. Previous
-  /// credentials stop working immediately. Returns the database with a refreshed
-  /// connection string carrying the new password.
-  Future<models.DedicatedDatabase> updateCredentials({
+  /// Queue a rotation of the primary connection credentials for a dedicated
+  /// database. A hibernated database is woken by the worker before rotation.
+  /// List database operations until the returned operation reaches a terminal
+  /// status, then fetch the database again for the refreshed connection string.
+  Future<models.DedicatedDatabaseOperation> updateCredentials({
     required String databaseId,
   }) async {
     final String apiPath = '/postgresql/{databaseId}/credentials'.replaceAll(
@@ -724,7 +724,7 @@ class Postgresql extends Service {
       headers: apiHeaders,
     );
 
-    return models.DedicatedDatabase.fromMap(res.data);
+    return models.DedicatedDatabaseOperation.fromMap(res.data);
   }
 
   /// Execute SQL through the console-facing Cloud endpoint. Cloud proxies

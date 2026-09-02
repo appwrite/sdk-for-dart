@@ -587,6 +587,22 @@ void main() {
       expect(response, isA<models.OAuth2Box>());
     });
 
+    test('test method updateOAuth2Cloudflare()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "4b866000000000000000000000c9e4e2",
+        'clientSecret': "cfoc_5Q6YRl0000000000000000000000000000000000003d214f",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Cloudflare();
+      expect(response, isA<models.OAuth2Cloudflare>());
+    });
+
     test('test method updateOAuth2Dailymotion()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -964,6 +980,23 @@ void main() {
 
       final response = await project.updateOAuth2Podio();
       expect(response, isA<models.OAuth2Podio>());
+    });
+
+    test('test method updateOAuth2Resend()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        'clientSecret':
+            "9c1e4b00000000000000000000000000000000000000000000000000a72d5f4",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Resend();
+      expect(response, isA<models.OAuth2Resend>());
     });
 
     test('test method updateOAuth2Salesforce()', () async {

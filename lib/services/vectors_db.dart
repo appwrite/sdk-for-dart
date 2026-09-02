@@ -588,6 +588,7 @@ class VectorsDB extends Service {
     required String documentId,
     required Map data,
     List<String>? permissions,
+    String? transactionId,
   }) async {
     final String apiPath =
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
@@ -604,6 +605,7 @@ class VectorsDB extends Service {
       'documentId': documentId,
       'data': data,
       if (permissions != null) 'permissions': permissions,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -630,6 +632,7 @@ class VectorsDB extends Service {
     required String databaseId,
     required String collectionId,
     required List<Map> documents,
+    String? transactionId,
   }) async {
     final String apiPath =
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
@@ -644,6 +647,7 @@ class VectorsDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'documents': documents,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {

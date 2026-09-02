@@ -95,6 +95,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -177,6 +178,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -238,6 +240,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -541,6 +544,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -602,6 +606,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -652,51 +657,12 @@ void main() {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
-        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
-        'projectId': "5e5ea5c16897e",
-        'name': "My Production Database",
-        'api': "postgresql",
-        'engine': "postgresql",
-        'version': "16",
-        'specification': "s-2vcpu-2gb",
-        'backend': "edge",
-        'hostname': "db-myproject-mydb.fra.appwrite.center",
-        'connectionPort': 5432,
-        'connectionUser': "appwrite_user",
-        'connectionPassword': "••••••••",
-        'connectionString':
-            "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
-        'ssl': true,
-        'status': "ready",
-        'containerStatus': "active",
-        'lifecycleState': "active",
-        'idleTimeoutMinutes': 15,
-        'cpu': 2000,
-        'memory': 4096,
-        'storage': 100,
-        'storageClass': "ssd",
-        'storageMaxGb': 100,
-        'nodePool': "db-pool-4vcpu-8gb",
-        'replicas': 2,
-        'syncMode': "async",
-        'networkMaxConnections': 500,
-        'networkIdleTimeoutSeconds': 900,
-        'networkIPAllowlist': [],
-        'backupEnabled': true,
-        'pitr': true,
-        'pitrRetentionDays': 14,
-        'storageAutoscaling': true,
-        'storageAutoscalingThresholdPercent': 85,
-        'storageAutoscalingMaxGb': 500,
-        'maintenanceWindowDay': "sun",
-        'maintenanceWindowHourUtc': 3,
-        'metricsEnabled': true,
-        'sqlApiEnabled': true,
-        'sqlApiAllowedStatements': [],
-        'sqlApiMaxRows': 10000,
-        'sqlApiMaxBytes': 10485760,
-        'sqlApiTimeoutSeconds': 30,
-        'error': "",
+        'databaseId': "5e5ea5c16897e",
+        'type': "update",
+        'status': "completed",
+        'attempts': 1,
+        'errorCode': "Interrupted",
+        'errorMessage': "",
       };
 
       when(
@@ -706,7 +672,7 @@ void main() {
       final response = await postgresql.updateCredentials(
         databaseId: "<DATABASE_ID>",
       );
-      expect(response, isA<models.DedicatedDatabase>());
+      expect(response, isA<models.DedicatedDatabaseOperation>());
     });
 
     test('test method createExecution()', () async {
@@ -763,6 +729,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -825,6 +792,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -887,6 +855,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -948,6 +917,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -1011,6 +981,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -1271,6 +1242,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,

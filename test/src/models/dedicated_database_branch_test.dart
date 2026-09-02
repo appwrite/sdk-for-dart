@@ -17,7 +17,7 @@ void main() {
         ssl: true,
         engine: "postgresql",
         connectionString:
-            "postgresql://appwrite:****@db-myproject-mydb-a1b2c3d4.fra.appwrite.center:5432/db-myproject-mydb-a1b2c3d4?sslmode=disable",
+            "postgresql://appwrite:****@db-myproject-mydb-a1b2c3d4.fra.appwrite.center:5432/db-myproject-mydb-a1b2c3d4?sslmode=require",
       );
 
       final map = model.toMap();
@@ -36,7 +36,7 @@ void main() {
       expect(result.engine, "postgresql");
       expect(
         result.connectionString,
-        "postgresql://appwrite:****@db-myproject-mydb-a1b2c3d4.fra.appwrite.center:5432/db-myproject-mydb-a1b2c3d4?sslmode=disable",
+        "postgresql://appwrite:****@db-myproject-mydb-a1b2c3d4.fra.appwrite.center:5432/db-myproject-mydb-a1b2c3d4?sslmode=require",
       );
     });
   });

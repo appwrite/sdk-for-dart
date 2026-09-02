@@ -523,12 +523,12 @@ class TablesDB extends Service {
   /// after this returns, with a brief read-only window. One call buys one
   /// attempt: a cutover that fails a check returns the migration to `verifying`
   /// and parks it again, so call this once more to retry.
-  Future<models.DatabaseMigration> cutoverMigration({
+  Future<models.DatabaseMigration> createCutover({
     required String databaseId,
     required String migrationId,
   }) async {
     final String apiPath =
-        '/tablesdb/{databaseId}/migrations/{migrationId}/cutover'
+        '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
             .replaceAll(
               '{databaseId}',
               databaseId,

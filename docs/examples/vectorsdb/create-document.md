@@ -26,5 +26,6 @@ Document result = await vectorsDB.createDocument(
         }
     },
     permissions: [Permission.read(Role.any())], // (optional)
+    transactionId: '<TRANSACTION_ID>', // (optional)
 );
 ```
