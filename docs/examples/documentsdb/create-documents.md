@@ -12,5 +12,6 @@ DocumentList result = await documentsDB.createDocuments(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
     documents: [],
+    transactionId: '<TRANSACTION_ID>', // (optional)
 );
 ```

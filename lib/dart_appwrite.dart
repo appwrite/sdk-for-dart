@@ -1,8 +1,10 @@
 /// Appwrite Dart SDK
 ///
-/// This SDK is compatible with Appwrite server version 1.9.x.
-/// For older versions, please check
-/// [previous releases](https://github.com/appwrite/sdk-for-dart/releases).
+/// This SDK targets Appwrite server version 2.0.x as shipped on Appwrite Cloud.
+/// Self-hosted releases can lag behind Cloud — if you run an older self-hosted
+/// build, use a matching older SDK from
+/// [previous releases](https://github.com/appwrite/sdk-for-dart/releases)
+/// when APIs differ.
 library dart_appwrite;
 
 import 'dart:async';

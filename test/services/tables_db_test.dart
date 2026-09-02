@@ -292,6 +292,7 @@ void main() {
         'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
+        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -430,7 +431,7 @@ void main() {
       );
     });
 
-    test('test method cutoverMigration()', () async {
+    test('test method createCutover()', () async {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
@@ -455,7 +456,7 @@ void main() {
         client.call(HttpMethod.post),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await tablesDB.cutoverMigration(
+      final response = await tablesDB.createCutover(
         databaseId: "<DATABASE_ID>",
         migrationId: "<MIGRATION_ID>",
       );

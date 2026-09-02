@@ -6,10 +6,11 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-TablesDB tablesDB = TablesDB(client);
+Project project = Project(client);
 
-DatabaseMigration result = await tablesDB.cutoverMigration(
-    databaseId: '<DATABASE_ID>',
-    migrationId: '<MIGRATION_ID>',
+OAuth2Resend result = await project.updateOAuth2Resend(
+    clientId: '<CLIENT_ID>', // (optional)
+    clientSecret: '<CLIENT_SECRET>', // (optional)
+    enabled: false, // (optional)
 );
 ```

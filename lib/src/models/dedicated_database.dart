@@ -29,7 +29,7 @@ class DedicatedDatabase implements Model {
   /// Specification identifier.
   final String specification;
 
-  /// Database backend provider. Possible values: prisma, edge.
+  /// Database backend provider. Possible values: edge.
   final String backend;
 
   /// Database hostname for connections.
@@ -43,6 +43,9 @@ class DedicatedDatabase implements Model {
 
   /// Database password for connections.
   final String connectionPassword;
+
+  /// Committed generation of the primary connection credentials. Null until the rotation contract has been initialized.
+  final int credentialGeneration;
 
   /// Full database connection string (URI format).
   final String connectionString;
@@ -161,6 +164,7 @@ class DedicatedDatabase implements Model {
     required this.connectionPort,
     required this.connectionUser,
     required this.connectionPassword,
+    required this.credentialGeneration,
     required this.connectionString,
     required this.ssl,
     required this.status,
@@ -214,6 +218,7 @@ class DedicatedDatabase implements Model {
       connectionPort: map['connectionPort'],
       connectionUser: map['connectionUser'].toString(),
       connectionPassword: map['connectionPassword'].toString(),
+      credentialGeneration: map['credentialGeneration'],
       connectionString: map['connectionString'].toString(),
       ssl: map['ssl'],
       status: map['status'].toString(),
@@ -269,6 +274,7 @@ class DedicatedDatabase implements Model {
       "connectionPort": connectionPort,
       "connectionUser": connectionUser,
       "connectionPassword": connectionPassword,
+      "credentialGeneration": credentialGeneration,
       "connectionString": connectionString,
       "ssl": ssl,
       "status": status,

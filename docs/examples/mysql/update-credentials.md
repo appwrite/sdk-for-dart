@@ -8,7 +8,7 @@ Client client = Client()
 
 Mysql mysql = Mysql(client);
 
-DedicatedDatabase result = await mysql.updateCredentials(
+DedicatedDatabaseOperation result = await mysql.updateCredentials(
     databaseId: '<DATABASE_ID>',
 );
 ```

@@ -22,5 +22,6 @@ Document result = await documentsDB.createDocument(
         "isAdmin": false
     },
     permissions: [Permission.read(Role.any())], // (optional)
+    transactionId: '<TRANSACTION_ID>', // (optional)
 );
 ```

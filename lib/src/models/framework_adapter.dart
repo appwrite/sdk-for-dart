@@ -15,14 +15,14 @@ class FrameworkAdapter implements Model {
   final String outputDirectory;
 
   /// Name of fallback file to use instead of 404 page. If null, Appwrite 404 page will be displayed.
-  final String fallbackFile;
+  final String? fallbackFile;
 
   FrameworkAdapter({
     required this.key,
     required this.installCommand,
     required this.buildCommand,
     required this.outputDirectory,
-    required this.fallbackFile,
+    this.fallbackFile,
   });
   factory FrameworkAdapter.fromMap(
     Map<String, dynamic> map,
@@ -32,7 +32,7 @@ class FrameworkAdapter implements Model {
       installCommand: map['installCommand'].toString(),
       buildCommand: map['buildCommand'].toString(),
       outputDirectory: map['outputDirectory'].toString(),
-      fallbackFile: map['fallbackFile'].toString(),
+      fallbackFile: map['fallbackFile']?.toString(),
     );
   }
 

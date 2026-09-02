@@ -762,6 +762,36 @@ class Project extends Service {
     return models.OAuth2Box.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Cloudflare configuration.
+  Future<models.OAuth2Cloudflare> updateOAuth2Cloudflare({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/cloudflare';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Cloudflare.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Dailymotion configuration.
   Future<models.OAuth2Dailymotion> updateOAuth2Dailymotion({
     String? apiKey,
@@ -1452,6 +1482,36 @@ class Project extends Service {
     return models.OAuth2Podio.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Resend configuration.
+  Future<models.OAuth2Resend> updateOAuth2Resend({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/resend';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Resend.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Salesforce configuration.
   Future<models.OAuth2Salesforce> updateOAuth2Salesforce({
     String? customerKey,
@@ -1945,6 +2005,12 @@ class Project extends Service {
       }
       if (response['\$id'] == "huggingface") {
         return models.OAuth2HuggingFace.fromMap(response);
+      }
+      if (response['\$id'] == "resend") {
+        return models.OAuth2Resend.fromMap(response);
+      }
+      if (response['\$id'] == "cloudflare") {
+        return models.OAuth2Cloudflare.fromMap(response);
       }
       if (response['\$id'] == "linkedin") {
         return models.OAuth2Linkedin.fromMap(response);

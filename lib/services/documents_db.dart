@@ -596,6 +596,7 @@ class DocumentsDB extends Service {
     required String documentId,
     required Map data,
     List<String>? permissions,
+    String? transactionId,
   }) async {
     final String apiPath =
         '/documentsdb/{databaseId}/collections/{collectionId}/documents'
@@ -612,6 +613,7 @@ class DocumentsDB extends Service {
       'documentId': documentId,
       'data': data,
       if (permissions != null) 'permissions': permissions,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -638,6 +640,7 @@ class DocumentsDB extends Service {
     required String databaseId,
     required String collectionId,
     required List<Map> documents,
+    String? transactionId,
   }) async {
     final String apiPath =
         '/documentsdb/{databaseId}/collections/{collectionId}/documents'
@@ -652,6 +655,7 @@ class DocumentsDB extends Service {
 
     final Map<String, dynamic> apiParams = {
       'documents': documents,
+      if (transactionId != null) 'transactionId': transactionId,
     };
 
     final Map<String, String> apiHeaders = {

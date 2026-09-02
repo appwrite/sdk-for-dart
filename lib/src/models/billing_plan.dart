@@ -113,6 +113,9 @@ class BillingPlan implements Model {
   /// Usage log time intervals allowed for this plan (e.g. 15m, 1h, 1d).
   final List<String>? usageLogsIntervals;
 
+  /// Metrics this plan only records as a total. They cannot be broken down by dimension or filtered, because the stored events cover a fraction of the real traffic.
+  final List<String>? usageAggregateOnlyMetrics;
+
   /// Number of days of console inactivity before a project is paused. 0 means pausing is disabled.
   final int projectInactivityDays;
 
@@ -253,6 +256,7 @@ class BillingPlan implements Model {
     this.activityLogs,
     required this.usageLogs,
     this.usageLogsIntervals,
+    this.usageAggregateOnlyMetrics,
     required this.projectInactivityDays,
     required this.alertLimit,
     required this.usage,
@@ -329,6 +333,8 @@ class BillingPlan implements Model {
       activityLogs: map['activityLogs'],
       usageLogs: map['usageLogs'],
       usageLogsIntervals: List.from(map['usageLogsIntervals'] ?? []),
+      usageAggregateOnlyMetrics:
+          List.from(map['usageAggregateOnlyMetrics'] ?? []),
       projectInactivityDays: map['projectInactivityDays'],
       alertLimit: map['alertLimit'],
       usage: UsageBillingPlan.fromMap(
@@ -427,6 +433,7 @@ class BillingPlan implements Model {
       "activityLogs": activityLogs,
       "usageLogs": usageLogs,
       "usageLogsIntervals": usageLogsIntervals,
+      "usageAggregateOnlyMetrics": usageAggregateOnlyMetrics,
       "projectInactivityDays": projectInactivityDays,
       "alertLimit": alertLimit,
       "usage": usage.toMap(),

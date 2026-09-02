@@ -19,6 +19,7 @@ void main() {
         connectionPort: 5432,
         connectionUser: "appwrite_user",
         connectionPassword: "••••••••",
+        credentialGeneration: 1,
         connectionString:
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         ssl: true,
@@ -71,6 +72,7 @@ void main() {
       expect(result.connectionPort, 5432);
       expect(result.connectionUser, "appwrite_user");
       expect(result.connectionPassword, "••••••••");
+      expect(result.credentialGeneration, 1);
       expect(
         result.connectionString,
         "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",

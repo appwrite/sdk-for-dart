@@ -6,9 +6,10 @@ Client client = Client()
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Mongo mongo = Mongo(client);
+TablesDB tablesDB = TablesDB(client);
 
-DedicatedDatabaseOperation result = await mongo.updateCredentials(
+DatabaseMigration result = await tablesDB.createCutover(
     databaseId: '<DATABASE_ID>',
+    migrationId: '<MIGRATION_ID>',
 );
 ```
