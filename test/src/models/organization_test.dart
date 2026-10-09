@@ -145,6 +145,7 @@ void main() {
           ),
           deploymentSize: 30,
           buildSize: 2000,
+          functionsIntervalMinimum: 60,
           databasesAllowEncrypt: true,
           group: BillingPlanGroup.starter,
           databaseComputeCredit: 10,
