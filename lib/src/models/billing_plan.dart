@@ -200,6 +200,9 @@ class BillingPlan implements Model {
   /// Maximum function and site deployment size in MB
   final int buildSize;
 
+  /// Shortest function schedule interval allowed, in minutes. 0 allows every interval.
+  final int functionsIntervalMinimum;
+
   /// Does the plan support encrypted string attributes or not.
   final bool databasesAllowEncrypt;
 
@@ -285,6 +288,7 @@ class BillingPlan implements Model {
     this.backupPolicies,
     required this.deploymentSize,
     required this.buildSize,
+    required this.functionsIntervalMinimum,
     required this.databasesAllowEncrypt,
     this.limits,
     required this.group,
@@ -370,6 +374,7 @@ class BillingPlan implements Model {
       backupPolicies: map['backupPolicies'],
       deploymentSize: map['deploymentSize'],
       buildSize: map['buildSize'],
+      functionsIntervalMinimum: map['functionsIntervalMinimum'],
       databasesAllowEncrypt: map['databasesAllowEncrypt'],
       limits: map['limits'] != null
           ? BillingPlanLimits.fromMap(
@@ -462,6 +467,7 @@ class BillingPlan implements Model {
       "backupPolicies": backupPolicies,
       "deploymentSize": deploymentSize,
       "buildSize": buildSize,
+      "functionsIntervalMinimum": functionsIntervalMinimum,
       "databasesAllowEncrypt": databasesAllowEncrypt,
       "limits": limits?.toMap(),
       "group": group.value,

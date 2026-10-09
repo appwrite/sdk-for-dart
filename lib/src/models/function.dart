@@ -59,6 +59,9 @@ class Func implements Model {
   /// Function execution schedule in CRON format.
   final String schedule;
 
+  /// Minutes between scheduled executions. 0 when the function has no interval.
+  final int? interval;
+
   /// Function execution timeout in seconds.
   final int timeout;
 
@@ -118,6 +121,7 @@ class Func implements Model {
     required this.vars,
     required this.events,
     required this.schedule,
+    this.interval,
     required this.timeout,
     required this.entrypoint,
     required this.commands,
@@ -157,6 +161,7 @@ class Func implements Model {
       ),
       events: List.from(map['events'] ?? []),
       schedule: map['schedule'].toString(),
+      interval: map['interval'],
       timeout: map['timeout'],
       entrypoint: map['entrypoint'].toString(),
       commands: map['commands'].toString(),
@@ -195,6 +200,7 @@ class Func implements Model {
       "vars": vars.map((p) => p.toMap()).toList(),
       "events": events,
       "schedule": schedule,
+      "interval": interval,
       "timeout": timeout,
       "entrypoint": entrypoint,
       "commands": commands,

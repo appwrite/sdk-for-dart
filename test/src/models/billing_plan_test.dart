@@ -135,6 +135,7 @@ void main() {
         ),
         deploymentSize: 30,
         buildSize: 2000,
+        functionsIntervalMinimum: 60,
         databasesAllowEncrypt: true,
         group: BillingPlanGroup.starter,
         databaseComputeCredit: 10,
@@ -200,6 +201,7 @@ void main() {
       expect(result.usagePerProject, true);
       expect(result.deploymentSize, 30);
       expect(result.buildSize, 2000);
+      expect(result.functionsIntervalMinimum, 60);
       expect(result.databasesAllowEncrypt, true);
       expect(result.group, BillingPlanGroup.starter);
       expect(result.databaseComputeCredit, 10);

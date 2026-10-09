@@ -62,6 +62,7 @@ class Functions extends Service {
     String? buildSpecification,
     String? runtimeSpecification,
     int? deploymentRetention,
+    int? interval,
   }) async {
     final String apiPath = '/functions';
 
@@ -92,6 +93,7 @@ class Functions extends Service {
         'runtimeSpecification': runtimeSpecification,
       if (deploymentRetention != null)
         'deploymentRetention': deploymentRetention,
+      if (interval != null) 'interval': interval,
     };
 
     final Map<String, String> apiHeaders = {
@@ -206,6 +208,7 @@ class Functions extends Service {
     String? buildSpecification,
     String? runtimeSpecification,
     int? deploymentRetention,
+    int? interval,
   }) async {
     final String apiPath = '/functions/{functionId}'.replaceAll(
       '{functionId}',
@@ -238,6 +241,7 @@ class Functions extends Service {
         'runtimeSpecification': runtimeSpecification,
       if (deploymentRetention != null)
         'deploymentRetention': deploymentRetention,
+      if (interval != null) 'interval': interval,
     };
 
     final Map<String, String> apiHeaders = {
