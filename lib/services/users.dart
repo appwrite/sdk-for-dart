@@ -1076,6 +1076,181 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
+  /// Get the list of verified passkeys registered by a user.
+  Future<models.PasskeyList> listPasskeys({
+    required String userId,
+    List<String>? queries,
+    bool? total,
+  }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    final String apiPath = '/users/{userId}/passkeys'.replaceAll(
+      '{userId}',
+      userId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.PasskeyList.fromMap(res.data);
+  }
+
+  /// Get a verified passkey of a user by its unique ID.
+  Future<models.Passkey> getPasskey({
+    required String userId,
+    required String passkeyId,
+  }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
+        .replaceAll(
+          '{userId}',
+          userId,
+        )
+        .replaceAll(
+          '{passkeyId}',
+          passkeyId,
+        );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Passkey.fromMap(res.data);
+  }
+
+  /// Rename a passkey of a user.
+  Future<models.Passkey> updatePasskey({
+    required String userId,
+    required String passkeyId,
+    required String name,
+  }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
+        .replaceAll(
+          '{userId}',
+          userId,
+        )
+        .replaceAll(
+          '{passkeyId}',
+          passkeyId,
+        );
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Passkey.fromMap(res.data);
+  }
+
+  /// Delete a passkey from a user, for example when a device is lost. The
+  /// passkey can no longer be used to sign in.
+  Future deletePasskey({
+    required String userId,
+    required String passkeyId,
+  }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
+        .replaceAll(
+          '{userId}',
+          userId,
+        )
+        .replaceAll(
+          '{passkeyId}',
+          passkeyId,
+        );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
+
   /// Update the user password by its unique ID.
   Future<models.User> updatePassword({
     required String userId,
