@@ -14,20 +14,38 @@ class OAuth2Zoho implements Model {
   /// Zoho OAuth2 client secret.
   final String clientSecret;
 
+  /// Zoho OAuth2 prompt values.
+  final List<enums.OAuth2ZohoPrompt> prompt;
+
   OAuth2Zoho({
     required this.$id,
     required this.enabled,
     required this.clientId,
     required this.clientSecret,
+    required this.prompt,
   });
   factory OAuth2Zoho.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'prompt': [],
+      ...map,
+    };
+
     return OAuth2Zoho(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
+      prompt: List<enums.OAuth2ZohoPrompt>.from(
+        map['prompt'].map(
+          (p) => enums.OAuth2ZohoPrompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
     );
   }
 
@@ -38,6 +56,7 @@ class OAuth2Zoho implements Model {
       "enabled": enabled,
       "clientId": clientId,
       "clientSecret": clientSecret,
+      "prompt": prompt.map((p) => p.value).toList(),
     };
   }
 }

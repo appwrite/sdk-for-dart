@@ -11,6 +11,18 @@ class DedicatedDatabaseSpecification implements Model {
   /// Monthly price of the specification in USD.
   final double price;
 
+  /// Price per GB of storage above the included amount, per month, in USD.
+  final double storageOverageRate;
+
+  /// Price per GB of bandwidth above the included amount, per month, in USD.
+  final double bandwidthOverageRate;
+
+  /// High availability replica price as a fraction of the specification price.
+  final double replicaRate;
+
+  /// Point-in-time recovery price as a fraction of the specification price.
+  final double pitrRate;
+
   /// Allocated CPU in millicores.
   final int cpu;
 
@@ -33,6 +45,10 @@ class DedicatedDatabaseSpecification implements Model {
     required this.slug,
     required this.name,
     required this.price,
+    required this.storageOverageRate,
+    required this.bandwidthOverageRate,
+    required this.replicaRate,
+    required this.pitrRate,
     required this.cpu,
     required this.memory,
     required this.maxConnections,
@@ -43,10 +59,31 @@ class DedicatedDatabaseSpecification implements Model {
   factory DedicatedDatabaseSpecification.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'slug': "",
+      'name': "",
+      'price': 0,
+      'storageOverageRate': 0,
+      'bandwidthOverageRate': 0,
+      'replicaRate': 0,
+      'pitrRate': 0,
+      'cpu': 0,
+      'memory': 0,
+      'maxConnections': 0,
+      'includedStorage': 0,
+      'includedBandwidth': 0,
+      'enabled': false,
+      ...map,
+    };
+
     return DedicatedDatabaseSpecification(
       slug: map['slug'].toString(),
       name: map['name'].toString(),
       price: map['price'].toDouble(),
+      storageOverageRate: map['storageOverageRate'].toDouble(),
+      bandwidthOverageRate: map['bandwidthOverageRate'].toDouble(),
+      replicaRate: map['replicaRate'].toDouble(),
+      pitrRate: map['pitrRate'].toDouble(),
       cpu: map['cpu'],
       memory: map['memory'],
       maxConnections: map['maxConnections'],
@@ -62,6 +99,10 @@ class DedicatedDatabaseSpecification implements Model {
       "slug": slug,
       "name": name,
       "price": price,
+      "storageOverageRate": storageOverageRate,
+      "bandwidthOverageRate": bandwidthOverageRate,
+      "replicaRate": replicaRate,
+      "pitrRate": pitrRate,
       "cpu": cpu,
       "memory": memory,
       "maxConnections": maxConnections,

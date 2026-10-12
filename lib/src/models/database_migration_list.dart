@@ -15,6 +15,11 @@ class DatabaseMigrationList implements Model {
   factory DatabaseMigrationList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return DatabaseMigrationList(
       total: map['total'],
       migrations: List<DatabaseMigration>.from(

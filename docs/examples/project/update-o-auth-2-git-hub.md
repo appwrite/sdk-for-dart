@@ -1,5 +1,7 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,9 +10,10 @@ Client client = Client()
 
 Project project = Project(client);
 
-OAuth2Github result = await project.updateOAuth2GitHub(
+models.OAuth2Github result = await project.updateOAuth2GitHub(
     clientId: '<CLIENT_ID>', // (optional)
     clientSecret: '<CLIENT_SECRET>', // (optional)
+    prompt: [enums.ProjectOAuth2GitHubPrompt.selectAccount], // (optional)
     enabled: false, // (optional)
 );
 ```

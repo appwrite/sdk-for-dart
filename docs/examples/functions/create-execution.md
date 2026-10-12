@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Functions functions = Functions(client);
 
-Execution result = await functions.createExecution(
+models.Execution result = await functions.createExecution(
     functionId: '<FUNCTION_ID>',
     body: '<BODY>', // (optional)
     xasync: false, // (optional)

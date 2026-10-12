@@ -59,6 +59,20 @@ class VectorsdbCollection implements Model {
   factory VectorsdbCollection.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'databaseId': "",
+      'name': "",
+      'enabled': true,
+      'documentSecurity': false,
+      'bytesMax': 0,
+      'bytesUsed': 0,
+      'dimension': 0,
+      ...map,
+    };
+
     return VectorsdbCollection(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

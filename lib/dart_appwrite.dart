@@ -1,6 +1,6 @@
 /// Appwrite Dart SDK
 ///
-/// This SDK targets Appwrite server version 2.0.x as shipped on Appwrite Cloud.
+/// This SDK targets Appwrite server version 2.4.x as shipped on Appwrite Cloud.
 /// Self-hosted releases can lag behind Cloud — if you run an older self-hosted
 /// build, use a matching older SDK from
 /// [previous releases](https://github.com/appwrite/sdk-for-dart/releases)
@@ -13,6 +13,7 @@ import 'dart:typed_data';
 import 'dart:convert';
 
 import 'src/enums.dart';
+import 'src/exception.dart';
 import 'src/service.dart';
 import 'src/input_file.dart';
 import 'src/upload_progress.dart';
@@ -29,6 +30,7 @@ part 'query.dart';
 part 'permission.dart';
 part 'role.dart';
 part 'id.dart';
+part 'topic.dart';
 part 'operator.dart';
 part 'services/account.dart';
 part 'services/activities.dart';
@@ -37,6 +39,7 @@ part 'services/avatars.dart';
 part 'services/backups.dart';
 part 'services/databases.dart';
 part 'services/documents_db.dart';
+part 'services/domains.dart';
 part 'services/embeddings.dart';
 part 'services/functions.dart';
 part 'services/graphql.dart';
@@ -58,4 +61,5 @@ part 'services/teams.dart';
 part 'services/tokens.dart';
 part 'services/users.dart';
 part 'services/vectors_db.dart';
+part 'services/waf.dart';
 part 'services/webhooks.dart';

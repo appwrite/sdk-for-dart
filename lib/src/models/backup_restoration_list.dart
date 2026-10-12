@@ -15,6 +15,11 @@ class BackupRestorationList implements Model {
   factory BackupRestorationList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return BackupRestorationList(
       total: map['total'],
       restorations: List<BackupRestoration>.from(

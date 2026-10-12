@@ -20,9 +20,6 @@ class Project implements Model {
   /// Project region
   final String region;
 
-  /// Deprecated since 1.9.5: List of dev keys.
-  final List<DevKey> devKeys;
-
   /// Status for custom SMTP
   final bool smtpEnabled;
 
@@ -89,6 +86,12 @@ class Project implements Model {
   /// Billing limits reached
   final BillingLimits? billingLimits;
 
+  /// First time the project received a non-console API request. Empty until the project is used.
+  final String? firstAccessedAt;
+
+  /// Last time the project was accessed through the MCP server. Empty if it was never accessed via MCP.
+  final String? mcpAccessedAt;
+
   /// OAuth2 server status
   final bool? oAuth2ServerEnabled;
 
@@ -147,7 +150,6 @@ class Project implements Model {
     required this.name,
     required this.teamId,
     required this.region,
-    required this.devKeys,
     required this.smtpEnabled,
     required this.smtpSenderName,
     required this.smtpSenderEmail,
@@ -170,6 +172,8 @@ class Project implements Model {
     required this.consoleAccessedAt,
     this.wafEnabled,
     this.billingLimits,
+    this.firstAccessedAt,
+    this.mcpAccessedAt,
     this.oAuth2ServerEnabled,
     this.oAuth2ServerAuthorizationUrl,
     this.oAuth2ServerScopes,
@@ -191,6 +195,32 @@ class Project implements Model {
   factory Project.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'teamId': "",
+      'region': "fra",
+      'smtpEnabled': false,
+      'smtpSenderName': "",
+      'smtpSenderEmail': "",
+      'smtpReplyToName': "",
+      'smtpReplyToEmail': "",
+      'smtpHost': "",
+      'smtpPort': 0,
+      'smtpUsername': "",
+      'smtpPassword': "",
+      'smtpSecure': "",
+      'pingCount': 0,
+      'pingedAt': "",
+      'labels': [],
+      'status': "active",
+      'onboarding': <String, dynamic>{},
+      'consoleAccessedAt': "",
+      ...map,
+    };
+
     return Project(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -198,9 +228,6 @@ class Project implements Model {
       name: map['name'].toString(),
       teamId: map['teamId'].toString(),
       region: map['region'].toString(),
-      devKeys: List<DevKey>.from(
-        map['devKeys'].map((p) => DevKey.fromMap(p)),
-      ),
       smtpEnabled: map['smtpEnabled'],
       smtpSenderName: map['smtpSenderName'].toString(),
       smtpSenderEmail: map['smtpSenderEmail'].toString(),
@@ -235,6 +262,8 @@ class Project implements Model {
               map['billingLimits'],
             )
           : null,
+      firstAccessedAt: map['firstAccessedAt']?.toString(),
+      mcpAccessedAt: map['mcpAccessedAt']?.toString(),
       oAuth2ServerEnabled: map['oAuth2ServerEnabled'],
       oAuth2ServerAuthorizationUrl:
           map['oAuth2ServerAuthorizationUrl']?.toString(),
@@ -272,7 +301,6 @@ class Project implements Model {
       "name": name,
       "teamId": teamId,
       "region": region,
-      "devKeys": devKeys.map((p) => p.toMap()).toList(),
       "smtpEnabled": smtpEnabled,
       "smtpSenderName": smtpSenderName,
       "smtpSenderEmail": smtpSenderEmail,
@@ -295,6 +323,8 @@ class Project implements Model {
       "consoleAccessedAt": consoleAccessedAt,
       "wafEnabled": wafEnabled,
       "billingLimits": billingLimits?.toMap(),
+      "firstAccessedAt": firstAccessedAt,
+      "mcpAccessedAt": mcpAccessedAt,
       "oAuth2ServerEnabled": oAuth2ServerEnabled,
       "oAuth2ServerAuthorizationUrl": oAuth2ServerAuthorizationUrl,
       "oAuth2ServerScopes": oAuth2ServerScopes,

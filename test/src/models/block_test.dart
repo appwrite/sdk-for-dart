@@ -9,11 +9,6 @@ void main() {
         resourceType: "project",
         resourceId: "5e5ea5c16897e",
         mode: "readOnly",
-        projectName: "My Project",
-        region: "fra",
-        organizationName: "Acme Inc.",
-        organizationId: "5e5ea5c16897e",
-        billingPlan: "pro",
       );
 
       final map = model.toMap();
@@ -23,11 +18,6 @@ void main() {
       expect(result.resourceType, "project");
       expect(result.resourceId, "5e5ea5c16897e");
       expect(result.mode, "readOnly");
-      expect(result.projectName, "My Project");
-      expect(result.region, "fra");
-      expect(result.organizationName, "Acme Inc.");
-      expect(result.organizationId, "5e5ea5c16897e");
-      expect(result.billingPlan, "pro");
     });
   });
 }

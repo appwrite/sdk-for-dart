@@ -15,6 +15,11 @@ class FrameworkList implements Model {
   factory FrameworkList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return FrameworkList(
       total: map['total'],
       frameworks: List<Framework>.from(

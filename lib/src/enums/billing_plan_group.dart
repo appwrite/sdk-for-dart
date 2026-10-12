@@ -1,7 +1,8 @@
 part of '../../enums.dart';
 
 enum BillingPlanGroup {
-  starter(value: "starter"),
+  free(value: "free"),
+  start(value: "start"),
   pro(value: "pro"),
   scale(value: "scale");
 

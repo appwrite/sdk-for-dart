@@ -51,6 +51,17 @@ class ColumnVarchar implements Model {
   factory ColumnVarchar.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'size': 0,
+      ...map,
+    };
+
     return ColumnVarchar(
       key: map['key'].toString(),
       type: map['type'].toString(),

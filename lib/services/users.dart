@@ -171,6 +171,12 @@ class Users extends Service {
   Future deleteIdentity({
     required String identityId,
   }) async {
+    if (identityId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "identityId"',
+      );
+    }
+
     final String apiPath = '/users/identities/{identityId}'.replaceAll(
       '{identityId}',
       identityId,
@@ -181,6 +187,7 @@ class Users extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -391,6 +398,12 @@ class Users extends Service {
   Future<models.User> get({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}'.replaceAll(
       '{userId}',
       userId,
@@ -422,6 +435,12 @@ class Users extends Service {
   Future delete({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}'.replaceAll(
       '{userId}',
       userId,
@@ -432,6 +451,7 @@ class Users extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -449,6 +469,12 @@ class Users extends Service {
     required String userId,
     required String email,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/email'.replaceAll(
       '{userId}',
       userId,
@@ -478,11 +504,20 @@ class Users extends Service {
   /// impersonation headers are used, the request runs as the target user for API
   /// behavior, while internal audit logs still attribute the action to the
   /// original impersonator and store the impersonated target details only in
-  /// internal audit payload data.
+  /// internal audit payload data. Account endpoints are read-only while
+  /// impersonating: they report the target's account, and anything that would
+  /// change it is refused, so an impersonator cannot alter the target's
+  /// credentials or delete their account.
   Future<models.User> updateImpersonator({
     required String userId,
     required bool impersonator,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/impersonator'.replaceAll(
       '{userId}',
       userId,
@@ -516,6 +551,12 @@ class Users extends Service {
     String? sessionId,
     int? duration,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/jwts'.replaceAll(
       '{userId}',
       userId,
@@ -552,6 +593,12 @@ class Users extends Service {
     required String userId,
     required List<String> labels,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/labels'.replaceAll(
       '{userId}',
       userId,
@@ -577,37 +624,6 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
-  /// Get the user activity logs list by its unique ID.
-  Future<models.LogList> listLogs({
-    required String userId,
-    List<String>? queries,
-    bool? total,
-  }) async {
-    final String apiPath = '/users/{userId}/logs'.replaceAll(
-      '{userId}',
-      userId,
-    );
-
-    final Map<String, dynamic> apiParams = {
-      if (queries != null) 'queries': queries,
-      if (total != null) 'total': total,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.LogList.fromMap(res.data);
-  }
-
   /// Get the user membership list by its unique ID.
   Future<models.MembershipList> listMemberships({
     required String userId,
@@ -615,6 +631,12 @@ class Users extends Service {
     String? search,
     bool? total,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/memberships'.replaceAll(
       '{userId}',
       userId,
@@ -649,6 +671,12 @@ class Users extends Service {
     required String userId,
     required bool mfa,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa'.replaceAll(
       '{userId}',
       userId,
@@ -679,6 +707,12 @@ class Users extends Service {
     required String userId,
     required bool mfa,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa'.replaceAll(
       '{userId}',
       userId,
@@ -712,6 +746,12 @@ class Users extends Service {
     required String userId,
     required enums.AuthenticatorType type,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/authenticators/{type}'
         .replaceAll(
           '{userId}',
@@ -727,6 +767,7 @@ class Users extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -744,6 +785,12 @@ class Users extends Service {
     required String userId,
     required enums.AuthenticatorType type,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/authenticators/{type}'
         .replaceAll(
           '{userId}',
@@ -759,6 +806,7 @@ class Users extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -777,6 +825,18 @@ class Users extends Service {
     required String userId,
     required String challengeId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (challengeId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "challengeId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/challenges/{challengeId}'
         .replaceAll(
           '{userId}',
@@ -811,6 +871,12 @@ class Users extends Service {
   Future<models.MfaFactors> listMfaFactors({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/factors'.replaceAll(
       '{userId}',
       userId,
@@ -837,6 +903,12 @@ class Users extends Service {
   Future<models.MfaFactors> listMFAFactors({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/factors'.replaceAll(
       '{userId}',
       userId,
@@ -869,6 +941,12 @@ class Users extends Service {
   Future<models.MfaRecoveryCodes> getMfaRecoveryCodes({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
       userId,
@@ -898,6 +976,12 @@ class Users extends Service {
   Future<models.MfaRecoveryCodes> getMFARecoveryCodes({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
       userId,
@@ -930,6 +1014,12 @@ class Users extends Service {
   Future<models.MfaRecoveryCodes> updateMfaRecoveryCodes({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
       userId,
@@ -960,6 +1050,12 @@ class Users extends Service {
   Future<models.MfaRecoveryCodes> updateMFARecoveryCodes({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
       userId,
@@ -993,6 +1089,12 @@ class Users extends Service {
   Future<models.MfaRecoveryCodes> createMfaRecoveryCodes({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
       userId,
@@ -1023,6 +1125,12 @@ class Users extends Service {
   Future<models.MfaRecoveryCodes> createMFARecoveryCodes({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
       userId,
@@ -1051,6 +1159,12 @@ class Users extends Service {
     required String userId,
     required String name,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/name'.replaceAll(
       '{userId}',
       userId,
@@ -1076,11 +1190,192 @@ class Users extends Service {
     return models.User.fromMap(res.data);
   }
 
+  /// Get the list of verified passkeys registered by a user.
+  Future<models.PasskeyList> listPasskeys({
+    required String userId,
+    List<String>? queries,
+    bool? total,
+  }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    final String apiPath = '/users/{userId}/passkeys'.replaceAll(
+      '{userId}',
+      userId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.PasskeyList.fromMap(res.data);
+  }
+
+  /// Get a verified passkey of a user by its unique ID.
+  Future<models.Passkey> getPasskey({
+    required String userId,
+    required String passkeyId,
+  }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
+        .replaceAll(
+          '{userId}',
+          userId,
+        )
+        .replaceAll(
+          '{passkeyId}',
+          passkeyId,
+        );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Passkey.fromMap(res.data);
+  }
+
+  /// Rename a passkey of a user.
+  Future<models.Passkey> updatePasskey({
+    required String userId,
+    required String passkeyId,
+    required String name,
+  }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
+        .replaceAll(
+          '{userId}',
+          userId,
+        )
+        .replaceAll(
+          '{passkeyId}',
+          passkeyId,
+        );
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Passkey.fromMap(res.data);
+  }
+
+  /// Delete a passkey from a user, for example when a device is lost. The
+  /// passkey can no longer be used to sign in.
+  Future deletePasskey({
+    required String userId,
+    required String passkeyId,
+  }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
+        .replaceAll(
+          '{userId}',
+          userId,
+        )
+        .replaceAll(
+          '{passkeyId}',
+          passkeyId,
+        );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
+
   /// Update the user password by its unique ID.
   Future<models.User> updatePassword({
     required String userId,
     required String password,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/password'.replaceAll(
       '{userId}',
       userId,
@@ -1111,6 +1406,12 @@ class Users extends Service {
     required String userId,
     required String number,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/phone'.replaceAll(
       '{userId}',
       userId,
@@ -1140,6 +1441,12 @@ class Users extends Service {
   Future<models.Preferences> getPrefs({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/prefs'.replaceAll(
       '{userId}',
       userId,
@@ -1169,6 +1476,12 @@ class Users extends Service {
     required String userId,
     required Map prefs,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/prefs'.replaceAll(
       '{userId}',
       userId,
@@ -1199,6 +1512,12 @@ class Users extends Service {
     required String userId,
     bool? total,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/sessions'.replaceAll(
       '{userId}',
       userId,
@@ -1232,6 +1551,12 @@ class Users extends Service {
   Future<models.Session> createSession({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/sessions'.replaceAll(
       '{userId}',
       userId,
@@ -1259,6 +1584,12 @@ class Users extends Service {
   Future deleteSessions({
     required String userId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/sessions'.replaceAll(
       '{userId}',
       userId,
@@ -1269,6 +1600,7 @@ class Users extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1286,6 +1618,18 @@ class Users extends Service {
     required String userId,
     required String sessionId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (sessionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "sessionId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/sessions/{sessionId}'
         .replaceAll(
           '{userId}',
@@ -1301,6 +1645,7 @@ class Users extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1319,6 +1664,12 @@ class Users extends Service {
     required String userId,
     required bool status,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/status'.replaceAll(
       '{userId}',
       userId,
@@ -1350,6 +1701,12 @@ class Users extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/targets'.replaceAll(
       '{userId}',
       userId,
@@ -1384,6 +1741,12 @@ class Users extends Service {
     String? providerId,
     String? name,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/targets'.replaceAll(
       '{userId}',
       userId,
@@ -1418,6 +1781,18 @@ class Users extends Service {
     required String userId,
     required String targetId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (targetId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "targetId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/targets/{targetId}'
         .replaceAll(
           '{userId}',
@@ -1453,6 +1828,18 @@ class Users extends Service {
     String? providerId,
     String? name,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (targetId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "targetId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/targets/{targetId}'
         .replaceAll(
           '{userId}',
@@ -1490,6 +1877,18 @@ class Users extends Service {
     required String userId,
     required String targetId,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
+    if (targetId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "targetId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/targets/{targetId}'
         .replaceAll(
           '{userId}',
@@ -1505,6 +1904,7 @@ class Users extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1526,6 +1926,12 @@ class Users extends Service {
     int? length,
     int? expire,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/tokens'.replaceAll(
       '{userId}',
       userId,
@@ -1557,6 +1963,12 @@ class Users extends Service {
     required String userId,
     required bool emailVerification,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/verification'.replaceAll(
       '{userId}',
       userId,
@@ -1587,6 +1999,12 @@ class Users extends Service {
     required String userId,
     required bool phoneVerification,
   }) async {
+    if (userId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "userId"',
+      );
+    }
+
     final String apiPath = '/users/{userId}/verification/phone'.replaceAll(
       '{userId}',
       userId,

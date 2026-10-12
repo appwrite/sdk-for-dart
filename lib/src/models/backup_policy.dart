@@ -55,6 +55,18 @@ class BackupPolicy implements Model {
   factory BackupPolicy.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'name': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'retention': 1,
+      'schedule': "0 * * * *",
+      'type': "full",
+      'enabled': false,
+      ...map,
+    };
+
     return BackupPolicy(
       $id: map['\$id'].toString(),
       name: map['name'].toString(),

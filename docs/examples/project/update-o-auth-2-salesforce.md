@@ -1,5 +1,7 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,9 +10,10 @@ Client client = Client()
 
 Project project = Project(client);
 
-OAuth2Salesforce result = await project.updateOAuth2Salesforce(
+models.OAuth2Salesforce result = await project.updateOAuth2Salesforce(
     customerKey: '<CUSTOMER_KEY>', // (optional)
     customerSecret: '<CUSTOMER_SECRET>', // (optional)
+    prompt: [enums.ProjectOAuth2SalesforcePrompt.login], // (optional)
     enabled: false, // (optional)
 );
 ```

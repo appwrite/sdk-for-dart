@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Messaging messaging = Messaging(client);
 
-Provider result = await messaging.createTextmagicProvider(
+models.Provider result = await messaging.createTextmagicProvider(
     providerId: '<PROVIDER_ID>',
     name: '<NAME>',
     from: '+12065550100', // (optional)

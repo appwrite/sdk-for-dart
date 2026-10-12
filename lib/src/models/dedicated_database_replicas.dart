@@ -39,6 +39,15 @@ class DedicatedDatabaseReplicas implements Model {
   factory DedicatedDatabaseReplicas.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'replicas': 0,
+      'syncMode': "async",
+      'syncDegraded': false,
+      'syncAcknowledgements': 0,
+      'syncStandbyCount': 0,
+      ...map,
+    };
+
     return DedicatedDatabaseReplicas(
       replicas: map['replicas'],
       syncMode: map['syncMode'].toString(),

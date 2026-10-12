@@ -47,6 +47,16 @@ class ColumnMediumtext implements Model {
   factory ColumnMediumtext.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return ColumnMediumtext(
       key: map['key'].toString(),
       type: map['type'].toString(),

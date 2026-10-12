@@ -61,6 +61,7 @@ class Organization extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -137,6 +138,12 @@ class Organization extends Service {
   Future<models.AppInstallation> getInstallation({
     required String installationId,
   }) async {
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath =
         '/organization/installations/{installationId}'.replaceAll(
       '{installationId}',
@@ -168,6 +175,12 @@ class Organization extends Service {
     required String installationId,
     String? authorizationDetails,
   }) async {
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath =
         '/organization/installations/{installationId}'.replaceAll(
       '{installationId}',
@@ -201,6 +214,12 @@ class Organization extends Service {
   Future deleteInstallation({
     required String installationId,
   }) async {
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath =
         '/organization/installations/{installationId}'.replaceAll(
       '{installationId}',
@@ -213,154 +232,6 @@ class Organization extends Service {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
       'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.delete,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return res.data;
-  }
-
-  /// Get a list of all API keys from the current organization.
-  Future<models.KeyList> listKeys({
-    List<String>? queries,
-    bool? total,
-  }) async {
-    final String apiPath = '/organization/keys';
-
-    final Map<String, dynamic> apiParams = {
-      if (queries != null) 'queries': queries,
-      if (total != null) 'total': total,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.KeyList.fromMap(res.data);
-  }
-
-  /// Create a new organization API key.
-  Future<models.Key> createKey({
-    required String keyId,
-    required String name,
-    required List<enums.OrganizationKeyScopes> scopes,
-    String? expire,
-  }) async {
-    final String apiPath = '/organization/keys';
-
-    final Map<String, dynamic> apiParams = {
-      'keyId': keyId,
-      'name': name,
-      'scopes': scopes.map((e) => e.value).toList(),
-      if (expire != null) 'expire': expire,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'content-type': 'application/json',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.post,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.Key.fromMap(res.data);
-  }
-
-  /// Get a key by its unique ID. This endpoint returns details about a specific
-  /// API key in your organization including its scopes.
-  Future<models.Key> getKey({
-    required String keyId,
-  }) async {
-    final String apiPath = '/organization/keys/{keyId}'.replaceAll(
-      '{keyId}',
-      keyId,
-    );
-
-    final Map<String, dynamic> apiParams = {};
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.Key.fromMap(res.data);
-  }
-
-  /// Update a key by its unique ID. Use this endpoint to update the name,
-  /// scopes, or expiration time of an API key.
-  Future<models.Key> updateKey({
-    required String keyId,
-    required String name,
-    required List<enums.OrganizationKeyScopes> scopes,
-    String? expire,
-  }) async {
-    final String apiPath = '/organization/keys/{keyId}'.replaceAll(
-      '{keyId}',
-      keyId,
-    );
-
-    final Map<String, dynamic> apiParams = {
-      'name': name,
-      'scopes': scopes.map((e) => e.value).toList(),
-      if (expire != null) 'expire': expire,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'content-type': 'application/json',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.put,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.Key.fromMap(res.data);
-  }
-
-  /// Delete a key by its unique ID. Once deleted, the key can no longer be used
-  /// to authenticate API calls.
-  Future deleteKey({
-    required String keyId,
-  }) async {
-    final String apiPath = '/organization/keys/{keyId}'.replaceAll(
-      '{keyId}',
-      keyId,
-    );
-
-    final Map<String, dynamic> apiParams = {};
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'content-type': 'application/json',
     };
 
     final res = await client.call(
@@ -444,6 +315,12 @@ class Organization extends Service {
   Future<models.Membership> getMembership({
     required String membershipId,
   }) async {
+    if (membershipId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "membershipId"',
+      );
+    }
+
     final String apiPath =
         '/organization/memberships/{membershipId}'.replaceAll(
       '{membershipId}',
@@ -472,6 +349,12 @@ class Organization extends Service {
     required String membershipId,
     required List<String> roles,
   }) async {
+    if (membershipId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "membershipId"',
+      );
+    }
+
     final String apiPath =
         '/organization/memberships/{membershipId}'.replaceAll(
       '{membershipId}',
@@ -504,6 +387,12 @@ class Organization extends Service {
   Future deleteMembership({
     required String membershipId,
   }) async {
+    if (membershipId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "membershipId"',
+      );
+    }
+
     final String apiPath =
         '/organization/memberships/{membershipId}'.replaceAll(
       '{membershipId}',
@@ -515,6 +404,7 @@ class Organization extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -591,6 +481,12 @@ class Organization extends Service {
   Future<models.Project> getProject({
     required String projectId,
   }) async {
+    if (projectId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "projectId"',
+      );
+    }
+
     final String apiPath = '/organization/projects/{projectId}'.replaceAll(
       '{projectId}',
       projectId,
@@ -600,6 +496,7 @@ class Organization extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -617,6 +514,12 @@ class Organization extends Service {
     required String projectId,
     required String name,
   }) async {
+    if (projectId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "projectId"',
+      );
+    }
+
     final String apiPath = '/organization/projects/{projectId}'.replaceAll(
       '{projectId}',
       projectId,
@@ -646,6 +549,12 @@ class Organization extends Service {
   Future deleteProject({
     required String projectId,
   }) async {
+    if (projectId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "projectId"',
+      );
+    }
+
     final String apiPath = '/organization/projects/{projectId}'.replaceAll(
       '{projectId}',
       projectId,
@@ -656,6 +565,231 @@ class Organization extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
+
+  /// Get a list of all API keys of a project in your organization.
+  Future<models.KeyList> listProjectKeys({
+    required String projectId,
+    List<String>? queries,
+    bool? total,
+  }) async {
+    if (projectId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "projectId"',
+      );
+    }
+
+    final String apiPath = '/organization/projects/{projectId}/keys'.replaceAll(
+      '{projectId}',
+      projectId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.KeyList.fromMap(res.data);
+  }
+
+  /// Create a new ephemeral API key for a project in your organization. It's
+  /// recommended to have multiple API keys with strict scopes for separate
+  /// functions within your project.
+  ///
+  /// You can also create a standard API key if you need a longer-lived key
+  /// instead.
+  Future<models.EphemeralKey> createEphemeralProjectKey({
+    required String projectId,
+    required List<enums.ProjectKeyScopes> scopes,
+    required int duration,
+  }) async {
+    if (projectId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "projectId"',
+      );
+    }
+
+    final String apiPath =
+        '/organization/projects/{projectId}/keys/ephemeral'.replaceAll(
+      '{projectId}',
+      projectId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'scopes': scopes.map((e) => e.value).toList(),
+      'duration': duration,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.EphemeralKey.fromMap(res.data);
+  }
+
+  /// Get a project key by its unique ID.
+  Future<models.Key> getProjectKey({
+    required String projectId,
+    required String keyId,
+  }) async {
+    if (projectId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "projectId"',
+      );
+    }
+
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
+    final String apiPath = '/organization/projects/{projectId}/keys/{keyId}'
+        .replaceAll(
+          '{projectId}',
+          projectId,
+        )
+        .replaceAll(
+          '{keyId}',
+          keyId,
+        );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Key.fromMap(res.data);
+  }
+
+  /// Update a project key by its unique ID. Use this endpoint to update the
+  /// name, scopes, or expiration time of an API key.
+  Future<models.Key> updateProjectKey({
+    required String projectId,
+    required String keyId,
+    required String name,
+    required List<enums.ProjectKeyScopes> scopes,
+    String? expire,
+  }) async {
+    if (projectId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "projectId"',
+      );
+    }
+
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
+    final String apiPath = '/organization/projects/{projectId}/keys/{keyId}'
+        .replaceAll(
+          '{projectId}',
+          projectId,
+        )
+        .replaceAll(
+          '{keyId}',
+          keyId,
+        );
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+      'scopes': scopes.map((e) => e.value).toList(),
+      if (expire != null) 'expire': expire,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Key.fromMap(res.data);
+  }
+
+  /// Delete a project key by its unique ID. Once deleted, the key can no longer
+  /// be used to authenticate API calls.
+  Future deleteProjectKey({
+    required String projectId,
+    required String keyId,
+  }) async {
+    if (projectId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "projectId"',
+      );
+    }
+
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
+    final String apiPath = '/organization/projects/{projectId}/keys/{keyId}'
+        .replaceAll(
+          '{projectId}',
+          projectId,
+        )
+        .replaceAll(
+          '{keyId}',
+          keyId,
+        );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(

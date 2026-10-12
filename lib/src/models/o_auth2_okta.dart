@@ -14,6 +14,9 @@ class OAuth2Okta implements Model {
   /// Okta OAuth2 client secret.
   final String clientSecret;
 
+  /// Okta OAuth2 prompt values.
+  final List<enums.OAuth2OktaPrompt> prompt;
+
   /// Okta OAuth2 domain.
   final String domain;
 
@@ -25,17 +28,34 @@ class OAuth2Okta implements Model {
     required this.enabled,
     required this.clientId,
     required this.clientSecret,
+    required this.prompt,
     required this.domain,
     required this.authorizationServerId,
   });
   factory OAuth2Okta.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'prompt': [],
+      'domain': "",
+      'authorizationServerId': "",
+      ...map,
+    };
+
     return OAuth2Okta(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
+      prompt: List<enums.OAuth2OktaPrompt>.from(
+        map['prompt'].map(
+          (p) => enums.OAuth2OktaPrompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
       domain: map['domain'].toString(),
       authorizationServerId: map['authorizationServerId'].toString(),
     );
@@ -48,6 +68,7 @@ class OAuth2Okta implements Model {
       "enabled": enabled,
       "clientId": clientId,
       "clientSecret": clientSecret,
+      "prompt": prompt.map((p) => p.value).toList(),
       "domain": domain,
       "authorizationServerId": authorizationServerId,
     };

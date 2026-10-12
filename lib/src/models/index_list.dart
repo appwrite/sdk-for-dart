@@ -15,6 +15,11 @@ class IndexList implements Model {
   factory IndexList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return IndexList(
       total: map['total'],
       indexes: List<Index>.from(

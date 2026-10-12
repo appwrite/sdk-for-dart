@@ -15,6 +15,11 @@ class SiteList implements Model {
   factory SiteList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return SiteList(
       total: map['total'],
       sites: List<Site>.from(

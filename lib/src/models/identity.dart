@@ -32,6 +32,9 @@ class Identity implements Model {
   /// Identity Provider Refresh Token.
   final String providerRefreshToken;
 
+  /// Identity Provider ID token (JWT) from the most recent native sign-in. Empty for identities created through the browser OAuth2 flow.
+  final String providerIdToken;
+
   Identity({
     required this.$id,
     required this.$createdAt,
@@ -43,10 +46,26 @@ class Identity implements Model {
     required this.providerAccessToken,
     required this.providerAccessTokenExpiry,
     required this.providerRefreshToken,
+    required this.providerIdToken,
   });
   factory Identity.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'userId': "",
+      'provider': "",
+      'providerUid': "",
+      'providerEmail': "",
+      'providerAccessToken': "",
+      'providerAccessTokenExpiry': "",
+      'providerRefreshToken': "",
+      'providerIdToken': "",
+      ...map,
+    };
+
     return Identity(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -58,6 +77,7 @@ class Identity implements Model {
       providerAccessToken: map['providerAccessToken'].toString(),
       providerAccessTokenExpiry: map['providerAccessTokenExpiry'].toString(),
       providerRefreshToken: map['providerRefreshToken'].toString(),
+      providerIdToken: map['providerIdToken'].toString(),
     );
   }
 
@@ -74,6 +94,7 @@ class Identity implements Model {
       "providerAccessToken": providerAccessToken,
       "providerAccessTokenExpiry": providerAccessTokenExpiry,
       "providerRefreshToken": providerRefreshToken,
+      "providerIdToken": providerIdToken,
     };
   }
 }

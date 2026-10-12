@@ -15,6 +15,11 @@ class VectorsdbCollectionList implements Model {
   factory VectorsdbCollectionList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return VectorsdbCollectionList(
       total: map['total'],
       collections: List<VectorsdbCollection>.from(

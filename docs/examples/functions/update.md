@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Functions functions = Functions(client);
 
-Func result = await functions.update(
+models.Func result = await functions.update(
     functionId: '<FUNCTION_ID>',
     name: '<NAME>',
     runtime: enums.Runtime.node145, // (optional)

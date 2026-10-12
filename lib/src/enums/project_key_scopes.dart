@@ -91,6 +91,7 @@ enum ProjectKeyScopes {
   webhooksWrite(value: "webhooks.write"),
   localeRead(value: "locale.read"),
   avatarsRead(value: "avatars.read"),
+  avatarsWrite(value: "avatars.write"),
   healthRead(value: "health.read"),
   assistantRead(value: "assistant.read"),
   migrationsRead(value: "migrations.read"),
@@ -105,6 +106,7 @@ enum ProjectKeyScopes {
   reportsWrite(value: "reports.write"),
   presencesRead(value: "presences.read"),
   presencesWrite(value: "presences.write"),
+  dedicatedDatabasesExecute(value: "dedicatedDatabases.execute"),
   backupsPoliciesRead(value: "backups.policies.read"),
   backupsPoliciesWrite(value: "backups.policies.write"),
   archivesRead(value: "archives.read"),
@@ -121,7 +123,9 @@ enum ProjectKeyScopes {
   appsWrite(value: "apps.write"),
   oauth2Read(value: "oauth2.read"),
   oauth2Write(value: "oauth2.write"),
-  oauth2Introspect(value: "oauth2.introspect");
+  oauth2Introspect(value: "oauth2.introspect"),
+  analyticsRead(value: "analytics.read"),
+  analyticsWrite(value: "analytics.write");
 
   const ProjectKeyScopes({required this.value});
 

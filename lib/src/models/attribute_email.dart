@@ -47,6 +47,17 @@ class AttributeEmail implements Model {
   factory AttributeEmail.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'format': "email",
+      ...map,
+    };
+
     return AttributeEmail(
       key: map['key'].toString(),
       type: map['type'].toString(),

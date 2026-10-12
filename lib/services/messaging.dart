@@ -45,6 +45,8 @@ class Messaging extends Service {
     List<String>? cc,
     List<String>? bcc,
     List<String>? attachments,
+    String? replyToEmail,
+    String? replyToName,
     bool? draft,
     bool? html,
     String? scheduledAt,
@@ -61,6 +63,8 @@ class Messaging extends Service {
       if (cc != null) 'cc': cc,
       if (bcc != null) 'bcc': bcc,
       if (attachments != null) 'attachments': attachments,
+      if (replyToEmail != null) 'replyToEmail': replyToEmail,
+      if (replyToName != null) 'replyToName': replyToName,
       if (draft != null) 'draft': draft,
       if (html != null) 'html': html,
       if (scheduledAt != null) 'scheduledAt': scheduledAt,
@@ -87,35 +91,45 @@ class Messaging extends Service {
   /// sent, or failed cannot be updated.
   Future<models.Message> updateEmail({
     required String messageId,
+    String? subject,
+    String? content,
     List<String>? topics,
     List<String>? users,
     List<String>? targets,
-    String? subject,
-    String? content,
-    bool? draft,
-    bool? html,
     List<String>? cc,
     List<String>? bcc,
-    String? scheduledAt,
     List<String>? attachments,
+    String? replyToEmail,
+    String? replyToName,
+    bool? draft,
+    bool? html,
+    String? scheduledAt,
   }) async {
+    if (messageId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "messageId"',
+      );
+    }
+
     final String apiPath = '/messaging/messages/email/{messageId}'.replaceAll(
       '{messageId}',
       messageId,
     );
 
     final Map<String, dynamic> apiParams = {
+      if (subject != null) 'subject': subject,
+      if (content != null) 'content': content,
       if (topics != null) 'topics': topics,
       if (users != null) 'users': users,
       if (targets != null) 'targets': targets,
-      if (subject != null) 'subject': subject,
-      if (content != null) 'content': content,
-      if (draft != null) 'draft': draft,
-      if (html != null) 'html': html,
       if (cc != null) 'cc': cc,
       if (bcc != null) 'bcc': bcc,
-      if (scheduledAt != null) 'scheduledAt': scheduledAt,
       if (attachments != null) 'attachments': attachments,
+      if (replyToEmail != null) 'replyToEmail': replyToEmail,
+      if (replyToName != null) 'replyToName': replyToName,
+      if (draft != null) 'draft': draft,
+      if (html != null) 'html': html,
+      if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
 
     final Map<String, String> apiHeaders = {
@@ -155,6 +169,7 @@ class Messaging extends Service {
     bool? contentAvailable,
     bool? critical,
     enums.MessagePriority? priority,
+    String? channelId,
   }) async {
     final String apiPath = '/messaging/messages/push';
 
@@ -178,6 +193,7 @@ class Messaging extends Service {
       if (contentAvailable != null) 'contentAvailable': contentAvailable,
       if (critical != null) 'critical': critical,
       if (priority != null) 'priority': priority?.value,
+      if (channelId != null) 'channelId': channelId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -201,11 +217,11 @@ class Messaging extends Service {
   /// sent, or failed cannot be updated.
   Future<models.Message> updatePush({
     required String messageId,
+    String? title,
+    String? body,
     List<String>? topics,
     List<String>? users,
     List<String>? targets,
-    String? title,
-    String? body,
     Map? data,
     String? action,
     String? image,
@@ -219,18 +235,25 @@ class Messaging extends Service {
     bool? contentAvailable,
     bool? critical,
     enums.MessagePriority? priority,
+    String? channelId,
   }) async {
+    if (messageId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "messageId"',
+      );
+    }
+
     final String apiPath = '/messaging/messages/push/{messageId}'.replaceAll(
       '{messageId}',
       messageId,
     );
 
     final Map<String, dynamic> apiParams = {
+      if (title != null) 'title': title,
+      if (body != null) 'body': body,
       if (topics != null) 'topics': topics,
       if (users != null) 'users': users,
       if (targets != null) 'targets': targets,
-      if (title != null) 'title': title,
-      if (body != null) 'body': body,
       if (data != null) 'data': data,
       if (action != null) 'action': action,
       if (image != null) 'image': image,
@@ -244,6 +267,7 @@ class Messaging extends Service {
       if (contentAvailable != null) 'contentAvailable': contentAvailable,
       if (critical != null) 'critical': critical,
       if (priority != null) 'priority': priority?.value,
+      if (channelId != null) 'channelId': channelId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -349,23 +373,29 @@ class Messaging extends Service {
   )
   Future<models.Message> updateSms({
     required String messageId,
+    String? content,
     List<String>? topics,
     List<String>? users,
     List<String>? targets,
-    String? content,
     bool? draft,
     String? scheduledAt,
   }) async {
+    if (messageId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "messageId"',
+      );
+    }
+
     final String apiPath = '/messaging/messages/sms/{messageId}'.replaceAll(
       '{messageId}',
       messageId,
     );
 
     final Map<String, dynamic> apiParams = {
+      if (content != null) 'content': content,
       if (topics != null) 'topics': topics,
       if (users != null) 'users': users,
       if (targets != null) 'targets': targets,
-      if (content != null) 'content': content,
       if (draft != null) 'draft': draft,
       if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
@@ -391,23 +421,29 @@ class Messaging extends Service {
   /// sent, or failed cannot be updated.
   Future<models.Message> updateSMS({
     required String messageId,
+    String? content,
     List<String>? topics,
     List<String>? users,
     List<String>? targets,
-    String? content,
     bool? draft,
     String? scheduledAt,
   }) async {
+    if (messageId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "messageId"',
+      );
+    }
+
     final String apiPath = '/messaging/messages/sms/{messageId}'.replaceAll(
       '{messageId}',
       messageId,
     );
 
     final Map<String, dynamic> apiParams = {
+      if (content != null) 'content': content,
       if (topics != null) 'topics': topics,
       if (users != null) 'users': users,
       if (targets != null) 'targets': targets,
-      if (content != null) 'content': content,
       if (draft != null) 'draft': draft,
       if (scheduledAt != null) 'scheduledAt': scheduledAt,
     };
@@ -432,6 +468,12 @@ class Messaging extends Service {
   Future<models.Message> getMessage({
     required String messageId,
   }) async {
+    if (messageId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "messageId"',
+      );
+    }
+
     final String apiPath = '/messaging/messages/{messageId}'.replaceAll(
       '{messageId}',
       messageId,
@@ -459,6 +501,12 @@ class Messaging extends Service {
   Future delete({
     required String messageId,
   }) async {
+    if (messageId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "messageId"',
+      );
+    }
+
     final String apiPath = '/messaging/messages/{messageId}'.replaceAll(
       '{messageId}',
       messageId,
@@ -469,6 +517,7 @@ class Messaging extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -487,6 +536,12 @@ class Messaging extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (messageId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "messageId"',
+      );
+    }
+
     final String apiPath = '/messaging/messages/{messageId}/targets'.replaceAll(
       '{messageId}',
       messageId,
@@ -638,6 +693,12 @@ class Messaging extends Service {
     String? bundleId,
     bool? sandbox,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/apns/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -680,6 +741,12 @@ class Messaging extends Service {
     String? bundleId,
     bool? sandbox,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/apns/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -693,6 +760,83 @@ class Messaging extends Service {
       if (teamId != null) 'teamId': teamId,
       if (bundleId != null) 'bundleId': bundleId,
       if (sandbox != null) 'sandbox': sandbox,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Create a new Appwrite push provider.
+  Future<models.Provider> createAppwriteProvider({
+    required String providerId,
+    required String name,
+    bool? enabled,
+    int? qos,
+    int? expiry,
+  }) async {
+    final String apiPath = '/messaging/providers/appwrite';
+
+    final Map<String, dynamic> apiParams = {
+      'providerId': providerId,
+      'name': name,
+      if (enabled != null) 'enabled': enabled,
+      if (qos != null) 'qos': qos,
+      if (expiry != null) 'expiry': expiry,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Update an Appwrite push provider by its unique ID.
+  Future<models.Provider> updateAppwriteProvider({
+    required String providerId,
+    String? name,
+    bool? enabled,
+    int? qos,
+    int? expiry,
+  }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
+    final String apiPath =
+        '/messaging/providers/appwrite/{providerId}'.replaceAll(
+      '{providerId}',
+      providerId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (name != null) 'name': name,
+      if (enabled != null) 'enabled': enabled,
+      if (qos != null) 'qos': qos,
+      if (expiry != null) 'expiry': expiry,
     };
 
     final Map<String, String> apiHeaders = {
@@ -788,6 +932,12 @@ class Messaging extends Service {
     bool? enabled,
     Map? serviceAccountJSON,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/fcm/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -822,6 +972,12 @@ class Messaging extends Service {
     bool? enabled,
     Map? serviceAccountJSON,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/fcm/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -906,6 +1062,12 @@ class Messaging extends Service {
     String? replyToName,
     String? replyToEmail,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/providers/mailgun/{providerId}'.replaceAll(
       '{providerId}',
@@ -985,6 +1147,12 @@ class Messaging extends Service {
     String? senderId,
     String? authKey,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/msg91/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -1065,6 +1233,12 @@ class Messaging extends Service {
     String? replyToName,
     String? replyToEmail,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/providers/resend/{providerId}'.replaceAll(
       '{providerId}',
@@ -1148,6 +1322,12 @@ class Messaging extends Service {
     String? replyToName,
     String? replyToEmail,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/providers/sendgrid/{providerId}'.replaceAll(
       '{providerId}',
@@ -1237,6 +1417,12 @@ class Messaging extends Service {
     String? replyToName,
     String? replyToEmail,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/ses/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -1397,6 +1583,12 @@ class Messaging extends Service {
     String? replyToEmail,
     bool? enabled,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/smtp/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -1451,6 +1643,12 @@ class Messaging extends Service {
     String? replyToEmail,
     bool? enabled,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/smtp/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -1533,6 +1731,12 @@ class Messaging extends Service {
     String? apiKey,
     String? from,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/providers/telesign/{providerId}'.replaceAll(
       '{providerId}',
@@ -1608,6 +1812,12 @@ class Messaging extends Service {
     String? apiKey,
     String? from,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/providers/textmagic/{providerId}'.replaceAll(
       '{providerId}',
@@ -1683,6 +1893,12 @@ class Messaging extends Service {
     String? authToken,
     String? from,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/providers/twilio/{providerId}'.replaceAll(
       '{providerId}',
@@ -1758,6 +1974,12 @@ class Messaging extends Service {
     String? apiSecret,
     String? from,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/providers/vonage/{providerId}'.replaceAll(
       '{providerId}',
@@ -1792,6 +2014,12 @@ class Messaging extends Service {
   Future<models.Provider> getProvider({
     required String providerId,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -1818,6 +2046,12 @@ class Messaging extends Service {
   Future deleteProvider({
     required String providerId,
   }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
     final String apiPath = '/messaging/providers/{providerId}'.replaceAll(
       '{providerId}',
       providerId,
@@ -1828,6 +2062,7 @@ class Messaging extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1874,6 +2109,8 @@ class Messaging extends Service {
     required String topicId,
     required String name,
     List<String>? subscribe,
+    int? qos,
+    int? expiry,
   }) async {
     final String apiPath = '/messaging/topics';
 
@@ -1881,6 +2118,8 @@ class Messaging extends Service {
       'topicId': topicId,
       'name': name,
       if (subscribe != null) 'subscribe': subscribe,
+      if (qos != null) 'qos': qos,
+      if (expiry != null) 'expiry': expiry,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1903,6 +2142,12 @@ class Messaging extends Service {
   Future<models.Topic> getTopic({
     required String topicId,
   }) async {
+    if (topicId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "topicId"',
+      );
+    }
+
     final String apiPath = '/messaging/topics/{topicId}'.replaceAll(
       '{topicId}',
       topicId,
@@ -1930,7 +2175,15 @@ class Messaging extends Service {
     required String topicId,
     String? name,
     List<String>? subscribe,
+    int? qos,
+    int? expiry,
   }) async {
+    if (topicId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "topicId"',
+      );
+    }
+
     final String apiPath = '/messaging/topics/{topicId}'.replaceAll(
       '{topicId}',
       topicId,
@@ -1939,6 +2192,8 @@ class Messaging extends Service {
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
       if (subscribe != null) 'subscribe': subscribe,
+      if (qos != null) 'qos': qos,
+      if (expiry != null) 'expiry': expiry,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1961,6 +2216,12 @@ class Messaging extends Service {
   Future deleteTopic({
     required String topicId,
   }) async {
+    if (topicId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "topicId"',
+      );
+    }
+
     final String apiPath = '/messaging/topics/{topicId}'.replaceAll(
       '{topicId}',
       topicId,
@@ -1971,6 +2232,7 @@ class Messaging extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1990,6 +2252,12 @@ class Messaging extends Service {
     String? search,
     bool? total,
   }) async {
+    if (topicId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "topicId"',
+      );
+    }
+
     final String apiPath = '/messaging/topics/{topicId}/subscribers'.replaceAll(
       '{topicId}',
       topicId,
@@ -2022,6 +2290,12 @@ class Messaging extends Service {
     required String subscriberId,
     required String targetId,
   }) async {
+    if (topicId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "topicId"',
+      );
+    }
+
     final String apiPath = '/messaging/topics/{topicId}/subscribers'.replaceAll(
       '{topicId}',
       topicId,
@@ -2053,6 +2327,18 @@ class Messaging extends Service {
     required String topicId,
     required String subscriberId,
   }) async {
+    if (topicId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "topicId"',
+      );
+    }
+
+    if (subscriberId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "subscriberId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/topics/{topicId}/subscribers/{subscriberId}'
             .replaceAll(
@@ -2086,6 +2372,18 @@ class Messaging extends Service {
     required String topicId,
     required String subscriberId,
   }) async {
+    if (topicId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "topicId"',
+      );
+    }
+
+    if (subscriberId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "subscriberId"',
+      );
+    }
+
     final String apiPath =
         '/messaging/topics/{topicId}/subscribers/{subscriberId}'
             .replaceAll(
@@ -2102,6 +2400,7 @@ class Messaging extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(

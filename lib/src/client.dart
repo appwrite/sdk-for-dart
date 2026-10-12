@@ -75,11 +75,6 @@ abstract class Client {
   /// The user agent string of the client that made the request
   Client setForwardedUserAgent(String value);
 
-  /// Set DevKey
-  ///
-  /// Your secret dev API key
-  Client setDevKey(String value);
-
   /// Set Cookie
   ///
   /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
@@ -117,6 +112,8 @@ abstract class Client {
     required String idParamName,
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
+    HttpMethod method = HttpMethod.post,
   });
 
   /// Send the API request.

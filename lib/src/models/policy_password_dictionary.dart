@@ -15,6 +15,12 @@ class PolicyPasswordDictionary implements Model {
   factory PolicyPasswordDictionary.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      ...map,
+    };
+
     return PolicyPasswordDictionary(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

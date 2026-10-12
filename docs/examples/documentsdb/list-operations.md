@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 DocumentsDB documentsDB = DocumentsDB(client);
 
-DedicatedDatabaseOperationList result = await documentsDB.listOperations(
+models.DedicatedDatabaseOperationList result = await documentsDB.listOperations(
     databaseId: '<DATABASE_ID>',
     status: 'queued', // (optional)
     limit: 1, // (optional)

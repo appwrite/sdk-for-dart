@@ -15,6 +15,11 @@ class DedicatedDatabaseBackupList implements Model {
   factory DedicatedDatabaseBackupList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return DedicatedDatabaseBackupList(
       total: map['total'],
       backups: List<DedicatedDatabaseBackup>.from(

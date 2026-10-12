@@ -55,6 +55,20 @@ class Report implements Model {
   factory Report.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'appId': "",
+      'type': "",
+      'title': "",
+      'summary': "",
+      'targetType': "",
+      'target': "",
+      'categories': [],
+      ...map,
+    };
+
     return Report(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

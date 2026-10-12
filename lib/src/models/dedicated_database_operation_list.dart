@@ -15,6 +15,11 @@ class DedicatedDatabaseOperationList implements Model {
   factory DedicatedDatabaseOperationList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return DedicatedDatabaseOperationList(
       total: map['total'],
       operations: List<DedicatedDatabaseOperation>.from(

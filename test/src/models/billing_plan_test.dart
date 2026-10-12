@@ -42,72 +42,6 @@ void main() {
         usageLogs: 30,
         projectInactivityDays: 7,
         alertLimit: 80,
-        usage: UsageBillingPlan(
-          bandwidth: AdditionalResource(
-            name: "",
-            unit: "GB",
-            currency: "USD",
-            price: 5,
-            value: 25,
-            invoiceDesc: "",
-          ),
-          executions: AdditionalResource(
-            name: "",
-            unit: "GB",
-            currency: "USD",
-            price: 5,
-            value: 25,
-            invoiceDesc: "",
-          ),
-          realtime: AdditionalResource(
-            name: "",
-            unit: "GB",
-            currency: "USD",
-            price: 5,
-            value: 25,
-            invoiceDesc: "",
-          ),
-          realtimeMessages: AdditionalResource(
-            name: "",
-            unit: "GB",
-            currency: "USD",
-            price: 5,
-            value: 25,
-            invoiceDesc: "",
-          ),
-          storage: AdditionalResource(
-            name: "",
-            unit: "GB",
-            currency: "USD",
-            price: 5,
-            value: 25,
-            invoiceDesc: "",
-          ),
-          users: AdditionalResource(
-            name: "",
-            unit: "GB",
-            currency: "USD",
-            price: 5,
-            value: 25,
-            invoiceDesc: "",
-          ),
-          GBHours: AdditionalResource(
-            name: "",
-            unit: "GB",
-            currency: "USD",
-            price: 5,
-            value: 25,
-            invoiceDesc: "",
-          ),
-          imageTransformations: AdditionalResource(
-            name: "",
-            unit: "GB",
-            currency: "USD",
-            price: 5,
-            value: 25,
-            invoiceDesc: "",
-          ),
-        ),
         addons: BillingPlanAddon(),
         budgetCapEnabled: true,
         customSmtp: true,
@@ -137,7 +71,7 @@ void main() {
         buildSize: 2000,
         functionsIntervalMinimum: 60,
         databasesAllowEncrypt: true,
-        group: BillingPlanGroup.starter,
+        group: BillingPlanGroup.free,
         databaseComputeCredit: 10,
       );
 
@@ -203,7 +137,7 @@ void main() {
       expect(result.buildSize, 2000);
       expect(result.functionsIntervalMinimum, 60);
       expect(result.databasesAllowEncrypt, true);
-      expect(result.group, BillingPlanGroup.starter);
+      expect(result.group, BillingPlanGroup.free);
       expect(result.databaseComputeCredit, 10);
     });
   });

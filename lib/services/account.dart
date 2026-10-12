@@ -96,6 +96,12 @@ class Account extends Service {
   Future<models.Oauth2Consent> getConsent({
     required String consentId,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}'.replaceAll(
       '{consentId}',
       consentId,
@@ -124,6 +130,12 @@ class Account extends Service {
   Future deleteConsent({
     required String consentId,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}'.replaceAll(
       '{consentId}',
       consentId,
@@ -155,6 +167,12 @@ class Account extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}/tokens'.replaceAll(
       '{consentId}',
       consentId,
@@ -186,6 +204,18 @@ class Account extends Service {
     required String consentId,
     required String tokenId,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
+    if (tokenId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tokenId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}/tokens/{tokenId}'
         .replaceAll(
           '{consentId}',
@@ -220,6 +250,18 @@ class Account extends Service {
     required String consentId,
     required String tokenId,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
+    if (tokenId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tokenId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}/tokens/{tokenId}'
         .replaceAll(
           '{consentId}',
@@ -313,6 +355,12 @@ class Account extends Service {
   Future deleteIdentity({
     required String identityId,
   }) async {
+    if (identityId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "identityId"',
+      );
+    }
+
     final String apiPath = '/account/identities/{identityId}'.replaceAll(
       '{identityId}',
       identityId,
@@ -323,6 +371,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -333,34 +382,6 @@ class Account extends Service {
     );
 
     return res.data;
-  }
-
-  /// Get the list of latest security activity logs for the currently logged in
-  /// user. Each log returns user IP address, location and date and time of log.
-  Future<models.LogList> listLogs({
-    List<String>? queries,
-    bool? total,
-  }) async {
-    final String apiPath = '/account/logs';
-
-    final Map<String, dynamic> apiParams = {
-      if (queries != null) 'queries': queries,
-      if (total != null) 'total': total,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.LogList.fromMap(res.data);
   }
 
   /// Enable or disable MFA on an account.
@@ -536,6 +557,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -562,6 +584,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -930,6 +953,214 @@ class Account extends Service {
     return models.User.fromMap(res.data);
   }
 
+  /// Get the list of verified passkeys registered by the currently logged in
+  /// user.
+  Future<models.PasskeyList> listPasskeys({
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/account/passkeys';
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.PasskeyList.fromMap(res.data);
+  }
+
+  /// Start registering a passkey for the currently logged in user. The session
+  /// must have signed in or completed an MFA challenge within the last 10
+  /// minutes. Pass the returned `publicKey` options to
+  /// `navigator.credentials.create()`, then complete the registration with
+  /// [Update passkey
+  /// verification](/docs/references/cloud/client-web/account#updatePasskeyVerification).
+  /// The passkey stays pending until verified, and the challenge expires after 5
+  /// minutes.
+  Future<models.PasskeyChallenge> createPasskey({
+    String? passkeyId,
+    String? name,
+  }) async {
+    final String apiPath = '/account/passkeys';
+
+    final Map<String, dynamic> apiParams = {
+      if (passkeyId != null) 'passkeyId': passkeyId,
+      if (name != null) 'name': name,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.PasskeyChallenge.fromMap(res.data);
+  }
+
+  /// Get a verified passkey of the currently logged in user by its unique ID.
+  Future<models.Passkey> getPasskey({
+    required String passkeyId,
+  }) async {
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/account/passkeys/{passkeyId}'.replaceAll(
+      '{passkeyId}',
+      passkeyId,
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Passkey.fromMap(res.data);
+  }
+
+  /// Rename a passkey of the currently logged in user.
+  Future<models.Passkey> updatePasskey({
+    required String passkeyId,
+    required String name,
+  }) async {
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/account/passkeys/{passkeyId}'.replaceAll(
+      '{passkeyId}',
+      passkeyId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Passkey.fromMap(res.data);
+  }
+
+  /// Delete a passkey from the currently logged in user. The passkey can no
+  /// longer be used to sign in, although it may remain stored on the user's
+  /// device. The session must have signed in or completed an MFA challenge
+  /// within the last 10 minutes.
+  Future deletePasskey({
+    required String passkeyId,
+  }) async {
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath = '/account/passkeys/{passkeyId}'.replaceAll(
+      '{passkeyId}',
+      passkeyId,
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
+
+  /// Complete a passkey registration started with [Create
+  /// passkey](/docs/references/cloud/client-web/account#createPasskey). Pass the
+  /// JSON form of the credential returned by `navigator.credentials.create()`,
+  /// for example `credential.toJSON()`. Each registration can be verified once;
+  /// a failed attempt requires starting it again.
+  Future<models.Passkey> updatePasskeyVerification({
+    required String passkeyId,
+    required Map credential,
+  }) async {
+    if (passkeyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "passkeyId"',
+      );
+    }
+
+    final String apiPath =
+        '/account/passkeys/{passkeyId}/verification'.replaceAll(
+      '{passkeyId}',
+      passkeyId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'credential': credential,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Passkey.fromMap(res.data);
+  }
+
   /// Update currently logged in user password. For validation, user is required
   /// to pass in the new password, and the old password. For users created with
   /// OAuth, Team Invites and Magic URL, oldPassword is optional.
@@ -1115,12 +1346,91 @@ class Account extends Service {
     return models.Token.fromMap(res.data);
   }
 
+  /// Use this endpoint to send a 6-digit password recovery code to the user's
+  /// email address. Unlike
+  /// [createRecovery](https://appwrite.io/docs/references/cloud/client-web/account#createRecovery),
+  /// this method requires no redirect URL, which makes it suitable for mobile
+  /// and desktop apps that cannot host a recovery page. Learn more about how to
+  /// [complete the recovery
+  /// process](https://appwrite.io/docs/references/cloud/client-web/account#updateRecoveryOTP).
+  /// The code sent to the user's email address is valid for 15 minutes.
+  ///
+  /// Enable the **phrase** parameter to include a randomly generated security
+  /// phrase in both the email and the response. Showing that phrase in your app
+  /// lets the user confirm the email genuinely came from your request, which
+  /// helps protect against phishing.
+  Future<models.Token> createRecoveryOTP({
+    required String email,
+    bool? phrase,
+  }) async {
+    final String apiPath = '/account/recovery/otp';
+
+    final Map<String, dynamic> apiParams = {
+      'email': email,
+      if (phrase != null) 'phrase': phrase,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Token.fromMap(res.data);
+  }
+
+  /// Use this endpoint to complete the user password recovery process using the
+  /// 6-digit code that was emailed by
+  /// [createRecoveryOTP](https://appwrite.io/docs/references/cloud/client-web/account#createRecoveryOTP).
+  /// Pass the **userId** of the user along with the **secret** code from the
+  /// email and the new **password** to set. If confirmed, this route will return
+  /// a 200 status code, the code is consumed and the user's password is updated.
+  Future<models.Token> updateRecoveryOTP({
+    required String userId,
+    required String secret,
+    required String password,
+  }) async {
+    final String apiPath = '/account/recovery/otp';
+
+    final Map<String, dynamic> apiParams = {
+      'userId': userId,
+      'secret': secret,
+      'password': password,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Token.fromMap(res.data);
+  }
+
   /// Get the list of active sessions across different devices for the currently
   /// logged in user.
-  Future<models.SessionList> listSessions() async {
+  Future<models.SessionList> listSessions({
+    bool? total,
+  }) async {
     final String apiPath = '/account/sessions';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -1138,15 +1448,21 @@ class Account extends Service {
   }
 
   /// Delete all sessions from the user account and remove any sessions cookies
-  /// from the end client.
-  Future deleteSessions() async {
+  /// from the end client. Pass `current` as false to keep the session making the
+  /// request and sign out of every other session.
+  Future deleteSessions({
+    bool? current,
+  }) async {
     final String apiPath = '/account/sessions';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (current != null) 'current': current,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1189,6 +1505,9 @@ class Account extends Service {
 
   /// Allow the user to login into their account by providing a valid email and
   /// password combination. This route will create a new session for the user.
+  /// Use the optional `duration` parameter to create a shorter session, for
+  /// example when the user doesn't choose "remember me". It must be at least 60
+  /// seconds and cannot exceed the project maximum session length.
   ///
   /// A user is limited to 10 active sessions at a time by default. [Learn more
   /// about session
@@ -1196,12 +1515,90 @@ class Account extends Service {
   Future<models.Session> createEmailPasswordSession({
     required String email,
     required String password,
+    int? duration,
   }) async {
     final String apiPath = '/account/sessions/email';
 
     final Map<String, dynamic> apiParams = {
       'email': email,
       'password': password,
+      if (duration != null) 'duration': duration,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Session.fromMap(res.data);
+  }
+
+  /// Allow the user to login to their account using an OpenID Connect ID token
+  /// obtained natively from the OAuth2 provider, for example via Google
+  /// Credential Manager on Android or Sign in with Apple on iOS. No browser or
+  /// redirect is involved: the ID token is verified against the provider's
+  /// published signing keys and a session is created in a single request.
+  ///
+  /// Native sign-in is switched on per provider with its nativeEnabled setting.
+  /// It is independent of the browser-based flow's enabled setting, which has no
+  /// effect on this endpoint. The token's audience must match the provider's
+  /// configured client ID or one of its native client IDs; tokens issued for any
+  /// other client ID are rejected. For Sign in with Apple, register your app's
+  /// bundle ID as a native client ID. For Google, the web client ID used by
+  /// Credential Manager is usually the configured client ID; add your Android
+  /// and iOS client IDs as native client IDs if your app requests tokens for
+  /// them.
+  ///
+  /// Pass the raw nonce used when requesting the ID token so it can be validated
+  /// against the token's nonce claim. When signing in with Apple, the nonce is
+  /// required: hash it with SHA-256 before passing it to the Apple SDK, and send
+  /// the raw value here - Apple tokens requested without a nonce are rejected.
+  /// For Google the nonce is optional: it is validated whenever the token
+  /// carries one, and ignored when the provider issued the token without one.
+  /// Apple only returns the user's name on the first authorization, and never
+  /// inside the ID token - capture it on the client and pass it via the name
+  /// parameter.
+  ///
+  /// If there is already an active session, the new session will be attached to
+  /// the logged-in account. If there are no active sessions, the server will
+  /// attempt to look for a user with the same email address as the verified
+  /// email received from the provider and attach the new session to the existing
+  /// user. If no matching user is found - the server will create a new user.
+  ///
+  /// This flow does not return provider refresh tokens. You may pass an access
+  /// token the provider handed your client, along with its lifetime, to store it
+  /// on the session - but Appwrite cannot renew it once it expires. If your app
+  /// needs long-lived access to provider APIs, use the browser-based OAuth2 flow
+  /// instead.
+  ///
+  /// A user is limited to 10 active sessions at a time by default. [Learn more
+  /// about session
+  /// limits](https://appwrite.io/docs/authentication-security#limits).
+  Future<models.Session> createIdTokenSession({
+    required enums.IdTokenProvider provider,
+    required String idToken,
+    String? nonce,
+    String? accessToken,
+    int? accessTokenExpiry,
+    String? name,
+  }) async {
+    final String apiPath = '/account/sessions/id-token';
+
+    final Map<String, dynamic> apiParams = {
+      'provider': provider.value,
+      'idToken': idToken,
+      if (nonce != null) 'nonce': nonce,
+      if (accessToken != null) 'accessToken': accessToken,
+      if (accessTokenExpiry != null) 'accessTokenExpiry': accessTokenExpiry,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1321,6 +1718,12 @@ class Account extends Service {
   Future<models.Session> getSession({
     required String sessionId,
   }) async {
+    if (sessionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "sessionId"',
+      );
+    }
+
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
       sessionId,
@@ -1349,6 +1752,12 @@ class Account extends Service {
   Future<models.Session> updateSession({
     required String sessionId,
   }) async {
+    if (sessionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "sessionId"',
+      );
+    }
+
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
       sessionId,
@@ -1380,6 +1789,12 @@ class Account extends Service {
   Future deleteSession({
     required String sessionId,
   }) async {
+    if (sessionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "sessionId"',
+      );
+    }
+
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
       sessionId,
@@ -1390,6 +1805,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1523,6 +1939,10 @@ class Account extends Service {
   /// session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
   /// endpoint.
   ///
+  /// If there is already an active session, the OAuth2 identity is attached to
+  /// the logged-in account and that session stays active until the token is
+  /// exchanged for a new one.
+  ///
   /// A user is limited to 10 active sessions at a time by default. [Learn more
   /// about session
   /// limits](https://appwrite.io/docs/authentication-security#limits).
@@ -1571,6 +1991,70 @@ class Account extends Service {
     );
 
     return client.webAuth(url);
+  }
+
+  /// Start signing in with a passkey. No email or user ID is needed: pass the
+  /// returned `publicKey` options to `navigator.credentials.get()` and the user
+  /// picks one of their passkeys. Then call [Update passkey
+  /// token](/docs/references/cloud/client-web/account#updatePasskeyToken) with
+  /// the credential to receive a token, and exchange it with [Create
+  /// session](/docs/references/cloud/client-web/account#createSession). The
+  /// challenge expires after 5 minutes.
+  Future<models.PasskeyChallenge> createPasskeyToken() async {
+    final String apiPath = '/account/tokens/passkey';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.PasskeyChallenge.fromMap(res.data);
+  }
+
+  /// Complete a passkey sign-in started with [Create passkey
+  /// token](/docs/references/cloud/client-web/account#createPasskeyToken). Pass
+  /// the challenge ID and the JSON form of the credential returned by
+  /// `navigator.credentials.get()`, for example `credential.toJSON()`. The
+  /// returned token includes its secret and expires after 1 minute: exchange it
+  /// for a session with [Create
+  /// session](/docs/references/cloud/client-web/account#createSession). Passkeys
+  /// require user verification, so the session also satisfies MFA. Each
+  /// challenge can only be used once.
+  Future<models.TokenSecret> updatePasskeyToken({
+    required String challengeId,
+    required Map credential,
+  }) async {
+    final String apiPath = '/account/tokens/passkey';
+
+    final Map<String, dynamic> apiParams = {
+      'challengeId': challengeId,
+      'credential': credential,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.TokenSecret.fromMap(res.data);
   }
 
   /// Sends the user an SMS with a secret key for creating a session. If the
@@ -1734,6 +2218,77 @@ class Account extends Service {
     required String secret,
   }) async {
     final String apiPath = '/account/verifications/email';
+
+    final Map<String, dynamic> apiParams = {
+      'userId': userId,
+      'secret': secret,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Token.fromMap(res.data);
+  }
+
+  /// Use this endpoint to send a 6-digit verification code to the currently
+  /// logged in user's email address. Unlike
+  /// [createEmailVerification](https://appwrite.io/docs/references/cloud/client-web/account#createEmailVerification),
+  /// this method requires no redirect URL, which makes it suitable for mobile
+  /// and desktop apps that cannot host a verification page. Learn more about how
+  /// to [complete the verification
+  /// process](https://appwrite.io/docs/references/cloud/client-web/account#updateEmailVerificationOTP).
+  /// The code sent to the user's email address is valid for 15 minutes.
+  ///
+  /// Enable the **phrase** parameter to include a randomly generated security
+  /// phrase in both the email and the response. Showing that phrase in your app
+  /// lets the user confirm the email genuinely came from your request, which
+  /// helps protect against phishing.
+  Future<models.Token> createEmailVerificationOTP({
+    bool? phrase,
+  }) async {
+    final String apiPath = '/account/verifications/email/otp';
+
+    final Map<String, dynamic> apiParams = {
+      if (phrase != null) 'phrase': phrase,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Token.fromMap(res.data);
+  }
+
+  /// Use this endpoint to complete the user email verification process using the
+  /// 6-digit code that was emailed by
+  /// [createEmailVerificationOTP](https://appwrite.io/docs/references/cloud/client-web/account#createEmailVerificationOTP).
+  /// Pass the **userId** of the user being verified along with the **secret**
+  /// code from the email. If confirmed, this route will return a 200 status code
+  /// and the code is consumed.
+  Future<models.Token> updateEmailVerificationOTP({
+    required String userId,
+    required String secret,
+  }) async {
+    final String apiPath = '/account/verifications/email/otp';
 
     final Map<String, dynamic> apiParams = {
       'userId': userId,

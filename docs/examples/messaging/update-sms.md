@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,12 +9,12 @@ Client client = Client()
 
 Messaging messaging = Messaging(client);
 
-Message result = await messaging.updateSMS(
+models.Message result = await messaging.updateSMS(
     messageId: '<MESSAGE_ID>',
+    content: '<CONTENT>', // (optional)
     topics: [], // (optional)
     users: [], // (optional)
     targets: [], // (optional)
-    content: '<CONTENT>', // (optional)
     draft: false, // (optional)
     scheduledAt: '2020-10-15T06:38:00.000+00:00', // (optional)
 );

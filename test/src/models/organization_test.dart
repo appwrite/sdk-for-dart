@@ -52,72 +52,6 @@ void main() {
           usageLogs: 30,
           projectInactivityDays: 7,
           alertLimit: 80,
-          usage: UsageBillingPlan(
-            bandwidth: AdditionalResource(
-              name: "",
-              unit: "GB",
-              currency: "USD",
-              price: 5,
-              value: 25,
-              invoiceDesc: "",
-            ),
-            executions: AdditionalResource(
-              name: "",
-              unit: "GB",
-              currency: "USD",
-              price: 5,
-              value: 25,
-              invoiceDesc: "",
-            ),
-            realtime: AdditionalResource(
-              name: "",
-              unit: "GB",
-              currency: "USD",
-              price: 5,
-              value: 25,
-              invoiceDesc: "",
-            ),
-            realtimeMessages: AdditionalResource(
-              name: "",
-              unit: "GB",
-              currency: "USD",
-              price: 5,
-              value: 25,
-              invoiceDesc: "",
-            ),
-            storage: AdditionalResource(
-              name: "",
-              unit: "GB",
-              currency: "USD",
-              price: 5,
-              value: 25,
-              invoiceDesc: "",
-            ),
-            users: AdditionalResource(
-              name: "",
-              unit: "GB",
-              currency: "USD",
-              price: 5,
-              value: 25,
-              invoiceDesc: "",
-            ),
-            GBHours: AdditionalResource(
-              name: "",
-              unit: "GB",
-              currency: "USD",
-              price: 5,
-              value: 25,
-              invoiceDesc: "",
-            ),
-            imageTransformations: AdditionalResource(
-              name: "",
-              unit: "GB",
-              currency: "USD",
-              price: 5,
-              value: 25,
-              invoiceDesc: "",
-            ),
-          ),
           addons: BillingPlanAddon(),
           budgetCapEnabled: true,
           customSmtp: true,
@@ -147,17 +81,10 @@ void main() {
           buildSize: 2000,
           functionsIntervalMinimum: 60,
           databasesAllowEncrypt: true,
-          group: BillingPlanGroup.starter,
+          group: BillingPlanGroup.free,
           databaseComputeCredit: 10,
         ),
         billingEmail: "billing@org.example",
-        billingStartDate: "2020-10-15T06:38:00.000+00:00",
-        billingCurrentInvoiceDate: "2020-10-15T06:38:00.000+00:00",
-        billingNextInvoiceDate: "2020-10-15T06:38:00.000+00:00",
-        billingTrialDays: 14,
-        billingAggregationId: "adbc3de4rddfsd",
-        billingInvoiceId: "adbc3de4rddfsd",
-        paymentMethodId: "adbc3de4rddfsd",
         status: "active",
         markedForDeletion: true,
         platform: "imagine",
@@ -176,13 +103,6 @@ void main() {
       expect(result.billingPlan, "tier-1");
       expect(result.billingPlanId, "tier-1");
       expect(result.billingEmail, "billing@org.example");
-      expect(result.billingStartDate, "2020-10-15T06:38:00.000+00:00");
-      expect(result.billingCurrentInvoiceDate, "2020-10-15T06:38:00.000+00:00");
-      expect(result.billingNextInvoiceDate, "2020-10-15T06:38:00.000+00:00");
-      expect(result.billingTrialDays, 14);
-      expect(result.billingAggregationId, "adbc3de4rddfsd");
-      expect(result.billingInvoiceId, "adbc3de4rddfsd");
-      expect(result.paymentMethodId, "adbc3de4rddfsd");
       expect(result.status, "active");
       expect(result.markedForDeletion, true);
       expect(result.platform, "imagine");

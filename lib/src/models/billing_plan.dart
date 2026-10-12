@@ -122,8 +122,8 @@ class BillingPlan implements Model {
   /// Alert threshold percentage
   final int alertLimit;
 
-  /// Additional resources
-  final UsageBillingPlan usage;
+  /// Additional resources. Null when the plan does not support usage billing.
+  final UsageBillingPlan? usage;
 
   /// Addons
   final BillingPlanAddon addons;
@@ -142,6 +142,9 @@ class BillingPlan implements Model {
 
   /// Does plan require billing address
   final bool requiresBillingAddress;
+
+  /// ISO country codes eligible for this regional plan. Empty means no restriction.
+  final List<String>? eligibleCountries;
 
   /// Is the billing plan available
   final bool isAvailable;
@@ -262,13 +265,14 @@ class BillingPlan implements Model {
     this.usageAggregateOnlyMetrics,
     required this.projectInactivityDays,
     required this.alertLimit,
-    required this.usage,
+    this.usage,
     required this.addons,
     required this.budgetCapEnabled,
     required this.customSmtp,
     required this.emailBranding,
     required this.requiresPaymentMethod,
     required this.requiresBillingAddress,
+    this.eligibleCountries,
     required this.isAvailable,
     required this.selfService,
     required this.premiumSupport,
@@ -299,6 +303,70 @@ class BillingPlan implements Model {
   factory BillingPlan.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'name': "",
+      'desc': "",
+      'order': 0,
+      'price': 0,
+      'trial': 0,
+      'bandwidth': 0,
+      'storage': 0,
+      'imageTransformations': 0,
+      'screenshotsGenerated': 0,
+      'webhooks': 0,
+      'wafRules': 0,
+      'projects': 0,
+      'platforms': 0,
+      'users': 0,
+      'teams': 0,
+      'databases': 0,
+      'databasesReads': 0,
+      'databasesWrites': 0,
+      'databasesBatchSize': 0,
+      'buckets': 0,
+      'fileSize': 0,
+      'functions': 0,
+      'sites': 0,
+      'executions': 0,
+      'executionsRetentionCount': 1000,
+      'GBHours': 0,
+      'realtime': 0,
+      'realtimeMessages': 0,
+      'messages': 0,
+      'topics': 0,
+      'authPhone': 0,
+      'domains': 0,
+      'usageLogs': 0,
+      'projectInactivityDays': 0,
+      'alertLimit': 80,
+      'budgetCapEnabled': false,
+      'customSmtp': false,
+      'emailBranding': false,
+      'requiresPaymentMethod': true,
+      'requiresBillingAddress': false,
+      'isAvailable': true,
+      'selfService': true,
+      'premiumSupport': true,
+      'budgeting': true,
+      'supportsMockNumbers': true,
+      'supportsOrganizationRoles': true,
+      'supportsCredits': false,
+      'supportsDedicatedDatabases': false,
+      'supportsDisposableEmailValidation': false,
+      'supportsCanonicalEmailValidation': false,
+      'supportsFreeEmailValidation': false,
+      'supportsCorporateEmailValidation': false,
+      'supportsProjectSpecificRoles': false,
+      'usagePerProject': true,
+      'deploymentSize': 0,
+      'buildSize': 0,
+      'functionsIntervalMinimum': 0,
+      'databasesAllowEncrypt': false,
+      'databaseComputeCredit': 0,
+      ...map,
+    };
+
     return BillingPlan(
       $id: map['\$id'].toString(),
       name: map['name'].toString(),
@@ -341,9 +409,11 @@ class BillingPlan implements Model {
           List.from(map['usageAggregateOnlyMetrics'] ?? []),
       projectInactivityDays: map['projectInactivityDays'],
       alertLimit: map['alertLimit'],
-      usage: UsageBillingPlan.fromMap(
-        map['usage'],
-      ),
+      usage: map['usage'] != null
+          ? UsageBillingPlan.fromMap(
+              map['usage'],
+            )
+          : null,
       addons: BillingPlanAddon.fromMap(
         map['addons'],
       ),
@@ -352,6 +422,7 @@ class BillingPlan implements Model {
       emailBranding: map['emailBranding'],
       requiresPaymentMethod: map['requiresPaymentMethod'],
       requiresBillingAddress: map['requiresBillingAddress'],
+      eligibleCountries: List.from(map['eligibleCountries'] ?? []),
       isAvailable: map['isAvailable'],
       selfService: map['selfService'],
       premiumSupport: map['premiumSupport'],
@@ -441,13 +512,14 @@ class BillingPlan implements Model {
       "usageAggregateOnlyMetrics": usageAggregateOnlyMetrics,
       "projectInactivityDays": projectInactivityDays,
       "alertLimit": alertLimit,
-      "usage": usage.toMap(),
+      "usage": usage?.toMap(),
       "addons": addons.toMap(),
       "budgetCapEnabled": budgetCapEnabled,
       "customSmtp": customSmtp,
       "emailBranding": emailBranding,
       "requiresPaymentMethod": requiresPaymentMethod,
       "requiresBillingAddress": requiresBillingAddress,
+      "eligibleCountries": eligibleCountries,
       "isAvailable": isAvailable,
       "selfService": selfService,
       "premiumSupport": premiumSupport,

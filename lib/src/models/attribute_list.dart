@@ -15,6 +15,11 @@ class AttributeList implements Model {
   factory AttributeList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return AttributeList(
       total: map['total'],
       attributes: List.from(map['attributes'] ?? []),

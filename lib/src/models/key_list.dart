@@ -15,6 +15,11 @@ class KeyList implements Model {
   factory KeyList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return KeyList(
       total: map['total'],
       keys: List<Key>.from(

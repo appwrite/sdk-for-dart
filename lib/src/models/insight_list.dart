@@ -15,6 +15,11 @@ class InsightList implements Model {
   factory InsightList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return InsightList(
       total: map['total'],
       insights: List<Insight>.from(

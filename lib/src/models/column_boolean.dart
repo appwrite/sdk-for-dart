@@ -43,6 +43,16 @@ class ColumnBoolean implements Model {
   factory ColumnBoolean.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return ColumnBoolean(
       key: map['key'].toString(),
       type: map['type'].toString(),

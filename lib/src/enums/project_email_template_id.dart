@@ -7,7 +7,9 @@ enum ProjectEmailTemplateId {
   invitation(value: "invitation"),
   mfaChallenge(value: "mfaChallenge"),
   sessionAlert(value: "sessionAlert"),
-  otpSession(value: "otpSession");
+  otpSession(value: "otpSession"),
+  otpVerification(value: "otpVerification"),
+  otpRecovery(value: "otpRecovery");
 
   const ProjectEmailTemplateId({required this.value});
 

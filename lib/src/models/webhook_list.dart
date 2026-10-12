@@ -15,6 +15,11 @@ class WebhookList implements Model {
   factory WebhookList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return WebhookList(
       total: map['total'],
       webhooks: List<Webhook>.from(

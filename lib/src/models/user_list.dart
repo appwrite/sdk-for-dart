@@ -15,6 +15,11 @@ class UserList implements Model {
   factory UserList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return UserList(
       total: map['total'],
       users: List<User>.from(

@@ -63,6 +63,24 @@ class Bucket implements Model {
   factory Bucket.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      '\$permissions': [],
+      'fileSecurity': false,
+      'name': "",
+      'enabled': true,
+      'maximumFileSize': 0,
+      'allowedFileExtensions': [],
+      'compression': "",
+      'encryption': true,
+      'antivirus': true,
+      'transformations': true,
+      'totalSize': 0,
+      ...map,
+    };
+
     return Bucket(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

@@ -13,6 +13,7 @@ class Project extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -34,6 +35,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -140,6 +142,12 @@ class Project extends Service {
   Future<models.Key> getKey({
     required String keyId,
   }) async {
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
       keyId,
@@ -170,6 +178,12 @@ class Project extends Service {
     required List<enums.ProjectKeyScopes> scopes,
     String? expire,
   }) async {
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
       keyId,
@@ -202,6 +216,12 @@ class Project extends Service {
   Future deleteKey({
     required String keyId,
   }) async {
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
       keyId,
@@ -212,6 +232,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -313,6 +334,12 @@ class Project extends Service {
   Future<models.MockNumber> getMockPhone({
     required String number,
   }) async {
+    if (number.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "number"',
+      );
+    }
+
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
       number,
@@ -341,6 +368,12 @@ class Project extends Service {
     required String number,
     required String otp,
   }) async {
+    if (number.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "number"',
+      );
+    }
+
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
       number,
@@ -371,6 +404,12 @@ class Project extends Service {
   Future deleteMockPhone({
     required String number,
   }) async {
+    if (number.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "number"',
+      );
+    }
+
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
       number,
@@ -381,6 +420,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -520,7 +560,9 @@ class Project extends Service {
     String? keyId,
     String? teamId,
     String? p8File,
+    List<String>? nativeClientIds,
     bool? enabled,
+    bool? nativeEnabled,
   }) async {
     final String apiPath = '/project/oauth2/apple';
 
@@ -529,7 +571,9 @@ class Project extends Service {
       if (keyId != null) 'keyId': keyId,
       if (teamId != null) 'teamId': teamId,
       if (p8File != null) 'p8File': p8File,
+      if (nativeClientIds != null) 'nativeClientIds': nativeClientIds,
       if (enabled != null) 'enabled': enabled,
+      if (nativeEnabled != null) 'nativeEnabled': nativeEnabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -583,6 +627,7 @@ class Project extends Service {
     String? clientId,
     String? clientSecret,
     String? endpoint,
+    List<enums.ProjectOAuth2Auth0Prompt>? prompt,
     bool? enabled,
   }) async {
     final String apiPath = '/project/oauth2/auth0';
@@ -591,6 +636,7 @@ class Project extends Service {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
       if (endpoint != null) 'endpoint': endpoint,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -826,6 +872,7 @@ class Project extends Service {
   Future<models.OAuth2Discord> updateOAuth2Discord({
     String? clientId,
     String? clientSecret,
+    List<enums.ProjectOAuth2DiscordPrompt>? prompt,
     bool? enabled,
   }) async {
     final String apiPath = '/project/oauth2/discord';
@@ -833,6 +880,7 @@ class Project extends Service {
     final Map<String, dynamic> apiParams = {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -1038,6 +1086,7 @@ class Project extends Service {
   Future<models.OAuth2Github> updateOAuth2GitHub({
     String? clientId,
     String? clientSecret,
+    List<enums.ProjectOAuth2GitHubPrompt>? prompt,
     bool? enabled,
   }) async {
     final String apiPath = '/project/oauth2/github';
@@ -1045,6 +1094,7 @@ class Project extends Service {
     final Map<String, dynamic> apiParams = {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -1101,7 +1151,9 @@ class Project extends Service {
     String? clientId,
     String? clientSecret,
     List<enums.ProjectOAuth2GooglePrompt>? prompt,
+    List<String>? nativeClientIds,
     bool? enabled,
+    bool? nativeEnabled,
   }) async {
     final String apiPath = '/project/oauth2/google';
 
@@ -1109,7 +1161,9 @@ class Project extends Service {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
       if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
+      if (nativeClientIds != null) 'nativeClientIds': nativeClientIds,
       if (enabled != null) 'enabled': enabled,
+      if (nativeEnabled != null) 'nativeEnabled': nativeEnabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1156,6 +1210,38 @@ class Project extends Service {
     );
 
     return models.OAuth2HuggingFace.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Kakao configuration.
+  Future<models.OAuth2Kakao> updateOAuth2Kakao({
+    String? clientId,
+    String? clientSecret,
+    List<enums.ProjectOAuth2KakaoPrompt>? prompt,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/kakao';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Kakao.fromMap(res.data);
   }
 
   /// Update the project OAuth2 Keycloak configuration.
@@ -1258,6 +1344,7 @@ class Project extends Service {
     String? applicationId,
     String? applicationSecret,
     String? tenant,
+    List<enums.ProjectOAuth2MicrosoftPrompt>? prompt,
     bool? enabled,
   }) async {
     final String apiPath = '/project/oauth2/microsoft';
@@ -1266,6 +1353,7 @@ class Project extends Service {
       if (applicationId != null) 'applicationId': applicationId,
       if (applicationSecret != null) 'applicationSecret': applicationSecret,
       if (tenant != null) 'tenant': tenant,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -1363,6 +1451,7 @@ class Project extends Service {
     String? clientSecret,
     String? domain,
     String? authorizationServerId,
+    List<enums.ProjectOAuth2OktaPrompt>? prompt,
     bool? enabled,
   }) async {
     final String apiPath = '/project/oauth2/okta';
@@ -1373,6 +1462,7 @@ class Project extends Service {
       if (domain != null) 'domain': domain,
       if (authorizationServerId != null)
         'authorizationServerId': authorizationServerId,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -1516,6 +1606,7 @@ class Project extends Service {
   Future<models.OAuth2Salesforce> updateOAuth2Salesforce({
     String? customerKey,
     String? customerSecret,
+    List<enums.ProjectOAuth2SalesforcePrompt>? prompt,
     bool? enabled,
   }) async {
     final String apiPath = '/project/oauth2/salesforce';
@@ -1523,6 +1614,7 @@ class Project extends Service {
     final Map<String, dynamic> apiParams = {
       if (customerKey != null) 'customerKey': customerKey,
       if (customerSecret != null) 'customerSecret': customerSecret,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -1632,6 +1724,36 @@ class Project extends Service {
     return models.OAuth2Stripe.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 TikTok configuration.
+  Future<models.OAuth2TikTok> updateOAuth2TikTok({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/tiktok';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2TikTok.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Tradeshift configuration.
   Future<models.OAuth2Tradeshift> updateOAuth2Tradeshift({
     String? oauth2ClientId,
@@ -1720,6 +1842,36 @@ class Project extends Service {
     );
 
     return models.OAuth2Twitch.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Webflow configuration.
+  Future<models.OAuth2Webflow> updateOAuth2Webflow({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/webflow';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Webflow.fromMap(res.data);
   }
 
   /// Update the project OAuth2 WordPress configuration.
@@ -1846,6 +1998,7 @@ class Project extends Service {
   Future<models.OAuth2Zoho> updateOAuth2Zoho({
     String? clientId,
     String? clientSecret,
+    List<enums.ProjectOAuth2ZohoPrompt>? prompt,
     bool? enabled,
   }) async {
     final String apiPath = '/project/oauth2/zoho';
@@ -1853,6 +2006,7 @@ class Project extends Service {
     final Map<String, dynamic> apiParams = {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
     };
 
@@ -1979,6 +2133,9 @@ class Project extends Service {
       if (response['\$id'] == "wordpress") {
         return models.OAuth2WordPress.fromMap(response);
       }
+      if (response['\$id'] == "webflow") {
+        return models.OAuth2Webflow.fromMap(response);
+      }
       if (response['\$id'] == "twitch") {
         return models.OAuth2Twitch.fromMap(response);
       }
@@ -2063,6 +2220,12 @@ class Project extends Service {
       if (response['\$id'] == "microsoft") {
         return models.OAuth2Microsoft.fromMap(response);
       }
+      if (response['\$id'] == "tiktok") {
+        return models.OAuth2TikTok.fromMap(response);
+      }
+      if (response['\$id'] == "kakao") {
+        return models.OAuth2Kakao.fromMap(response);
+      }
 
       throw StateError(
         'Unable to match response to any expected response model.',
@@ -2105,6 +2268,7 @@ class Project extends Service {
     required String platformId,
     required String name,
     required String applicationId,
+    List<String>? fingerprints,
   }) async {
     final String apiPath = '/project/platforms/android';
 
@@ -2112,6 +2276,7 @@ class Project extends Service {
       'platformId': platformId,
       'name': name,
       'applicationId': applicationId,
+      if (fingerprints != null) 'fingerprints': fingerprints,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2131,12 +2296,19 @@ class Project extends Service {
   }
 
   /// Update an Android platform by its unique ID. Use this endpoint to update
-  /// the platform's name or application ID.
+  /// the platform's name, application ID or signing certificate fingerprints.
   Future<models.PlatformAndroid> updateAndroidPlatform({
     required String platformId,
     required String name,
     required String applicationId,
+    List<String>? fingerprints,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/android/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2145,6 +2317,7 @@ class Project extends Service {
     final Map<String, dynamic> apiParams = {
       'name': name,
       'applicationId': applicationId,
+      if (fingerprints != null) 'fingerprints': fingerprints,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2202,6 +2375,12 @@ class Project extends Service {
     required String name,
     required String bundleIdentifier,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/apple/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2267,6 +2446,12 @@ class Project extends Service {
     required String name,
     required String packageName,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/linux/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2332,6 +2517,12 @@ class Project extends Service {
     required String name,
     required String hostname,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/web/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2397,6 +2588,12 @@ class Project extends Service {
     required String name,
     required String packageIdentifierName,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/windows/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2428,6 +2625,12 @@ class Project extends Service {
   Future<models.Model> getPlatform({
     required String platformId,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2482,6 +2685,12 @@ class Project extends Service {
   Future deletePlatform({
     required String platformId,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2492,6 +2701,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -2713,6 +2923,37 @@ class Project extends Service {
     return models.Project.fromMap(res.data);
   }
 
+  /// Set the relying party ID passkeys are bound to: the domain of your
+  /// application. Passkeys work on the project's web platforms on that domain or
+  /// its subdomains, and on the domain itself for Apple apps. A localhost web
+  /// platform enables passkeys for local development without a relying party ID.
+  /// The relying party ID cannot change while users have passkeys, and any
+  /// change invalidates ceremonies in progress.
+  Future<models.Project> updatePasskeyPolicy({
+    required String rpId,
+  }) async {
+    final String apiPath = '/project/policies/passkey';
+
+    final Map<String, dynamic> apiParams = {
+      'rpId': rpId,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
   /// Updating this policy allows you to control if new passwords are checked
   /// against most common passwords dictionary. When enabled, and user changes
   /// their password, password must not be contained in the dictionary.
@@ -2786,6 +3027,73 @@ class Project extends Service {
 
     final Map<String, dynamic> apiParams = {
       'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Updating this policy allows you to control if passwords are checked against
+  /// the Have I Been Pwned breach database. When enabled, every password a user
+  /// signs up, signs in or resets with is checked and the result is recorded on
+  /// the user as `passwordPwned`. On its own the policy only records. Enable
+  /// `users` to reject a breached password when a user signs up or sets a new
+  /// password, and `sessions` to refuse a sign-in with a breached password until
+  /// it is reset. Only the first five characters of the password hash are ever
+  /// shared with the service. Options left out keep their current value.
+  Future<models.Project> updatePasswordPwnedPolicy({
+    bool? enabled,
+    bool? sessions,
+    bool? users,
+  }) async {
+    final String apiPath = '/project/policies/password-pwned';
+
+    final Map<String, dynamic> apiParams = {
+      if (enabled != null) 'enabled': enabled,
+      if (sessions != null) 'sessions': sessions,
+      if (users != null) 'users': users,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Require a password reset when an email/password sign-in uses a password
+  /// older than the configured maximum age. Options left out keep their current
+  /// value.
+  Future<models.Project> updatePasswordRotationPolicy({
+    bool? enabled,
+    int? maxAge,
+  }) async {
+    final String apiPath = '/project/policies/password-rotation';
+
+    final Map<String, dynamic> apiParams = {
+      if (enabled != null) 'enabled': enabled,
+      if (maxAge != null) 'maxAge': maxAge,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3022,6 +3330,12 @@ class Project extends Service {
       if (response['\$id'] == "password-personal-data") {
         return models.PolicyPasswordPersonalData.fromMap(response);
       }
+      if (response['\$id'] == "password-pwned") {
+        return models.PolicyPasswordPwned.fromMap(response);
+      }
+      if (response['\$id'] == "password-rotation") {
+        return models.PolicyPasswordRotation.fromMap(response);
+      }
       if (response['\$id'] == "session-alert") {
         return models.PolicySessionAlert.fromMap(response);
       }
@@ -3054,6 +3368,9 @@ class Project extends Service {
       }
       if (response['\$id'] == "deny-corporate-email") {
         return models.PolicyDenyCorporateEmail.fromMap(response);
+      }
+      if (response['\$id'] == "passkey") {
+        return models.PolicyPasskey.fromMap(response);
       }
 
       throw StateError(
@@ -3183,6 +3500,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -3360,6 +3678,12 @@ class Project extends Service {
   Future<models.Variable> getVariable({
     required String variableId,
   }) async {
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
       variableId,
@@ -3389,6 +3713,12 @@ class Project extends Service {
     String? value,
     bool? secret,
   }) async {
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
       variableId,
@@ -3420,6 +3750,12 @@ class Project extends Service {
   Future deleteVariable({
     required String variableId,
   }) async {
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
       variableId,
@@ -3430,6 +3766,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(

@@ -41,6 +41,8 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
+    HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
       Invocation.method(#chunkedUpload, [
@@ -680,7 +682,7 @@ void main() {
         'responseHeaders': [],
         'logs': "",
         'errors': "",
-        'duration': 0.4,
+        'duration': 1.23,
       };
 
       when(

@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,13 +10,13 @@ Client client = Client()
 
 Messaging messaging = Messaging(client);
 
-Message result = await messaging.updatePush(
+models.Message result = await messaging.updatePush(
     messageId: '<MESSAGE_ID>',
+    title: '<TITLE>', // (optional)
+    body: '<BODY>', // (optional)
     topics: [], // (optional)
     users: [], // (optional)
     targets: [], // (optional)
-    title: '<TITLE>', // (optional)
-    body: '<BODY>', // (optional)
     data: {}, // (optional)
     action: '<ACTION>', // (optional)
     image: '<ID1:ID2>', // (optional)
@@ -29,5 +30,6 @@ Message result = await messaging.updatePush(
     contentAvailable: false, // (optional)
     critical: false, // (optional)
     priority: enums.MessagePriority.normal, // (optional)
+    channelId: '<CHANNEL_ID>', // (optional)
 );
 ```

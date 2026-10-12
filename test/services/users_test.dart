@@ -41,6 +41,8 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
+    HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
       Invocation.method(#chunkedUpload, [
@@ -518,22 +520,6 @@ void main() {
       expect(response, isA<models.User>());
     });
 
-    test('test method listLogs()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'logs': [],
-      };
-
-      when(
-        client.call(HttpMethod.get),
-      ).thenAnswer((_) async => Response(data: data));
-
-      final response = await users.listLogs(
-        userId: "<USER_ID>",
-      );
-      expect(response, isA<models.LogList>());
-    });
-
     test('test method listMemberships()', () async {
       final Map<String, dynamic> data = {
         'total': 5,
@@ -815,6 +801,76 @@ void main() {
         name: "<NAME>",
       );
       expect(response, isA<models.User>());
+    });
+
+    test('test method listPasskeys()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'passkeys': [],
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await users.listPasskeys(
+        userId: "<USER_ID>",
+      );
+      expect(response, isA<models.PasskeyList>());
+    });
+
+    test('test method getPasskey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My laptop",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await users.getPasskey(
+        userId: "<USER_ID>",
+        passkeyId: "<PASSKEY_ID>",
+      );
+      expect(response, isA<models.Passkey>());
+    });
+
+    test('test method updatePasskey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My laptop",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await users.updatePasskey(
+        userId: "<USER_ID>",
+        passkeyId: "<PASSKEY_ID>",
+        name: "<NAME>",
+      );
+      expect(response, isA<models.Passkey>());
+    });
+
+    test('test method deletePasskey()', () async {
+      final data = '';
+
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await users.deletePasskey(
+        userId: "<USER_ID>",
+        passkeyId: "<PASSKEY_ID>",
+      );
     });
 
     test('test method updatePassword()', () async {

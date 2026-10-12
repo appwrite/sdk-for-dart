@@ -15,6 +15,11 @@ class ReportList implements Model {
   factory ReportList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return ReportList(
       total: map['total'],
       reports: List<Report>.from(

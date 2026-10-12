@@ -5,6 +5,8 @@ enum ProjectPolicyId {
   passwordHistory(value: "password-history"),
   passwordStrength(value: "password-strength"),
   passwordPersonalData(value: "password-personal-data"),
+  passwordPwned(value: "password-pwned"),
+  passwordRotation(value: "password-rotation"),
   sessionAlert(value: "session-alert"),
   sessionDuration(value: "session-duration"),
   sessionInvalidation(value: "session-invalidation"),
@@ -15,7 +17,8 @@ enum ProjectPolicyId {
   denyAliasedEmail(value: "deny-aliased-email"),
   denyDisposableEmail(value: "deny-disposable-email"),
   denyFreeEmail(value: "deny-free-email"),
-  denyCorporateEmail(value: "deny-corporate-email");
+  denyCorporateEmail(value: "deny-corporate-email"),
+  passkey(value: "passkey");
 
   const ProjectPolicyId({required this.value});
 

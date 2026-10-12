@@ -15,6 +15,11 @@ class ProjectAuthMethod implements Model {
   factory ProjectAuthMethod.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'enabled': true,
+      ...map,
+    };
+
     return ProjectAuthMethod(
       $id: enums.ProjectAuthMethodId.values.firstWhere(
         (e) => e.value == map['\$id'],

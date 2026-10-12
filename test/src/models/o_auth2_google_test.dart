@@ -11,6 +11,8 @@ void main() {
             "120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com",
         clientSecret: "GOCSPX-2k8gsR0000000000000000VNahJj",
         prompt: [],
+        nativeEnabled: true,
+        nativeClientIds: [],
       );
 
       final map = model.toMap();
@@ -24,6 +26,8 @@ void main() {
       );
       expect(result.clientSecret, "GOCSPX-2k8gsR0000000000000000VNahJj");
       expect(result.prompt, []);
+      expect(result.nativeEnabled, true);
+      expect(result.nativeClientIds, []);
     });
   });
 }

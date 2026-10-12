@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Postgresql postgresql = Postgresql(client);
 
-DedicatedDatabaseRestorationList result = await postgresql.listRestorations(
+models.DedicatedDatabaseRestorationList result = await postgresql.listRestorations(
     databaseId: '<DATABASE_ID>',
     status: 'pending', // (optional)
     type: 'backup', // (optional)

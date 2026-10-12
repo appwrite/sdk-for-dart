@@ -15,6 +15,11 @@ class DeploymentList implements Model {
   factory DeploymentList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return DeploymentList(
       total: map['total'],
       deployments: List<Deployment>.from(

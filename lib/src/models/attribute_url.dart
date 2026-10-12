@@ -47,6 +47,17 @@ class AttributeUrl implements Model {
   factory AttributeUrl.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'format': "url",
+      ...map,
+    };
+
     return AttributeUrl(
       key: map['key'].toString(),
       type: map['type'].toString(),

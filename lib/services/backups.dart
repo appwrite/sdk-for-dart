@@ -62,6 +62,12 @@ class Backups extends Service {
   Future<models.BackupArchive> getArchive({
     required String archiveId,
   }) async {
+    if (archiveId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "archiveId"',
+      );
+    }
+
     final String apiPath = '/backups/archives/{archiveId}'.replaceAll(
       '{archiveId}',
       archiveId,
@@ -88,6 +94,12 @@ class Backups extends Service {
   Future deleteArchive({
     required String archiveId,
   }) async {
+    if (archiveId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "archiveId"',
+      );
+    }
+
     final String apiPath = '/backups/archives/{archiveId}'.replaceAll(
       '{archiveId}',
       archiveId,
@@ -178,6 +190,12 @@ class Backups extends Service {
   Future<models.BackupPolicy> getPolicy({
     required String policyId,
   }) async {
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/backups/policies/{policyId}'.replaceAll(
       '{policyId}',
       policyId,
@@ -208,6 +226,12 @@ class Backups extends Service {
     String? schedule,
     bool? enabled,
   }) async {
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/backups/policies/{policyId}'.replaceAll(
       '{policyId}',
       policyId,
@@ -240,6 +264,12 @@ class Backups extends Service {
   Future deletePolicy({
     required String policyId,
   }) async {
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/backups/policies/{policyId}'.replaceAll(
       '{policyId}',
       policyId,
@@ -354,6 +384,12 @@ class Backups extends Service {
   Future<models.BackupRestoration> getRestoration({
     required String restorationId,
   }) async {
+    if (restorationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "restorationId"',
+      );
+    }
+
     final String apiPath = '/backups/restorations/{restorationId}'.replaceAll(
       '{restorationId}',
       restorationId,

@@ -19,6 +19,13 @@ class BillingPlanSupportedAddons implements Model {
   factory BillingPlanSupportedAddons.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'baa': false,
+      'premiumGeoDB': false,
+      'premiumGeoDBOrg': false,
+      ...map,
+    };
+
     return BillingPlanSupportedAddons(
       baa: map['baa'],
       premiumGeoDB: map['premiumGeoDB'],

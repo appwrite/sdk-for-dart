@@ -15,6 +15,11 @@ class MessageList implements Model {
   factory MessageList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return MessageList(
       total: map['total'],
       messages: List<Message>.from(

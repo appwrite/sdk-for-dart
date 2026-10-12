@@ -59,7 +59,7 @@ class Oauth2 extends Service {
     String? prompt,
     int? maxAge,
     String? authorizationDetails,
-    String? resource,
+    List<String>? resource,
     String? audience,
     String? requestUri,
   }) async {
@@ -118,7 +118,7 @@ class Oauth2 extends Service {
     String? prompt,
     int? maxAge,
     String? authorizationDetails,
-    String? resource,
+    List<String>? resource,
     String? audience,
     String? requestUri,
   }) async {
@@ -167,7 +167,7 @@ class Oauth2 extends Service {
     String? clientId,
     String? scope,
     String? authorizationDetails,
-    String? resource,
+    List<String>? resource,
     String? audience,
   }) async {
     final String apiPath =
@@ -237,6 +237,12 @@ class Oauth2 extends Service {
   Future<models.Oauth2Grant> getGrant({
     required String grantId,
   }) async {
+    if (grantId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "grantId"',
+      );
+    }
+
     final String apiPath = '/oauth2/{project_id}/grants/{grant_id}'
         .replaceAll(
           '{project_id}',
@@ -261,6 +267,43 @@ class Oauth2 extends Service {
     );
 
     return models.Oauth2Grant.fromMap(res.data);
+  }
+
+  /// Introspect an OAuth2 access token or refresh token. Authenticate with an
+  /// API key holding the `oauth2.introspect` scope to introspect any token in
+  /// the project, or with the client credentials of the app the token was issued
+  /// to.
+  Future<models.Oauth2Introspection> introspect({
+    required String token,
+    String? tokenTypeHint,
+    String? clientId,
+    String? clientSecret,
+  }) async {
+    final String apiPath = '/oauth2/{project_id}/introspect'.replaceAll(
+      '{project_id}',
+      client.config['project'] ?? '',
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'token': token,
+      if (tokenTypeHint != null) 'token_type_hint': tokenTypeHint,
+      if (clientId != null) 'client_id': clientId,
+      if (clientSecret != null) 'client_secret': clientSecret,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Oauth2Introspection.fromMap(res.data);
   }
 
   /// List the organizations the OAuth2 access token can access. Resolves the
@@ -310,7 +353,7 @@ class Oauth2 extends Service {
     String? prompt,
     int? maxAge,
     String? authorizationDetails,
-    String? resource,
+    List<String>? resource,
     String? audience,
   }) async {
     final String apiPath = '/oauth2/{project_id}/par'.replaceAll(
@@ -460,7 +503,7 @@ class Oauth2 extends Service {
     String? clientSecret,
     String? codeVerifier,
     String? redirectUri,
-    String? resource,
+    List<String>? resource,
     String? audience,
   }) async {
     final String apiPath = '/oauth2/{project_id}/token'.replaceAll(

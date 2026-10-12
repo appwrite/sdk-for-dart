@@ -15,6 +15,11 @@ class VariableList implements Model {
   factory VariableList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return VariableList(
       total: map['total'],
       variables: List<Variable>.from(

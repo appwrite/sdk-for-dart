@@ -15,6 +15,11 @@ class ResourceTokenList implements Model {
   factory ResourceTokenList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return ResourceTokenList(
       total: map['total'],
       tokens: List<ResourceToken>.from(

@@ -59,6 +59,17 @@ class Message implements Model {
   factory Message.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'providerType': "",
+      'deliveredTotal': 0,
+      'data': <String, dynamic>{},
+      'status': "draft",
+      ...map,
+    };
+
     return Message(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

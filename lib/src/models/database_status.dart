@@ -17,8 +17,8 @@ class DatabaseStatus implements Model {
   /// Database uptime in seconds.
   final int uptime;
 
-  /// Connection statistics.
-  final DatabaseStatusConnections connections;
+  /// Connection statistics. Null when the database has not been probed.
+  final DatabaseStatusConnections? connections;
 
   /// Requested replication sync mode. Possible values: async, sync, quorum. Compare with effectiveSyncMode for what the primary is enforcing.
   final String syncMode;
@@ -50,7 +50,7 @@ class DatabaseStatus implements Model {
     required this.engine,
     required this.version,
     required this.uptime,
-    required this.connections,
+    this.connections,
     required this.syncMode,
     this.effectiveSyncMode,
     required this.syncDegraded,
@@ -63,15 +63,30 @@ class DatabaseStatus implements Model {
   factory DatabaseStatus.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'health': "unknown",
+      'ready': false,
+      'engine': "postgresql",
+      'version': "",
+      'uptime': 0,
+      'syncMode': "async",
+      'syncDegraded': false,
+      'syncAcknowledgements': 0,
+      'syncStandbyCount': 0,
+      ...map,
+    };
+
     return DatabaseStatus(
       health: map['health'].toString(),
       ready: map['ready'],
       engine: map['engine'].toString(),
       version: map['version'].toString(),
       uptime: map['uptime'],
-      connections: DatabaseStatusConnections.fromMap(
-        map['connections'],
-      ),
+      connections: map['connections'] != null
+          ? DatabaseStatusConnections.fromMap(
+              map['connections'],
+            )
+          : null,
       syncMode: map['syncMode'].toString(),
       effectiveSyncMode: map['effectiveSyncMode']?.toString(),
       syncDegraded: map['syncDegraded'],
@@ -95,7 +110,7 @@ class DatabaseStatus implements Model {
       "engine": engine,
       "version": version,
       "uptime": uptime,
-      "connections": connections.toMap(),
+      "connections": connections?.toMap(),
       "syncMode": syncMode,
       "effectiveSyncMode": effectiveSyncMode,
       "syncDegraded": syncDegraded,

@@ -14,14 +14,14 @@ class BackupArchive implements Model {
   /// Archive policy ID.
   final String policyId;
 
-  /// Archive size in bytes.
-  final int size;
+  /// Archive size in bytes. Null until the size is known.
+  final int? size;
 
   /// The status of the archive creation. Possible values: pending, processing, uploading, completed, failed, skipped.
   final String status;
 
-  /// The backup start time.
-  final String startedAt;
+  /// The backup start time. Null until the backup starts.
+  final String? startedAt;
 
   /// Migration ID.
   final String migrationId;
@@ -43,9 +43,9 @@ class BackupArchive implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     required this.policyId,
-    required this.size,
+    this.size,
     required this.status,
-    required this.startedAt,
+    this.startedAt,
     required this.migrationId,
     required this.services,
     required this.resources,
@@ -55,6 +55,16 @@ class BackupArchive implements Model {
   factory BackupArchive.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'policyId': "",
+      'status': "",
+      'migrationId': "",
+      ...map,
+    };
+
     return BackupArchive(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -62,7 +72,7 @@ class BackupArchive implements Model {
       policyId: map['policyId'].toString(),
       size: map['size'],
       status: map['status'].toString(),
-      startedAt: map['startedAt'].toString(),
+      startedAt: map['startedAt']?.toString(),
       migrationId: map['migrationId'].toString(),
       services: List.from(map['services'] ?? []),
       resources: List.from(map['resources'] ?? []),

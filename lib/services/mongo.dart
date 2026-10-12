@@ -86,8 +86,8 @@ class Mongo extends Service {
   }
 
   /// List the dedicated database specifications available on the current plan.
-  /// Each specification reports its resource limits, pricing, and whether it is
-  /// enabled for the organization.
+  /// Each specification reports its resource limits, its own prices and overage
+  /// rates, and whether it is enabled for the organization.
   Future<models.DedicatedDatabaseSpecificationList> listSpecifications() async {
     final String apiPath = '/mongo/specifications';
 
@@ -113,6 +113,12 @@ class Mongo extends Service {
   Future<models.DedicatedDatabase> get({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -162,6 +168,12 @@ class Mongo extends Service {
     int? sqlApiMaxBytes,
     int? sqlApiTimeoutSeconds,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -221,6 +233,12 @@ class Mongo extends Service {
   Future delete({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -250,6 +268,12 @@ class Mongo extends Service {
     required String databaseId,
     List<String>? queries,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -280,6 +304,12 @@ class Mongo extends Service {
     required String databaseId,
     String? type,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -310,6 +340,12 @@ class Mongo extends Service {
     required String databaseId,
     List<String>? queries,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -344,6 +380,12 @@ class Mongo extends Service {
     String? type,
     bool? enabled,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -379,6 +421,18 @@ class Mongo extends Service {
     required String databaseId,
     required String policyId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
@@ -415,6 +469,18 @@ class Mongo extends Service {
     int? retention,
     bool? enabled,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
@@ -454,6 +520,18 @@ class Mongo extends Service {
     required String databaseId,
     required String policyId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
@@ -495,6 +573,12 @@ class Mongo extends Service {
     String? prefix,
     String? endpoint,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups/storage'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -532,6 +616,18 @@ class Mongo extends Service {
     required String databaseId,
     required String backupId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (backupId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "backupId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
@@ -565,6 +661,18 @@ class Mongo extends Service {
     required String databaseId,
     required String backupId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (backupId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "backupId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
@@ -598,6 +706,12 @@ class Mongo extends Service {
   Future<models.DedicatedDatabaseBranchList> listBranches({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/branches'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -630,6 +744,12 @@ class Mongo extends Service {
     String? branchId,
     int? ttl,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/branches'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -663,6 +783,18 @@ class Mongo extends Service {
     required String databaseId,
     required String branchId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (branchId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "branchId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/branches/{branchId}'
         .replaceAll(
           '{databaseId}',
@@ -698,6 +830,12 @@ class Mongo extends Service {
   Future<models.DedicatedDatabaseOperation> updateCredentials({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/credentials'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -734,6 +872,12 @@ class Mongo extends Service {
     required String databaseId,
     String? targetReplicaId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -767,6 +911,12 @@ class Mongo extends Service {
     required String day,
     required int hourUtc,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/maintenance'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -802,6 +952,12 @@ class Mongo extends Service {
     required String targetType,
     String? specification,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -838,6 +994,12 @@ class Mongo extends Service {
     int? limit,
     int? offset,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/operations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -869,6 +1031,12 @@ class Mongo extends Service {
   Future<models.DedicatedDatabasePITRWindows> getPitr({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/pitr'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -896,6 +1064,12 @@ class Mongo extends Service {
   Future<models.DedicatedDatabaseReplicas> getReplicas({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -927,6 +1101,12 @@ class Mongo extends Service {
     int? limit,
     int? offset,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -965,6 +1145,12 @@ class Mongo extends Service {
     String? targetDatabaseId,
     String? targetTime,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -999,6 +1185,18 @@ class Mongo extends Service {
     required String databaseId,
     required String restorationId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (restorationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "restorationId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/restorations/{restorationId}'
         .replaceAll(
           '{databaseId}',
@@ -1032,6 +1230,12 @@ class Mongo extends Service {
   Future<models.DatabaseStatus> getStatus({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/status'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1060,6 +1264,12 @@ class Mongo extends Service {
     required String databaseId,
     required String targetVersion,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mongo/{databaseId}/upgrades'.replaceAll(
       '{databaseId}',
       databaseId,

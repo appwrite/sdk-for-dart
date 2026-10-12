@@ -23,6 +23,14 @@ class OAuth2Kick implements Model {
   factory OAuth2Kick.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Kick(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

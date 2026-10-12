@@ -39,28 +39,28 @@ class Organization implements Model {
   final String billingEmail;
 
   /// Billing cycle start date.
-  final String billingStartDate;
+  final String? billingStartDate;
 
   /// Current invoice cycle start date.
-  final String billingCurrentInvoiceDate;
+  final String? billingCurrentInvoiceDate;
 
   /// Next invoice cycle start date.
-  final String billingNextInvoiceDate;
+  final String? billingNextInvoiceDate;
 
   /// Start date of trial.
   final String? billingTrialStartDate;
 
   /// Number of trial days.
-  final int billingTrialDays;
+  final int? billingTrialDays;
 
   /// Current active aggregation id.
-  final String billingAggregationId;
+  final String? billingAggregationId;
 
   /// Current active aggregation id.
-  final String billingInvoiceId;
+  final String? billingInvoiceId;
 
   /// Default payment method.
-  final String paymentMethodId;
+  final String? paymentMethodId;
 
   /// Default payment method.
   final String? billingAddressId;
@@ -120,14 +120,14 @@ class Organization implements Model {
     required this.billingPlanId,
     required this.billingPlanDetails,
     required this.billingEmail,
-    required this.billingStartDate,
-    required this.billingCurrentInvoiceDate,
-    required this.billingNextInvoiceDate,
+    this.billingStartDate,
+    this.billingCurrentInvoiceDate,
+    this.billingNextInvoiceDate,
     this.billingTrialStartDate,
-    required this.billingTrialDays,
-    required this.billingAggregationId,
-    required this.billingInvoiceId,
-    required this.paymentMethodId,
+    this.billingTrialDays,
+    this.billingAggregationId,
+    this.billingInvoiceId,
+    this.paymentMethodId,
     this.billingAddressId,
     this.backupPaymentMethodId,
     required this.status,
@@ -147,6 +147,23 @@ class Organization implements Model {
   factory Organization.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'total': 0,
+      'budgetAlerts': [75],
+      'billingPlan': "tier-0",
+      'billingPlanId': "tier-0",
+      'billingEmail': "",
+      'status': "draft",
+      'markedForDeletion': false,
+      'platform': "appwrite",
+      'projects': [],
+      ...map,
+    };
+
     return Organization(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -164,14 +181,14 @@ class Organization implements Model {
         map['billingPlanDetails'],
       ),
       billingEmail: map['billingEmail'].toString(),
-      billingStartDate: map['billingStartDate'].toString(),
-      billingCurrentInvoiceDate: map['billingCurrentInvoiceDate'].toString(),
-      billingNextInvoiceDate: map['billingNextInvoiceDate'].toString(),
+      billingStartDate: map['billingStartDate']?.toString(),
+      billingCurrentInvoiceDate: map['billingCurrentInvoiceDate']?.toString(),
+      billingNextInvoiceDate: map['billingNextInvoiceDate']?.toString(),
       billingTrialStartDate: map['billingTrialStartDate']?.toString(),
       billingTrialDays: map['billingTrialDays'],
-      billingAggregationId: map['billingAggregationId'].toString(),
-      billingInvoiceId: map['billingInvoiceId'].toString(),
-      paymentMethodId: map['paymentMethodId'].toString(),
+      billingAggregationId: map['billingAggregationId']?.toString(),
+      billingInvoiceId: map['billingInvoiceId']?.toString(),
+      paymentMethodId: map['paymentMethodId']?.toString(),
       billingAddressId: map['billingAddressId']?.toString(),
       backupPaymentMethodId: map['backupPaymentMethodId']?.toString(),
       status: map['status'].toString(),

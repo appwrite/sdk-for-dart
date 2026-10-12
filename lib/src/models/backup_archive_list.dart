@@ -15,6 +15,11 @@ class BackupArchiveList implements Model {
   factory BackupArchiveList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return BackupArchiveList(
       total: map['total'],
       archives: List<BackupArchive>.from(

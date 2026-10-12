@@ -27,6 +27,15 @@ class OAuth2FusionAuth implements Model {
   factory OAuth2FusionAuth.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'endpoint': "",
+      ...map,
+    };
+
     return OAuth2FusionAuth(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

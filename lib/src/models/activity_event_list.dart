@@ -15,6 +15,11 @@ class ActivityEventList implements Model {
   factory ActivityEventList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return ActivityEventList(
       total: map['total'],
       events: List<ActivityEvent>.from(

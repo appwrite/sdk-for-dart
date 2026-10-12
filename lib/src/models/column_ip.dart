@@ -47,6 +47,17 @@ class ColumnIp implements Model {
   factory ColumnIp.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'format': "ip",
+      ...map,
+    };
+
     return ColumnIp(
       key: map['key'].toString(),
       type: map['type'].toString(),

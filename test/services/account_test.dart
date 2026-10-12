@@ -41,6 +41,8 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
+    HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
       Invocation.method(#chunkedUpload, [
@@ -287,20 +289,6 @@ void main() {
       final response = await account.deleteIdentity(
         identityId: "<IDENTITY_ID>",
       );
-    });
-
-    test('test method listLogs()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'logs': [],
-      };
-
-      when(
-        client.call(HttpMethod.get),
-      ).thenAnswer((_) async => Response(data: data));
-
-      final response = await account.listLogs();
-      expect(response, isA<models.LogList>());
     });
 
     test('test method updateMFA()', () async {
@@ -719,6 +707,108 @@ void main() {
       expect(response, isA<models.User>());
     });
 
+    test('test method listPasskeys()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'passkeys': [],
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.listPasskeys();
+      expect(response, isA<models.PasskeyList>());
+    });
+
+    test('test method createPasskey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "bb8ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        'passkeyId': "5e5ea5c16897e",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'publicKey': <String, dynamic>{},
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.createPasskey();
+      expect(response, isA<models.PasskeyChallenge>());
+    });
+
+    test('test method getPasskey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My laptop",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.getPasskey(
+        passkeyId: "<PASSKEY_ID>",
+      );
+      expect(response, isA<models.Passkey>());
+    });
+
+    test('test method updatePasskey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My laptop",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.updatePasskey(
+        passkeyId: "<PASSKEY_ID>",
+        name: "<NAME>",
+      );
+      expect(response, isA<models.Passkey>());
+    });
+
+    test('test method deletePasskey()', () async {
+      final data = '';
+
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.deletePasskey(
+        passkeyId: "<PASSKEY_ID>",
+      );
+    });
+
+    test('test method updatePasskeyVerification()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My laptop",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.updatePasskeyVerification(
+        passkeyId: "<PASSKEY_ID>",
+        credential: {},
+      );
+      expect(response, isA<models.Passkey>());
+    });
+
     test('test method updatePassword()', () async {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
@@ -864,6 +954,48 @@ void main() {
       expect(response, isA<models.Token>());
     });
 
+    test('test method createRecoveryOTP()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "bb8ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c168bb8",
+        'secret': "",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'phrase': "Golden Fox",
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.createRecoveryOTP(
+        email: "email@example.com",
+      );
+      expect(response, isA<models.Token>());
+    });
+
+    test('test method updateRecoveryOTP()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "bb8ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c168bb8",
+        'secret': "",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'phrase': "Golden Fox",
+      };
+
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.updateRecoveryOTP(
+        userId: "<USER_ID>",
+        secret: "<SECRET>",
+        password: "password",
+      );
+      expect(response, isA<models.Token>());
+    });
+
     test('test method listSessions()', () async {
       final Map<String, dynamic> data = {
         'total': 5,
@@ -969,6 +1101,50 @@ void main() {
       final response = await account.createEmailPasswordSession(
         email: "email@example.com",
         password: "password",
+      );
+      expect(response, isA<models.Session>());
+    });
+
+    test('test method createIdTokenSession()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5bb8c16897e",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'provider': "email",
+        'providerUid': "user@example.com",
+        'providerAccessToken': "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+        'providerAccessTokenExpiry': "2020-10-15T06:38:00.000+00:00",
+        'providerRefreshToken': "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+        'ip': "127.0.0.1",
+        'osCode': "Mac",
+        'osName': "Mac",
+        'osVersion': "Mac",
+        'clientType': "browser",
+        'clientCode': "CM",
+        'clientName': "Chrome Mobile iOS",
+        'clientVersion': "84.0",
+        'clientEngine': "WebKit",
+        'clientEngineVersion': "605.1.15",
+        'deviceName': "smartphone",
+        'deviceBrand': "Google",
+        'deviceModel': "Nexus 5",
+        'countryCode': "US",
+        'countryName': "United States",
+        'current': true,
+        'factors': [],
+        'secret': "5e5bb8c16897e",
+        'mfaUpdatedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.createIdTokenSession(
+        provider: enums.IdTokenProvider.apple,
+        idToken: "<ID_TOKEN>",
       );
       expect(response, isA<models.Session>());
     });
@@ -1284,6 +1460,44 @@ void main() {
       expect(response, equals('done'));
     });
 
+    test('test method createPasskeyToken()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "bb8ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        'passkeyId': "5e5ea5c16897e",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'publicKey': <String, dynamic>{},
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.createPasskeyToken();
+      expect(response, isA<models.PasskeyChallenge>());
+    });
+
+    test('test method updatePasskeyToken()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "bb8ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c168bb8",
+        'secret': "",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'phrase': "Golden Fox",
+      };
+
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.updatePasskeyToken(
+        challengeId: "<CHALLENGE_ID>",
+        credential: {},
+      );
+      expect(response, isA<models.TokenSecret>());
+    });
+
     test('test method createPhoneToken()', () async {
       final Map<String, dynamic> data = {
         '\$id': "bb8ea5c16897e",
@@ -1381,6 +1595,45 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateVerification(
+        userId: "<USER_ID>",
+        secret: "<SECRET>",
+      );
+      expect(response, isA<models.Token>());
+    });
+
+    test('test method createEmailVerificationOTP()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "bb8ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c168bb8",
+        'secret': "",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'phrase': "Golden Fox",
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.createEmailVerificationOTP();
+      expect(response, isA<models.Token>());
+    });
+
+    test('test method updateEmailVerificationOTP()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "bb8ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        'userId': "5e5ea5c168bb8",
+        'secret': "",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'phrase': "Golden Fox",
+      };
+
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.updateEmailVerificationOTP(
         userId: "<USER_ID>",
         secret: "<SECRET>",
       );

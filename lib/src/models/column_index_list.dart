@@ -15,6 +15,11 @@ class ColumnIndexList implements Model {
   factory ColumnIndexList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return ColumnIndexList(
       total: map['total'],
       indexes: List<ColumnIndex>.from(

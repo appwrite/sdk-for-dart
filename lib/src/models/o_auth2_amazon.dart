@@ -23,6 +23,14 @@ class OAuth2Amazon implements Model {
   factory OAuth2Amazon.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Amazon(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

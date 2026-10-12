@@ -43,6 +43,16 @@ class ColumnLine implements Model {
   factory ColumnLine.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return ColumnLine(
       key: map['key'].toString(),
       type: map['type'].toString(),

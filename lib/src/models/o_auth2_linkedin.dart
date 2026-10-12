@@ -23,6 +23,14 @@ class OAuth2Linkedin implements Model {
   factory OAuth2Linkedin.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'primaryClientSecret': "",
+      ...map,
+    };
+
     return OAuth2Linkedin(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

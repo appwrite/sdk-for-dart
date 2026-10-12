@@ -18,10 +18,10 @@ class DedicatedDatabase implements Model {
   final String name;
 
   /// Product API that owns this database: tablesdb, documentsdb, vectorsdb, mysql, postgresql, or mongodb.
-  final String api;
+  final String? api;
 
   /// Database engine: postgresql, mysql, or mongodb. Null until the backing reports one.
-  final String engine;
+  final String? engine;
 
   /// Database engine version.
   final String version;
@@ -36,7 +36,7 @@ class DedicatedDatabase implements Model {
   final String hostname;
 
   /// Database port for connections. Derived from the engine when the backing has not reported one yet.
-  final int connectionPort;
+  final int? connectionPort;
 
   /// Database username for connections.
   final String connectionUser;
@@ -45,7 +45,7 @@ class DedicatedDatabase implements Model {
   final String connectionPassword;
 
   /// Committed generation of the primary connection credentials. Null until the rotation contract has been initialized.
-  final int credentialGeneration;
+  final int? credentialGeneration;
 
   /// Full database connection string (URI format).
   final String connectionString;
@@ -56,7 +56,7 @@ class DedicatedDatabase implements Model {
   /// Database status. Possible values: provisioning, ready, inactive, paused, failed, deleted, restoring, scaling.
   final String status;
 
-  /// Container status for lifecycle-managed database runtimes: active or inactive.
+  /// Container status for lifecycle-managed database runtimes: active, inactive, or failed (a wake was declined because the backing namespace is gone).
   final String containerStatus;
 
   /// Last activity timestamp in ISO 8601 format.
@@ -79,6 +79,15 @@ class DedicatedDatabase implements Model {
 
   /// Storage allocated in GB.
   final int storage;
+
+  /// Storage resize status. Possible values: idle (no resize in flight), resizing (the volume is growing towards storageTargetGb).
+  final String storageStatus;
+
+  /// Size in GB the volume is growing towards while storageStatus is resizing. 0 when no resize is in flight.
+  final int storageTargetGb;
+
+  /// Time the in-flight storage resize started, in ISO 8601 format.
+  final String? storageResizeStartedAt;
 
   /// Storage class. Currently always &#039;ssd&#039;; DigitalOcean exposes a single block-storage class.
   final String storageClass;
@@ -119,7 +128,7 @@ class DedicatedDatabase implements Model {
   /// Storage usage percentage that triggers automatic expansion.
   final int storageAutoscalingThresholdPercent;
 
-  /// Maximum storage size in GB for autoscaling. 0 means no limit.
+  /// Maximum storage size in GB for autoscaling. Defaults to 3 times the specification&#039;s storage. 0 means no limit.
   final int storageAutoscalingMaxGb;
 
   /// Day of the week for the maintenance window. Possible values: sun, mon, tue, wed, thu, fri, sat.
@@ -155,16 +164,16 @@ class DedicatedDatabase implements Model {
     required this.$updatedAt,
     required this.projectId,
     required this.name,
-    required this.api,
-    required this.engine,
+    this.api,
+    this.engine,
     required this.version,
     required this.specification,
     required this.backend,
     required this.hostname,
-    required this.connectionPort,
+    this.connectionPort,
     required this.connectionUser,
     required this.connectionPassword,
-    required this.credentialGeneration,
+    this.credentialGeneration,
     required this.connectionString,
     required this.ssl,
     required this.status,
@@ -176,6 +185,9 @@ class DedicatedDatabase implements Model {
     required this.cpu,
     required this.memory,
     required this.storage,
+    required this.storageStatus,
+    required this.storageTargetGb,
+    this.storageResizeStartedAt,
     required this.storageClass,
     required this.storageMaxGb,
     required this.nodePool,
@@ -203,14 +215,63 @@ class DedicatedDatabase implements Model {
   factory DedicatedDatabase.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'projectId': "",
+      'name': "",
+      'version': "",
+      'specification': "",
+      'backend': "",
+      'hostname': "",
+      'connectionUser': "",
+      'connectionPassword': "",
+      'connectionString': "",
+      'ssl': false,
+      'status': "provisioning",
+      'containerStatus': "",
+      'lifecycleState': "",
+      'idleTimeoutMinutes': 15,
+      'cpu': 500,
+      'memory': 512,
+      'storage': 10,
+      'storageStatus': "idle",
+      'storageTargetGb': 0,
+      'storageClass': "ssd",
+      'storageMaxGb': 0,
+      'nodePool': "",
+      'replicas': 0,
+      'syncMode': "",
+      'networkMaxConnections': 100,
+      'networkIdleTimeoutSeconds': 900,
+      'networkIPAllowlist': [],
+      'backupEnabled': true,
+      'pitr': true,
+      'pitrRetentionDays': 7,
+      'storageAutoscaling': true,
+      'storageAutoscalingThresholdPercent': 85,
+      'storageAutoscalingMaxGb': 0,
+      'maintenanceWindowDay': "sun",
+      'maintenanceWindowHourUtc': 3,
+      'metricsEnabled': false,
+      'sqlApiEnabled': true,
+      'sqlApiAllowedStatements': ["SELECT", "INSERT", "UPDATE", "DELETE"],
+      'sqlApiMaxRows': 10000,
+      'sqlApiMaxBytes': 10485760,
+      'sqlApiTimeoutSeconds': 30,
+      'error': "",
+      ...map,
+    };
+
     return DedicatedDatabase(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       projectId: map['projectId'].toString(),
       name: map['name'].toString(),
-      api: map['api'].toString(),
-      engine: map['engine'].toString(),
+      api: map['api']?.toString(),
+      engine: map['engine']?.toString(),
       version: map['version'].toString(),
       specification: map['specification'].toString(),
       backend: map['backend'].toString(),
@@ -230,6 +291,9 @@ class DedicatedDatabase implements Model {
       cpu: map['cpu'],
       memory: map['memory'],
       storage: map['storage'],
+      storageStatus: map['storageStatus'].toString(),
+      storageTargetGb: map['storageTargetGb'],
+      storageResizeStartedAt: map['storageResizeStartedAt']?.toString(),
       storageClass: map['storageClass'].toString(),
       storageMaxGb: map['storageMaxGb'],
       nodePool: map['nodePool'].toString(),
@@ -286,6 +350,9 @@ class DedicatedDatabase implements Model {
       "cpu": cpu,
       "memory": memory,
       "storage": storage,
+      "storageStatus": storageStatus,
+      "storageTargetGb": storageTargetGb,
+      "storageResizeStartedAt": storageResizeStartedAt,
       "storageClass": storageClass,
       "storageMaxGb": storageMaxGb,
       "nodePool": nodePool,

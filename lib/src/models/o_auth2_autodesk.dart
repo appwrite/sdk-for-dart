@@ -23,6 +23,14 @@ class OAuth2Autodesk implements Model {
   factory OAuth2Autodesk.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Autodesk(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

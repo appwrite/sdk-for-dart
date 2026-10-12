@@ -41,6 +41,8 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
+    HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
       Invocation.method(#chunkedUpload, [
@@ -73,7 +75,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -122,7 +123,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -188,7 +188,7 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createEphemeralKey(
-        scopes: [enums.ProjectKeyScopes.projectRead],
+        scopes: [enums.ProjectKeyScopes.usersRead],
         duration: 1,
       );
       expect(response, isA<models.EphemeralKey>());
@@ -237,7 +237,7 @@ void main() {
       final response = await project.updateKey(
         keyId: "<KEY_ID>",
         name: "<NAME>",
-        scopes: [enums.ProjectKeyScopes.projectRead],
+        scopes: [enums.ProjectKeyScopes.usersRead],
       );
       expect(response, isA<models.Key>());
     });
@@ -262,7 +262,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -399,7 +398,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -460,6 +458,8 @@ void main() {
         'teamId': "D4000000R6",
         'p8File':
             "-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----",
+        'nativeEnabled': true,
+        'nativeClientIds': [],
       };
 
       when(
@@ -494,6 +494,7 @@ void main() {
         'clientId': "OaOkIA000000000000000000005KLSYq",
         'clientSecret':
             "zXz0000-00000000000000000000000000000-00000000000000000000PJafnF",
+        'prompt': [],
         'endpoint': "example.us.auth0.com",
       };
 
@@ -625,6 +626,7 @@ void main() {
         'enabled': true,
         'clientId': "950722000000343754",
         'clientSecret': "YmPXnM000000000000000000002zFg5D",
+        'prompt': [],
       };
 
       when(
@@ -740,6 +742,7 @@ void main() {
         'enabled': true,
         'clientId': "e4d87900000000540733",
         'clientSecret': "5e07c00000000000000000000000000000198bcc",
+        'prompt': [],
       };
 
       when(
@@ -777,6 +780,8 @@ void main() {
             "120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com",
         'clientSecret': "GOCSPX-2k8gsR0000000000000000VNahJj",
         'prompt': [],
+        'nativeEnabled': true,
+        'nativeClientIds': [],
       };
 
       when(
@@ -801,6 +806,23 @@ void main() {
 
       final response = await project.updateOAuth2HuggingFace();
       expect(response, isA<models.OAuth2HuggingFace>());
+    });
+
+    test('test method updateOAuth2Kakao()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "839ff5000000000000000000013206de",
+        'clientSecret': "jLNVOK00000000000000000000yJebea",
+        'prompt': [],
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Kakao();
+      expect(response, isA<models.OAuth2Kakao>());
     });
 
     test('test method updateOAuth2Keycloak()', () async {
@@ -860,6 +882,7 @@ void main() {
         'enabled': true,
         'applicationId': "00001111-aaaa-2222-bbbb-3333cccc4444",
         'applicationSecret': "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
+        'prompt': [],
         'tenant': "common",
       };
 
@@ -895,11 +918,11 @@ void main() {
         'clientId': "qibI2x0000000000000000000000000006L2YFoG",
         'clientSecret':
             "Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV",
+        'prompt': [],
         'wellKnownURL': "https://myoauth.com/.well-known/openid-configuration",
         'authorizationURL': "https://myoauth.com/oauth2/authorize",
         'tokenURL': "https://myoauth.com/oauth2/token",
         'userInfoURL': "https://myoauth.com/oauth2/userinfo",
-        'prompt': [],
       };
 
       when(
@@ -917,6 +940,7 @@ void main() {
         'clientId': "0oa00000000000000698",
         'clientSecret':
             "Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV",
+        'prompt': [],
         'domain': "trial-6400025.okta.com",
         'authorizationServerId': "aus000000000000000h7z",
       };
@@ -1006,6 +1030,7 @@ void main() {
         'customerKey':
             "3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq",
         'customerSecret': "3w000000000000e2",
+        'prompt': [],
       };
 
       when(
@@ -1065,6 +1090,22 @@ void main() {
       expect(response, isA<models.OAuth2Stripe>());
     });
 
+    test('test method updateOAuth2TikTok()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "awz000000000tyw0",
+        'clientSecret': "6wXewM00000000000000000000yXnite",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2TikTok();
+      expect(response, isA<models.OAuth2TikTok>());
+    });
+
     test('test method updateOAuth2Tradeshift()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -1111,6 +1152,24 @@ void main() {
 
       final response = await project.updateOAuth2Twitch();
       expect(response, isA<models.OAuth2Twitch>());
+    });
+
+    test('test method updateOAuth2Webflow()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId':
+            "8bb20000000000000000000000000000000000000000000000000000000040dd",
+        'clientSecret':
+            "59bf00000000000000000000000000000000000000000000000000000000fe59",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Webflow();
+      expect(response, isA<models.OAuth2Webflow>());
     });
 
     test('test method updateOAuth2WordPress()', () async {
@@ -1185,6 +1244,7 @@ void main() {
         'enabled': true,
         'clientId': "1000.83C178000000000000000000RPNX0B",
         'clientSecret': "fb5cac000000000000000000000000000000a68f6e",
+        'prompt': [],
       };
 
       when(
@@ -1214,10 +1274,10 @@ void main() {
     test('test method getOAuth2Provider()', () async {
       final Map<String, dynamic> data = {
         'enabled': true,
-        'applicationId': "00001111-aaaa-2222-bbbb-3333cccc4444",
-        'applicationSecret': "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
-        'tenant': "common",
-        '\$id': "microsoft",
+        'clientId': "839ff5000000000000000000013206de",
+        'clientSecret': "jLNVOK00000000000000000000yJebea",
+        'prompt': [],
+        '\$id': "kakao",
       };
 
       when(
@@ -1227,7 +1287,7 @@ void main() {
       final response = await project.getOAuth2Provider(
         providerId: enums.ProjectOAuthProviderId.amazon,
       );
-      expect(response, isA<models.OAuth2Microsoft>());
+      expect(response, isA<models.OAuth2Kakao>());
     });
 
     test('test method listPlatforms()', () async {
@@ -1252,6 +1312,7 @@ void main() {
         'name': "My Web App",
         'type': "web",
         'applicationId': "com.company.appname",
+        'fingerprints': [],
       };
 
       when(
@@ -1274,6 +1335,7 @@ void main() {
         'name': "My Web App",
         'type': "web",
         'applicationId': "com.company.appname",
+        'fingerprints': [],
       };
 
       when(
@@ -1518,7 +1580,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1559,7 +1620,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1600,7 +1660,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1641,7 +1700,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1682,7 +1740,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1721,7 +1778,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1752,6 +1808,46 @@ void main() {
       expect(response, isA<models.Project>());
     });
 
+    test('test method updatePasskeyPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updatePasskeyPolicy(
+        rpId: "<RP_ID>",
+      );
+      expect(response, isA<models.Project>());
+    });
+
     test('test method updatePasswordDictionaryPolicy()', () async {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
@@ -1760,7 +1856,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1801,7 +1896,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1842,7 +1936,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1875,6 +1968,82 @@ void main() {
       expect(response, isA<models.Project>());
     });
 
+    test('test method updatePasswordPwnedPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updatePasswordPwnedPolicy();
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method updatePasswordRotationPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updatePasswordRotationPolicy();
+      expect(response, isA<models.Project>());
+    });
+
     test('test method updatePasswordStrengthPolicy()', () async {
       final Map<String, dynamic> data = {
         '\$id': "password-dictionary",
@@ -1901,7 +2070,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1942,7 +2110,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1983,7 +2150,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2024,7 +2190,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2065,7 +2230,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2100,8 +2264,9 @@ void main() {
 
     test('test method getPolicy()', () async {
       final Map<String, dynamic> data = {
-        'enabled': true,
-        '\$id': "deny-corporate-email",
+        'rpId': "example.com",
+        'origins': [],
+        '\$id': "passkey",
       };
 
       when(
@@ -2111,7 +2276,7 @@ void main() {
       final response = await project.getPolicy(
         policyId: enums.ProjectPolicyId.passwordDictionary,
       );
-      expect(response, isA<models.PolicyDenyCorporateEmail>());
+      expect(response, isA<models.PolicyPasskey>());
     });
 
     test('test method updateProtocol()', () async {
@@ -2122,7 +2287,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2164,7 +2328,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2206,7 +2369,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",

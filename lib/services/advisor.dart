@@ -38,6 +38,12 @@ class Advisor extends Service {
   Future<models.Report> getReport({
     required String reportId,
   }) async {
+    if (reportId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "reportId"',
+      );
+    }
+
     final String apiPath = '/reports/{reportId}'.replaceAll(
       '{reportId}',
       reportId,
@@ -65,6 +71,12 @@ class Advisor extends Service {
   Future deleteReport({
     required String reportId,
   }) async {
+    if (reportId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "reportId"',
+      );
+    }
+
     final String apiPath = '/reports/{reportId}'.replaceAll(
       '{reportId}',
       reportId,
@@ -75,6 +87,7 @@ class Advisor extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -94,6 +107,12 @@ class Advisor extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (reportId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "reportId"',
+      );
+    }
+
     final String apiPath = '/reports/{reportId}/insights'.replaceAll(
       '{reportId}',
       reportId,
@@ -124,6 +143,18 @@ class Advisor extends Service {
     required String reportId,
     required String insightId,
   }) async {
+    if (reportId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "reportId"',
+      );
+    }
+
+    if (insightId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "insightId"',
+      );
+    }
+
     final String apiPath = '/reports/{reportId}/insights/{insightId}'
         .replaceAll(
           '{reportId}',

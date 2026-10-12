@@ -15,6 +15,11 @@ class TargetList implements Model {
   factory TargetList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return TargetList(
       total: map['total'],
       targets: List<Target>.from(

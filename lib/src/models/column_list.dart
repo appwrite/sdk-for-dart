@@ -15,6 +15,11 @@ class ColumnList implements Model {
   factory ColumnList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      ...map,
+    };
+
     return ColumnList(
       total: map['total'],
       columns: List.from(map['columns'] ?? []),
