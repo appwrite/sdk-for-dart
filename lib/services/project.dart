@@ -3086,6 +3086,9 @@ class Project extends Service {
       if (response['\$id'] == "deny-corporate-email") {
         return models.PolicyDenyCorporateEmail.fromMap(response);
       }
+      if (response['\$id'] == "passkey") {
+        return models.PolicyPasskey.fromMap(response);
+      }
 
       throw StateError(
         'Unable to match response to any expected response model.',

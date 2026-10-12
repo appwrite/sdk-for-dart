@@ -195,6 +195,7 @@ part 'src/models/policy_session_limit.dart';
 part 'src/models/policy_user_limit.dart';
 part 'src/models/policy_membership_privacy.dart';
 part 'src/models/policy_mfa_factors.dart';
+part 'src/models/policy_passkey.dart';
 part 'src/models/platform_web.dart';
 part 'src/models/platform_apple.dart';
 part 'src/models/platform_android.dart';
