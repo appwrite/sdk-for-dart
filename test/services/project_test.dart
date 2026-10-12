@@ -2141,8 +2141,9 @@ void main() {
 
     test('test method getPolicy()', () async {
       final Map<String, dynamic> data = {
-        'enabled': true,
-        '\$id': "deny-corporate-email",
+        'rpId': "example.com",
+        'origins': [],
+        '\$id': "passkey",
       };
 
       when(
@@ -2152,7 +2153,7 @@ void main() {
       final response = await project.getPolicy(
         policyId: enums.ProjectPolicyId.passwordDictionary,
       );
-      expect(response, isA<models.PolicyDenyCorporateEmail>());
+      expect(response, isA<models.PolicyPasskey>());
     });
 
     test('test method updateProtocol()', () async {

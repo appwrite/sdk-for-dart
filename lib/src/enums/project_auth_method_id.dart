@@ -7,7 +7,8 @@ enum ProjectAuthMethodId {
   anonymous(value: "anonymous"),
   invites(value: "invites"),
   jwt(value: "jwt"),
-  phone(value: "phone");
+  phone(value: "phone"),
+  passkey(value: "passkey");
 
   const ProjectAuthMethodId({required this.value});
 
