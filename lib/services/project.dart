@@ -2713,6 +2713,37 @@ class Project extends Service {
     return models.Project.fromMap(res.data);
   }
 
+  /// Set the relying party ID passkeys are bound to: the domain of your
+  /// application. Passkeys work on the project's web platforms on that domain or
+  /// its subdomains, and on the domain itself for Apple apps. A localhost web
+  /// platform enables passkeys for local development without a relying party ID.
+  /// The relying party ID cannot change while users have passkeys, and any
+  /// change invalidates ceremonies in progress.
+  Future<models.Project> updatePasskeyPolicy({
+    required String rpId,
+  }) async {
+    final String apiPath = '/project/policies/passkey';
+
+    final Map<String, dynamic> apiParams = {
+      'rpId': rpId,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
   /// Updating this policy allows you to control if new passwords are checked
   /// against most common passwords dictionary. When enabled, and user changes
   /// their password, password must not be contained in the dictionary.

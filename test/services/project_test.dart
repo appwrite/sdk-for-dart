@@ -1752,6 +1752,47 @@ void main() {
       expect(response, isA<models.Project>());
     });
 
+    test('test method updatePasskeyPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'devKeys': [],
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updatePasskeyPolicy(
+        rpId: "<RP_ID>",
+      );
+      expect(response, isA<models.Project>());
+    });
+
     test('test method updatePasswordDictionaryPolicy()', () async {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
