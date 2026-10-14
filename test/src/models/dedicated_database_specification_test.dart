@@ -8,6 +8,10 @@ void main() {
         slug: "s-2vcpu-2gb",
         name: "Standard",
         price: 20,
+        storageOverageRate: 0.125,
+        bandwidthOverageRate: 0.08,
+        replicaRate: 1,
+        pitrRate: 0.2,
         cpu: 2000,
         memory: 2048,
         maxConnections: 200,
@@ -22,6 +26,10 @@ void main() {
       expect(result.slug, "s-2vcpu-2gb");
       expect(result.name, "Standard");
       expect(result.price, 20);
+      expect(result.storageOverageRate, 0.125);
+      expect(result.bandwidthOverageRate, 0.08);
+      expect(result.replicaRate, 1);
+      expect(result.pitrRate, 0.2);
       expect(result.cpu, 2000);
       expect(result.memory, 2048);
       expect(result.maxConnections, 200);

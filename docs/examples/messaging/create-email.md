@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Messaging messaging = Messaging(client);
 
-Message result = await messaging.createEmail(
+models.Message result = await messaging.createEmail(
     messageId: '<MESSAGE_ID>',
     subject: '<SUBJECT>',
     content: '<CONTENT>',

@@ -31,6 +31,16 @@ class OAuth2Keycloak implements Model {
   factory OAuth2Keycloak.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'endpoint': "",
+      'realmName': "",
+      ...map,
+    };
+
     return OAuth2Keycloak(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

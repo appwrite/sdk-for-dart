@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Project project = Project(client);
 
-OAuth2Microsoft result = await project.updateOAuth2Microsoft(
+models.OAuth2Microsoft result = await project.updateOAuth2Microsoft(
     applicationId: '<APPLICATION_ID>', // (optional)
     applicationSecret: '<APPLICATION_SECRET>', // (optional)
     tenant: '<TENANT>', // (optional)

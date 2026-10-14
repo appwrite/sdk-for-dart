@@ -15,31 +15,38 @@ class OAuth2Github implements Model {
   final String clientSecret;
 
   /// GitHub OAuth2 prompt values.
-  final List<enums.OAuth2GithubPrompt>? prompt;
+  final List<enums.OAuth2GithubPrompt> prompt;
 
   OAuth2Github({
     required this.$id,
     required this.enabled,
     required this.clientId,
     required this.clientSecret,
-    this.prompt,
+    required this.prompt,
   });
   factory OAuth2Github.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'prompt': [],
+      ...map,
+    };
+
     return OAuth2Github(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
-      prompt: map['prompt'] != null
-          ? List<enums.OAuth2GithubPrompt>.from(
-              map['prompt'].map(
-                (p) =>
-                    enums.OAuth2GithubPrompt.values.firstWhere((e) => e.value == p),
-              ),
-            )
-          : null,
+      prompt: List<enums.OAuth2GithubPrompt>.from(
+        map['prompt'].map(
+          (p) =>
+              enums.OAuth2GithubPrompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
     );
   }
 
@@ -50,7 +57,7 @@ class OAuth2Github implements Model {
       "enabled": enabled,
       "clientId": clientId,
       "clientSecret": clientSecret,
-      "prompt": prompt?.map((p) => p.value).toList(),
+      "prompt": prompt.map((p) => p.value).toList(),
     };
   }
 }

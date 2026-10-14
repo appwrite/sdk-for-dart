@@ -23,6 +23,14 @@ class OAuth2HuggingFace implements Model {
   factory OAuth2HuggingFace.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2HuggingFace(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

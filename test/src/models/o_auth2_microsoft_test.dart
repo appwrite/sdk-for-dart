@@ -9,6 +9,7 @@ void main() {
         enabled: true,
         applicationId: "00001111-aaaa-2222-bbbb-3333cccc4444",
         applicationSecret: "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
+        prompt: [],
         tenant: "common",
       );
 
@@ -19,6 +20,7 @@ void main() {
       expect(result.enabled, true);
       expect(result.applicationId, "00001111-aaaa-2222-bbbb-3333cccc4444");
       expect(result.applicationSecret, "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u");
+      expect(result.prompt, []);
       expect(result.tenant, "common");
     });
   });

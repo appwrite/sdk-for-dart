@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Apps apps = Apps(client);
 
-AppSecret result = await apps.getSecret(
+models.AppSecret result = await apps.getSecret(
     appId: '<APP_ID>',
     secretId: '<SECRET_ID>',
 );

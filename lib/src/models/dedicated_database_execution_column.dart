@@ -15,6 +15,12 @@ class DedicatedDatabaseExecutionColumn implements Model {
   factory DedicatedDatabaseExecutionColumn.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'name': "",
+      'type': "",
+      ...map,
+    };
+
     return DedicatedDatabaseExecutionColumn(
       name: map['name'].toString(),
       type: map['type'].toString(),

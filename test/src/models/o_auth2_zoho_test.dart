@@ -9,6 +9,7 @@ void main() {
         enabled: true,
         clientId: "1000.83C178000000000000000000RPNX0B",
         clientSecret: "fb5cac000000000000000000000000000000a68f6e",
+        prompt: [],
       );
 
       final map = model.toMap();
@@ -18,6 +19,7 @@ void main() {
       expect(result.enabled, true);
       expect(result.clientId, "1000.83C178000000000000000000RPNX0B");
       expect(result.clientSecret, "fb5cac000000000000000000000000000000a68f6e");
+      expect(result.prompt, []);
     });
   });
 }

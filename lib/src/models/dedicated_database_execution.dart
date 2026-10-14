@@ -31,6 +31,16 @@ class DedicatedDatabaseExecution implements Model {
   factory DedicatedDatabaseExecution.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'rows': [],
+      'rowCount': 0,
+      'columns': [],
+      'durationMs': 0,
+      'truncated': false,
+      'bytes': 0,
+      ...map,
+    };
+
     return DedicatedDatabaseExecution(
       rows: List.from(map['rows'] ?? []),
       rowCount: map['rowCount'],

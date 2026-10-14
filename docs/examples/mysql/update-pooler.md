@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Mysql mysql = Mysql(client);
 
-DedicatedDatabasePooler result = await mysql.updatePooler(
+models.DedicatedDatabasePooler result = await mysql.updatePooler(
     databaseId: '<DATABASE_ID>',
     mode: 'transaction', // (optional)
     maxConnections: 10, // (optional)

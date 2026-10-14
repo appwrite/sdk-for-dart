@@ -8,7 +8,7 @@ Client client = Client()
 
 Domains domains = Domains(client);
 
-String result = await domains.getZone(
+models. result = await domains.getZone(
     domainId: '<DOMAIN_ID>',
 );
 ```

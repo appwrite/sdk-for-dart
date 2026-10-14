@@ -47,6 +47,18 @@ class Index implements Model {
   factory Index.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'key': "",
+      'type': "",
+      'error': "",
+      'attributes': [],
+      'lengths': [],
+      ...map,
+    };
+
     return Index(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

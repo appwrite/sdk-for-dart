@@ -1,6 +1,6 @@
 /// Appwrite Dart SDK
 ///
-/// This SDK targets Appwrite server version 2.0.x as shipped on Appwrite Cloud.
+/// This SDK targets Appwrite server version 2.5.x as shipped on Appwrite Cloud.
 /// Self-hosted releases can lag behind Cloud — if you run an older self-hosted
 /// build, use a matching older SDK from
 /// [previous releases](https://github.com/appwrite/sdk-for-dart/releases)
@@ -30,6 +30,7 @@ part 'query.dart';
 part 'permission.dart';
 part 'role.dart';
 part 'id.dart';
+part 'topic.dart';
 part 'operator.dart';
 part 'services/account.dart';
 part 'services/activities.dart';

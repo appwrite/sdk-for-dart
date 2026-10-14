@@ -86,6 +86,12 @@ class Storage extends Service {
   Future<models.Bucket> getBucket({
     required String bucketId,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
       '{bucketId}',
       bucketId,
@@ -122,6 +128,12 @@ class Storage extends Service {
     bool? antivirus,
     bool? transformations,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
       '{bucketId}',
       bucketId,
@@ -161,6 +173,12 @@ class Storage extends Service {
   Future deleteBucket({
     required String bucketId,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
       '{bucketId}',
       bucketId,
@@ -171,6 +189,7 @@ class Storage extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -191,6 +210,12 @@ class Storage extends Service {
     String? search,
     bool? total,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}/files'.replaceAll(
       '{bucketId}',
       bucketId,
@@ -242,6 +267,12 @@ class Storage extends Service {
     String? folder,
     Function(UploadProgress)? onProgress,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}/files'.replaceAll(
       '{bucketId}',
       bucketId,
@@ -270,6 +301,7 @@ class Storage extends Service {
       idParamName: idParamName,
       headers: apiHeaders,
       onProgress: onProgress,
+      method: HttpMethod.post,
     );
 
     return models.File.fromMap(res.data);
@@ -281,6 +313,18 @@ class Storage extends Service {
     required String bucketId,
     required String fileId,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
+    if (fileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "fileId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
@@ -316,6 +360,18 @@ class Storage extends Service {
     String? name,
     List<String>? permissions,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
+    if (fileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "fileId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
@@ -353,6 +409,18 @@ class Storage extends Service {
     required String bucketId,
     required String fileId,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
+    if (fileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "fileId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
@@ -368,6 +436,7 @@ class Storage extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -388,6 +457,18 @@ class Storage extends Service {
     required String fileId,
     String? token,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
+    if (fileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "fileId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/download'
         .replaceAll(
           '{bucketId}',
@@ -438,6 +519,18 @@ class Storage extends Service {
     enums.ImageFormat? output,
     String? token,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
+    if (fileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "fileId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/preview'
         .replaceAll(
           '{bucketId}',
@@ -486,6 +579,18 @@ class Storage extends Service {
     required String fileId,
     String? token,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
+    if (fileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "fileId"',
+      );
+    }
+
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/view'
         .replaceAll(
           '{bucketId}',

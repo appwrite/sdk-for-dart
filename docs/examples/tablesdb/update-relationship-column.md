@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 TablesDB tablesDB = TablesDB(client);
 
-ColumnRelationship result = await tablesDB.updateRelationshipColumn(
+models.ColumnRelationship result = await tablesDB.updateRelationshipColumn(
     databaseId: '<DATABASE_ID>',
     tableId: '<TABLE_ID>',
     key: '<KEY>',

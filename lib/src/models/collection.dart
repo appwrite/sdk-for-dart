@@ -55,6 +55,22 @@ class Collection implements Model {
   factory Collection.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      '\$permissions': [],
+      'databaseId': "",
+      'name': "",
+      'enabled': true,
+      'documentSecurity': false,
+      'attributes': [],
+      'indexes': [],
+      'bytesMax': 0,
+      'bytesUsed': 0,
+      ...map,
+    };
+
     return Collection(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

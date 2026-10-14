@@ -15,31 +15,38 @@ class OAuth2Discord implements Model {
   final String clientSecret;
 
   /// Discord OAuth2 prompt values.
-  final List<enums.OAuth2DiscordPrompt>? prompt;
+  final List<enums.OAuth2DiscordPrompt> prompt;
 
   OAuth2Discord({
     required this.$id,
     required this.enabled,
     required this.clientId,
     required this.clientSecret,
-    this.prompt,
+    required this.prompt,
   });
   factory OAuth2Discord.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'prompt': [],
+      ...map,
+    };
+
     return OAuth2Discord(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
-      prompt: map['prompt'] != null
-          ? List<enums.OAuth2DiscordPrompt>.from(
-              map['prompt'].map(
-                (p) =>
-                    enums.OAuth2DiscordPrompt.values.firstWhere((e) => e.value == p),
-              ),
-            )
-          : null,
+      prompt: List<enums.OAuth2DiscordPrompt>.from(
+        map['prompt'].map(
+          (p) =>
+              enums.OAuth2DiscordPrompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
     );
   }
 
@@ -50,7 +57,7 @@ class OAuth2Discord implements Model {
       "enabled": enabled,
       "clientId": clientId,
       "clientSecret": clientSecret,
-      "prompt": prompt?.map((p) => p.value).toList(),
+      "prompt": prompt.map((p) => p.value).toList(),
     };
   }
 }

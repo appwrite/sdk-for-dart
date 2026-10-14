@@ -10,6 +10,7 @@ void main() {
         customerKey:
             "3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq",
         customerSecret: "3w000000000000e2",
+        prompt: [],
       );
 
       final map = model.toMap();
@@ -22,6 +23,7 @@ void main() {
         "3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq",
       );
       expect(result.customerSecret, "3w000000000000e2");
+      expect(result.prompt, []);
     });
   });
 }

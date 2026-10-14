@@ -15,6 +15,12 @@ class DatabaseStatusConnections implements Model {
   factory DatabaseStatusConnections.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'current': 0,
+      'max': 100,
+      ...map,
+    };
+
     return DatabaseStatusConnections(
       current: map['current'],
       max: map['max'],

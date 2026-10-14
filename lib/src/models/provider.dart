@@ -43,6 +43,18 @@ class Provider implements Model {
   factory Provider.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'provider': "",
+      'enabled': true,
+      'type': "",
+      'credentials': <String, dynamic>{},
+      ...map,
+    };
+
     return Provider(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

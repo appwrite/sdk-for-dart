@@ -19,6 +19,13 @@ class DedicatedDatabaseExtensions implements Model {
   factory DedicatedDatabaseExtensions.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'installed': [],
+      'available': [],
+      'metadata': [],
+      ...map,
+    };
+
     return DedicatedDatabaseExtensions(
       installed: List.from(map['installed'] ?? []),
       available: List.from(map['available'] ?? []),

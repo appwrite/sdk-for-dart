@@ -15,6 +15,12 @@ class DedicatedDatabasePITRWindows implements Model {
   factory DedicatedDatabasePITRWindows.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'earliest': "",
+      'latest': "",
+      ...map,
+    };
+
     return DedicatedDatabasePITRWindows(
       earliest: map['earliest'].toString(),
       latest: map['latest'].toString(),

@@ -13,6 +13,6 @@ Domains domains = Domains(client);
 models.DomainPricesList result = await domains.listPrices(
     domains: [],
     periodYears: 0, // (optional)
-    registrationType: enums.DomainRegistrationType.xnew, // (optional)
+    registrationType: enums.DomainRegistrationType.new, // (optional)
 );
 ```

@@ -47,6 +47,17 @@ class AttributeIp implements Model {
   factory AttributeIp.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'format': "ip",
+      ...map,
+    };
+
     return AttributeIp(
       key: map['key'].toString(),
       type: map['type'].toString(),

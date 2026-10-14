@@ -27,6 +27,13 @@ class DedicatedDatabaseMember implements Model {
   factory DedicatedDatabaseMember.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'role': "unknown",
+      'status': "",
+      ...map,
+    };
+
     return DedicatedDatabaseMember(
       $id: map['\$id'].toString(),
       role: map['role'].toString(),

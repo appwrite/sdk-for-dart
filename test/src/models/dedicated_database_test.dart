@@ -10,16 +10,12 @@ void main() {
         $updatedAt: "2020-10-15T06:38:00.000+00:00",
         projectId: "5e5ea5c16897e",
         name: "My Production Database",
-        api: "postgresql",
-        engine: "postgresql",
         version: "16",
         specification: "s-2vcpu-2gb",
         backend: "edge",
         hostname: "db-myproject-mydb.fra.appwrite.center",
-        connectionPort: 5432,
         connectionUser: "appwrite_user",
         connectionPassword: "••••••••",
-        credentialGeneration: 1,
         connectionString:
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         ssl: true,
@@ -30,6 +26,8 @@ void main() {
         cpu: 2000,
         memory: 4096,
         storage: 100,
+        storageStatus: "resizing",
+        storageTargetGb: 120,
         storageClass: "ssd",
         storageMaxGb: 100,
         nodePool: "db-pool-4vcpu-8gb",
@@ -43,7 +41,7 @@ void main() {
         pitrRetentionDays: 14,
         storageAutoscaling: true,
         storageAutoscalingThresholdPercent: 85,
-        storageAutoscalingMaxGb: 500,
+        storageAutoscalingMaxGb: 30,
         maintenanceWindowDay: "sun",
         maintenanceWindowHourUtc: 3,
         metricsEnabled: true,
@@ -63,16 +61,12 @@ void main() {
       expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.projectId, "5e5ea5c16897e");
       expect(result.name, "My Production Database");
-      expect(result.api, "postgresql");
-      expect(result.engine, "postgresql");
       expect(result.version, "16");
       expect(result.specification, "s-2vcpu-2gb");
       expect(result.backend, "edge");
       expect(result.hostname, "db-myproject-mydb.fra.appwrite.center");
-      expect(result.connectionPort, 5432);
       expect(result.connectionUser, "appwrite_user");
       expect(result.connectionPassword, "••••••••");
-      expect(result.credentialGeneration, 1);
       expect(
         result.connectionString,
         "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
@@ -85,6 +79,8 @@ void main() {
       expect(result.cpu, 2000);
       expect(result.memory, 4096);
       expect(result.storage, 100);
+      expect(result.storageStatus, "resizing");
+      expect(result.storageTargetGb, 120);
       expect(result.storageClass, "ssd");
       expect(result.storageMaxGb, 100);
       expect(result.nodePool, "db-pool-4vcpu-8gb");
@@ -98,7 +94,7 @@ void main() {
       expect(result.pitrRetentionDays, 14);
       expect(result.storageAutoscaling, true);
       expect(result.storageAutoscalingThresholdPercent, 85);
-      expect(result.storageAutoscalingMaxGb, 500);
+      expect(result.storageAutoscalingMaxGb, 30);
       expect(result.maintenanceWindowDay, "sun");
       expect(result.maintenanceWindowHourUtc, 3);
       expect(result.metricsEnabled, true);

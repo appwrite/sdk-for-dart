@@ -23,6 +23,14 @@ class OAuth2Tradeshift implements Model {
   factory OAuth2Tradeshift.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'oauth2ClientId': "",
+      'oauth2ClientSecret': "",
+      ...map,
+    };
+
     return OAuth2Tradeshift(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

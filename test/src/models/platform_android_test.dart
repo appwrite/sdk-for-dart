@@ -12,6 +12,7 @@ void main() {
         name: "My Web App",
         type: PlatformType.windows,
         applicationId: "com.company.appname",
+        fingerprints: [],
       );
 
       final map = model.toMap();
@@ -23,6 +24,7 @@ void main() {
       expect(result.name, "My Web App");
       expect(result.type, PlatformType.windows);
       expect(result.applicationId, "com.company.appname");
+      expect(result.fingerprints, []);
     });
   });
 }

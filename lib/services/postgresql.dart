@@ -86,8 +86,8 @@ class Postgresql extends Service {
   }
 
   /// List the dedicated database specifications available on the current plan.
-  /// Each specification reports its resource limits, pricing, and whether it is
-  /// enabled for the organization.
+  /// Each specification reports its resource limits, its own prices and overage
+  /// rates, and whether it is enabled for the organization.
   Future<models.DedicatedDatabaseSpecificationList> listSpecifications() async {
     final String apiPath = '/postgresql/specifications';
 
@@ -113,6 +113,12 @@ class Postgresql extends Service {
   Future<models.DedicatedDatabase> get({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -162,6 +168,12 @@ class Postgresql extends Service {
     int? sqlApiMaxBytes,
     int? sqlApiTimeoutSeconds,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -221,6 +233,12 @@ class Postgresql extends Service {
   Future delete({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -250,6 +268,12 @@ class Postgresql extends Service {
     required String databaseId,
     List<String>? queries,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/backups'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -280,6 +304,12 @@ class Postgresql extends Service {
     required String databaseId,
     String? type,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/backups'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -310,6 +340,12 @@ class Postgresql extends Service {
     required String databaseId,
     List<String>? queries,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath =
         '/postgresql/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
@@ -345,6 +381,12 @@ class Postgresql extends Service {
     String? type,
     bool? enabled,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath =
         '/postgresql/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
@@ -381,6 +423,18 @@ class Postgresql extends Service {
     required String databaseId,
     required String policyId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath =
         '/postgresql/{databaseId}/backups/policies/{policyId}'
             .replaceAll(
@@ -418,6 +472,18 @@ class Postgresql extends Service {
     int? retention,
     bool? enabled,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath =
         '/postgresql/{databaseId}/backups/policies/{policyId}'
             .replaceAll(
@@ -458,6 +524,18 @@ class Postgresql extends Service {
     required String databaseId,
     required String policyId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath =
         '/postgresql/{databaseId}/backups/policies/{policyId}'
             .replaceAll(
@@ -500,6 +578,12 @@ class Postgresql extends Service {
     String? prefix,
     String? endpoint,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath =
         '/postgresql/{databaseId}/backups/storage'.replaceAll(
       '{databaseId}',
@@ -538,6 +622,18 @@ class Postgresql extends Service {
     required String databaseId,
     required String backupId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (backupId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "backupId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
@@ -571,6 +667,18 @@ class Postgresql extends Service {
     required String databaseId,
     required String backupId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (backupId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "backupId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
@@ -604,6 +712,12 @@ class Postgresql extends Service {
   Future<models.DedicatedDatabaseBranchList> listBranches({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/branches'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -636,6 +750,12 @@ class Postgresql extends Service {
     String? branchId,
     int? ttl,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/branches'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -669,6 +789,18 @@ class Postgresql extends Service {
     required String databaseId,
     required String branchId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (branchId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "branchId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/branches/{branchId}'
         .replaceAll(
           '{databaseId}',
@@ -704,6 +836,12 @@ class Postgresql extends Service {
   Future<models.DedicatedDatabaseOperation> updateCredentials({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/credentials'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -742,6 +880,12 @@ class Postgresql extends Service {
     Map? bindings,
     int? timeoutSeconds,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/executions'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -773,6 +917,12 @@ class Postgresql extends Service {
   Future<models.DedicatedDatabaseExtensions> listExtensions({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/extensions'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -801,6 +951,12 @@ class Postgresql extends Service {
     required String databaseId,
     required String name,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/extensions'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -832,6 +988,18 @@ class Postgresql extends Service {
     required String databaseId,
     required String extensionName,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (extensionName.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "extensionName"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/extensions/{extensionName}'
         .replaceAll(
           '{databaseId}',
@@ -873,6 +1041,12 @@ class Postgresql extends Service {
     required String databaseId,
     String? targetReplicaId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -906,6 +1080,12 @@ class Postgresql extends Service {
     required String day,
     required int hourUtc,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/maintenance'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -941,6 +1121,12 @@ class Postgresql extends Service {
     required String targetType,
     String? specification,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -977,6 +1163,12 @@ class Postgresql extends Service {
     int? limit,
     int? offset,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/operations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1008,6 +1200,12 @@ class Postgresql extends Service {
   Future<models.DedicatedDatabasePITRWindows> getPitr({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/pitr'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1035,6 +1233,12 @@ class Postgresql extends Service {
   Future<models.DedicatedDatabasePooler> getPooler({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/pooler'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1070,6 +1274,12 @@ class Postgresql extends Service {
     String? poolerMemoryRequest,
     String? poolerMemoryLimit,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/pooler'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1108,6 +1318,12 @@ class Postgresql extends Service {
   Future<models.DedicatedDatabaseReplicas> getReplicas({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1139,6 +1355,12 @@ class Postgresql extends Service {
     int? limit,
     int? offset,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1177,6 +1399,12 @@ class Postgresql extends Service {
     String? targetDatabaseId,
     String? targetTime,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1211,6 +1439,18 @@ class Postgresql extends Service {
     required String databaseId,
     required String restorationId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (restorationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "restorationId"',
+      );
+    }
+
     final String apiPath =
         '/postgresql/{databaseId}/restorations/{restorationId}'
             .replaceAll(
@@ -1245,6 +1485,12 @@ class Postgresql extends Service {
   Future<models.DatabaseStatus> getStatus({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/status'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1273,6 +1519,12 @@ class Postgresql extends Service {
     required String databaseId,
     required String targetVersion,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/postgresql/{databaseId}/upgrades'.replaceAll(
       '{databaseId}',
       databaseId,

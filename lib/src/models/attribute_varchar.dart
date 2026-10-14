@@ -51,6 +51,17 @@ class AttributeVarchar implements Model {
   factory AttributeVarchar.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'size': 0,
+      ...map,
+    };
+
     return AttributeVarchar(
       key: map['key'].toString(),
       type: map['type'].toString(),

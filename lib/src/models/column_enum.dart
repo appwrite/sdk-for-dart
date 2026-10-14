@@ -51,6 +51,18 @@ class ColumnEnum implements Model {
   factory ColumnEnum.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'elements': [],
+      'format': "enum",
+      ...map,
+    };
+
     return ColumnEnum(
       key: map['key'].toString(),
       type: map['type'].toString(),

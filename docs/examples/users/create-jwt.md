@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Users users = Users(client);
 
-Jwt result = await users.createJWT(
+models.Jwt result = await users.createJWT(
     userId: '<USER_ID>',
     sessionId: 'recent()', // (optional)
     duration: 0, // (optional)

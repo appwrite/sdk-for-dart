@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Sites sites = Sites(client);
 
-Deployment result = await sites.createDuplicateDeployment(
+models.Deployment result = await sites.createDuplicateDeployment(
     siteId: '<SITE_ID>',
     deploymentId: '<DEPLOYMENT_ID>',
 );

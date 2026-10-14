@@ -168,6 +168,12 @@ class Functions extends Service {
   Future<models.Func> get({
     required String functionId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}'.replaceAll(
       '{functionId}',
       functionId,
@@ -216,6 +222,12 @@ class Functions extends Service {
     int? deploymentRetention,
     int? interval,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}'.replaceAll(
       '{functionId}',
       functionId,
@@ -270,6 +282,12 @@ class Functions extends Service {
   Future delete({
     required String functionId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}'.replaceAll(
       '{functionId}',
       functionId,
@@ -280,6 +298,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -298,6 +317,12 @@ class Functions extends Service {
     required String functionId,
     required String deploymentId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/deployment'.replaceAll(
       '{functionId}',
       functionId,
@@ -331,6 +356,12 @@ class Functions extends Service {
     String? search,
     bool? total,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/deployments'.replaceAll(
       '{functionId}',
       functionId,
@@ -375,6 +406,12 @@ class Functions extends Service {
     String? commands,
     Function(UploadProgress)? onProgress,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/deployments'.replaceAll(
       '{functionId}',
       functionId,
@@ -402,6 +439,7 @@ class Functions extends Service {
       idParamName: idParamName,
       headers: apiHeaders,
       onProgress: onProgress,
+      method: HttpMethod.post,
     );
 
     return models.Deployment.fromMap(res.data);
@@ -417,6 +455,12 @@ class Functions extends Service {
     required String deploymentId,
     String? buildId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath =
         '/functions/{functionId}/deployments/duplicate'.replaceAll(
       '{functionId}',
@@ -458,6 +502,12 @@ class Functions extends Service {
     required String reference,
     bool? activate,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath =
         '/functions/{functionId}/deployments/template'.replaceAll(
       '{functionId}',
@@ -498,6 +548,12 @@ class Functions extends Service {
     required String reference,
     bool? activate,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/deployments/vcs'.replaceAll(
       '{functionId}',
       functionId,
@@ -530,6 +586,18 @@ class Functions extends Service {
     required String functionId,
     required String deploymentId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (deploymentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "deploymentId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/deployments/{deploymentId}'
         .replaceAll(
           '{functionId}',
@@ -562,6 +630,18 @@ class Functions extends Service {
     required String functionId,
     required String deploymentId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (deploymentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "deploymentId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/deployments/{deploymentId}'
         .replaceAll(
           '{functionId}',
@@ -577,6 +657,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -598,6 +679,18 @@ class Functions extends Service {
     enums.DeploymentDownloadType? type,
     String? token,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (deploymentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "deploymentId"',
+      );
+    }
+
     final String apiPath =
         '/functions/{functionId}/deployments/{deploymentId}/download'
             .replaceAll(
@@ -638,6 +731,18 @@ class Functions extends Service {
     required String functionId,
     required String deploymentId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (deploymentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "deploymentId"',
+      );
+    }
+
     final String apiPath =
         '/functions/{functionId}/deployments/{deploymentId}/status'
             .replaceAll(
@@ -674,6 +779,12 @@ class Functions extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/executions'.replaceAll(
       '{functionId}',
       functionId,
@@ -712,6 +823,12 @@ class Functions extends Service {
     Map? headers,
     String? scheduledAt,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/executions'.replaceAll(
       '{functionId}',
       functionId,
@@ -747,6 +864,18 @@ class Functions extends Service {
     required String functionId,
     required String executionId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (executionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "executionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/executions/{executionId}'
         .replaceAll(
           '{functionId}',
@@ -779,6 +908,18 @@ class Functions extends Service {
     required String functionId,
     required String executionId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (executionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "executionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/executions/{executionId}'
         .replaceAll(
           '{functionId}',
@@ -794,6 +935,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -812,6 +954,12 @@ class Functions extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/variables'.replaceAll(
       '{functionId}',
       functionId,
@@ -846,6 +994,12 @@ class Functions extends Service {
     required String value,
     bool? secret,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/variables'.replaceAll(
       '{functionId}',
       functionId,
@@ -879,6 +1033,18 @@ class Functions extends Service {
     required String functionId,
     required String variableId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/variables/{variableId}'
         .replaceAll(
           '{functionId}',
@@ -914,6 +1080,18 @@ class Functions extends Service {
     String? value,
     bool? secret,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/variables/{variableId}'
         .replaceAll(
           '{functionId}',
@@ -951,6 +1129,18 @@ class Functions extends Service {
     required String functionId,
     required String variableId,
   }) async {
+    if (functionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "functionId"',
+      );
+    }
+
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/functions/{functionId}/variables/{variableId}'
         .replaceAll(
           '{functionId}',
@@ -966,6 +1156,7 @@ class Functions extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(

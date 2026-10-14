@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
     HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
@@ -288,20 +289,6 @@ void main() {
       final response = await account.deleteIdentity(
         identityId: "<IDENTITY_ID>",
       );
-    });
-
-    test('test method listLogs()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'logs': [],
-      };
-
-      when(
-        client.call(HttpMethod.get),
-      ).thenAnswer((_) async => Response(data: data));
-
-      final response = await account.listLogs();
-      expect(response, isA<models.LogList>());
     });
 
     test('test method updateMFA()', () async {

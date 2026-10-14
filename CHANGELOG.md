@@ -1,5 +1,24 @@
 # Change Log
 
+## 30.0.0
+
+* Breaking: removed `account.listLogs` and `users.listLogs`
+* Breaking: removed `organization.createKey`, `getKey`, `listKeys`, `updateKey` and `deleteKey`, and `OrganizationKeyScopes`
+* Breaking: removed the `Log`, `LogList`, `DevKey` and `DedicatedDatabaseSpecificationPricing` models
+* Breaking: removed `Project.devKeys`, `DedicatedDatabaseSpecificationList.pricing` and the unsent `Block` fields
+* Breaking: removed `Client.setDevKey`
+* Breaking: removed `BillingPlanGroup.starter`
+* Breaking: requests send response format `2.5.0`
+* Breaking: `resource` on the `oauth2` authorize, PAR, device and token methods is now `List<String>`
+* Breaking: `BackupRestoration.options` is now a `Map<String, dynamic>`
+* Breaking: billing, backup and dedicated database fields the server can omit are now nullable
+* Breaking: `providerIdToken`, `fingerprints`, OAuth2 `prompt` and native fields are now non-nullable
+* Breaking: `Client.chunkedUpload` takes a `responseType` parameter; custom `Client` implementations must add it
+* Added: `Topic` helper to build MQTT topics for push messages
+* Updated: models fill documented defaults for fields missing from a response
+* Updated: empty required ID parameters now throw `AppwriteException` before sending the request
+* Updated: examples import `models.dart` and use `models.` types
+
 ## 29.4.0
 
 * Added: `domains` service to manage domains, DNS records, email presets, prices, transfer status and zones

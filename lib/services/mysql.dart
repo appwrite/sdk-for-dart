@@ -86,8 +86,8 @@ class Mysql extends Service {
   }
 
   /// List the dedicated database specifications available on the current plan.
-  /// Each specification reports its resource limits, pricing, and whether it is
-  /// enabled for the organization.
+  /// Each specification reports its resource limits, its own prices and overage
+  /// rates, and whether it is enabled for the organization.
   Future<models.DedicatedDatabaseSpecificationList> listSpecifications() async {
     final String apiPath = '/mysql/specifications';
 
@@ -113,6 +113,12 @@ class Mysql extends Service {
   Future<models.DedicatedDatabase> get({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -162,6 +168,12 @@ class Mysql extends Service {
     int? sqlApiMaxBytes,
     int? sqlApiTimeoutSeconds,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -221,6 +233,12 @@ class Mysql extends Service {
   Future delete({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -250,6 +268,12 @@ class Mysql extends Service {
     required String databaseId,
     List<String>? queries,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -280,6 +304,12 @@ class Mysql extends Service {
     required String databaseId,
     String? type,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -310,6 +340,12 @@ class Mysql extends Service {
     required String databaseId,
     List<String>? queries,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -344,6 +380,12 @@ class Mysql extends Service {
     String? type,
     bool? enabled,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -379,6 +421,18 @@ class Mysql extends Service {
     required String databaseId,
     required String policyId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
@@ -415,6 +469,18 @@ class Mysql extends Service {
     int? retention,
     bool? enabled,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
@@ -454,6 +520,18 @@ class Mysql extends Service {
     required String databaseId,
     required String policyId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (policyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "policyId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
@@ -495,6 +573,12 @@ class Mysql extends Service {
     String? prefix,
     String? endpoint,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups/storage'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -532,6 +616,18 @@ class Mysql extends Service {
     required String databaseId,
     required String backupId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (backupId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "backupId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
@@ -565,6 +661,18 @@ class Mysql extends Service {
     required String databaseId,
     required String backupId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (backupId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "backupId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
@@ -598,6 +706,12 @@ class Mysql extends Service {
   Future<models.DedicatedDatabaseBranchList> listBranches({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/branches'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -630,6 +744,12 @@ class Mysql extends Service {
     String? branchId,
     int? ttl,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/branches'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -663,6 +783,18 @@ class Mysql extends Service {
     required String databaseId,
     required String branchId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (branchId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "branchId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/branches/{branchId}'
         .replaceAll(
           '{databaseId}',
@@ -698,6 +830,12 @@ class Mysql extends Service {
   Future<models.DedicatedDatabaseOperation> updateCredentials({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/credentials'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -736,6 +874,12 @@ class Mysql extends Service {
     Map? bindings,
     int? timeoutSeconds,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/executions'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -776,6 +920,12 @@ class Mysql extends Service {
     required String databaseId,
     String? targetReplicaId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -809,6 +959,12 @@ class Mysql extends Service {
     required String day,
     required int hourUtc,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/maintenance'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -844,6 +1000,12 @@ class Mysql extends Service {
     required String targetType,
     String? specification,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -880,6 +1042,12 @@ class Mysql extends Service {
     int? limit,
     int? offset,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/operations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -911,6 +1079,12 @@ class Mysql extends Service {
   Future<models.DedicatedDatabasePITRWindows> getPitr({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/pitr'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -938,6 +1112,12 @@ class Mysql extends Service {
   Future<models.DedicatedDatabasePooler> getPooler({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/pooler'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -973,6 +1153,12 @@ class Mysql extends Service {
     String? poolerMemoryRequest,
     String? poolerMemoryLimit,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/pooler'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1011,6 +1197,12 @@ class Mysql extends Service {
   Future<models.DedicatedDatabaseReplicas> getReplicas({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1042,6 +1234,12 @@ class Mysql extends Service {
     int? limit,
     int? offset,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1080,6 +1278,12 @@ class Mysql extends Service {
     String? targetDatabaseId,
     String? targetTime,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1114,6 +1318,18 @@ class Mysql extends Service {
     required String databaseId,
     required String restorationId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (restorationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "restorationId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/restorations/{restorationId}'
         .replaceAll(
           '{databaseId}',
@@ -1147,6 +1363,12 @@ class Mysql extends Service {
   Future<models.DatabaseStatus> getStatus({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/status'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -1175,6 +1397,12 @@ class Mysql extends Service {
     required String databaseId,
     required String targetVersion,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/mysql/{databaseId}/upgrades'.replaceAll(
       '{databaseId}',
       databaseId,

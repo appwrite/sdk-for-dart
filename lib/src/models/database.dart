@@ -35,7 +35,7 @@ class Database implements Model {
   /// Error message when the dedicated backing failed. Null when the database has no dedicated backing or has not failed.
   final String? error;
 
-  /// Container status of the dedicated backing: active or inactive. Null when the database has no dedicated backing or the runtime has not reported one.
+  /// Container status of the dedicated backing: active, inactive, or failed (a wake was declined because the backing namespace is gone). Null when the database has no dedicated backing or the runtime has not reported one.
   final String? containerStatus;
 
   /// Idle-lifecycle state of the dedicated backing: active, warm, cold, or hibernated. Null when the database has no dedicated backing or the runtime has not reported one.
@@ -67,6 +67,16 @@ class Database implements Model {
   factory Database.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'name': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'enabled': true,
+      'type': "legacy",
+      ...map,
+    };
+
     return Database(
       $id: map['\$id'].toString(),
       name: map['name'].toString(),

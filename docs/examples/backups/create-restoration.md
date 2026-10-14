@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Backups backups = Backups(client);
 
-BackupRestoration result = await backups.createRestoration(
+models.BackupRestoration result = await backups.createRestoration(
     archiveId: '<ARCHIVE_ID>',
     services: [enums.BackupServices.databases],
     newResourceId: '<NEW_RESOURCE_ID>', // (optional)

@@ -10,10 +10,6 @@ void main() {
         engine: "postgresql",
         version: "17",
         uptime: 86400,
-        connections: DatabaseStatusConnections(
-          current: 12,
-          max: 100,
-        ),
         syncMode: "async",
         syncDegraded: true,
         syncAcknowledgements: 1,

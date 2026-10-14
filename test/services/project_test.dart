@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
     HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
@@ -74,7 +75,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -123,7 +123,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -179,7 +178,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -221,7 +219,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -262,7 +259,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -340,7 +336,7 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createEphemeralKey(
-        scopes: [enums.ProjectKeyScopes.projectRead],
+        scopes: [enums.ProjectKeyScopes.usersRead],
         duration: 1,
       );
       expect(response, isA<models.EphemeralKey>());
@@ -389,7 +385,7 @@ void main() {
       final response = await project.updateKey(
         keyId: "<KEY_ID>",
         name: "<NAME>",
-        scopes: [enums.ProjectKeyScopes.projectRead],
+        scopes: [enums.ProjectKeyScopes.usersRead],
       );
       expect(response, isA<models.Key>());
     });
@@ -414,7 +410,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -551,7 +546,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -612,6 +606,8 @@ void main() {
         'teamId': "D4000000R6",
         'p8File':
             "-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----",
+        'nativeEnabled': true,
+        'nativeClientIds': [],
       };
 
       when(
@@ -646,6 +642,7 @@ void main() {
         'clientId': "OaOkIA000000000000000000005KLSYq",
         'clientSecret':
             "zXz0000-00000000000000000000000000000-00000000000000000000PJafnF",
+        'prompt': [],
         'endpoint': "example.us.auth0.com",
       };
 
@@ -777,6 +774,7 @@ void main() {
         'enabled': true,
         'clientId': "950722000000343754",
         'clientSecret': "YmPXnM000000000000000000002zFg5D",
+        'prompt': [],
       };
 
       when(
@@ -892,6 +890,7 @@ void main() {
         'enabled': true,
         'clientId': "e4d87900000000540733",
         'clientSecret': "5e07c00000000000000000000000000000198bcc",
+        'prompt': [],
       };
 
       when(
@@ -929,6 +928,8 @@ void main() {
             "120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com",
         'clientSecret': "GOCSPX-2k8gsR0000000000000000VNahJj",
         'prompt': [],
+        'nativeEnabled': true,
+        'nativeClientIds': [],
       };
 
       when(
@@ -1029,6 +1030,7 @@ void main() {
         'enabled': true,
         'applicationId': "00001111-aaaa-2222-bbbb-3333cccc4444",
         'applicationSecret': "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
+        'prompt': [],
         'tenant': "common",
       };
 
@@ -1064,11 +1066,11 @@ void main() {
         'clientId': "qibI2x0000000000000000000000000006L2YFoG",
         'clientSecret':
             "Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV",
+        'prompt': [],
         'wellKnownURL': "https://myoauth.com/.well-known/openid-configuration",
         'authorizationURL': "https://myoauth.com/oauth2/authorize",
         'tokenURL': "https://myoauth.com/oauth2/token",
         'userInfoURL': "https://myoauth.com/oauth2/userinfo",
-        'prompt': [],
       };
 
       when(
@@ -1086,6 +1088,7 @@ void main() {
         'clientId': "0oa00000000000000698",
         'clientSecret':
             "Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV",
+        'prompt': [],
         'domain': "trial-6400025.okta.com",
         'authorizationServerId': "aus000000000000000h7z",
       };
@@ -1175,6 +1178,7 @@ void main() {
         'customerKey':
             "3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq",
         'customerSecret': "3w000000000000e2",
+        'prompt': [],
       };
 
       when(
@@ -1388,6 +1392,7 @@ void main() {
         'enabled': true,
         'clientId': "1000.83C178000000000000000000RPNX0B",
         'clientSecret': "fb5cac000000000000000000000000000000a68f6e",
+        'prompt': [],
       };
 
       when(
@@ -1455,6 +1460,7 @@ void main() {
         'name': "My Web App",
         'type': "web",
         'applicationId': "com.company.appname",
+        'fingerprints': [],
       };
 
       when(
@@ -1477,6 +1483,7 @@ void main() {
         'name': "My Web App",
         'type': "web",
         'applicationId': "com.company.appname",
+        'fingerprints': [],
       };
 
       when(
@@ -1721,7 +1728,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1762,7 +1768,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1803,7 +1808,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1844,7 +1848,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1885,7 +1888,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1924,7 +1926,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -1963,7 +1964,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2004,7 +2004,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2045,7 +2044,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2086,7 +2084,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2127,7 +2124,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2166,7 +2162,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2223,7 +2218,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2264,7 +2258,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2305,7 +2298,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2346,7 +2338,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2387,7 +2378,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2445,7 +2435,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2487,7 +2476,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -2529,7 +2517,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
