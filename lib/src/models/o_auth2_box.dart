@@ -23,6 +23,14 @@ class OAuth2Box implements Model {
   factory OAuth2Box.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Box(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

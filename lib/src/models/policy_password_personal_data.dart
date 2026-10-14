@@ -15,6 +15,12 @@ class PolicyPasswordPersonalData implements Model {
   factory PolicyPasswordPersonalData.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      ...map,
+    };
+
     return PolicyPasswordPersonalData(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

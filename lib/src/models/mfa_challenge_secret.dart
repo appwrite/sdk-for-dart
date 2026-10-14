@@ -27,6 +27,15 @@ class MfaChallengeSecret implements Model {
   factory MfaChallengeSecret.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      'userId': "",
+      'expire': "",
+      'code': "",
+      ...map,
+    };
+
     return MfaChallengeSecret(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

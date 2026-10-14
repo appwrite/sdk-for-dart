@@ -63,6 +63,21 @@ class ColumnRelationship implements Model {
   factory ColumnRelationship.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'relationType': "",
+      'twoWay': false,
+      'twoWayKey': "",
+      'onDelete': "restrict",
+      'side': "",
+      ...map,
+    };
+
     return ColumnRelationship(
       key: map['key'].toString(),
       type: map['type'].toString(),

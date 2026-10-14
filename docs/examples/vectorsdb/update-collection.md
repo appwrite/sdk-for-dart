@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/permission.dart';
 import 'package:dart_appwrite/role.dart';
 
@@ -10,11 +11,11 @@ Client client = Client()
 
 VectorsDB vectorsDB = VectorsDB(client);
 
-VectorsdbCollection result = await vectorsDB.updateCollection(
+models.VectorsdbCollection result = await vectorsDB.updateCollection(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
     name: '<NAME>',
-    dimension: 1, // (optional)
+    dimension: 4, // (optional)
     permissions: [Permission.read(Role.any())], // (optional)
     documentSecurity: false, // (optional)
     enabled: false, // (optional)

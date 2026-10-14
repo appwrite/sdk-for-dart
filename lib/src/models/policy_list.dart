@@ -15,6 +15,12 @@ class PolicyList implements Model {
   factory PolicyList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'policies': [],
+      ...map,
+    };
+
     return PolicyList(
       total: map['total'],
       policies: List.from(map['policies'] ?? []),

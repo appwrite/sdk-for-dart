@@ -43,6 +43,17 @@ class AttributeVector implements Model {
   factory AttributeVector.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'size': 0,
+      ...map,
+    };
+
     return AttributeVector(
       key: map['key'].toString(),
       type: map['type'].toString(),

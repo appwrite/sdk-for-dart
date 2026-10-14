@@ -23,6 +23,14 @@ class OAuth2Spotify implements Model {
   factory OAuth2Spotify.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Spotify(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

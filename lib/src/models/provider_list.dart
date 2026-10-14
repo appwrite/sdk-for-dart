@@ -15,6 +15,12 @@ class ProviderList implements Model {
   factory ProviderList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'providers': [],
+      ...map,
+    };
+
     return ProviderList(
       total: map['total'],
       providers: List<Provider>.from(

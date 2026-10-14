@@ -43,6 +43,19 @@ class Key implements Model {
   factory Key.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'expire': "",
+      'scopes': [],
+      'secret': "",
+      'accessedAt': "",
+      'sdks': [],
+      ...map,
+    };
+
     return Key(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

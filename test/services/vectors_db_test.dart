@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
     HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
@@ -105,12 +106,6 @@ void main() {
       final Map<String, dynamic> data = {
         'specifications': [],
         'total': 9,
-        'pricing': <String, dynamic>{
-          'storageOverageRate': 0.125,
-          'bandwidthOverageRate': 0.08,
-          'replicaRate': 1,
-          'pitrRate': 0.2,
-        },
       };
 
       when(
@@ -695,16 +690,12 @@ void main() {
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'projectId': "5e5ea5c16897e",
         'name': "My Production Database",
-        'api': "postgresql",
-        'engine': "postgresql",
         'version': "16",
         'specification': "s-2vcpu-2gb",
         'backend': "edge",
         'hostname': "db-myproject-mydb.fra.appwrite.center",
-        'connectionPort': 5432,
         'connectionUser': "appwrite_user",
         'connectionPassword': "••••••••",
-        'credentialGeneration': 1,
         'connectionString':
             "postgresql://user:pass@db-myproject-mydb.fra.appwrite.center:5432/postgres?sslmode=require",
         'ssl': true,
@@ -715,6 +706,8 @@ void main() {
         'cpu': 2000,
         'memory': 4096,
         'storage': 100,
+        'storageStatus': "resizing",
+        'storageTargetGb': 120,
         'storageClass': "ssd",
         'storageMaxGb': 100,
         'nodePool': "db-pool-4vcpu-8gb",
@@ -728,7 +721,7 @@ void main() {
         'pitrRetentionDays': 14,
         'storageAutoscaling': true,
         'storageAutoscalingThresholdPercent': 85,
-        'storageAutoscalingMaxGb': 500,
+        'storageAutoscalingMaxGb': 30,
         'maintenanceWindowDay': "sun",
         'maintenanceWindowHourUtc': 3,
         'metricsEnabled': true,
@@ -793,10 +786,6 @@ void main() {
         'engine': "postgresql",
         'version': "17",
         'uptime': 86400,
-        'connections': <String, dynamic>{
-          'current': 12,
-          'max': 100,
-        },
         'syncMode': "async",
         'syncDegraded': true,
         'syncAcknowledgements': 1,

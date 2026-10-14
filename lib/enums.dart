@@ -28,7 +28,6 @@ part 'src/enums/deployment_download_type.dart';
 part 'src/enums/execution_method.dart';
 part 'src/enums/message_priority.dart';
 part 'src/enums/smtp_encryption.dart';
-part 'src/enums/organization_key_scopes.dart';
 part 'src/enums/region.dart';
 part 'src/enums/project_auth_method_id.dart';
 part 'src/enums/project_o_auth2_auth0_prompt.dart';

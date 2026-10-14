@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/permission.dart';
 import 'package:dart_appwrite/role.dart';
 
@@ -10,7 +11,7 @@ Client client = Client()
 
 DocumentsDB documentsDB = DocumentsDB(client);
 
-Collection result = await documentsDB.createCollection(
+models.Collection result = await documentsDB.createCollection(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
     name: '<NAME>',

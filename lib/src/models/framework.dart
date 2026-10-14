@@ -27,6 +27,15 @@ class Framework implements Model {
   factory Framework.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'name': "",
+      'buildRuntime': "",
+      'runtimes': [],
+      'adapters': [],
+      ...map,
+    };
+
     return Framework(
       key: map['key'].toString(),
       name: map['name'].toString(),

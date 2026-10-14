@@ -15,6 +15,12 @@ class TableList implements Model {
   factory TableList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'tables': [],
+      ...map,
+    };
+
     return TableList(
       total: map['total'],
       tables: List<Table>.from(

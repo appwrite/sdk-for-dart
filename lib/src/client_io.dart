@@ -42,10 +42,10 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '29.4.0',
+      'x-sdk-version': '30.0.0',
       'user-agent':
-          'AppwriteDartSDK/29.4.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format': '2.0.0',
+          'AppwriteDartSDK/30.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format': '2.5.0',
     };
 
     config = {};
@@ -119,14 +119,6 @@ class ClientIO extends ClientBase with ClientMixin {
     return this;
   }
 
-  /// Your secret dev API key
-  @override
-  ClientIO setDevKey(value) {
-    config['devKey'] = value;
-    addHeader('X-Appwrite-Dev-Key', value);
-    return this;
-  }
-
   /// The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
   @override
   ClientIO setCookie(value) {
@@ -195,8 +187,19 @@ class ClientIO extends ClientBase with ClientMixin {
     required String idParamName,
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
     HttpMethod method = HttpMethod.post,
   }) async {
+    if (params[paramName] == null) {
+      return call(
+        method,
+        path: path,
+        params: params,
+        headers: headers,
+        responseType: responseType,
+      );
+    }
+
     InputFile file = params[paramName];
     if (file.path == null && file.bytes == null) {
       throw AppwriteException("File path or bytes must be provided");
@@ -215,7 +218,7 @@ class ClientIO extends ClientBase with ClientMixin {
     }
 
     late Response res;
-    if (size <= chunkSize) {
+    if (size <= chunkSize || responseType == ResponseType.plain) {
       if (file.path != null) {
         params[paramName] = await http.MultipartFile.fromPath(
             paramName, file.path!,
@@ -229,6 +232,7 @@ class ClientIO extends ClientBase with ClientMixin {
         path: path,
         params: params,
         headers: headers,
+        responseType: responseType,
       );
     }
 

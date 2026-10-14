@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Tokens tokens = Tokens(client);
 
-ResourceToken result = await tokens.update(
+models.ResourceToken result = await tokens.update(
     tokenId: '<TOKEN_ID>',
     expire: '2020-10-15T06:38:00.000+00:00', // (optional)
 );

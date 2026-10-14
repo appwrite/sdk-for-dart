@@ -31,6 +31,15 @@ class PlatformWindows implements Model {
   factory PlatformWindows.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'packageIdentifierName': "",
+      ...map,
+    };
+
     return PlatformWindows(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

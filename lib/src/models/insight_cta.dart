@@ -23,6 +23,14 @@ class InsightCTA implements Model {
   factory InsightCTA.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'label': "",
+      'service': "",
+      'method': "",
+      'params': <String, dynamic>{},
+      ...map,
+    };
+
     return InsightCTA(
       label: map['label'].toString(),
       service: map['service'].toString(),

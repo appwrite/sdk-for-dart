@@ -27,6 +27,15 @@ class PolicyMfaFactors implements Model {
   factory PolicyMfaFactors.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'totp': true,
+      'email': true,
+      'phone': true,
+      'custom': false,
+      ...map,
+    };
+
     return PolicyMfaFactors(
       $id: map['\$id'].toString(),
       totp: map['totp'],

@@ -34,6 +34,12 @@ class Activities extends Service {
   Future<models.ActivityEvent> getEvent({
     required String eventId,
   }) async {
+    if (eventId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "eventId"',
+      );
+    }
+
     final String apiPath = '/activities/events/{eventId}'.replaceAll(
       '{eventId}',
       eventId,

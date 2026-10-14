@@ -20,9 +20,6 @@ class Project implements Model {
   /// Project region
   final String region;
 
-  /// Deprecated since 1.9.5: List of dev keys.
-  final List<DevKey> devKeys;
-
   /// Status for custom SMTP
   final bool smtpEnabled;
 
@@ -156,7 +153,6 @@ class Project implements Model {
     required this.name,
     required this.teamId,
     required this.region,
-    required this.devKeys,
     required this.smtpEnabled,
     required this.smtpSenderName,
     required this.smtpSenderEmail,
@@ -203,6 +199,36 @@ class Project implements Model {
   factory Project.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'teamId': "",
+      'region': "fra",
+      'smtpEnabled': false,
+      'smtpSenderName': "",
+      'smtpSenderEmail': "",
+      'smtpReplyToName': "",
+      'smtpReplyToEmail': "",
+      'smtpHost': "",
+      'smtpPort': 0,
+      'smtpUsername': "",
+      'smtpPassword': "",
+      'smtpSecure': "",
+      'pingCount': 0,
+      'pingedAt': "",
+      'labels': [],
+      'status': "active",
+      'onboarding': <String, dynamic>{},
+      'authMethods': [],
+      'services': [],
+      'protocols': [],
+      'blocks': [],
+      'consoleAccessedAt': "",
+      ...map,
+    };
+
     return Project(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -210,9 +236,6 @@ class Project implements Model {
       name: map['name'].toString(),
       teamId: map['teamId'].toString(),
       region: map['region'].toString(),
-      devKeys: List<DevKey>.from(
-        map['devKeys'].map((p) => DevKey.fromMap(p)),
-      ),
       smtpEnabled: map['smtpEnabled'],
       smtpSenderName: map['smtpSenderName'].toString(),
       smtpSenderEmail: map['smtpSenderEmail'].toString(),
@@ -287,7 +310,6 @@ class Project implements Model {
       "name": name,
       "teamId": teamId,
       "region": region,
-      "devKeys": devKeys.map((p) => p.toMap()).toList(),
       "smtpEnabled": smtpEnabled,
       "smtpSenderName": smtpSenderName,
       "smtpSenderEmail": smtpSenderEmail,

@@ -27,6 +27,15 @@ class OAuth2Authentik implements Model {
   factory OAuth2Authentik.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'endpoint': "",
+      ...map,
+    };
+
     return OAuth2Authentik(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

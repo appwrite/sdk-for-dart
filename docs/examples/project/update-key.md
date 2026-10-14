@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,10 +10,10 @@ Client client = Client()
 
 Project project = Project(client);
 
-Key result = await project.updateKey(
+models.Key result = await project.updateKey(
     keyId: '<KEY_ID>',
     name: '<NAME>',
-    scopes: [enums.ProjectKeyScopes.projectRead],
+    scopes: [enums.ProjectKeyScopes.usersRead],
     expire: '2020-10-15T06:38:00.000+00:00', // (optional)
 );
 ```

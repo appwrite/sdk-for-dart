@@ -29,7 +29,7 @@ class ProxyRule implements Model {
   /// ID of deployment. Used if type is &quot;deployment&quot;
   final String deploymentId;
 
-  /// Type of deployment. Possible values are &quot;function&quot;, &quot;site&quot;. Used if rule&#039;s type is &quot;deployment&quot;.
+  /// Type of deployment resource: function, site, or dedicatedDatabase.
   final enums.ProxyRuleDeploymentResourceType? deploymentResourceType;
 
   /// ID of deployment&#039;s resource (site or function ID). Used if type is &quot;deployment&quot;
@@ -67,6 +67,23 @@ class ProxyRule implements Model {
   factory ProxyRule.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'domain': "",
+      'type': "",
+      'trigger': "",
+      'redirectUrl': "",
+      'redirectStatusCode': 301,
+      'deploymentId': "",
+      'deploymentResourceId': "",
+      'deploymentVcsProviderBranch': "",
+      'status': "unverified",
+      'logs': "",
+      ...map,
+    };
+
     return ProxyRule(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

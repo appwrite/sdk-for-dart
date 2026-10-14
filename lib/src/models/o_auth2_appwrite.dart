@@ -23,6 +23,14 @@ class OAuth2Appwrite implements Model {
   factory OAuth2Appwrite.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Appwrite(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

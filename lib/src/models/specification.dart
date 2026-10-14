@@ -23,6 +23,14 @@ class Specification implements Model {
   factory Specification.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'memory': 0,
+      'cpus': 0,
+      'enabled': false,
+      'slug': "",
+      ...map,
+    };
+
     return Specification(
       memory: map['memory'],
       cpus: map['cpus'].toDouble(),

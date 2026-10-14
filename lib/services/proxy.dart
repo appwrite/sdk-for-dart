@@ -10,6 +10,8 @@ class Proxy extends Service {
   ///
   /// Depending on type, the invalidation purges a single cache tag, a single URL
   /// path, or all cached content for the domain.
+  ///
+  /// Domains that route to a function do not support cache invalidation.
   Future<models.ProxyInvalidation> createInvalidation({
     required String domain,
     required enums.InvalidationType type,
@@ -204,6 +206,12 @@ class Proxy extends Service {
   Future<models.ProxyRule> getRule({
     required String ruleId,
   }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
     final String apiPath = '/proxy/rules/{ruleId}'.replaceAll(
       '{ruleId}',
       ruleId,
@@ -230,6 +238,12 @@ class Proxy extends Service {
   Future deleteRule({
     required String ruleId,
   }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
     final String apiPath = '/proxy/rules/{ruleId}'.replaceAll(
       '{ruleId}',
       ruleId,
@@ -240,6 +254,7 @@ class Proxy extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -259,6 +274,12 @@ class Proxy extends Service {
   Future<models.ProxyRule> updateRuleStatus({
     required String ruleId,
   }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
     final String apiPath = '/proxy/rules/{ruleId}/status'.replaceAll(
       '{ruleId}',
       ruleId,

@@ -27,6 +27,13 @@ class DatabaseStatusReplica implements Model {
   factory DatabaseStatusReplica.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'index': 0,
+      'role': "unknown",
+      'healthy': false,
+      ...map,
+    };
+
     return DatabaseStatusReplica(
       index: map['index'],
       role: map['role'].toString(),

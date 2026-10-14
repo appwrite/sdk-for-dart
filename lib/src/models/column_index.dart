@@ -47,6 +47,19 @@ class ColumnIndex implements Model {
   factory ColumnIndex.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'key': "",
+      'type': "",
+      'status': "",
+      'error': "",
+      'columns': [],
+      'lengths': [],
+      ...map,
+    };
+
     return ColumnIndex(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

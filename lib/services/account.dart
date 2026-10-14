@@ -96,6 +96,12 @@ class Account extends Service {
   Future<models.Oauth2Consent> getConsent({
     required String consentId,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}'.replaceAll(
       '{consentId}',
       consentId,
@@ -124,6 +130,12 @@ class Account extends Service {
   Future deleteConsent({
     required String consentId,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}'.replaceAll(
       '{consentId}',
       consentId,
@@ -155,6 +167,12 @@ class Account extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}/tokens'.replaceAll(
       '{consentId}',
       consentId,
@@ -186,6 +204,18 @@ class Account extends Service {
     required String consentId,
     required String tokenId,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
+    if (tokenId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tokenId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}/tokens/{tokenId}'
         .replaceAll(
           '{consentId}',
@@ -220,6 +250,18 @@ class Account extends Service {
     required String consentId,
     required String tokenId,
   }) async {
+    if (consentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "consentId"',
+      );
+    }
+
+    if (tokenId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tokenId"',
+      );
+    }
+
     final String apiPath = '/account/consents/{consentId}/tokens/{tokenId}'
         .replaceAll(
           '{consentId}',
@@ -313,6 +355,12 @@ class Account extends Service {
   Future deleteIdentity({
     required String identityId,
   }) async {
+    if (identityId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "identityId"',
+      );
+    }
+
     final String apiPath = '/account/identities/{identityId}'.replaceAll(
       '{identityId}',
       identityId,
@@ -323,6 +371,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -333,34 +382,6 @@ class Account extends Service {
     );
 
     return res.data;
-  }
-
-  /// Get the list of latest security activity logs for the currently logged in
-  /// user. Each log returns user IP address, location and date and time of log.
-  Future<models.LogList> listLogs({
-    List<String>? queries,
-    bool? total,
-  }) async {
-    final String apiPath = '/account/logs';
-
-    final Map<String, dynamic> apiParams = {
-      if (queries != null) 'queries': queries,
-      if (total != null) 'total': total,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.get,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.LogList.fromMap(res.data);
   }
 
   /// Enable or disable MFA on an account.
@@ -536,6 +557,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -562,6 +584,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1439,6 +1462,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1481,6 +1505,9 @@ class Account extends Service {
 
   /// Allow the user to login into their account by providing a valid email and
   /// password combination. This route will create a new session for the user.
+  /// Use the optional `duration` parameter to create a shorter session, for
+  /// example when the user doesn't choose "remember me". It must be at least 60
+  /// seconds and cannot exceed the project maximum session length.
   ///
   /// A user is limited to 10 active sessions at a time by default. [Learn more
   /// about session
@@ -1691,6 +1718,12 @@ class Account extends Service {
   Future<models.Session> getSession({
     required String sessionId,
   }) async {
+    if (sessionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "sessionId"',
+      );
+    }
+
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
       sessionId,
@@ -1719,6 +1752,12 @@ class Account extends Service {
   Future<models.Session> updateSession({
     required String sessionId,
   }) async {
+    if (sessionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "sessionId"',
+      );
+    }
+
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
       sessionId,
@@ -1750,6 +1789,12 @@ class Account extends Service {
   Future deleteSession({
     required String sessionId,
   }) async {
+    if (sessionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "sessionId"',
+      );
+    }
+
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
       sessionId,
@@ -1760,6 +1805,7 @@ class Account extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1892,6 +1938,10 @@ class Account extends Service {
   /// create a new session using the [Create
   /// session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
   /// endpoint.
+  ///
+  /// If there is already an active session, the OAuth2 identity is attached to
+  /// the logged-in account and that session stays active until the token is
+  /// exchanged for a new one.
   ///
   /// A user is limited to 10 active sessions at a time by default. [Learn more
   /// about session

@@ -23,6 +23,14 @@ class MockNumber implements Model {
   factory MockNumber.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'number': "",
+      'otp': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return MockNumber(
       number: map['number'].toString(),
       otp: map['otp'].toString(),

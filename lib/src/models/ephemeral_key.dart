@@ -43,6 +43,19 @@ class EphemeralKey implements Model {
   factory EphemeralKey.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'expire': "",
+      'scopes': [],
+      'secret': "",
+      'accessedAt': "",
+      'sdks': [],
+      ...map,
+    };
+
     return EphemeralKey(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

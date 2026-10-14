@@ -15,6 +15,12 @@ class CollectionList implements Model {
   factory CollectionList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'collections': [],
+      ...map,
+    };
+
     return CollectionList(
       total: map['total'],
       collections: List<Collection>.from(

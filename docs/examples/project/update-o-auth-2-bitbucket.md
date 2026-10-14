@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Project project = Project(client);
 
-OAuth2Bitbucket result = await project.updateOAuth2Bitbucket(
+models.OAuth2Bitbucket result = await project.updateOAuth2Bitbucket(
     key: '<KEY>', // (optional)
     secret: '<SECRET>', // (optional)
     enabled: false, // (optional)

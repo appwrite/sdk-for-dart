@@ -15,6 +15,12 @@ class TopicList implements Model {
   factory TopicList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'topics': [],
+      ...map,
+    };
+
     return TopicList(
       total: map['total'],
       topics: List<Topic>.from(

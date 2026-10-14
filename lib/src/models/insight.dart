@@ -75,6 +75,24 @@ class Insight implements Model {
   factory Insight.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'reportId': "",
+      'type': "",
+      'severity': "info",
+      'status': "active",
+      'resourceType': "",
+      'resourceId': "",
+      'parentResourceType': "",
+      'parentResourceId': "",
+      'title': "",
+      'summary': "",
+      'ctas': [],
+      ...map,
+    };
+
     return Insight(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

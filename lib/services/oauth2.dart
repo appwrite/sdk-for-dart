@@ -59,7 +59,7 @@ class Oauth2 extends Service {
     String? prompt,
     int? maxAge,
     String? authorizationDetails,
-    String? resource,
+    List<String>? resource,
     String? audience,
     String? requestUri,
   }) async {
@@ -118,7 +118,7 @@ class Oauth2 extends Service {
     String? prompt,
     int? maxAge,
     String? authorizationDetails,
-    String? resource,
+    List<String>? resource,
     String? audience,
     String? requestUri,
   }) async {
@@ -167,7 +167,7 @@ class Oauth2 extends Service {
     String? clientId,
     String? scope,
     String? authorizationDetails,
-    String? resource,
+    List<String>? resource,
     String? audience,
   }) async {
     final String apiPath =
@@ -237,6 +237,12 @@ class Oauth2 extends Service {
   Future<models.Oauth2Grant> getGrant({
     required String grantId,
   }) async {
+    if (grantId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "grantId"',
+      );
+    }
+
     final String apiPath = '/oauth2/{project_id}/grants/{grant_id}'
         .replaceAll(
           '{project_id}',
@@ -347,7 +353,7 @@ class Oauth2 extends Service {
     String? prompt,
     int? maxAge,
     String? authorizationDetails,
-    String? resource,
+    List<String>? resource,
     String? audience,
   }) async {
     final String apiPath = '/oauth2/{project_id}/par'.replaceAll(
@@ -497,7 +503,7 @@ class Oauth2 extends Service {
     String? clientSecret,
     String? codeVerifier,
     String? redirectUri,
-    String? resource,
+    List<String>? resource,
     String? audience,
   }) async {
     final String apiPath = '/oauth2/{project_id}/token'.replaceAll(

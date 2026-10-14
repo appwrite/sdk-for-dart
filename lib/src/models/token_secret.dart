@@ -31,6 +31,16 @@ class TokenSecret implements Model {
   factory TokenSecret.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      'userId': "",
+      'secret': "",
+      'expire': "",
+      'phrase': "",
+      ...map,
+    };
+
     return TokenSecret(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

@@ -15,7 +15,7 @@ class OAuth2Auth0 implements Model {
   final String clientSecret;
 
   /// Auth0 OAuth2 prompt values.
-  final List<enums.OAuth2Auth0Prompt>? prompt;
+  final List<enums.OAuth2Auth0Prompt> prompt;
 
   /// Auth0 OAuth2 endpoint domain.
   final String endpoint;
@@ -25,25 +25,33 @@ class OAuth2Auth0 implements Model {
     required this.enabled,
     required this.clientId,
     required this.clientSecret,
-    this.prompt,
+    required this.prompt,
     required this.endpoint,
   });
   factory OAuth2Auth0.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'prompt': [],
+      'endpoint': "",
+      ...map,
+    };
+
     return OAuth2Auth0(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
-      prompt: map['prompt'] != null
-          ? List<enums.OAuth2Auth0Prompt>.from(
-              map['prompt'].map(
-                (p) =>
-                    enums.OAuth2Auth0Prompt.values.firstWhere((e) => e.value == p),
-              ),
-            )
-          : null,
+      prompt: List<enums.OAuth2Auth0Prompt>.from(
+        map['prompt'].map(
+          (p) =>
+              enums.OAuth2Auth0Prompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
       endpoint: map['endpoint'].toString(),
     );
   }
@@ -55,7 +63,7 @@ class OAuth2Auth0 implements Model {
       "enabled": enabled,
       "clientId": clientId,
       "clientSecret": clientSecret,
-      "prompt": prompt?.map((p) => p.value).toList(),
+      "prompt": prompt.map((p) => p.value).toList(),
       "endpoint": endpoint,
     };
   }

@@ -51,6 +51,18 @@ class AttributeEnum implements Model {
   factory AttributeEnum.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'elements': [],
+      'format': "enum",
+      ...map,
+    };
+
     return AttributeEnum(
       key: map['key'].toString(),
       type: map['type'].toString(),

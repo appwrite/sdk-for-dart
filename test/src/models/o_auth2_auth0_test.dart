@@ -10,6 +10,7 @@ void main() {
         clientId: "OaOkIA000000000000000000005KLSYq",
         clientSecret:
             "zXz0000-00000000000000000000000000000-00000000000000000000PJafnF",
+        prompt: [],
         endpoint: "example.us.auth0.com",
       );
 
@@ -23,6 +24,7 @@ void main() {
         result.clientSecret,
         "zXz0000-00000000000000000000000000000-00000000000000000000PJafnF",
       );
+      expect(result.prompt, []);
       expect(result.endpoint, "example.us.auth0.com");
     });
   });

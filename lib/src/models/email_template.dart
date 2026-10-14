@@ -39,6 +39,18 @@ class EmailTemplate implements Model {
   factory EmailTemplate.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'templateId': "",
+      'locale': "",
+      'message': "",
+      'senderName': "",
+      'senderEmail': "",
+      'replyToEmail': "",
+      'replyToName': "",
+      'subject': "",
+      ...map,
+    };
+
     return EmailTemplate(
       templateId: map['templateId'].toString(),
       locale: map['locale'].toString(),

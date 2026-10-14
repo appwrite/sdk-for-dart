@@ -23,6 +23,14 @@ class Embedding implements Model {
   factory Embedding.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'model': "",
+      'dimension': 0,
+      'embedding': [],
+      'error': "",
+      ...map,
+    };
+
     return Embedding(
       model: map['model'].toString(),
       dimension: map['dimension'],

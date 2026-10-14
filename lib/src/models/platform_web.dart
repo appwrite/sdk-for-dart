@@ -31,6 +31,15 @@ class PlatformWeb implements Model {
   factory PlatformWeb.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'hostname': "",
+      ...map,
+    };
+
     return PlatformWeb(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
