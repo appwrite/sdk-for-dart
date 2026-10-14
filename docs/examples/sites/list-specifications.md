@@ -10,5 +10,6 @@ Sites sites = Sites(client);
 
 SpecificationList result = await sites.listSpecifications(
     type: 'runtimes', // (optional)
+    total: false, // (optional)
 );
 ```

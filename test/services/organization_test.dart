@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
       Invocation.method(#chunkedUpload, [
@@ -869,6 +870,110 @@ void main() {
 
       final response = await organization.deleteProject(
         projectId: "<PROJECT_ID>",
+      );
+    });
+
+    test('test method listProjectKeys()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'keys': [],
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.listProjectKeys(
+        projectId: "<PROJECT_ID>",
+      );
+      expect(response, isA<models.KeyList>());
+    });
+
+    test('test method createEphemeralProjectKey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My API Key",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'scopes': [],
+        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
+        'sdks': [],
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.createEphemeralProjectKey(
+        projectId: "<PROJECT_ID>",
+        scopes: [enums.ProjectKeyScopes.usersRead],
+        duration: 1,
+      );
+      expect(response, isA<models.EphemeralKey>());
+    });
+
+    test('test method getProjectKey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My API Key",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'scopes': [],
+        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
+        'sdks': [],
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.getProjectKey(
+        projectId: "<PROJECT_ID>",
+        keyId: "<KEY_ID>",
+      );
+      expect(response, isA<models.Key>());
+    });
+
+    test('test method updateProjectKey()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My API Key",
+        'expire': "2020-10-15T06:38:00.000+00:00",
+        'scopes': [],
+        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
+        'accessedAt': "2020-10-15T06:38:00.000+00:00",
+        'sdks': [],
+      };
+
+      when(
+        client.call(HttpMethod.put),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.updateProjectKey(
+        projectId: "<PROJECT_ID>",
+        keyId: "<KEY_ID>",
+        name: "<NAME>",
+        scopes: [enums.ProjectKeyScopes.usersRead],
+      );
+      expect(response, isA<models.Key>());
+    });
+
+    test('test method deleteProjectKey()', () async {
+      final data = '';
+
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.deleteProjectKey(
+        projectId: "<PROJECT_ID>",
+        keyId: "<KEY_ID>",
       );
     });
   });

@@ -29,5 +29,6 @@ Message result = await messaging.updatePush(
     contentAvailable: false, // (optional)
     critical: false, // (optional)
     priority: enums.MessagePriority.normal, // (optional)
+    channelId: '<CHANNEL_ID>', // (optional)
 );
 ```

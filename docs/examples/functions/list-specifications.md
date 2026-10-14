@@ -10,5 +10,6 @@ Functions functions = Functions(client);
 
 SpecificationList result = await functions.listSpecifications(
     type: 'runtimes', // (optional)
+    total: false, // (optional)
 );
 ```

@@ -5,6 +5,8 @@ enum ProjectPolicyId {
   passwordHistory(value: "password-history"),
   passwordStrength(value: "password-strength"),
   passwordPersonalData(value: "password-personal-data"),
+  passwordPwned(value: "password-pwned"),
+  passwordRotation(value: "password-rotation"),
   sessionAlert(value: "session-alert"),
   sessionDuration(value: "session-duration"),
   sessionInvalidation(value: "session-invalidation"),

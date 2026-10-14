@@ -1323,12 +1323,91 @@ class Account extends Service {
     return models.Token.fromMap(res.data);
   }
 
+  /// Use this endpoint to send a 6-digit password recovery code to the user's
+  /// email address. Unlike
+  /// [createRecovery](https://appwrite.io/docs/references/cloud/client-web/account#createRecovery),
+  /// this method requires no redirect URL, which makes it suitable for mobile
+  /// and desktop apps that cannot host a recovery page. Learn more about how to
+  /// [complete the recovery
+  /// process](https://appwrite.io/docs/references/cloud/client-web/account#updateRecoveryOTP).
+  /// The code sent to the user's email address is valid for 15 minutes.
+  ///
+  /// Enable the **phrase** parameter to include a randomly generated security
+  /// phrase in both the email and the response. Showing that phrase in your app
+  /// lets the user confirm the email genuinely came from your request, which
+  /// helps protect against phishing.
+  Future<models.Token> createRecoveryOTP({
+    required String email,
+    bool? phrase,
+  }) async {
+    final String apiPath = '/account/recovery/otp';
+
+    final Map<String, dynamic> apiParams = {
+      'email': email,
+      if (phrase != null) 'phrase': phrase,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Token.fromMap(res.data);
+  }
+
+  /// Use this endpoint to complete the user password recovery process using the
+  /// 6-digit code that was emailed by
+  /// [createRecoveryOTP](https://appwrite.io/docs/references/cloud/client-web/account#createRecoveryOTP).
+  /// Pass the **userId** of the user along with the **secret** code from the
+  /// email and the new **password** to set. If confirmed, this route will return
+  /// a 200 status code, the code is consumed and the user's password is updated.
+  Future<models.Token> updateRecoveryOTP({
+    required String userId,
+    required String secret,
+    required String password,
+  }) async {
+    final String apiPath = '/account/recovery/otp';
+
+    final Map<String, dynamic> apiParams = {
+      'userId': userId,
+      'secret': secret,
+      'password': password,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Token.fromMap(res.data);
+  }
+
   /// Get the list of active sessions across different devices for the currently
   /// logged in user.
-  Future<models.SessionList> listSessions() async {
+  Future<models.SessionList> listSessions({
+    bool? total,
+  }) async {
     final String apiPath = '/account/sessions';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -1346,11 +1425,16 @@ class Account extends Service {
   }
 
   /// Delete all sessions from the user account and remove any sessions cookies
-  /// from the end client.
-  Future deleteSessions() async {
+  /// from the end client. Pass `current` as false to keep the session making the
+  /// request and sign out of every other session.
+  Future deleteSessions({
+    bool? current,
+  }) async {
     final String apiPath = '/account/sessions';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (current != null) 'current': current,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -1404,12 +1488,90 @@ class Account extends Service {
   Future<models.Session> createEmailPasswordSession({
     required String email,
     required String password,
+    int? duration,
   }) async {
     final String apiPath = '/account/sessions/email';
 
     final Map<String, dynamic> apiParams = {
       'email': email,
       'password': password,
+      if (duration != null) 'duration': duration,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Session.fromMap(res.data);
+  }
+
+  /// Allow the user to login to their account using an OpenID Connect ID token
+  /// obtained natively from the OAuth2 provider, for example via Google
+  /// Credential Manager on Android or Sign in with Apple on iOS. No browser or
+  /// redirect is involved: the ID token is verified against the provider's
+  /// published signing keys and a session is created in a single request.
+  ///
+  /// Native sign-in is switched on per provider with its nativeEnabled setting.
+  /// It is independent of the browser-based flow's enabled setting, which has no
+  /// effect on this endpoint. The token's audience must match the provider's
+  /// configured client ID or one of its native client IDs; tokens issued for any
+  /// other client ID are rejected. For Sign in with Apple, register your app's
+  /// bundle ID as a native client ID. For Google, the web client ID used by
+  /// Credential Manager is usually the configured client ID; add your Android
+  /// and iOS client IDs as native client IDs if your app requests tokens for
+  /// them.
+  ///
+  /// Pass the raw nonce used when requesting the ID token so it can be validated
+  /// against the token's nonce claim. When signing in with Apple, the nonce is
+  /// required: hash it with SHA-256 before passing it to the Apple SDK, and send
+  /// the raw value here - Apple tokens requested without a nonce are rejected.
+  /// For Google the nonce is optional: it is validated whenever the token
+  /// carries one, and ignored when the provider issued the token without one.
+  /// Apple only returns the user's name on the first authorization, and never
+  /// inside the ID token - capture it on the client and pass it via the name
+  /// parameter.
+  ///
+  /// If there is already an active session, the new session will be attached to
+  /// the logged-in account. If there are no active sessions, the server will
+  /// attempt to look for a user with the same email address as the verified
+  /// email received from the provider and attach the new session to the existing
+  /// user. If no matching user is found - the server will create a new user.
+  ///
+  /// This flow does not return provider refresh tokens. You may pass an access
+  /// token the provider handed your client, along with its lifetime, to store it
+  /// on the session - but Appwrite cannot renew it once it expires. If your app
+  /// needs long-lived access to provider APIs, use the browser-based OAuth2 flow
+  /// instead.
+  ///
+  /// A user is limited to 10 active sessions at a time by default. [Learn more
+  /// about session
+  /// limits](https://appwrite.io/docs/authentication-security#limits).
+  Future<models.Session> createIdTokenSession({
+    required enums.IdTokenProvider provider,
+    required String idToken,
+    String? nonce,
+    String? accessToken,
+    int? accessTokenExpiry,
+    String? name,
+  }) async {
+    final String apiPath = '/account/sessions/id-token';
+
+    final Map<String, dynamic> apiParams = {
+      'provider': provider.value,
+      'idToken': idToken,
+      if (nonce != null) 'nonce': nonce,
+      if (accessToken != null) 'accessToken': accessToken,
+      if (accessTokenExpiry != null) 'accessTokenExpiry': accessTokenExpiry,
+      if (name != null) 'name': name,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2006,6 +2168,77 @@ class Account extends Service {
     required String secret,
   }) async {
     final String apiPath = '/account/verifications/email';
+
+    final Map<String, dynamic> apiParams = {
+      'userId': userId,
+      'secret': secret,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Token.fromMap(res.data);
+  }
+
+  /// Use this endpoint to send a 6-digit verification code to the currently
+  /// logged in user's email address. Unlike
+  /// [createEmailVerification](https://appwrite.io/docs/references/cloud/client-web/account#createEmailVerification),
+  /// this method requires no redirect URL, which makes it suitable for mobile
+  /// and desktop apps that cannot host a verification page. Learn more about how
+  /// to [complete the verification
+  /// process](https://appwrite.io/docs/references/cloud/client-web/account#updateEmailVerificationOTP).
+  /// The code sent to the user's email address is valid for 15 minutes.
+  ///
+  /// Enable the **phrase** parameter to include a randomly generated security
+  /// phrase in both the email and the response. Showing that phrase in your app
+  /// lets the user confirm the email genuinely came from your request, which
+  /// helps protect against phishing.
+  Future<models.Token> createEmailVerificationOTP({
+    bool? phrase,
+  }) async {
+    final String apiPath = '/account/verifications/email/otp';
+
+    final Map<String, dynamic> apiParams = {
+      if (phrase != null) 'phrase': phrase,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Token.fromMap(res.data);
+  }
+
+  /// Use this endpoint to complete the user email verification process using the
+  /// 6-digit code that was emailed by
+  /// [createEmailVerificationOTP](https://appwrite.io/docs/references/cloud/client-web/account#createEmailVerificationOTP).
+  /// Pass the **userId** of the user being verified along with the **secret**
+  /// code from the email. If confirmed, this route will return a 200 status code
+  /// and the code is consumed.
+  Future<models.Token> updateEmailVerificationOTP({
+    required String userId,
+    required String secret,
+  }) async {
+    final String apiPath = '/account/verifications/email/otp';
 
     final Map<String, dynamic> apiParams = {
       'userId': userId,

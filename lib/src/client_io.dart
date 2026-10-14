@@ -42,9 +42,9 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '29.3.1',
+      'x-sdk-version': '29.4.0',
       'user-agent':
-          'AppwriteDartSDK/29.3.1 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+          'AppwriteDartSDK/29.4.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
       'X-Appwrite-Response-Format': '2.0.0',
     };
 
@@ -195,6 +195,7 @@ class ClientIO extends ClientBase with ClientMixin {
     required String idParamName,
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
+    HttpMethod method = HttpMethod.post,
   }) async {
     InputFile file = params[paramName];
     if (file.path == null && file.bytes == null) {
@@ -224,7 +225,7 @@ class ClientIO extends ClientBase with ClientMixin {
             filename: file.filename);
       }
       return call(
-        HttpMethod.post,
+        method,
         path: path,
         params: params,
         headers: headers,
@@ -286,7 +287,7 @@ class ClientIO extends ClientBase with ClientMixin {
       chunkHeaders['content-range'] = 'bytes $start-${end - 1}/$size';
 
       return call(
-        HttpMethod.post,
+        method,
         path: path,
         headers: chunkHeaders,
         params: chunkParams,

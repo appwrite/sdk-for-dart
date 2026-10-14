@@ -8,5 +8,7 @@ Client client = Client()
 
 Sites sites = Sites(client);
 
-FrameworkList result = await sites.listFrameworks();
+FrameworkList result = await sites.listFrameworks(
+    total: false, // (optional)
+);
 ```

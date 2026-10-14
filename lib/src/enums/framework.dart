@@ -13,6 +13,7 @@ enum Framework {
   remix(value: "remix"),
   lynx(value: "lynx"),
   flutter(value: "flutter"),
+  jaspr(value: "jaspr"),
   reactNative(value: "react-native"),
   vite(value: "vite"),
   other(value: "other");

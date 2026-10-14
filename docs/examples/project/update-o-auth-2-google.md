@@ -14,5 +14,7 @@ OAuth2Google result = await project.updateOAuth2Google(
     clientSecret: '<CLIENT_SECRET>', // (optional)
     prompt: [enums.ProjectOAuth2GooglePrompt.none], // (optional)
     enabled: false, // (optional)
+    nativeClientIds: [], // (optional)
+    nativeEnabled: false, // (optional)
 );
 ```

@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
       Invocation.method(#chunkedUpload, [
@@ -426,6 +427,51 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateAPNSProvider(
+        providerId: "<PROVIDER_ID>",
+      );
+      expect(response, isA<models.Provider>());
+    });
+
+    test('test method createAppwriteProvider()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Mailgun",
+        'provider': "mailgun",
+        'enabled': true,
+        'type': "sms",
+        'credentials': <String, dynamic>{},
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await messaging.createAppwriteProvider(
+        providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+      );
+      expect(response, isA<models.Provider>());
+    });
+
+    test('test method updateAppwriteProvider()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Mailgun",
+        'provider': "mailgun",
+        'enabled': true,
+        'type': "sms",
+        'credentials': <String, dynamic>{},
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await messaging.updateAppwriteProvider(
         providerId: "<PROVIDER_ID>",
       );
       expect(response, isA<models.Provider>());

@@ -14,6 +14,9 @@ class OAuth2Microsoft implements Model {
   /// Microsoft OAuth2 application secret.
   final String applicationSecret;
 
+  /// Microsoft OAuth2 prompt values.
+  final List<enums.OAuth2MicrosoftPrompt>? prompt;
+
   /// Microsoft Entra ID tenant identifier. Use &#039;common&#039;, &#039;organizations&#039;, &#039;consumers&#039; or a specific tenant ID.
   final String tenant;
 
@@ -22,6 +25,7 @@ class OAuth2Microsoft implements Model {
     required this.enabled,
     required this.applicationId,
     required this.applicationSecret,
+    this.prompt,
     required this.tenant,
   });
   factory OAuth2Microsoft.fromMap(
@@ -32,6 +36,14 @@ class OAuth2Microsoft implements Model {
       enabled: map['enabled'],
       applicationId: map['applicationId'].toString(),
       applicationSecret: map['applicationSecret'].toString(),
+      prompt: map['prompt'] != null
+          ? List<enums.OAuth2MicrosoftPrompt>.from(
+              map['prompt'].map(
+                (p) =>
+                    enums.OAuth2MicrosoftPrompt.values.firstWhere((e) => e.value == p),
+              ),
+            )
+          : null,
       tenant: map['tenant'].toString(),
     );
   }
@@ -43,6 +55,7 @@ class OAuth2Microsoft implements Model {
       "enabled": enabled,
       "applicationId": applicationId,
       "applicationSecret": applicationSecret,
+      "prompt": prompt?.map((p) => p.value).toList(),
       "tenant": tenant,
     };
   }

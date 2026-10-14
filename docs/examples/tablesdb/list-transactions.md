@@ -10,5 +10,6 @@ TablesDB tablesDB = TablesDB(client);
 
 TransactionList result = await tablesDB.listTransactions(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

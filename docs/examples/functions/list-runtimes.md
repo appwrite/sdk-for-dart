@@ -8,5 +8,7 @@ Client client = Client()
 
 Functions functions = Functions(client);
 
-RuntimeList result = await functions.listRuntimes();
+RuntimeList result = await functions.listRuntimes(
+    total: false, // (optional)
+);
 ```

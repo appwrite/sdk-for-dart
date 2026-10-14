@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
       Invocation.method(#chunkedUpload, [
@@ -154,6 +155,157 @@ void main() {
         enabled: true,
       );
       expect(response, isA<models.Project>());
+    });
+
+    test('test method listEnvironments()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'projects': [],
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.listEnvironments();
+      expect(response, isA<models.ProjectList>());
+    });
+
+    test('test method createEnvironment()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'devKeys': [],
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.createEnvironment(
+        environmentId: "<ENVIRONMENT_ID>",
+        name: "<NAME>",
+      );
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method getEnvironment()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'devKeys': [],
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.getEnvironment(
+        environmentId: "<ENVIRONMENT_ID>",
+      );
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method updateEnvironment()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'devKeys': [],
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateEnvironment(
+        environmentId: "<ENVIRONMENT_ID>",
+        name: "<NAME>",
+      );
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method deleteEnvironment()', () async {
+      final data = '';
+
+      when(
+        client.call(HttpMethod.delete),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.deleteEnvironment(
+        environmentId: "<ENVIRONMENT_ID>",
+      );
     });
 
     test('test method listKeys()', () async {
@@ -803,6 +955,23 @@ void main() {
       expect(response, isA<models.OAuth2HuggingFace>());
     });
 
+    test('test method updateOAuth2Kakao()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "839ff5000000000000000000013206de",
+        'clientSecret': "jLNVOK00000000000000000000yJebea",
+        'prompt': [],
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Kakao();
+      expect(response, isA<models.OAuth2Kakao>());
+    });
+
     test('test method updateOAuth2Keycloak()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -1065,6 +1234,22 @@ void main() {
       expect(response, isA<models.OAuth2Stripe>());
     });
 
+    test('test method updateOAuth2TikTok()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "awz000000000tyw0",
+        'clientSecret': "6wXewM00000000000000000000yXnite",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2TikTok();
+      expect(response, isA<models.OAuth2TikTok>());
+    });
+
     test('test method updateOAuth2Tradeshift()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -1111,6 +1296,24 @@ void main() {
 
       final response = await project.updateOAuth2Twitch();
       expect(response, isA<models.OAuth2Twitch>());
+    });
+
+    test('test method updateOAuth2Webflow()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId':
+            "8bb20000000000000000000000000000000000000000000000000000000040dd",
+        'clientSecret':
+            "59bf00000000000000000000000000000000000000000000000000000000fe59",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Webflow();
+      expect(response, isA<models.OAuth2Webflow>());
     });
 
     test('test method updateOAuth2WordPress()', () async {
@@ -1214,10 +1417,10 @@ void main() {
     test('test method getOAuth2Provider()', () async {
       final Map<String, dynamic> data = {
         'enabled': true,
-        'applicationId': "00001111-aaaa-2222-bbbb-3333cccc4444",
-        'applicationSecret': "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u",
-        'tenant': "common",
-        '\$id': "microsoft",
+        'clientId': "839ff5000000000000000000013206de",
+        'clientSecret': "jLNVOK00000000000000000000yJebea",
+        'prompt': [],
+        '\$id': "kakao",
       };
 
       when(
@@ -1227,7 +1430,7 @@ void main() {
       final response = await project.getOAuth2Provider(
         providerId: enums.ProjectOAuthProviderId.amazon,
       );
-      expect(response, isA<models.OAuth2Microsoft>());
+      expect(response, isA<models.OAuth2Kakao>());
     });
 
     test('test method listPlatforms()', () async {
@@ -1913,6 +2116,84 @@ void main() {
       final response = await project.updatePasswordPersonalDataPolicy(
         enabled: true,
       );
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method updatePasswordPwnedPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'devKeys': [],
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updatePasswordPwnedPolicy();
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method updatePasswordRotationPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'devKeys': [],
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(HttpMethod.patch),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updatePasswordRotationPolicy();
       expect(response, isA<models.Project>());
     });
 

@@ -112,10 +112,14 @@ class Sites extends Service {
 
   /// Get a list of all frameworks that are currently available on the server
   /// instance.
-  Future<models.FrameworkList> listFrameworks() async {
+  Future<models.FrameworkList> listFrameworks({
+    bool? total,
+  }) async {
     final String apiPath = '/sites/frameworks';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -135,11 +139,13 @@ class Sites extends Service {
   /// List allowed site specifications for this instance.
   Future<models.SpecificationList> listSpecifications({
     String? type,
+    bool? total,
   }) async {
     final String apiPath = '/sites/specifications';
 
     final Map<String, dynamic> apiParams = {
       if (type != null) 'type': type,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {

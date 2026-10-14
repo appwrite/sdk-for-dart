@@ -4,7 +4,8 @@ enum TablesDBIndexType {
   key(value: "key"),
   fulltext(value: "fulltext"),
   unique(value: "unique"),
-  spatial(value: "spatial");
+  spatial(value: "spatial"),
+  trigram(value: "trigram");
 
   const TablesDBIndexType({required this.value});
 

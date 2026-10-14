@@ -86,8 +86,17 @@ class Project implements Model {
   /// Whether WAF enforcement is enabled for the project.
   final bool? wafEnabled;
 
+  /// ID of the project this environment belongs to. Null when the project is not an environment.
+  final String? parentId;
+
   /// Billing limits reached
   final BillingLimits? billingLimits;
+
+  /// First time the project received a non-console API request. Empty until the project is used.
+  final String? firstAccessedAt;
+
+  /// Last time the project was accessed through the MCP server. Empty if it was never accessed via MCP.
+  final String? mcpAccessedAt;
 
   /// OAuth2 server status
   final bool? oAuth2ServerEnabled;
@@ -169,7 +178,10 @@ class Project implements Model {
     required this.blocks,
     required this.consoleAccessedAt,
     this.wafEnabled,
+    this.parentId,
     this.billingLimits,
+    this.firstAccessedAt,
+    this.mcpAccessedAt,
     this.oAuth2ServerEnabled,
     this.oAuth2ServerAuthorizationUrl,
     this.oAuth2ServerScopes,
@@ -230,11 +242,14 @@ class Project implements Model {
       ),
       consoleAccessedAt: map['consoleAccessedAt'].toString(),
       wafEnabled: map['wafEnabled'],
+      parentId: map['parentId']?.toString(),
       billingLimits: map['billingLimits'] != null
           ? BillingLimits.fromMap(
               map['billingLimits'],
             )
           : null,
+      firstAccessedAt: map['firstAccessedAt']?.toString(),
+      mcpAccessedAt: map['mcpAccessedAt']?.toString(),
       oAuth2ServerEnabled: map['oAuth2ServerEnabled'],
       oAuth2ServerAuthorizationUrl:
           map['oAuth2ServerAuthorizationUrl']?.toString(),
@@ -294,7 +309,10 @@ class Project implements Model {
       "blocks": blocks.map((p) => p.toMap()).toList(),
       "consoleAccessedAt": consoleAccessedAt,
       "wafEnabled": wafEnabled,
+      "parentId": parentId,
       "billingLimits": billingLimits?.toMap(),
+      "firstAccessedAt": firstAccessedAt,
+      "mcpAccessedAt": mcpAccessedAt,
       "oAuth2ServerEnabled": oAuth2ServerEnabled,
       "oAuth2ServerAuthorizationUrl": oAuth2ServerAuthorizationUrl,
       "oAuth2ServerScopes": oAuth2ServerScopes,

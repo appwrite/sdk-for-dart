@@ -33,10 +33,14 @@ class Locale extends Service {
 
   /// List of all locale codes in [ISO
   /// 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
-  Future<models.LocaleCodeList> listCodes() async {
+  Future<models.LocaleCodeList> listCodes({
+    bool? total,
+  }) async {
     final String apiPath = '/locale/codes';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -55,10 +59,14 @@ class Locale extends Service {
 
   /// List of all continents. You can use the locale header to get the data in a
   /// supported language.
-  Future<models.ContinentList> listContinents() async {
+  Future<models.ContinentList> listContinents({
+    bool? total,
+  }) async {
     final String apiPath = '/locale/continents';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -77,10 +85,14 @@ class Locale extends Service {
 
   /// List of all countries. You can use the locale header to get the data in a
   /// supported language.
-  Future<models.CountryList> listCountries() async {
+  Future<models.CountryList> listCountries({
+    bool? total,
+  }) async {
     final String apiPath = '/locale/countries';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -99,10 +111,14 @@ class Locale extends Service {
 
   /// List of all countries that are currently members of the EU. You can use the
   /// locale header to get the data in a supported language.
-  Future<models.CountryList> listCountriesEU() async {
+  Future<models.CountryList> listCountriesEU({
+    bool? total,
+  }) async {
     final String apiPath = '/locale/countries/eu';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -121,10 +137,14 @@ class Locale extends Service {
 
   /// List of all countries phone codes. You can use the locale header to get the
   /// data in a supported language.
-  Future<models.PhoneList> listCountriesPhones() async {
+  Future<models.PhoneList> listCountriesPhones({
+    bool? total,
+  }) async {
     final String apiPath = '/locale/countries/phones';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -144,10 +164,14 @@ class Locale extends Service {
   /// List of all currencies, including currency symbol, name, plural, and
   /// decimal digits for all major and minor currencies. You can use the locale
   /// header to get the data in a supported language.
-  Future<models.CurrencyList> listCurrencies() async {
+  Future<models.CurrencyList> listCurrencies({
+    bool? total,
+  }) async {
     final String apiPath = '/locale/currencies';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -166,10 +190,14 @@ class Locale extends Service {
 
   /// List of all languages classified by ISO 639-1 including 2-letter code, name
   /// in English, and name in the respective language.
-  Future<models.LanguageList> listLanguages() async {
+  Future<models.LanguageList> listLanguages({
+    bool? total,
+  }) async {
     final String apiPath = '/locale/languages';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
