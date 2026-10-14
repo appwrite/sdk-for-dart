@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
       Invocation.method(#chunkedUpload, [
@@ -180,6 +181,21 @@ void main() {
         grantId: "<GRANT_ID>",
       );
       expect(response, isA<models.Oauth2Grant>());
+    });
+
+    test('test method introspect()', () async {
+      final Map<String, dynamic> data = {
+        'active': true,
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await oauth2.introspect(
+        token: "<TOKEN>",
+      );
+      expect(response, isA<models.Oauth2Introspection>());
     });
 
     test('test method listOrganizations()', () async {

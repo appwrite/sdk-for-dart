@@ -48,6 +48,8 @@ class Messaging extends Service {
     bool? draft,
     bool? html,
     String? scheduledAt,
+    String? replyToEmail,
+    String? replyToName,
   }) async {
     final String apiPath = '/messaging/messages/email';
 
@@ -64,6 +66,8 @@ class Messaging extends Service {
       if (draft != null) 'draft': draft,
       if (html != null) 'html': html,
       if (scheduledAt != null) 'scheduledAt': scheduledAt,
+      if (replyToEmail != null) 'replyToEmail': replyToEmail,
+      if (replyToName != null) 'replyToName': replyToName,
     };
 
     final Map<String, String> apiHeaders = {
@@ -98,6 +102,8 @@ class Messaging extends Service {
     List<String>? bcc,
     String? scheduledAt,
     List<String>? attachments,
+    String? replyToEmail,
+    String? replyToName,
   }) async {
     final String apiPath = '/messaging/messages/email/{messageId}'.replaceAll(
       '{messageId}',
@@ -116,6 +122,8 @@ class Messaging extends Service {
       if (bcc != null) 'bcc': bcc,
       if (scheduledAt != null) 'scheduledAt': scheduledAt,
       if (attachments != null) 'attachments': attachments,
+      if (replyToEmail != null) 'replyToEmail': replyToEmail,
+      if (replyToName != null) 'replyToName': replyToName,
     };
 
     final Map<String, String> apiHeaders = {
@@ -155,6 +163,7 @@ class Messaging extends Service {
     bool? contentAvailable,
     bool? critical,
     enums.MessagePriority? priority,
+    String? channelId,
   }) async {
     final String apiPath = '/messaging/messages/push';
 
@@ -178,6 +187,7 @@ class Messaging extends Service {
       if (contentAvailable != null) 'contentAvailable': contentAvailable,
       if (critical != null) 'critical': critical,
       if (priority != null) 'priority': priority?.value,
+      if (channelId != null) 'channelId': channelId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -219,6 +229,7 @@ class Messaging extends Service {
     bool? contentAvailable,
     bool? critical,
     enums.MessagePriority? priority,
+    String? channelId,
   }) async {
     final String apiPath = '/messaging/messages/push/{messageId}'.replaceAll(
       '{messageId}',
@@ -244,6 +255,7 @@ class Messaging extends Service {
       if (contentAvailable != null) 'contentAvailable': contentAvailable,
       if (critical != null) 'critical': critical,
       if (priority != null) 'priority': priority?.value,
+      if (channelId != null) 'channelId': channelId,
     };
 
     final Map<String, String> apiHeaders = {
@@ -693,6 +705,83 @@ class Messaging extends Service {
       if (teamId != null) 'teamId': teamId,
       if (bundleId != null) 'bundleId': bundleId,
       if (sandbox != null) 'sandbox': sandbox,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Create a new Appwrite push provider.
+  Future<models.Provider> createAppwriteProvider({
+    required String providerId,
+    required String name,
+    bool? enabled,
+    int? qos,
+    int? expiry,
+  }) async {
+    final String apiPath = '/messaging/providers/appwrite';
+
+    final Map<String, dynamic> apiParams = {
+      'providerId': providerId,
+      'name': name,
+      if (enabled != null) 'enabled': enabled,
+      if (qos != null) 'qos': qos,
+      if (expiry != null) 'expiry': expiry,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Update an Appwrite push provider by its unique ID.
+  Future<models.Provider> updateAppwriteProvider({
+    required String providerId,
+    String? name,
+    bool? enabled,
+    int? qos,
+    int? expiry,
+  }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
+    final String apiPath =
+        '/messaging/providers/appwrite/{providerId}'.replaceAll(
+      '{providerId}',
+      providerId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (name != null) 'name': name,
+      if (enabled != null) 'enabled': enabled,
+      if (qos != null) 'qos': qos,
+      if (expiry != null) 'expiry': expiry,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1874,6 +1963,8 @@ class Messaging extends Service {
     required String topicId,
     required String name,
     List<String>? subscribe,
+    int? qos,
+    int? expiry,
   }) async {
     final String apiPath = '/messaging/topics';
 
@@ -1881,6 +1972,8 @@ class Messaging extends Service {
       'topicId': topicId,
       'name': name,
       if (subscribe != null) 'subscribe': subscribe,
+      if (qos != null) 'qos': qos,
+      if (expiry != null) 'expiry': expiry,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1930,6 +2023,8 @@ class Messaging extends Service {
     required String topicId,
     String? name,
     List<String>? subscribe,
+    int? qos,
+    int? expiry,
   }) async {
     final String apiPath = '/messaging/topics/{topicId}'.replaceAll(
       '{topicId}',
@@ -1939,6 +2034,8 @@ class Messaging extends Service {
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
       if (subscribe != null) 'subscribe': subscribe,
+      if (qos != null) 'qos': qos,
+      if (expiry != null) 'expiry': expiry,
     };
 
     final Map<String, String> apiHeaders = {

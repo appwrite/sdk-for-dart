@@ -117,6 +117,7 @@ abstract class Client {
     required String idParamName,
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
+    HttpMethod method = HttpMethod.post,
   });
 
   /// Send the API request.

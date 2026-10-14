@@ -14,6 +14,9 @@ class OAuth2Auth0 implements Model {
   /// Auth0 OAuth2 client secret.
   final String clientSecret;
 
+  /// Auth0 OAuth2 prompt values.
+  final List<enums.OAuth2Auth0Prompt>? prompt;
+
   /// Auth0 OAuth2 endpoint domain.
   final String endpoint;
 
@@ -22,6 +25,7 @@ class OAuth2Auth0 implements Model {
     required this.enabled,
     required this.clientId,
     required this.clientSecret,
+    this.prompt,
     required this.endpoint,
   });
   factory OAuth2Auth0.fromMap(
@@ -32,6 +36,14 @@ class OAuth2Auth0 implements Model {
       enabled: map['enabled'],
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
+      prompt: map['prompt'] != null
+          ? List<enums.OAuth2Auth0Prompt>.from(
+              map['prompt'].map(
+                (p) =>
+                    enums.OAuth2Auth0Prompt.values.firstWhere((e) => e.value == p),
+              ),
+            )
+          : null,
       endpoint: map['endpoint'].toString(),
     );
   }
@@ -43,6 +55,7 @@ class OAuth2Auth0 implements Model {
       "enabled": enabled,
       "clientId": clientId,
       "clientSecret": clientSecret,
+      "prompt": prompt?.map((p) => p.value).toList(),
       "endpoint": endpoint,
     };
   }

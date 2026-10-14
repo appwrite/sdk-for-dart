@@ -41,6 +41,9 @@ class BillingPlan implements Model {
   /// Maximum WAF rules per project
   final int wafRules;
 
+  /// Maximum environments per project. 0 when the plan does not offer environments.
+  final int? environments;
+
   /// Projects
   final int projects;
 
@@ -143,6 +146,9 @@ class BillingPlan implements Model {
   /// Does plan require billing address
   final bool requiresBillingAddress;
 
+  /// ISO country codes eligible for this regional plan. Empty means no restriction.
+  final List<String>? eligibleCountries;
+
   /// Is the billing plan available
   final bool isAvailable;
 
@@ -235,6 +241,7 @@ class BillingPlan implements Model {
     this.members,
     required this.webhooks,
     required this.wafRules,
+    this.environments,
     required this.projects,
     required this.platforms,
     required this.users,
@@ -269,6 +276,7 @@ class BillingPlan implements Model {
     required this.emailBranding,
     required this.requiresPaymentMethod,
     required this.requiresBillingAddress,
+    this.eligibleCountries,
     required this.isAvailable,
     required this.selfService,
     required this.premiumSupport,
@@ -313,6 +321,7 @@ class BillingPlan implements Model {
       members: map['members'],
       webhooks: map['webhooks'],
       wafRules: map['wafRules'],
+      environments: map['environments'],
       projects: map['projects'],
       platforms: map['platforms'],
       users: map['users'],
@@ -352,6 +361,7 @@ class BillingPlan implements Model {
       emailBranding: map['emailBranding'],
       requiresPaymentMethod: map['requiresPaymentMethod'],
       requiresBillingAddress: map['requiresBillingAddress'],
+      eligibleCountries: List.from(map['eligibleCountries'] ?? []),
       isAvailable: map['isAvailable'],
       selfService: map['selfService'],
       premiumSupport: map['premiumSupport'],
@@ -414,6 +424,7 @@ class BillingPlan implements Model {
       "members": members,
       "webhooks": webhooks,
       "wafRules": wafRules,
+      "environments": environments,
       "projects": projects,
       "platforms": platforms,
       "users": users,
@@ -448,6 +459,7 @@ class BillingPlan implements Model {
       "emailBranding": emailBranding,
       "requiresPaymentMethod": requiresPaymentMethod,
       "requiresBillingAddress": requiresBillingAddress,
+      "eligibleCountries": eligibleCountries,
       "isAvailable": isAvailable,
       "selfService": selfService,
       "premiumSupport": premiumSupport,

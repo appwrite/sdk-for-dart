@@ -26,6 +26,12 @@ class Topic implements Model {
   /// Subscribe permissions.
   final List<String> subscribe;
 
+  /// MQTT QoS for delivery on this topic. Null lets the subscriber choose their level.
+  final int? qos;
+
+  /// Message retention in seconds for offline delivery.
+  final int? expiry;
+
   Topic({
     required this.$id,
     required this.$createdAt,
@@ -35,6 +41,8 @@ class Topic implements Model {
     required this.smsTotal,
     required this.pushTotal,
     required this.subscribe,
+    this.qos,
+    this.expiry,
   });
   factory Topic.fromMap(
     Map<String, dynamic> map,
@@ -48,6 +56,8 @@ class Topic implements Model {
       smsTotal: map['smsTotal'],
       pushTotal: map['pushTotal'],
       subscribe: List.from(map['subscribe'] ?? []),
+      qos: map['qos'],
+      expiry: map['expiry'],
     );
   }
 
@@ -62,6 +72,8 @@ class Topic implements Model {
       "smsTotal": smsTotal,
       "pushTotal": pushTotal,
       "subscribe": subscribe,
+      "qos": qos,
+      "expiry": expiry,
     };
   }
 }

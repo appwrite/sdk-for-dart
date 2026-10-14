@@ -10,5 +10,6 @@ VectorsDB vectorsDB = VectorsDB(client);
 
 TransactionList result = await vectorsDB.listTransactions(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

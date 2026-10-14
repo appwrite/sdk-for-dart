@@ -8,5 +8,7 @@ Client client = Client()
 
 Locale locale = Locale(client);
 
-LocaleCodeList result = await locale.listCodes();
+LocaleCodeList result = await locale.listCodes(
+    total: false, // (optional)
+);
 ```

@@ -80,6 +80,15 @@ class DedicatedDatabase implements Model {
   /// Storage allocated in GB.
   final int storage;
 
+  /// Storage resize status. Possible values: idle (no resize in flight), resizing (the volume is growing towards storageTargetGb).
+  final String? storageStatus;
+
+  /// Size in GB the volume is growing towards while storageStatus is resizing. 0 when no resize is in flight.
+  final int? storageTargetGb;
+
+  /// Time the in-flight storage resize started, in ISO 8601 format.
+  final String? storageResizeStartedAt;
+
   /// Storage class. Currently always &#039;ssd&#039;; DigitalOcean exposes a single block-storage class.
   final String storageClass;
 
@@ -176,6 +185,9 @@ class DedicatedDatabase implements Model {
     required this.cpu,
     required this.memory,
     required this.storage,
+    this.storageStatus,
+    this.storageTargetGb,
+    this.storageResizeStartedAt,
     required this.storageClass,
     required this.storageMaxGb,
     required this.nodePool,
@@ -230,6 +242,9 @@ class DedicatedDatabase implements Model {
       cpu: map['cpu'],
       memory: map['memory'],
       storage: map['storage'],
+      storageStatus: map['storageStatus']?.toString(),
+      storageTargetGb: map['storageTargetGb'],
+      storageResizeStartedAt: map['storageResizeStartedAt']?.toString(),
       storageClass: map['storageClass'].toString(),
       storageMaxGb: map['storageMaxGb'],
       nodePool: map['nodePool'].toString(),
@@ -286,6 +301,9 @@ class DedicatedDatabase implements Model {
       "cpu": cpu,
       "memory": memory,
       "storage": storage,
+      "storageStatus": storageStatus,
+      "storageTargetGb": storageTargetGb,
+      "storageResizeStartedAt": storageResizeStartedAt,
       "storageClass": storageClass,
       "storageMaxGb": storageMaxGb,
       "nodePool": nodePool,

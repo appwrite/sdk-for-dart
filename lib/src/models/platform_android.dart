@@ -20,6 +20,9 @@ class PlatformAndroid implements Model {
   /// Android application ID.
   final String applicationId;
 
+  /// SHA-256 fingerprints of the certificates the app is signed with. Passkeys created in the app are accepted when its signature matches one.
+  final List<String>? fingerprints;
+
   PlatformAndroid({
     required this.$id,
     required this.$createdAt,
@@ -27,6 +30,7 @@ class PlatformAndroid implements Model {
     required this.name,
     required this.type,
     required this.applicationId,
+    this.fingerprints,
   });
   factory PlatformAndroid.fromMap(
     Map<String, dynamic> map,
@@ -40,6 +44,7 @@ class PlatformAndroid implements Model {
         (e) => e.value == map['type'],
       ),
       applicationId: map['applicationId'].toString(),
+      fingerprints: List.from(map['fingerprints'] ?? []),
     );
   }
 
@@ -52,6 +57,7 @@ class PlatformAndroid implements Model {
       "name": name,
       "type": type.value,
       "applicationId": applicationId,
+      "fingerprints": fingerprints,
     };
   }
 }

@@ -14,11 +14,15 @@ class OAuth2Salesforce implements Model {
   /// Salesforce OAuth2 consumer secret.
   final String customerSecret;
 
+  /// Salesforce OAuth2 prompt values.
+  final List<enums.OAuth2SalesforcePrompt>? prompt;
+
   OAuth2Salesforce({
     required this.$id,
     required this.enabled,
     required this.customerKey,
     required this.customerSecret,
+    this.prompt,
   });
   factory OAuth2Salesforce.fromMap(
     Map<String, dynamic> map,
@@ -28,6 +32,14 @@ class OAuth2Salesforce implements Model {
       enabled: map['enabled'],
       customerKey: map['customerKey'].toString(),
       customerSecret: map['customerSecret'].toString(),
+      prompt: map['prompt'] != null
+          ? List<enums.OAuth2SalesforcePrompt>.from(
+              map['prompt'].map(
+                (p) =>
+                    enums.OAuth2SalesforcePrompt.values.firstWhere((e) => e.value == p),
+              ),
+            )
+          : null,
     );
   }
 
@@ -38,6 +50,7 @@ class OAuth2Salesforce implements Model {
       "enabled": enabled,
       "customerKey": customerKey,
       "customerSecret": customerSecret,
+      "prompt": prompt?.map((p) => p.value).toList(),
     };
   }
 }

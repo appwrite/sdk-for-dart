@@ -10,5 +10,6 @@ Databases databases = Databases(client);
 
 TransactionList result = await databases.listTransactions(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

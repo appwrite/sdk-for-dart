@@ -113,10 +113,14 @@ class Functions extends Service {
   }
 
   /// Get a list of all runtimes that are currently active on your instance.
-  Future<models.RuntimeList> listRuntimes() async {
+  Future<models.RuntimeList> listRuntimes({
+    bool? total,
+  }) async {
     final String apiPath = '/functions/runtimes';
 
-    final Map<String, dynamic> apiParams = {};
+    final Map<String, dynamic> apiParams = {
+      if (total != null) 'total': total,
+    };
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
@@ -136,11 +140,13 @@ class Functions extends Service {
   /// List allowed function specifications for this instance.
   Future<models.SpecificationList> listSpecifications({
     String? type,
+    bool? total,
   }) async {
     final String apiPath = '/functions/specifications';
 
     final Map<String, dynamic> apiParams = {
       if (type != null) 'type': type,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {

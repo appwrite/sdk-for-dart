@@ -77,6 +77,165 @@ class Project extends Service {
     return models.Project.fromMap(res.data);
   }
 
+  /// Get a list of all environments of the project. You can use the query params
+  /// to filter your results.
+  Future<models.ProjectList> listEnvironments({
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/project/environments';
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ProjectList.fromMap(res.data);
+  }
+
+  /// Create a new environment of the project. An environment is a separate
+  /// project in the same organization and region, with its own resources and
+  /// users. Its usage is billed under the project it belongs to.
+  Future<models.Project> createEnvironment({
+    required String environmentId,
+    required String name,
+  }) async {
+    final String apiPath = '/project/environments';
+
+    final Map<String, dynamic> apiParams = {
+      'environmentId': environmentId,
+      'name': name,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Get an environment of the project by its unique ID.
+  Future<models.Project> getEnvironment({
+    required String environmentId,
+  }) async {
+    if (environmentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "environmentId"',
+      );
+    }
+
+    final String apiPath = '/project/environments/{environmentId}'.replaceAll(
+      '{environmentId}',
+      environmentId,
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Update the name of an environment of the project.
+  Future<models.Project> updateEnvironment({
+    required String environmentId,
+    required String name,
+  }) async {
+    if (environmentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "environmentId"',
+      );
+    }
+
+    final String apiPath = '/project/environments/{environmentId}'.replaceAll(
+      '{environmentId}',
+      environmentId,
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'name': name,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Delete an environment of the project, with all of its resources and users.
+  Future deleteEnvironment({
+    required String environmentId,
+  }) async {
+    if (environmentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "environmentId"',
+      );
+    }
+
+    final String apiPath = '/project/environments/{environmentId}'.replaceAll(
+      '{environmentId}',
+      environmentId,
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
+
   /// Get a list of all API keys from the current project.
   Future<models.KeyList> listKeys({
     List<String>? queries,
@@ -521,6 +680,8 @@ class Project extends Service {
     String? teamId,
     String? p8File,
     bool? enabled,
+    List<String>? nativeClientIds,
+    bool? nativeEnabled,
   }) async {
     final String apiPath = '/project/oauth2/apple';
 
@@ -530,6 +691,8 @@ class Project extends Service {
       if (teamId != null) 'teamId': teamId,
       if (p8File != null) 'p8File': p8File,
       if (enabled != null) 'enabled': enabled,
+      if (nativeClientIds != null) 'nativeClientIds': nativeClientIds,
+      if (nativeEnabled != null) 'nativeEnabled': nativeEnabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -584,6 +747,7 @@ class Project extends Service {
     String? clientSecret,
     String? endpoint,
     bool? enabled,
+    List<enums.ProjectOAuth2Auth0Prompt>? prompt,
   }) async {
     final String apiPath = '/project/oauth2/auth0';
 
@@ -592,6 +756,7 @@ class Project extends Service {
       if (clientSecret != null) 'clientSecret': clientSecret,
       if (endpoint != null) 'endpoint': endpoint,
       if (enabled != null) 'enabled': enabled,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -827,6 +992,7 @@ class Project extends Service {
     String? clientId,
     String? clientSecret,
     bool? enabled,
+    List<enums.ProjectOAuth2DiscordPrompt>? prompt,
   }) async {
     final String apiPath = '/project/oauth2/discord';
 
@@ -834,6 +1000,7 @@ class Project extends Service {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
       if (enabled != null) 'enabled': enabled,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -1039,6 +1206,7 @@ class Project extends Service {
     String? clientId,
     String? clientSecret,
     bool? enabled,
+    List<enums.ProjectOAuth2GitHubPrompt>? prompt,
   }) async {
     final String apiPath = '/project/oauth2/github';
 
@@ -1046,6 +1214,7 @@ class Project extends Service {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
       if (enabled != null) 'enabled': enabled,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -1102,6 +1271,8 @@ class Project extends Service {
     String? clientSecret,
     List<enums.ProjectOAuth2GooglePrompt>? prompt,
     bool? enabled,
+    List<String>? nativeClientIds,
+    bool? nativeEnabled,
   }) async {
     final String apiPath = '/project/oauth2/google';
 
@@ -1110,6 +1281,8 @@ class Project extends Service {
       if (clientSecret != null) 'clientSecret': clientSecret,
       if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
+      if (nativeClientIds != null) 'nativeClientIds': nativeClientIds,
+      if (nativeEnabled != null) 'nativeEnabled': nativeEnabled,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1156,6 +1329,38 @@ class Project extends Service {
     );
 
     return models.OAuth2HuggingFace.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Kakao configuration.
+  Future<models.OAuth2Kakao> updateOAuth2Kakao({
+    String? clientId,
+    String? clientSecret,
+    List<enums.ProjectOAuth2KakaoPrompt>? prompt,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/kakao';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Kakao.fromMap(res.data);
   }
 
   /// Update the project OAuth2 Keycloak configuration.
@@ -1259,6 +1464,7 @@ class Project extends Service {
     String? applicationSecret,
     String? tenant,
     bool? enabled,
+    List<enums.ProjectOAuth2MicrosoftPrompt>? prompt,
   }) async {
     final String apiPath = '/project/oauth2/microsoft';
 
@@ -1267,6 +1473,7 @@ class Project extends Service {
       if (applicationSecret != null) 'applicationSecret': applicationSecret,
       if (tenant != null) 'tenant': tenant,
       if (enabled != null) 'enabled': enabled,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -1364,6 +1571,7 @@ class Project extends Service {
     String? domain,
     String? authorizationServerId,
     bool? enabled,
+    List<enums.ProjectOAuth2OktaPrompt>? prompt,
   }) async {
     final String apiPath = '/project/oauth2/okta';
 
@@ -1374,6 +1582,7 @@ class Project extends Service {
       if (authorizationServerId != null)
         'authorizationServerId': authorizationServerId,
       if (enabled != null) 'enabled': enabled,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -1517,6 +1726,7 @@ class Project extends Service {
     String? customerKey,
     String? customerSecret,
     bool? enabled,
+    List<enums.ProjectOAuth2SalesforcePrompt>? prompt,
   }) async {
     final String apiPath = '/project/oauth2/salesforce';
 
@@ -1524,6 +1734,7 @@ class Project extends Service {
       if (customerKey != null) 'customerKey': customerKey,
       if (customerSecret != null) 'customerSecret': customerSecret,
       if (enabled != null) 'enabled': enabled,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -1632,6 +1843,36 @@ class Project extends Service {
     return models.OAuth2Stripe.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 TikTok configuration.
+  Future<models.OAuth2TikTok> updateOAuth2TikTok({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/tiktok';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2TikTok.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Tradeshift configuration.
   Future<models.OAuth2Tradeshift> updateOAuth2Tradeshift({
     String? oauth2ClientId,
@@ -1720,6 +1961,36 @@ class Project extends Service {
     );
 
     return models.OAuth2Twitch.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Webflow configuration.
+  Future<models.OAuth2Webflow> updateOAuth2Webflow({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/webflow';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Webflow.fromMap(res.data);
   }
 
   /// Update the project OAuth2 WordPress configuration.
@@ -1847,6 +2118,7 @@ class Project extends Service {
     String? clientId,
     String? clientSecret,
     bool? enabled,
+    List<enums.ProjectOAuth2ZohoPrompt>? prompt,
   }) async {
     final String apiPath = '/project/oauth2/zoho';
 
@@ -1854,6 +2126,7 @@ class Project extends Service {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
       if (enabled != null) 'enabled': enabled,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -1979,6 +2252,9 @@ class Project extends Service {
       if (response['\$id'] == "wordpress") {
         return models.OAuth2WordPress.fromMap(response);
       }
+      if (response['\$id'] == "webflow") {
+        return models.OAuth2Webflow.fromMap(response);
+      }
       if (response['\$id'] == "twitch") {
         return models.OAuth2Twitch.fromMap(response);
       }
@@ -2063,6 +2339,12 @@ class Project extends Service {
       if (response['\$id'] == "microsoft") {
         return models.OAuth2Microsoft.fromMap(response);
       }
+      if (response['\$id'] == "tiktok") {
+        return models.OAuth2TikTok.fromMap(response);
+      }
+      if (response['\$id'] == "kakao") {
+        return models.OAuth2Kakao.fromMap(response);
+      }
 
       throw StateError(
         'Unable to match response to any expected response model.',
@@ -2105,6 +2387,7 @@ class Project extends Service {
     required String platformId,
     required String name,
     required String applicationId,
+    List<String>? fingerprints,
   }) async {
     final String apiPath = '/project/platforms/android';
 
@@ -2112,6 +2395,7 @@ class Project extends Service {
       'platformId': platformId,
       'name': name,
       'applicationId': applicationId,
+      if (fingerprints != null) 'fingerprints': fingerprints,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2136,6 +2420,7 @@ class Project extends Service {
     required String platformId,
     required String name,
     required String applicationId,
+    List<String>? fingerprints,
   }) async {
     final String apiPath = '/project/platforms/android/{platformId}'.replaceAll(
       '{platformId}',
@@ -2145,6 +2430,7 @@ class Project extends Service {
     final Map<String, dynamic> apiParams = {
       'name': name,
       'applicationId': applicationId,
+      if (fingerprints != null) 'fingerprints': fingerprints,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2835,6 +3121,73 @@ class Project extends Service {
     return models.Project.fromMap(res.data);
   }
 
+  /// Updating this policy allows you to control if passwords are checked against
+  /// the Have I Been Pwned breach database. When enabled, every password a user
+  /// signs up, signs in or resets with is checked and the result is recorded on
+  /// the user as `passwordPwned`. On its own the policy only records. Enable
+  /// `users` to reject a breached password when a user signs up or sets a new
+  /// password, and `sessions` to refuse a sign-in with a breached password until
+  /// it is reset. Only the first five characters of the password hash are ever
+  /// shared with the service. Options left out keep their current value.
+  Future<models.Project> updatePasswordPwnedPolicy({
+    bool? enabled,
+    bool? sessions,
+    bool? users,
+  }) async {
+    final String apiPath = '/project/policies/password-pwned';
+
+    final Map<String, dynamic> apiParams = {
+      if (enabled != null) 'enabled': enabled,
+      if (sessions != null) 'sessions': sessions,
+      if (users != null) 'users': users,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Require a password reset when an email/password sign-in uses a password
+  /// older than the configured maximum age. Options left out keep their current
+  /// value.
+  Future<models.Project> updatePasswordRotationPolicy({
+    bool? enabled,
+    int? maxAge,
+  }) async {
+    final String apiPath = '/project/policies/password-rotation';
+
+    final Map<String, dynamic> apiParams = {
+      if (enabled != null) 'enabled': enabled,
+      if (maxAge != null) 'maxAge': maxAge,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
   /// Update the password strength requirements for users in the project.
   Future<models.PolicyPasswordStrength> updatePasswordStrengthPolicy({
     int? min,
@@ -3052,6 +3405,12 @@ class Project extends Service {
       }
       if (response['\$id'] == "password-personal-data") {
         return models.PolicyPasswordPersonalData.fromMap(response);
+      }
+      if (response['\$id'] == "password-pwned") {
+        return models.PolicyPasswordPwned.fromMap(response);
+      }
+      if (response['\$id'] == "password-rotation") {
+        return models.PolicyPasswordRotation.fromMap(response);
       }
       if (response['\$id'] == "session-alert") {
         return models.PolicySessionAlert.fromMap(response);
