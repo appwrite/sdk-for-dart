@@ -47,6 +47,16 @@ class AttributeLongtext implements Model {
   factory AttributeLongtext.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return AttributeLongtext(
       key: map['key'].toString(),
       type: map['type'].toString(),

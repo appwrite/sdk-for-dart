@@ -10,6 +10,7 @@ void main() {
         clientId: "0oa00000000000000698",
         clientSecret:
             "Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV",
+        prompt: [],
         domain: "trial-6400025.okta.com",
         authorizationServerId: "aus000000000000000h7z",
       );
@@ -24,6 +25,7 @@ void main() {
         result.clientSecret,
         "Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV",
       );
+      expect(result.prompt, []);
       expect(result.domain, "trial-6400025.okta.com");
       expect(result.authorizationServerId, "aus000000000000000h7z");
     });

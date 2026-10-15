@@ -15,6 +15,12 @@ class DedicatedDatabaseBranchList implements Model {
   factory DedicatedDatabaseBranchList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'branches': [],
+      ...map,
+    };
+
     return DedicatedDatabaseBranchList(
       total: map['total'],
       branches: List<DedicatedDatabaseBranch>.from(

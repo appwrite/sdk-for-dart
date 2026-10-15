@@ -55,6 +55,22 @@ class Table implements Model {
   factory Table.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      '\$permissions': [],
+      'databaseId': "",
+      'name': "",
+      'enabled': true,
+      'rowSecurity': false,
+      'columns': [],
+      'indexes': [],
+      'bytesMax': 0,
+      'bytesUsed': 0,
+      ...map,
+    };
+
     return Table(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

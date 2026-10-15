@@ -27,6 +27,15 @@ class Passkey implements Model {
   factory Passkey.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'accessedAt': "",
+      ...map,
+    };
+
     return Passkey(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

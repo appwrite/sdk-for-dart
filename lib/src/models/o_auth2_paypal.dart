@@ -23,6 +23,14 @@ class OAuth2Paypal implements Model {
   factory OAuth2Paypal.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'secretKey': "",
+      ...map,
+    };
+
     return OAuth2Paypal(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

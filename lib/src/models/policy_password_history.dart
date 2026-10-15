@@ -15,6 +15,12 @@ class PolicyPasswordHistory implements Model {
   factory PolicyPasswordHistory.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'total': 0,
+      ...map,
+    };
+
     return PolicyPasswordHistory(
       $id: map['\$id'].toString(),
       total: map['total'],

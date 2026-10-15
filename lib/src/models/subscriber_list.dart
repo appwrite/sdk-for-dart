@@ -15,6 +15,12 @@ class SubscriberList implements Model {
   factory SubscriberList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'subscribers': [],
+      ...map,
+    };
+
     return SubscriberList(
       total: map['total'],
       subscribers: List<Subscriber>.from(

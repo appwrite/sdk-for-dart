@@ -37,6 +37,7 @@ void main() {
         providerPaths: [],
         buildSpecification: "s-1vcpu-512mb",
         runtimeSpecification: "s-1vcpu-512mb",
+        emailEnabled: true,
       );
 
       final map = model.toMap();
@@ -74,6 +75,7 @@ void main() {
       expect(result.providerPaths, []);
       expect(result.buildSpecification, "s-1vcpu-512mb");
       expect(result.runtimeSpecification, "s-1vcpu-512mb");
+      expect(result.emailEnabled, true);
     });
   });
 }

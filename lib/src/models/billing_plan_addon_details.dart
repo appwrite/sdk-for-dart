@@ -39,6 +39,17 @@ class BillingPlanAddonDetails implements Model {
   factory BillingPlanAddonDetails.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'supported': false,
+      'planIncluded': 0,
+      'limit': 0,
+      'type': "numeric",
+      'price': 0,
+      'value': 0,
+      'invoiceDesc': "",
+      ...map,
+    };
+
     return BillingPlanAddonDetails(
       supported: map['supported'],
       planIncluded: map['planIncluded'],

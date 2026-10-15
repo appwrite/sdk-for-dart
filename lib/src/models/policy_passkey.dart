@@ -19,6 +19,13 @@ class PolicyPasskey implements Model {
   factory PolicyPasskey.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'rpId': "",
+      'origins': [],
+      ...map,
+    };
+
     return PolicyPasskey(
       $id: map['\$id'].toString(),
       rpId: map['rpId'].toString(),

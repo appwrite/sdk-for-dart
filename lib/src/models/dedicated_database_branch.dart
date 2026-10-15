@@ -18,7 +18,7 @@ class DedicatedDatabaseBranch implements Model {
   final String host;
 
   /// Branch port. Null until the backing reports one.
-  final int port;
+  final int? port;
 
   /// Advertised catalog the client connects to. MySQL/MariaDB use default; Postgres uses the routing label.
   final String database;
@@ -44,7 +44,7 @@ class DedicatedDatabaseBranch implements Model {
     required this.namespace,
     required this.expiresAt,
     required this.host,
-    required this.port,
+    this.port,
     required this.database,
     required this.username,
     required this.password,
@@ -55,6 +55,21 @@ class DedicatedDatabaseBranch implements Model {
   factory DedicatedDatabaseBranch.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'branchId': "",
+      'branchName': "",
+      'namespace': "",
+      'expiresAt': 0,
+      'host': "",
+      'database': "",
+      'username': "",
+      'password': "",
+      'ssl': false,
+      'engine': "",
+      'connectionString': "",
+      ...map,
+    };
+
     return DedicatedDatabaseBranch(
       branchId: map['branchId'].toString(),
       branchName: map['branchName'].toString(),

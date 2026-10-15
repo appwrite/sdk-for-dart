@@ -31,6 +31,16 @@ class AdditionalResource implements Model {
   factory AdditionalResource.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'name': "",
+      'unit': "",
+      'currency': "",
+      'price': 0,
+      'value': 0,
+      'invoiceDesc': "",
+      ...map,
+    };
+
     return AdditionalResource(
       name: map['name'].toString(),
       unit: map['unit'].toString(),

@@ -13,6 +13,18 @@ class Tokens extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
+    if (fileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "fileId"',
+      );
+    }
+
     final String apiPath = '/tokens/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
@@ -50,6 +62,18 @@ class Tokens extends Service {
     required String fileId,
     String? expire,
   }) async {
+    if (bucketId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "bucketId"',
+      );
+    }
+
+    if (fileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "fileId"',
+      );
+    }
+
     final String apiPath = '/tokens/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
@@ -84,6 +108,12 @@ class Tokens extends Service {
   Future<models.ResourceToken> get({
     required String tokenId,
   }) async {
+    if (tokenId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tokenId"',
+      );
+    }
+
     final String apiPath = '/tokens/{tokenId}'.replaceAll(
       '{tokenId}',
       tokenId,
@@ -112,6 +142,12 @@ class Tokens extends Service {
     required String tokenId,
     String? expire,
   }) async {
+    if (tokenId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tokenId"',
+      );
+    }
+
     final String apiPath = '/tokens/{tokenId}'.replaceAll(
       '{tokenId}',
       tokenId,
@@ -141,6 +177,12 @@ class Tokens extends Service {
   Future delete({
     required String tokenId,
   }) async {
+    if (tokenId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tokenId"',
+      );
+    }
+
     final String apiPath = '/tokens/{tokenId}'.replaceAll(
       '{tokenId}',
       tokenId,
@@ -151,6 +193,7 @@ class Tokens extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(

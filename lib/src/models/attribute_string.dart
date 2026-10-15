@@ -51,6 +51,17 @@ class AttributeString implements Model {
   factory AttributeString.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'size': 0,
+      ...map,
+    };
+
     return AttributeString(
       key: map['key'].toString(),
       type: map['type'].toString(),

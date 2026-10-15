@@ -115,6 +115,36 @@ class Deployment implements Model {
   factory Deployment.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'type': "",
+      'resourceId': "",
+      'resourceType': "",
+      'entrypoint': "",
+      'sourceSize': 0,
+      'buildSize': 0,
+      'totalSize': 0,
+      'buildId': "",
+      'activate': false,
+      'screenshotLight': "",
+      'screenshotDark': "",
+      'buildLogs': "",
+      'buildDuration': 0,
+      'providerRepositoryName': "",
+      'providerRepositoryOwner': "",
+      'providerRepositoryUrl': "",
+      'providerCommitHash': "",
+      'providerCommitAuthorUrl': "",
+      'providerCommitAuthor': "",
+      'providerCommitMessage': "",
+      'providerCommitUrl': "",
+      'providerBranch': "",
+      'providerBranchUrl': "",
+      ...map,
+    };
+
     return Deployment(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

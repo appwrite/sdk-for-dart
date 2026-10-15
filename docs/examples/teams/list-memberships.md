@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Teams teams = Teams(client);
 
-MembershipList result = await teams.listMemberships(
+models.MembershipList result = await teams.listMemberships(
     teamId: '<TEAM_ID>',
     queries: [], // (optional)
     search: '<SEARCH>', // (optional)

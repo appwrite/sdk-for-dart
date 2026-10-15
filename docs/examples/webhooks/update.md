@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,11 +9,11 @@ Client client = Client()
 
 Webhooks webhooks = Webhooks(client);
 
-Webhook result = await webhooks.update(
+models.Webhook result = await webhooks.update(
     webhookId: '<WEBHOOK_ID>',
     name: '<NAME>',
     url: 'https://example.com/webhook',
-    events: [],
+    events: ["users.*.create"],
     enabled: false, // (optional)
     tls: false, // (optional)
     authUsername: '<AUTH_USERNAME>', // (optional)

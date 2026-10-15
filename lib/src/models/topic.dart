@@ -29,7 +29,7 @@ class Topic implements Model {
   /// MQTT QoS for delivery on this topic. Null lets the subscriber choose their level.
   final int? qos;
 
-  /// Message retention in seconds for offline delivery.
+  /// Message retention in seconds for offline delivery. Null inherits the lowest expiry of the project&#039;s enabled Appwrite providers, or the 7-day ledger window if none sets one.
   final int? expiry;
 
   Topic({
@@ -47,6 +47,18 @@ class Topic implements Model {
   factory Topic.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'emailTotal': 0,
+      'smsTotal': 0,
+      'pushTotal': 0,
+      'subscribe': ["users"],
+      ...map,
+    };
+
     return Topic(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

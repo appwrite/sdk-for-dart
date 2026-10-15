@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,8 +10,8 @@ Client client = Client()
 
 Embeddings embeddings = Embeddings(client);
 
-EmbeddingList result = await embeddings.createTextEmbeddings(
-    texts: [],
+models.EmbeddingList result = await embeddings.createTextEmbeddings(
+    texts: ["Appwrite helps developers build applications.", "Find documents with semantic search."],
     model: enums.EmbeddingModel.nomicEmbedText, // (optional)
 );
 ```

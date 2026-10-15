@@ -1,6 +1,7 @@
 ```dart
 import 'dart:io';
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -9,7 +10,7 @@ Client client = Client()
 
 Sites sites = Sites(client);
 
-Deployment result = await sites.createDeployment(
+models.Deployment result = await sites.createDeployment(
     siteId: '<SITE_ID>',
     code: InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg'),
     installCommand: '<INSTALL_COMMAND>', // (optional)

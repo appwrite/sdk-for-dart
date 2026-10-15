@@ -75,6 +75,27 @@ class DatabaseMigration implements Model {
   factory DatabaseMigration.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'projectId': "",
+      'databaseId': "",
+      'specification': "",
+      'phase': "pending",
+      'attempt': 0,
+      'lastError': "",
+      'lagDocuments': 0,
+      'changelogWatermark': 0,
+      'verifiedAt': "",
+      'cutoverAt': "",
+      'soakUntil': "",
+      'autoCutover': true,
+      'cutoverRequested': false,
+      'paused': false,
+      ...map,
+    };
+
     return DatabaseMigration(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

@@ -23,7 +23,7 @@ class Execution implements Model {
   /// Deployment ID used to create the execution.
   final String deploymentId;
 
-  /// The trigger that caused the resource to execute. Possible values can be: `http`, `schedule`, or `event`.
+  /// The trigger that caused the resource to execute. Possible values can be: `http`, `schedule`, `event`, or `email`.
   final enums.ExecutionTrigger trigger;
 
   /// The status of the resource execution. Possible values can be: `waiting`, `processing`, `completed`, `failed`, or `scheduled`.
@@ -53,7 +53,7 @@ class Execution implements Model {
   /// Resource errors. Includes the last 4,000 characters. This will return an empty string unless the response is returned using an API key or as part of a webhook payload.
   final String errors;
 
-  /// Resource(function/site) execution duration in seconds.
+  /// Total time the resource(function/site) took to respond, in seconds.
   final double duration;
 
   /// The scheduled time for execution. If left empty, execution will be queued immediately.
@@ -83,6 +83,26 @@ class Execution implements Model {
   factory Execution.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      '\$permissions': [],
+      'resourceId': "",
+      'resourceType': "functions",
+      'deploymentId': "",
+      'requestMethod': "",
+      'requestPath': "",
+      'requestHeaders': [],
+      'responseStatusCode': 0,
+      'responseBody': "",
+      'responseHeaders': [],
+      'logs': "",
+      'errors': "",
+      'duration': 0,
+      ...map,
+    };
+
     return Execution(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

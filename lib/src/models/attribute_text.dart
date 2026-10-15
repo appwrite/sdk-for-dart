@@ -47,6 +47,16 @@ class AttributeText implements Model {
   factory AttributeText.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return AttributeText(
       key: map['key'].toString(),
       type: map['type'].toString(),

@@ -80,6 +80,12 @@ class Webhooks extends Service {
   Future<models.Webhook> get({
     required String webhookId,
   }) async {
+    if (webhookId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "webhookId"',
+      );
+    }
+
     final String apiPath = '/webhooks/{webhookId}'.replaceAll(
       '{webhookId}',
       webhookId,
@@ -114,6 +120,12 @@ class Webhooks extends Service {
     String? authUsername,
     String? authPassword,
   }) async {
+    if (webhookId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "webhookId"',
+      );
+    }
+
     final String apiPath = '/webhooks/{webhookId}'.replaceAll(
       '{webhookId}',
       webhookId,
@@ -150,6 +162,12 @@ class Webhooks extends Service {
   Future delete({
     required String webhookId,
   }) async {
+    if (webhookId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "webhookId"',
+      );
+    }
+
     final String apiPath = '/webhooks/{webhookId}'.replaceAll(
       '{webhookId}',
       webhookId,
@@ -160,6 +178,7 @@ class Webhooks extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -179,6 +198,12 @@ class Webhooks extends Service {
     required String webhookId,
     String? secret,
   }) async {
+    if (webhookId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "webhookId"',
+      );
+    }
+
     final String apiPath = '/webhooks/{webhookId}/secret'.replaceAll(
       '{webhookId}',
       webhookId,

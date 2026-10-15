@@ -51,6 +51,16 @@ class ColumnFloat implements Model {
   factory ColumnFloat.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return ColumnFloat(
       key: map['key'].toString(),
       type: map['type'].toString(),

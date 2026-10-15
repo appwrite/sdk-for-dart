@@ -42,7 +42,7 @@ class OAuth2Kakao implements Model {
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
       prompt: List<enums.OAuth2KakaoPrompt>.from(
-        map['prompt'].map(
+        ((map['prompt'] is List) ? map['prompt'] : [map['prompt']]).map(
           (p) =>
               enums.OAuth2KakaoPrompt.values.firstWhere((e) => e.value == p),
         ),

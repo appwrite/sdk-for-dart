@@ -15,6 +15,11 @@ class ProjectProtocol implements Model {
   factory ProjectProtocol.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'enabled': true,
+      ...map,
+    };
+
     return ProjectProtocol(
       $id: enums.ProjectProtocolId.values.firstWhere(
         (e) => e.value == map['\$id'],

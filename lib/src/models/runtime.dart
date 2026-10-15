@@ -39,6 +39,18 @@ class Runtime implements Model {
   factory Runtime.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'key': "",
+      'name': "",
+      'version': "",
+      'base': "",
+      'image': "",
+      'logo': "",
+      'supports': [],
+      ...map,
+    };
+
     return Runtime(
       $id: map['\$id'].toString(),
       key: map['key'].toString(),

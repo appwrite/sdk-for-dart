@@ -35,6 +35,17 @@ class PolicyMembershipPrivacy implements Model {
   factory PolicyMembershipPrivacy.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'userId': false,
+      'userEmail': false,
+      'userPhone': false,
+      'userName': false,
+      'userMFA': false,
+      'userAccessedAt': false,
+      ...map,
+    };
+
     return PolicyMembershipPrivacy(
       $id: map['\$id'].toString(),
       userId: map['userId'],

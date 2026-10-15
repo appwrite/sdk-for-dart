@@ -23,6 +23,14 @@ class OAuth2Notion implements Model {
   factory OAuth2Notion.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'oauthClientId': "",
+      'oauthClientSecret': "",
+      ...map,
+    };
+
     return OAuth2Notion(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

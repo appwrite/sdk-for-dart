@@ -39,6 +39,16 @@ class AttributeObject implements Model {
   factory AttributeObject.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return AttributeObject(
       key: map['key'].toString(),
       type: map['type'].toString(),

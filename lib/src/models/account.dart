@@ -143,7 +143,7 @@ class Account implements Model {
       phoneVerification: map['phoneVerification'],
       mfa: map['mfa'],
       prefs: Preferences.fromMap(
-        map['prefs'],
+        map['prefs'] ?? <String, dynamic>{},
       ),
       targets: List<Target>.from(
         map['targets'].map((p) => Target.fromMap(p)),

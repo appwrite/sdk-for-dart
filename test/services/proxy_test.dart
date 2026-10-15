@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
     HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
@@ -116,6 +117,7 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'protocol': "http",
       };
 
       when(
@@ -145,6 +147,7 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'protocol': "http",
       };
 
       when(
@@ -175,6 +178,7 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'protocol': "http",
       };
 
       when(
@@ -208,6 +212,7 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'protocol': "http",
       };
 
       when(
@@ -217,6 +222,37 @@ void main() {
       final response = await proxy.createSiteRule(
         domain: "example.com",
         siteId: "<SITE_ID>",
+      );
+      expect(response, isA<models.ProxyRule>());
+    });
+
+    test('test method createSMTPRule()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'domain': "appwrite.company.com",
+        'type': "deployment",
+        'trigger': "manual",
+        'redirectUrl': "https://appwrite.io/docs",
+        'redirectStatusCode': 301,
+        'deploymentId': "n3u9feiwmf",
+        'deploymentResourceId': "n3u9feiwmf",
+        'deploymentVcsProviderBranch': "main",
+        'status': "verified",
+        'logs':
+            "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
+        'renewAt': "datetime",
+        'protocol': "http",
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await proxy.createSMTPRule(
+        domain: "example.com",
+        functionId: "<FUNCTION_ID>",
       );
       expect(response, isA<models.ProxyRule>());
     });
@@ -238,6 +274,7 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'protocol': "http",
       };
 
       when(
@@ -279,6 +316,7 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'protocol': "http",
       };
 
       when(

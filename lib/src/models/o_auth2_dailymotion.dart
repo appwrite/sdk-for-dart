@@ -23,6 +23,14 @@ class OAuth2Dailymotion implements Model {
   factory OAuth2Dailymotion.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'apiKey': "",
+      'apiSecret': "",
+      ...map,
+    };
+
     return OAuth2Dailymotion(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

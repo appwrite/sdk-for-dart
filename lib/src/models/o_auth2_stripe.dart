@@ -23,6 +23,14 @@ class OAuth2Stripe implements Model {
   factory OAuth2Stripe.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'apiSecretKey': "",
+      ...map,
+    };
+
     return OAuth2Stripe(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

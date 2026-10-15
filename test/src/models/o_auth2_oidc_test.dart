@@ -10,11 +10,11 @@ void main() {
         clientId: "qibI2x0000000000000000000000000006L2YFoG",
         clientSecret:
             "Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV",
+        prompt: [],
         wellKnownURL: "https://myoauth.com/.well-known/openid-configuration",
         authorizationURL: "https://myoauth.com/oauth2/authorize",
         tokenURL: "https://myoauth.com/oauth2/token",
         userInfoURL: "https://myoauth.com/oauth2/userinfo",
-        prompt: [],
       );
 
       final map = model.toMap();
@@ -27,6 +27,7 @@ void main() {
         result.clientSecret,
         "Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV",
       );
+      expect(result.prompt, []);
       expect(
         result.wellKnownURL,
         "https://myoauth.com/.well-known/openid-configuration",
@@ -34,7 +35,6 @@ void main() {
       expect(result.authorizationURL, "https://myoauth.com/oauth2/authorize");
       expect(result.tokenURL, "https://myoauth.com/oauth2/token");
       expect(result.userInfoURL, "https://myoauth.com/oauth2/userinfo");
-      expect(result.prompt, []);
     });
   });
 }

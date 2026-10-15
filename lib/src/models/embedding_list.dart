@@ -15,6 +15,12 @@ class EmbeddingList implements Model {
   factory EmbeddingList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'embeddings': [],
+      ...map,
+    };
+
     return EmbeddingList(
       total: map['total'],
       embeddings: List<Embedding>.from(

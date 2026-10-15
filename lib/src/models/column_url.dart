@@ -47,6 +47,17 @@ class ColumnUrl implements Model {
   factory ColumnUrl.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'format': "url",
+      ...map,
+    };
+
     return ColumnUrl(
       key: map['key'].toString(),
       type: map['type'].toString(),

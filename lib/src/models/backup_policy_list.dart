@@ -15,6 +15,12 @@ class BackupPolicyList implements Model {
   factory BackupPolicyList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'policies': [],
+      ...map,
+    };
+
     return BackupPolicyList(
       total: map['total'],
       policies: List<BackupPolicy>.from(

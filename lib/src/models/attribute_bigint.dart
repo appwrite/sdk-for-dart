@@ -51,6 +51,16 @@ class AttributeBigint implements Model {
   factory AttributeBigint.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return AttributeBigint(
       key: map['key'].toString(),
       type: map['type'].toString(),

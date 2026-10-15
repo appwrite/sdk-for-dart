@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
     HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
@@ -86,9 +87,7 @@ void main() {
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'policyId': "did8jx6ws45jana098ab7",
-        'size': 100000,
         'status': "completed",
-        'startedAt': "2020-10-15T06:38:00.000+00:00",
         'migrationId': "did8jx6ws45jana098ab7",
         'services': [],
         'resources': [],
@@ -110,9 +109,7 @@ void main() {
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'policyId': "did8jx6ws45jana098ab7",
-        'size': 100000,
         'status': "completed",
-        'startedAt': "2020-10-15T06:38:00.000+00:00",
         'migrationId': "did8jx6ws45jana098ab7",
         'services': [],
         'resources': [],
@@ -176,7 +173,7 @@ void main() {
         policyId: "<POLICY_ID>",
         services: [enums.BackupServices.databases],
         retention: 1,
-        schedule: '',
+        schedule: "schedule",
       );
       expect(response, isA<models.BackupPolicy>());
     });
@@ -249,11 +246,10 @@ void main() {
         'archiveId': "did8jx6ws45jana098ab7",
         'policyId': "did8jx6ws45jana098ab7",
         'status': "completed",
-        'startedAt': "2020-10-15T06:38:00.000+00:00",
         'migrationId': "did8jx6ws45jana098ab7",
         'services': [],
         'resources': [],
-        'options': "{databases.database[{oldId, newId, newName}]}",
+        'options': <String, dynamic>{},
       };
 
       when(
@@ -289,11 +285,10 @@ void main() {
         'archiveId': "did8jx6ws45jana098ab7",
         'policyId': "did8jx6ws45jana098ab7",
         'status': "completed",
-        'startedAt': "2020-10-15T06:38:00.000+00:00",
         'migrationId': "did8jx6ws45jana098ab7",
         'services': [],
         'resources': [],
-        'options': "{databases.database[{oldId, newId, newName}]}",
+        'options': <String, dynamic>{},
       };
 
       when(

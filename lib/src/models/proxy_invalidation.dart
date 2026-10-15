@@ -23,6 +23,14 @@ class ProxyInvalidation implements Model {
   factory ProxyInvalidation.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'domain': "",
+      'type': "",
+      'reference': "",
+      'status': "",
+      ...map,
+    };
+
     return ProxyInvalidation(
       domain: map['domain'].toString(),
       type: map['type'].toString(),

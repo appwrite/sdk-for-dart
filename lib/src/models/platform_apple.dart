@@ -31,6 +31,15 @@ class PlatformApple implements Model {
   factory PlatformApple.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'bundleIdentifier': "",
+      ...map,
+    };
+
     return PlatformApple(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

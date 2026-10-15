@@ -15,6 +15,12 @@ class DedicatedDatabaseRestorationList implements Model {
   factory DedicatedDatabaseRestorationList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'restorations': [],
+      ...map,
+    };
+
     return DedicatedDatabaseRestorationList(
       total: map['total'],
       restorations: List<DedicatedDatabaseRestoration>.from(

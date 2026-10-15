@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '29.4.0',
-      'X-Appwrite-Response-Format': '2.0.0',
+      'x-sdk-version': '30.0.0',
+      'X-Appwrite-Response-Format': '2.5.0',
     };
 
     config = {};
@@ -105,14 +105,6 @@ class ClientBrowser extends ClientBase with ClientMixin {
   ClientBrowser setForwardedUserAgent(value) {
     config['forwardedUserAgent'] = value;
     addHeader('X-Forwarded-User-Agent', value);
-    return this;
-  }
-
-  /// Your secret dev API key
-  @override
-  ClientBrowser setDevKey(value) {
-    config['devKey'] = value;
-    addHeader('X-Appwrite-Dev-Key', value);
     return this;
   }
 
@@ -190,8 +182,19 @@ class ClientBrowser extends ClientBase with ClientMixin {
     required String idParamName,
     required Map<String, String> headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
     HttpMethod method = HttpMethod.post,
   }) async {
+    if (params[paramName] == null) {
+      return call(
+        method,
+        path: path,
+        params: params,
+        headers: headers,
+        responseType: responseType,
+      );
+    }
+
     InputFile file = params[paramName];
     if (file.bytes == null) {
       throw AppwriteException("File bytes must be provided for Flutter web");
@@ -200,7 +203,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
     int size = file.bytes!.length;
 
     late Response res;
-    if (size <= chunkSize) {
+    if (size <= chunkSize || responseType == ResponseType.plain) {
       params[paramName] = http.MultipartFile.fromBytes(
         paramName,
         file.bytes!,
@@ -211,6 +214,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
         path: path,
         params: params,
         headers: headers,
+        responseType: responseType,
       );
     }
 

@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,12 +10,12 @@ Client client = Client()
 
 DocumentsDB documentsDB = DocumentsDB(client);
 
-Index result = await documentsDB.createIndex(
+models.Index result = await documentsDB.createIndex(
     databaseId: '<DATABASE_ID>',
     collectionId: '<COLLECTION_ID>',
     key: '<KEY>',
     type: enums.DocumentsDBIndexType.key,
-    attributes: [],
+    attributes: ["username"],
     orders: [enums.OrderBy.asc], // (optional)
     lengths: [], // (optional)
 );

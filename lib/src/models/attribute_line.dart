@@ -43,6 +43,16 @@ class AttributeLine implements Model {
   factory AttributeLine.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return AttributeLine(
       key: map['key'].toString(),
       type: map['type'].toString(),
