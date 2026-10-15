@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Proxy proxy = Proxy(client);
 
-ProxyInvalidation result = await proxy.createInvalidation(
+models.ProxyInvalidation result = await proxy.createInvalidation(
     domain: 'example.com',
     type: enums.InvalidationType.tag,
     reference: '<REFERENCE>', // (optional)

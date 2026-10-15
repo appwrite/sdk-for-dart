@@ -13,6 +13,7 @@ class Project extends Service {
 
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -34,6 +35,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -299,6 +301,12 @@ class Project extends Service {
   Future<models.Key> getKey({
     required String keyId,
   }) async {
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
       keyId,
@@ -329,6 +337,12 @@ class Project extends Service {
     required List<enums.ProjectKeyScopes> scopes,
     String? expire,
   }) async {
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
       keyId,
@@ -361,6 +375,12 @@ class Project extends Service {
   Future deleteKey({
     required String keyId,
   }) async {
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
       keyId,
@@ -371,6 +391,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -472,6 +493,12 @@ class Project extends Service {
   Future<models.MockNumber> getMockPhone({
     required String number,
   }) async {
+    if (number.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "number"',
+      );
+    }
+
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
       number,
@@ -500,6 +527,12 @@ class Project extends Service {
     required String number,
     required String otp,
   }) async {
+    if (number.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "number"',
+      );
+    }
+
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
       number,
@@ -530,6 +563,12 @@ class Project extends Service {
   Future deleteMockPhone({
     required String number,
   }) async {
+    if (number.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "number"',
+      );
+    }
+
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
       number,
@@ -540,6 +579,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -1335,16 +1375,16 @@ class Project extends Service {
   Future<models.OAuth2Kakao> updateOAuth2Kakao({
     String? clientId,
     String? clientSecret,
-    List<enums.ProjectOAuth2KakaoPrompt>? prompt,
     bool? enabled,
+    List<enums.ProjectOAuth2KakaoPrompt>? prompt,
   }) async {
     final String apiPath = '/project/oauth2/kakao';
 
     final Map<String, dynamic> apiParams = {
       if (clientId != null) 'clientId': clientId,
       if (clientSecret != null) 'clientSecret': clientSecret,
-      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
       if (enabled != null) 'enabled': enabled,
+      if (prompt != null) 'prompt': prompt?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -2415,13 +2455,19 @@ class Project extends Service {
   }
 
   /// Update an Android platform by its unique ID. Use this endpoint to update
-  /// the platform's name or application ID.
+  /// the platform's name, application ID or signing certificate fingerprints.
   Future<models.PlatformAndroid> updateAndroidPlatform({
     required String platformId,
     required String name,
     required String applicationId,
     List<String>? fingerprints,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/android/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2488,6 +2534,12 @@ class Project extends Service {
     required String name,
     required String bundleIdentifier,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/apple/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2553,6 +2605,12 @@ class Project extends Service {
     required String name,
     required String packageName,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/linux/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2618,6 +2676,12 @@ class Project extends Service {
     required String name,
     required String hostname,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/web/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2683,6 +2747,12 @@ class Project extends Service {
     required String name,
     required String packageIdentifierName,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/windows/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2714,6 +2784,12 @@ class Project extends Service {
   Future<models.Model> getPlatform({
     required String platformId,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2768,6 +2844,12 @@ class Project extends Service {
   Future deletePlatform({
     required String platformId,
   }) async {
+    if (platformId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "platformId"',
+      );
+    }
+
     final String apiPath = '/project/platforms/{platformId}'.replaceAll(
       '{platformId}',
       platformId,
@@ -2778,6 +2860,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -3576,6 +3659,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -3753,6 +3837,12 @@ class Project extends Service {
   Future<models.Variable> getVariable({
     required String variableId,
   }) async {
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
       variableId,
@@ -3782,6 +3872,12 @@ class Project extends Service {
     String? value,
     bool? secret,
   }) async {
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
       variableId,
@@ -3813,6 +3909,12 @@ class Project extends Service {
   Future deleteVariable({
     required String variableId,
   }) async {
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
       variableId,
@@ -3823,6 +3925,7 @@ class Project extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(

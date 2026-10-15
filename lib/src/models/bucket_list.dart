@@ -15,6 +15,12 @@ class BucketList implements Model {
   factory BucketList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'buckets': [],
+      ...map,
+    };
+
     return BucketList(
       total: map['total'],
       buckets: List<Bucket>.from(

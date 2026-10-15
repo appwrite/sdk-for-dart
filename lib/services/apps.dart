@@ -141,6 +141,12 @@ class Apps extends Service {
   Future<models.App> get({
     required String appId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}'.replaceAll(
       '{appId}',
       appId,
@@ -186,6 +192,12 @@ class Apps extends Service {
     List<String>? installationScopes,
     String? installationRedirectUrl,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}'.replaceAll(
       '{appId}',
       appId,
@@ -235,6 +247,12 @@ class Apps extends Service {
   Future delete({
     required String appId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}'.replaceAll(
       '{appId}',
       appId,
@@ -266,6 +284,12 @@ class Apps extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/installations'.replaceAll(
       '{appId}',
       appId,
@@ -298,6 +322,18 @@ class Apps extends Service {
     required String appId,
     required String installationId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/installations/{installationId}'
         .replaceAll(
           '{appId}',
@@ -332,6 +368,18 @@ class Apps extends Service {
     required String appId,
     required String installationId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/installations/{installationId}'
         .replaceAll(
           '{appId}',
@@ -372,6 +420,18 @@ class Apps extends Service {
     required String appId,
     required String installationId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/installations/{installationId}/tokens'
         .replaceAll(
           '{appId}',
@@ -406,6 +466,12 @@ class Apps extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/keys'.replaceAll(
       '{appId}',
       appId,
@@ -437,6 +503,12 @@ class Apps extends Service {
   Future<models.AppKey> createKey({
     required String appId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/keys'.replaceAll(
       '{appId}',
       appId,
@@ -465,6 +537,18 @@ class Apps extends Service {
     required String appId,
     required String keyId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/keys/{keyId}'
         .replaceAll(
           '{appId}',
@@ -497,6 +581,18 @@ class Apps extends Service {
     required String appId,
     required String keyId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
+    if (keyId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "keyId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/keys/{keyId}'
         .replaceAll(
           '{appId}',
@@ -532,6 +628,12 @@ class Apps extends Service {
     required String appId,
     required List<String> labels,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/labels'.replaceAll(
       '{appId}',
       appId,
@@ -563,6 +665,12 @@ class Apps extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/secrets'.replaceAll(
       '{appId}',
       appId,
@@ -592,6 +700,12 @@ class Apps extends Service {
   Future<models.AppSecretPlaintext> createSecret({
     required String appId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/secrets'.replaceAll(
       '{appId}',
       appId,
@@ -620,6 +734,18 @@ class Apps extends Service {
     required String appId,
     required String secretId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
+    if (secretId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "secretId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/secrets/{secretId}'
         .replaceAll(
           '{appId}',
@@ -652,6 +778,18 @@ class Apps extends Service {
     required String appId,
     required String secretId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
+    if (secretId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "secretId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/secrets/{secretId}'
         .replaceAll(
           '{appId}',
@@ -685,6 +823,12 @@ class Apps extends Service {
     required String appId,
     required String teamId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/team'.replaceAll(
       '{appId}',
       appId,
@@ -714,6 +858,12 @@ class Apps extends Service {
   Future deleteTokens({
     required String appId,
   }) async {
+    if (appId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "appId"',
+      );
+    }
+
     final String apiPath = '/apps/{appId}/tokens'.replaceAll(
       '{appId}',
       appId,

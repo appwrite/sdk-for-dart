@@ -167,6 +167,12 @@ class Sites extends Service {
   Future<models.Site> get({
     required String siteId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}'.replaceAll(
       '{siteId}',
       siteId,
@@ -216,6 +222,12 @@ class Sites extends Service {
     int? deploymentRetention,
     List<enums.ProjectKeyScopes>? scopes,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}'.replaceAll(
       '{siteId}',
       siteId,
@@ -271,6 +283,12 @@ class Sites extends Service {
   Future delete({
     required String siteId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}'.replaceAll(
       '{siteId}',
       siteId,
@@ -281,6 +299,7 @@ class Sites extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -299,6 +318,12 @@ class Sites extends Service {
     required String siteId,
     required String deploymentId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployment'.replaceAll(
       '{siteId}',
       siteId,
@@ -332,6 +357,12 @@ class Sites extends Service {
     String? search,
     bool? total,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments'.replaceAll(
       '{siteId}',
       siteId,
@@ -370,6 +401,12 @@ class Sites extends Service {
     bool? activate,
     Function(UploadProgress)? onProgress,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments'.replaceAll(
       '{siteId}',
       siteId,
@@ -398,6 +435,7 @@ class Sites extends Service {
       idParamName: idParamName,
       headers: apiHeaders,
       onProgress: onProgress,
+      method: HttpMethod.post,
     );
 
     return models.Deployment.fromMap(res.data);
@@ -412,6 +450,12 @@ class Sites extends Service {
     required String siteId,
     required String deploymentId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments/duplicate'.replaceAll(
       '{siteId}',
       siteId,
@@ -451,6 +495,12 @@ class Sites extends Service {
     required String reference,
     bool? activate,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments/template'.replaceAll(
       '{siteId}',
       siteId,
@@ -490,6 +540,12 @@ class Sites extends Service {
     required String reference,
     bool? activate,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments/vcs'.replaceAll(
       '{siteId}',
       siteId,
@@ -522,6 +578,18 @@ class Sites extends Service {
     required String siteId,
     required String deploymentId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (deploymentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "deploymentId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}'
         .replaceAll(
           '{siteId}',
@@ -554,6 +622,18 @@ class Sites extends Service {
     required String siteId,
     required String deploymentId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (deploymentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "deploymentId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}'
         .replaceAll(
           '{siteId}',
@@ -569,6 +649,7 @@ class Sites extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -590,6 +671,18 @@ class Sites extends Service {
     enums.DeploymentDownloadType? type,
     String? token,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (deploymentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "deploymentId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}/download'
         .replaceAll(
           '{siteId}',
@@ -629,6 +722,18 @@ class Sites extends Service {
     required String siteId,
     required String deploymentId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (deploymentId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "deploymentId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}/status'
         .replaceAll(
           '{siteId}',
@@ -664,6 +769,12 @@ class Sites extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/logs'.replaceAll(
       '{siteId}',
       siteId,
@@ -694,6 +805,18 @@ class Sites extends Service {
     required String siteId,
     required String logId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (logId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "logId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/logs/{logId}'
         .replaceAll(
           '{siteId}',
@@ -726,6 +849,18 @@ class Sites extends Service {
     required String siteId,
     required String logId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (logId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "logId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/logs/{logId}'
         .replaceAll(
           '{siteId}',
@@ -760,6 +895,12 @@ class Sites extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/variables'.replaceAll(
       '{siteId}',
       siteId,
@@ -794,6 +935,12 @@ class Sites extends Service {
     required String value,
     bool? secret,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/variables'.replaceAll(
       '{siteId}',
       siteId,
@@ -827,6 +974,18 @@ class Sites extends Service {
     required String siteId,
     required String variableId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
         .replaceAll(
           '{siteId}',
@@ -862,6 +1021,18 @@ class Sites extends Service {
     String? value,
     bool? secret,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
         .replaceAll(
           '{siteId}',
@@ -899,6 +1070,18 @@ class Sites extends Service {
     required String siteId,
     required String variableId,
   }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    if (variableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "variableId"',
+      );
+    }
+
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
         .replaceAll(
           '{siteId}',
@@ -914,6 +1097,7 @@ class Sites extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(

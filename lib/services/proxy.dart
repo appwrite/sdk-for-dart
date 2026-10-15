@@ -10,6 +10,8 @@ class Proxy extends Service {
   ///
   /// Depending on type, the invalidation purges a single cache tag, a single URL
   /// path, or all cached content for the domain.
+  ///
+  /// Domains that route to a function do not support cache invalidation.
   Future<models.ProxyInvalidation> createInvalidation({
     required String domain,
     required enums.InvalidationType type,
@@ -200,10 +202,47 @@ class Proxy extends Service {
     return models.ProxyRule.fromMap(res.data);
   }
 
+  /// Create an SMTP ingress rule that asynchronously executes an Appwrite
+  /// Function for incoming email.
+  Future<models.ProxyRule> createSMTPRule({
+    required String domain,
+    required String functionId,
+    String? branch,
+  }) async {
+    final String apiPath = '/proxy/rules/smtp';
+
+    final Map<String, dynamic> apiParams = {
+      'domain': domain,
+      'functionId': functionId,
+      if (branch != null) 'branch': branch,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ProxyRule.fromMap(res.data);
+  }
+
   /// Get a proxy rule by its unique ID.
   Future<models.ProxyRule> getRule({
     required String ruleId,
   }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
     final String apiPath = '/proxy/rules/{ruleId}'.replaceAll(
       '{ruleId}',
       ruleId,
@@ -230,6 +269,12 @@ class Proxy extends Service {
   Future deleteRule({
     required String ruleId,
   }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
     final String apiPath = '/proxy/rules/{ruleId}'.replaceAll(
       '{ruleId}',
       ruleId,
@@ -240,6 +285,7 @@ class Proxy extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -259,6 +305,12 @@ class Proxy extends Service {
   Future<models.ProxyRule> updateRuleStatus({
     required String ruleId,
   }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
     final String apiPath = '/proxy/rules/{ruleId}/status'.replaceAll(
       '{ruleId}',
       ruleId,

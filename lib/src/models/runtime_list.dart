@@ -15,6 +15,12 @@ class RuntimeList implements Model {
   factory RuntimeList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'runtimes': [],
+      ...map,
+    };
+
     return RuntimeList(
       total: map['total'],
       runtimes: List<Runtime>.from(

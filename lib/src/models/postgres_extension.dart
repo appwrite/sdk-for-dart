@@ -23,6 +23,14 @@ class PostgresExtension implements Model {
   factory PostgresExtension.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'name': "",
+      'description': "",
+      'category': "",
+      ...map,
+    };
+
     return PostgresExtension(
       key: map['key'].toString(),
       name: map['name'].toString(),

@@ -29,7 +29,7 @@ class ProxyRule implements Model {
   /// ID of deployment. Used if type is &quot;deployment&quot;
   final String deploymentId;
 
-  /// Type of deployment. Possible values are &quot;function&quot;, &quot;site&quot;. Used if rule&#039;s type is &quot;deployment&quot;.
+  /// Type of deployment resource: function, site, or dedicatedDatabase.
   final enums.ProxyRuleDeploymentResourceType? deploymentResourceType;
 
   /// ID of deployment&#039;s resource (site or function ID). Used if type is &quot;deployment&quot;
@@ -47,6 +47,9 @@ class ProxyRule implements Model {
   /// Certificate auto-renewal date in ISO 8601 format.
   final String renewAt;
 
+  /// Ingress protocol for the rule.
+  final enums.ProxyRuleProtocol protocol;
+
   ProxyRule({
     required this.$id,
     required this.$createdAt,
@@ -63,10 +66,29 @@ class ProxyRule implements Model {
     required this.status,
     required this.logs,
     required this.renewAt,
+    required this.protocol,
   });
   factory ProxyRule.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'domain': "",
+      'type': "",
+      'trigger': "",
+      'redirectUrl': "",
+      'redirectStatusCode': 301,
+      'deploymentId': "",
+      'deploymentResourceId': "",
+      'deploymentVcsProviderBranch': "",
+      'status': "unverified",
+      'logs': "",
+      'protocol': "http",
+      ...map,
+    };
+
     return ProxyRule(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -90,6 +112,9 @@ class ProxyRule implements Model {
       ),
       logs: map['logs'].toString(),
       renewAt: map['renewAt'].toString(),
+      protocol: enums.ProxyRuleProtocol.values.firstWhere(
+        (e) => e.value == map['protocol'],
+      ),
     );
   }
 
@@ -111,6 +136,7 @@ class ProxyRule implements Model {
       "status": status.value,
       "logs": logs,
       "renewAt": renewAt,
+      "protocol": protocol.value,
     };
   }
 }

@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Postgresql postgresql = Postgresql(client);
 
-BackupPolicy result = await postgresql.updateBackupPolicy(
+models.BackupPolicy result = await postgresql.updateBackupPolicy(
     databaseId: '<DATABASE_ID>',
     policyId: '<POLICY_ID>',
     name: '<NAME>', // (optional)

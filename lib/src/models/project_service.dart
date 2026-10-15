@@ -15,6 +15,11 @@ class ProjectService implements Model {
   factory ProjectService.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'enabled': true,
+      ...map,
+    };
+
     return ProjectService(
       $id: enums.ProjectServiceId.values.firstWhere(
         (e) => e.value == map['\$id'],

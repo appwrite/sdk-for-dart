@@ -21,10 +21,10 @@ class OAuth2Apple implements Model {
   final String p8File;
 
   /// Native Sign in with Apple is active and can be used to create sessions from an ID token. Independent of enabled, which only controls the browser-based flow.
-  final bool? nativeEnabled;
+  final bool nativeEnabled;
 
   /// App bundle IDs accepted as ID token audiences for native Sign in with Apple, next to the Services ID.
-  final List<String>? nativeClientIds;
+  final List<String> nativeClientIds;
 
   OAuth2Apple({
     required this.$id,
@@ -33,12 +33,24 @@ class OAuth2Apple implements Model {
     required this.keyId,
     required this.teamId,
     required this.p8File,
-    this.nativeEnabled,
-    this.nativeClientIds,
+    required this.nativeEnabled,
+    required this.nativeClientIds,
   });
   factory OAuth2Apple.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'serviceId': "",
+      'keyId': "",
+      'teamId': "",
+      'p8File': "",
+      'nativeEnabled': false,
+      'nativeClientIds': [],
+      ...map,
+    };
+
     return OAuth2Apple(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

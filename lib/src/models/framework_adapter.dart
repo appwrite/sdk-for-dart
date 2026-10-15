@@ -27,6 +27,14 @@ class FrameworkAdapter implements Model {
   factory FrameworkAdapter.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'installCommand': "",
+      'buildCommand': "",
+      'outputDirectory': "",
+      ...map,
+    };
+
     return FrameworkAdapter(
       key: map['key'].toString(),
       installCommand: map['installCommand'].toString(),

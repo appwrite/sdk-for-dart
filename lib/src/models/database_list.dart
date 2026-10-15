@@ -15,6 +15,12 @@ class DatabaseList implements Model {
   factory DatabaseList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'databases': [],
+      ...map,
+    };
+
     return DatabaseList(
       total: map['total'],
       databases: List<Database>.from(

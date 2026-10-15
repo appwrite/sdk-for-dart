@@ -75,6 +75,22 @@ class DedicatedDatabaseBackup implements Model {
   factory DedicatedDatabaseBackup.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      'databaseId': "",
+      'projectId': "",
+      'policyId': "",
+      'trigger': "manual",
+      'type': "full",
+      'requestedType': "",
+      'fallbackReason': "",
+      'status': "pending",
+      'sizeBytes': 0,
+      'error': "",
+      ...map,
+    };
+
     return DedicatedDatabaseBackup(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

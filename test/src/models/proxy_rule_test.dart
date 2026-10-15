@@ -21,6 +21,7 @@ void main() {
         logs:
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         renewAt: "datetime",
+        protocol: ProxyRuleProtocol.http,
       );
 
       final map = model.toMap();
@@ -43,6 +44,7 @@ void main() {
         "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
       );
       expect(result.renewAt, "datetime");
+      expect(result.protocol, ProxyRuleProtocol.http);
     });
   });
 }

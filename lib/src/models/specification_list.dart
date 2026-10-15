@@ -15,6 +15,12 @@ class SpecificationList implements Model {
   factory SpecificationList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'specifications': [],
+      ...map,
+    };
+
     return SpecificationList(
       total: map['total'],
       specifications: List<Specification>.from(

@@ -26,7 +26,7 @@ class Webhook implements Model {
   /// HTTP basic authentication username.
   final String authUsername;
 
-  /// HTTP basic authentication password.
+  /// HTTP basic authentication password. Write-only: always returned empty.
   final String authPassword;
 
   /// Signature key which can be used to validate incoming webhook payloads. Only returned on creation and secret rotation.
@@ -59,6 +59,23 @@ class Webhook implements Model {
   factory Webhook.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'url': "",
+      'events': [],
+      'tls': true,
+      'authUsername': "",
+      'authPassword': "",
+      'secret': "",
+      'enabled': true,
+      'logs': "",
+      'attempts': 0,
+      ...map,
+    };
+
     return Webhook(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

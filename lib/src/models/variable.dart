@@ -39,6 +39,18 @@ class Variable implements Model {
   factory Variable.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'key': "",
+      'value': "",
+      'secret': false,
+      'resourceType': "",
+      'resourceId': "",
+      ...map,
+    };
+
     return Variable(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

@@ -1,14 +1,17 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
     .setProject('<YOUR_PROJECT_ID>') // Your project ID
     .setKey('<YOUR_API_KEY>'); // Your secret API key
 
-Organization organization = Organization(client);
+Proxy proxy = Proxy(client);
 
-Key result = await organization.getKey(
-    keyId: '<KEY_ID>',
+models.ProxyRule result = await proxy.createSMTPRule(
+    domain: 'example.com',
+    functionId: '<FUNCTION_ID>',
+    branch: '<BRANCH>', // (optional)
 );
 ```

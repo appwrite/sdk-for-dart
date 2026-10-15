@@ -23,6 +23,14 @@ class OAuth2Resend implements Model {
   factory OAuth2Resend.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Resend(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

@@ -23,6 +23,14 @@ class OAuth2Bitly implements Model {
   factory OAuth2Bitly.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Bitly(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

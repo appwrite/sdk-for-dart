@@ -31,6 +31,15 @@ class PlatformLinux implements Model {
   factory PlatformLinux.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'name': "",
+      'packageName': "",
+      ...map,
+    };
+
     return PlatformLinux(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

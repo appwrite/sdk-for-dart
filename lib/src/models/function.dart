@@ -101,6 +101,9 @@ class Func implements Model {
   /// Machine specification for executions.
   final String runtimeSpecification;
 
+  /// Whether inbound email (SMTP) may trigger this function. Opt-in; default is false. When disabled, recipients for this function are rejected.
+  final bool emailEnabled;
+
   Func({
     required this.$id,
     required this.$createdAt,
@@ -135,10 +138,48 @@ class Func implements Model {
     required this.providerPaths,
     required this.buildSpecification,
     required this.runtimeSpecification,
+    required this.emailEnabled,
   });
   factory Func.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'execute': [],
+      'name': "",
+      'enabled': true,
+      'live': true,
+      'logging': true,
+      'runtime': "",
+      'deploymentRetention': 0,
+      'deploymentId': "",
+      'deploymentCreatedAt': "",
+      'latestDeploymentId': "",
+      'latestDeploymentCreatedAt': "",
+      'latestDeploymentStatus': "",
+      'scopes': [],
+      'vars': [],
+      'events': [],
+      'schedule': "",
+      'timeout': 15,
+      'entrypoint': "",
+      'commands': "",
+      'version': "v5",
+      'installationId': "",
+      'providerRepositoryId': "",
+      'providerBranch': "",
+      'providerRootDirectory': "",
+      'providerSilentMode': false,
+      'providerBranches': [],
+      'providerPaths': [],
+      'buildSpecification': "s-1vcpu-512mb",
+      'runtimeSpecification': "s-1vcpu-512mb",
+      'emailEnabled': false,
+      ...map,
+    };
+
     return Func(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -175,6 +216,7 @@ class Func implements Model {
       providerPaths: List.from(map['providerPaths'] ?? []),
       buildSpecification: map['buildSpecification'].toString(),
       runtimeSpecification: map['runtimeSpecification'].toString(),
+      emailEnabled: map['emailEnabled'],
     );
   }
 
@@ -214,6 +256,7 @@ class Func implements Model {
       "providerPaths": providerPaths,
       "buildSpecification": buildSpecification,
       "runtimeSpecification": runtimeSpecification,
+      "emailEnabled": emailEnabled,
     };
   }
 }

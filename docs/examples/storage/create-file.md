@@ -1,6 +1,7 @@
 ```dart
 import 'dart:io';
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/permission.dart';
 import 'package:dart_appwrite/role.dart';
 
@@ -11,7 +12,7 @@ Client client = Client()
 
 Storage storage = Storage(client);
 
-File result = await storage.createFile(
+models.File result = await storage.createFile(
     bucketId: '<BUCKET_ID>',
     fileId: '<FILE_ID>',
     file: InputFile(path: './path-to-files/image.jpg', filename: 'image.jpg'),

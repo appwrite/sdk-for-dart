@@ -63,6 +63,21 @@ class AttributeRelationship implements Model {
   factory AttributeRelationship.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'relationType': "",
+      'twoWay': false,
+      'twoWayKey': "",
+      'onDelete': "restrict",
+      'side': "",
+      ...map,
+    };
+
     return AttributeRelationship(
       key: map['key'].toString(),
       type: map['type'].toString(),

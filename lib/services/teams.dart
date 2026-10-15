@@ -71,6 +71,12 @@ class Teams extends Service {
   Future<models.Team> get({
     required String teamId,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}'.replaceAll(
       '{teamId}',
       teamId,
@@ -98,6 +104,12 @@ class Teams extends Service {
     required String teamId,
     required String name,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}'.replaceAll(
       '{teamId}',
       teamId,
@@ -128,6 +140,12 @@ class Teams extends Service {
   Future delete({
     required String teamId,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}'.replaceAll(
       '{teamId}',
       teamId,
@@ -138,6 +156,7 @@ class Teams extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -156,6 +175,12 @@ class Teams extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/installations'.replaceAll(
       '{teamId}',
       teamId,
@@ -190,6 +215,12 @@ class Teams extends Service {
     required String appId,
     String? authorizationDetails,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/installations'.replaceAll(
       '{teamId}',
       teamId,
@@ -223,6 +254,18 @@ class Teams extends Service {
     required String teamId,
     required String installationId,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/installations/{installationId}'
         .replaceAll(
           '{teamId}',
@@ -259,6 +302,18 @@ class Teams extends Service {
     required String installationId,
     String? authorizationDetails,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/installations/{installationId}'
         .replaceAll(
           '{teamId}',
@@ -297,6 +352,18 @@ class Teams extends Service {
     required String teamId,
     required String installationId,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
+    if (installationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "installationId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/installations/{installationId}'
         .replaceAll(
           '{teamId}',
@@ -334,6 +401,12 @@ class Teams extends Service {
     String? search,
     bool? total,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/memberships'.replaceAll(
       '{teamId}',
       teamId,
@@ -390,6 +463,12 @@ class Teams extends Service {
     String? name,
     String? membershipId,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/memberships'.replaceAll(
       '{teamId}',
       teamId,
@@ -428,6 +507,18 @@ class Teams extends Service {
     required String teamId,
     required String membershipId,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
+    if (membershipId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "membershipId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/memberships/{membershipId}'
         .replaceAll(
           '{teamId}',
@@ -463,6 +554,18 @@ class Teams extends Service {
     required String membershipId,
     required List<String> roles,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
+    if (membershipId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "membershipId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/memberships/{membershipId}'
         .replaceAll(
           '{teamId}',
@@ -500,6 +603,18 @@ class Teams extends Service {
     required String teamId,
     required String membershipId,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
+    if (membershipId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "membershipId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/memberships/{membershipId}'
         .replaceAll(
           '{teamId}',
@@ -515,6 +630,7 @@ class Teams extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -539,6 +655,18 @@ class Teams extends Service {
     required String userId,
     required String secret,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
+    if (membershipId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "membershipId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/memberships/{membershipId}/status'
         .replaceAll(
           '{teamId}',
@@ -576,6 +704,12 @@ class Teams extends Service {
   Future<models.Preferences> getPrefs({
     required String teamId,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/prefs'.replaceAll(
       '{teamId}',
       teamId,
@@ -605,6 +739,12 @@ class Teams extends Service {
     required String teamId,
     required Map prefs,
   }) async {
+    if (teamId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "teamId"',
+      );
+    }
+
     final String apiPath = '/teams/{teamId}/prefs'.replaceAll(
       '{teamId}',
       teamId,

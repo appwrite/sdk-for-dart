@@ -15,6 +15,12 @@ class PasskeyList implements Model {
   factory PasskeyList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'passkeys': [],
+      ...map,
+    };
+
     return PasskeyList(
       total: map['total'],
       passkeys: List<Passkey>.from(

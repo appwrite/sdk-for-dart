@@ -14,6 +14,9 @@ class OAuth2Oidc implements Model {
   /// OpenID Connect OAuth2 client secret.
   final String clientSecret;
 
+  /// OpenID Connect prompt values controlling the authentication and consent screens.
+  final List<enums.OAuth2OidcPrompt> prompt;
+
   /// OpenID Connect well-known configuration URL. When set, authorization, token, and user info endpoints can be discovered automatically.
   final String wellKnownURL;
 
@@ -26,9 +29,6 @@ class OAuth2Oidc implements Model {
   /// OpenID Connect user info endpoint URL.
   final String userInfoURL;
 
-  /// OpenID Connect prompt values controlling the authentication and consent screens.
-  final List<enums.OAuth2OidcPrompt> prompt;
-
   /// Maximum authentication age in seconds. When set, the user must have authenticated within this many seconds.
   final int? maxAge;
 
@@ -37,30 +37,43 @@ class OAuth2Oidc implements Model {
     required this.enabled,
     required this.clientId,
     required this.clientSecret,
+    required this.prompt,
     required this.wellKnownURL,
     required this.authorizationURL,
     required this.tokenURL,
     required this.userInfoURL,
-    required this.prompt,
     this.maxAge,
   });
   factory OAuth2Oidc.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      'prompt': [],
+      'wellKnownURL': "",
+      'authorizationURL': "",
+      'tokenURL': "",
+      'userInfoURL': "",
+      ...map,
+    };
+
     return OAuth2Oidc(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
       clientId: map['clientId'].toString(),
       clientSecret: map['clientSecret'].toString(),
+      prompt: List<enums.OAuth2OidcPrompt>.from(
+        ((map['prompt'] is List) ? map['prompt'] : [map['prompt']]).map(
+          (p) => enums.OAuth2OidcPrompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
       wellKnownURL: map['wellKnownURL'].toString(),
       authorizationURL: map['authorizationURL'].toString(),
       tokenURL: map['tokenURL'].toString(),
       userInfoURL: map['userInfoURL'].toString(),
-      prompt: List<enums.OAuth2OidcPrompt>.from(
-        map['prompt'].map(
-          (p) => enums.OAuth2OidcPrompt.values.firstWhere((e) => e.value == p),
-        ),
-      ),
       maxAge: map['maxAge'],
     );
   }
@@ -72,11 +85,11 @@ class OAuth2Oidc implements Model {
       "enabled": enabled,
       "clientId": clientId,
       "clientSecret": clientSecret,
+      "prompt": prompt.map((p) => p.value).toList(),
       "wellKnownURL": wellKnownURL,
       "authorizationURL": authorizationURL,
       "tokenURL": tokenURL,
       "userInfoURL": userInfoURL,
-      "prompt": prompt.map((p) => p.value).toList(),
       "maxAge": maxAge,
     };
   }

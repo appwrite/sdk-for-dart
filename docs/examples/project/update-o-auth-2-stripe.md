@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,7 +9,7 @@ Client client = Client()
 
 Project project = Project(client);
 
-OAuth2Stripe result = await project.updateOAuth2Stripe(
+models.OAuth2Stripe result = await project.updateOAuth2Stripe(
     clientId: '<CLIENT_ID>', // (optional)
     apiSecretKey: '<API_SECRET_KEY>', // (optional)
     enabled: false, // (optional)

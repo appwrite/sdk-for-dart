@@ -47,6 +47,20 @@ class DedicatedDatabasePooler implements Model {
   factory DedicatedDatabasePooler.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'enabled': false,
+      'mode': "transaction",
+      'maxConnections': 100,
+      'defaultPoolSize': 20,
+      'port': 6432,
+      'readWriteSplitting': false,
+      'poolerCpuRequest': "",
+      'poolerCpuLimit': "",
+      'poolerMemoryRequest': "",
+      'poolerMemoryLimit': "",
+      ...map,
+    };
+
     return DedicatedDatabasePooler(
       enabled: map['enabled'],
       mode: map['mode'].toString(),

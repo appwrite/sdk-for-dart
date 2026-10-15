@@ -23,6 +23,14 @@ class OAuth2X implements Model {
   factory OAuth2X.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'customerKey': "",
+      'secretKey': "",
+      ...map,
+    };
+
     return OAuth2X(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

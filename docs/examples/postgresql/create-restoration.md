@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -8,11 +9,14 @@ Client client = Client()
 
 Postgresql postgresql = Postgresql(client);
 
-DedicatedDatabaseRestoration result = await postgresql.createRestoration(
+models.DedicatedDatabaseRestoration result = await postgresql.createRestoration(
     databaseId: '<DATABASE_ID>',
     type: 'backup', // (optional)
     backupId: '<BACKUP_ID>', // (optional)
     targetDatabaseId: '<TARGET_DATABASE_ID>', // (optional)
     targetTime: '2020-10-15T06:38:00.000+00:00', // (optional)
+    restoreMode: 'in_place', // (optional)
+    targetName: '<TARGET_NAME>', // (optional)
+    autoPromote: false, // (optional)
 );
 ```

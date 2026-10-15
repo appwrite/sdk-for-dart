@@ -15,6 +15,12 @@ class PolicyDenyCorporateEmail implements Model {
   factory PolicyDenyCorporateEmail.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      ...map,
+    };
+
     return PolicyDenyCorporateEmail(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
