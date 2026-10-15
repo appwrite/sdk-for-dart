@@ -35,6 +35,17 @@ class ResourceToken implements Model {
   factory ResourceToken.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      'resourceId': "",
+      'resourceType': "",
+      'expire': "",
+      'secret': "",
+      'accessedAt': "",
+      ...map,
+    };
+
     return ResourceToken(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

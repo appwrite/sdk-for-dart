@@ -23,6 +23,14 @@ class OAuth2Yahoo implements Model {
   factory OAuth2Yahoo.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'clientId': "",
+      'clientSecret': "",
+      ...map,
+    };
+
     return OAuth2Yahoo(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

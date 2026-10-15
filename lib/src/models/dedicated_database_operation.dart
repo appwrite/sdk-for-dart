@@ -51,6 +51,18 @@ class DedicatedDatabaseOperation implements Model {
   factory DedicatedDatabaseOperation.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      'databaseId': "",
+      'type': "",
+      'status': "",
+      'attempts': 0,
+      'errorCode': "",
+      'errorMessage': "",
+      ...map,
+    };
+
     return DedicatedDatabaseOperation(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),

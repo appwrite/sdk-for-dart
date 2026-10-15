@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/permission.dart';
 import 'package:dart_appwrite/role.dart';
 
@@ -10,7 +11,7 @@ Client client = Client()
 
 Storage storage = Storage(client);
 
-File result = await storage.updateFile(
+models.File result = await storage.updateFile(
     bucketId: '<BUCKET_ID>',
     fileId: '<FILE_ID>',
     name: '<NAME>', // (optional)

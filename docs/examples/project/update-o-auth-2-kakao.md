@@ -13,7 +13,7 @@ Project project = Project(client);
 models.OAuth2Kakao result = await project.updateOAuth2Kakao(
     clientId: '<CLIENT_ID>', // (optional)
     clientSecret: '<CLIENT_SECRET>', // (optional)
-    prompt: [enums.ProjectOAuth2KakaoPrompt.none], // (optional)
     enabled: false, // (optional)
+    prompt: [enums.ProjectOAuth2KakaoPrompt.none], // (optional)
 );
 ```

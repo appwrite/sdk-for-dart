@@ -7,12 +7,6 @@ void main() {
       final model = DedicatedDatabaseSpecificationList(
         specifications: [],
         total: 9,
-        pricing: DedicatedDatabaseSpecificationPricing(
-          storageOverageRate: 0.125,
-          bandwidthOverageRate: 0.08,
-          replicaRate: 1,
-          pitrRate: 0.2,
-        ),
       );
 
       final map = model.toMap();

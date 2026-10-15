@@ -12,6 +12,8 @@ void main() {
         teamId: "D4000000R6",
         p8File:
             "-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----",
+        nativeEnabled: true,
+        nativeClientIds: [],
       );
 
       final map = model.toMap();
@@ -26,6 +28,8 @@ void main() {
         result.p8File,
         "-----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----",
       );
+      expect(result.nativeEnabled, true);
+      expect(result.nativeClientIds, []);
     });
   });
 }

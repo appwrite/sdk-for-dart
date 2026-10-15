@@ -15,6 +15,12 @@ class EmailTemplateList implements Model {
   factory EmailTemplateList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'templates': [],
+      ...map,
+    };
+
     return EmailTemplateList(
       total: map['total'],
       templates: List<EmailTemplate>.from(

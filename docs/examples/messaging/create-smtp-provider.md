@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Messaging messaging = Messaging(client);
 
-Provider result = await messaging.createSMTPProvider(
+models.Provider result = await messaging.createSMTPProvider(
     providerId: '<PROVIDER_ID>',
     name: '<NAME>',
     host: '<HOST>',

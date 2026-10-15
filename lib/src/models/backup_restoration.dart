@@ -20,8 +20,8 @@ class BackupRestoration implements Model {
   /// The status of the restoration. Possible values: pending, downloading, processing, completed, failed.
   final String status;
 
-  /// The backup start time.
-  final String startedAt;
+  /// The restoration start time. Null until the restoration starts.
+  final String? startedAt;
 
   /// Migration ID.
   final String migrationId;
@@ -32,8 +32,8 @@ class BackupRestoration implements Model {
   /// The resources that are backed up by this policy.
   final List<String> resources;
 
-  /// Optional data in key-value object.
-  final String options;
+  /// Restoration options as a key-value object.
+  final Map<String, dynamic> options;
 
   BackupRestoration({
     required this.$id,
@@ -42,7 +42,7 @@ class BackupRestoration implements Model {
     required this.archiveId,
     required this.policyId,
     required this.status,
-    required this.startedAt,
+    this.startedAt,
     required this.migrationId,
     required this.services,
     required this.resources,
@@ -51,6 +51,20 @@ class BackupRestoration implements Model {
   factory BackupRestoration.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      'archiveId': "",
+      'policyId': "",
+      'status': "",
+      'migrationId': "",
+      'services': [],
+      'resources': [],
+      'options': <String, dynamic>{},
+      ...map,
+    };
+
     return BackupRestoration(
       $id: map['\$id'].toString(),
       $createdAt: map['\$createdAt'].toString(),
@@ -58,11 +72,11 @@ class BackupRestoration implements Model {
       archiveId: map['archiveId'].toString(),
       policyId: map['policyId'].toString(),
       status: map['status'].toString(),
-      startedAt: map['startedAt'].toString(),
+      startedAt: map['startedAt']?.toString(),
       migrationId: map['migrationId'].toString(),
       services: List.from(map['services'] ?? []),
       resources: List.from(map['resources'] ?? []),
-      options: map['options'].toString(),
+      options: map['options'],
     );
   }
 

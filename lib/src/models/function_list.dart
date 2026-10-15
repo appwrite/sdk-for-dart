@@ -15,6 +15,12 @@ class FunctionList implements Model {
   factory FunctionList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'functions': [],
+      ...map,
+    };
+
     return FunctionList(
       total: map['total'],
       functions: List<Func>.from(

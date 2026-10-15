@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Sites sites = Sites(client);
 
-Deployment result = await sites.createVcsDeployment(
+models.Deployment result = await sites.createVcsDeployment(
     siteId: '<SITE_ID>',
     type: enums.VCSReferenceType.branch,
     reference: '<REFERENCE>',

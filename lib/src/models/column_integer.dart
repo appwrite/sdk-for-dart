@@ -51,6 +51,16 @@ class ColumnInteger implements Model {
   factory ColumnInteger.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return ColumnInteger(
       key: map['key'].toString(),
       type: map['type'].toString(),

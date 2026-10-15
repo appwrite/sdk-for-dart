@@ -43,6 +43,19 @@ class Program implements Model {
   factory Program.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'title': "",
+      'description': "",
+      'tag': "",
+      'icon': "",
+      'url': "",
+      'active': true,
+      'external': true,
+      'billingPlanId': "",
+      ...map,
+    };
+
     return Program(
       $id: map['\$id'].toString(),
       title: map['title'].toString(),

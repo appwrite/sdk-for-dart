@@ -15,6 +15,12 @@ class ProjectList implements Model {
   factory ProjectList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'projects': [],
+      ...map,
+    };
+
     return ProjectList(
       total: map['total'],
       projects: List<Project>.from(

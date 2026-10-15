@@ -27,6 +27,15 @@ class DedicatedDatabaseBackupStorage implements Model {
   factory DedicatedDatabaseBackupStorage.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'provider': "",
+      'bucket': "",
+      'region': "",
+      'prefix': "backups/",
+      'endpoint': "",
+      ...map,
+    };
+
     return DedicatedDatabaseBackupStorage(
       provider: map['provider'].toString(),
       bucket: map['bucket'].toString(),

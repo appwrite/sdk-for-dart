@@ -15,7 +15,7 @@ class OAuth2Microsoft implements Model {
   final String applicationSecret;
 
   /// Microsoft OAuth2 prompt values.
-  final List<enums.OAuth2MicrosoftPrompt>? prompt;
+  final List<enums.OAuth2MicrosoftPrompt> prompt;
 
   /// Microsoft Entra ID tenant identifier. Use &#039;common&#039;, &#039;organizations&#039;, &#039;consumers&#039; or a specific tenant ID.
   final String tenant;
@@ -25,25 +25,33 @@ class OAuth2Microsoft implements Model {
     required this.enabled,
     required this.applicationId,
     required this.applicationSecret,
-    this.prompt,
+    required this.prompt,
     required this.tenant,
   });
   factory OAuth2Microsoft.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'applicationId': "",
+      'applicationSecret': "",
+      'prompt': [],
+      'tenant': "",
+      ...map,
+    };
+
     return OAuth2Microsoft(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
       applicationId: map['applicationId'].toString(),
       applicationSecret: map['applicationSecret'].toString(),
-      prompt: map['prompt'] != null
-          ? List<enums.OAuth2MicrosoftPrompt>.from(
-              map['prompt'].map(
-                (p) =>
-                    enums.OAuth2MicrosoftPrompt.values.firstWhere((e) => e.value == p),
-              ),
-            )
-          : null,
+      prompt: List<enums.OAuth2MicrosoftPrompt>.from(
+        ((map['prompt'] is List) ? map['prompt'] : [map['prompt']]).map(
+          (p) =>
+              enums.OAuth2MicrosoftPrompt.values.firstWhere((e) => e.value == p),
+        ),
+      ),
       tenant: map['tenant'].toString(),
     );
   }
@@ -55,7 +63,7 @@ class OAuth2Microsoft implements Model {
       "enabled": enabled,
       "applicationId": applicationId,
       "applicationSecret": applicationSecret,
-      "prompt": prompt?.map((p) => p.value).toList(),
+      "prompt": prompt.map((p) => p.value).toList(),
       "tenant": tenant,
     };
   }

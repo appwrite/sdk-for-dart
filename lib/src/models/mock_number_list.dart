@@ -15,6 +15,12 @@ class MockNumberList implements Model {
   factory MockNumberList.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'total': 0,
+      'mockNumbers': [],
+      ...map,
+    };
+
     return MockNumberList(
       total: map['total'],
       mockNumbers: List<MockNumber>.from(

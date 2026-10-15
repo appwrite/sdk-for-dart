@@ -41,6 +41,7 @@ class MockClient extends Mock implements Client {
     String? idParamName,
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
+    ResponseType? responseType,
     HttpMethod method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
@@ -90,6 +91,7 @@ void main() {
           'screenshotsGenerated': 50,
           'webhooks': 25,
           'wafRules': 2,
+          'environments': 5,
           'projects': 2,
           'platforms': 3,
           'users': 25,
@@ -114,72 +116,6 @@ void main() {
           'usageLogs': 30,
           'projectInactivityDays': 7,
           'alertLimit': 80,
-          'usage': <String, dynamic>{
-            'bandwidth': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'executions': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'realtime': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'realtimeMessages': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'storage': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'users': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'GBHours': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'imageTransformations': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-          },
           'addons': <String, dynamic>{},
           'budgetCapEnabled': true,
           'customSmtp': true,
@@ -213,13 +149,6 @@ void main() {
           'databaseComputeCredit': 10,
         },
         'billingEmail': "billing@org.example",
-        'billingStartDate': "2020-10-15T06:38:00.000+00:00",
-        'billingCurrentInvoiceDate': "2020-10-15T06:38:00.000+00:00",
-        'billingNextInvoiceDate': "2020-10-15T06:38:00.000+00:00",
-        'billingTrialDays': 14,
-        'billingAggregationId': "adbc3de4rddfsd",
-        'billingInvoiceId': "adbc3de4rddfsd",
-        'paymentMethodId': "adbc3de4rddfsd",
         'status': "active",
         'markedForDeletion': true,
         'platform': "imagine",
@@ -258,6 +187,7 @@ void main() {
           'screenshotsGenerated': 50,
           'webhooks': 25,
           'wafRules': 2,
+          'environments': 5,
           'projects': 2,
           'platforms': 3,
           'users': 25,
@@ -282,72 +212,6 @@ void main() {
           'usageLogs': 30,
           'projectInactivityDays': 7,
           'alertLimit': 80,
-          'usage': <String, dynamic>{
-            'bandwidth': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'executions': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'realtime': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'realtimeMessages': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'storage': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'users': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'GBHours': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-            'imageTransformations': <String, dynamic>{
-              'name': "",
-              'unit': "GB",
-              'currency': "USD",
-              'price': 5,
-              'value': 25,
-              'invoiceDesc': "",
-            },
-          },
           'addons': <String, dynamic>{},
           'budgetCapEnabled': true,
           'customSmtp': true,
@@ -381,13 +245,6 @@ void main() {
           'databaseComputeCredit': 10,
         },
         'billingEmail': "billing@org.example",
-        'billingStartDate': "2020-10-15T06:38:00.000+00:00",
-        'billingCurrentInvoiceDate': "2020-10-15T06:38:00.000+00:00",
-        'billingNextInvoiceDate': "2020-10-15T06:38:00.000+00:00",
-        'billingTrialDays': 14,
-        'billingAggregationId': "adbc3de4rddfsd",
-        'billingInvoiceId': "adbc3de4rddfsd",
-        'paymentMethodId': "adbc3de4rddfsd",
         'status': "active",
         'markedForDeletion': true,
         'platform': "imagine",
@@ -506,105 +363,6 @@ void main() {
 
       final response = await organization.deleteInstallation(
         installationId: "<INSTALLATION_ID>",
-      );
-    });
-
-    test('test method listKeys()', () async {
-      final Map<String, dynamic> data = {
-        'total': 5,
-        'keys': [],
-      };
-
-      when(
-        client.call(HttpMethod.get),
-      ).thenAnswer((_) async => Response(data: data));
-
-      final response = await organization.listKeys();
-      expect(response, isA<models.KeyList>());
-    });
-
-    test('test method createKey()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': "5e5ea5c16897e",
-        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
-        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
-        'name': "My API Key",
-        'expire': "2020-10-15T06:38:00.000+00:00",
-        'scopes': [],
-        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
-        'accessedAt': "2020-10-15T06:38:00.000+00:00",
-        'sdks': [],
-      };
-
-      when(
-        client.call(HttpMethod.post),
-      ).thenAnswer((_) async => Response(data: data));
-
-      final response = await organization.createKey(
-        keyId: "<KEY_ID>",
-        name: "<NAME>",
-        scopes: [enums.OrganizationKeyScopes.projectsRead],
-      );
-      expect(response, isA<models.Key>());
-    });
-
-    test('test method getKey()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': "5e5ea5c16897e",
-        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
-        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
-        'name': "My API Key",
-        'expire': "2020-10-15T06:38:00.000+00:00",
-        'scopes': [],
-        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
-        'accessedAt': "2020-10-15T06:38:00.000+00:00",
-        'sdks': [],
-      };
-
-      when(
-        client.call(HttpMethod.get),
-      ).thenAnswer((_) async => Response(data: data));
-
-      final response = await organization.getKey(
-        keyId: "<KEY_ID>",
-      );
-      expect(response, isA<models.Key>());
-    });
-
-    test('test method updateKey()', () async {
-      final Map<String, dynamic> data = {
-        '\$id': "5e5ea5c16897e",
-        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
-        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
-        'name': "My API Key",
-        'expire': "2020-10-15T06:38:00.000+00:00",
-        'scopes': [],
-        'secret': "919c2d18fb5d4...a2ae413da83346ad2",
-        'accessedAt': "2020-10-15T06:38:00.000+00:00",
-        'sdks': [],
-      };
-
-      when(
-        client.call(HttpMethod.put),
-      ).thenAnswer((_) async => Response(data: data));
-
-      final response = await organization.updateKey(
-        keyId: "<KEY_ID>",
-        name: "<NAME>",
-        scopes: [enums.OrganizationKeyScopes.projectsRead],
-      );
-      expect(response, isA<models.Key>());
-    });
-
-    test('test method deleteKey()', () async {
-      final data = '';
-
-      when(
-        client.call(HttpMethod.delete),
-      ).thenAnswer((_) async => Response(data: data));
-
-      final response = await organization.deleteKey(
-        keyId: "<KEY_ID>",
       );
     });
 
@@ -744,7 +502,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -786,7 +543,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",
@@ -827,7 +583,6 @@ void main() {
         'name': "New Project",
         'teamId': "1592981250",
         'region': "fra",
-        'devKeys': [],
         'smtpEnabled': true,
         'smtpSenderName': "John Appwrite",
         'smtpSenderEmail': "john@appwrite.io",

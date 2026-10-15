@@ -72,8 +72,8 @@ class TablesDB extends Service {
   }
 
   /// List the dedicated database specifications available on the current plan.
-  /// Each specification reports its resource limits, pricing, and whether it is
-  /// enabled for the organization.
+  /// Each specification reports its resource limits, its own prices and overage
+  /// rates, and whether it is enabled for the organization.
   Future<models.DedicatedDatabaseSpecificationList> listSpecifications() async {
     final String apiPath = '/tablesdb/specifications';
 
@@ -151,6 +151,12 @@ class TablesDB extends Service {
   Future<models.Transaction> getTransaction({
     required String transactionId,
   }) async {
+    if (transactionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "transactionId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
       transactionId,
@@ -179,6 +185,12 @@ class TablesDB extends Service {
     bool? commit,
     bool? rollback,
   }) async {
+    if (transactionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "transactionId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
       transactionId,
@@ -209,6 +221,12 @@ class TablesDB extends Service {
   Future deleteTransaction({
     required String transactionId,
   }) async {
+    if (transactionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "transactionId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
       transactionId,
@@ -219,6 +237,7 @@ class TablesDB extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -236,6 +255,12 @@ class TablesDB extends Service {
     required String transactionId,
     List<Map>? operations,
   }) async {
+    if (transactionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "transactionId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/transactions/{transactionId}/operations'.replaceAll(
       '{transactionId}',
@@ -267,6 +292,12 @@ class TablesDB extends Service {
   Future<models.Database> get({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -298,6 +329,12 @@ class TablesDB extends Service {
     int? replicas,
     String? syncMode,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -332,6 +369,12 @@ class TablesDB extends Service {
   Future delete({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -342,6 +385,7 @@ class TablesDB extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -367,6 +411,12 @@ class TablesDB extends Service {
     required String databaseId,
     String? targetReplicaId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -397,6 +447,12 @@ class TablesDB extends Service {
   Future<models.DatabaseMigrationList> listMigrations({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -420,13 +476,24 @@ class TablesDB extends Service {
   }
 
   /// Start migrating a serverless TablesDB database onto a dedicated MySQL
-  /// compute. Data is copied to the target while the source stays live, with a
-  /// brief read-only window during cutover.
+  /// compute. Data is copied to the target while the source stays live. Reads
+  /// continue throughout. Row writes are held for up to a few seconds while
+  /// routing switches to the dedicated compute; a write the switch has not
+  /// absorbed within that hold is refused with `database_migration_cutover` and
+  /// can be retried. Schema changes (tables, columns, indexes) are refused from
+  /// creation until the cutover completes, and resume once the migration is
+  /// `soaking`.
   Future<models.DatabaseMigration> createMigration({
     required String databaseId,
     required String specification,
     bool? autoCutover,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -458,6 +525,18 @@ class TablesDB extends Service {
     required String databaseId,
     required String migrationId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (migrationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "migrationId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/migrations/{migrationId}'
         .replaceAll(
           '{databaseId}',
@@ -491,6 +570,18 @@ class TablesDB extends Service {
     required String databaseId,
     required String migrationId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (migrationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "migrationId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/migrations/{migrationId}'
         .replaceAll(
           '{databaseId}',
@@ -522,13 +613,28 @@ class TablesDB extends Service {
   /// Cut a verified TablesDB migration over to its dedicated compute. Only
   /// applies to a migration created with `autoCutover` disabled, which waits at
   /// `ready_to_cutover` until this is called. The routing flip happens shortly
-  /// after this returns, with a brief read-only window. One call buys one
-  /// attempt: a cutover that fails a check returns the migration to `verifying`
-  /// and parks it again, so call this once more to retry.
+  /// after this returns. Reads are unaffected; row writes are held for up to a
+  /// few seconds while it lands, and a write the flip has not absorbed within
+  /// that hold is refused with `database_migration_cutover` and can be retried.
+  /// One call buys one attempt: a cutover that fails a check returns the
+  /// migration to `verifying` and parks it again, so call this once more to
+  /// retry.
   Future<models.DatabaseMigration> createCutover({
     required String databaseId,
     required String migrationId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (migrationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "migrationId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
             .replaceAll(
@@ -568,6 +674,12 @@ class TablesDB extends Service {
     int? limit,
     int? offset,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/operations'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -599,6 +711,12 @@ class TablesDB extends Service {
   Future<models.DedicatedDatabaseReplicas> getReplicas({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -627,6 +745,12 @@ class TablesDB extends Service {
   Future<models.DatabaseStatus> getStatus({
     required String databaseId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/status'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -657,6 +781,12 @@ class TablesDB extends Service {
     String? search,
     bool? total,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -697,6 +827,12 @@ class TablesDB extends Service {
     List<Map>? columns,
     List<Map>? indexes,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables'.replaceAll(
       '{databaseId}',
       databaseId,
@@ -734,6 +870,18 @@ class TablesDB extends Service {
     required String databaseId,
     required String tableId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}'
         .replaceAll(
           '{databaseId}',
@@ -771,6 +919,18 @@ class TablesDB extends Service {
     bool? enabled,
     bool? purge,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}'
         .replaceAll(
           '{databaseId}',
@@ -811,6 +971,18 @@ class TablesDB extends Service {
     required String databaseId,
     required String tableId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}'
         .replaceAll(
           '{databaseId}',
@@ -826,6 +998,7 @@ class TablesDB extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -845,6 +1018,18 @@ class TablesDB extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/columns'
         .replaceAll(
           '{databaseId}',
@@ -887,6 +1072,18 @@ class TablesDB extends Service {
     int? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
             .replaceAll(
@@ -935,6 +1132,24 @@ class TablesDB extends Service {
     int? max,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
             .replaceAll(
@@ -983,6 +1198,18 @@ class TablesDB extends Service {
     bool? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean'
             .replaceAll(
@@ -1027,6 +1254,24 @@ class TablesDB extends Service {
     required bool? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean/{key}'
             .replaceAll(
@@ -1073,6 +1318,18 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime'
             .replaceAll(
@@ -1117,6 +1374,24 @@ class TablesDB extends Service {
     required String? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime/{key}'
             .replaceAll(
@@ -1163,6 +1438,18 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/email'
             .replaceAll(
@@ -1207,6 +1494,24 @@ class TablesDB extends Service {
     required String? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/email/{key}'
             .replaceAll(
@@ -1255,6 +1560,18 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/enum'
             .replaceAll(
@@ -1301,6 +1618,24 @@ class TablesDB extends Service {
     required String? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/enum/{key}'
             .replaceAll(
@@ -1351,6 +1686,18 @@ class TablesDB extends Service {
     double? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/float'
             .replaceAll(
@@ -1399,6 +1746,24 @@ class TablesDB extends Service {
     double? max,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/float/{key}'
             .replaceAll(
@@ -1450,6 +1815,18 @@ class TablesDB extends Service {
     int? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/integer'
             .replaceAll(
@@ -1498,6 +1875,24 @@ class TablesDB extends Service {
     int? max,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/integer/{key}'
             .replaceAll(
@@ -1546,6 +1941,18 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/columns/ip'
         .replaceAll(
           '{databaseId}',
@@ -1589,6 +1996,24 @@ class TablesDB extends Service {
     required String? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/ip/{key}'
             .replaceAll(
@@ -1634,6 +2059,18 @@ class TablesDB extends Service {
     required bool xrequired,
     List<List>? xdefault,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
             .replaceAll(
@@ -1677,6 +2114,24 @@ class TablesDB extends Service {
     List<List>? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
             .replaceAll(
@@ -1724,6 +2179,18 @@ class TablesDB extends Service {
     bool? array,
     bool? encrypt,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
             .replaceAll(
@@ -1769,6 +2236,24 @@ class TablesDB extends Service {
     required String? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
             .replaceAll(
@@ -1816,6 +2301,18 @@ class TablesDB extends Service {
     bool? array,
     bool? encrypt,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
             .replaceAll(
@@ -1861,6 +2358,24 @@ class TablesDB extends Service {
     required String? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
             .replaceAll(
@@ -1906,6 +2421,18 @@ class TablesDB extends Service {
     required bool xrequired,
     List<double>? xdefault,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
             .replaceAll(
@@ -1949,6 +2476,24 @@ class TablesDB extends Service {
     List<double>? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
             .replaceAll(
@@ -1994,6 +2539,18 @@ class TablesDB extends Service {
     required bool xrequired,
     List<List>? xdefault,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
             .replaceAll(
@@ -2037,6 +2594,24 @@ class TablesDB extends Service {
     List<List>? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
             .replaceAll(
@@ -2086,6 +2661,18 @@ class TablesDB extends Service {
     String? twoWayKey,
     enums.RelationMutate? onDelete,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship'
             .replaceAll(
@@ -2122,6 +2709,69 @@ class TablesDB extends Service {
     return models.ColumnRelationship.fromMap(res.data);
   }
 
+  /// Update relationship column. [Learn more about relationship
+  /// columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
+  Future<models.ColumnRelationship> updateRelationshipColumn({
+    required String databaseId,
+    required String tableId,
+    required String key,
+    enums.RelationMutate? onDelete,
+    String? newKey,
+  }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
+    final String apiPath =
+        '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship/{key}'
+            .replaceAll(
+              '{databaseId}',
+              databaseId,
+            )
+            .replaceAll(
+              '{tableId}',
+              tableId,
+            )
+            .replaceAll(
+              '{key}',
+              key,
+            );
+
+    final Map<String, dynamic> apiParams = {
+      if (onDelete != null) 'onDelete': onDelete?.value,
+      if (newKey != null) 'newKey': newKey,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ColumnRelationship.fromMap(res.data);
+  }
+
   /// Create a string column.
   @Deprecated(
     'This API has been deprecated since 1.9.0. Please use `TablesDB.createTextColumn` instead.',
@@ -2136,6 +2786,18 @@ class TablesDB extends Service {
     bool? array,
     bool? encrypt,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/string'
             .replaceAll(
@@ -2186,6 +2848,24 @@ class TablesDB extends Service {
     int? size,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/string/{key}'
             .replaceAll(
@@ -2234,6 +2914,18 @@ class TablesDB extends Service {
     bool? array,
     bool? encrypt,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
             .replaceAll(
@@ -2279,6 +2971,24 @@ class TablesDB extends Service {
     required String? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
             .replaceAll(
@@ -2325,6 +3035,18 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/columns/url'
         .replaceAll(
           '{databaseId}',
@@ -2368,6 +3090,24 @@ class TablesDB extends Service {
     required String? xdefault,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/url/{key}'
             .replaceAll(
@@ -2416,6 +3156,18 @@ class TablesDB extends Service {
     bool? array,
     bool? encrypt,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
             .replaceAll(
@@ -2463,6 +3215,24 @@ class TablesDB extends Service {
     int? size,
     String? newKey,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
             .replaceAll(
@@ -2507,6 +3277,24 @@ class TablesDB extends Service {
     required String tableId,
     required String key,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
             .replaceAll(
@@ -2559,6 +3347,9 @@ class TablesDB extends Service {
       if (response['type'] == "boolean") {
         return models.ColumnBoolean.fromMap(response);
       }
+      if (response['type'] == "bigint") {
+        return models.ColumnBigint.fromMap(response);
+      }
       if (response['type'] == "integer") {
         return models.ColumnInteger.fromMap(response);
       }
@@ -2570,6 +3361,27 @@ class TablesDB extends Service {
       }
       if (response['type'] == "relationship") {
         return models.ColumnRelationship.fromMap(response);
+      }
+      if (response['type'] == "point") {
+        return models.ColumnPoint.fromMap(response);
+      }
+      if (response['type'] == "linestring") {
+        return models.ColumnLine.fromMap(response);
+      }
+      if (response['type'] == "polygon") {
+        return models.ColumnPolygon.fromMap(response);
+      }
+      if (response['type'] == "varchar") {
+        return models.ColumnVarchar.fromMap(response);
+      }
+      if (response['type'] == "text") {
+        return models.ColumnText.fromMap(response);
+      }
+      if (response['type'] == "mediumtext") {
+        return models.ColumnMediumtext.fromMap(response);
+      }
+      if (response['type'] == "longtext") {
+        return models.ColumnLongtext.fromMap(response);
       }
       if (response['type'] == "string") {
         return models.ColumnString.fromMap(response);
@@ -2587,6 +3399,24 @@ class TablesDB extends Service {
     required String tableId,
     required String key,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
             .replaceAll(
@@ -2607,6 +3437,7 @@ class TablesDB extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -2619,51 +3450,6 @@ class TablesDB extends Service {
     return res.data;
   }
 
-  /// Update relationship column. [Learn more about relationship
-  /// columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
-  Future<models.ColumnRelationship> updateRelationshipColumn({
-    required String databaseId,
-    required String tableId,
-    required String key,
-    enums.RelationMutate? onDelete,
-    String? newKey,
-  }) async {
-    final String apiPath =
-        '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}/relationship'
-            .replaceAll(
-              '{databaseId}',
-              databaseId,
-            )
-            .replaceAll(
-              '{tableId}',
-              tableId,
-            )
-            .replaceAll(
-              '{key}',
-              key,
-            );
-
-    final Map<String, dynamic> apiParams = {
-      if (onDelete != null) 'onDelete': onDelete?.value,
-      if (newKey != null) 'newKey': newKey,
-    };
-
-    final Map<String, String> apiHeaders = {
-      'X-Appwrite-Project': client.config['project'] ?? '',
-      'content-type': 'application/json',
-      'accept': 'application/json',
-    };
-
-    final res = await client.call(
-      HttpMethod.patch,
-      path: apiPath,
-      params: apiParams,
-      headers: apiHeaders,
-    );
-
-    return models.ColumnRelationship.fromMap(res.data);
-  }
-
   /// List indexes on the table.
   Future<models.ColumnIndexList> listIndexes({
     required String databaseId,
@@ -2671,6 +3457,18 @@ class TablesDB extends Service {
     List<String>? queries,
     bool? total,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
         .replaceAll(
           '{databaseId}',
@@ -2703,7 +3501,9 @@ class TablesDB extends Service {
 
   /// Creates an index on the columns listed. Your index should include all the
   /// columns you will query in a single request.
-  /// Type can be `key`, `fulltext`, or `unique`.
+  /// Type can be `key`, `fulltext`, `unique`, `spatial`, or `trigram`. `trigram`
+  /// is only available on PostgreSQL and lets `contains`, `startsWith`, and
+  /// `endsWith` queries on string columns use an index.
   Future<models.ColumnIndex> createIndex({
     required String databaseId,
     required String tableId,
@@ -2713,6 +3513,18 @@ class TablesDB extends Service {
     List<enums.OrderBy>? orders,
     List<int>? lengths,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
         .replaceAll(
           '{databaseId}',
@@ -2753,6 +3565,24 @@ class TablesDB extends Service {
     required String tableId,
     required String key,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
             .replaceAll(
@@ -2791,6 +3621,24 @@ class TablesDB extends Service {
     required String tableId,
     required String key,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (key.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "key"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
             .replaceAll(
@@ -2811,6 +3659,7 @@ class TablesDB extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -2833,6 +3682,18 @@ class TablesDB extends Service {
     bool? total,
     int? ttl,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
@@ -2877,6 +3738,18 @@ class TablesDB extends Service {
     List<String>? permissions,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
@@ -2920,6 +3793,18 @@ class TablesDB extends Service {
     required List<Map> rows,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
@@ -2961,6 +3846,18 @@ class TablesDB extends Service {
     required List<Map> rows,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
@@ -3001,6 +3898,18 @@ class TablesDB extends Service {
     List<String>? queries,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
@@ -3041,6 +3950,18 @@ class TablesDB extends Service {
     List<String>? queries,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
@@ -3081,6 +4002,24 @@ class TablesDB extends Service {
     List<String>? queries,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (rowId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "rowId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
             .replaceAll(
@@ -3128,6 +4067,24 @@ class TablesDB extends Service {
     List<String>? permissions,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (rowId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "rowId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
             .replaceAll(
@@ -3175,6 +4132,24 @@ class TablesDB extends Service {
     List<String>? permissions,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (rowId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "rowId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
             .replaceAll(
@@ -3219,6 +4194,24 @@ class TablesDB extends Service {
     required String rowId,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (rowId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "rowId"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
             .replaceAll(
@@ -3241,6 +4234,7 @@ class TablesDB extends Service {
     final Map<String, String> apiHeaders = {
       'X-Appwrite-Project': client.config['project'] ?? '',
       'content-type': 'application/json',
+      'accept': 'application/json',
     };
 
     final res = await client.call(
@@ -3263,6 +4257,30 @@ class TablesDB extends Service {
     double? min,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (rowId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "rowId"',
+      );
+    }
+
+    if (column.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "column"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/decrement'
             .replaceAll(
@@ -3314,6 +4332,30 @@ class TablesDB extends Service {
     double? max,
     String? transactionId,
   }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    if (rowId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "rowId"',
+      );
+    }
+
+    if (column.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "column"',
+      );
+    }
+
     final String apiPath =
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/increment'
             .replaceAll(

@@ -23,6 +23,14 @@ class OAuth2Etsy implements Model {
   factory OAuth2Etsy.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'enabled': false,
+      'keyString': "",
+      'sharedSecret': "",
+      ...map,
+    };
+
     return OAuth2Etsy(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],

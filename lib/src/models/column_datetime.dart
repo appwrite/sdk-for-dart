@@ -47,6 +47,16 @@ class ColumnDatetime implements Model {
   factory ColumnDatetime.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      'key': "",
+      'type': "",
+      'error': "",
+      'required': false,
+      '\$createdAt': "",
+      '\$updatedAt': "",
+      ...map,
+    };
+
     return ColumnDatetime(
       key: map['key'].toString(),
       type: map['type'].toString(),

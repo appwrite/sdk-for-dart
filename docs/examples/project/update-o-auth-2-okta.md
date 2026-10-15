@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Project project = Project(client);
 
-OAuth2Okta result = await project.updateOAuth2Okta(
+models.OAuth2Okta result = await project.updateOAuth2Okta(
     clientId: '<CLIENT_ID>', // (optional)
     clientSecret: '<CLIENT_SECRET>', // (optional)
     domain: 'example.com', // (optional)

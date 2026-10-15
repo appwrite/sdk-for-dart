@@ -12,7 +12,6 @@ void main() {
         name: "New Project",
         teamId: "1592981250",
         region: "fra",
-        devKeys: [],
         smtpEnabled: true,
         smtpSenderName: "John Appwrite",
         smtpSenderEmail: "john@appwrite.io",
@@ -44,7 +43,6 @@ void main() {
       expect(result.name, "New Project");
       expect(result.teamId, "1592981250");
       expect(result.region, "fra");
-      expect(result.devKeys, []);
       expect(result.smtpEnabled, true);
       expect(result.smtpSenderName, "John Appwrite");
       expect(result.smtpSenderEmail, "john@appwrite.io");

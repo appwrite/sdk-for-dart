@@ -31,6 +31,16 @@ class PolicyPasswordStrength implements Model {
   factory PolicyPasswordStrength.fromMap(
     Map<String, dynamic> map,
   ) {
+    map = {
+      '\$id': "",
+      'min': 8,
+      'uppercase': false,
+      'lowercase': false,
+      'number': false,
+      'symbols': false,
+      ...map,
+    };
+
     return PolicyPasswordStrength(
       $id: map['\$id'].toString(),
       min: map['min'],

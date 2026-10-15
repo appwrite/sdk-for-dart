@@ -1,5 +1,6 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:dart_appwrite/models.dart' as models;
 import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
@@ -9,7 +10,7 @@ Client client = Client()
 
 Sites sites = Sites(client);
 
-Site result = await sites.create(
+models.Site result = await sites.create(
     siteId: '<SITE_ID>',
     name: '<NAME>',
     framework: enums.Framework.analog,
@@ -21,7 +22,7 @@ Site result = await sites.create(
     buildCommand: '<BUILD_COMMAND>', // (optional)
     startCommand: '<START_COMMAND>', // (optional)
     outputDirectory: '<OUTPUT_DIRECTORY>', // (optional)
-    adapter: enums.Adapter.static, // (optional)
+    adapter: enums.Adapter.xstatic, // (optional)
     installationId: '<INSTALLATION_ID>', // (optional)
     fallbackFile: '<FALLBACK_FILE>', // (optional)
     providerRepositoryId: '<PROVIDER_REPOSITORY_ID>', // (optional)
