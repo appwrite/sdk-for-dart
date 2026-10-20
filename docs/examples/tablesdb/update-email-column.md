@@ -16,5 +16,6 @@ models.ColumnEmail result = await tablesDB.updateEmailColumn(
     xrequired: false,
     xdefault: 'email@example.com',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

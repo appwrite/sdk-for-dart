@@ -14,6 +14,9 @@ class EphemeralKey implements Model {
   /// Key name.
   final String name;
 
+  /// Optional description for the key.
+  final String description;
+
   /// Key expiration date in ISO 8601 format.
   final String expire;
 
@@ -34,6 +37,7 @@ class EphemeralKey implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     required this.name,
+    required this.description,
     required this.expire,
     required this.scopes,
     required this.secret,
@@ -48,6 +52,7 @@ class EphemeralKey implements Model {
       '\$createdAt': "",
       '\$updatedAt': "",
       'name': "",
+      'description': "",
       'expire': "",
       'scopes': [],
       'secret': "",
@@ -61,6 +66,7 @@ class EphemeralKey implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
+      description: map['description'].toString(),
       expire: map['expire'].toString(),
       scopes: List.from(map['scopes'] ?? []),
       secret: map['secret'].toString(),
@@ -76,6 +82,7 @@ class EphemeralKey implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "name": name,
+      "description": description,
       "expire": expire,
       "scopes": scopes,
       "secret": secret,

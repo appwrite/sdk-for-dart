@@ -18,5 +18,6 @@ models.ColumnIndex result = await tablesDB.createIndex(
     columns: ["username"],
     orders: [enums.OrderBy.asc], // (optional)
     lengths: [], // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

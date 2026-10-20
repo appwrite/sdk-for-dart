@@ -8,6 +8,7 @@ void main() {
       final model = Database(
         $id: "5e5ea5c16897e",
         name: "My Database",
+        description: "Customer orders and invoices.",
         $createdAt: "2020-10-15T06:38:00.000+00:00",
         $updatedAt: "2020-10-15T06:38:00.000+00:00",
         enabled: true,
@@ -19,6 +20,7 @@ void main() {
 
       expect(result.$id, "5e5ea5c16897e");
       expect(result.name, "My Database");
+      expect(result.description, "Customer orders and invoices.");
       expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.enabled, true);

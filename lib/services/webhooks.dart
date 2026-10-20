@@ -44,6 +44,7 @@ class Webhooks extends Service {
     String? authUsername,
     String? authPassword,
     String? secret,
+    String? description,
   }) async {
     final String apiPath = '/webhooks';
 
@@ -57,6 +58,7 @@ class Webhooks extends Service {
       if (authUsername != null) 'authUsername': authUsername,
       if (authPassword != null) 'authPassword': authPassword,
       if (secret != null) 'secret': secret,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -119,6 +121,7 @@ class Webhooks extends Service {
     bool? tls,
     String? authUsername,
     String? authPassword,
+    String? description,
   }) async {
     if (webhookId.isEmpty) {
       throw AppwriteException(
@@ -139,6 +142,7 @@ class Webhooks extends Service {
       if (tls != null) 'tls': tls,
       if (authUsername != null) 'authUsername': authUsername,
       if (authPassword != null) 'authPassword': authPassword,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {

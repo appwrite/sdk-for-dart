@@ -9,6 +9,7 @@ void main() {
         $createdAt: "2020-10-15T06:38:00.000+00:00",
         $updatedAt: "2020-10-15T06:38:00.000+00:00",
         name: "My Webhook",
+        description: "Notifies the billing service about new users.",
         url: "https://example.com/webhook",
         events: [],
         tls: true,
@@ -27,6 +28,10 @@ void main() {
       expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.name, "My Webhook");
+      expect(
+        result.description,
+        "Notifies the billing service about new users.",
+      );
       expect(result.url, "https://example.com/webhook");
       expect(result.events, []);
       expect(result.tls, true);

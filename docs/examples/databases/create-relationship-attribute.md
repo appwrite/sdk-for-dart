@@ -19,5 +19,6 @@ models.AttributeRelationship result = await databases.createRelationshipAttribut
     key: '<KEY>', // (optional)
     twoWayKey: '<TWO_WAY_KEY>', // (optional)
     onDelete: enums.RelationMutate.cascade, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

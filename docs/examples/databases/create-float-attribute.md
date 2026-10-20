@@ -18,5 +18,6 @@ models.AttributeFloat result = await databases.createFloatAttribute(
     max: 100, // (optional)
     xdefault: 10.5, // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

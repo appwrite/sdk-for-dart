@@ -291,6 +291,20 @@ void main() {
       );
     });
 
+    test('test method listMemberships()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'memberships': [],
+      };
+
+      when(
+        client.call(HttpMethod.get),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await account.listMemberships();
+      expect(response, isA<models.MembershipList>());
+    });
+
     test('test method updateMFA()', () async {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",

@@ -16,5 +16,6 @@ models.AttributeText result = await databases.updateTextAttribute(
     xrequired: false,
     xdefault: 'Hello World',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

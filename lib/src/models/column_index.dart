@@ -14,6 +14,9 @@ class ColumnIndex implements Model {
   /// Index Key.
   final String key;
 
+  /// Optional description for the index.
+  final String description;
+
   /// Index type.
   final String type;
 
@@ -37,6 +40,7 @@ class ColumnIndex implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     required this.key,
+    required this.description,
     required this.type,
     required this.status,
     required this.error,
@@ -52,6 +56,7 @@ class ColumnIndex implements Model {
       '\$createdAt': "",
       '\$updatedAt': "",
       'key': "",
+      'description': "",
       'type': "",
       'status': "",
       'error': "",
@@ -65,6 +70,7 @@ class ColumnIndex implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       key: map['key'].toString(),
+      description: map['description'].toString(),
       type: map['type'].toString(),
       status: map['status'].toString(),
       error: map['error'].toString(),
@@ -81,6 +87,7 @@ class ColumnIndex implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "key": key,
+      "description": description,
       "type": type,
       "status": status,
       "error": error,

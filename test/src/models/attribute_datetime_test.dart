@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = AttributeDatetime(
         key: "birthDay",
+        description: "Name shown on the public profile.",
         type: "datetime",
         status: AttributeStatus.available,
         error: "string",
@@ -20,6 +21,7 @@ void main() {
       final result = AttributeDatetime.fromMap(map);
 
       expect(result.key, "birthDay");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "datetime");
       expect(result.status, AttributeStatus.available);
       expect(result.error, "string");

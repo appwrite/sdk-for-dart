@@ -9,6 +9,7 @@ void main() {
         $createdAt: "2020-10-15T06:38:00.000+00:00",
         $updatedAt: "2020-10-15T06:38:00.000+00:00",
         name: "My API Key",
+        description: "Used by the nightly backup job.",
         expire: "2020-10-15T06:38:00.000+00:00",
         scopes: [],
         secret: "919c2d18fb5d4...a2ae413da83346ad2",
@@ -23,6 +24,7 @@ void main() {
       expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.name, "My API Key");
+      expect(result.description, "Used by the nightly backup job.");
       expect(result.expire, "2020-10-15T06:38:00.000+00:00");
       expect(result.scopes, []);
       expect(result.secret, "919c2d18fb5d4...a2ae413da83346ad2");

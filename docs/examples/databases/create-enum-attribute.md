@@ -17,5 +17,6 @@ models.AttributeEnum result = await databases.createEnumAttribute(
     xrequired: false,
     xdefault: 'active', // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

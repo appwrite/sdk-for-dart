@@ -12,5 +12,6 @@ Postgresql postgresql = Postgresql(client);
 models.DedicatedDatabaseBackupList result = await postgresql.listBackups(
     databaseId: '<DATABASE_ID>',
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

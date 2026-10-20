@@ -63,6 +63,7 @@ class Functions extends Service {
     String? runtimeSpecification,
     int? deploymentRetention,
     int? interval,
+    String? description,
   }) async {
     final String apiPath = '/functions';
 
@@ -94,6 +95,7 @@ class Functions extends Service {
       if (deploymentRetention != null)
         'deploymentRetention': deploymentRetention,
       if (interval != null) 'interval': interval,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -221,6 +223,7 @@ class Functions extends Service {
     String? runtimeSpecification,
     int? deploymentRetention,
     int? interval,
+    String? description,
     bool? emailEnabled,
   }) async {
     if (functionId.isEmpty) {
@@ -261,6 +264,7 @@ class Functions extends Service {
       if (deploymentRetention != null)
         'deploymentRetention': deploymentRetention,
       if (interval != null) 'interval': interval,
+      if (description != null) 'description': description,
       if (emailEnabled != null) 'emailEnabled': emailEnabled,
     };
 
@@ -995,6 +999,7 @@ class Functions extends Service {
     required String key,
     required String value,
     bool? secret,
+    String? description,
   }) async {
     if (functionId.isEmpty) {
       throw AppwriteException(
@@ -1012,6 +1017,7 @@ class Functions extends Service {
       'key': key,
       'value': value,
       if (secret != null) 'secret': secret,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1081,6 +1087,7 @@ class Functions extends Service {
     String? key,
     String? value,
     bool? secret,
+    String? description,
   }) async {
     if (functionId.isEmpty) {
       throw AppwriteException(
@@ -1108,6 +1115,7 @@ class Functions extends Service {
       if (key != null) 'key': key,
       if (value != null) 'value': value,
       if (secret != null) 'secret': secret,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {

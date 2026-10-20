@@ -85,6 +85,7 @@ void main() {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
         'name': "My Database",
+        'description': "Customer orders and invoices.",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
@@ -224,6 +225,7 @@ void main() {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
         'name': "My Database",
+        'description': "Customer orders and invoices.",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
@@ -244,6 +246,7 @@ void main() {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
         'name': "My Database",
+        'description': "Customer orders and invoices.",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
@@ -297,6 +300,7 @@ void main() {
         '\$permissions': [],
         'databaseId': "5e5ea5c16897e",
         'name': "My Collection",
+        'description': "Movies available in the catalog.",
         'enabled': true,
         'documentSecurity': true,
         'attributes': [],
@@ -325,6 +329,7 @@ void main() {
         '\$permissions': [],
         'databaseId': "5e5ea5c16897e",
         'name': "My Collection",
+        'description': "Movies available in the catalog.",
         'enabled': true,
         'documentSecurity': true,
         'attributes': [],
@@ -352,6 +357,7 @@ void main() {
         '\$permissions': [],
         'databaseId': "5e5ea5c16897e",
         'name': "My Collection",
+        'description': "Movies available in the catalog.",
         'enabled': true,
         'documentSecurity': true,
         'attributes': [],
@@ -490,6 +496,23 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await documentsDB.deleteDocuments(
+        databaseId: "<DATABASE_ID>",
+        collectionId: "<COLLECTION_ID>",
+      );
+      expect(response, isA<models.DocumentList>());
+    });
+
+    test('test method createQuery()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'documents': [],
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await documentsDB.createQuery(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
       );
@@ -650,6 +673,7 @@ void main() {
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'key': "index1",
+        'description': "Speeds up lookups by email.",
         'type': "primary",
         'status': "available",
         'error': "string",
@@ -677,6 +701,7 @@ void main() {
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'key': "index1",
+        'description': "Speeds up lookups by email.",
         'type': "primary",
         'status': "available",
         'error': "string",

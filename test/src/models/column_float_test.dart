@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = ColumnFloat(
         key: "percentageCompleted",
+        description: "Name shown on the public profile.",
         type: "double",
         status: ColumnStatus.available,
         error: "string",
@@ -19,6 +20,7 @@ void main() {
       final result = ColumnFloat.fromMap(map);
 
       expect(result.key, "percentageCompleted");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "double");
       expect(result.status, ColumnStatus.available);
       expect(result.error, "string");

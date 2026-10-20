@@ -16,5 +16,6 @@ models.ColumnLongtext result = await tablesDB.updateLongtextColumn(
     xrequired: false,
     xdefault: 'Hello World',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

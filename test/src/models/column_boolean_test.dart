@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = ColumnBoolean(
         key: "isEnabled",
+        description: "Name shown on the public profile.",
         type: "boolean",
         status: ColumnStatus.available,
         error: "string",
@@ -19,6 +20,7 @@ void main() {
       final result = ColumnBoolean.fromMap(map);
 
       expect(result.key, "isEnabled");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "boolean");
       expect(result.status, ColumnStatus.available);
       expect(result.error, "string");

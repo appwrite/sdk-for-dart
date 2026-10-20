@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = ColumnBigint(
         key: "count",
+        description: "Name shown on the public profile.",
         type: "bigint",
         status: ColumnStatus.available,
         error: "string",
@@ -19,6 +20,7 @@ void main() {
       final result = ColumnBigint.fromMap(map);
 
       expect(result.key, "count");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "bigint");
       expect(result.status, ColumnStatus.available);
       expect(result.error, "string");

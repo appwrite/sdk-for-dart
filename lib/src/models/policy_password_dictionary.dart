@@ -8,9 +8,13 @@ class PolicyPasswordDictionary implements Model {
   /// Whether password dictionary policy is enabled.
   final bool enabled;
 
+  /// Custom passwords blocked by case-sensitive equality when enabled.
+  final List<String> denyList;
+
   PolicyPasswordDictionary({
     required this.$id,
     required this.enabled,
+    required this.denyList,
   });
   factory PolicyPasswordDictionary.fromMap(
     Map<String, dynamic> map,
@@ -18,12 +22,14 @@ class PolicyPasswordDictionary implements Model {
     map = {
       '\$id': "",
       'enabled': false,
+      'denyList': [],
       ...map,
     };
 
     return PolicyPasswordDictionary(
       $id: map['\$id'].toString(),
       enabled: map['enabled'],
+      denyList: List.from(map['denyList'] ?? []),
     );
   }
 
@@ -32,6 +38,7 @@ class PolicyPasswordDictionary implements Model {
     return {
       "\$id": $id,
       "enabled": enabled,
+      "denyList": denyList,
     };
   }
 }

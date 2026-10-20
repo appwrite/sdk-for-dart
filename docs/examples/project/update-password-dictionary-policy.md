@@ -11,5 +11,6 @@ Project project = Project(client);
 
 models.Project result = await project.updatePasswordDictionaryPolicy(
     enabled: false,
+    denyList: [], // (optional)
 );
 ```

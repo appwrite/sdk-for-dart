@@ -20,6 +20,9 @@ class Table implements Model {
   /// Table name.
   final String name;
 
+  /// Optional description for the table.
+  final String description;
+
   /// Table enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the table is inaccessible to users, but remains accessible to Server SDKs using API keys.
   final bool enabled;
 
@@ -45,6 +48,7 @@ class Table implements Model {
     required this.$permissions,
     required this.databaseId,
     required this.name,
+    required this.description,
     required this.enabled,
     required this.rowSecurity,
     required this.columns,
@@ -62,6 +66,7 @@ class Table implements Model {
       '\$permissions': [],
       'databaseId': "",
       'name': "",
+      'description': "",
       'enabled': true,
       'rowSecurity': false,
       'columns': [],
@@ -78,6 +83,7 @@ class Table implements Model {
       $permissions: List.from(map['\$permissions'] ?? []),
       databaseId: map['databaseId'].toString(),
       name: map['name'].toString(),
+      description: map['description'].toString(),
       enabled: map['enabled'],
       rowSecurity: map['rowSecurity'],
       columns: List.from(map['columns'] ?? []),
@@ -98,6 +104,7 @@ class Table implements Model {
       "\$permissions": $permissions,
       "databaseId": databaseId,
       "name": name,
+      "description": description,
       "enabled": enabled,
       "rowSecurity": rowSecurity,
       "columns": columns,

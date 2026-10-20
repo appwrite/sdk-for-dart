@@ -14,5 +14,6 @@ models.Variable result = await project.createVariable(
     key: '<KEY>',
     value: '<VALUE>',
     secret: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

@@ -10,6 +10,7 @@ void main() {
         $updatedAt: "2020-10-15T06:38:00.000+00:00",
         execute: [],
         name: "My Function",
+        description: "Sends a welcome email to newly registered users.",
         enabled: true,
         live: true,
         logging: true,
@@ -48,6 +49,10 @@ void main() {
       expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.execute, []);
       expect(result.name, "My Function");
+      expect(
+        result.description,
+        "Sends a welcome email to newly registered users.",
+      );
       expect(result.enabled, true);
       expect(result.live, true);
       expect(result.logging, true);

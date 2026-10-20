@@ -16,5 +16,6 @@ models.ColumnText result = await tablesDB.updateTextColumn(
     xrequired: false,
     xdefault: 'Hello World',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

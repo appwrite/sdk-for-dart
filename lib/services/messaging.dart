@@ -50,6 +50,7 @@ class Messaging extends Service {
     String? scheduledAt,
     String? replyToEmail,
     String? replyToName,
+    List<String>? emails,
   }) async {
     final String apiPath = '/messaging/messages/email';
 
@@ -68,6 +69,7 @@ class Messaging extends Service {
       if (scheduledAt != null) 'scheduledAt': scheduledAt,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
       if (replyToName != null) 'replyToName': replyToName,
+      if (emails != null) 'emails': emails,
     };
 
     final Map<String, String> apiHeaders = {
@@ -104,6 +106,7 @@ class Messaging extends Service {
     List<String>? attachments,
     String? replyToEmail,
     String? replyToName,
+    List<String>? emails,
   }) async {
     if (messageId.isEmpty) {
       throw AppwriteException(
@@ -130,6 +133,7 @@ class Messaging extends Service {
       if (attachments != null) 'attachments': attachments,
       if (replyToEmail != null) 'replyToEmail': replyToEmail,
       if (replyToName != null) 'replyToName': replyToName,
+      if (emails != null) 'emails': emails,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2111,6 +2115,7 @@ class Messaging extends Service {
     List<String>? subscribe,
     int? qos,
     int? expiry,
+    String? description,
   }) async {
     final String apiPath = '/messaging/topics';
 
@@ -2120,6 +2125,7 @@ class Messaging extends Service {
       if (subscribe != null) 'subscribe': subscribe,
       if (qos != null) 'qos': qos,
       if (expiry != null) 'expiry': expiry,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2177,6 +2183,7 @@ class Messaging extends Service {
     List<String>? subscribe,
     int? qos,
     int? expiry,
+    String? description,
   }) async {
     if (topicId.isEmpty) {
       throw AppwriteException(
@@ -2194,6 +2201,7 @@ class Messaging extends Service {
       if (subscribe != null) 'subscribe': subscribe,
       if (qos != null) 'qos': qos,
       if (expiry != null) 'expiry': expiry,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {

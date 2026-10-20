@@ -8,11 +8,13 @@ class Backups extends Service {
   /// List all archives for a project.
   Future<models.BackupArchiveList> listArchives({
     List<String>? queries,
+    bool? total,
   }) async {
     final String apiPath = '/backups/archives';
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {
@@ -126,11 +128,13 @@ class Backups extends Service {
   /// List all policies for a project.
   Future<models.BackupPolicyList> listPolicies({
     List<String>? queries,
+    bool? total,
   }) async {
     final String apiPath = '/backups/policies';
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {
@@ -358,11 +362,13 @@ class Backups extends Service {
   /// List all backup restorations for a project.
   Future<models.BackupRestorationList> listRestorations({
     List<String>? queries,
+    bool? total,
   }) async {
     final String apiPath = '/backups/restorations';
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {

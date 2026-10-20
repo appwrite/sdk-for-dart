@@ -16,5 +16,6 @@ models.ColumnRelationship result = await tablesDB.updateRelationshipColumn(
     key: '<KEY>',
     onDelete: enums.RelationMutate.cascade, // (optional)
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

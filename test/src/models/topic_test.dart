@@ -9,6 +9,7 @@ void main() {
         $createdAt: "2020-10-15T06:38:00.000+00:00",
         $updatedAt: "2020-10-15T06:38:00.000+00:00",
         name: "events",
+        description: "Order status updates sent to customers.",
         emailTotal: 100,
         smsTotal: 100,
         pushTotal: 100,
@@ -22,6 +23,7 @@ void main() {
       expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.name, "events");
+      expect(result.description, "Order status updates sent to customers.");
       expect(result.emailTotal, 100);
       expect(result.smsTotal, 100);
       expect(result.pushTotal, 100);

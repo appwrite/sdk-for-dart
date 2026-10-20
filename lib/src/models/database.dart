@@ -8,6 +8,9 @@ class Database implements Model {
   /// Database name.
   final String name;
 
+  /// Optional description for the database.
+  final String description;
+
   /// Database creation date in ISO 8601 format.
   final String $createdAt;
 
@@ -50,6 +53,7 @@ class Database implements Model {
   Database({
     required this.$id,
     required this.name,
+    required this.description,
     required this.$createdAt,
     required this.$updatedAt,
     required this.enabled,
@@ -70,6 +74,7 @@ class Database implements Model {
     map = {
       '\$id': "",
       'name': "",
+      'description': "",
       '\$createdAt': "",
       '\$updatedAt': "",
       'enabled': true,
@@ -80,6 +85,7 @@ class Database implements Model {
     return Database(
       $id: map['\$id'].toString(),
       name: map['name'].toString(),
+      description: map['description'].toString(),
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       enabled: map['enabled'],
@@ -115,6 +121,7 @@ class Database implements Model {
     return {
       "\$id": $id,
       "name": name,
+      "description": description,
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "enabled": enabled,

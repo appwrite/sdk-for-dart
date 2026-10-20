@@ -8,11 +8,13 @@ class Activities extends Service {
   /// List all events for selected filters.
   Future<models.ActivityEventList> listEvents({
     List<String>? queries,
+    bool? total,
   }) async {
     final String apiPath = '/activities/events';
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {

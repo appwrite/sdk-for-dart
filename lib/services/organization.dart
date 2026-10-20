@@ -711,6 +711,7 @@ class Organization extends Service {
     required String name,
     required List<enums.ProjectKeyScopes> scopes,
     String? expire,
+    String? description,
   }) async {
     if (projectId.isEmpty) {
       throw AppwriteException(
@@ -738,6 +739,7 @@ class Organization extends Service {
       'name': name,
       'scopes': scopes.map((e) => e.value).toList(),
       if (expire != null) 'expire': expire,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {

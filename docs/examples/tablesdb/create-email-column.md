@@ -16,5 +16,6 @@ models.ColumnEmail result = await tablesDB.createEmailColumn(
     xrequired: false,
     xdefault: 'email@example.com', // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

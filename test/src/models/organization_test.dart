@@ -81,6 +81,7 @@ void main() {
           deploymentSize: 30,
           buildSize: 2000,
           functionsIntervalMinimum: 60,
+          functionsAllowCron: true,
           databasesAllowEncrypt: true,
           group: BillingPlanGroup.free,
           databaseComputeCredit: 10,

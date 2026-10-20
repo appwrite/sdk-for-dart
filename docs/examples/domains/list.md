@@ -12,5 +12,6 @@ Domains domains = Domains(client);
 models.DomainsList result = await domains.list(
     queries: [], // (optional)
     search: '<SEARCH>', // (optional)
+    total: false, // (optional)
 );
 ```
