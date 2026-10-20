@@ -18,5 +18,6 @@ models.Webhook result = await webhooks.update(
     tls: false, // (optional)
     authUsername: '<AUTH_USERNAME>', // (optional)
     authPassword: 'password', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

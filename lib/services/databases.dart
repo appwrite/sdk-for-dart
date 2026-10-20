@@ -46,6 +46,7 @@ class Databases extends Service {
     required String databaseId,
     required String name,
     bool? enabled,
+    String? description,
   }) async {
     final String apiPath = '/databases';
 
@@ -53,6 +54,7 @@ class Databases extends Service {
       'databaseId': databaseId,
       'name': name,
       if (enabled != null) 'enabled': enabled,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -326,6 +328,7 @@ class Databases extends Service {
     required String databaseId,
     String? name,
     bool? enabled,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -341,6 +344,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
       if (enabled != null) 'enabled': enabled,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -455,6 +459,7 @@ class Databases extends Service {
     bool? enabled,
     List<Map>? attributes,
     List<Map>? indexes,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -475,6 +480,7 @@ class Databases extends Service {
       if (enabled != null) 'enabled': enabled,
       if (attributes != null) 'attributes': attributes,
       if (indexes != null) 'indexes': indexes,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -553,6 +559,7 @@ class Databases extends Service {
     bool? documentSecurity,
     bool? enabled,
     bool? purge,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -582,6 +589,7 @@ class Databases extends Service {
       if (documentSecurity != null) 'documentSecurity': documentSecurity,
       if (enabled != null) 'enabled': enabled,
       if (purge != null) 'purge': purge,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -716,6 +724,7 @@ class Databases extends Service {
     int? max,
     int? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -747,6 +756,7 @@ class Databases extends Service {
       if (max != null) 'max': max,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -779,6 +789,7 @@ class Databases extends Service {
     int? min,
     int? max,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -819,6 +830,7 @@ class Databases extends Service {
       if (max != null) 'max': max,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -848,6 +860,7 @@ class Databases extends Service {
     required bool xrequired,
     bool? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -877,6 +890,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -907,6 +921,7 @@ class Databases extends Service {
     required bool xrequired,
     required bool? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -945,6 +960,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -974,6 +990,7 @@ class Databases extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1003,6 +1020,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1033,6 +1051,7 @@ class Databases extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1071,6 +1090,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1100,6 +1120,7 @@ class Databases extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1129,6 +1150,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1159,6 +1181,7 @@ class Databases extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1197,6 +1220,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1228,6 +1252,7 @@ class Databases extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1258,6 +1283,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1289,6 +1315,7 @@ class Databases extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1328,6 +1355,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1360,6 +1388,7 @@ class Databases extends Service {
     double? max,
     double? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1391,6 +1420,7 @@ class Databases extends Service {
       if (max != null) 'max': max,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1423,6 +1453,7 @@ class Databases extends Service {
     double? min,
     double? max,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1463,6 +1494,7 @@ class Databases extends Service {
       if (max != null) 'max': max,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1495,6 +1527,7 @@ class Databases extends Service {
     int? max,
     int? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1526,6 +1559,7 @@ class Databases extends Service {
       if (max != null) 'max': max,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1558,6 +1592,7 @@ class Databases extends Service {
     int? min,
     int? max,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1598,6 +1633,7 @@ class Databases extends Service {
       if (max != null) 'max': max,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1627,6 +1663,7 @@ class Databases extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1656,6 +1693,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1686,6 +1724,7 @@ class Databases extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1724,6 +1763,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1752,6 +1792,7 @@ class Databases extends Service {
     required String key,
     required bool xrequired,
     List<List>? xdefault,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1780,6 +1821,7 @@ class Databases extends Service {
       'key': key,
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1810,6 +1852,7 @@ class Databases extends Service {
     required bool xrequired,
     List<List>? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1848,6 +1891,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1878,6 +1922,7 @@ class Databases extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1908,6 +1953,7 @@ class Databases extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1938,6 +1984,7 @@ class Databases extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1976,6 +2023,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2006,6 +2054,7 @@ class Databases extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2036,6 +2085,7 @@ class Databases extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2066,6 +2116,7 @@ class Databases extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2104,6 +2155,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2132,6 +2184,7 @@ class Databases extends Service {
     required String key,
     required bool xrequired,
     List<double>? xdefault,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2160,6 +2213,7 @@ class Databases extends Service {
       'key': key,
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2190,6 +2244,7 @@ class Databases extends Service {
     required bool xrequired,
     List<double>? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2228,6 +2283,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2256,6 +2312,7 @@ class Databases extends Service {
     required String key,
     required bool xrequired,
     List<List>? xdefault,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2284,6 +2341,7 @@ class Databases extends Service {
       'key': key,
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2314,6 +2372,7 @@ class Databases extends Service {
     required bool xrequired,
     List<List>? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2352,6 +2411,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2384,6 +2444,7 @@ class Databases extends Service {
     String? key,
     String? twoWayKey,
     enums.RelationMutate? onDelete,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2415,6 +2476,7 @@ class Databases extends Service {
       if (key != null) 'key': key,
       if (twoWayKey != null) 'twoWayKey': twoWayKey,
       if (onDelete != null) 'onDelete': onDelete?.value,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2444,6 +2506,7 @@ class Databases extends Service {
     required String key,
     enums.RelationMutate? onDelete,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2481,6 +2544,7 @@ class Databases extends Service {
     final Map<String, dynamic> apiParams = {
       if (onDelete != null) 'onDelete': onDelete?.value,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2512,6 +2576,7 @@ class Databases extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2543,6 +2608,7 @@ class Databases extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2574,6 +2640,7 @@ class Databases extends Service {
     required String? xdefault,
     int? size,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2613,6 +2680,7 @@ class Databases extends Service {
       'default': xdefault,
       if (size != null) 'size': size,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2643,6 +2711,7 @@ class Databases extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2673,6 +2742,7 @@ class Databases extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2703,6 +2773,7 @@ class Databases extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2741,6 +2812,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2770,6 +2842,7 @@ class Databases extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2799,6 +2872,7 @@ class Databases extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2829,6 +2903,7 @@ class Databases extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2867,6 +2942,7 @@ class Databases extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2898,6 +2974,7 @@ class Databases extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2929,6 +3006,7 @@ class Databases extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2960,6 +3038,7 @@ class Databases extends Service {
     required String? xdefault,
     int? size,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2999,6 +3078,7 @@ class Databases extends Service {
       'default': xdefault,
       if (size != null) 'size': size,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3204,6 +3284,15 @@ class Databases extends Service {
 
   /// Get a list of all the user's documents in a given collection. You can use
   /// the query params to filter your results.
+  ///
+  /// Documents returned by aggregate, groupBy or distinct queries hold only the
+  /// attributes they select, group or aggregate, typed as a document types them,
+  /// with a joined attribute named by its join alias (`alias.attribute`). The
+  /// response omits their `$id`, `$sequence`, `$createdAt`, `$updatedAt`,
+  /// `$permissions`, `$databaseId` and `$collectionId` unless they select or
+  /// group it, and those of a right or full join document that no document of
+  /// this collection matched. SDK document models fill omitted system attributes
+  /// with empty values.
   @Deprecated(
     'This API has been deprecated since 1.8.0. Please use `TablesDB.listRows` instead.',
   )
@@ -3540,6 +3629,67 @@ class Databases extends Service {
 
     final res = await client.call(
       HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.DocumentList.fromMap(res.data);
+  }
+
+  /// Get a list of all the user's documents in a given collection using a POST
+  /// request. This behaves identically to the list documents endpoint but
+  /// accepts the queries in the request body, allowing much larger `queries`
+  /// arrays than can fit in a URL query string.
+  @Deprecated(
+    'This API has been deprecated since 1.8.0. Please use `TablesDB.createQuery` instead.',
+  )
+  Future<models.DocumentList> createQuery({
+    required String databaseId,
+    required String collectionId,
+    List<String>? queries,
+    String? transactionId,
+    bool? total,
+    int? ttl,
+  }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (collectionId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "collectionId"',
+      );
+    }
+
+    final String apiPath =
+        '/databases/{databaseId}/collections/{collectionId}/documents/query'
+            .replaceAll(
+              '{databaseId}',
+              databaseId,
+            )
+            .replaceAll(
+              '{collectionId}',
+              collectionId,
+            );
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (transactionId != null) 'transactionId': transactionId,
+      if (total != null) 'total': total,
+      if (ttl != null) 'ttl': ttl,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
       path: apiPath,
       params: apiParams,
       headers: apiHeaders,
@@ -4039,6 +4189,7 @@ class Databases extends Service {
     required List<String> attributes,
     List<enums.OrderBy>? orders,
     List<int>? lengths,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -4069,6 +4220,7 @@ class Databases extends Service {
       'attributes': attributes,
       if (orders != null) 'orders': orders?.map((e) => e.value).toList(),
       if (lengths != null) 'lengths': lengths,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {

@@ -89,6 +89,7 @@ void main() {
         '\$permissions': [],
         'fileSecurity': true,
         'name': "Documents",
+        'description': "Invoices and receipts uploaded by customers.",
         'enabled': true,
         'maximumFileSize': 100,
         'allowedFileExtensions': [],
@@ -96,6 +97,7 @@ void main() {
         'encryption': true,
         'antivirus': true,
         'transformations': true,
+        'stripMetadata': true,
         'totalSize': 128,
       };
 
@@ -118,6 +120,7 @@ void main() {
         '\$permissions': [],
         'fileSecurity': true,
         'name': "Documents",
+        'description': "Invoices and receipts uploaded by customers.",
         'enabled': true,
         'maximumFileSize': 100,
         'allowedFileExtensions': [],
@@ -125,6 +128,7 @@ void main() {
         'encryption': true,
         'antivirus': true,
         'transformations': true,
+        'stripMetadata': true,
         'totalSize': 128,
       };
 
@@ -146,6 +150,7 @@ void main() {
         '\$permissions': [],
         'fileSecurity': true,
         'name': "Documents",
+        'description': "Invoices and receipts uploaded by customers.",
         'enabled': true,
         'maximumFileSize': 100,
         'allowedFileExtensions': [],
@@ -153,6 +158,7 @@ void main() {
         'encryption': true,
         'antivirus': true,
         'transformations': true,
+        'stripMetadata': true,
         'totalSize': 128,
       };
 

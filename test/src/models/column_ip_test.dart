@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = ColumnIp(
         key: "ipAddress",
+        description: "Name shown on the public profile.",
         type: "string",
         status: ColumnStatus.available,
         error: "string",
@@ -20,6 +21,7 @@ void main() {
       final result = ColumnIp.fromMap(map);
 
       expect(result.key, "ipAddress");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "string");
       expect(result.status, ColumnStatus.available);
       expect(result.error, "string");

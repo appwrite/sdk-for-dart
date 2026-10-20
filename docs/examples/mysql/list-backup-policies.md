@@ -12,5 +12,6 @@ Mysql mysql = Mysql(client);
 models.BackupPolicyList result = await mysql.listBackupPolicies(
     databaseId: '<DATABASE_ID>',
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

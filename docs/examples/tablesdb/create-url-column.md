@@ -16,5 +16,6 @@ models.ColumnUrl result = await tablesDB.createUrlColumn(
     xrequired: false,
     xdefault: 'https://example.com', // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

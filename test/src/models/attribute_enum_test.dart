@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = AttributeEnum(
         key: "status",
+        description: "Name shown on the public profile.",
         type: "string",
         status: AttributeStatus.available,
         error: "string",
@@ -21,6 +22,7 @@ void main() {
       final result = AttributeEnum.fromMap(map);
 
       expect(result.key, "status");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "string");
       expect(result.status, AttributeStatus.available);
       expect(result.error, "string");

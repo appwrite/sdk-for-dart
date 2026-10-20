@@ -14,6 +14,9 @@ class Webhook implements Model {
   /// Webhook name.
   final String name;
 
+  /// Optional description for the webhook.
+  final String description;
+
   /// Webhook URL endpoint.
   final String url;
 
@@ -46,6 +49,7 @@ class Webhook implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     required this.name,
+    required this.description,
     required this.url,
     required this.events,
     required this.tls,
@@ -64,6 +68,7 @@ class Webhook implements Model {
       '\$createdAt': "",
       '\$updatedAt': "",
       'name': "",
+      'description': "",
       'url': "",
       'events': [],
       'tls': true,
@@ -81,6 +86,7 @@ class Webhook implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
+      description: map['description'].toString(),
       url: map['url'].toString(),
       events: List.from(map['events'] ?? []),
       tls: map['tls'],
@@ -100,6 +106,7 @@ class Webhook implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "name": name,
+      "description": description,
       "url": url,
       "events": events,
       "tls": tls,

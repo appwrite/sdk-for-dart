@@ -47,6 +47,8 @@ class Storage extends Service {
     bool? encryption,
     bool? antivirus,
     bool? transformations,
+    String? description,
+    bool? stripMetadata,
   }) async {
     final String apiPath = '/storage/buckets';
 
@@ -63,6 +65,8 @@ class Storage extends Service {
       if (encryption != null) 'encryption': encryption,
       if (antivirus != null) 'antivirus': antivirus,
       if (transformations != null) 'transformations': transformations,
+      if (description != null) 'description': description,
+      if (stripMetadata != null) 'stripMetadata': stripMetadata,
     };
 
     final Map<String, String> apiHeaders = {
@@ -127,6 +131,8 @@ class Storage extends Service {
     bool? encryption,
     bool? antivirus,
     bool? transformations,
+    String? description,
+    bool? stripMetadata,
   }) async {
     if (bucketId.isEmpty) {
       throw AppwriteException(
@@ -151,6 +157,8 @@ class Storage extends Service {
       if (encryption != null) 'encryption': encryption,
       if (antivirus != null) 'antivirus': antivirus,
       if (transformations != null) 'transformations': transformations,
+      if (description != null) 'description': description,
+      if (stripMetadata != null) 'stripMetadata': stripMetadata,
     };
 
     final Map<String, String> apiHeaders = {

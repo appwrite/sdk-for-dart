@@ -11,5 +11,6 @@ Mysql mysql = Mysql(client);
 
 models.DedicatedDatabaseList result = await mysql.list(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

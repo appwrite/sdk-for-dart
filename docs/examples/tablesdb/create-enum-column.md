@@ -17,5 +17,6 @@ models.ColumnEnum result = await tablesDB.createEnumColumn(
     xrequired: false,
     xdefault: 'active', // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

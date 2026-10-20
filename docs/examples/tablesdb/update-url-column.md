@@ -16,5 +16,6 @@ models.ColumnUrl result = await tablesDB.updateUrlColumn(
     xrequired: false,
     xdefault: 'https://example.com',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

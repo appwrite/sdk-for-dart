@@ -11,5 +11,6 @@ Mongo mongo = Mongo(client);
 
 models.DedicatedDatabaseList result = await mongo.list(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

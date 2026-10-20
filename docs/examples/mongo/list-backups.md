@@ -12,5 +12,6 @@ Mongo mongo = Mongo(client);
 models.DedicatedDatabaseBackupList result = await mongo.listBackups(
     databaseId: '<DATABASE_ID>',
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

@@ -16,5 +16,6 @@ models.AttributePoint result = await databases.updatePointAttribute(
     xrequired: false,
     xdefault: [1, 2], // (optional)
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

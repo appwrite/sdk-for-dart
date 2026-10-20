@@ -1,5 +1,4 @@
 ```dart
-import 'dart:io';
 import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:dart_appwrite/models.dart' as models;
 

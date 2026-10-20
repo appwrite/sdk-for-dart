@@ -15,5 +15,6 @@ models.AttributePoint result = await databases.createPointAttribute(
     key: '<KEY>',
     xrequired: false,
     xdefault: [1, 2], // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

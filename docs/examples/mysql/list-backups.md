@@ -12,5 +12,6 @@ Mysql mysql = Mysql(client);
 models.DedicatedDatabaseBackupList result = await mysql.listBackups(
     databaseId: '<DATABASE_ID>',
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

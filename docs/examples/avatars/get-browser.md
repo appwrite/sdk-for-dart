@@ -1,4 +1,5 @@
 ```dart
+import 'dart:typed_data';
 import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:dart_appwrite/enums.dart' as enums;
 

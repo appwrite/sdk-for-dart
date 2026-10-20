@@ -35,5 +35,6 @@ models.Site result = await sites.create(
     runtimeSpecification: 's-1vcpu-512mb', // (optional)
     deploymentRetention: 0, // (optional)
     scopes: [enums.ProjectKeyScopes.projectRead], // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

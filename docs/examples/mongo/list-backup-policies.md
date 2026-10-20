@@ -12,5 +12,6 @@ Mongo mongo = Mongo(client);
 models.BackupPolicyList result = await mongo.listBackupPolicies(
     databaseId: '<DATABASE_ID>',
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

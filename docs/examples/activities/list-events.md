@@ -11,5 +11,6 @@ Activities activities = Activities(client);
 
 models.ActivityEventList result = await activities.listEvents(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

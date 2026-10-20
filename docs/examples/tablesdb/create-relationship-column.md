@@ -19,5 +19,6 @@ models.ColumnRelationship result = await tablesDB.createRelationshipColumn(
     key: '<KEY>', // (optional)
     twoWayKey: '<TWO_WAY_KEY>', // (optional)
     onDelete: enums.RelationMutate.cascade, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = AttributeFloat(
         key: "percentageCompleted",
+        description: "Name shown on the public profile.",
         type: "double",
         status: AttributeStatus.available,
         error: "string",
@@ -19,6 +20,7 @@ void main() {
       final result = AttributeFloat.fromMap(map);
 
       expect(result.key, "percentageCompleted");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "double");
       expect(result.status, AttributeStatus.available);
       expect(result.error, "string");

@@ -16,5 +16,6 @@ models.AttributeBoolean result = await databases.createBooleanAttribute(
     xrequired: false,
     xdefault: false, // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

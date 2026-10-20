@@ -17,5 +17,6 @@ models.ColumnEnum result = await tablesDB.updateEnumColumn(
     xrequired: false,
     xdefault: 'active',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

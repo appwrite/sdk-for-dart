@@ -11,6 +11,7 @@ void main() {
         $permissions: [],
         databaseId: "5e5ea5c16897e",
         name: "My Table",
+        description: "Movies available in the catalog.",
         enabled: true,
         rowSecurity: true,
         columns: [],
@@ -28,6 +29,7 @@ void main() {
       expect(result.$permissions, []);
       expect(result.databaseId, "5e5ea5c16897e");
       expect(result.name, "My Table");
+      expect(result.description, "Movies available in the catalog.");
       expect(result.enabled, true);
       expect(result.rowSecurity, true);
       expect(result.columns, []);

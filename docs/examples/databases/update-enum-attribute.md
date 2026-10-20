@@ -17,5 +17,6 @@ models.AttributeEnum result = await databases.updateEnumAttribute(
     xrequired: false,
     xdefault: 'active',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

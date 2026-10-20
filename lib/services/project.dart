@@ -336,6 +336,7 @@ class Project extends Service {
     required String name,
     required List<enums.ProjectKeyScopes> scopes,
     String? expire,
+    String? description,
   }) async {
     if (keyId.isEmpty) {
       throw AppwriteException(
@@ -352,6 +353,7 @@ class Project extends Service {
       'name': name,
       'scopes': scopes.map((e) => e.value).toList(),
       if (expire != null) 'expire': expire,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3116,13 +3118,23 @@ class Project extends Service {
   /// Updating this policy allows you to control if new passwords are checked
   /// against most common passwords dictionary. When enabled, and user changes
   /// their password, password must not be contained in the dictionary.
+  ///
+  /// Custom denyList entries use case-sensitive equality and apply only while
+  /// this policy is enabled. Omit denyList or pass null to preserve it, pass an
+  /// array to replace it, or pass [] to clear it. Entries are stored without
+  /// trimming or deduplication. Existing passwords remain valid for sign-in and
+  /// password confirmation. The combined serialized project authentication
+  /// configuration must fit within 16,384 characters, even when each list meets
+  /// its entry limits.
   Future<models.Project> updatePasswordDictionaryPolicy({
     required bool enabled,
+    List<String>? denyList,
   }) async {
     final String apiPath = '/project/policies/password-dictionary';
 
     final Map<String, dynamic> apiParams = {
       'enabled': enabled,
+      if (denyList != null) 'denyList': denyList,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3179,13 +3191,25 @@ class Project extends Service {
   /// against personal data. When enabled, and user sets or changes their
   /// password, the password must not contain user ID, name, email or phone
   /// number.
+  ///
+  /// Custom denyList entries use case-insensitive substring matching and apply
+  /// only while this policy is enabled. Omit denyList or pass null to preserve
+  /// it, pass an array to replace it, or pass [] to clear it. Entries are stored
+  /// without trimming or deduplication. Existing passwords remain valid for
+  /// sign-in and password confirmation. The combined serialized project
+  /// authentication configuration must fit within 16,384 characters, even when
+  /// each list meets its entry limits.
+  /// Password recovery also checks the recovered user profile, closing the
+  /// previous gap in profile-based personal-data validation.
   Future<models.Project> updatePasswordPersonalDataPolicy({
     required bool enabled,
+    List<String>? denyList,
   }) async {
     final String apiPath = '/project/policies/password-personal-data';
 
     final Map<String, dynamic> apiParams = {
       'enabled': enabled,
+      if (denyList != null) 'denyList': denyList,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3807,6 +3831,7 @@ class Project extends Service {
     required String key,
     required String value,
     bool? secret,
+    String? description,
   }) async {
     final String apiPath = '/project/variables';
 
@@ -3815,6 +3840,7 @@ class Project extends Service {
       'key': key,
       'value': value,
       if (secret != null) 'secret': secret,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3871,6 +3897,7 @@ class Project extends Service {
     String? key,
     String? value,
     bool? secret,
+    String? description,
   }) async {
     if (variableId.isEmpty) {
       throw AppwriteException(
@@ -3887,6 +3914,7 @@ class Project extends Service {
       if (key != null) 'key': key,
       if (value != null) 'value': value,
       if (secret != null) 'secret': secret,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {

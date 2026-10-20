@@ -6,11 +6,13 @@ class Mongo extends Service {
   /// List all dedicated databases. Results support pagination.
   Future<models.DedicatedDatabaseList> list({
     List<String>? queries,
+    bool? total,
   }) async {
     final String apiPath = '/mongo';
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {
@@ -267,6 +269,7 @@ class Mongo extends Service {
   Future<models.DedicatedDatabaseBackupList> listBackups({
     required String databaseId,
     List<String>? queries,
+    bool? total,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -281,6 +284,7 @@ class Mongo extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {
@@ -339,6 +343,7 @@ class Mongo extends Service {
   Future<models.BackupPolicyList> listBackupPolicies({
     required String databaseId,
     List<String>? queries,
+    bool? total,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -353,6 +358,7 @@ class Mongo extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {

@@ -12,5 +12,6 @@ Postgresql postgresql = Postgresql(client);
 models.BackupPolicyList result = await postgresql.listBackupPolicies(
     databaseId: '<DATABASE_ID>',
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

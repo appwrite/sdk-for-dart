@@ -384,6 +384,33 @@ class Account extends Service {
     return res.data;
   }
 
+  /// Get the team memberships of the currently logged in user.
+  Future<models.MembershipList> listMemberships({
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/account/memberships';
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.MembershipList.fromMap(res.data);
+  }
+
   /// Enable or disable MFA on an account.
   Future<models.User> updateMFA({
     required bool mfa,
@@ -1317,6 +1344,14 @@ class Account extends Service {
   /// Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
   /// the only valid redirect URLs are the ones from domains you have set when
   /// adding your platforms in the console interface.
+  ///
+  /// The new password must satisfy the project's enabled password policies,
+  /// including custom deny lists. Dictionary entries match the entire password
+  /// case-sensitively; personal-data terms match substrings case-insensitively.
+  /// Personal-data validation runs after token verification against the
+  /// recovered user's ID, name, email, and phone, closing the previous recovery
+  /// gap for profile-based checks. A rejected password leaves the existing
+  /// credentials unchanged and the recovery token usable.
   Future<models.Token> updateRecovery({
     required String userId,
     required String secret,
@@ -1392,6 +1427,14 @@ class Account extends Service {
   /// Pass the **userId** of the user along with the **secret** code from the
   /// email and the new **password** to set. If confirmed, this route will return
   /// a 200 status code, the code is consumed and the user's password is updated.
+  ///
+  /// The new password must satisfy the project's enabled password policies,
+  /// including custom deny lists. Dictionary entries match the entire password
+  /// case-sensitively; personal-data terms match substrings case-insensitively.
+  /// Personal-data validation runs after token verification against the
+  /// recovered user's ID, name, email, and phone, closing the previous recovery
+  /// gap for profile-based checks. A rejected password leaves the existing
+  /// credentials unchanged and the recovery token usable.
   Future<models.Token> updateRecoveryOTP({
     required String userId,
     required String secret,

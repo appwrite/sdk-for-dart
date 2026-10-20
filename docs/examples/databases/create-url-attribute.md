@@ -16,5 +16,6 @@ models.AttributeUrl result = await databases.createUrlAttribute(
     xrequired: false,
     xdefault: 'https://example.com', // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

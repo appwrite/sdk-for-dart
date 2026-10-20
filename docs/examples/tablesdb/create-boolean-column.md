@@ -16,5 +16,6 @@ models.ColumnBoolean result = await tablesDB.createBooleanColumn(
     xrequired: false,
     xdefault: false, // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

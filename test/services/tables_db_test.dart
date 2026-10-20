@@ -85,6 +85,7 @@ void main() {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
         'name': "My Database",
+        'description': "Customer orders and invoices.",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
@@ -224,6 +225,7 @@ void main() {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
         'name': "My Database",
+        'description': "Customer orders and invoices.",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
@@ -244,6 +246,7 @@ void main() {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
         'name': "My Database",
+        'description': "Customer orders and invoices.",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'enabled': true,
@@ -542,6 +545,7 @@ void main() {
         '\$permissions': [],
         'databaseId': "5e5ea5c16897e",
         'name': "My Table",
+        'description': "Movies available in the catalog.",
         'enabled': true,
         'rowSecurity': true,
         'columns': [],
@@ -570,6 +574,7 @@ void main() {
         '\$permissions': [],
         'databaseId': "5e5ea5c16897e",
         'name': "My Table",
+        'description': "Movies available in the catalog.",
         'enabled': true,
         'rowSecurity': true,
         'columns': [],
@@ -597,6 +602,7 @@ void main() {
         '\$permissions': [],
         'databaseId': "5e5ea5c16897e",
         'name': "My Table",
+        'description': "Movies available in the catalog.",
         'enabled': true,
         'rowSecurity': true,
         'columns': [],
@@ -649,6 +655,7 @@ void main() {
     test('test method createBigIntColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "count",
+        'description': "Name shown on the public profile.",
         'type': "bigint",
         'status': "available",
         'error': "string",
@@ -673,6 +680,7 @@ void main() {
     test('test method updateBigIntColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "count",
+        'description': "Name shown on the public profile.",
         'type': "bigint",
         'status': "available",
         'error': "string",
@@ -698,6 +706,7 @@ void main() {
     test('test method createBooleanColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "isEnabled",
+        'description': "Name shown on the public profile.",
         'type': "boolean",
         'status': "available",
         'error': "string",
@@ -722,6 +731,7 @@ void main() {
     test('test method updateBooleanColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "isEnabled",
+        'description': "Name shown on the public profile.",
         'type': "boolean",
         'status': "available",
         'error': "string",
@@ -747,6 +757,7 @@ void main() {
     test('test method createDatetimeColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "birthDay",
+        'description': "Name shown on the public profile.",
         'type': "datetime",
         'status': "available",
         'error': "string",
@@ -772,6 +783,7 @@ void main() {
     test('test method updateDatetimeColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "birthDay",
+        'description': "Name shown on the public profile.",
         'type': "datetime",
         'status': "available",
         'error': "string",
@@ -798,6 +810,7 @@ void main() {
     test('test method createEmailColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "userEmail",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -823,6 +836,7 @@ void main() {
     test('test method updateEmailColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "userEmail",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -849,6 +863,7 @@ void main() {
     test('test method createEnumColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "status",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -876,6 +891,7 @@ void main() {
     test('test method updateEnumColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "status",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -904,6 +920,7 @@ void main() {
     test('test method createFloatColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "percentageCompleted",
+        'description': "Name shown on the public profile.",
         'type': "double",
         'status': "available",
         'error': "string",
@@ -928,6 +945,7 @@ void main() {
     test('test method updateFloatColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "percentageCompleted",
+        'description': "Name shown on the public profile.",
         'type': "double",
         'status': "available",
         'error': "string",
@@ -953,6 +971,7 @@ void main() {
     test('test method createIntegerColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "count",
+        'description': "Name shown on the public profile.",
         'type': "integer",
         'status': "available",
         'error': "string",
@@ -977,6 +996,7 @@ void main() {
     test('test method updateIntegerColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "count",
+        'description': "Name shown on the public profile.",
         'type': "integer",
         'status': "available",
         'error': "string",
@@ -1002,6 +1022,7 @@ void main() {
     test('test method createIpColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "ipAddress",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1027,6 +1048,7 @@ void main() {
     test('test method updateIpColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "ipAddress",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1053,6 +1075,7 @@ void main() {
     test('test method createLineColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1077,6 +1100,7 @@ void main() {
     test('test method updateLineColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1101,6 +1125,7 @@ void main() {
     test('test method createLongtextColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1125,6 +1150,7 @@ void main() {
     test('test method updateLongtextColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1150,6 +1176,7 @@ void main() {
     test('test method createMediumtextColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1174,6 +1201,7 @@ void main() {
     test('test method updateMediumtextColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1199,6 +1227,7 @@ void main() {
     test('test method createPointColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1223,6 +1252,7 @@ void main() {
     test('test method updatePointColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1247,6 +1277,7 @@ void main() {
     test('test method createPolygonColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1271,6 +1302,7 @@ void main() {
     test('test method updatePolygonColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1295,6 +1327,7 @@ void main() {
     test('test method createRelationshipColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1325,6 +1358,7 @@ void main() {
     test('test method updateRelationshipColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1354,6 +1388,7 @@ void main() {
     test('test method createStringColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1380,6 +1415,7 @@ void main() {
     test('test method updateStringColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1406,6 +1442,7 @@ void main() {
     test('test method createTextColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1430,6 +1467,7 @@ void main() {
     test('test method updateTextColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1455,6 +1493,7 @@ void main() {
     test('test method createUrlColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "githubUrl",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1480,6 +1519,7 @@ void main() {
     test('test method updateUrlColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "githubUrl",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1506,6 +1546,7 @@ void main() {
     test('test method createVarcharColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1532,6 +1573,7 @@ void main() {
     test('test method updateVarcharColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'type': "string",
         'status': "available",
         'error': "string",
@@ -1558,6 +1600,7 @@ void main() {
     test('test method getColumn()', () async {
       final Map<String, dynamic> data = {
         'key': "fullName",
+        'description': "Name shown on the public profile.",
         'status': "available",
         'error': "string",
         'required': true,
@@ -1616,6 +1659,7 @@ void main() {
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'key': "index1",
+        'description': "Speeds up lookups by email.",
         'type': "primary",
         'status': "available",
         'error': "string",
@@ -1643,6 +1687,7 @@ void main() {
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'key': "index1",
+        'description': "Speeds up lookups by email.",
         'type': "primary",
         'status': "available",
         'error': "string",
@@ -1781,6 +1826,23 @@ void main() {
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteRows(
+        databaseId: "<DATABASE_ID>",
+        tableId: "<TABLE_ID>",
+      );
+      expect(response, isA<models.RowList>());
+    });
+
+    test('test method createQuery()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'rows': [],
+      };
+
+      when(
+        client.call(HttpMethod.post),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await tablesDB.createQuery(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
       );

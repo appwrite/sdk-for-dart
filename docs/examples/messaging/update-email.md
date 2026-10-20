@@ -24,5 +24,6 @@ models.Message result = await messaging.updateEmail(
     attachments: [], // (optional)
     replyToEmail: 'email@example.com', // (optional)
     replyToName: '<REPLY_TO_NAME>', // (optional)
+    emails: [], // (optional)
 );
 ```

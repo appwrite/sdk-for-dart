@@ -36,6 +36,7 @@ class VectorsDB extends Service {
     required String databaseId,
     required String name,
     bool? enabled,
+    String? description,
     String? specification,
     int? replicas,
     String? syncMode,
@@ -46,6 +47,7 @@ class VectorsDB extends Service {
       'databaseId': databaseId,
       'name': name,
       if (enabled != null) 'enabled': enabled,
+      if (description != null) 'description': description,
       if (specification != null) 'specification': specification,
       if (replicas != null) 'replicas': replicas,
       if (syncMode != null) 'syncMode': syncMode,
@@ -321,6 +323,7 @@ class VectorsDB extends Service {
     required String databaseId,
     required String name,
     bool? enabled,
+    String? description,
     String? specification,
     int? replicas,
     String? syncMode,
@@ -339,6 +342,7 @@ class VectorsDB extends Service {
     final Map<String, dynamic> apiParams = {
       'name': name,
       if (enabled != null) 'enabled': enabled,
+      if (description != null) 'description': description,
       if (specification != null) 'specification': specification,
       if (replicas != null) 'replicas': replicas,
       if (syncMode != null) 'syncMode': syncMode,
@@ -446,6 +450,7 @@ class VectorsDB extends Service {
     List<String>? permissions,
     bool? documentSecurity,
     bool? enabled,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -465,6 +470,7 @@ class VectorsDB extends Service {
       if (permissions != null) 'permissions': permissions,
       if (documentSecurity != null) 'documentSecurity': documentSecurity,
       if (enabled != null) 'enabled': enabled,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -537,6 +543,7 @@ class VectorsDB extends Service {
     List<String>? permissions,
     bool? documentSecurity,
     bool? enabled,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -566,6 +573,7 @@ class VectorsDB extends Service {
       if (permissions != null) 'permissions': permissions,
       if (documentSecurity != null) 'documentSecurity': documentSecurity,
       if (enabled != null) 'enabled': enabled,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1331,6 +1339,7 @@ class VectorsDB extends Service {
     required List<String> attributes,
     List<enums.OrderBy>? orders,
     List<int>? lengths,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1361,6 +1370,7 @@ class VectorsDB extends Service {
       'attributes': attributes,
       if (orders != null) 'orders': orders?.map((e) => e.value).toList(),
       if (lengths != null) 'lengths': lengths,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {

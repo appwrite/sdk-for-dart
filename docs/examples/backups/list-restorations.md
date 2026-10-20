@@ -11,5 +11,6 @@ Backups backups = Backups(client);
 
 models.BackupRestorationList result = await backups.listRestorations(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

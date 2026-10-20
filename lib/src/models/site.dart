@@ -14,6 +14,9 @@ class Site implements Model {
   /// Site name.
   final String name;
 
+  /// Optional description for the site.
+  final String description;
+
   /// Site enabled.
   final bool enabled;
 
@@ -112,6 +115,7 @@ class Site implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     required this.name,
+    required this.description,
     required this.enabled,
     required this.live,
     required this.logging,
@@ -152,6 +156,7 @@ class Site implements Model {
       '\$createdAt': "",
       '\$updatedAt': "",
       'name': "",
+      'description': "",
       'enabled': true,
       'live': true,
       'logging': true,
@@ -189,6 +194,7 @@ class Site implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
+      description: map['description'].toString(),
       enabled: map['enabled'],
       live: map['live'],
       logging: map['logging'],
@@ -232,6 +238,7 @@ class Site implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "name": name,
+      "description": description,
       "enabled": enabled,
       "live": live,
       "logging": logging,

@@ -17,5 +17,6 @@ models.ColumnString result = await tablesDB.updateStringColumn(
     xdefault: 'Hello World',
     size: 1, // (optional)
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

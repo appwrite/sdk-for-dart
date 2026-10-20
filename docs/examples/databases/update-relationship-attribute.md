@@ -16,5 +16,6 @@ models.AttributeRelationship result = await databases.updateRelationshipAttribut
     key: '<KEY>',
     onDelete: enums.RelationMutate.cascade, // (optional)
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

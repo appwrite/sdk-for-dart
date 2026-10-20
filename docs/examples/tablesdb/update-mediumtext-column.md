@@ -16,5 +16,6 @@ models.ColumnMediumtext result = await tablesDB.updateMediumtextColumn(
     xrequired: false,
     xdefault: 'Hello World',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

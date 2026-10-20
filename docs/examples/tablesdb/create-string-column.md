@@ -18,5 +18,6 @@ models.ColumnString result = await tablesDB.createStringColumn(
     xdefault: 'Hello World', // (optional)
     array: false, // (optional)
     encrypt: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

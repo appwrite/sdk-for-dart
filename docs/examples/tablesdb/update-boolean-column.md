@@ -16,5 +16,6 @@ models.ColumnBoolean result = await tablesDB.updateBooleanColumn(
     xrequired: false,
     xdefault: false,
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

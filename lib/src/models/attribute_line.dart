@@ -5,6 +5,9 @@ class AttributeLine implements Model {
   /// Attribute Key.
   final String key;
 
+  /// Optional description for the attribute.
+  final String description;
+
   /// Attribute type.
   final String type;
 
@@ -31,6 +34,7 @@ class AttributeLine implements Model {
 
   AttributeLine({
     required this.key,
+    required this.description,
     required this.type,
     required this.status,
     required this.error,
@@ -45,6 +49,7 @@ class AttributeLine implements Model {
   ) {
     map = {
       'key': "",
+      'description': "",
       'type': "",
       'error': "",
       'required': false,
@@ -55,6 +60,7 @@ class AttributeLine implements Model {
 
     return AttributeLine(
       key: map['key'].toString(),
+      description: map['description'].toString(),
       type: map['type'].toString(),
       status: enums.AttributeStatus.values.firstWhere(
         (e) => e.value == map['status'],
@@ -72,6 +78,7 @@ class AttributeLine implements Model {
   Map<String, dynamic> toMap() {
     return {
       "key": key,
+      "description": description,
       "type": type,
       "status": status.value,
       "error": error,

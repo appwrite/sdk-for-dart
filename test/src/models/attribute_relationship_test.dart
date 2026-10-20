@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = AttributeRelationship(
         key: "fullName",
+        description: "Name shown on the public profile.",
         type: "string",
         status: AttributeStatus.available,
         error: "string",
@@ -25,6 +26,7 @@ void main() {
       final result = AttributeRelationship.fromMap(map);
 
       expect(result.key, "fullName");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "string");
       expect(result.status, AttributeStatus.available);
       expect(result.error, "string");

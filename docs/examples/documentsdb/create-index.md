@@ -18,5 +18,6 @@ models.Index result = await documentsDB.createIndex(
     attributes: ["username"],
     orders: [enums.OrderBy.asc], // (optional)
     lengths: [], // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

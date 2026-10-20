@@ -16,5 +16,6 @@ models.Key result = await organization.updateProjectKey(
     name: '<NAME>',
     scopes: [enums.ProjectKeyScopes.usersRead],
     expire: '2020-10-15T06:38:00.000+00:00', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

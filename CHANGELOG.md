@@ -1,5 +1,17 @@
 # Change Log
 
+## 31.0.0
+
+* Breaking: model constructors require the new `description`; `BillingPlan` requires `functionsAllowCron`, `Bucket` requires `stripMetadata`, and the password dictionary and personal data policy models require `denyList`
+* Added: `createQuery` on `databases`, `documentsDB` and `tablesDB` to send list queries in the request body
+* Added: `account.listMemberships`
+* Added: optional `description` on create and update for databases, collections, tables, attributes, columns, indexes, buckets, functions, sites, variables, topics, webhooks and keys
+* Added: `total` on list methods in `activities`, `backups`, `domains`, `mongo`, `mysql` and `postgresql`
+* Added: `emails` on `messaging.createEmail` and `messaging.updateEmail`
+* Added: `denyList` on `project.updatePasswordDictionaryPolicy`, `updatePasswordPersonalDataPolicy` and their policy models
+* Added: `BillingPlan.functionsAllowCron`
+* Added: `stripMetadata` on `storage.createBucket`, `updateBucket` and the `Bucket` model
+
 ## 30.0.0
 
 * Breaking: removed `account.listLogs` and `users.listLogs`
