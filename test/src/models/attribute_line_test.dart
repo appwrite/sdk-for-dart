@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = AttributeLine(
         key: "fullName",
+        description: "Name shown on the public profile.",
         type: "string",
         status: AttributeStatus.available,
         error: "string",
@@ -19,6 +20,7 @@ void main() {
       final result = AttributeLine.fromMap(map);
 
       expect(result.key, "fullName");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "string");
       expect(result.status, AttributeStatus.available);
       expect(result.error, "string");

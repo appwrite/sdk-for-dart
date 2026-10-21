@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = AttributeEmail(
         key: "userEmail",
+        description: "Name shown on the public profile.",
         type: "string",
         status: AttributeStatus.available,
         error: "string",
@@ -20,6 +21,7 @@ void main() {
       final result = AttributeEmail.fromMap(map);
 
       expect(result.key, "userEmail");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "string");
       expect(result.status, AttributeStatus.available);
       expect(result.error, "string");

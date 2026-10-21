@@ -16,5 +16,6 @@ models.AttributeEmail result = await databases.createEmailAttribute(
     xrequired: false,
     xdefault: 'email@example.com', // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

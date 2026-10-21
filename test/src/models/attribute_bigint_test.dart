@@ -7,6 +7,7 @@ void main() {
     test('model', () {
       final model = AttributeBigint(
         key: "count",
+        description: "Name shown on the public profile.",
         type: "bigint",
         status: AttributeStatus.available,
         error: "string",
@@ -19,6 +20,7 @@ void main() {
       final result = AttributeBigint.fromMap(map);
 
       expect(result.key, "count");
+      expect(result.description, "Name shown on the public profile.");
       expect(result.type, "bigint");
       expect(result.status, AttributeStatus.available);
       expect(result.error, "string");

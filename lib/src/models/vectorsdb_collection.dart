@@ -20,6 +20,9 @@ class VectorsdbCollection implements Model {
   /// Collection name.
   final String name;
 
+  /// Optional description for the collection.
+  final String description;
+
   /// Collection enabled. Can be &#039;enabled&#039; or &#039;disabled&#039;. When disabled, the collection is inaccessible to users, but remains accessible to Server SDKs using API keys.
   final bool enabled;
 
@@ -48,6 +51,7 @@ class VectorsdbCollection implements Model {
     required this.$permissions,
     required this.databaseId,
     required this.name,
+    required this.description,
     required this.enabled,
     required this.documentSecurity,
     required this.attributes,
@@ -66,6 +70,7 @@ class VectorsdbCollection implements Model {
       '\$permissions': [],
       'databaseId': "",
       'name': "",
+      'description': "",
       'enabled': true,
       'documentSecurity': false,
       'attributes': [],
@@ -83,6 +88,7 @@ class VectorsdbCollection implements Model {
       $permissions: List.from(map['\$permissions'] ?? []),
       databaseId: map['databaseId'].toString(),
       name: map['name'].toString(),
+      description: map['description'].toString(),
       enabled: map['enabled'],
       documentSecurity: map['documentSecurity'],
       attributes: List.from(map['attributes'] ?? []),
@@ -104,6 +110,7 @@ class VectorsdbCollection implements Model {
       "\$permissions": $permissions,
       "databaseId": databaseId,
       "name": name,
+      "description": description,
       "enabled": enabled,
       "documentSecurity": documentSecurity,
       "attributes": attributes,

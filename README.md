@@ -26,7 +26,7 @@ Or add it to your package's `pubspec.yaml` file and run `dart pub get`:
 
 ```yaml
 dependencies:
-  dart_appwrite: ^30.0.0
+  dart_appwrite: ^31.0.0
 ```
 
 ## Getting Started

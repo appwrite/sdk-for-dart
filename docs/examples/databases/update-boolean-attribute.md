@@ -16,5 +16,6 @@ models.AttributeBoolean result = await databases.updateBooleanAttribute(
     xrequired: false,
     xdefault: false,
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

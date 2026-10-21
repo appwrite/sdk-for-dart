@@ -17,5 +17,6 @@ models.AttributeMediumtext result = await databases.createMediumtextAttribute(
     xdefault: 'Hello World', // (optional)
     array: false, // (optional)
     encrypt: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

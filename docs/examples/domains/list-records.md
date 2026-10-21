@@ -12,5 +12,6 @@ Domains domains = Domains(client);
 models.DnsRecordsList result = await domains.listRecords(
     domainId: '<DOMAIN_ID>',
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

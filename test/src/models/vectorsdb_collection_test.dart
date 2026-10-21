@@ -12,6 +12,7 @@ void main() {
         $permissions: [],
         databaseId: "5e5ea5c16897e",
         name: "My Collection",
+        description: "Movies available in the catalog.",
         enabled: true,
         documentSecurity: true,
         attributes: [],
@@ -30,6 +31,7 @@ void main() {
       expect(result.$permissions, []);
       expect(result.databaseId, "5e5ea5c16897e");
       expect(result.name, "My Collection");
+      expect(result.description, "Movies available in the catalog.");
       expect(result.enabled, true);
       expect(result.documentSecurity, true);
       expect(result.attributes, []);

@@ -15,5 +15,6 @@ models.AttributeLine result = await databases.createLineAttribute(
     key: '<KEY>',
     xrequired: false,
     xdefault: [[1, 2], [3, 4], [5, 6]], // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

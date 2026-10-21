@@ -11,5 +11,6 @@ Project project = Project(client);
 
 models.Project result = await project.updatePasswordPersonalDataPolicy(
     enabled: false,
+    denyList: [], // (optional)
 );
 ```

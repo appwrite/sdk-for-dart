@@ -16,5 +16,6 @@ models.AttributeLongtext result = await databases.updateLongtextAttribute(
     xrequired: false,
     xdefault: 'Hello World',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

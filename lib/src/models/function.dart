@@ -17,6 +17,9 @@ class Func implements Model {
   /// Function name.
   final String name;
 
+  /// Optional description for the function.
+  final String description;
+
   /// Function enabled.
   final bool enabled;
 
@@ -110,6 +113,7 @@ class Func implements Model {
     required this.$updatedAt,
     required this.execute,
     required this.name,
+    required this.description,
     required this.enabled,
     required this.live,
     required this.logging,
@@ -149,6 +153,7 @@ class Func implements Model {
       '\$updatedAt': "",
       'execute': [],
       'name': "",
+      'description': "",
       'enabled': true,
       'live': true,
       'logging': true,
@@ -186,6 +191,7 @@ class Func implements Model {
       $updatedAt: map['\$updatedAt'].toString(),
       execute: List.from(map['execute'] ?? []),
       name: map['name'].toString(),
+      description: map['description'].toString(),
       enabled: map['enabled'],
       live: map['live'],
       logging: map['logging'],
@@ -228,6 +234,7 @@ class Func implements Model {
       "\$updatedAt": $updatedAt,
       "execute": execute,
       "name": name,
+      "description": description,
       "enabled": enabled,
       "live": live,
       "logging": logging,

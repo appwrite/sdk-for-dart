@@ -14,6 +14,9 @@ class Index implements Model {
   /// Index key.
   final String key;
 
+  /// Optional description for the index.
+  final String description;
+
   /// Index type.
   final String type;
 
@@ -37,6 +40,7 @@ class Index implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     required this.key,
+    required this.description,
     required this.type,
     required this.status,
     required this.error,
@@ -52,6 +56,7 @@ class Index implements Model {
       '\$createdAt': "",
       '\$updatedAt': "",
       'key': "",
+      'description': "",
       'type': "",
       'error': "",
       'attributes': [],
@@ -64,6 +69,7 @@ class Index implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       key: map['key'].toString(),
+      description: map['description'].toString(),
       type: map['type'].toString(),
       status: enums.IndexStatus.values.firstWhere(
         (e) => e.value == map['status'],
@@ -82,6 +88,7 @@ class Index implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "key": key,
+      "description": description,
       "type": type,
       "status": status.value,
       "error": error,

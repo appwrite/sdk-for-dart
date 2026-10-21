@@ -16,5 +16,6 @@ models.AttributeMediumtext result = await databases.updateMediumtextAttribute(
     xrequired: false,
     xdefault: 'Hello World',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

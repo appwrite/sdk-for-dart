@@ -11,5 +11,6 @@ Backups backups = Backups(client);
 
 models.BackupArchiveList result = await backups.listArchives(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

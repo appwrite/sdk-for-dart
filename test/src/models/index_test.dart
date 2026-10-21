@@ -10,6 +10,7 @@ void main() {
         $createdAt: "2020-10-15T06:38:00.000+00:00",
         $updatedAt: "2020-10-15T06:38:00.000+00:00",
         key: "index1",
+        description: "Speeds up lookups by email.",
         type: "primary",
         status: IndexStatus.available,
         error: "string",
@@ -24,6 +25,7 @@ void main() {
       expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.key, "index1");
+      expect(result.description, "Speeds up lookups by email.");
       expect(result.type, "primary");
       expect(result.status, IndexStatus.available);
       expect(result.error, "string");

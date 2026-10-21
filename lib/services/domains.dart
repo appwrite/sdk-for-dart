@@ -8,12 +8,14 @@ class Domains extends Service {
   Future<models.DomainsList> list({
     List<String>? queries,
     String? search,
+    bool? total,
   }) async {
     final String apiPath = '/domains';
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
       if (search != null) 'search': search,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {
@@ -683,6 +685,7 @@ class Domains extends Service {
   Future<models.DnsRecordsList> listRecords({
     required String domainId,
     List<String>? queries,
+    bool? total,
   }) async {
     if (domainId.isEmpty) {
       throw AppwriteException(
@@ -697,6 +700,7 @@ class Domains extends Service {
 
     final Map<String, dynamic> apiParams = {
       if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
     };
 
     final Map<String, String> apiHeaders = {

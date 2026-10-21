@@ -16,5 +16,6 @@ models.AttributePolygon result = await databases.updatePolygonAttribute(
     xrequired: false,
     xdefault: [[[1, 2], [3, 4], [5, 6], [1, 2]]], // (optional)
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

@@ -15,5 +15,6 @@ models.Variable result = await sites.createVariable(
     key: '<KEY>',
     value: '<VALUE>',
     secret: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

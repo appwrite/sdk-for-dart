@@ -40,6 +40,7 @@ class TablesDB extends Service {
     required String databaseId,
     required String name,
     bool? enabled,
+    String? description,
     String? specification,
     int? replicas,
     String? syncMode,
@@ -50,6 +51,7 @@ class TablesDB extends Service {
       'databaseId': databaseId,
       'name': name,
       if (enabled != null) 'enabled': enabled,
+      if (description != null) 'description': description,
       if (specification != null) 'specification': specification,
       if (replicas != null) 'replicas': replicas,
       if (syncMode != null) 'syncMode': syncMode,
@@ -325,6 +327,7 @@ class TablesDB extends Service {
     required String databaseId,
     String? name,
     bool? enabled,
+    String? description,
     String? specification,
     int? replicas,
     String? syncMode,
@@ -343,6 +346,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       if (name != null) 'name': name,
       if (enabled != null) 'enabled': enabled,
+      if (description != null) 'description': description,
       if (specification != null) 'specification': specification,
       if (replicas != null) 'replicas': replicas,
       if (syncMode != null) 'syncMode': syncMode,
@@ -826,6 +830,7 @@ class TablesDB extends Service {
     bool? enabled,
     List<Map>? columns,
     List<Map>? indexes,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -846,6 +851,7 @@ class TablesDB extends Service {
       if (enabled != null) 'enabled': enabled,
       if (columns != null) 'columns': columns,
       if (indexes != null) 'indexes': indexes,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -918,6 +924,7 @@ class TablesDB extends Service {
     bool? rowSecurity,
     bool? enabled,
     bool? purge,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -947,6 +954,7 @@ class TablesDB extends Service {
       if (rowSecurity != null) 'rowSecurity': rowSecurity,
       if (enabled != null) 'enabled': enabled,
       if (purge != null) 'purge': purge,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1071,6 +1079,7 @@ class TablesDB extends Service {
     int? max,
     int? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1102,6 +1111,7 @@ class TablesDB extends Service {
       if (max != null) 'max': max,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1131,6 +1141,7 @@ class TablesDB extends Service {
     int? min,
     int? max,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1171,6 +1182,7 @@ class TablesDB extends Service {
       if (max != null) 'max': max,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1197,6 +1209,7 @@ class TablesDB extends Service {
     required bool xrequired,
     bool? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1226,6 +1239,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1253,6 +1267,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required bool? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1291,6 +1306,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1317,6 +1333,7 @@ class TablesDB extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1346,6 +1363,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1373,6 +1391,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1411,6 +1430,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1437,6 +1457,7 @@ class TablesDB extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1466,6 +1487,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1493,6 +1515,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1531,6 +1554,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1559,6 +1583,7 @@ class TablesDB extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1589,6 +1614,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1617,6 +1643,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1656,6 +1683,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1685,6 +1713,7 @@ class TablesDB extends Service {
     double? max,
     double? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1716,6 +1745,7 @@ class TablesDB extends Service {
       if (max != null) 'max': max,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1745,6 +1775,7 @@ class TablesDB extends Service {
     double? min,
     double? max,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1785,6 +1816,7 @@ class TablesDB extends Service {
       if (max != null) 'max': max,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1814,6 +1846,7 @@ class TablesDB extends Service {
     int? max,
     int? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1845,6 +1878,7 @@ class TablesDB extends Service {
       if (max != null) 'max': max,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1874,6 +1908,7 @@ class TablesDB extends Service {
     int? min,
     int? max,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1914,6 +1949,7 @@ class TablesDB extends Service {
       if (max != null) 'max': max,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1940,6 +1976,7 @@ class TablesDB extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -1968,6 +2005,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1995,6 +2033,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2033,6 +2072,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2058,6 +2098,7 @@ class TablesDB extends Service {
     required String key,
     required bool xrequired,
     List<List>? xdefault,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2086,6 +2127,7 @@ class TablesDB extends Service {
       'key': key,
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2113,6 +2155,7 @@ class TablesDB extends Service {
     required bool xrequired,
     List<List>? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2151,6 +2194,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2178,6 +2222,7 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2208,6 +2253,7 @@ class TablesDB extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2235,6 +2281,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2273,6 +2320,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2300,6 +2348,7 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2330,6 +2379,7 @@ class TablesDB extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2357,6 +2407,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2395,6 +2446,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2420,6 +2472,7 @@ class TablesDB extends Service {
     required String key,
     required bool xrequired,
     List<double>? xdefault,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2448,6 +2501,7 @@ class TablesDB extends Service {
       'key': key,
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2475,6 +2529,7 @@ class TablesDB extends Service {
     required bool xrequired,
     List<double>? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2513,6 +2568,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2538,6 +2594,7 @@ class TablesDB extends Service {
     required String key,
     required bool xrequired,
     List<List>? xdefault,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2566,6 +2623,7 @@ class TablesDB extends Service {
       'key': key,
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2593,6 +2651,7 @@ class TablesDB extends Service {
     required bool xrequired,
     List<List>? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2631,6 +2690,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2660,6 +2720,7 @@ class TablesDB extends Service {
     String? key,
     String? twoWayKey,
     enums.RelationMutate? onDelete,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2691,6 +2752,7 @@ class TablesDB extends Service {
       if (key != null) 'key': key,
       if (twoWayKey != null) 'twoWayKey': twoWayKey,
       if (onDelete != null) 'onDelete': onDelete?.value,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2717,6 +2779,7 @@ class TablesDB extends Service {
     required String key,
     enums.RelationMutate? onDelete,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2754,6 +2817,7 @@ class TablesDB extends Service {
     final Map<String, dynamic> apiParams = {
       if (onDelete != null) 'onDelete': onDelete?.value,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2785,6 +2849,7 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2816,6 +2881,7 @@ class TablesDB extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2847,6 +2913,7 @@ class TablesDB extends Service {
     required String? xdefault,
     int? size,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2886,6 +2953,7 @@ class TablesDB extends Service {
       'default': xdefault,
       if (size != null) 'size': size,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2913,6 +2981,7 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -2943,6 +3012,7 @@ class TablesDB extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -2970,6 +3040,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -3008,6 +3079,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3034,6 +3106,7 @@ class TablesDB extends Service {
     required bool xrequired,
     String? xdefault,
     bool? array,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -3062,6 +3135,7 @@ class TablesDB extends Service {
       'required': xrequired,
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3089,6 +3163,7 @@ class TablesDB extends Service {
     required bool xrequired,
     required String? xdefault,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -3127,6 +3202,7 @@ class TablesDB extends Service {
       'required': xrequired,
       'default': xdefault,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3155,6 +3231,7 @@ class TablesDB extends Service {
     String? xdefault,
     bool? array,
     bool? encrypt,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -3186,6 +3263,7 @@ class TablesDB extends Service {
       if (xdefault != null) 'default': xdefault,
       if (array != null) 'array': array,
       if (encrypt != null) 'encrypt': encrypt,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3214,6 +3292,7 @@ class TablesDB extends Service {
     required String? xdefault,
     int? size,
     String? newKey,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -3253,6 +3332,7 @@ class TablesDB extends Service {
       'default': xdefault,
       if (size != null) 'size': size,
       if (newKey != null) 'newKey': newKey,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3512,6 +3592,7 @@ class TablesDB extends Service {
     required List<String> columns,
     List<enums.OrderBy>? orders,
     List<int>? lengths,
+    String? description,
   }) async {
     if (databaseId.isEmpty) {
       throw AppwriteException(
@@ -3541,6 +3622,7 @@ class TablesDB extends Service {
       'columns': columns,
       if (orders != null) 'orders': orders?.map((e) => e.value).toList(),
       if (lengths != null) 'lengths': lengths,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -3674,6 +3756,14 @@ class TablesDB extends Service {
 
   /// Get a list of all the user's rows in a given table. You can use the query
   /// params to filter your results.
+  ///
+  /// Rows returned by aggregate, groupBy or distinct queries hold only the
+  /// columns they select, group or aggregate, typed as a row types them, with a
+  /// joined column named by its join alias (`alias.column`). The response omits
+  /// their `$id`, `$sequence`, `$createdAt`, `$updatedAt`, `$permissions`,
+  /// `$databaseId` and `$tableId` unless they select or group it, and those of a
+  /// right or full join row that no row of this table matched. SDK row models
+  /// fill omitted system columns with empty values.
   Future<models.RowList> listRows({
     required String databaseId,
     required String tableId,
@@ -3985,6 +4075,63 @@ class TablesDB extends Service {
 
     final res = await client.call(
       HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.RowList.fromMap(res.data);
+  }
+
+  /// Get a list of all the user's rows in a given table using a POST request.
+  /// This behaves identically to the list rows endpoint but accepts the queries
+  /// in the request body, allowing much larger `queries` arrays than can fit in
+  /// a URL query string.
+  Future<models.RowList> createQuery({
+    required String databaseId,
+    required String tableId,
+    List<String>? queries,
+    String? transactionId,
+    bool? total,
+    int? ttl,
+  }) async {
+    if (databaseId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "databaseId"',
+      );
+    }
+
+    if (tableId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "tableId"',
+      );
+    }
+
+    final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows/query'
+        .replaceAll(
+          '{databaseId}',
+          databaseId,
+        )
+        .replaceAll(
+          '{tableId}',
+          tableId,
+        );
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (transactionId != null) 'transactionId': transactionId,
+      if (total != null) 'total': total,
+      if (ttl != null) 'ttl': ttl,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
       path: apiPath,
       params: apiParams,
       headers: apiHeaders,

@@ -19,5 +19,6 @@ models.Webhook result = await webhooks.create(
     authUsername: '<AUTH_USERNAME>', // (optional)
     authPassword: 'password', // (optional)
     secret: '<SECRET>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

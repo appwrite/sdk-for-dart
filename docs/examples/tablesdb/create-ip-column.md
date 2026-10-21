@@ -16,5 +16,6 @@ models.ColumnIp result = await tablesDB.createIpColumn(
     xrequired: false,
     xdefault: '192.0.2.0', // (optional)
     array: false, // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

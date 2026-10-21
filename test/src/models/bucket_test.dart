@@ -11,6 +11,7 @@ void main() {
         $permissions: [],
         fileSecurity: true,
         name: "Documents",
+        description: "Invoices and receipts uploaded by customers.",
         enabled: true,
         maximumFileSize: 100,
         allowedFileExtensions: [],
@@ -18,6 +19,7 @@ void main() {
         encryption: true,
         antivirus: true,
         transformations: true,
+        stripMetadata: true,
         totalSize: 128,
       );
 
@@ -30,6 +32,10 @@ void main() {
       expect(result.$permissions, []);
       expect(result.fileSecurity, true);
       expect(result.name, "Documents");
+      expect(
+        result.description,
+        "Invoices and receipts uploaded by customers.",
+      );
       expect(result.enabled, true);
       expect(result.maximumFileSize, 100);
       expect(result.allowedFileExtensions, []);
@@ -37,6 +43,7 @@ void main() {
       expect(result.encryption, true);
       expect(result.antivirus, true);
       expect(result.transformations, true);
+      expect(result.stripMetadata, true);
       expect(result.totalSize, 128);
     });
   });

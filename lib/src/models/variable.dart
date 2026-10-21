@@ -14,6 +14,9 @@ class Variable implements Model {
   /// Variable key.
   final String key;
 
+  /// Optional description for the variable.
+  final String description;
+
   /// Variable value.
   final String value;
 
@@ -31,6 +34,7 @@ class Variable implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     required this.key,
+    required this.description,
     required this.value,
     required this.secret,
     required this.resourceType,
@@ -44,6 +48,7 @@ class Variable implements Model {
       '\$createdAt': "",
       '\$updatedAt': "",
       'key': "",
+      'description': "",
       'value': "",
       'secret': false,
       'resourceType': "",
@@ -56,6 +61,7 @@ class Variable implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       key: map['key'].toString(),
+      description: map['description'].toString(),
       value: map['value'].toString(),
       secret: map['secret'],
       resourceType: map['resourceType'].toString(),
@@ -70,6 +76,7 @@ class Variable implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "key": key,
+      "description": description,
       "value": value,
       "secret": secret,
       "resourceType": resourceType,

@@ -14,6 +14,9 @@ class Topic implements Model {
   /// The name of the topic.
   final String name;
 
+  /// Optional description for the topic.
+  final String description;
+
   /// Total count of email subscribers subscribed to the topic.
   final int emailTotal;
 
@@ -37,6 +40,7 @@ class Topic implements Model {
     required this.$createdAt,
     required this.$updatedAt,
     required this.name,
+    required this.description,
     required this.emailTotal,
     required this.smsTotal,
     required this.pushTotal,
@@ -52,6 +56,7 @@ class Topic implements Model {
       '\$createdAt': "",
       '\$updatedAt': "",
       'name': "",
+      'description': "",
       'emailTotal': 0,
       'smsTotal': 0,
       'pushTotal': 0,
@@ -64,6 +69,7 @@ class Topic implements Model {
       $createdAt: map['\$createdAt'].toString(),
       $updatedAt: map['\$updatedAt'].toString(),
       name: map['name'].toString(),
+      description: map['description'].toString(),
       emailTotal: map['emailTotal'],
       smsTotal: map['smsTotal'],
       pushTotal: map['pushTotal'],
@@ -80,6 +86,7 @@ class Topic implements Model {
       "\$createdAt": $createdAt,
       "\$updatedAt": $updatedAt,
       "name": name,
+      "description": description,
       "emailTotal": emailTotal,
       "smsTotal": smsTotal,
       "pushTotal": pushTotal,

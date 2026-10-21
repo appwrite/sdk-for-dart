@@ -9,6 +9,7 @@ void main() {
         $createdAt: "2020-10-15T06:38:00.000+00:00",
         $updatedAt: "2020-10-15T06:38:00.000+00:00",
         name: "My Site",
+        description: "Marketing site for the spring launch.",
         enabled: true,
         live: true,
         logging: true,
@@ -49,6 +50,7 @@ void main() {
       expect(result.$createdAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.$updatedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.name, "My Site");
+      expect(result.description, "Marketing site for the spring launch.");
       expect(result.enabled, true);
       expect(result.live, true);
       expect(result.logging, true);

@@ -5,6 +5,9 @@ class AttributeFloat implements Model {
   /// Attribute Key.
   final String key;
 
+  /// Optional description for the attribute.
+  final String description;
+
   /// Attribute type.
   final String type;
 
@@ -37,6 +40,7 @@ class AttributeFloat implements Model {
 
   AttributeFloat({
     required this.key,
+    required this.description,
     required this.type,
     required this.status,
     required this.error,
@@ -53,6 +57,7 @@ class AttributeFloat implements Model {
   ) {
     map = {
       'key': "",
+      'description': "",
       'type': "",
       'error': "",
       'required': false,
@@ -63,6 +68,7 @@ class AttributeFloat implements Model {
 
     return AttributeFloat(
       key: map['key'].toString(),
+      description: map['description'].toString(),
       type: map['type'].toString(),
       status: enums.AttributeStatus.values.firstWhere(
         (e) => e.value == map['status'],
@@ -82,6 +88,7 @@ class AttributeFloat implements Model {
   Map<String, dynamic> toMap() {
     return {
       "key": key,
+      "description": description,
       "type": type,
       "status": status.value,
       "error": error,

@@ -60,6 +60,7 @@ class Sites extends Service {
     String? runtimeSpecification,
     int? deploymentRetention,
     List<enums.ProjectKeyScopes>? scopes,
+    String? description,
   }) async {
     final String apiPath = '/sites';
 
@@ -92,6 +93,7 @@ class Sites extends Service {
       if (deploymentRetention != null)
         'deploymentRetention': deploymentRetention,
       if (scopes != null) 'scopes': scopes?.map((e) => e.value).toList(),
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -221,6 +223,7 @@ class Sites extends Service {
     String? runtimeSpecification,
     int? deploymentRetention,
     List<enums.ProjectKeyScopes>? scopes,
+    String? description,
   }) async {
     if (siteId.isEmpty) {
       throw AppwriteException(
@@ -261,6 +264,7 @@ class Sites extends Service {
       if (deploymentRetention != null)
         'deploymentRetention': deploymentRetention,
       if (scopes != null) 'scopes': scopes?.map((e) => e.value).toList(),
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -934,6 +938,7 @@ class Sites extends Service {
     required String key,
     required String value,
     bool? secret,
+    String? description,
   }) async {
     if (siteId.isEmpty) {
       throw AppwriteException(
@@ -951,6 +956,7 @@ class Sites extends Service {
       'key': key,
       'value': value,
       if (secret != null) 'secret': secret,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {
@@ -1020,6 +1026,7 @@ class Sites extends Service {
     String? key,
     String? value,
     bool? secret,
+    String? description,
   }) async {
     if (siteId.isEmpty) {
       throw AppwriteException(
@@ -1047,6 +1054,7 @@ class Sites extends Service {
       if (key != null) 'key': key,
       if (value != null) 'value': value,
       if (secret != null) 'secret': secret,
+      if (description != null) 'description': description,
     };
 
     final Map<String, String> apiHeaders = {

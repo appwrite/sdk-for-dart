@@ -16,5 +16,6 @@ models.ColumnIp result = await tablesDB.updateIpColumn(
     xrequired: false,
     xdefault: '192.0.2.0',
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

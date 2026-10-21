@@ -11,5 +11,6 @@ Backups backups = Backups(client);
 
 models.BackupPolicyList result = await backups.listPolicies(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

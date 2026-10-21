@@ -7,6 +7,7 @@ void main() {
       final model = PolicyPasswordDictionary(
         $id: "password-dictionary",
         enabled: true,
+        denyList: [],
       );
 
       final map = model.toMap();
@@ -14,6 +15,7 @@ void main() {
 
       expect(result.$id, "password-dictionary");
       expect(result.enabled, true);
+      expect(result.denyList, []);
     });
   });
 }

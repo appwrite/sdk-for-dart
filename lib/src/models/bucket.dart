@@ -20,6 +20,9 @@ class Bucket implements Model {
   /// Bucket name.
   final String name;
 
+  /// Optional description for the bucket.
+  final String description;
+
   /// Bucket enabled.
   final bool enabled;
 
@@ -41,6 +44,9 @@ class Bucket implements Model {
   /// Image transformations are enabled.
   final bool transformations;
 
+  /// Metadata such as location, device and capture time is removed from uploaded images.
+  final bool stripMetadata;
+
   /// Total size of this bucket in bytes.
   final int totalSize;
 
@@ -51,6 +57,7 @@ class Bucket implements Model {
     required this.$permissions,
     required this.fileSecurity,
     required this.name,
+    required this.description,
     required this.enabled,
     required this.maximumFileSize,
     required this.allowedFileExtensions,
@@ -58,6 +65,7 @@ class Bucket implements Model {
     required this.encryption,
     required this.antivirus,
     required this.transformations,
+    required this.stripMetadata,
     required this.totalSize,
   });
   factory Bucket.fromMap(
@@ -70,6 +78,7 @@ class Bucket implements Model {
       '\$permissions': [],
       'fileSecurity': false,
       'name': "",
+      'description': "",
       'enabled': true,
       'maximumFileSize': 0,
       'allowedFileExtensions': [],
@@ -77,6 +86,7 @@ class Bucket implements Model {
       'encryption': true,
       'antivirus': true,
       'transformations': true,
+      'stripMetadata': false,
       'totalSize': 0,
       ...map,
     };
@@ -88,6 +98,7 @@ class Bucket implements Model {
       $permissions: List.from(map['\$permissions'] ?? []),
       fileSecurity: map['fileSecurity'],
       name: map['name'].toString(),
+      description: map['description'].toString(),
       enabled: map['enabled'],
       maximumFileSize: map['maximumFileSize'],
       allowedFileExtensions: List.from(map['allowedFileExtensions'] ?? []),
@@ -95,6 +106,7 @@ class Bucket implements Model {
       encryption: map['encryption'],
       antivirus: map['antivirus'],
       transformations: map['transformations'],
+      stripMetadata: map['stripMetadata'],
       totalSize: map['totalSize'],
     );
   }
@@ -108,6 +120,7 @@ class Bucket implements Model {
       "\$permissions": $permissions,
       "fileSecurity": fileSecurity,
       "name": name,
+      "description": description,
       "enabled": enabled,
       "maximumFileSize": maximumFileSize,
       "allowedFileExtensions": allowedFileExtensions,
@@ -115,6 +128,7 @@ class Bucket implements Model {
       "encryption": encryption,
       "antivirus": antivirus,
       "transformations": transformations,
+      "stripMetadata": stripMetadata,
       "totalSize": totalSize,
     };
   }

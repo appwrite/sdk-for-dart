@@ -11,5 +11,6 @@ Postgresql postgresql = Postgresql(client);
 
 models.DedicatedDatabaseList result = await postgresql.list(
     queries: [], // (optional)
+    total: false, // (optional)
 );
 ```

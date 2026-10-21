@@ -17,5 +17,6 @@ models.AttributeString result = await databases.updateStringAttribute(
     xdefault: 'Hello World',
     size: 1, // (optional)
     newKey: '<NEW_KEY>', // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```

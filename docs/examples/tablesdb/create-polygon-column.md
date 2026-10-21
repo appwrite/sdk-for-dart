@@ -15,5 +15,6 @@ models.ColumnPolygon result = await tablesDB.createPolygonColumn(
     key: '<KEY>',
     xrequired: false,
     xdefault: [[[1, 2], [3, 4], [5, 6], [1, 2]]], // (optional)
+    description: '<DESCRIPTION>', // (optional)
 );
 ```
