@@ -245,7 +245,7 @@ class Proxy extends Service {
 
     final String apiPath = '/proxy/rules/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -277,7 +277,7 @@ class Proxy extends Service {
 
     final String apiPath = '/proxy/rules/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -313,7 +313,7 @@ class Proxy extends Service {
 
     final String apiPath = '/proxy/rules/{ruleId}/status'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {};

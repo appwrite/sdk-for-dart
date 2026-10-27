@@ -158,7 +158,7 @@ class DocumentsDB extends Service {
     final String apiPath =
         '/documentsdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -193,7 +193,7 @@ class DocumentsDB extends Service {
     final String apiPath =
         '/documentsdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -230,7 +230,7 @@ class DocumentsDB extends Service {
     final String apiPath =
         '/documentsdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -265,7 +265,7 @@ class DocumentsDB extends Service {
     final String apiPath =
         '/documentsdb/transactions/{transactionId}/operations'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -301,7 +301,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -339,7 +339,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -380,7 +380,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -417,7 +417,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}/collections'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -464,7 +464,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}/collections'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -516,11 +516,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -567,11 +567,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -621,11 +621,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -672,11 +672,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -729,11 +729,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -785,11 +785,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -839,11 +839,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -893,11 +893,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -946,11 +946,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1002,11 +1002,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents/query'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1063,15 +1063,15 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1128,15 +1128,15 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1193,15 +1193,15 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1255,15 +1255,15 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1324,19 +1324,19 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             )
             .replaceAll(
               '{attribute}',
-              attribute,
+              _encodePath(attribute),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1399,19 +1399,19 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             )
             .replaceAll(
               '{attribute}',
-              attribute,
+              _encodePath(attribute),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1459,11 +1459,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/indexes'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1515,11 +1515,11 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/indexes'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1575,15 +1575,15 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -1631,15 +1631,15 @@ class DocumentsDB extends Service {
         '/documentsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -1681,7 +1681,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1722,7 +1722,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}/operations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1759,7 +1759,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1793,7 +1793,7 @@ class DocumentsDB extends Service {
 
     final String apiPath = '/documentsdb/{databaseId}/status'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};

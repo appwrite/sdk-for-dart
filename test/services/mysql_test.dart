@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await mysql.list();
+      final response = await mysql.list(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.DedicatedDatabaseList>());
     });
 
@@ -132,13 +160,56 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.create(
         databaseId: "<DATABASE_ID>",
         name: "<NAME>",
+        version: "17",
+        specification: "<SPECIFICATION>",
+        replicas: 1,
+        syncMode: "async",
+        networkIdleTimeoutSeconds: 1,
+        networkIPAllowlist: [],
+        idleTimeoutMinutes: 1,
+        pitr: false,
+        pitrRetentionDays: 1,
+        storageAutoscaling: false,
+        storageAutoscalingThresholdPercent: 1,
+        storageAutoscalingMaxGb: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "databaseId": "<DATABASE_ID>",
+        "name": "<NAME>",
+        "version": "17",
+        "specification": "<SPECIFICATION>",
+        "replicas": 1,
+        "syncMode": "async",
+        "networkIdleTimeoutSeconds": 1,
+        "networkIPAllowlist": isA<List>(),
+        "idleTimeoutMinutes": 1,
+        "pitr": false,
+        "pitrRetentionDays": 1,
+        "storageAutoscaling": false,
+        "storageAutoscalingThresholdPercent": 1,
+        "storageAutoscalingMaxGb": 1,
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -149,10 +220,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.listSpecifications();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/specifications",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseSpecificationList>());
     });
 
@@ -207,12 +294,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.get(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -267,12 +370,69 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.update(
         databaseId: "<DATABASE_ID>",
+        name: "<NAME>",
+        status: "ready",
+        specification: "<SPECIFICATION>",
+        replicas: 1,
+        syncMode: "async",
+        networkIdleTimeoutSeconds: 1,
+        networkIPAllowlist: [],
+        idleTimeoutMinutes: 1,
+        pitr: false,
+        pitrRetentionDays: 1,
+        storageAutoscaling: false,
+        storageAutoscalingThresholdPercent: 1,
+        storageAutoscalingMaxGb: 1,
+        metricsTraceSampleRate: 1.0,
+        metricsSlowQueryLogThresholdMs: 1,
+        sqlApiEnabled: false,
+        sqlApiAllowedStatements: [],
+        sqlApiMaxRows: 1,
+        sqlApiMaxBytes: 1,
+        sqlApiTimeoutSeconds: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/mysql/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "status": "ready",
+        "specification": "<SPECIFICATION>",
+        "replicas": 1,
+        "syncMode": "async",
+        "networkIdleTimeoutSeconds": 1,
+        "networkIPAllowlist": isA<List>(),
+        "idleTimeoutMinutes": 1,
+        "pitr": false,
+        "pitrRetentionDays": 1,
+        "storageAutoscaling": false,
+        "storageAutoscalingThresholdPercent": 1,
+        "storageAutoscalingMaxGb": 1,
+        "metricsTraceSampleRate": 1.0,
+        "metricsSlowQueryLogThresholdMs": 1,
+        "sqlApiEnabled": false,
+        "sqlApiAllowedStatements": isA<List>(),
+        "sqlApiMaxRows": 1,
+        "sqlApiMaxBytes": 1,
+        "sqlApiTimeoutSeconds": 1,
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -280,12 +440,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.delete(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/mysql/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listBackups()', () async {
@@ -295,12 +471,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.listBackups(
         databaseId: "<DATABASE_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/backups",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.DedicatedDatabaseBackupList>());
     });
 
@@ -322,12 +519,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.createBackup(
         databaseId: "<DATABASE_ID>",
+        type: "full",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/backups",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "type": "full",
+      });
       expect(response, isA<models.DedicatedDatabaseBackup>());
     });
 
@@ -338,12 +554,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.listBackupPolicies(
         databaseId: "<DATABASE_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/backups/policies",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.BackupPolicyList>());
     });
 
@@ -362,7 +599,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.createBackupPolicy(
@@ -371,7 +614,26 @@ void main() {
         name: "<NAME>",
         schedule: "schedule",
         retention: 1,
+        type: "full",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/backups/policies",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "policyId": "<POLICY_ID>",
+        "name": "<NAME>",
+        "schedule": "schedule",
+        "retention": 1,
+        "type": "full",
+        "enabled": false,
+      });
       expect(response, isA<models.BackupPolicy>());
     });
 
@@ -390,13 +652,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.getBackupPolicy(
         databaseId: "<DATABASE_ID>",
         policyId: "<POLICY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.BackupPolicy>());
     });
 
@@ -415,13 +693,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.updateBackupPolicy(
         databaseId: "<DATABASE_ID>",
         policyId: "<POLICY_ID>",
+        name: "<NAME>",
+        schedule: "schedule",
+        retention: 1,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/mysql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "schedule": "schedule",
+        "retention": 1,
+        "enabled": false,
+      });
       expect(response, isA<models.BackupPolicy>());
     });
 
@@ -429,13 +732,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.deleteBackupPolicy(
         databaseId: "<DATABASE_ID>",
         policyId: "<POLICY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/mysql/%3CDATABASE_ID%3E/backups/policies/%3CPOLICY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updateBackupStorage()', () async {
@@ -448,7 +767,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.updateBackupStorage(
@@ -457,7 +782,28 @@ void main() {
         bucket: "<BUCKET>",
         accessKey: "<ACCESS_KEY>",
         secretKey: "<SECRET_KEY>",
+        region: "<REGION>",
+        prefix: "<PREFIX>",
+        endpoint: "https://example.com",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/mysql/%3CDATABASE_ID%3E/backups/storage",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "provider": "s3",
+        "bucket": "<BUCKET>",
+        "region": "<REGION>",
+        "prefix": "<PREFIX>",
+        "endpoint": "https://example.com",
+        "accessKey": "<ACCESS_KEY>",
+        "secretKey": "<SECRET_KEY>",
+      });
       expect(response, isA<models.DedicatedDatabaseBackupStorage>());
     });
 
@@ -479,13 +825,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.getBackup(
         databaseId: "<DATABASE_ID>",
         backupId: "<BACKUP_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/backups/%3CBACKUP_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseBackup>());
     });
 
@@ -493,13 +855,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.deleteBackup(
         databaseId: "<DATABASE_ID>",
         backupId: "<BACKUP_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/mysql/%3CDATABASE_ID%3E/backups/%3CBACKUP_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listBranches()', () async {
@@ -509,12 +887,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.listBranches(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/branches",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseBranchList>());
     });
 
@@ -569,12 +963,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.createBranch(
         databaseId: "<DATABASE_ID>",
+        branchId: "<BRANCH_ID>",
+        ttl: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/branches",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "branchId": "<BRANCH_ID>",
+        "ttl": 1,
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -629,13 +1044,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.deleteBranch(
         databaseId: "<DATABASE_ID>",
         branchId: "<BRANCH_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/mysql/%3CDATABASE_ID%3E/branches/%3CBRANCH_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -652,12 +1083,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.updateCredentials(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/mysql/%3CDATABASE_ID%3E/credentials",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseOperation>());
     });
 
@@ -672,13 +1119,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.createExecution(
         databaseId: "<DATABASE_ID>",
         sql: "<SQL>",
+        bindings: {},
+        timeoutSeconds: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/executions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "sql": "<SQL>",
+        "bindings": isA<Map>(),
+        "timeoutSeconds": 1,
+      });
       expect(response, isA<models.DedicatedDatabaseExecution>());
     });
 
@@ -733,12 +1202,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.createFailover(
         databaseId: "<DATABASE_ID>",
+        targetReplicaId: "<TARGET_REPLICA_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/failovers",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "targetReplicaId": "<TARGET_REPLICA_ID>",
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -793,7 +1281,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.updateMaintenance(
@@ -801,6 +1295,19 @@ void main() {
         day: "sun",
         hourUtc: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/mysql/%3CDATABASE_ID%3E/maintenance",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "day": "sun",
+        "hourUtc": 1,
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -855,13 +1362,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.createMigration(
         databaseId: "<DATABASE_ID>",
         targetType: "shared",
+        specification: "<SPECIFICATION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/migrations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "targetType": "shared",
+        "specification": "<SPECIFICATION>",
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -872,12 +1399,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.listOperations(
         databaseId: "<DATABASE_ID>",
+        status: "queued",
+        limit: 1,
+        offset: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/operations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "status": "queued",
+        "limit": 1,
+        "offset": 1,
+      });
       expect(response, isA<models.DedicatedDatabaseOperationList>());
     });
 
@@ -888,12 +1438,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.getPitr(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/pitr",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabasePITRWindows>());
     });
 
@@ -912,12 +1478,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.getPooler(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/pooler",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabasePooler>());
     });
 
@@ -936,12 +1518,45 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.updatePooler(
         databaseId: "<DATABASE_ID>",
+        mode: "transaction",
+        maxConnections: 1,
+        defaultPoolSize: 1,
+        readWriteSplitting: false,
+        poolerCpuRequest: "<POOLER_CPU_REQUEST>",
+        poolerCpuLimit: "<POOLER_CPU_LIMIT>",
+        poolerMemoryRequest: "<POOLER_MEMORY_REQUEST>",
+        poolerMemoryLimit: "<POOLER_MEMORY_LIMIT>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/mysql/%3CDATABASE_ID%3E/pooler",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "mode": "transaction",
+        "maxConnections": 1,
+        "defaultPoolSize": 1,
+        "readWriteSplitting": false,
+        "poolerCpuRequest": "<POOLER_CPU_REQUEST>",
+        "poolerCpuLimit": "<POOLER_CPU_LIMIT>",
+        "poolerMemoryRequest": "<POOLER_MEMORY_REQUEST>",
+        "poolerMemoryLimit": "<POOLER_MEMORY_LIMIT>",
+      });
       expect(response, isA<models.DedicatedDatabasePooler>());
     });
 
@@ -956,12 +1571,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.getReplicas(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/replicas",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseReplicas>());
     });
 
@@ -972,12 +1603,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.listRestorations(
         databaseId: "<DATABASE_ID>",
+        status: "pending",
+        type: "backup",
+        limit: 1,
+        offset: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/restorations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "status": "pending",
+        "type": "backup",
+        "limit": 1,
+        "offset": 1,
+      });
       expect(response, isA<models.DedicatedDatabaseRestorationList>());
     });
 
@@ -994,12 +1650,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.createRestoration(
         databaseId: "<DATABASE_ID>",
+        type: "backup",
+        backupId: "<BACKUP_ID>",
+        targetDatabaseId: "<TARGET_DATABASE_ID>",
+        targetTime: "2020-10-15T06:38:00.000+00:00",
+        restoreMode: "in_place",
+        targetName: "<TARGET_NAME>",
+        autoPromote: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/restorations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "type": "backup",
+        "backupId": "<BACKUP_ID>",
+        "targetDatabaseId": "<TARGET_DATABASE_ID>",
+        "targetTime": "2020-10-15T06:38:00.000+00:00",
+        "restoreMode": "in_place",
+        "targetName": "<TARGET_NAME>",
+        "autoPromote": false,
+      });
       expect(response, isA<models.DedicatedDatabaseRestoration>());
     });
 
@@ -1016,13 +1703,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.getRestoration(
         databaseId: "<DATABASE_ID>",
         restorationId: "<RESTORATION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/restorations/%3CRESTORATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseRestoration>());
     });
 
@@ -1039,13 +1742,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.promoteRestoration(
         databaseId: "<DATABASE_ID>",
         restorationId: "<RESTORATION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/restorations/%3CRESTORATION_ID%3E/promotions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseRestoration>());
     });
 
@@ -1065,12 +1784,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.getStatus(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/mysql/%3CDATABASE_ID%3E/status",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DatabaseStatus>());
     });
 
@@ -1125,13 +1860,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await mysql.createUpgrade(
         databaseId: "<DATABASE_ID>",
         targetVersion: "<TARGET_VERSION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/mysql/%3CDATABASE_ID%3E/upgrades",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "targetVersion": "<TARGET_VERSION>",
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
   });

@@ -104,7 +104,7 @@ class Account extends Service {
 
     final String apiPath = '/account/consents/{consentId}'.replaceAll(
       '{consentId}',
-      consentId,
+      _encodePath(consentId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -138,7 +138,7 @@ class Account extends Service {
 
     final String apiPath = '/account/consents/{consentId}'.replaceAll(
       '{consentId}',
-      consentId,
+      _encodePath(consentId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -175,7 +175,7 @@ class Account extends Service {
 
     final String apiPath = '/account/consents/{consentId}/tokens'.replaceAll(
       '{consentId}',
-      consentId,
+      _encodePath(consentId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -219,11 +219,11 @@ class Account extends Service {
     final String apiPath = '/account/consents/{consentId}/tokens/{tokenId}'
         .replaceAll(
           '{consentId}',
-          consentId,
+          _encodePath(consentId),
         )
         .replaceAll(
           '{tokenId}',
-          tokenId,
+          _encodePath(tokenId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -265,11 +265,11 @@ class Account extends Service {
     final String apiPath = '/account/consents/{consentId}/tokens/{tokenId}'
         .replaceAll(
           '{consentId}',
-          consentId,
+          _encodePath(consentId),
         )
         .replaceAll(
           '{tokenId}',
-          tokenId,
+          _encodePath(tokenId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -363,7 +363,7 @@ class Account extends Service {
 
     final String apiPath = '/account/identities/{identityId}'.replaceAll(
       '{identityId}',
-      identityId,
+      _encodePath(identityId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -449,7 +449,7 @@ class Account extends Service {
   }) async {
     final String apiPath = '/account/mfa/authenticators/{type}'.replaceAll(
       '{type}',
-      type.value,
+      _encodePath(type.value),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -479,7 +479,7 @@ class Account extends Service {
   }) async {
     final String apiPath = '/account/mfa/authenticators/{type}'.replaceAll(
       '{type}',
-      type.value,
+      _encodePath(type.value),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -512,7 +512,7 @@ class Account extends Service {
   }) async {
     final String apiPath = '/account/mfa/authenticators/{type}'.replaceAll(
       '{type}',
-      type.value,
+      _encodePath(type.value),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -544,7 +544,7 @@ class Account extends Service {
   }) async {
     final String apiPath = '/account/mfa/authenticators/{type}'.replaceAll(
       '{type}',
-      type.value,
+      _encodePath(type.value),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -576,7 +576,7 @@ class Account extends Service {
   }) async {
     final String apiPath = '/account/mfa/authenticators/{type}'.replaceAll(
       '{type}',
-      type.value,
+      _encodePath(type.value),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -603,7 +603,7 @@ class Account extends Service {
   }) async {
     final String apiPath = '/account/mfa/authenticators/{type}'.replaceAll(
       '{type}',
-      type.value,
+      _encodePath(type.value),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1055,7 +1055,7 @@ class Account extends Service {
 
     final String apiPath = '/account/passkeys/{passkeyId}'.replaceAll(
       '{passkeyId}',
-      passkeyId,
+      _encodePath(passkeyId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1088,7 +1088,7 @@ class Account extends Service {
 
     final String apiPath = '/account/passkeys/{passkeyId}'.replaceAll(
       '{passkeyId}',
-      passkeyId,
+      _encodePath(passkeyId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1126,7 +1126,7 @@ class Account extends Service {
 
     final String apiPath = '/account/passkeys/{passkeyId}'.replaceAll(
       '{passkeyId}',
-      passkeyId,
+      _encodePath(passkeyId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1165,7 +1165,7 @@ class Account extends Service {
     final String apiPath =
         '/account/passkeys/{passkeyId}/verification'.replaceAll(
       '{passkeyId}',
-      passkeyId,
+      _encodePath(passkeyId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1769,7 +1769,7 @@ class Account extends Service {
 
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
-      sessionId,
+      _encodePath(sessionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1803,7 +1803,7 @@ class Account extends Service {
 
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
-      sessionId,
+      _encodePath(sessionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1840,7 +1840,7 @@ class Account extends Service {
 
     final String apiPath = '/account/sessions/{sessionId}'.replaceAll(
       '{sessionId}',
-      sessionId,
+      _encodePath(sessionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1998,7 +1998,7 @@ class Account extends Service {
   }) async {
     final String apiPath = '/account/tokens/oauth2/{provider}'.replaceAll(
       '{provider}',
-      provider.value,
+      _encodePath(provider.value),
     );
 
     final Map<String, dynamic> params = {

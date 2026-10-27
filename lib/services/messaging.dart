@@ -116,7 +116,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/messages/email/{messageId}'.replaceAll(
       '{messageId}',
-      messageId,
+      _encodePath(messageId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -249,7 +249,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/messages/push/{messageId}'.replaceAll(
       '{messageId}',
-      messageId,
+      _encodePath(messageId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -392,7 +392,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/messages/sms/{messageId}'.replaceAll(
       '{messageId}',
-      messageId,
+      _encodePath(messageId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -440,7 +440,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/messages/sms/{messageId}'.replaceAll(
       '{messageId}',
-      messageId,
+      _encodePath(messageId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -480,7 +480,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/messages/{messageId}'.replaceAll(
       '{messageId}',
-      messageId,
+      _encodePath(messageId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -513,7 +513,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/messages/{messageId}'.replaceAll(
       '{messageId}',
-      messageId,
+      _encodePath(messageId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -548,7 +548,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/messages/{messageId}/targets'.replaceAll(
       '{messageId}',
-      messageId,
+      _encodePath(messageId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -705,7 +705,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/apns/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -753,7 +753,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/apns/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -833,7 +833,7 @@ class Messaging extends Service {
     final String apiPath =
         '/messaging/providers/appwrite/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -944,7 +944,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/fcm/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -984,7 +984,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/fcm/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1075,7 +1075,7 @@ class Messaging extends Service {
     final String apiPath =
         '/messaging/providers/mailgun/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1159,7 +1159,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/msg91/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1246,7 +1246,7 @@ class Messaging extends Service {
     final String apiPath =
         '/messaging/providers/resend/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1335,7 +1335,7 @@ class Messaging extends Service {
     final String apiPath =
         '/messaging/providers/sendgrid/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1429,7 +1429,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/ses/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1595,7 +1595,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/smtp/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1655,7 +1655,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/smtp/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1744,7 +1744,7 @@ class Messaging extends Service {
     final String apiPath =
         '/messaging/providers/telesign/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1825,7 +1825,7 @@ class Messaging extends Service {
     final String apiPath =
         '/messaging/providers/textmagic/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1906,7 +1906,7 @@ class Messaging extends Service {
     final String apiPath =
         '/messaging/providers/twilio/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1987,7 +1987,7 @@ class Messaging extends Service {
     final String apiPath =
         '/messaging/providers/vonage/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2026,7 +2026,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -2058,7 +2058,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/providers/{providerId}'.replaceAll(
       '{providerId}',
-      providerId,
+      _encodePath(providerId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -2156,7 +2156,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/topics/{topicId}'.replaceAll(
       '{topicId}',
-      topicId,
+      _encodePath(topicId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -2193,7 +2193,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/topics/{topicId}'.replaceAll(
       '{topicId}',
-      topicId,
+      _encodePath(topicId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2232,7 +2232,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/topics/{topicId}'.replaceAll(
       '{topicId}',
-      topicId,
+      _encodePath(topicId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -2268,7 +2268,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/topics/{topicId}/subscribers'.replaceAll(
       '{topicId}',
-      topicId,
+      _encodePath(topicId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2306,7 +2306,7 @@ class Messaging extends Service {
 
     final String apiPath = '/messaging/topics/{topicId}/subscribers'.replaceAll(
       '{topicId}',
-      topicId,
+      _encodePath(topicId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2351,11 +2351,11 @@ class Messaging extends Service {
         '/messaging/topics/{topicId}/subscribers/{subscriberId}'
             .replaceAll(
               '{topicId}',
-              topicId,
+              _encodePath(topicId),
             )
             .replaceAll(
               '{subscriberId}',
-              subscriberId,
+              _encodePath(subscriberId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -2396,11 +2396,11 @@ class Messaging extends Service {
         '/messaging/topics/{topicId}/subscribers/{subscriberId}'
             .replaceAll(
               '{topicId}',
-              topicId,
+              _encodePath(topicId),
             )
             .replaceAll(
               '{subscriberId}',
-              subscriberId,
+              _encodePath(subscriberId),
             );
 
     final Map<String, dynamic> apiParams = {};

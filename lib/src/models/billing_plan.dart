@@ -86,6 +86,15 @@ class BillingPlan implements Model {
   /// Rolling max executions retained per function/site
   final int executionsRetentionCount;
 
+  /// Days non-active deployments are kept when a function or site sets no retention.
+  final int? deploymentRetention;
+
+  /// Maximum deployment retention in days a function or site can set. 0 means unlimited.
+  final int? deploymentRetentionMax;
+
+  /// Non-active deployments kept per function or site. 0 means unlimited.
+  final int? deploymentsRetentionCount;
+
   /// GB hours for functions
   final int GBHours;
 
@@ -259,6 +268,9 @@ class BillingPlan implements Model {
     required this.sites,
     required this.executions,
     required this.executionsRetentionCount,
+    this.deploymentRetention,
+    this.deploymentRetentionMax,
+    this.deploymentsRetentionCount,
     required this.GBHours,
     required this.realtime,
     required this.realtimeMessages,
@@ -406,6 +418,9 @@ class BillingPlan implements Model {
       sites: map['sites'],
       executions: map['executions'],
       executionsRetentionCount: map['executionsRetentionCount'],
+      deploymentRetention: map['deploymentRetention'],
+      deploymentRetentionMax: map['deploymentRetentionMax'],
+      deploymentsRetentionCount: map['deploymentsRetentionCount'],
       GBHours: map['GBHours'],
       realtime: map['realtime'],
       realtimeMessages: map['realtimeMessages'],
@@ -512,6 +527,9 @@ class BillingPlan implements Model {
       "sites": sites,
       "executions": executions,
       "executionsRetentionCount": executionsRetentionCount,
+      "deploymentRetention": deploymentRetention,
+      "deploymentRetentionMax": deploymentRetentionMax,
+      "deploymentsRetentionCount": deploymentsRetentionCount,
       "GBHours": GBHours,
       "realtime": realtime,
       "realtimeMessages": realtimeMessages,

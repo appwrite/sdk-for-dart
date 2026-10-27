@@ -56,7 +56,7 @@ class Project extends Service {
   }) async {
     final String apiPath = '/project/auth-methods/{methodId}'.replaceAll(
       '{methodId}',
-      methodId.value,
+      _encodePath(methodId.value),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -110,15 +110,26 @@ class Project extends Service {
   /// Create a new environment of the project. An environment is a separate
   /// project in the same organization and region, with its own resources and
   /// users. Its usage is billed under the project it belongs to.
+  ///
+  /// Pass `resources` to copy the project into the environment. The environment
+  /// is returned at once and the copy runs as a migration of the environment,
+  /// listed by its migrations routes and announced on its `migrations.*`
+  /// realtime events; a resource whose ID can be chosen keeps it. Users are
+  /// copied newest first and at most 90 of them, so the environment keeps room
+  /// under its limit of 100 users for test accounts, and the memberships of
+  /// users left behind are not copied.
   Future<models.Project> createEnvironment({
     required String environmentId,
     required String name,
+    List<enums.EnvironmentResource>? resources,
   }) async {
     final String apiPath = '/project/environments';
 
     final Map<String, dynamic> apiParams = {
       'environmentId': environmentId,
       'name': name,
+      if (resources != null)
+        'resources': resources?.map((e) => e.value).toList(),
     };
 
     final Map<String, String> apiHeaders = {
@@ -149,7 +160,7 @@ class Project extends Service {
 
     final String apiPath = '/project/environments/{environmentId}'.replaceAll(
       '{environmentId}',
-      environmentId,
+      _encodePath(environmentId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -182,7 +193,7 @@ class Project extends Service {
 
     final String apiPath = '/project/environments/{environmentId}'.replaceAll(
       '{environmentId}',
-      environmentId,
+      _encodePath(environmentId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -217,7 +228,7 @@ class Project extends Service {
 
     final String apiPath = '/project/environments/{environmentId}'.replaceAll(
       '{environmentId}',
-      environmentId,
+      _encodePath(environmentId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -309,7 +320,7 @@ class Project extends Service {
 
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
-      keyId,
+      _encodePath(keyId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -346,7 +357,7 @@ class Project extends Service {
 
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
-      keyId,
+      _encodePath(keyId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -385,7 +396,7 @@ class Project extends Service {
 
     final String apiPath = '/project/keys/{keyId}'.replaceAll(
       '{keyId}',
-      keyId,
+      _encodePath(keyId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -503,7 +514,7 @@ class Project extends Service {
 
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
-      number,
+      _encodePath(number),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -537,7 +548,7 @@ class Project extends Service {
 
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
-      number,
+      _encodePath(number),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -573,7 +584,7 @@ class Project extends Service {
 
     final String apiPath = '/project/mock-phones/{number}'.replaceAll(
       '{number}',
-      number,
+      _encodePath(number),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -2224,7 +2235,7 @@ class Project extends Service {
   }) async {
     final String apiPath = '/project/oauth2/{providerId}'.replaceAll(
       '{providerId}',
-      providerId.value,
+      _encodePath(providerId.value),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -2472,7 +2483,7 @@ class Project extends Service {
 
     final String apiPath = '/project/platforms/android/{platformId}'.replaceAll(
       '{platformId}',
-      platformId,
+      _encodePath(platformId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2544,7 +2555,7 @@ class Project extends Service {
 
     final String apiPath = '/project/platforms/apple/{platformId}'.replaceAll(
       '{platformId}',
-      platformId,
+      _encodePath(platformId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2615,7 +2626,7 @@ class Project extends Service {
 
     final String apiPath = '/project/platforms/linux/{platformId}'.replaceAll(
       '{platformId}',
-      platformId,
+      _encodePath(platformId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2686,7 +2697,7 @@ class Project extends Service {
 
     final String apiPath = '/project/platforms/web/{platformId}'.replaceAll(
       '{platformId}',
-      platformId,
+      _encodePath(platformId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2757,7 +2768,7 @@ class Project extends Service {
 
     final String apiPath = '/project/platforms/windows/{platformId}'.replaceAll(
       '{platformId}',
-      platformId,
+      _encodePath(platformId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2794,7 +2805,7 @@ class Project extends Service {
 
     final String apiPath = '/project/platforms/{platformId}'.replaceAll(
       '{platformId}',
-      platformId,
+      _encodePath(platformId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -2854,7 +2865,7 @@ class Project extends Service {
 
     final String apiPath = '/project/platforms/{platformId}'.replaceAll(
       '{platformId}',
-      platformId,
+      _encodePath(platformId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -2989,6 +3000,34 @@ class Project extends Service {
     required bool enabled,
   }) async {
     final String apiPath = '/project/policies/deny-free-email';
+
+    final Map<String, dynamic> apiParams = {
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Configures if guests, connections without a signed-in user, may subscribe
+  /// to realtime channels. When enabled, a guest can still connect and sign in
+  /// over the connection, but cannot subscribe until it does.
+  Future<models.Project> updateDenyRealtimeGuestsPolicy({
+    required bool enabled,
+  }) async {
+    final String apiPath = '/project/policies/deny-realtime-guests';
 
     final Map<String, dynamic> apiParams = {
       'enabled': enabled,
@@ -3476,7 +3515,7 @@ class Project extends Service {
   }) async {
     final String apiPath = '/project/policies/{policyId}'.replaceAll(
       '{policyId}',
-      policyId.value,
+      _encodePath(policyId.value),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -3552,6 +3591,9 @@ class Project extends Service {
       if (response['\$id'] == "deny-corporate-email") {
         return models.PolicyDenyCorporateEmail.fromMap(response);
       }
+      if (response['\$id'] == "deny-realtime-guests") {
+        return models.PolicyDenyRealtimeGuests.fromMap(response);
+      }
       if (response['\$id'] == "passkey") {
         return models.PolicyPasskey.fromMap(response);
       }
@@ -3570,7 +3612,7 @@ class Project extends Service {
   }) async {
     final String apiPath = '/project/protocols/{protocolId}'.replaceAll(
       '{protocolId}',
-      protocolId.value,
+      _encodePath(protocolId.value),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -3601,7 +3643,7 @@ class Project extends Service {
   }) async {
     final String apiPath = '/project/services/{serviceId}'.replaceAll(
       '{serviceId}',
-      serviceId.value,
+      _encodePath(serviceId.value),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -3622,6 +3664,31 @@ class Project extends Service {
     );
 
     return models.Project.fromMap(res.data);
+  }
+
+  /// Delete all sessions in the project. Any session created before this request
+  /// will be invalidated immediately: users will be signed out of every active
+  /// client (web, mobile, server SDKs, JWTs), and will be able to sign in again
+  /// afterwards. API keys are not affected by this action.
+  Future deleteSessions() async {
+    final String apiPath = '/project/sessions';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
   }
 
   /// Update the SMTP configuration for your project. Use this endpoint to
@@ -3775,7 +3842,7 @@ class Project extends Service {
   }) async {
     final String apiPath = '/project/templates/email/{templateId}'.replaceAll(
       '{templateId}',
-      templateId.value,
+      _encodePath(templateId.value),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -3871,7 +3938,7 @@ class Project extends Service {
 
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
-      variableId,
+      _encodePath(variableId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -3907,7 +3974,7 @@ class Project extends Service {
 
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
-      variableId,
+      _encodePath(variableId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -3945,7 +4012,7 @@ class Project extends Service {
 
     final String apiPath = '/project/variables/{variableId}'.replaceAll(
       '{variableId}',
-      variableId,
+      _encodePath(variableId),
     );
 
     final Map<String, dynamic> apiParams = {};

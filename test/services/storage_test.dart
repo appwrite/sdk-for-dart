@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await storage.listBuckets();
+      final response = await storage.listBuckets(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/storage/buckets",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.BucketList>());
     });
 
@@ -102,13 +132,54 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.createBucket(
         bucketId: "<BUCKET_ID>",
         name: "<NAME>",
+        permissions: [],
+        fileSecurity: false,
+        enabled: false,
+        maximumFileSize: 1,
+        allowedFileExtensions: [],
+        compression: enums.Compression.none,
+        encryption: false,
+        antivirus: false,
+        transformations: false,
+        description: "<DESCRIPTION>",
+        stripMetadata: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/storage/buckets",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "bucketId": "<BUCKET_ID>",
+        "name": "<NAME>",
+        "permissions": isA<List>(),
+        "fileSecurity": false,
+        "enabled": false,
+        "maximumFileSize": 1,
+        "allowedFileExtensions": isA<List>(),
+        "compression": enums.Compression.none.value,
+        "encryption": false,
+        "antivirus": false,
+        "transformations": false,
+        "description": "<DESCRIPTION>",
+        "stripMetadata": false,
+      });
       expect(response, isA<models.Bucket>());
     });
 
@@ -133,12 +204,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.getBucket(
         bucketId: "<BUCKET_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/storage/buckets/%3CBUCKET_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Bucket>());
     });
 
@@ -163,13 +250,53 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.updateBucket(
         bucketId: "<BUCKET_ID>",
         name: "<NAME>",
+        permissions: [],
+        fileSecurity: false,
+        enabled: false,
+        maximumFileSize: 1,
+        allowedFileExtensions: [],
+        compression: enums.Compression.none,
+        encryption: false,
+        antivirus: false,
+        transformations: false,
+        description: "<DESCRIPTION>",
+        stripMetadata: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/storage/buckets/%3CBUCKET_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "permissions": isA<List>(),
+        "fileSecurity": false,
+        "enabled": false,
+        "maximumFileSize": 1,
+        "allowedFileExtensions": isA<List>(),
+        "compression": enums.Compression.none.value,
+        "encryption": false,
+        "antivirus": false,
+        "transformations": false,
+        "description": "<DESCRIPTION>",
+        "stripMetadata": false,
+      });
       expect(response, isA<models.Bucket>());
     });
 
@@ -177,12 +304,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.deleteBucket(
         bucketId: "<BUCKET_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/storage/buckets/%3CBUCKET_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listFiles()', () async {
@@ -192,12 +335,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.listFiles(
         bucketId: "<BUCKET_ID>",
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/storage/buckets/%3CBUCKET_ID%3E/files",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.FileList>());
     });
 
@@ -223,11 +389,12 @@ void main() {
 
       when(
         client.chunkedUpload(
-          path: argThat(isNotNull),
-          params: argThat(isNotNull),
-          paramName: argThat(isNotNull),
-          idParamName: argThat(isNotNull),
-          headers: argThat(isNotNull),
+          path: anyNamed('path'),
+          params: anyNamed('params'),
+          paramName: anyNamed('paramName'),
+          idParamName: anyNamed('idParamName'),
+          headers: anyNamed('headers'),
+          method: anyNamed('method'),
         ),
       ).thenAnswer((_) async => Response(data: data));
 
@@ -235,7 +402,25 @@ void main() {
         bucketId: "<BUCKET_ID>",
         fileId: "<FILE_ID>",
         file: InputFile.fromPath(path: './image.png'),
+        permissions: [],
+        folder: "photos/2026",
       );
+      final Map<String, dynamic> params = verify(
+        client.chunkedUpload(
+          path: "/storage/buckets/%3CBUCKET_ID%3E/files",
+          params: captureAnyNamed('params'),
+          paramName: anyNamed('paramName'),
+          idParamName: anyNamed('idParamName'),
+          headers: anyNamed('headers'),
+          method: HttpMethod.post,
+        ),
+      ).captured.single;
+      expect(params, {
+        "fileId": "<FILE_ID>",
+        "file": isA<InputFile>(),
+        "permissions": isA<List>(),
+        "folder": "photos/2026",
+      });
       expect(response, isA<models.File>());
     });
 
@@ -260,13 +445,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.getFile(
         bucketId: "<BUCKET_ID>",
         fileId: "<FILE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/storage/buckets/%3CBUCKET_ID%3E/files/%3CFILE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.File>());
     });
 
@@ -291,13 +492,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.updateFile(
         bucketId: "<BUCKET_ID>",
         fileId: "<FILE_ID>",
+        name: "name",
+        permissions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/storage/buckets/%3CBUCKET_ID%3E/files/%3CFILE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "name",
+        "permissions": isA<List>(),
+      });
       expect(response, isA<models.File>());
     });
 
@@ -305,26 +527,61 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.deleteFile(
         bucketId: "<BUCKET_ID>",
         fileId: "<FILE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/storage/buckets/%3CBUCKET_ID%3E/files/%3CFILE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method getFileDownload()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.getFileDownload(
         bucketId: "<BUCKET_ID>",
         fileId: "<FILE_ID>",
+        token: "<TOKEN>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/storage/buckets/%3CBUCKET_ID%3E/files/%3CFILE_ID%3E/download",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "token": "<TOKEN>",
+      });
       expect(response, isA<Uint8List>());
     });
 
@@ -332,13 +589,54 @@ void main() {
       final Uint8List data = Uint8List.fromList([]);
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.getFilePreview(
         bucketId: "<BUCKET_ID>",
         fileId: "<FILE_ID>",
+        width: 1,
+        height: 1,
+        gravity: enums.ImageGravity.auto,
+        quality: 1,
+        borderWidth: 1,
+        borderColor: "FFFFFF",
+        borderRadius: 1,
+        opacity: 1.0,
+        rotation: 1,
+        background: "FFFFFF",
+        output: enums.ImageFormat.jpg,
+        token: "<TOKEN>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/storage/buckets/%3CBUCKET_ID%3E/files/%3CFILE_ID%3E/preview",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "width": 1,
+        "height": 1,
+        "gravity": enums.ImageGravity.auto.value,
+        "quality": 1,
+        "borderWidth": 1,
+        "borderColor": "FFFFFF",
+        "borderRadius": 1,
+        "opacity": 1.0,
+        "rotation": 1,
+        "background": "FFFFFF",
+        "output": enums.ImageFormat.jpg.value,
+        "token": "<TOKEN>",
+      });
       expect(response, isA<Uint8List>());
     });
 
@@ -346,13 +644,32 @@ void main() {
       final Uint8List data = Uint8List.fromList([]);
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await storage.getFileView(
         bucketId: "<BUCKET_ID>",
         fileId: "<FILE_ID>",
+        token: "<TOKEN>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/storage/buckets/%3CBUCKET_ID%3E/files/%3CFILE_ID%3E/view",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "token": "<TOKEN>",
+      });
       expect(response, isA<Uint8List>());
     });
   });

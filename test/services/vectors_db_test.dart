@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await vectorsDB.list();
+      final response = await vectorsDB.list(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.DatabaseList>());
     });
 
@@ -93,13 +121,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.create(
         databaseId: "<DATABASE_ID>",
         name: "<NAME>",
+        enabled: false,
+        description: "<DESCRIPTION>",
+        specification: "serverless",
+        replicas: 1,
+        syncMode: "async",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "databaseId": "<DATABASE_ID>",
+        "name": "<NAME>",
+        "enabled": false,
+        "description": "<DESCRIPTION>",
+        "specification": "serverless",
+        "replicas": 1,
+        "syncMode": "async",
+      });
       expect(response, isA<models.Database>());
     });
 
@@ -110,10 +167,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.listSpecifications();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/specifications",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseSpecificationList>());
     });
 
@@ -124,10 +197,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await vectorsDB.listTransactions();
+      final response = await vectorsDB.listTransactions(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/transactions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.TransactionList>());
     });
 
@@ -142,10 +237,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await vectorsDB.createTransaction();
+      final response = await vectorsDB.createTransaction(
+        ttl: 1,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb/transactions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "ttl": 1,
+      });
       expect(response, isA<models.Transaction>());
     });
 
@@ -160,12 +275,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.getTransaction(
         transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/transactions/%3CTRANSACTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Transaction>());
     });
 
@@ -180,12 +311,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.updateTransaction(
         transactionId: "<TRANSACTION_ID>",
+        commit: false,
+        rollback: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/vectorsdb/transactions/%3CTRANSACTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "commit": false,
+        "rollback": false,
+      });
       expect(response, isA<models.Transaction>());
     });
 
@@ -193,12 +345,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.deleteTransaction(
         transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/vectorsdb/transactions/%3CTRANSACTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method createOperations()', () async {
@@ -212,12 +380,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.createOperations(
         transactionId: "<TRANSACTION_ID>",
+        operations: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb/transactions/%3CTRANSACTION_ID%3E/operations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "operations": isA<List>(),
+      });
       expect(response, isA<models.Transaction>());
     });
 
@@ -233,12 +420,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.get(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Database>());
     });
 
@@ -254,13 +457,41 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.update(
         databaseId: "<DATABASE_ID>",
         name: "<NAME>",
+        enabled: false,
+        description: "<DESCRIPTION>",
+        specification: "serverless",
+        replicas: 1,
+        syncMode: "async",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/vectorsdb/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "description": "<DESCRIPTION>",
+        "specification": "serverless",
+        "replicas": 1,
+        "syncMode": "async",
+      });
       expect(response, isA<models.Database>());
     });
 
@@ -268,12 +499,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.delete(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/vectorsdb/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listCollections()', () async {
@@ -283,12 +530,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.listCollections(
         databaseId: "<DATABASE_ID>",
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.VectorsdbCollectionList>());
     });
 
@@ -311,7 +581,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.createCollection(
@@ -319,7 +595,29 @@ void main() {
         collectionId: "<COLLECTION_ID>",
         name: "<NAME>",
         dimension: 1,
+        permissions: [],
+        documentSecurity: false,
+        enabled: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "collectionId": "<COLLECTION_ID>",
+        "name": "<NAME>",
+        "dimension": 1,
+        "permissions": isA<List>(),
+        "documentSecurity": false,
+        "enabled": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.VectorsdbCollection>());
     });
 
@@ -342,13 +640,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.getCollection(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.VectorsdbCollection>());
     });
 
@@ -371,14 +685,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.updateCollection(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         name: "<NAME>",
+        dimension: 1,
+        permissions: [],
+        documentSecurity: false,
+        enabled: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "dimension": 1,
+        "permissions": isA<List>(),
+        "documentSecurity": false,
+        "enabled": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.VectorsdbCollection>());
     });
 
@@ -386,13 +728,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.deleteCollection(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listDocuments()', () async {
@@ -402,13 +760,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.listDocuments(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
+        total: false,
+        ttl: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+        "total": false,
+        "ttl": 1,
+      });
       expect(response, isA<models.DocumentList>());
     });
 
@@ -424,7 +807,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.createDocument(
@@ -432,7 +821,24 @@ void main() {
         collectionId: "<COLLECTION_ID>",
         documentId: "<DOCUMENT_ID>",
         data: {},
+        permissions: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "documentId": "<DOCUMENT_ID>",
+        "data": isA<Map>(),
+        "permissions": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Document>());
     });
 
@@ -443,14 +849,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.createDocuments(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         documents: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "documents": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.DocumentList>());
     });
 
@@ -461,14 +887,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.upsertDocuments(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         documents: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "documents": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.DocumentList>());
     });
 
@@ -479,13 +925,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.updateDocuments(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
+        data: {},
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "data": isA<Map>(),
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.DocumentList>());
     });
 
@@ -496,13 +965,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.deleteDocuments(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.DocumentList>());
     });
 
@@ -513,13 +1003,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.createQuery(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
+        total: false,
+        ttl: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/query",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+        "total": false,
+        "ttl": 1,
+      });
       expect(response, isA<models.DocumentList>());
     });
 
@@ -535,14 +1050,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.getDocument(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         documentId: "<DOCUMENT_ID>",
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/%3CDOCUMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Document>());
     });
 
@@ -558,14 +1094,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.upsertDocument(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         documentId: "<DOCUMENT_ID>",
+        data: {},
+        permissions: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/%3CDOCUMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "data": isA<Map>(),
+        "permissions": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Document>());
     });
 
@@ -581,14 +1140,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.updateDocument(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         documentId: "<DOCUMENT_ID>",
+        data: {},
+        permissions: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/%3CDOCUMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "data": isA<Map>(),
+        "permissions": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Document>());
     });
 
@@ -596,14 +1178,33 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.deleteDocument(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
         documentId: "<DOCUMENT_ID>",
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/documents/%3CDOCUMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "transactionId": "<TRANSACTION_ID>",
+      });
     });
 
     test('test method listIndexes()', () async {
@@ -613,13 +1214,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.listIndexes(
         databaseId: "<DATABASE_ID>",
         collectionId: "<COLLECTION_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/indexes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.IndexList>());
     });
 
@@ -638,7 +1260,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.createIndex(
@@ -647,7 +1275,27 @@ void main() {
         key: "<KEY>",
         type: enums.VectorsDBIndexType.hnswEuclidean,
         attributes: [],
+        orders: [enums.OrderBy.asc],
+        lengths: [],
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/indexes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "type": enums.VectorsDBIndexType.hnswEuclidean.value,
+        "attributes": isA<List>(),
+        "orders": isA<List>(),
+        "lengths": isA<List>(),
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Index>());
     });
 
@@ -666,7 +1314,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.getIndex(
@@ -674,6 +1328,16 @@ void main() {
         collectionId: "<COLLECTION_ID>",
         key: "<KEY>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/indexes/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Index>());
     });
 
@@ -681,7 +1345,13 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.deleteIndex(
@@ -689,6 +1359,16 @@ void main() {
         collectionId: "<COLLECTION_ID>",
         key: "<KEY>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/collections/%3CCOLLECTION_ID%3E/indexes/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method createFailover()', () async {
@@ -742,12 +1422,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.createFailover(
         databaseId: "<DATABASE_ID>",
+        targetReplicaId: "<TARGET_REPLICA_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/failovers",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "targetReplicaId": "<TARGET_REPLICA_ID>",
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -758,12 +1457,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.listOperations(
         databaseId: "<DATABASE_ID>",
+        status: "queued",
+        limit: 1,
+        offset: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/operations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "status": "queued",
+        "limit": 1,
+        "offset": 1,
+      });
       expect(response, isA<models.DedicatedDatabaseOperationList>());
     });
 
@@ -778,12 +1500,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.getReplicas(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/replicas",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseReplicas>());
     });
 
@@ -803,12 +1541,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await vectorsDB.getStatus(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/vectorsdb/%3CDATABASE_ID%3E/status",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DatabaseStatus>());
     });
   });

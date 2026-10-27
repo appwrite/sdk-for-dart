@@ -46,7 +46,7 @@ class Advisor extends Service {
 
     final String apiPath = '/reports/{reportId}'.replaceAll(
       '{reportId}',
-      reportId,
+      _encodePath(reportId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -79,7 +79,7 @@ class Advisor extends Service {
 
     final String apiPath = '/reports/{reportId}'.replaceAll(
       '{reportId}',
-      reportId,
+      _encodePath(reportId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -115,7 +115,7 @@ class Advisor extends Service {
 
     final String apiPath = '/reports/{reportId}/insights'.replaceAll(
       '{reportId}',
-      reportId,
+      _encodePath(reportId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -158,11 +158,11 @@ class Advisor extends Service {
     final String apiPath = '/reports/{reportId}/insights/{insightId}'
         .replaceAll(
           '{reportId}',
-          reportId,
+          _encodePath(reportId),
         )
         .replaceAll(
           '{insightId}',
-          insightId,
+          _encodePath(insightId),
         );
 
     final Map<String, dynamic> apiParams = {};

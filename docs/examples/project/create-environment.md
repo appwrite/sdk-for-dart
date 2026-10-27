@@ -1,6 +1,7 @@
 ```dart
 import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:dart_appwrite/models.dart' as models;
+import 'package:dart_appwrite/enums.dart' as enums;
 
 Client client = Client()
     .setEndpoint('https://<REGION>.cloud.appwrite.io/v1') // Your API Endpoint
@@ -12,5 +13,6 @@ Project project = Project(client);
 models.Project result = await project.createEnvironment(
     environmentId: '<ENVIRONMENT_ID>',
     name: '<NAME>',
+    resources: [enums.EnvironmentResource.database, enums.EnvironmentResource.table, enums.EnvironmentResource.column, enums.EnvironmentResource.xIndex, enums.EnvironmentResource.bucket, enums.EnvironmentResource.team, enums.EnvironmentResource.function, enums.EnvironmentResource.environmentVariable], // (optional)
 );
 ```

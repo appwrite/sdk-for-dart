@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -73,12 +79,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.approve(
         grantId: "<GRANT_ID>",
+        authorizationDetails: "<AUTHORIZATION_DETAILS>",
+        scope: "<SCOPE>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/approve",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "grant_id": "<GRANT_ID>",
+        "authorization_details": "<AUTHORIZATION_DETAILS>",
+        "scope": "<SCOPE>",
+      });
       expect(response, isA<models.Oauth2Approve>());
     });
 
@@ -89,10 +117,56 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await oauth2.authorize();
+      final response = await oauth2.authorize(
+        clientId: "<CLIENT_ID>",
+        redirectUri: "https://example.com",
+        responseType: "response_type",
+        scope: "<SCOPE>",
+        state: "<STATE>",
+        nonce: "<NONCE>",
+        codeChallenge: "<CODE_CHALLENGE>",
+        codeChallengeMethod: "s256",
+        prompt: "<PROMPT>",
+        maxAge: 1,
+        authorizationDetails: "<AUTHORIZATION_DETAILS>",
+        resource: [],
+        audience: "<AUDIENCE>",
+        requestUri: "<REQUEST_URI>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/oauth2/testproject/authorize",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "client_id": "<CLIENT_ID>",
+        "redirect_uri": "https://example.com",
+        "response_type": "response_type",
+        "scope": "<SCOPE>",
+        "state": "<STATE>",
+        "nonce": "<NONCE>",
+        "code_challenge": "<CODE_CHALLENGE>",
+        "code_challenge_method": "s256",
+        "prompt": "<PROMPT>",
+        "max_age": 1,
+        "authorization_details": "<AUTHORIZATION_DETAILS>",
+        "resource": isA<List>(),
+        "audience": "<AUDIENCE>",
+        "request_uri": "<REQUEST_URI>",
+      });
       expect(response, isA<models.Oauth2Authorize>());
     });
 
@@ -103,10 +177,56 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await oauth2.authorizePost();
+      final response = await oauth2.authorizePost(
+        clientId: "<CLIENT_ID>",
+        redirectUri: "https://example.com",
+        responseType: "response_type",
+        scope: "<SCOPE>",
+        state: "<STATE>",
+        nonce: "<NONCE>",
+        codeChallenge: "<CODE_CHALLENGE>",
+        codeChallengeMethod: "s256",
+        prompt: "<PROMPT>",
+        maxAge: 1,
+        authorizationDetails: "<AUTHORIZATION_DETAILS>",
+        resource: [],
+        audience: "<AUDIENCE>",
+        requestUri: "<REQUEST_URI>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/authorize",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "client_id": "<CLIENT_ID>",
+        "redirect_uri": "https://example.com",
+        "response_type": "response_type",
+        "scope": "<SCOPE>",
+        "state": "<STATE>",
+        "nonce": "<NONCE>",
+        "code_challenge": "<CODE_CHALLENGE>",
+        "code_challenge_method": "s256",
+        "prompt": "<PROMPT>",
+        "max_age": 1,
+        "authorization_details": "<AUTHORIZATION_DETAILS>",
+        "resource": isA<List>(),
+        "audience": "<AUDIENCE>",
+        "request_uri": "<REQUEST_URI>",
+      });
       expect(response, isA<models.Oauth2Authorize>());
     });
 
@@ -123,10 +243,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await oauth2.createDeviceAuthorization();
+      final response = await oauth2.createDeviceAuthorization(
+        clientId: "<CLIENT_ID>",
+        scope: "<SCOPE>",
+        authorizationDetails: "<AUTHORIZATION_DETAILS>",
+        resource: [],
+        audience: "<AUDIENCE>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/device_authorization",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "client_id": "<CLIENT_ID>",
+        "scope": "<SCOPE>",
+        "authorization_details": "<AUTHORIZATION_DETAILS>",
+        "resource": isA<List>(),
+        "audience": "<AUDIENCE>",
+      });
       expect(response, isA<models.Oauth2DeviceAuthorization>());
     });
 
@@ -148,12 +296,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.createGrant(
         userCode: "<USER_CODE>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/grants",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "user_code": "<USER_CODE>",
+      });
       expect(response, isA<models.Oauth2Grant>());
     });
 
@@ -175,12 +341,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.getGrant(
         grantId: "<GRANT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/oauth2/testproject/grants/%3CGRANT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Oauth2Grant>());
     });
 
@@ -190,12 +372,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.introspect(
         token: "<TOKEN>",
+        tokenTypeHint: "access_token",
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/introspect",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "token": "<TOKEN>",
+        "token_type_hint": "access_token",
+        "client_id": "<CLIENT_ID>",
+        "client_secret": "<CLIENT_SECRET>",
+      });
       expect(response, isA<models.Oauth2Introspection>());
     });
 
@@ -206,10 +412,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await oauth2.listOrganizations();
+      final response = await oauth2.listOrganizations(
+        limit: 1,
+        offset: 1,
+        search: "<SEARCH>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/oauth2/testproject/organizations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "limit": 1,
+        "offset": 1,
+        "search": "<SEARCH>",
+      });
       expect(response, isA<models.Oauth2OrganizationList>());
     });
 
@@ -220,14 +450,54 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.createPAR(
         clientId: "<CLIENT_ID>",
         redirectUri: "https://example.com",
         responseType: "code",
+        scope: "<SCOPE>",
+        state: "<STATE>",
+        nonce: "<NONCE>",
+        codeChallenge: "<CODE_CHALLENGE>",
+        codeChallengeMethod: "s256",
+        prompt: "<PROMPT>",
+        maxAge: 1,
+        authorizationDetails: "<AUTHORIZATION_DETAILS>",
+        resource: [],
+        audience: "<AUDIENCE>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/par",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "client_id": "<CLIENT_ID>",
+        "redirect_uri": "https://example.com",
+        "response_type": "code",
+        "scope": "<SCOPE>",
+        "state": "<STATE>",
+        "nonce": "<NONCE>",
+        "code_challenge": "<CODE_CHALLENGE>",
+        "code_challenge_method": "s256",
+        "prompt": "<PROMPT>",
+        "max_age": 1,
+        "authorization_details": "<AUTHORIZATION_DETAILS>",
+        "resource": isA<List>(),
+        "audience": "<AUDIENCE>",
+      });
       expect(response, isA<models.Oauth2PAR>());
     });
 
@@ -238,10 +508,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await oauth2.listProjects();
+      final response = await oauth2.listProjects(
+        limit: 1,
+        offset: 1,
+        search: "<SEARCH>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/oauth2/testproject/projects",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "limit": 1,
+        "offset": 1,
+        "search": "<SEARCH>",
+      });
       expect(response, isA<models.Oauth2ProjectList>());
     });
 
@@ -252,12 +546,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.reject(
         grantId: "<GRANT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/reject",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "grant_id": "<GRANT_ID>",
+      });
       expect(response, isA<models.Oauth2Reject>());
     });
 
@@ -265,12 +577,36 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.revoke(
         token: "<TOKEN>",
+        tokenTypeHint: "access_token",
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/revoke",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "token": "<TOKEN>",
+        "token_type_hint": "access_token",
+        "client_id": "<CLIENT_ID>",
+        "client_secret": "<CLIENT_SECRET>",
+      });
     });
 
     test('test method createToken()', () async {
@@ -283,12 +619,48 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await oauth2.createToken(
         grantType: "<GRANT_TYPE>",
+        code: "<CODE>",
+        refreshToken: "<REFRESH_TOKEN>",
+        deviceCode: "<DEVICE_CODE>",
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        codeVerifier: "<CODE_VERIFIER>",
+        redirectUri: "https://example.com",
+        resource: [],
+        audience: "<AUDIENCE>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/oauth2/testproject/token",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "grant_type": "<GRANT_TYPE>",
+        "code": "<CODE>",
+        "refresh_token": "<REFRESH_TOKEN>",
+        "device_code": "<DEVICE_CODE>",
+        "client_id": "<CLIENT_ID>",
+        "client_secret": "<CLIENT_SECRET>",
+        "code_verifier": "<CODE_VERIFIER>",
+        "redirect_uri": "https://example.com",
+        "resource": isA<List>(),
+        "audience": "<AUDIENCE>",
+      });
       expect(response, isA<models.Oauth2Token>());
     });
   });

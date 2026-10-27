@@ -1,6 +1,6 @@
 /// Appwrite Dart SDK
 ///
-/// This SDK targets Appwrite server version 2.5.x as shipped on Appwrite Cloud.
+/// This SDK targets Appwrite server version 2.6.x as shipped on Appwrite Cloud.
 /// Self-hosted releases can lag behind Cloud — if you run an older self-hosted
 /// build, use a matching older SDK from
 /// [previous releases](https://github.com/appwrite/sdk-for-dart/releases)
@@ -46,6 +46,7 @@ part 'services/functions.dart';
 part 'services/graphql.dart';
 part 'services/locale.dart';
 part 'services/messaging.dart';
+part 'services/migrations.dart';
 part 'services/mongo.dart';
 part 'services/mysql.dart';
 part 'services/oauth2.dart';
@@ -64,3 +65,10 @@ part 'services/users.dart';
 part 'services/vectors_db.dart';
 part 'services/waf.dart';
 part 'services/webhooks.dart';
+
+String _encodePath(String value) {
+  if (value == '.' || value == '..') {
+    throw AppwriteException('Path parameter cannot be "." or ".."');
+  }
+  return Uri.encodeComponent(value);
+}

@@ -161,7 +161,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -195,7 +195,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -231,7 +231,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -266,7 +266,7 @@ class TablesDB extends Service {
     final String apiPath =
         '/tablesdb/transactions/{transactionId}/operations'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -302,7 +302,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -340,7 +340,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -381,7 +381,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -423,7 +423,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -459,7 +459,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -500,7 +500,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -544,11 +544,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/migrations/{migrationId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{migrationId}',
-          migrationId,
+          _encodePath(migrationId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -589,11 +589,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/migrations/{migrationId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{migrationId}',
-          migrationId,
+          _encodePath(migrationId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -643,11 +643,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{migrationId}',
-              migrationId,
+              _encodePath(migrationId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -686,7 +686,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}/operations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -723,7 +723,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -757,7 +757,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}/status'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -793,7 +793,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}/tables'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -840,7 +840,7 @@ class TablesDB extends Service {
 
     final String apiPath = '/tablesdb/{databaseId}/tables'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -891,11 +891,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -941,11 +941,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -994,11 +994,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1041,11 +1041,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/columns'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1097,11 +1097,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1165,15 +1165,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1227,11 +1227,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1291,15 +1291,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1351,11 +1351,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1415,15 +1415,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1475,11 +1475,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/email'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1539,15 +1539,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/email/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1601,11 +1601,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/enum'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1667,15 +1667,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/enum/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1731,11 +1731,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/float'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1799,15 +1799,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/float/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1864,11 +1864,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/integer'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1932,15 +1932,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/integer/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1993,11 +1993,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/columns/ip'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -2057,15 +2057,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/ip/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2116,11 +2116,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2179,15 +2179,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2240,11 +2240,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2305,15 +2305,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2366,11 +2366,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2431,15 +2431,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2490,11 +2490,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2553,15 +2553,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2612,11 +2612,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2675,15 +2675,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2738,11 +2738,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2803,15 +2803,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2867,11 +2867,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/string'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2937,15 +2937,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/string/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -2999,11 +2999,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -3064,15 +3064,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -3123,11 +3123,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/columns/url'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -3187,15 +3187,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/url/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -3249,11 +3249,11 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -3316,15 +3316,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -3379,15 +3379,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -3501,15 +3501,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -3552,11 +3552,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -3609,11 +3609,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -3669,15 +3669,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -3725,15 +3725,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -3787,11 +3787,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -3843,11 +3843,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -3898,11 +3898,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -3951,11 +3951,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -4003,11 +4003,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -4055,11 +4055,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -4110,11 +4110,11 @@ class TablesDB extends Service {
     final String apiPath = '/tablesdb/{databaseId}/tables/{tableId}/rows/query'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{tableId}',
-          tableId,
+          _encodePath(tableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -4171,15 +4171,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{rowId}',
-              rowId,
+              _encodePath(rowId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -4236,15 +4236,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{rowId}',
-              rowId,
+              _encodePath(rowId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -4301,15 +4301,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{rowId}',
-              rowId,
+              _encodePath(rowId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -4363,15 +4363,15 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{rowId}',
-              rowId,
+              _encodePath(rowId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -4432,19 +4432,19 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/decrement'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{rowId}',
-              rowId,
+              _encodePath(rowId),
             )
             .replaceAll(
               '{column}',
-              column,
+              _encodePath(column),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -4507,19 +4507,19 @@ class TablesDB extends Service {
         '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/increment'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{tableId}',
-              tableId,
+              _encodePath(tableId),
             )
             .replaceAll(
               '{rowId}',
-              rowId,
+              _encodePath(rowId),
             )
             .replaceAll(
               '{column}',
-              column,
+              _encodePath(column),
             );
 
     final Map<String, dynamic> apiParams = {

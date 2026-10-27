@@ -143,7 +143,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -178,7 +178,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -214,7 +214,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/nameservers'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -254,7 +254,7 @@ class Domains extends Service {
     final String apiPath =
         '/domains/{domainId}/nameservers/verification'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -288,7 +288,7 @@ class Domains extends Service {
     final String apiPath =
         '/domains/{domainId}/presets/google-workspace'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -323,7 +323,7 @@ class Domains extends Service {
     final String apiPath =
         '/domains/{domainId}/presets/google-workspace'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -356,7 +356,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/icloud'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -390,7 +390,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/icloud'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -423,7 +423,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/mailgun'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -457,7 +457,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/mailgun'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -490,7 +490,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/outlook'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -524,7 +524,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/outlook'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -557,7 +557,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/proton-mail'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -591,7 +591,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/proton-mail'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -624,7 +624,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/zoho'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -658,7 +658,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/presets/zoho'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -695,7 +695,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -736,7 +736,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/a'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -790,11 +790,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/a/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -839,7 +839,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/aaaa'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -893,11 +893,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/aaaa/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -943,7 +943,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/alias'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1000,11 +1000,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/alias/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1049,7 +1049,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/caa'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1103,11 +1103,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/caa/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1155,7 +1155,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/cname'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1205,11 +1205,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/cname/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1253,7 +1253,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/https'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1307,11 +1307,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/https/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1360,7 +1360,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/mx'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1412,11 +1412,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/mx/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1462,7 +1462,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/ns'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1518,11 +1518,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/ns/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1571,7 +1571,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/srv'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1640,11 +1640,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/srv/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1691,7 +1691,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/records/txt'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1746,11 +1746,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/txt/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1802,11 +1802,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1848,11 +1848,11 @@ class Domains extends Service {
     final String apiPath = '/domains/{domainId}/records/{recordId}'
         .replaceAll(
           '{domainId}',
-          domainId,
+          _encodePath(domainId),
         )
         .replaceAll(
           '{recordId}',
-          recordId,
+          _encodePath(recordId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1892,7 +1892,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/team'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1928,7 +1928,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/transfers/status'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1963,7 +1963,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/zone'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1986,8 +1986,8 @@ class Domains extends Service {
 
   /// Update the DNS zone for the given domain using the provided zone file
   /// content.
-  /// All parsed records are imported and then the main domain document is
-  /// returned.
+  /// All parsed records the domain does not already have are imported and then
+  /// the main domain document is returned.
   Future<models.Domain> updateZone({
     required String domainId,
     required String content,
@@ -2000,7 +2000,7 @@ class Domains extends Service {
 
     final String apiPath = '/domains/{domainId}/zone'.replaceAll(
       '{domainId}',
-      domainId,
+      _encodePath(domainId),
     );
 
     final Map<String, dynamic> apiParams = {

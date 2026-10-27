@@ -147,7 +147,7 @@ class Organization extends Service {
     final String apiPath =
         '/organization/installations/{installationId}'.replaceAll(
       '{installationId}',
-      installationId,
+      _encodePath(installationId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -184,7 +184,7 @@ class Organization extends Service {
     final String apiPath =
         '/organization/installations/{installationId}'.replaceAll(
       '{installationId}',
-      installationId,
+      _encodePath(installationId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -223,7 +223,7 @@ class Organization extends Service {
     final String apiPath =
         '/organization/installations/{installationId}'.replaceAll(
       '{installationId}',
-      installationId,
+      _encodePath(installationId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -324,7 +324,7 @@ class Organization extends Service {
     final String apiPath =
         '/organization/memberships/{membershipId}'.replaceAll(
       '{membershipId}',
-      membershipId,
+      _encodePath(membershipId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -358,7 +358,7 @@ class Organization extends Service {
     final String apiPath =
         '/organization/memberships/{membershipId}'.replaceAll(
       '{membershipId}',
-      membershipId,
+      _encodePath(membershipId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -396,7 +396,7 @@ class Organization extends Service {
     final String apiPath =
         '/organization/memberships/{membershipId}'.replaceAll(
       '{membershipId}',
-      membershipId,
+      _encodePath(membershipId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -489,7 +489,7 @@ class Organization extends Service {
 
     final String apiPath = '/organization/projects/{projectId}'.replaceAll(
       '{projectId}',
-      projectId,
+      _encodePath(projectId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -522,7 +522,7 @@ class Organization extends Service {
 
     final String apiPath = '/organization/projects/{projectId}'.replaceAll(
       '{projectId}',
-      projectId,
+      _encodePath(projectId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -557,7 +557,7 @@ class Organization extends Service {
 
     final String apiPath = '/organization/projects/{projectId}'.replaceAll(
       '{projectId}',
-      projectId,
+      _encodePath(projectId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -592,7 +592,7 @@ class Organization extends Service {
 
     final String apiPath = '/organization/projects/{projectId}/keys'.replaceAll(
       '{projectId}',
-      projectId,
+      _encodePath(projectId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -635,7 +635,7 @@ class Organization extends Service {
     final String apiPath =
         '/organization/projects/{projectId}/keys/ephemeral'.replaceAll(
       '{projectId}',
-      projectId,
+      _encodePath(projectId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -679,11 +679,11 @@ class Organization extends Service {
     final String apiPath = '/organization/projects/{projectId}/keys/{keyId}'
         .replaceAll(
           '{projectId}',
-          projectId,
+          _encodePath(projectId),
         )
         .replaceAll(
           '{keyId}',
-          keyId,
+          _encodePath(keyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -728,11 +728,11 @@ class Organization extends Service {
     final String apiPath = '/organization/projects/{projectId}/keys/{keyId}'
         .replaceAll(
           '{projectId}',
-          projectId,
+          _encodePath(projectId),
         )
         .replaceAll(
           '{keyId}',
-          keyId,
+          _encodePath(keyId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -779,11 +779,11 @@ class Organization extends Service {
     final String apiPath = '/organization/projects/{projectId}/keys/{keyId}'
         .replaceAll(
           '{projectId}',
-          projectId,
+          _encodePath(projectId),
         )
         .replaceAll(
           '{keyId}',
-          keyId,
+          _encodePath(keyId),
         );
 
     final Map<String, dynamic> apiParams = {};
