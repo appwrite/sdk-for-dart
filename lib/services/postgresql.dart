@@ -123,7 +123,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -178,7 +178,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -243,7 +243,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -279,7 +279,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/backups'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -316,7 +316,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/backups'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -354,7 +354,7 @@ class Postgresql extends Service {
     final String apiPath =
         '/postgresql/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -396,7 +396,7 @@ class Postgresql extends Service {
     final String apiPath =
         '/postgresql/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -445,11 +445,11 @@ class Postgresql extends Service {
         '/postgresql/{databaseId}/backups/policies/{policyId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{policyId}',
-              policyId,
+              _encodePath(policyId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -494,11 +494,11 @@ class Postgresql extends Service {
         '/postgresql/{databaseId}/backups/policies/{policyId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{policyId}',
-              policyId,
+              _encodePath(policyId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -546,11 +546,11 @@ class Postgresql extends Service {
         '/postgresql/{databaseId}/backups/policies/{policyId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{policyId}',
-              policyId,
+              _encodePath(policyId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -593,7 +593,7 @@ class Postgresql extends Service {
     final String apiPath =
         '/postgresql/{databaseId}/backups/storage'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -643,11 +643,11 @@ class Postgresql extends Service {
     final String apiPath = '/postgresql/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{backupId}',
-          backupId,
+          _encodePath(backupId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -688,11 +688,11 @@ class Postgresql extends Service {
     final String apiPath = '/postgresql/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{backupId}',
-          backupId,
+          _encodePath(backupId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -726,7 +726,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/branches'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -764,7 +764,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/branches'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -810,11 +810,11 @@ class Postgresql extends Service {
     final String apiPath = '/postgresql/{databaseId}/branches/{branchId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{branchId}',
-          branchId,
+          _encodePath(branchId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -850,7 +850,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/credentials'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -898,7 +898,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/executions'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -935,7 +935,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/extensions'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -969,7 +969,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/extensions'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1013,11 +1013,11 @@ class Postgresql extends Service {
     final String apiPath = '/postgresql/{databaseId}/extensions/{extensionName}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{extensionName}',
-          extensionName,
+          _encodePath(extensionName),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1059,7 +1059,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1098,7 +1098,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/maintenance'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1139,7 +1139,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1181,7 +1181,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/operations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1218,7 +1218,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/pitr'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1251,7 +1251,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/pooler'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1292,7 +1292,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/pooler'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1336,7 +1336,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1373,7 +1373,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1431,7 +1431,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1482,11 +1482,11 @@ class Postgresql extends Service {
         '/postgresql/{databaseId}/restorations/{restorationId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{restorationId}',
-              restorationId,
+              _encodePath(restorationId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -1532,11 +1532,11 @@ class Postgresql extends Service {
         '/postgresql/{databaseId}/restorations/{restorationId}/promotions'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{restorationId}',
-              restorationId,
+              _encodePath(restorationId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -1571,7 +1571,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/status'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1605,7 +1605,7 @@ class Postgresql extends Service {
 
     final String apiPath = '/postgresql/{databaseId}/upgrades'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {

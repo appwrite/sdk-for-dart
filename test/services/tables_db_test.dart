@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await tablesDB.list();
+      final response = await tablesDB.list(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.DatabaseList>());
     });
 
@@ -93,13 +123,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.create(
         databaseId: "<DATABASE_ID>",
         name: "<NAME>",
+        enabled: false,
+        description: "<DESCRIPTION>",
+        specification: "serverless",
+        replicas: 1,
+        syncMode: "async",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "databaseId": "<DATABASE_ID>",
+        "name": "<NAME>",
+        "enabled": false,
+        "description": "<DESCRIPTION>",
+        "specification": "serverless",
+        "replicas": 1,
+        "syncMode": "async",
+      });
       expect(response, isA<models.Database>());
     });
 
@@ -110,10 +169,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listSpecifications();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/specifications",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseSpecificationList>());
     });
 
@@ -124,10 +199,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await tablesDB.listTransactions();
+      final response = await tablesDB.listTransactions(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/transactions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.TransactionList>());
     });
 
@@ -142,10 +239,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await tablesDB.createTransaction();
+      final response = await tablesDB.createTransaction(
+        ttl: 1,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/transactions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "ttl": 1,
+      });
       expect(response, isA<models.Transaction>());
     });
 
@@ -160,12 +277,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getTransaction(
         transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/transactions/%3CTRANSACTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Transaction>());
     });
 
@@ -180,12 +313,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateTransaction(
         transactionId: "<TRANSACTION_ID>",
+        commit: false,
+        rollback: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/transactions/%3CTRANSACTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "commit": false,
+        "rollback": false,
+      });
       expect(response, isA<models.Transaction>());
     });
 
@@ -193,12 +347,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteTransaction(
         transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/tablesdb/transactions/%3CTRANSACTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method createOperations()', () async {
@@ -212,12 +382,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createOperations(
         transactionId: "<TRANSACTION_ID>",
+        operations: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/transactions/%3CTRANSACTION_ID%3E/operations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "operations": isA<List>(),
+      });
       expect(response, isA<models.Transaction>());
     });
 
@@ -233,12 +422,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.get(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Database>());
     });
 
@@ -254,12 +459,41 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.update(
         databaseId: "<DATABASE_ID>",
+        name: "<NAME>",
+        enabled: false,
+        description: "<DESCRIPTION>",
+        specification: "serverless",
+        replicas: 1,
+        syncMode: "async",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/tablesdb/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "description": "<DESCRIPTION>",
+        "specification": "serverless",
+        "replicas": 1,
+        "syncMode": "async",
+      });
       expect(response, isA<models.Database>());
     });
 
@@ -267,12 +501,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.delete(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/tablesdb/%3CDATABASE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method createFailover()', () async {
@@ -326,12 +576,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createFailover(
         databaseId: "<DATABASE_ID>",
+        targetReplicaId: "<TARGET_REPLICA_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/failovers",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "targetReplicaId": "<TARGET_REPLICA_ID>",
+      });
       expect(response, isA<models.DedicatedDatabase>());
     });
 
@@ -342,12 +611,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listMigrations(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/migrations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DatabaseMigrationList>());
     });
 
@@ -373,13 +658,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createMigration(
         databaseId: "<DATABASE_ID>",
         specification: "s-1vcpu-1gb",
+        autoCutover: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/migrations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "specification": "s-1vcpu-1gb",
+        "autoCutover": false,
+      });
       expect(response, isA<models.DatabaseMigration>());
     });
 
@@ -405,13 +710,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getMigration(
         databaseId: "<DATABASE_ID>",
         migrationId: "<MIGRATION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/migrations/%3CMIGRATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DatabaseMigration>());
     });
 
@@ -419,13 +740,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteMigration(
         databaseId: "<DATABASE_ID>",
         migrationId: "<MIGRATION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/tablesdb/%3CDATABASE_ID%3E/migrations/%3CMIGRATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method createCutover()', () async {
@@ -450,13 +787,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createCutover(
         databaseId: "<DATABASE_ID>",
         migrationId: "<MIGRATION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/migrations/%3CMIGRATION_ID%3E/cutovers",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DatabaseMigration>());
     });
 
@@ -467,12 +820,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listOperations(
         databaseId: "<DATABASE_ID>",
+        status: "queued",
+        limit: 1,
+        offset: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/operations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "status": "queued",
+        "limit": 1,
+        "offset": 1,
+      });
       expect(response, isA<models.DedicatedDatabaseOperationList>());
     });
 
@@ -487,12 +863,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getReplicas(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/replicas",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DedicatedDatabaseReplicas>());
     });
 
@@ -512,12 +904,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getStatus(
         databaseId: "<DATABASE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/status",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.DatabaseStatus>());
     });
 
@@ -528,12 +936,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listTables(
         databaseId: "<DATABASE_ID>",
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.TableList>());
     });
 
@@ -555,14 +986,45 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createTable(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         name: "<NAME>",
+        permissions: [],
+        rowSecurity: false,
+        enabled: false,
+        columns: [],
+        indexes: [],
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "tableId": "<TABLE_ID>",
+        "name": "<NAME>",
+        "permissions": isA<List>(),
+        "rowSecurity": false,
+        "enabled": false,
+        "columns": isA<List>(),
+        "indexes": isA<List>(),
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Table>());
     });
 
@@ -584,13 +1046,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getTable(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Table>());
     });
 
@@ -612,13 +1090,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateTable(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
+        name: "<NAME>",
+        permissions: [],
+        rowSecurity: false,
+        enabled: false,
+        purge: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "permissions": isA<List>(),
+        "rowSecurity": false,
+        "enabled": false,
+        "purge": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Table>());
     });
 
@@ -626,13 +1133,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteTable(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listColumns()', () async {
@@ -642,13 +1165,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listColumns(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.ColumnList>());
     });
 
@@ -665,15 +1209,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createBigIntColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        min: 1,
+        max: 1,
+        xdefault: 1,
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/bigint",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnBigint>());
     });
 
@@ -690,16 +1263,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateBigIntColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: 1,
+        min: 1,
+        max: 1,
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/bigint/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnBigint>());
     });
 
@@ -716,15 +1316,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createBooleanColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: false,
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/boolean",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": false,
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnBoolean>());
     });
 
@@ -741,16 +1366,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateBooleanColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
-        xdefault: true,
+        xrequired: false,
+        xdefault: false,
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/boolean/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": false,
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnBoolean>());
     });
 
@@ -768,15 +1416,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createDatetimeColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: "2020-10-15T06:38:00.000+00:00",
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/datetime",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": "2020-10-15T06:38:00.000+00:00",
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnDatetime>());
     });
 
@@ -794,16 +1467,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateDatetimeColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "2020-10-15T06:38:00.000+00:00",
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/datetime/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "2020-10-15T06:38:00.000+00:00",
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnDatetime>());
     });
 
@@ -821,15 +1517,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createEmailColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: "email@example.com",
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": "email@example.com",
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnEmail>());
     });
 
@@ -847,16 +1568,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateEmailColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "email@example.com",
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/email/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "email@example.com",
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnEmail>());
     });
 
@@ -875,7 +1619,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createEnumColumn(
@@ -883,8 +1633,28 @@ void main() {
         tableId: "<TABLE_ID>",
         key: "<KEY>",
         elements: [],
-        xrequired: true,
+        xrequired: false,
+        xdefault: "active",
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/enum",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "elements": isA<List>(),
+        "required": false,
+        "default": "active",
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnEnum>());
     });
 
@@ -903,7 +1673,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateEnumColumn(
@@ -911,9 +1687,27 @@ void main() {
         tableId: "<TABLE_ID>",
         key: "<KEY>",
         elements: [],
-        xrequired: true,
+        xrequired: false,
         xdefault: "active",
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/enum/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "elements": isA<List>(),
+        "required": false,
+        "default": "active",
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnEnum>());
     });
 
@@ -930,15 +1724,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createFloatColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        min: 1.0,
+        max: 1.0,
+        xdefault: 1.0,
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/float",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "min": 1.0,
+        "max": 1.0,
+        "default": 1.0,
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnFloat>());
     });
 
@@ -955,16 +1778,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateFloatColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: 1.0,
+        min: 1.0,
+        max: 1.0,
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/float/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "min": 1.0,
+        "max": 1.0,
+        "default": 1.0,
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnFloat>());
     });
 
@@ -981,15 +1831,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createIntegerColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        min: 1,
+        max: 1,
+        xdefault: 1,
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/integer",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnInteger>());
     });
 
@@ -1006,16 +1885,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateIntegerColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: 1,
+        min: 1,
+        max: 1,
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/integer/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnInteger>());
     });
 
@@ -1033,15 +1939,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createIpColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: "192.0.2.0",
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/ip",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": "192.0.2.0",
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnIp>());
     });
 
@@ -1059,16 +1990,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateIpColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "192.0.2.0",
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/ip/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "192.0.2.0",
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnIp>());
     });
 
@@ -1085,15 +2039,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createLineColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: [],
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/line",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": isA<List>(),
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnLine>());
     });
 
@@ -1110,15 +2087,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateLineColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: [],
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/line/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": isA<List>(),
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnLine>());
     });
 
@@ -1135,15 +2136,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createLongtextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: "Hello World",
+        array: false,
+        encrypt: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/longtext",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": "Hello World",
+        "array": false,
+        "encrypt": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnLongtext>());
     });
 
@@ -1160,16 +2188,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateLongtextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "Hello World",
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/longtext/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "Hello World",
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnLongtext>());
     });
 
@@ -1186,15 +2237,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createMediumtextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: "Hello World",
+        array: false,
+        encrypt: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/mediumtext",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": "Hello World",
+        "array": false,
+        "encrypt": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnMediumtext>());
     });
 
@@ -1211,16 +2289,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateMediumtextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "Hello World",
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/mediumtext/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "Hello World",
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnMediumtext>());
     });
 
@@ -1237,15 +2338,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createPointColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: [],
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/point",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": isA<List>(),
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnPoint>());
     });
 
@@ -1262,15 +2386,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updatePointColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: [],
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/point/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": isA<List>(),
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnPoint>());
     });
 
@@ -1287,15 +2435,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createPolygonColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: [],
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/polygon",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": isA<List>(),
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnPolygon>());
     });
 
@@ -1312,15 +2483,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updatePolygonColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: [],
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/polygon/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": isA<List>(),
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnPolygon>());
     });
 
@@ -1343,7 +2538,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createRelationshipColumn(
@@ -1351,7 +2552,30 @@ void main() {
         tableId: "<TABLE_ID>",
         relatedTableId: "<RELATED_TABLE_ID>",
         type: enums.RelationshipType.oneToOne,
+        twoWay: false,
+        key: "<KEY>",
+        twoWayKey: "<TWO_WAY_KEY>",
+        onDelete: enums.RelationMutate.cascade,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/relationship",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "relatedTableId": "<RELATED_TABLE_ID>",
+        "type": enums.RelationshipType.oneToOne.value,
+        "twoWay": false,
+        "key": "<KEY>",
+        "twoWayKey": "<TWO_WAY_KEY>",
+        "onDelete": enums.RelationMutate.cascade.value,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnRelationship>());
     });
 
@@ -1374,14 +2598,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateRelationshipColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
+        onDelete: enums.RelationMutate.cascade,
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/relationship/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "onDelete": enums.RelationMutate.cascade.value,
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnRelationship>());
     });
 
@@ -1399,7 +2646,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createStringColumn(
@@ -1407,8 +2660,30 @@ void main() {
         tableId: "<TABLE_ID>",
         key: "<KEY>",
         size: 1,
-        xrequired: true,
+        xrequired: false,
+        xdefault: "Hello World",
+        array: false,
+        encrypt: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/string",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "size": 1,
+        "required": false,
+        "default": "Hello World",
+        "array": false,
+        "encrypt": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnString>());
     });
 
@@ -1426,16 +2701,41 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateStringColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "Hello World",
+        size: 1,
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/string/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "Hello World",
+        "size": 1,
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnString>());
     });
 
@@ -1452,15 +2752,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createTextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: "Hello World",
+        array: false,
+        encrypt: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/text",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": "Hello World",
+        "array": false,
+        "encrypt": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnText>());
     });
 
@@ -1477,16 +2804,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateTextColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "Hello World",
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/text/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "Hello World",
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnText>());
     });
 
@@ -1504,15 +2854,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createUrlColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
+        xdefault: "https://example.com",
+        array: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/url",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "required": false,
+        "default": "https://example.com",
+        "array": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnUrl>());
     });
 
@@ -1530,16 +2905,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateUrlColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "https://example.com",
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/url/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "https://example.com",
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnUrl>());
     });
 
@@ -1557,7 +2955,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createVarcharColumn(
@@ -1565,8 +2969,30 @@ void main() {
         tableId: "<TABLE_ID>",
         key: "<KEY>",
         size: 1,
-        xrequired: true,
+        xrequired: false,
+        xdefault: "Hello World",
+        array: false,
+        encrypt: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/varchar",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "size": 1,
+        "required": false,
+        "default": "Hello World",
+        "array": false,
+        "encrypt": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnVarchar>());
     });
 
@@ -1584,16 +3010,41 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateVarcharColumn(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         key: "<KEY>",
-        xrequired: true,
+        xrequired: false,
         xdefault: "Hello World",
+        size: 1,
+        newKey: "<NEW_KEY>",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/varchar/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "required": false,
+        "default": "Hello World",
+        "size": 1,
+        "newKey": "<NEW_KEY>",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnVarchar>());
     });
 
@@ -1611,7 +3062,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getColumn(
@@ -1619,6 +3076,16 @@ void main() {
         tableId: "<TABLE_ID>",
         key: "<KEY>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.ColumnString>());
     });
 
@@ -1626,7 +3093,13 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteColumn(
@@ -1634,6 +3107,16 @@ void main() {
         tableId: "<TABLE_ID>",
         key: "<KEY>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/columns/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listIndexes()', () async {
@@ -1643,13 +3126,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listIndexes(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/indexes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.ColumnIndexList>());
     });
 
@@ -1668,7 +3172,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createIndex(
@@ -1677,7 +3187,27 @@ void main() {
         key: "<KEY>",
         type: enums.TablesDBIndexType.key,
         columns: [],
+        orders: [enums.OrderBy.asc],
+        lengths: [],
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/indexes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "type": enums.TablesDBIndexType.key.value,
+        "columns": isA<List>(),
+        "orders": isA<List>(),
+        "lengths": isA<List>(),
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.ColumnIndex>());
     });
 
@@ -1696,7 +3226,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getIndex(
@@ -1704,6 +3240,16 @@ void main() {
         tableId: "<TABLE_ID>",
         key: "<KEY>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/indexes/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.ColumnIndex>());
     });
 
@@ -1711,7 +3257,13 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteIndex(
@@ -1719,6 +3271,16 @@ void main() {
         tableId: "<TABLE_ID>",
         key: "<KEY>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/indexes/%3CKEY%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listRows()', () async {
@@ -1728,13 +3290,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.listRows(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
+        total: false,
+        ttl: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+        "total": false,
+        "ttl": 1,
+      });
       expect(response, isA<models.RowList>());
     });
 
@@ -1750,7 +3337,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createRow(
@@ -1758,7 +3351,24 @@ void main() {
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
         data: {},
+        permissions: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "rowId": "<ROW_ID>",
+        "data": isA<Map>(),
+        "permissions": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Row>());
     });
 
@@ -1769,14 +3379,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createRows(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         rows: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "rows": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.RowList>());
     });
 
@@ -1787,14 +3417,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.upsertRows(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         rows: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "rows": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.RowList>());
     });
 
@@ -1805,13 +3455,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateRows(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
+        data: {},
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "data": isA<Map>(),
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.RowList>());
     });
 
@@ -1822,13 +3495,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteRows(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.RowList>());
     });
 
@@ -1839,13 +3533,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.createQuery(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
+        total: false,
+        ttl: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/query",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+        "total": false,
+        "ttl": 1,
+      });
       expect(response, isA<models.RowList>());
     });
 
@@ -1861,14 +3580,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.getRow(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
+        queries: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Row>());
     });
 
@@ -1884,14 +3624,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.upsertRow(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
+        data: {},
+        permissions: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "data": isA<Map>(),
+        "permissions": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Row>());
     });
 
@@ -1907,14 +3670,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.updateRow(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
+        data: {},
+        permissions: [],
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "data": isA<Map>(),
+        "permissions": isA<List>(),
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Row>());
     });
 
@@ -1922,14 +3708,33 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.deleteRow(
         databaseId: "<DATABASE_ID>",
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "transactionId": "<TRANSACTION_ID>",
+      });
     });
 
     test('test method decrementRowColumn()', () async {
@@ -1944,7 +3749,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.decrementRowColumn(
@@ -1952,7 +3763,24 @@ void main() {
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
         column: "<COLUMN>",
+        value: 1.0,
+        min: 1.0,
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E/%3CCOLUMN%3E/decrement",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "value": 1.0,
+        "min": 1.0,
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Row>());
     });
 
@@ -1968,7 +3796,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await tablesDB.incrementRowColumn(
@@ -1976,7 +3810,24 @@ void main() {
         tableId: "<TABLE_ID>",
         rowId: "<ROW_ID>",
         column: "<COLUMN>",
+        value: 1.0,
+        max: 1.0,
+        transactionId: "<TRANSACTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/tablesdb/%3CDATABASE_ID%3E/tables/%3CTABLE_ID%3E/rows/%3CROW_ID%3E/%3CCOLUMN%3E/increment",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "value": 1.0,
+        "max": 1.0,
+        "transactionId": "<TRANSACTION_ID>",
+      });
       expect(response, isA<models.Row>());
     });
   });

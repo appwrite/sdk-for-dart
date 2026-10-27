@@ -123,7 +123,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -178,7 +178,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -243,7 +243,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -279,7 +279,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/backups'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -316,7 +316,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/backups'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -353,7 +353,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -394,7 +394,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -442,11 +442,11 @@ class Mysql extends Service {
     final String apiPath = '/mysql/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{policyId}',
-          policyId,
+          _encodePath(policyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -490,11 +490,11 @@ class Mysql extends Service {
     final String apiPath = '/mysql/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{policyId}',
-          policyId,
+          _encodePath(policyId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -541,11 +541,11 @@ class Mysql extends Service {
     final String apiPath = '/mysql/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{policyId}',
-          policyId,
+          _encodePath(policyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -587,7 +587,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/backups/storage'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -637,11 +637,11 @@ class Mysql extends Service {
     final String apiPath = '/mysql/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{backupId}',
-          backupId,
+          _encodePath(backupId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -682,11 +682,11 @@ class Mysql extends Service {
     final String apiPath = '/mysql/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{backupId}',
-          backupId,
+          _encodePath(backupId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -720,7 +720,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/branches'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -758,7 +758,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/branches'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -804,11 +804,11 @@ class Mysql extends Service {
     final String apiPath = '/mysql/{databaseId}/branches/{branchId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{branchId}',
-          branchId,
+          _encodePath(branchId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -844,7 +844,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/credentials'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -892,7 +892,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/executions'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -938,7 +938,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -977,7 +977,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/maintenance'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1018,7 +1018,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1060,7 +1060,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/operations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1097,7 +1097,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/pitr'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1130,7 +1130,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/pooler'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1171,7 +1171,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/pooler'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1215,7 +1215,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1252,7 +1252,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1310,7 +1310,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1360,11 +1360,11 @@ class Mysql extends Service {
     final String apiPath = '/mysql/{databaseId}/restorations/{restorationId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{restorationId}',
-          restorationId,
+          _encodePath(restorationId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1410,11 +1410,11 @@ class Mysql extends Service {
         '/mysql/{databaseId}/restorations/{restorationId}/promotions'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{restorationId}',
-              restorationId,
+              _encodePath(restorationId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -1449,7 +1449,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/status'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1483,7 +1483,7 @@ class Mysql extends Service {
 
     final String apiPath = '/mysql/{databaseId}/upgrades'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {

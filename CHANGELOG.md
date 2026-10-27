@@ -1,5 +1,19 @@
 # Change Log
 
+## 31.1.0
+
+* Updated: requests send response format `2.6.2`
+* Updated: redirects are no longer followed; a 3xx response throws `AppwriteException` naming its `Location`
+* Fixed: a `.` or `..` path parameter throws `AppwriteException` before the request is sent
+* Added: `migrations` service with `list`, `get`, `retry`, `delete`, Appwrite, Firebase, NHost and Supabase migrations and reports, and CSV and JSON imports and exports
+* Added: `AppwriteMigrationResource`, `FirebaseMigrationResource`, `NHostMigrationResource`, `SupabaseMigrationResource` and `OnDuplicate` enums
+* Added: `Migration`, `MigrationList` and `MigrationReport` models
+* Added: `project.updateDenyRealtimeGuestsPolicy`, `ProjectPolicyId.denyRealtimeGuests` and the `PolicyDenyRealtimeGuests` model
+* Added: `project.deleteSessions` to sign out every session in the project
+* Added: `deploymentRetention`, `deploymentRetentionMax` and `deploymentsRetentionCount` on `BillingPlan`
+* Added: `python315`, `deno29`, `go127` and `rust199` on `Runtime` and `BuildRuntime`
+* Fixed: path parameters and upload IDs are percent-encoded as one segment, so `/`, `?` and `#` stay in the value
+
 ## 31.0.0
 
 * Breaking: model constructors require the new `description`; `BillingPlan` requires `functionsAllowCron`, `Bucket` requires `stripMetadata`, and the password dictionary and personal data policy models require `denyList`

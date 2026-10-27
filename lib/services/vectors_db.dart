@@ -157,7 +157,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -191,7 +191,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -227,7 +227,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/transactions/{transactionId}'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -262,7 +262,7 @@ class VectorsDB extends Service {
     final String apiPath =
         '/vectorsdb/transactions/{transactionId}/operations'.replaceAll(
       '{transactionId}',
-      transactionId,
+      _encodePath(transactionId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -298,7 +298,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -336,7 +336,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -377,7 +377,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -414,7 +414,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}/collections'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -460,7 +460,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}/collections'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -510,11 +510,11 @@ class VectorsDB extends Service {
     final String apiPath = '/vectorsdb/{databaseId}/collections/{collectionId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{collectionId}',
-          collectionId,
+          _encodePath(collectionId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -560,11 +560,11 @@ class VectorsDB extends Service {
     final String apiPath = '/vectorsdb/{databaseId}/collections/{collectionId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{collectionId}',
-          collectionId,
+          _encodePath(collectionId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -613,11 +613,11 @@ class VectorsDB extends Service {
     final String apiPath = '/vectorsdb/{databaseId}/collections/{collectionId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{collectionId}',
-          collectionId,
+          _encodePath(collectionId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -664,11 +664,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -721,11 +721,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -777,11 +777,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -831,11 +831,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -885,11 +885,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -938,11 +938,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -994,11 +994,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents/query'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1055,15 +1055,15 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1120,15 +1120,15 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1185,15 +1185,15 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1247,15 +1247,15 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{documentId}',
-              documentId,
+              _encodePath(documentId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1301,11 +1301,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/indexes'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1357,11 +1357,11 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/indexes'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             );
 
     final Map<String, dynamic> apiParams = {
@@ -1417,15 +1417,15 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -1473,15 +1473,15 @@ class VectorsDB extends Service {
         '/vectorsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{collectionId}',
-              collectionId,
+              _encodePath(collectionId),
             )
             .replaceAll(
               '{key}',
-              key,
+              _encodePath(key),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -1523,7 +1523,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1564,7 +1564,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}/operations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1601,7 +1601,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1635,7 +1635,7 @@ class VectorsDB extends Service {
 
     final String apiPath = '/vectorsdb/{databaseId}/status'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};

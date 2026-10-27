@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '31.0.0',
-      'X-Appwrite-Response-Format': '2.5.0',
+      'x-sdk-version': '31.1.0',
+      'X-Appwrite-Response-Format': '2.6.2',
     };
 
     config = {};
@@ -225,7 +225,7 @@ class ClientBrowser extends ClientBase with ClientMixin {
       try {
         res = await call(
           HttpMethod.get,
-          path: '$path/${params[idParamName]}',
+          path: '$path/${Uri.encodeComponent(params[idParamName].toString())}',
           headers: headers,
         );
         final int chunksUploaded = res.data['chunksUploaded'] as int;

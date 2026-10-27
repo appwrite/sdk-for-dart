@@ -23,7 +23,7 @@ class Provider implements Model {
   /// Type of provider.
   final String type;
 
-  /// Provider credentials.
+  /// Provider credentials. Secret values are write-only and never returned.
   final Map<String, dynamic> credentials;
 
   /// Provider options.

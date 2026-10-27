@@ -42,10 +42,10 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '31.0.0',
+      'x-sdk-version': '31.1.0',
       'user-agent':
-          'AppwriteDartSDK/31.0.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format': '2.5.0',
+          'AppwriteDartSDK/31.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format': '2.6.2',
     };
 
     config = {};
@@ -243,7 +243,7 @@ class ClientIO extends ClientBase with ClientMixin {
       try {
         res = await call(
           HttpMethod.get,
-          path: '$path/${params[idParamName]}',
+          path: '$path/${Uri.encodeComponent(params[idParamName].toString())}',
           headers: headers,
         );
         final int chunksUploaded = res.data['chunksUploaded'] as int;
@@ -400,6 +400,8 @@ class ClientIO extends ClientBase with ClientMixin {
       headers: {..._headers!, ...headers},
       params: params,
     );
+    // Not followed: a redirect would carry the API key wherever it points.
+    request.followRedirects = false;
 
     try {
       final streamedResponse = await _httpClient.send(request);

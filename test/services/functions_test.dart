@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await functions.list();
+      final response = await functions.list(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.FunctionList>());
     });
 
@@ -120,14 +150,76 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.create(
         functionId: "<FUNCTION_ID>",
         name: "<NAME>",
         runtime: enums.Runtime.node145,
+        execute: [],
+        events: [],
+        schedule: "0 0 * * *",
+        timeout: 1,
+        enabled: false,
+        logging: false,
+        entrypoint: "<ENTRYPOINT>",
+        commands: "<COMMANDS>",
+        scopes: [enums.ProjectKeyScopes.projectRead],
+        installationId: "<INSTALLATION_ID>",
+        providerRepositoryId: "<PROVIDER_REPOSITORY_ID>",
+        providerBranch: "<PROVIDER_BRANCH>",
+        providerSilentMode: false,
+        providerRootDirectory: "<PROVIDER_ROOT_DIRECTORY>",
+        providerBranches: [],
+        providerPaths: [],
+        buildSpecification: "s-1vcpu-512mb",
+        runtimeSpecification: "s-1vcpu-512mb",
+        deploymentRetention: 1,
+        interval: 1,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/functions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "functionId": "<FUNCTION_ID>",
+        "name": "<NAME>",
+        "runtime": enums.Runtime.node145.value,
+        "execute": isA<List>(),
+        "events": isA<List>(),
+        "schedule": "0 0 * * *",
+        "timeout": 1,
+        "enabled": false,
+        "logging": false,
+        "entrypoint": "<ENTRYPOINT>",
+        "commands": "<COMMANDS>",
+        "scopes": isA<List>(),
+        "installationId": "<INSTALLATION_ID>",
+        "providerRepositoryId": "<PROVIDER_REPOSITORY_ID>",
+        "providerBranch": "<PROVIDER_BRANCH>",
+        "providerSilentMode": false,
+        "providerRootDirectory": "<PROVIDER_ROOT_DIRECTORY>",
+        "providerBranches": isA<List>(),
+        "providerPaths": isA<List>(),
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 1,
+        "interval": 1,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Func>());
     });
 
@@ -138,10 +230,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await functions.listRuntimes();
+      final response = await functions.listRuntimes(
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/runtimes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "total": false,
+      });
       expect(response, isA<models.RuntimeList>());
     });
 
@@ -152,10 +264,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await functions.listSpecifications();
+      final response = await functions.listSpecifications(
+        type: "runtimes",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/specifications",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "type": "runtimes",
+        "total": false,
+      });
       expect(response, isA<models.SpecificationList>());
     });
 
@@ -198,12 +332,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.get(
         functionId: "<FUNCTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/%3CFUNCTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Func>());
     });
 
@@ -246,13 +396,77 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.update(
         functionId: "<FUNCTION_ID>",
         name: "<NAME>",
+        runtime: enums.Runtime.node145,
+        execute: [],
+        events: [],
+        schedule: "0 0 * * *",
+        timeout: 1,
+        enabled: false,
+        logging: false,
+        entrypoint: "<ENTRYPOINT>",
+        commands: "<COMMANDS>",
+        scopes: [enums.ProjectKeyScopes.projectRead],
+        installationId: "<INSTALLATION_ID>",
+        providerRepositoryId: "<PROVIDER_REPOSITORY_ID>",
+        providerBranch: "<PROVIDER_BRANCH>",
+        providerSilentMode: false,
+        providerRootDirectory: "<PROVIDER_ROOT_DIRECTORY>",
+        providerBranches: [],
+        providerPaths: [],
+        buildSpecification: "s-1vcpu-512mb",
+        runtimeSpecification: "s-1vcpu-512mb",
+        deploymentRetention: 1,
+        interval: 1,
+        description: "<DESCRIPTION>",
+        emailEnabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/functions/%3CFUNCTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "runtime": enums.Runtime.node145.value,
+        "execute": isA<List>(),
+        "events": isA<List>(),
+        "schedule": "0 0 * * *",
+        "timeout": 1,
+        "enabled": false,
+        "logging": false,
+        "entrypoint": "<ENTRYPOINT>",
+        "commands": "<COMMANDS>",
+        "scopes": isA<List>(),
+        "installationId": "<INSTALLATION_ID>",
+        "providerRepositoryId": "<PROVIDER_REPOSITORY_ID>",
+        "providerBranch": "<PROVIDER_BRANCH>",
+        "providerSilentMode": false,
+        "providerRootDirectory": "<PROVIDER_ROOT_DIRECTORY>",
+        "providerBranches": isA<List>(),
+        "providerPaths": isA<List>(),
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 1,
+        "interval": 1,
+        "description": "<DESCRIPTION>",
+        "emailEnabled": false,
+      });
       expect(response, isA<models.Func>());
     });
 
@@ -260,12 +474,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.delete(
         functionId: "<FUNCTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/functions/%3CFUNCTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updateFunctionDeployment()', () async {
@@ -307,13 +537,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.updateFunctionDeployment(
         functionId: "<FUNCTION_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/functions/%3CFUNCTION_ID%3E/deployment",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "deploymentId": "<DEPLOYMENT_ID>",
+      });
       expect(response, isA<models.Func>());
     });
 
@@ -324,12 +572,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.listDeployments(
         functionId: "<FUNCTION_ID>",
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/%3CFUNCTION_ID%3E/deployments",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.DeploymentList>());
     });
 
@@ -369,19 +640,38 @@ void main() {
 
       when(
         client.chunkedUpload(
-          path: argThat(isNotNull),
-          params: argThat(isNotNull),
-          paramName: argThat(isNotNull),
-          idParamName: argThat(isNotNull),
-          headers: argThat(isNotNull),
+          path: anyNamed('path'),
+          params: anyNamed('params'),
+          paramName: anyNamed('paramName'),
+          idParamName: anyNamed('idParamName'),
+          headers: anyNamed('headers'),
+          method: anyNamed('method'),
         ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.createDeployment(
         functionId: "<FUNCTION_ID>",
         code: InputFile.fromPath(path: './image.png'),
-        activate: true,
+        activate: false,
+        entrypoint: "<ENTRYPOINT>",
+        commands: "<COMMANDS>",
       );
+      final Map<String, dynamic> params = verify(
+        client.chunkedUpload(
+          path: "/functions/%3CFUNCTION_ID%3E/deployments",
+          params: captureAnyNamed('params'),
+          paramName: anyNamed('paramName'),
+          idParamName: anyNamed('idParamName'),
+          headers: anyNamed('headers'),
+          method: HttpMethod.post,
+        ),
+      ).captured.single;
+      expect(params, {
+        "entrypoint": "<ENTRYPOINT>",
+        "commands": "<COMMANDS>",
+        "code": isA<InputFile>(),
+        "activate": false,
+      });
       expect(response, isA<models.Deployment>());
     });
 
@@ -420,13 +710,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.createDuplicateDeployment(
         functionId: "<FUNCTION_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
+        buildId: "<BUILD_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/functions/%3CFUNCTION_ID%3E/deployments/duplicate",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "deploymentId": "<DEPLOYMENT_ID>",
+        "buildId": "<BUILD_ID>",
+      });
       expect(response, isA<models.Deployment>());
     });
 
@@ -465,7 +775,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.createTemplateDeployment(
@@ -475,7 +791,25 @@ void main() {
         rootDirectory: "<ROOT_DIRECTORY>",
         type: enums.TemplateReferenceType.commit,
         reference: "<REFERENCE>",
+        activate: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/functions/%3CFUNCTION_ID%3E/deployments/template",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "repository": "<REPOSITORY>",
+        "owner": "<OWNER>",
+        "rootDirectory": "<ROOT_DIRECTORY>",
+        "type": enums.TemplateReferenceType.commit.value,
+        "reference": "<REFERENCE>",
+        "activate": false,
+      });
       expect(response, isA<models.Deployment>());
     });
 
@@ -514,14 +848,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.createVcsDeployment(
         functionId: "<FUNCTION_ID>",
         type: enums.VCSReferenceType.branch,
         reference: "<REFERENCE>",
+        activate: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/functions/%3CFUNCTION_ID%3E/deployments/vcs",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "type": enums.VCSReferenceType.branch.value,
+        "reference": "<REFERENCE>",
+        "activate": false,
+      });
       expect(response, isA<models.Deployment>());
     });
 
@@ -560,13 +915,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.getDeployment(
         functionId: "<FUNCTION_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/%3CFUNCTION_ID%3E/deployments/%3CDEPLOYMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Deployment>());
     });
 
@@ -574,26 +945,63 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.deleteDeployment(
         functionId: "<FUNCTION_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/functions/%3CFUNCTION_ID%3E/deployments/%3CDEPLOYMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method getDeploymentDownload()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.getDeploymentDownload(
         functionId: "<FUNCTION_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
+        type: enums.DeploymentDownloadType.source,
+        token: "<TOKEN>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/%3CFUNCTION_ID%3E/deployments/%3CDEPLOYMENT_ID%3E/download",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "type": enums.DeploymentDownloadType.source.value,
+        "token": "<TOKEN>",
+      });
       expect(response, isA<Uint8List>());
     });
 
@@ -632,13 +1040,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.updateDeploymentStatus(
         functionId: "<FUNCTION_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/functions/%3CFUNCTION_ID%3E/deployments/%3CDEPLOYMENT_ID%3E/status",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Deployment>());
     });
 
@@ -649,12 +1073,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.listExecutions(
         functionId: "<FUNCTION_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/%3CFUNCTION_ID%3E/executions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.ExecutionList>());
     });
 
@@ -681,12 +1126,41 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.createExecution(
         functionId: "<FUNCTION_ID>",
+        body: "<BODY>",
+        xasync: false,
+        path: "<PATH>",
+        method: enums.ExecutionMethod.gET,
+        headers: {},
+        scheduledAt: "<SCHEDULED_AT>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/functions/%3CFUNCTION_ID%3E/executions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "body": "<BODY>",
+        "async": false,
+        "path": "<PATH>",
+        "method": enums.ExecutionMethod.gET.value,
+        "headers": isA<Map>(),
+        "scheduledAt": "<SCHEDULED_AT>",
+      });
       expect(response, isA<models.Execution>());
     });
 
@@ -713,13 +1187,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.getExecution(
         functionId: "<FUNCTION_ID>",
         executionId: "<EXECUTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/%3CFUNCTION_ID%3E/executions/%3CEXECUTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Execution>());
     });
 
@@ -727,13 +1217,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.deleteExecution(
         functionId: "<FUNCTION_ID>",
         executionId: "<EXECUTION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/functions/%3CFUNCTION_ID%3E/executions/%3CEXECUTION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listVariables()', () async {
@@ -743,12 +1249,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.listVariables(
         functionId: "<FUNCTION_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/%3CFUNCTION_ID%3E/variables",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.VariableList>());
     });
 
@@ -766,7 +1293,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.createVariable(
@@ -774,7 +1307,25 @@ void main() {
         variableId: "<VARIABLE_ID>",
         key: "<KEY>",
         value: "<VALUE>",
+        secret: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/functions/%3CFUNCTION_ID%3E/variables",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "variableId": "<VARIABLE_ID>",
+        "key": "<KEY>",
+        "value": "<VALUE>",
+        "secret": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Variable>());
     });
 
@@ -792,13 +1343,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.getVariable(
         functionId: "<FUNCTION_ID>",
         variableId: "<VARIABLE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/functions/%3CFUNCTION_ID%3E/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Variable>());
     });
 
@@ -816,13 +1383,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.updateVariable(
         functionId: "<FUNCTION_ID>",
         variableId: "<VARIABLE_ID>",
+        key: "<KEY>",
+        value: "<VALUE>",
+        secret: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/functions/%3CFUNCTION_ID%3E/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "value": "<VALUE>",
+        "secret": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Variable>());
     });
 
@@ -830,13 +1422,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await functions.deleteVariable(
         functionId: "<FUNCTION_ID>",
         variableId: "<VARIABLE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/functions/%3CFUNCTION_ID%3E/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
   });
 }

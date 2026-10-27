@@ -14,7 +14,7 @@ class DnsRecord implements Model {
   /// DNS record type (e.g. A, CNAME, MX).
   final String type;
 
-  /// Record name or subdomain.
+  /// Record name relative to the domain, or `@` for the domain itself.
   final String name;
 
   /// Value of the record (IP address, domain, etc.).

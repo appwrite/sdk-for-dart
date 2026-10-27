@@ -17,6 +17,6 @@ models.DedicatedDatabaseBackupStorage result = await postgresql.updateBackupStor
     secretKey: '<SECRET_KEY>',
     region: '<REGION>', // (optional)
     prefix: '<PREFIX>', // (optional)
-    endpoint: '<ENDPOINT>', // (optional)
+    endpoint: 'https://example.com', // (optional)
 );
 ```
