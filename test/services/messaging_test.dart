@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await messaging.listMessages();
+      final response = await messaging.listMessages(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/messages",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.MessageList>());
     });
 
@@ -96,14 +126,58 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createEmail(
         messageId: "<MESSAGE_ID>",
         subject: "<SUBJECT>",
         content: "<CONTENT>",
+        topics: [],
+        users: [],
+        targets: [],
+        cc: [],
+        bcc: [],
+        attachments: [],
+        draft: false,
+        html: false,
+        scheduledAt: "2020-10-15T06:38:00.000+00:00",
+        replyToEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        emails: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/messages/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "messageId": "<MESSAGE_ID>",
+        "subject": "<SUBJECT>",
+        "content": "<CONTENT>",
+        "topics": isA<List>(),
+        "users": isA<List>(),
+        "targets": isA<List>(),
+        "cc": isA<List>(),
+        "bcc": isA<List>(),
+        "attachments": isA<List>(),
+        "draft": false,
+        "html": false,
+        "scheduledAt": "2020-10-15T06:38:00.000+00:00",
+        "replyToEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "emails": isA<List>(),
+      });
       expect(response, isA<models.Message>());
     });
 
@@ -122,12 +196,57 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateEmail(
         messageId: "<MESSAGE_ID>",
+        topics: [],
+        users: [],
+        targets: [],
+        subject: "<SUBJECT>",
+        content: "<CONTENT>",
+        draft: false,
+        html: false,
+        cc: [],
+        bcc: [],
+        scheduledAt: "2020-10-15T06:38:00.000+00:00",
+        attachments: [],
+        replyToEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        emails: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/messages/email/%3CMESSAGE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "topics": isA<List>(),
+        "users": isA<List>(),
+        "targets": isA<List>(),
+        "subject": "<SUBJECT>",
+        "content": "<CONTENT>",
+        "draft": false,
+        "html": false,
+        "cc": isA<List>(),
+        "bcc": isA<List>(),
+        "scheduledAt": "2020-10-15T06:38:00.000+00:00",
+        "attachments": isA<List>(),
+        "replyToEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "emails": isA<List>(),
+      });
       expect(response, isA<models.Message>());
     });
 
@@ -146,12 +265,68 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createPush(
         messageId: "<MESSAGE_ID>",
+        title: "<TITLE>",
+        body: "<BODY>",
+        topics: [],
+        users: [],
+        targets: [],
+        data: {},
+        action: "<ACTION>",
+        image: "<ID1:ID2>",
+        icon: "<ICON>",
+        sound: "<SOUND>",
+        color: "<COLOR>",
+        tag: "<TAG>",
+        badge: 1,
+        draft: false,
+        scheduledAt: "2020-10-15T06:38:00.000+00:00",
+        contentAvailable: false,
+        critical: false,
+        priority: enums.MessagePriority.normal,
+        channelId: "<CHANNEL_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/messages/push",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "messageId": "<MESSAGE_ID>",
+        "title": "<TITLE>",
+        "body": "<BODY>",
+        "topics": isA<List>(),
+        "users": isA<List>(),
+        "targets": isA<List>(),
+        "data": isA<Map>(),
+        "action": "<ACTION>",
+        "image": "<ID1:ID2>",
+        "icon": "<ICON>",
+        "sound": "<SOUND>",
+        "color": "<COLOR>",
+        "tag": "<TAG>",
+        "badge": 1,
+        "draft": false,
+        "scheduledAt": "2020-10-15T06:38:00.000+00:00",
+        "contentAvailable": false,
+        "critical": false,
+        "priority": enums.MessagePriority.normal.value,
+        "channelId": "<CHANNEL_ID>",
+      });
       expect(response, isA<models.Message>());
     });
 
@@ -170,12 +345,67 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updatePush(
         messageId: "<MESSAGE_ID>",
+        topics: [],
+        users: [],
+        targets: [],
+        title: "<TITLE>",
+        body: "<BODY>",
+        data: {},
+        action: "<ACTION>",
+        image: "<ID1:ID2>",
+        icon: "<ICON>",
+        sound: "<SOUND>",
+        color: "<COLOR>",
+        tag: "<TAG>",
+        badge: 1,
+        draft: false,
+        scheduledAt: "2020-10-15T06:38:00.000+00:00",
+        contentAvailable: false,
+        critical: false,
+        priority: enums.MessagePriority.normal,
+        channelId: "<CHANNEL_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/messages/push/%3CMESSAGE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "topics": isA<List>(),
+        "users": isA<List>(),
+        "targets": isA<List>(),
+        "title": "<TITLE>",
+        "body": "<BODY>",
+        "data": isA<Map>(),
+        "action": "<ACTION>",
+        "image": "<ID1:ID2>",
+        "icon": "<ICON>",
+        "sound": "<SOUND>",
+        "color": "<COLOR>",
+        "tag": "<TAG>",
+        "badge": 1,
+        "draft": false,
+        "scheduledAt": "2020-10-15T06:38:00.000+00:00",
+        "contentAvailable": false,
+        "critical": false,
+        "priority": enums.MessagePriority.normal.value,
+        "channelId": "<CHANNEL_ID>",
+      });
       expect(response, isA<models.Message>());
     });
 
@@ -194,13 +424,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createSms(
         messageId: "<MESSAGE_ID>",
         content: "<CONTENT>",
+        topics: [],
+        users: [],
+        targets: [],
+        draft: false,
+        scheduledAt: "2020-10-15T06:38:00.000+00:00",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/messages/sms",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "messageId": "<MESSAGE_ID>",
+        "content": "<CONTENT>",
+        "topics": isA<List>(),
+        "users": isA<List>(),
+        "targets": isA<List>(),
+        "draft": false,
+        "scheduledAt": "2020-10-15T06:38:00.000+00:00",
+      });
       expect(response, isA<models.Message>());
     });
 
@@ -219,13 +478,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createSMS(
         messageId: "<MESSAGE_ID>",
         content: "<CONTENT>",
+        topics: [],
+        users: [],
+        targets: [],
+        draft: false,
+        scheduledAt: "2020-10-15T06:38:00.000+00:00",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/messages/sms",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "messageId": "<MESSAGE_ID>",
+        "content": "<CONTENT>",
+        "topics": isA<List>(),
+        "users": isA<List>(),
+        "targets": isA<List>(),
+        "draft": false,
+        "scheduledAt": "2020-10-15T06:38:00.000+00:00",
+      });
       expect(response, isA<models.Message>());
     });
 
@@ -244,12 +532,41 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateSms(
         messageId: "<MESSAGE_ID>",
+        topics: [],
+        users: [],
+        targets: [],
+        content: "<CONTENT>",
+        draft: false,
+        scheduledAt: "2020-10-15T06:38:00.000+00:00",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/messages/sms/%3CMESSAGE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "topics": isA<List>(),
+        "users": isA<List>(),
+        "targets": isA<List>(),
+        "content": "<CONTENT>",
+        "draft": false,
+        "scheduledAt": "2020-10-15T06:38:00.000+00:00",
+      });
       expect(response, isA<models.Message>());
     });
 
@@ -268,12 +585,41 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateSMS(
         messageId: "<MESSAGE_ID>",
+        topics: [],
+        users: [],
+        targets: [],
+        content: "<CONTENT>",
+        draft: false,
+        scheduledAt: "2020-10-15T06:38:00.000+00:00",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/messages/sms/%3CMESSAGE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "topics": isA<List>(),
+        "users": isA<List>(),
+        "targets": isA<List>(),
+        "content": "<CONTENT>",
+        "draft": false,
+        "scheduledAt": "2020-10-15T06:38:00.000+00:00",
+      });
       expect(response, isA<models.Message>());
     });
 
@@ -292,12 +638,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.getMessage(
         messageId: "<MESSAGE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/messages/%3CMESSAGE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Message>());
     });
 
@@ -305,12 +667,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.delete(
         messageId: "<MESSAGE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/messaging/messages/%3CMESSAGE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listTargets()', () async {
@@ -320,12 +698,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.listTargets(
         messageId: "<MESSAGE_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/messages/%3CMESSAGE_ID%3E/targets",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.TargetList>());
     });
 
@@ -336,10 +735,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await messaging.listProviders();
+      final response = await messaging.listProviders(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/providers",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.ProviderList>());
     });
 
@@ -356,13 +779,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createApnsProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        authKey: "<AUTH_KEY>",
+        authKeyId: "<AUTH_KEY_ID>",
+        teamId: "<TEAM_ID>",
+        bundleId: "<BUNDLE_ID>",
+        sandbox: false,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/apns",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "authKey": "<AUTH_KEY>",
+        "authKeyId": "<AUTH_KEY_ID>",
+        "teamId": "<TEAM_ID>",
+        "bundleId": "<BUNDLE_ID>",
+        "sandbox": false,
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -379,13 +833,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createAPNSProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        authKey: "<AUTH_KEY>",
+        authKeyId: "<AUTH_KEY_ID>",
+        teamId: "<TEAM_ID>",
+        bundleId: "<BUNDLE_ID>",
+        sandbox: false,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/apns",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "authKey": "<AUTH_KEY>",
+        "authKeyId": "<AUTH_KEY_ID>",
+        "teamId": "<TEAM_ID>",
+        "bundleId": "<BUNDLE_ID>",
+        "sandbox": false,
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -402,12 +887,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateApnsProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        authKey: "<AUTH_KEY>",
+        authKeyId: "<AUTH_KEY_ID>",
+        teamId: "<TEAM_ID>",
+        bundleId: "<BUNDLE_ID>",
+        sandbox: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/apns/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "authKey": "<AUTH_KEY>",
+        "authKeyId": "<AUTH_KEY_ID>",
+        "teamId": "<TEAM_ID>",
+        "bundleId": "<BUNDLE_ID>",
+        "sandbox": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -424,12 +940,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateAPNSProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        authKey: "<AUTH_KEY>",
+        authKeyId: "<AUTH_KEY_ID>",
+        teamId: "<TEAM_ID>",
+        bundleId: "<BUNDLE_ID>",
+        sandbox: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/apns/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "authKey": "<AUTH_KEY>",
+        "authKeyId": "<AUTH_KEY_ID>",
+        "teamId": "<TEAM_ID>",
+        "bundleId": "<BUNDLE_ID>",
+        "sandbox": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -446,13 +993,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createAppwriteProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        enabled: false,
+        qos: 1,
+        expiry: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/appwrite",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "enabled": false,
+        "qos": 1,
+        "expiry": 1,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -469,12 +1041,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateAppwriteProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        qos: 1,
+        expiry: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/appwrite/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "qos": 1,
+        "expiry": 1,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -491,13 +1088,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createFcmProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        serviceAccountJSON: {},
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/fcm",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "serviceAccountJSON": isA<Map>(),
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -514,13 +1134,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createFCMProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        serviceAccountJSON: {},
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/fcm",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "serviceAccountJSON": isA<Map>(),
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -537,12 +1180,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateFcmProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        serviceAccountJSON: {},
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/fcm/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "serviceAccountJSON": isA<Map>(),
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -559,12 +1225,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateFCMProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        serviceAccountJSON: {},
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/fcm/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "serviceAccountJSON": isA<Map>(),
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -581,13 +1270,48 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createMailgunProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        apiKey: "<API_KEY>",
+        domain: "example.com",
+        isEuRegion: false,
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "email@example.com",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/mailgun",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "apiKey": "<API_KEY>",
+        "domain": "example.com",
+        "isEuRegion": false,
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "email@example.com",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -604,12 +1328,47 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateMailgunProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        apiKey: "<API_KEY>",
+        domain: "example.com",
+        isEuRegion: false,
+        enabled: false,
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "<REPLY_TO_EMAIL>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/mailgun/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "apiKey": "<API_KEY>",
+        "domain": "example.com",
+        "isEuRegion": false,
+        "enabled": false,
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "<REPLY_TO_EMAIL>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -626,13 +1385,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createMsg91Provider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        templateId: "<TEMPLATE_ID>",
+        senderId: "<SENDER_ID>",
+        authKey: "<AUTH_KEY>",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/msg91",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "templateId": "<TEMPLATE_ID>",
+        "senderId": "<SENDER_ID>",
+        "authKey": "<AUTH_KEY>",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -649,12 +1435,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateMsg91Provider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        templateId: "<TEMPLATE_ID>",
+        senderId: "<SENDER_ID>",
+        authKey: "<AUTH_KEY>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/msg91/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "templateId": "<TEMPLATE_ID>",
+        "senderId": "<SENDER_ID>",
+        "authKey": "<AUTH_KEY>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -671,13 +1484,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createResendProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        apiKey: "<API_KEY>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "email@example.com",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/resend",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "apiKey": "<API_KEY>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "email@example.com",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -694,12 +1538,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateResendProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        apiKey: "<API_KEY>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "<REPLY_TO_EMAIL>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/resend/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "apiKey": "<API_KEY>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "<REPLY_TO_EMAIL>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -716,13 +1591,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createSendgridProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        apiKey: "<API_KEY>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "email@example.com",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/sendgrid",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "apiKey": "<API_KEY>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "email@example.com",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -739,12 +1645,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateSendgridProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        apiKey: "<API_KEY>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "<REPLY_TO_EMAIL>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/sendgrid/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "apiKey": "<API_KEY>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "<REPLY_TO_EMAIL>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -761,13 +1698,48 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createSesProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        accessKey: "<ACCESS_KEY>",
+        secretKey: "<SECRET_KEY>",
+        region: "<REGION>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "email@example.com",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/ses",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "accessKey": "<ACCESS_KEY>",
+        "secretKey": "<SECRET_KEY>",
+        "region": "<REGION>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "email@example.com",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -784,12 +1756,47 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateSesProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        accessKey: "<ACCESS_KEY>",
+        secretKey: "<SECRET_KEY>",
+        region: "<REGION>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "<REPLY_TO_EMAIL>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/ses/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "accessKey": "<ACCESS_KEY>",
+        "secretKey": "<SECRET_KEY>",
+        "region": "<REGION>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "<REPLY_TO_EMAIL>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -806,14 +1813,56 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createSmtpProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
         host: "<HOST>",
+        port: 1,
+        username: "<USERNAME>",
+        password: "password",
+        encryption: enums.SmtpEncryption.none,
+        autoTLS: false,
+        mailer: "<MAILER>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "email@example.com",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/smtp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "host": "<HOST>",
+        "port": 1,
+        "username": "<USERNAME>",
+        "password": "password",
+        "encryption": enums.SmtpEncryption.none.value,
+        "autoTLS": false,
+        "mailer": "<MAILER>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "email@example.com",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -830,14 +1879,56 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createSMTPProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
         host: "<HOST>",
+        port: 1,
+        username: "<USERNAME>",
+        password: "password",
+        encryption: enums.SmtpEncryption.none,
+        autoTLS: false,
+        mailer: "<MAILER>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "email@example.com",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/smtp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "host": "<HOST>",
+        "port": 1,
+        "username": "<USERNAME>",
+        "password": "password",
+        "encryption": enums.SmtpEncryption.none.value,
+        "autoTLS": false,
+        "mailer": "<MAILER>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "email@example.com",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -854,12 +1945,55 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateSmtpProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        host: "<HOST>",
+        port: 1,
+        username: "<USERNAME>",
+        password: "password",
+        encryption: enums.SmtpEncryption.none,
+        autoTLS: false,
+        mailer: "<MAILER>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "<REPLY_TO_EMAIL>",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/smtp/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "host": "<HOST>",
+        "port": 1,
+        "username": "<USERNAME>",
+        "password": "password",
+        "encryption": enums.SmtpEncryption.none.value,
+        "autoTLS": false,
+        "mailer": "<MAILER>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "<REPLY_TO_EMAIL>",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -876,12 +2010,55 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateSMTPProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        host: "<HOST>",
+        port: 1,
+        username: "<USERNAME>",
+        password: "password",
+        encryption: enums.SmtpEncryption.none,
+        autoTLS: false,
+        mailer: "<MAILER>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "<REPLY_TO_EMAIL>",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/smtp/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "host": "<HOST>",
+        "port": 1,
+        "username": "<USERNAME>",
+        "password": "password",
+        "encryption": enums.SmtpEncryption.none.value,
+        "autoTLS": false,
+        "mailer": "<MAILER>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "<REPLY_TO_EMAIL>",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -898,13 +2075,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createTelesignProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        from: "+12065550100",
+        customerId: "<CUSTOMER_ID>",
+        apiKey: "<API_KEY>",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/telesign",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "from": "+12065550100",
+        "customerId": "<CUSTOMER_ID>",
+        "apiKey": "<API_KEY>",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -921,12 +2125,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateTelesignProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        customerId: "<CUSTOMER_ID>",
+        apiKey: "<API_KEY>",
+        from: "<FROM>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/telesign/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "customerId": "<CUSTOMER_ID>",
+        "apiKey": "<API_KEY>",
+        "from": "<FROM>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -943,13 +2174,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createTextmagicProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        from: "+12065550100",
+        username: "<USERNAME>",
+        apiKey: "<API_KEY>",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/textmagic",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "from": "+12065550100",
+        "username": "<USERNAME>",
+        "apiKey": "<API_KEY>",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -966,12 +2224,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateTextmagicProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        username: "<USERNAME>",
+        apiKey: "<API_KEY>",
+        from: "<FROM>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/textmagic/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "username": "<USERNAME>",
+        "apiKey": "<API_KEY>",
+        "from": "<FROM>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -988,13 +2273,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createTwilioProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        from: "<FROM>",
+        accountSid: "<ACCOUNT_SID>",
+        authToken: "<AUTH_TOKEN>",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/twilio",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "from": "<FROM>",
+        "accountSid": "<ACCOUNT_SID>",
+        "authToken": "<AUTH_TOKEN>",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -1011,12 +2323,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateTwilioProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        accountSid: "<ACCOUNT_SID>",
+        authToken: "<AUTH_TOKEN>",
+        from: "<FROM>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/twilio/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "accountSid": "<ACCOUNT_SID>",
+        "authToken": "<AUTH_TOKEN>",
+        "from": "<FROM>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -1033,13 +2372,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createVonageProvider(
         providerId: "<PROVIDER_ID>",
         name: "<NAME>",
+        from: "+12065550100",
+        apiKey: "<API_KEY>",
+        apiSecret: "<API_SECRET>",
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/vonage",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "from": "+12065550100",
+        "apiKey": "<API_KEY>",
+        "apiSecret": "<API_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -1056,12 +2422,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateVonageProvider(
         providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        apiKey: "<API_KEY>",
+        apiSecret: "<API_SECRET>",
+        from: "<FROM>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/vonage/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "apiKey": "<API_KEY>",
+        "apiSecret": "<API_SECRET>",
+        "from": "<FROM>",
+      });
       expect(response, isA<models.Provider>());
     });
 
@@ -1078,12 +2471,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.getProvider(
         providerId: "<PROVIDER_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/providers/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Provider>());
     });
 
@@ -1091,12 +2500,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.deleteProvider(
         providerId: "<PROVIDER_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/messaging/providers/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listTopics()', () async {
@@ -1106,10 +2531,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await messaging.listTopics();
+      final response = await messaging.listTopics(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/topics",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.TopicList>());
     });
 
@@ -1127,13 +2576,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createTopic(
         topicId: "<TOPIC_ID>",
         name: "<NAME>",
+        subscribe: [],
+        qos: 1,
+        expiry: 1,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/topics",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "topicId": "<TOPIC_ID>",
+        "name": "<NAME>",
+        "subscribe": isA<List>(),
+        "qos": 1,
+        "expiry": 1,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Topic>());
     });
 
@@ -1151,12 +2627,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.getTopic(
         topicId: "<TOPIC_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/topics/%3CTOPIC_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Topic>());
     });
 
@@ -1174,12 +2666,39 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.updateTopic(
         topicId: "<TOPIC_ID>",
+        name: "<NAME>",
+        subscribe: [],
+        qos: 1,
+        expiry: 1,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/topics/%3CTOPIC_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "subscribe": isA<List>(),
+        "qos": 1,
+        "expiry": 1,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Topic>());
     });
 
@@ -1187,12 +2706,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.deleteTopic(
         topicId: "<TOPIC_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/messaging/topics/%3CTOPIC_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listSubscribers()', () async {
@@ -1202,12 +2737,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.listSubscribers(
         topicId: "<TOPIC_ID>",
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/topics/%3CTOPIC_ID%3E/subscribers",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.SubscriberList>());
     });
 
@@ -1234,7 +2792,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.createSubscriber(
@@ -1242,6 +2806,19 @@ void main() {
         subscriberId: "<SUBSCRIBER_ID>",
         targetId: "<TARGET_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/topics/%3CTOPIC_ID%3E/subscribers",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "subscriberId": "<SUBSCRIBER_ID>",
+        "targetId": "<TARGET_ID>",
+      });
       expect(response, isA<models.Subscriber>());
     });
 
@@ -1268,13 +2845,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.getSubscriber(
         topicId: "<TOPIC_ID>",
         subscriberId: "<SUBSCRIBER_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/messaging/topics/%3CTOPIC_ID%3E/subscribers/%3CSUBSCRIBER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Subscriber>());
     });
 
@@ -1282,13 +2875,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await messaging.deleteSubscriber(
         topicId: "<TOPIC_ID>",
         subscriberId: "<SUBSCRIBER_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/messaging/topics/%3CTOPIC_ID%3E/subscribers/%3CSUBSCRIBER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
   });
 }

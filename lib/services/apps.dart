@@ -149,7 +149,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -200,7 +200,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -255,7 +255,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -292,7 +292,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}/installations'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -337,11 +337,11 @@ class Apps extends Service {
     final String apiPath = '/apps/{appId}/installations/{installationId}'
         .replaceAll(
           '{appId}',
-          appId,
+          _encodePath(appId),
         )
         .replaceAll(
           '{installationId}',
-          installationId,
+          _encodePath(installationId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -383,11 +383,11 @@ class Apps extends Service {
     final String apiPath = '/apps/{appId}/installations/{installationId}'
         .replaceAll(
           '{appId}',
-          appId,
+          _encodePath(appId),
         )
         .replaceAll(
           '{installationId}',
-          installationId,
+          _encodePath(installationId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -435,11 +435,11 @@ class Apps extends Service {
     final String apiPath = '/apps/{appId}/installations/{installationId}/tokens'
         .replaceAll(
           '{appId}',
-          appId,
+          _encodePath(appId),
         )
         .replaceAll(
           '{installationId}',
-          installationId,
+          _encodePath(installationId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -474,7 +474,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}/keys'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -511,7 +511,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}/keys'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -552,11 +552,11 @@ class Apps extends Service {
     final String apiPath = '/apps/{appId}/keys/{keyId}'
         .replaceAll(
           '{appId}',
-          appId,
+          _encodePath(appId),
         )
         .replaceAll(
           '{keyId}',
-          keyId,
+          _encodePath(keyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -596,11 +596,11 @@ class Apps extends Service {
     final String apiPath = '/apps/{appId}/keys/{keyId}'
         .replaceAll(
           '{appId}',
-          appId,
+          _encodePath(appId),
         )
         .replaceAll(
           '{keyId}',
-          keyId,
+          _encodePath(keyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -636,7 +636,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}/labels'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -673,7 +673,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}/secrets'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -708,7 +708,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}/secrets'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -749,11 +749,11 @@ class Apps extends Service {
     final String apiPath = '/apps/{appId}/secrets/{secretId}'
         .replaceAll(
           '{appId}',
-          appId,
+          _encodePath(appId),
         )
         .replaceAll(
           '{secretId}',
-          secretId,
+          _encodePath(secretId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -793,11 +793,11 @@ class Apps extends Service {
     final String apiPath = '/apps/{appId}/secrets/{secretId}'
         .replaceAll(
           '{appId}',
-          appId,
+          _encodePath(appId),
         )
         .replaceAll(
           '{secretId}',
-          secretId,
+          _encodePath(secretId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -831,7 +831,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}/team'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -866,7 +866,7 @@ class Apps extends Service {
 
     final String apiPath = '/apps/{appId}/tokens'.replaceAll(
       '{appId}',
-      appId,
+      _encodePath(appId),
     );
 
     final Map<String, dynamic> apiParams = {};

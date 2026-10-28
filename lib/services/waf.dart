@@ -35,9 +35,9 @@ class Waf extends Service {
   /// Create a bypass WAF rule. Conditions can match request attributes including
   /// `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`,
   /// `host`, `country`, `continent`, `headers.<name>`, `query.<key>`,
-  /// `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-  /// `browserVersion`. Conditions on `city` and `state` require the premium Geo
-  /// DB addon.
+  /// `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+  /// `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+  /// `state` require the premium Geo DB addon.
   Future<models.WafRuleBypass> createBypassRule({
     required String ruleId,
     required String resourceType,
@@ -80,9 +80,9 @@ class Waf extends Service {
   /// Update a bypass WAF rule. Conditions can match request attributes including
   /// `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`,
   /// `host`, `country`, `continent`, `headers.<name>`, `query.<key>`,
-  /// `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-  /// `browserVersion`. Conditions on `city` and `state` require the premium Geo
-  /// DB addon.
+  /// `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+  /// `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+  /// `state` require the premium Geo DB addon.
   Future<models.WafRuleBypass> updateBypassRule({
     required String ruleId,
     String? resourceType,
@@ -101,7 +101,7 @@ class Waf extends Service {
 
     final String apiPath = '/waf/rules/bypass/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -136,8 +136,9 @@ class Waf extends Service {
   /// challenged again. Conditions can match request attributes including `ip`
   /// (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`, `host`,
   /// `country`, `continent`, `headers.<name>`, `query.<key>`, `queryKeys`,
-  /// `userAgent`, `os`, `osVersion`, `browser`, and `browserVersion`. Conditions
-  /// on `city` and `state` require the premium Geo DB addon.
+  /// `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`, `osVersion`,
+  /// `browser`, and `browserVersion`. Conditions on `city` and `state` require
+  /// the premium Geo DB addon.
   Future<models.WafRuleChallenge> createChallengeRule({
     required String ruleId,
     required String resourceType,
@@ -189,8 +190,9 @@ class Waf extends Service {
   /// challenged again. Conditions can match request attributes including `ip`
   /// (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`, `host`,
   /// `country`, `continent`, `headers.<name>`, `query.<key>`, `queryKeys`,
-  /// `userAgent`, `os`, `osVersion`, `browser`, and `browserVersion`. Conditions
-  /// on `city` and `state` require the premium Geo DB addon.
+  /// `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`, `osVersion`,
+  /// `browser`, and `browserVersion`. Conditions on `city` and `state` require
+  /// the premium Geo DB addon.
   Future<models.WafRuleChallenge> updateChallengeRule({
     required String ruleId,
     String? resourceType,
@@ -212,7 +214,7 @@ class Waf extends Service {
 
     final String apiPath = '/waf/rules/challenge/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -247,9 +249,19 @@ class Waf extends Service {
   /// Create a deny WAF rule. Conditions can match request attributes including
   /// `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`,
   /// `host`, `country`, `continent`, `headers.<name>`, `query.<key>`,
-  /// `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-  /// `browserVersion`. Conditions on `city` and `state` require the premium Geo
-  /// DB addon.
+  /// `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+  /// `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+  /// `state` require the premium Geo DB addon. `sessionAge` and `mfaAge` hold
+  /// the seconds since the request's session was created and since its last MFA
+  /// challenge. Both are null for requests without a session, such as guests and
+  /// API keys, while a request authenticated with the `x-appwrite-jwt` header
+  /// carries the age of the session its token is bound to; on `functions` rules
+  /// the session comes from the `x-appwrite-user-jwt` header, and `mfaAge` is
+  /// null when the session never completed MFA. A deny matching on `mfaAge`
+  /// returns `user_challenge_required` and one matching on `sessionAge` returns
+  /// `user_reauthentication_required`, both with status 401, so the user can
+  /// sign in again and retry. To also deny requests without a session, combine
+  /// `isNull` and `greaterThan` in an `or` condition.
   Future<models.WafRuleDeny> createDenyRule({
     required String ruleId,
     required String resourceType,
@@ -292,9 +304,19 @@ class Waf extends Service {
   /// Update a deny WAF rule. Conditions can match request attributes including
   /// `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`,
   /// `host`, `country`, `continent`, `headers.<name>`, `query.<key>`,
-  /// `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-  /// `browserVersion`. Conditions on `city` and `state` require the premium Geo
-  /// DB addon.
+  /// `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+  /// `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+  /// `state` require the premium Geo DB addon. `sessionAge` and `mfaAge` hold
+  /// the seconds since the request's session was created and since its last MFA
+  /// challenge. Both are null for requests without a session, such as guests and
+  /// API keys, while a request authenticated with the `x-appwrite-jwt` header
+  /// carries the age of the session its token is bound to; on `functions` rules
+  /// the session comes from the `x-appwrite-user-jwt` header, and `mfaAge` is
+  /// null when the session never completed MFA. A deny matching on `mfaAge`
+  /// returns `user_challenge_required` and one matching on `sessionAge` returns
+  /// `user_reauthentication_required`, both with status 401, so the user can
+  /// sign in again and retry. To also deny requests without a session, combine
+  /// `isNull` and `greaterThan` in an `or` condition.
   Future<models.WafRuleDeny> updateDenyRule({
     required String ruleId,
     String? resourceType,
@@ -313,7 +335,7 @@ class Waf extends Service {
 
     final String apiPath = '/waf/rules/deny/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -347,9 +369,9 @@ class Waf extends Service {
   /// without an authenticated user skip `userId` rules). Conditions can match
   /// request attributes including `ip` (plain IPs or CIDR blocks like
   /// `10.0.0.0/8`), `method`, `path`, `host`, `country`, `continent`,
-  /// `headers.<name>`, `query.<key>`, `queryKeys`, `userAgent`, `os`,
-  /// `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
-  /// `state` require the premium Geo DB addon.
+  /// `headers.<name>`, `query.<key>`, `queryKeys`, `accept`, `acceptLanguage`,
+  /// `cookie`, `userAgent`, `os`, `osVersion`, `browser`, and `browserVersion`.
+  /// Conditions on `city` and `state` require the premium Geo DB addon.
   Future<models.WafRuleRateLimit> createRateLimitRule({
     required String ruleId,
     required String resourceType,
@@ -404,9 +426,9 @@ class Waf extends Service {
   /// without an authenticated user skip `userId` rules). Conditions can match
   /// request attributes including `ip` (plain IPs or CIDR blocks like
   /// `10.0.0.0/8`), `method`, `path`, `host`, `country`, `continent`,
-  /// `headers.<name>`, `query.<key>`, `queryKeys`, `userAgent`, `os`,
-  /// `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
-  /// `state` require the premium Geo DB addon.
+  /// `headers.<name>`, `query.<key>`, `queryKeys`, `accept`, `acceptLanguage`,
+  /// `cookie`, `userAgent`, `os`, `osVersion`, `browser`, and `browserVersion`.
+  /// Conditions on `city` and `state` require the premium Geo DB addon.
   Future<models.WafRuleRateLimit> updateRateLimitRule({
     required String ruleId,
     String? resourceType,
@@ -429,7 +451,7 @@ class Waf extends Service {
 
     final String apiPath = '/waf/rules/rate-limit/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -465,9 +487,9 @@ class Waf extends Service {
   /// Create a redirect WAF rule. Conditions can match request attributes
   /// including `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`,
   /// `path`, `host`, `country`, `continent`, `headers.<name>`, `query.<key>`,
-  /// `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-  /// `browserVersion`. Conditions on `city` and `state` require the premium Geo
-  /// DB addon.
+  /// `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+  /// `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+  /// `state` require the premium Geo DB addon.
   Future<models.WafRuleRedirect> createRedirectRule({
     required String ruleId,
     required String resourceType,
@@ -514,9 +536,9 @@ class Waf extends Service {
   /// Update a redirect WAF rule. Conditions can match request attributes
   /// including `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`,
   /// `path`, `host`, `country`, `continent`, `headers.<name>`, `query.<key>`,
-  /// `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-  /// `browserVersion`. Conditions on `city` and `state` require the premium Geo
-  /// DB addon.
+  /// `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+  /// `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+  /// `state` require the premium Geo DB addon.
   Future<models.WafRuleRedirect> updateRedirectRule({
     required String ruleId,
     String? resourceType,
@@ -537,7 +559,7 @@ class Waf extends Service {
 
     final String apiPath = '/waf/rules/redirect/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -580,7 +602,7 @@ class Waf extends Service {
 
     final String apiPath = '/waf/rules/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -639,7 +661,7 @@ class Waf extends Service {
 
     final String apiPath = '/waf/rules/{ruleId}'.replaceAll(
       '{ruleId}',
-      ruleId,
+      _encodePath(ruleId),
     );
 
     final Map<String, dynamic> apiParams = {};

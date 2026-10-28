@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -157,10 +163,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.get();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Organization>());
     });
 
@@ -254,12 +276,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.update(
         name: "<NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/organization",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+      });
       expect(response, isA<models.Organization>());
     });
 
@@ -267,10 +307,26 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.delete();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/organization",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listInstallations()', () async {
@@ -280,10 +336,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await organization.listInstallations();
+      final response = await organization.listInstallations(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/installations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.AppInstallationList>());
     });
 
@@ -301,12 +379,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createInstallation(
         appId: "<APP_ID>",
+        authorizationDetails: "<AUTHORIZATION_DETAILS>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/organization/installations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "appId": "<APP_ID>",
+        "authorizationDetails": "<AUTHORIZATION_DETAILS>",
+      });
       expect(response, isA<models.AppInstallation>());
     });
 
@@ -324,12 +422,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.getInstallation(
         installationId: "<INSTALLATION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/installations/%3CINSTALLATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.AppInstallation>());
     });
 
@@ -347,12 +461,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.updateInstallation(
         installationId: "<INSTALLATION_ID>",
+        authorizationDetails: "<AUTHORIZATION_DETAILS>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/organization/installations/%3CINSTALLATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "authorizationDetails": "<AUTHORIZATION_DETAILS>",
+      });
       expect(response, isA<models.AppInstallation>());
     });
 
@@ -360,12 +493,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.deleteInstallation(
         installationId: "<INSTALLATION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/organization/installations/%3CINSTALLATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listMemberships()', () async {
@@ -375,10 +524,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await organization.listMemberships();
+      final response = await organization.listMemberships(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/memberships",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.MembershipList>());
     });
 
@@ -402,12 +575,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createMembership(
         roles: [],
+        email: "email@example.com",
+        userId: "<USER_ID>",
+        phone: "+12065550100",
+        url: "https://example.com",
+        name: "<NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/organization/memberships",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "email": "email@example.com",
+        "userId": "<USER_ID>",
+        "phone": "+12065550100",
+        "roles": isA<List>(),
+        "url": "https://example.com",
+        "name": "<NAME>",
+      });
       expect(response, isA<models.Membership>());
     });
 
@@ -431,12 +632,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.getMembership(
         membershipId: "<MEMBERSHIP_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/memberships/%3CMEMBERSHIP_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Membership>());
     });
 
@@ -460,13 +677,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.updateMembership(
         membershipId: "<MEMBERSHIP_ID>",
         roles: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/organization/memberships/%3CMEMBERSHIP_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "roles": isA<List>(),
+      });
       expect(response, isA<models.Membership>());
     });
 
@@ -474,12 +709,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.deleteMembership(
         membershipId: "<MEMBERSHIP_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/organization/memberships/%3CMEMBERSHIP_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listProjects()', () async {
@@ -489,10 +740,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await organization.listProjects();
+      final response = await organization.listProjects(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/projects",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.ProjectList>());
     });
 
@@ -527,13 +802,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createProject(
         projectId: "<PROJECT_ID>",
         name: "<NAME>",
+        region: enums.Region.fra,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/organization/projects",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "projectId": "<PROJECT_ID>",
+        "name": "<NAME>",
+        "region": enums.Region.fra.value,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -568,12 +864,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.getProject(
         projectId: "<PROJECT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/projects/%3CPROJECT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Project>());
     });
 
@@ -608,13 +920,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.updateProject(
         projectId: "<PROJECT_ID>",
         name: "<NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/organization/projects/%3CPROJECT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -622,12 +952,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.deleteProject(
         projectId: "<PROJECT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/organization/projects/%3CPROJECT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listProjectKeys()', () async {
@@ -637,12 +983,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.listProjectKeys(
         projectId: "<PROJECT_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/projects/%3CPROJECT_ID%3E/keys",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.KeyList>());
     });
 
@@ -661,7 +1028,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.createEphemeralProjectKey(
@@ -669,6 +1042,19 @@ void main() {
         scopes: [enums.ProjectKeyScopes.usersRead],
         duration: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/organization/projects/%3CPROJECT_ID%3E/keys/ephemeral",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "scopes": isA<List>(),
+        "duration": 1,
+      });
       expect(response, isA<models.EphemeralKey>());
     });
 
@@ -687,13 +1073,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.getProjectKey(
         projectId: "<PROJECT_ID>",
         keyId: "<KEY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/projects/%3CPROJECT_ID%3E/keys/%3CKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Key>());
     });
 
@@ -712,7 +1114,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.updateProjectKey(
@@ -720,7 +1128,24 @@ void main() {
         keyId: "<KEY_ID>",
         name: "<NAME>",
         scopes: [enums.ProjectKeyScopes.usersRead],
+        expire: "2020-10-15T06:38:00.000+00:00",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/organization/projects/%3CPROJECT_ID%3E/keys/%3CKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "scopes": isA<List>(),
+        "expire": "2020-10-15T06:38:00.000+00:00",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Key>());
     });
 
@@ -728,13 +1153,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await organization.deleteProjectKey(
         projectId: "<PROJECT_ID>",
         keyId: "<KEY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/organization/projects/%3CPROJECT_ID%3E/keys/%3CKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
   });
 }

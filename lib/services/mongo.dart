@@ -123,7 +123,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -178,7 +178,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -243,7 +243,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -279,7 +279,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/backups'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -316,7 +316,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/backups'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -353,7 +353,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -394,7 +394,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/backups/policies'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -442,11 +442,11 @@ class Mongo extends Service {
     final String apiPath = '/mongo/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{policyId}',
-          policyId,
+          _encodePath(policyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -490,11 +490,11 @@ class Mongo extends Service {
     final String apiPath = '/mongo/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{policyId}',
-          policyId,
+          _encodePath(policyId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -541,11 +541,11 @@ class Mongo extends Service {
     final String apiPath = '/mongo/{databaseId}/backups/policies/{policyId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{policyId}',
-          policyId,
+          _encodePath(policyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -587,7 +587,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/backups/storage'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -637,11 +637,11 @@ class Mongo extends Service {
     final String apiPath = '/mongo/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{backupId}',
-          backupId,
+          _encodePath(backupId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -682,11 +682,11 @@ class Mongo extends Service {
     final String apiPath = '/mongo/{databaseId}/backups/{backupId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{backupId}',
-          backupId,
+          _encodePath(backupId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -720,7 +720,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/branches'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -758,7 +758,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/branches'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -804,11 +804,11 @@ class Mongo extends Service {
     final String apiPath = '/mongo/{databaseId}/branches/{branchId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{branchId}',
-          branchId,
+          _encodePath(branchId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -844,7 +844,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/credentials'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -886,7 +886,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/failovers'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -925,7 +925,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/maintenance'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -966,7 +966,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/migrations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1008,7 +1008,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/operations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1045,7 +1045,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/pitr'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1078,7 +1078,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/replicas'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1115,7 +1115,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1173,7 +1173,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/restorations'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1223,11 +1223,11 @@ class Mongo extends Service {
     final String apiPath = '/mongo/{databaseId}/restorations/{restorationId}'
         .replaceAll(
           '{databaseId}',
-          databaseId,
+          _encodePath(databaseId),
         )
         .replaceAll(
           '{restorationId}',
-          restorationId,
+          _encodePath(restorationId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1273,11 +1273,11 @@ class Mongo extends Service {
         '/mongo/{databaseId}/restorations/{restorationId}/promotions'
             .replaceAll(
               '{databaseId}',
-              databaseId,
+              _encodePath(databaseId),
             )
             .replaceAll(
               '{restorationId}',
-              restorationId,
+              _encodePath(restorationId),
             );
 
     final Map<String, dynamic> apiParams = {};
@@ -1312,7 +1312,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/status'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1346,7 +1346,7 @@ class Mongo extends Service {
 
     final String apiPath = '/mongo/{databaseId}/upgrades'.replaceAll(
       '{databaseId}',
-      databaseId,
+      _encodePath(databaseId),
     );
 
     final Map<String, dynamic> apiParams = {

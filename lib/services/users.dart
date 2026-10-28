@@ -179,7 +179,7 @@ class Users extends Service {
 
     final String apiPath = '/users/identities/{identityId}'.replaceAll(
       '{identityId}',
-      identityId,
+      _encodePath(identityId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -406,7 +406,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -443,7 +443,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -477,7 +477,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/email'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -520,7 +520,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/impersonator'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -559,7 +559,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/jwts'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -601,7 +601,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/labels'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -639,7 +639,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/memberships'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -679,7 +679,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -715,7 +715,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -755,11 +755,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/mfa/authenticators/{type}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{type}',
-          type.value,
+          _encodePath(type.value),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -794,11 +794,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/mfa/authenticators/{type}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{type}',
-          type.value,
+          _encodePath(type.value),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -840,11 +840,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/mfa/challenges/{challengeId}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{challengeId}',
-          challengeId,
+          _encodePath(challengeId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -879,7 +879,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa/factors'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -911,7 +911,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa/factors'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -949,7 +949,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -984,7 +984,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1022,7 +1022,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1058,7 +1058,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1097,7 +1097,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1133,7 +1133,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/mfa/recovery-codes'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1167,7 +1167,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/name'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1204,7 +1204,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/passkeys'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1247,11 +1247,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{passkeyId}',
-          passkeyId,
+          _encodePath(passkeyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1292,11 +1292,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{passkeyId}',
-          passkeyId,
+          _encodePath(passkeyId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1340,11 +1340,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/passkeys/{passkeyId}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{passkeyId}',
-          passkeyId,
+          _encodePath(passkeyId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1378,7 +1378,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/password'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1414,7 +1414,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/phone'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1449,7 +1449,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/prefs'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1484,7 +1484,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/prefs'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1520,7 +1520,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/sessions'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1559,7 +1559,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/sessions'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1592,7 +1592,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/sessions'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -1633,11 +1633,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/sessions/{sessionId}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{sessionId}',
-          sessionId,
+          _encodePath(sessionId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1672,7 +1672,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/status'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1709,7 +1709,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/targets'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1749,7 +1749,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/targets'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1796,11 +1796,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/targets/{targetId}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{targetId}',
-          targetId,
+          _encodePath(targetId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1843,11 +1843,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/targets/{targetId}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{targetId}',
-          targetId,
+          _encodePath(targetId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1892,11 +1892,11 @@ class Users extends Service {
     final String apiPath = '/users/{userId}/targets/{targetId}'
         .replaceAll(
           '{userId}',
-          userId,
+          _encodePath(userId),
         )
         .replaceAll(
           '{targetId}',
-          targetId,
+          _encodePath(targetId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1934,7 +1934,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/tokens'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -1971,7 +1971,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/verification'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -2007,7 +2007,7 @@ class Users extends Service {
 
     final String apiPath = '/users/{userId}/verification/phone'.replaceAll(
       '{userId}',
-      userId,
+      _encodePath(userId),
     );
 
     final Map<String, dynamic> apiParams = {

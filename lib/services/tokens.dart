@@ -28,11 +28,11 @@ class Tokens extends Service {
     final String apiPath = '/tokens/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
-          bucketId,
+          _encodePath(bucketId),
         )
         .replaceAll(
           '{fileId}',
-          fileId,
+          _encodePath(fileId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -77,11 +77,11 @@ class Tokens extends Service {
     final String apiPath = '/tokens/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
-          bucketId,
+          _encodePath(bucketId),
         )
         .replaceAll(
           '{fileId}',
-          fileId,
+          _encodePath(fileId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -116,7 +116,7 @@ class Tokens extends Service {
 
     final String apiPath = '/tokens/{tokenId}'.replaceAll(
       '{tokenId}',
-      tokenId,
+      _encodePath(tokenId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -150,7 +150,7 @@ class Tokens extends Service {
 
     final String apiPath = '/tokens/{tokenId}'.replaceAll(
       '{tokenId}',
-      tokenId,
+      _encodePath(tokenId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -185,7 +185,7 @@ class Tokens extends Service {
 
     final String apiPath = '/tokens/{tokenId}'.replaceAll(
       '{tokenId}',
-      tokenId,
+      _encodePath(tokenId),
     );
 
     final Map<String, dynamic> apiParams = {};

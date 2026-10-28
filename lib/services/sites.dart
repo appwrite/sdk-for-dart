@@ -177,7 +177,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -233,7 +233,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -295,7 +295,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -330,7 +330,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/deployment'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -369,7 +369,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/deployments'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -413,7 +413,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/deployments'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -462,7 +462,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/deployments/duplicate'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -507,7 +507,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/deployments/template'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -552,7 +552,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/deployments/vcs'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -597,11 +597,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{deploymentId}',
-          deploymentId,
+          _encodePath(deploymentId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -641,11 +641,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{deploymentId}',
-          deploymentId,
+          _encodePath(deploymentId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -690,11 +690,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}/download'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{deploymentId}',
-          deploymentId,
+          _encodePath(deploymentId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -741,11 +741,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/deployments/{deploymentId}/status'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{deploymentId}',
-          deploymentId,
+          _encodePath(deploymentId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -781,7 +781,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/logs'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -824,11 +824,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/logs/{logId}'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{logId}',
-          logId,
+          _encodePath(logId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -868,11 +868,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/logs/{logId}'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{logId}',
-          logId,
+          _encodePath(logId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -907,7 +907,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/variables'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -948,7 +948,7 @@ class Sites extends Service {
 
     final String apiPath = '/sites/{siteId}/variables'.replaceAll(
       '{siteId}',
-      siteId,
+      _encodePath(siteId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -995,11 +995,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{variableId}',
-          variableId,
+          _encodePath(variableId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -1043,11 +1043,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{variableId}',
-          variableId,
+          _encodePath(variableId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -1093,11 +1093,11 @@ class Sites extends Service {
     final String apiPath = '/sites/{siteId}/variables/{variableId}'
         .replaceAll(
           '{siteId}',
-          siteId,
+          _encodePath(siteId),
         )
         .replaceAll(
           '{variableId}',
-          variableId,
+          _encodePath(variableId),
         );
 
     final Map<String, dynamic> apiParams = {};

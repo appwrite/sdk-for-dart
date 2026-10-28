@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await advisor.listReports();
+      final response = await advisor.listReports(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/reports",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.ReportList>());
     });
 
@@ -97,12 +125,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.getReport(
         reportId: "<REPORT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/reports/%3CREPORT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Report>());
     });
 
@@ -110,12 +154,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.deleteReport(
         reportId: "<REPORT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/reports/%3CREPORT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listInsights()', () async {
@@ -125,12 +185,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.listInsights(
         reportId: "<REPORT_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/reports/%3CREPORT_ID%3E/insights",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.InsightList>());
     });
 
@@ -154,13 +235,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await advisor.getInsight(
         reportId: "<REPORT_ID>",
         insightId: "<INSIGHT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/reports/%3CREPORT_ID%3E/insights/%3CINSIGHT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Insight>());
     });
   });

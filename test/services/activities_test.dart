@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await activities.listEvents();
+      final response = await activities.listEvents(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/activities/events",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.ActivityEventList>());
     });
 
@@ -116,12 +144,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await activities.getEvent(
         eventId: "<EVENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/activities/events/%3CEVENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.ActivityEvent>());
     });
   });

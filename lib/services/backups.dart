@@ -72,7 +72,7 @@ class Backups extends Service {
 
     final String apiPath = '/backups/archives/{archiveId}'.replaceAll(
       '{archiveId}',
-      archiveId,
+      _encodePath(archiveId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -104,7 +104,7 @@ class Backups extends Service {
 
     final String apiPath = '/backups/archives/{archiveId}'.replaceAll(
       '{archiveId}',
-      archiveId,
+      _encodePath(archiveId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -202,7 +202,7 @@ class Backups extends Service {
 
     final String apiPath = '/backups/policies/{policyId}'.replaceAll(
       '{policyId}',
-      policyId,
+      _encodePath(policyId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -238,7 +238,7 @@ class Backups extends Service {
 
     final String apiPath = '/backups/policies/{policyId}'.replaceAll(
       '{policyId}',
-      policyId,
+      _encodePath(policyId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -276,7 +276,7 @@ class Backups extends Service {
 
     final String apiPath = '/backups/policies/{policyId}'.replaceAll(
       '{policyId}',
-      policyId,
+      _encodePath(policyId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -398,7 +398,7 @@ class Backups extends Service {
 
     final String apiPath = '/backups/restorations/{restorationId}'.replaceAll(
       '{restorationId}',
-      restorationId,
+      _encodePath(restorationId),
     );
 
     final Map<String, dynamic> apiParams = {};

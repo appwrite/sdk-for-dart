@@ -90,7 +90,7 @@ class Webhooks extends Service {
 
     final String apiPath = '/webhooks/{webhookId}'.replaceAll(
       '{webhookId}',
-      webhookId,
+      _encodePath(webhookId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -131,7 +131,7 @@ class Webhooks extends Service {
 
     final String apiPath = '/webhooks/{webhookId}'.replaceAll(
       '{webhookId}',
-      webhookId,
+      _encodePath(webhookId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -174,7 +174,7 @@ class Webhooks extends Service {
 
     final String apiPath = '/webhooks/{webhookId}'.replaceAll(
       '{webhookId}',
-      webhookId,
+      _encodePath(webhookId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -210,7 +210,7 @@ class Webhooks extends Service {
 
     final String apiPath = '/webhooks/{webhookId}/secret'.replaceAll(
       '{webhookId}',
-      webhookId,
+      _encodePath(webhookId),
     );
 
     final Map<String, dynamic> apiParams = {

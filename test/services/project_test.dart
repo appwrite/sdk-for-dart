@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -98,10 +104,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.get();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Project>());
     });
 
@@ -109,10 +131,26 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.delete();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/project",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updateAuthMethod()', () async {
@@ -146,13 +184,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateAuthMethod(
         methodId: enums.ProjectAuthMethodId.emailPassword,
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/auth-methods/email-password",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -163,10 +219,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.listEnvironments();
+      final response = await project.listEnvironments(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/environments",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.ProjectList>());
     });
 
@@ -201,13 +279,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createEnvironment(
         environmentId: "<ENVIRONMENT_ID>",
         name: "<NAME>",
+        resources: [enums.EnvironmentResource.database, enums.EnvironmentResource.table, enums.EnvironmentResource.column, enums.EnvironmentResource.xIndex, enums.EnvironmentResource.bucket, enums.EnvironmentResource.team, enums.EnvironmentResource.function, enums.EnvironmentResource.environmentVariable],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/environments",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "environmentId": "<ENVIRONMENT_ID>",
+        "name": "<NAME>",
+        "resources": isA<List>(),
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -242,12 +341,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.getEnvironment(
         environmentId: "<ENVIRONMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/environments/%3CENVIRONMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Project>());
     });
 
@@ -282,13 +397,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateEnvironment(
         environmentId: "<ENVIRONMENT_ID>",
         name: "<NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/environments/%3CENVIRONMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -296,12 +429,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.deleteEnvironment(
         environmentId: "<ENVIRONMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/project/environments/%3CENVIRONMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listKeys()', () async {
@@ -311,10 +460,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.listKeys();
+      final response = await project.listKeys(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/keys",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.KeyList>());
     });
 
@@ -333,13 +504,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createEphemeralKey(
         scopes: [enums.ProjectKeyScopes.usersRead],
         duration: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/keys/ephemeral",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "scopes": isA<List>(),
+        "duration": 1,
+      });
       expect(response, isA<models.EphemeralKey>());
     });
 
@@ -358,12 +548,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.getKey(
         keyId: "<KEY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/keys/%3CKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Key>());
     });
 
@@ -382,14 +588,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateKey(
         keyId: "<KEY_ID>",
         name: "<NAME>",
         scopes: [enums.ProjectKeyScopes.usersRead],
+        expire: "2020-10-15T06:38:00.000+00:00",
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/keys/%3CKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "scopes": isA<List>(),
+        "expire": "2020-10-15T06:38:00.000+00:00",
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Key>());
     });
 
@@ -397,12 +626,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.deleteKey(
         keyId: "<KEY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/project/keys/%3CKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updateLabels()', () async {
@@ -436,12 +681,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateLabels(
         labels: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/labels",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "labels": isA<List>(),
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -452,10 +715,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.listMockPhones();
+      final response = await project.listMockPhones(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/mock-phones",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.MockNumberList>());
     });
 
@@ -468,13 +753,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createMockPhone(
         number: "+12065550100",
         otp: "<OTP>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/mock-phones",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "number": "+12065550100",
+        "otp": "<OTP>",
+      });
       expect(response, isA<models.MockNumber>());
     });
 
@@ -487,12 +791,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.getMockPhone(
         number: "+12065550100",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/mock-phones/%2B12065550100",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MockNumber>());
     });
 
@@ -505,13 +825,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateMockPhone(
         number: "+12065550100",
         otp: "<OTP>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/mock-phones/%2B12065550100",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "otp": "<OTP>",
+      });
       expect(response, isA<models.MockNumber>());
     });
 
@@ -519,12 +857,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.deleteMockPhone(
         number: "+12065550100",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/project/mock-phones/%2B12065550100",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listOAuth2Providers()', () async {
@@ -534,10 +888,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.listOAuth2Providers();
+      final response = await project.listOAuth2Providers(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/oauth2",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.OAuth2ProviderList>());
     });
 
@@ -572,13 +948,60 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateOAuth2Server(
-        enabled: true,
+        enabled: false,
         authorizationUrl: "https://example.com",
+        scopes: [],
+        authorizationDetailsTypes: [],
+        accessTokenDuration: 1,
+        refreshTokenDuration: 1,
+        publicAccessTokenDuration: 1,
+        publicRefreshTokenDuration: 1,
+        installationAccessTokenDuration: 1,
+        confidentialPkce: false,
+        verificationUrl: "https://example.com",
+        userCodeLength: 1,
+        userCodeFormat: "numeric",
+        deviceCodeDuration: 1,
+        defaultScopes: [],
+        installationScopes: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/oauth2-server",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+        "authorizationUrl": "https://example.com",
+        "scopes": isA<List>(),
+        "authorizationDetailsTypes": isA<List>(),
+        "accessTokenDuration": 1,
+        "refreshTokenDuration": 1,
+        "publicAccessTokenDuration": 1,
+        "publicRefreshTokenDuration": 1,
+        "installationAccessTokenDuration": 1,
+        "confidentialPkce": false,
+        "verificationUrl": "https://example.com",
+        "userCodeLength": 1,
+        "userCodeFormat": "numeric",
+        "deviceCodeDuration": 1,
+        "defaultScopes": isA<List>(),
+        "installationScopes": isA<List>(),
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -593,10 +1016,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Amazon();
+      final response = await project.updateOAuth2Amazon(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/amazon",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Amazon>());
     });
 
@@ -614,10 +1061,42 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Apple();
+      final response = await project.updateOAuth2Apple(
+        serviceId: "<SERVICE_ID>",
+        keyId: "<KEY_ID>",
+        teamId: "<TEAM_ID>",
+        p8File: "<P8_FILE>",
+        enabled: false,
+        nativeClientIds: [],
+        nativeEnabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/apple",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "serviceId": "<SERVICE_ID>",
+        "keyId": "<KEY_ID>",
+        "teamId": "<TEAM_ID>",
+        "p8File": "<P8_FILE>",
+        "enabled": false,
+        "nativeClientIds": isA<List>(),
+        "nativeEnabled": false,
+      });
       expect(response, isA<models.OAuth2Apple>());
     });
 
@@ -631,10 +1110,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Appwrite();
+      final response = await project.updateOAuth2Appwrite(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/appwrite",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Appwrite>());
     });
 
@@ -650,10 +1153,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Auth0();
+      final response = await project.updateOAuth2Auth0(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        endpoint: "<ENDPOINT>",
+        enabled: false,
+        prompt: [enums.ProjectOAuth2Auth0Prompt.none],
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/auth0",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "endpoint": "<ENDPOINT>",
+        "enabled": false,
+        "prompt": isA<List>(),
+      });
       expect(response, isA<models.OAuth2Auth0>());
     });
 
@@ -668,10 +1199,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Authentik();
+      final response = await project.updateOAuth2Authentik(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        endpoint: "<ENDPOINT>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/authentik",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "endpoint": "<ENDPOINT>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Authentik>());
     });
 
@@ -684,10 +1241,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Autodesk();
+      final response = await project.updateOAuth2Autodesk(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/autodesk",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Autodesk>());
     });
 
@@ -700,10 +1281,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Bitbucket();
+      final response = await project.updateOAuth2Bitbucket(
+        key: "<KEY>",
+        secret: "<SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/bitbucket",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "secret": "<SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Bitbucket>());
     });
 
@@ -716,10 +1321,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Bitly();
+      final response = await project.updateOAuth2Bitly(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/bitly",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Bitly>());
     });
 
@@ -732,10 +1361,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Box();
+      final response = await project.updateOAuth2Box(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/box",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Box>());
     });
 
@@ -748,10 +1401,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Cloudflare();
+      final response = await project.updateOAuth2Cloudflare(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/cloudflare",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Cloudflare>());
     });
 
@@ -764,10 +1441,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Dailymotion();
+      final response = await project.updateOAuth2Dailymotion(
+        apiKey: "<API_KEY>",
+        apiSecret: "<API_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/dailymotion",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "apiKey": "<API_KEY>",
+        "apiSecret": "<API_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Dailymotion>());
     });
 
@@ -781,10 +1482,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Discord();
+      final response = await project.updateOAuth2Discord(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+        prompt: [enums.ProjectOAuth2DiscordPrompt.none],
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/discord",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+        "prompt": isA<List>(),
+      });
       expect(response, isA<models.OAuth2Discord>());
     });
 
@@ -799,10 +1526,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Disqus();
+      final response = await project.updateOAuth2Disqus(
+        publicKey: "<PUBLIC_KEY>",
+        secretKey: "<SECRET_KEY>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/disqus",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "publicKey": "<PUBLIC_KEY>",
+        "secretKey": "<SECRET_KEY>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Disqus>());
     });
 
@@ -815,10 +1566,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Dropbox();
+      final response = await project.updateOAuth2Dropbox(
+        appKey: "<APP_KEY>",
+        appSecret: "<APP_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/dropbox",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "appKey": "<APP_KEY>",
+        "appSecret": "<APP_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Dropbox>());
     });
 
@@ -831,10 +1606,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Etsy();
+      final response = await project.updateOAuth2Etsy(
+        keyString: "<KEY_STRING>",
+        sharedSecret: "<SHARED_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/etsy",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "keyString": "<KEY_STRING>",
+        "sharedSecret": "<SHARED_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Etsy>());
     });
 
@@ -847,10 +1646,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Facebook();
+      final response = await project.updateOAuth2Facebook(
+        appId: "<APP_ID>",
+        appSecret: "<APP_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/facebook",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "appId": "<APP_ID>",
+        "appSecret": "<APP_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Facebook>());
     });
 
@@ -863,10 +1686,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Figma();
+      final response = await project.updateOAuth2Figma(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/figma",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Figma>());
     });
 
@@ -880,10 +1727,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2FusionAuth();
+      final response = await project.updateOAuth2FusionAuth(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        endpoint: "<ENDPOINT>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/fusionauth",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "endpoint": "<ENDPOINT>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2FusionAuth>());
     });
 
@@ -897,10 +1770,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2GitHub();
+      final response = await project.updateOAuth2GitHub(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+        prompt: [enums.ProjectOAuth2GitHubPrompt.selectAccount],
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/github",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+        "prompt": isA<List>(),
+      });
       expect(response, isA<models.OAuth2Github>());
     });
 
@@ -916,10 +1815,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Gitlab();
+      final response = await project.updateOAuth2Gitlab(
+        applicationId: "<APPLICATION_ID>",
+        secret: "<SECRET>",
+        endpoint: "https://example.com",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/gitlab",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "applicationId": "<APPLICATION_ID>",
+        "secret": "<SECRET>",
+        "endpoint": "https://example.com",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Gitlab>());
     });
 
@@ -936,10 +1861,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Google();
+      final response = await project.updateOAuth2Google(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        prompt: [enums.ProjectOAuth2GooglePrompt.none],
+        enabled: false,
+        nativeClientIds: [],
+        nativeEnabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/google",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "prompt": isA<List>(),
+        "enabled": false,
+        "nativeClientIds": isA<List>(),
+        "nativeEnabled": false,
+      });
       expect(response, isA<models.OAuth2Google>());
     });
 
@@ -952,10 +1907,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2HuggingFace();
+      final response = await project.updateOAuth2HuggingFace(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/huggingface",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2HuggingFace>());
     });
 
@@ -969,10 +1948,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Kakao();
+      final response = await project.updateOAuth2Kakao(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+        prompt: [enums.ProjectOAuth2KakaoPrompt.none],
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/kakao",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+        "prompt": isA<List>(),
+      });
       expect(response, isA<models.OAuth2Kakao>());
     });
 
@@ -987,10 +1992,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Keycloak();
+      final response = await project.updateOAuth2Keycloak(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        endpoint: "<ENDPOINT>",
+        realmName: "<REALM_NAME>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/keycloak",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "endpoint": "<ENDPOINT>",
+        "realmName": "<REALM_NAME>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Keycloak>());
     });
 
@@ -1004,10 +2037,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Kick();
+      final response = await project.updateOAuth2Kick(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/kick",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Kick>());
     });
 
@@ -1020,10 +2077,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Linkedin();
+      final response = await project.updateOAuth2Linkedin(
+        clientId: "<CLIENT_ID>",
+        primaryClientSecret: "<PRIMARY_CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/linkedin",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "primaryClientSecret": "<PRIMARY_CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Linkedin>());
     });
 
@@ -1038,10 +2119,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Microsoft();
+      final response = await project.updateOAuth2Microsoft(
+        applicationId: "<APPLICATION_ID>",
+        applicationSecret: "<APPLICATION_SECRET>",
+        tenant: "<TENANT>",
+        enabled: false,
+        prompt: [enums.ProjectOAuth2MicrosoftPrompt.none],
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/microsoft",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "applicationId": "<APPLICATION_ID>",
+        "applicationSecret": "<APPLICATION_SECRET>",
+        "tenant": "<TENANT>",
+        "enabled": false,
+        "prompt": isA<List>(),
+      });
       expect(response, isA<models.OAuth2Microsoft>());
     });
 
@@ -1055,10 +2164,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Notion();
+      final response = await project.updateOAuth2Notion(
+        oauthClientId: "<OAUTH_CLIENT_ID>",
+        oauthClientSecret: "<OAUTH_CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/notion",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "oauthClientId": "<OAUTH_CLIENT_ID>",
+        "oauthClientSecret": "<OAUTH_CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Notion>());
     });
 
@@ -1077,10 +2210,46 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Oidc();
+      final response = await project.updateOAuth2Oidc(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        wellKnownURL: "https://example.com",
+        authorizationURL: "https://example.com",
+        tokenURL: "https://example.com",
+        userInfoURL: "https://example.com",
+        prompt: [enums.ProjectOAuth2OidcPrompt.none],
+        maxAge: 1,
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/oidc",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "wellKnownURL": "https://example.com",
+        "authorizationURL": "https://example.com",
+        "tokenURL": "https://example.com",
+        "userInfoURL": "https://example.com",
+        "prompt": isA<List>(),
+        "maxAge": 1,
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Oidc>());
     });
 
@@ -1097,10 +2266,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Okta();
+      final response = await project.updateOAuth2Okta(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        domain: "example.com",
+        authorizationServerId: "<AUTHORIZATION_SERVER_ID>",
+        enabled: false,
+        prompt: [enums.ProjectOAuth2OktaPrompt.none],
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/okta",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "domain": "example.com",
+        "authorizationServerId": "<AUTHORIZATION_SERVER_ID>",
+        "enabled": false,
+        "prompt": isA<List>(),
+      });
       expect(response, isA<models.OAuth2Okta>());
     });
 
@@ -1115,10 +2314,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Paypal();
+      final response = await project.updateOAuth2Paypal(
+        clientId: "<CLIENT_ID>",
+        secretKey: "<SECRET_KEY>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/paypal",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "secretKey": "<SECRET_KEY>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Paypal>());
     });
 
@@ -1133,10 +2356,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2PaypalSandbox();
+      final response = await project.updateOAuth2PaypalSandbox(
+        clientId: "<CLIENT_ID>",
+        secretKey: "<SECRET_KEY>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/paypalSandbox",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "secretKey": "<SECRET_KEY>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Paypal>());
     });
 
@@ -1150,10 +2397,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Podio();
+      final response = await project.updateOAuth2Podio(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/podio",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Podio>());
     });
 
@@ -1167,10 +2438,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Resend();
+      final response = await project.updateOAuth2Resend(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/resend",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Resend>());
     });
 
@@ -1185,10 +2480,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Salesforce();
+      final response = await project.updateOAuth2Salesforce(
+        customerKey: "<CUSTOMER_KEY>",
+        customerSecret: "<CUSTOMER_SECRET>",
+        enabled: false,
+        prompt: [enums.ProjectOAuth2SalesforcePrompt.login],
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/salesforce",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "customerKey": "<CUSTOMER_KEY>",
+        "customerSecret": "<CUSTOMER_SECRET>",
+        "enabled": false,
+        "prompt": isA<List>(),
+      });
       expect(response, isA<models.OAuth2Salesforce>());
     });
 
@@ -1201,10 +2522,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Slack();
+      final response = await project.updateOAuth2Slack(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/slack",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Slack>());
     });
 
@@ -1217,10 +2562,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Spotify();
+      final response = await project.updateOAuth2Spotify(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/spotify",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Spotify>());
     });
 
@@ -1234,10 +2603,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Stripe();
+      final response = await project.updateOAuth2Stripe(
+        clientId: "<CLIENT_ID>",
+        apiSecretKey: "<API_SECRET_KEY>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/stripe",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "apiSecretKey": "<API_SECRET_KEY>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Stripe>());
     });
 
@@ -1250,10 +2643,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2TikTok();
+      final response = await project.updateOAuth2TikTok(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/tiktok",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2TikTok>());
     });
 
@@ -1266,10 +2683,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Tradeshift();
+      final response = await project.updateOAuth2Tradeshift(
+        oauth2ClientId: "<OAUTH2_CLIENT_ID>",
+        oauth2ClientSecret: "<OAUTH2_CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/tradeshift",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "oauth2ClientId": "<OAUTH2_CLIENT_ID>",
+        "oauth2ClientSecret": "<OAUTH2_CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Tradeshift>());
     });
 
@@ -1282,10 +2723,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2TradeshiftSandbox();
+      final response = await project.updateOAuth2TradeshiftSandbox(
+        oauth2ClientId: "<OAUTH2_CLIENT_ID>",
+        oauth2ClientSecret: "<OAUTH2_CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/tradeshiftBox",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "oauth2ClientId": "<OAUTH2_CLIENT_ID>",
+        "oauth2ClientSecret": "<OAUTH2_CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Tradeshift>());
     });
 
@@ -1298,10 +2763,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Twitch();
+      final response = await project.updateOAuth2Twitch(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/twitch",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Twitch>());
     });
 
@@ -1316,10 +2805,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Webflow();
+      final response = await project.updateOAuth2Webflow(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/webflow",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Webflow>());
     });
 
@@ -1333,10 +2846,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2WordPress();
+      final response = await project.updateOAuth2WordPress(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/wordpress",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2WordPress>());
     });
 
@@ -1349,10 +2886,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2X();
+      final response = await project.updateOAuth2X(
+        customerKey: "<CUSTOMER_KEY>",
+        secretKey: "<SECRET_KEY>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/x",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "customerKey": "<CUSTOMER_KEY>",
+        "secretKey": "<SECRET_KEY>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2X>());
     });
 
@@ -1366,10 +2927,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Yahoo();
+      final response = await project.updateOAuth2Yahoo(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/yahoo",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Yahoo>());
     });
 
@@ -1382,10 +2967,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Yandex();
+      final response = await project.updateOAuth2Yandex(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/yandex",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Yandex>());
     });
 
@@ -1399,10 +3008,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Zoho();
+      final response = await project.updateOAuth2Zoho(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+        prompt: [enums.ProjectOAuth2ZohoPrompt.consent],
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/zoho",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+        "prompt": isA<List>(),
+      });
       expect(response, isA<models.OAuth2Zoho>());
     });
 
@@ -1415,10 +3050,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateOAuth2Zoom();
+      final response = await project.updateOAuth2Zoom(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/zoom",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
       expect(response, isA<models.OAuth2Zoom>());
     });
 
@@ -1432,12 +3091,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.getOAuth2Provider(
         providerId: enums.ProjectOAuthProviderId.amazon,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/oauth2/amazon",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.OAuth2Kakao>());
     });
 
@@ -1448,10 +3123,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.listPlatforms();
+      final response = await project.listPlatforms(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/platforms",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.PlatformList>());
     });
 
@@ -1467,14 +3164,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createAndroidPlatform(
         platformId: "<PLATFORM_ID>",
         name: "<NAME>",
         applicationId: "<APPLICATION_ID>",
+        fingerprints: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/platforms/android",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "platformId": "<PLATFORM_ID>",
+        "name": "<NAME>",
+        "applicationId": "<APPLICATION_ID>",
+        "fingerprints": isA<List>(),
+      });
       expect(response, isA<models.PlatformAndroid>());
     });
 
@@ -1490,14 +3209,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateAndroidPlatform(
         platformId: "<PLATFORM_ID>",
         name: "<NAME>",
         applicationId: "<APPLICATION_ID>",
+        fingerprints: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/platforms/android/%3CPLATFORM_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "applicationId": "<APPLICATION_ID>",
+        "fingerprints": isA<List>(),
+      });
       expect(response, isA<models.PlatformAndroid>());
     });
 
@@ -1512,7 +3252,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createApplePlatform(
@@ -1520,6 +3266,20 @@ void main() {
         name: "<NAME>",
         bundleIdentifier: "<BUNDLE_IDENTIFIER>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/platforms/apple",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "platformId": "<PLATFORM_ID>",
+        "name": "<NAME>",
+        "bundleIdentifier": "<BUNDLE_IDENTIFIER>",
+      });
       expect(response, isA<models.PlatformApple>());
     });
 
@@ -1534,7 +3294,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateApplePlatform(
@@ -1542,6 +3308,19 @@ void main() {
         name: "<NAME>",
         bundleIdentifier: "<BUNDLE_IDENTIFIER>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/platforms/apple/%3CPLATFORM_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "bundleIdentifier": "<BUNDLE_IDENTIFIER>",
+      });
       expect(response, isA<models.PlatformApple>());
     });
 
@@ -1556,7 +3335,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createLinuxPlatform(
@@ -1564,6 +3349,20 @@ void main() {
         name: "<NAME>",
         packageName: "<PACKAGE_NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/platforms/linux",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "platformId": "<PLATFORM_ID>",
+        "name": "<NAME>",
+        "packageName": "<PACKAGE_NAME>",
+      });
       expect(response, isA<models.PlatformLinux>());
     });
 
@@ -1578,7 +3377,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateLinuxPlatform(
@@ -1586,6 +3391,19 @@ void main() {
         name: "<NAME>",
         packageName: "<PACKAGE_NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/platforms/linux/%3CPLATFORM_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "packageName": "<PACKAGE_NAME>",
+      });
       expect(response, isA<models.PlatformLinux>());
     });
 
@@ -1600,7 +3418,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createWebPlatform(
@@ -1608,6 +3432,20 @@ void main() {
         name: "<NAME>",
         hostname: "app.example.com",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/platforms/web",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "platformId": "<PLATFORM_ID>",
+        "name": "<NAME>",
+        "hostname": "app.example.com",
+      });
       expect(response, isA<models.PlatformWeb>());
     });
 
@@ -1622,7 +3460,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateWebPlatform(
@@ -1630,6 +3474,19 @@ void main() {
         name: "<NAME>",
         hostname: "app.example.com",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/platforms/web/%3CPLATFORM_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "hostname": "app.example.com",
+      });
       expect(response, isA<models.PlatformWeb>());
     });
 
@@ -1644,7 +3501,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createWindowsPlatform(
@@ -1652,6 +3515,20 @@ void main() {
         name: "<NAME>",
         packageIdentifierName: "<PACKAGE_IDENTIFIER_NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/platforms/windows",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "platformId": "<PLATFORM_ID>",
+        "name": "<NAME>",
+        "packageIdentifierName": "<PACKAGE_IDENTIFIER_NAME>",
+      });
       expect(response, isA<models.PlatformWindows>());
     });
 
@@ -1666,7 +3543,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateWindowsPlatform(
@@ -1674,6 +3557,19 @@ void main() {
         name: "<NAME>",
         packageIdentifierName: "<PACKAGE_IDENTIFIER_NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/platforms/windows/%3CPLATFORM_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "packageIdentifierName": "<PACKAGE_IDENTIFIER_NAME>",
+      });
       expect(response, isA<models.PlatformWindows>());
     });
 
@@ -1688,12 +3584,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.getPlatform(
         platformId: "<PLATFORM_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/platforms/%3CPLATFORM_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.PlatformLinux>());
     });
 
@@ -1701,12 +3613,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.deletePlatform(
         platformId: "<PLATFORM_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/project/platforms/%3CPLATFORM_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listPolicies()', () async {
@@ -1716,10 +3644,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.listPolicies();
+      final response = await project.listPolicies(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/policies",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.PolicyList>());
     });
 
@@ -1754,12 +3704,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateDenyAliasedEmailPolicy(
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/deny-aliased-email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -1794,12 +3762,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateDenyCorporateEmailPolicy(
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/deny-corporate-email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -1834,12 +3820,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateDenyDisposableEmailPolicy(
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/deny-disposable-email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -1874,12 +3878,88 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateDenyFreeEmailPolicy(
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/deny-free-email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
+      expect(response, isA<models.Project>());
+    });
+
+    test('test method updateDenyRealtimeGuestsPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateDenyRealtimeGuestsPolicy(
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/deny-realtime-guests",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -1914,10 +3994,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateMembershipPrivacyPolicy();
+      final response = await project.updateMembershipPrivacyPolicy(
+        userId: false,
+        userEmail: false,
+        userPhone: false,
+        userName: false,
+        userMFA: false,
+        userAccessedAt: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/membership-privacy",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": false,
+        "userEmail": false,
+        "userPhone": false,
+        "userName": false,
+        "userMFA": false,
+        "userAccessedAt": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -1952,10 +4062,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateMFAFactorsPolicy();
+      final response = await project.updateMFAFactorsPolicy(
+        totp: false,
+        email: false,
+        phone: false,
+        custom: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/mfa-factors",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "totp": false,
+        "email": false,
+        "phone": false,
+        "custom": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -1990,12 +4126,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updatePasskeyPolicy(
         rpId: "<RP_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/passkey",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "rpId": "<RP_ID>",
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2030,12 +4184,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updatePasswordDictionaryPolicy(
-        enabled: true,
+        enabled: false,
+        denyList: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/password-dictionary",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+        "denyList": isA<List>(),
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2070,12 +4244,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updatePasswordHistoryPolicy(
         total: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/password-history",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "total": 1,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2110,12 +4302,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updatePasswordPersonalDataPolicy(
-        enabled: true,
+        enabled: false,
+        denyList: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/password-personal-data",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+        "denyList": isA<List>(),
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2150,10 +4362,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updatePasswordPwnedPolicy();
+      final response = await project.updatePasswordPwnedPolicy(
+        enabled: false,
+        sessions: false,
+        users: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/password-pwned",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+        "sessions": false,
+        "users": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2188,10 +4424,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updatePasswordRotationPolicy();
+      final response = await project.updatePasswordRotationPolicy(
+        enabled: false,
+        maxAge: 1,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/password-rotation",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+        "maxAge": 1,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2206,10 +4464,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updatePasswordStrengthPolicy();
+      final response = await project.updatePasswordStrengthPolicy(
+        min: 1,
+        uppercase: false,
+        lowercase: false,
+        number: false,
+        symbols: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/password-strength",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "min": 1,
+        "uppercase": false,
+        "lowercase": false,
+        "number": false,
+        "symbols": false,
+      });
       expect(response, isA<models.PolicyPasswordStrength>());
     });
 
@@ -2244,12 +4530,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateSessionAlertPolicy(
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/session-alert",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2284,12 +4588,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateSessionDurationPolicy(
         duration: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/session-duration",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "duration": 1,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2324,12 +4646,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateSessionInvalidationPolicy(
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/session-invalidation",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2364,12 +4704,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateSessionLimitPolicy(
         total: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/session-limit",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "total": 1,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2404,12 +4762,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateUserLimitPolicy(
         total: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/user-limit",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "total": 1,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2421,12 +4797,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.getPolicy(
         policyId: enums.ProjectPolicyId.passwordDictionary,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/policies/password-dictionary",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.PolicyPasskey>());
     });
 
@@ -2461,13 +4853,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateProtocol(
         protocolId: enums.ProjectProtocolId.rest,
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/protocols/rest",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2502,14 +4912,58 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateService(
         serviceId: enums.ProjectServiceId.account,
-        enabled: true,
+        enabled: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/services/account",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
+    });
+
+    test('test method deleteSessions()', () async {
+      final data = '';
+
+      when(
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.deleteSessions();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/project/sessions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updateSMTP()', () async {
@@ -2543,10 +4997,48 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.updateSMTP();
+      final response = await project.updateSMTP(
+        host: "example.com",
+        port: 1,
+        username: "<USERNAME>",
+        password: "password",
+        senderEmail: "email@example.com",
+        senderName: "<SENDER_NAME>",
+        replyToEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        secure: enums.ProjectSMTPSecure.tls,
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/smtp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "host": "example.com",
+        "port": 1,
+        "username": "<USERNAME>",
+        "password": "password",
+        "senderEmail": "email@example.com",
+        "senderName": "<SENDER_NAME>",
+        "replyToEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "secure": enums.ProjectSMTPSecure.tls.value,
+        "enabled": false,
+      });
       expect(response, isA<models.Project>());
     });
 
@@ -2554,12 +5046,30 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createSMTPTest(
         emails: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/smtp/tests",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "emails": isA<List>(),
+      });
     });
 
     test('test method listEmailTemplates()', () async {
@@ -2569,10 +5079,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.listEmailTemplates();
+      final response = await project.listEmailTemplates(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/templates/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.EmailTemplateList>());
     });
 
@@ -2589,12 +5121,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateEmailTemplate(
         templateId: enums.ProjectEmailTemplateId.verification,
+        locale: enums.ProjectEmailTemplateLocale.af,
+        subject: "<SUBJECT>",
+        message: "<MESSAGE>",
+        senderName: "<SENDER_NAME>",
+        senderEmail: "email@example.com",
+        replyToEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/templates/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "templateId": enums.ProjectEmailTemplateId.verification.value,
+        "locale": enums.ProjectEmailTemplateLocale.af.value,
+        "subject": "<SUBJECT>",
+        "message": "<MESSAGE>",
+        "senderName": "<SENDER_NAME>",
+        "senderEmail": "email@example.com",
+        "replyToEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+      });
       expect(response, isA<models.EmailTemplate>());
     });
 
@@ -2611,12 +5175,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.getEmailTemplate(
         templateId: enums.ProjectEmailTemplateId.verification,
+        locale: enums.ProjectEmailTemplateLocale.af,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/templates/email/verification",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "locale": enums.ProjectEmailTemplateLocale.af.value,
+      });
       expect(response, isA<models.EmailTemplate>());
     });
 
@@ -2627,10 +5210,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await project.listVariables();
+      final response = await project.listVariables(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/variables",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.VariableList>());
     });
 
@@ -2648,14 +5253,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.createVariable(
         variableId: "<VARIABLE_ID>",
         key: "<KEY>",
         value: "<VALUE>",
+        secret: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/variables",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "variableId": "<VARIABLE_ID>",
+        "key": "<KEY>",
+        "value": "<VALUE>",
+        "secret": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Variable>());
     });
 
@@ -2673,12 +5302,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.getVariable(
         variableId: "<VARIABLE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Variable>());
     });
 
@@ -2696,12 +5341,37 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.updateVariable(
         variableId: "<VARIABLE_ID>",
+        key: "<KEY>",
+        value: "<VALUE>",
+        secret: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "value": "<VALUE>",
+        "secret": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Variable>());
     });
 
@@ -2709,12 +5379,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await project.deleteVariable(
         variableId: "<VARIABLE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/project/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
   });
 }

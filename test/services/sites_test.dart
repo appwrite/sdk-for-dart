@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await sites.list();
+      final response = await sites.list(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.SiteList>());
     });
 
@@ -122,7 +152,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.create(
@@ -130,7 +166,64 @@ void main() {
         name: "<NAME>",
         framework: enums.Framework.analog,
         buildRuntime: enums.BuildRuntime.node145,
+        enabled: false,
+        logging: false,
+        timeout: 1,
+        installCommand: "<INSTALL_COMMAND>",
+        buildCommand: "<BUILD_COMMAND>",
+        startCommand: "<START_COMMAND>",
+        outputDirectory: "<OUTPUT_DIRECTORY>",
+        adapter: enums.Adapter.xstatic,
+        installationId: "<INSTALLATION_ID>",
+        fallbackFile: "<FALLBACK_FILE>",
+        providerRepositoryId: "<PROVIDER_REPOSITORY_ID>",
+        providerBranch: "<PROVIDER_BRANCH>",
+        providerSilentMode: false,
+        providerRootDirectory: "<PROVIDER_ROOT_DIRECTORY>",
+        providerBranches: [],
+        providerPaths: [],
+        buildSpecification: "s-1vcpu-512mb",
+        runtimeSpecification: "s-1vcpu-512mb",
+        deploymentRetention: 1,
+        scopes: [enums.ProjectKeyScopes.projectRead],
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/sites",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "siteId": "<SITE_ID>",
+        "name": "<NAME>",
+        "framework": enums.Framework.analog.value,
+        "enabled": false,
+        "logging": false,
+        "timeout": 1,
+        "installCommand": "<INSTALL_COMMAND>",
+        "buildCommand": "<BUILD_COMMAND>",
+        "startCommand": "<START_COMMAND>",
+        "outputDirectory": "<OUTPUT_DIRECTORY>",
+        "buildRuntime": enums.BuildRuntime.node145.value,
+        "adapter": enums.Adapter.xstatic.value,
+        "installationId": "<INSTALLATION_ID>",
+        "fallbackFile": "<FALLBACK_FILE>",
+        "providerRepositoryId": "<PROVIDER_REPOSITORY_ID>",
+        "providerBranch": "<PROVIDER_BRANCH>",
+        "providerSilentMode": false,
+        "providerRootDirectory": "<PROVIDER_ROOT_DIRECTORY>",
+        "providerBranches": isA<List>(),
+        "providerPaths": isA<List>(),
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 1,
+        "scopes": isA<List>(),
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Site>());
     });
 
@@ -141,10 +234,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await sites.listFrameworks();
+      final response = await sites.listFrameworks(
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/frameworks",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "total": false,
+      });
       expect(response, isA<models.FrameworkList>());
     });
 
@@ -155,10 +268,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await sites.listSpecifications();
+      final response = await sites.listSpecifications(
+        type: "runtimes",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/specifications",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "type": "runtimes",
+        "total": false,
+      });
       expect(response, isA<models.SpecificationList>());
     });
 
@@ -203,12 +338,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.get(
         siteId: "<SITE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/%3CSITE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Site>());
     });
 
@@ -253,14 +404,77 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.update(
         siteId: "<SITE_ID>",
         name: "<NAME>",
         framework: enums.Framework.analog,
+        enabled: false,
+        logging: false,
+        timeout: 1,
+        installCommand: "<INSTALL_COMMAND>",
+        buildCommand: "<BUILD_COMMAND>",
+        startCommand: "<START_COMMAND>",
+        outputDirectory: "<OUTPUT_DIRECTORY>",
+        buildRuntime: enums.BuildRuntime.node145,
+        adapter: enums.Adapter.xstatic,
+        fallbackFile: "<FALLBACK_FILE>",
+        installationId: "<INSTALLATION_ID>",
+        providerRepositoryId: "<PROVIDER_REPOSITORY_ID>",
+        providerBranch: "<PROVIDER_BRANCH>",
+        providerSilentMode: false,
+        providerRootDirectory: "<PROVIDER_ROOT_DIRECTORY>",
+        providerBranches: [],
+        providerPaths: [],
+        buildSpecification: "s-1vcpu-512mb",
+        runtimeSpecification: "s-1vcpu-512mb",
+        deploymentRetention: 1,
+        scopes: [enums.ProjectKeyScopes.projectRead],
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/sites/%3CSITE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "framework": enums.Framework.analog.value,
+        "enabled": false,
+        "logging": false,
+        "timeout": 1,
+        "installCommand": "<INSTALL_COMMAND>",
+        "buildCommand": "<BUILD_COMMAND>",
+        "startCommand": "<START_COMMAND>",
+        "outputDirectory": "<OUTPUT_DIRECTORY>",
+        "buildRuntime": enums.BuildRuntime.node145.value,
+        "adapter": enums.Adapter.xstatic.value,
+        "fallbackFile": "<FALLBACK_FILE>",
+        "installationId": "<INSTALLATION_ID>",
+        "providerRepositoryId": "<PROVIDER_REPOSITORY_ID>",
+        "providerBranch": "<PROVIDER_BRANCH>",
+        "providerSilentMode": false,
+        "providerRootDirectory": "<PROVIDER_ROOT_DIRECTORY>",
+        "providerBranches": isA<List>(),
+        "providerPaths": isA<List>(),
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 1,
+        "scopes": isA<List>(),
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Site>());
     });
 
@@ -268,12 +482,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.delete(
         siteId: "<SITE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/sites/%3CSITE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updateSiteDeployment()', () async {
@@ -317,13 +547,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.updateSiteDeployment(
         siteId: "<SITE_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/sites/%3CSITE_ID%3E/deployment",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "deploymentId": "<DEPLOYMENT_ID>",
+      });
       expect(response, isA<models.Site>());
     });
 
@@ -334,12 +582,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.listDeployments(
         siteId: "<SITE_ID>",
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/%3CSITE_ID%3E/deployments",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.DeploymentList>());
     });
 
@@ -379,18 +650,40 @@ void main() {
 
       when(
         client.chunkedUpload(
-          path: argThat(isNotNull),
-          params: argThat(isNotNull),
-          paramName: argThat(isNotNull),
-          idParamName: argThat(isNotNull),
-          headers: argThat(isNotNull),
+          path: anyNamed('path'),
+          params: anyNamed('params'),
+          paramName: anyNamed('paramName'),
+          idParamName: anyNamed('idParamName'),
+          headers: anyNamed('headers'),
+          method: anyNamed('method'),
         ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createDeployment(
         siteId: "<SITE_ID>",
         code: InputFile.fromPath(path: './image.png'),
+        installCommand: "<INSTALL_COMMAND>",
+        buildCommand: "<BUILD_COMMAND>",
+        outputDirectory: "<OUTPUT_DIRECTORY>",
+        activate: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.chunkedUpload(
+          path: "/sites/%3CSITE_ID%3E/deployments",
+          params: captureAnyNamed('params'),
+          paramName: anyNamed('paramName'),
+          idParamName: anyNamed('idParamName'),
+          headers: anyNamed('headers'),
+          method: HttpMethod.post,
+        ),
+      ).captured.single;
+      expect(params, {
+        "installCommand": "<INSTALL_COMMAND>",
+        "buildCommand": "<BUILD_COMMAND>",
+        "outputDirectory": "<OUTPUT_DIRECTORY>",
+        "code": isA<InputFile>(),
+        "activate": false,
+      });
       expect(response, isA<models.Deployment>());
     });
 
@@ -429,13 +722,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createDuplicateDeployment(
         siteId: "<SITE_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/sites/%3CSITE_ID%3E/deployments/duplicate",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "deploymentId": "<DEPLOYMENT_ID>",
+      });
       expect(response, isA<models.Deployment>());
     });
 
@@ -474,7 +785,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createTemplateDeployment(
@@ -484,7 +801,25 @@ void main() {
         rootDirectory: "<ROOT_DIRECTORY>",
         type: enums.TemplateReferenceType.branch,
         reference: "<REFERENCE>",
+        activate: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/sites/%3CSITE_ID%3E/deployments/template",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "repository": "<REPOSITORY>",
+        "owner": "<OWNER>",
+        "rootDirectory": "<ROOT_DIRECTORY>",
+        "type": enums.TemplateReferenceType.branch.value,
+        "reference": "<REFERENCE>",
+        "activate": false,
+      });
       expect(response, isA<models.Deployment>());
     });
 
@@ -523,14 +858,35 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createVcsDeployment(
         siteId: "<SITE_ID>",
         type: enums.VCSReferenceType.branch,
         reference: "<REFERENCE>",
+        activate: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/sites/%3CSITE_ID%3E/deployments/vcs",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "type": enums.VCSReferenceType.branch.value,
+        "reference": "<REFERENCE>",
+        "activate": false,
+      });
       expect(response, isA<models.Deployment>());
     });
 
@@ -569,13 +925,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.getDeployment(
         siteId: "<SITE_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/%3CSITE_ID%3E/deployments/%3CDEPLOYMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Deployment>());
     });
 
@@ -583,26 +955,63 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.deleteDeployment(
         siteId: "<SITE_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/sites/%3CSITE_ID%3E/deployments/%3CDEPLOYMENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method getDeploymentDownload()', () async {
       final Uint8List data = Uint8List.fromList([]);
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.getDeploymentDownload(
         siteId: "<SITE_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
+        type: enums.DeploymentDownloadType.source,
+        token: "<TOKEN>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/%3CSITE_ID%3E/deployments/%3CDEPLOYMENT_ID%3E/download",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "type": enums.DeploymentDownloadType.source.value,
+        "token": "<TOKEN>",
+      });
       expect(response, isA<Uint8List>());
     });
 
@@ -641,13 +1050,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.updateDeploymentStatus(
         siteId: "<SITE_ID>",
         deploymentId: "<DEPLOYMENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/sites/%3CSITE_ID%3E/deployments/%3CDEPLOYMENT_ID%3E/status",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Deployment>());
     });
 
@@ -658,12 +1083,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.listLogs(
         siteId: "<SITE_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/%3CSITE_ID%3E/logs",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.ExecutionList>());
     });
 
@@ -690,13 +1136,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.getLog(
         siteId: "<SITE_ID>",
         logId: "<LOG_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/%3CSITE_ID%3E/logs/%3CLOG_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Execution>());
     });
 
@@ -704,13 +1166,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.deleteLog(
         siteId: "<SITE_ID>",
         logId: "<LOG_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/sites/%3CSITE_ID%3E/logs/%3CLOG_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listVariables()', () async {
@@ -720,12 +1198,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.listVariables(
         siteId: "<SITE_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/%3CSITE_ID%3E/variables",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.VariableList>());
     });
 
@@ -743,7 +1242,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.createVariable(
@@ -751,7 +1256,25 @@ void main() {
         variableId: "<VARIABLE_ID>",
         key: "<KEY>",
         value: "<VALUE>",
+        secret: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/sites/%3CSITE_ID%3E/variables",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "variableId": "<VARIABLE_ID>",
+        "key": "<KEY>",
+        "value": "<VALUE>",
+        "secret": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Variable>());
     });
 
@@ -769,13 +1292,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.getVariable(
         siteId: "<SITE_ID>",
         variableId: "<VARIABLE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/sites/%3CSITE_ID%3E/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Variable>());
     });
 
@@ -793,13 +1332,38 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.updateVariable(
         siteId: "<SITE_ID>",
         variableId: "<VARIABLE_ID>",
+        key: "<KEY>",
+        value: "<VALUE>",
+        secret: false,
+        description: "<DESCRIPTION>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/sites/%3CSITE_ID%3E/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "key": "<KEY>",
+        "value": "<VALUE>",
+        "secret": false,
+        "description": "<DESCRIPTION>",
+      });
       expect(response, isA<models.Variable>());
     });
 
@@ -807,13 +1371,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await sites.deleteVariable(
         siteId: "<SITE_ID>",
         variableId: "<VARIABLE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/sites/%3CSITE_ID%3E/variables/%3CVARIABLE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
   });
 }

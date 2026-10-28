@@ -98,7 +98,7 @@ class Storage extends Service {
 
     final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
       '{bucketId}',
-      bucketId,
+      _encodePath(bucketId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -142,7 +142,7 @@ class Storage extends Service {
 
     final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
       '{bucketId}',
-      bucketId,
+      _encodePath(bucketId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -189,7 +189,7 @@ class Storage extends Service {
 
     final String apiPath = '/storage/buckets/{bucketId}'.replaceAll(
       '{bucketId}',
-      bucketId,
+      _encodePath(bucketId),
     );
 
     final Map<String, dynamic> apiParams = {};
@@ -226,7 +226,7 @@ class Storage extends Service {
 
     final String apiPath = '/storage/buckets/{bucketId}/files'.replaceAll(
       '{bucketId}',
-      bucketId,
+      _encodePath(bucketId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -283,7 +283,7 @@ class Storage extends Service {
 
     final String apiPath = '/storage/buckets/{bucketId}/files'.replaceAll(
       '{bucketId}',
-      bucketId,
+      _encodePath(bucketId),
     );
 
     final Map<String, dynamic> apiParams = {
@@ -336,11 +336,11 @@ class Storage extends Service {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
-          bucketId,
+          _encodePath(bucketId),
         )
         .replaceAll(
           '{fileId}',
-          fileId,
+          _encodePath(fileId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -383,11 +383,11 @@ class Storage extends Service {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
-          bucketId,
+          _encodePath(bucketId),
         )
         .replaceAll(
           '{fileId}',
-          fileId,
+          _encodePath(fileId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -432,11 +432,11 @@ class Storage extends Service {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}'
         .replaceAll(
           '{bucketId}',
-          bucketId,
+          _encodePath(bucketId),
         )
         .replaceAll(
           '{fileId}',
-          fileId,
+          _encodePath(fileId),
         );
 
     final Map<String, dynamic> apiParams = {};
@@ -480,11 +480,11 @@ class Storage extends Service {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/download'
         .replaceAll(
           '{bucketId}',
-          bucketId,
+          _encodePath(bucketId),
         )
         .replaceAll(
           '{fileId}',
-          fileId,
+          _encodePath(fileId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -542,11 +542,11 @@ class Storage extends Service {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/preview'
         .replaceAll(
           '{bucketId}',
-          bucketId,
+          _encodePath(bucketId),
         )
         .replaceAll(
           '{fileId}',
-          fileId,
+          _encodePath(fileId),
         );
 
     final Map<String, dynamic> apiParams = {
@@ -602,11 +602,11 @@ class Storage extends Service {
     final String apiPath = '/storage/buckets/{bucketId}/files/{fileId}/view'
         .replaceAll(
           '{bucketId}',
-          bucketId,
+          _encodePath(bucketId),
         )
         .replaceAll(
           '{fileId}',
-          fileId,
+          _encodePath(fileId),
         );
 
     final Map<String, dynamic> apiParams = {

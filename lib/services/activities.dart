@@ -44,7 +44,7 @@ class Activities extends Service {
 
     final String apiPath = '/activities/events/{eventId}'.replaceAll(
       '{eventId}',
-      eventId,
+      _encodePath(eventId),
     );
 
     final Map<String, dynamic> apiParams = {};

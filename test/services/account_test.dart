@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -88,10 +94,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.get();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.User>());
     });
 
@@ -116,14 +138,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.create(
         userId: "<USER_ID>",
         email: "email@example.com",
         password: "password",
+        name: "<NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "email": "email@example.com",
+        "password": "password",
+        "name": "<NAME>",
+      });
       expect(response, isA<models.User>());
     });
 
@@ -134,10 +178,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await account.listConsents();
+      final response = await account.listConsents(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/consents",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.Oauth2ConsentList>());
     });
 
@@ -157,12 +223,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.getConsent(
         consentId: "<CONSENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/consents/%3CCONSENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Oauth2Consent>());
     });
 
@@ -170,12 +252,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.deleteConsent(
         consentId: "<CONSENT_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/account/consents/%3CCONSENT_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listConsentTokens()', () async {
@@ -185,12 +283,33 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.listConsentTokens(
         consentId: "<CONSENT_ID>",
+        queries: [],
+        total: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/consents/%3CCONSENT_ID%3E/tokens",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.Oauth2ConsentTokenList>());
     });
 
@@ -211,13 +330,29 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.getConsentToken(
         consentId: "<CONSENT_ID>",
         tokenId: "<TOKEN_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/consents/%3CCONSENT_ID%3E/tokens/%3CTOKEN_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Oauth2ConsentToken>());
     });
 
@@ -225,13 +360,29 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.deleteConsentToken(
         consentId: "<CONSENT_ID>",
         tokenId: "<TOKEN_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/account/consents/%3CCONSENT_ID%3E/tokens/%3CTOKEN_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updateEmail()', () async {
@@ -255,13 +406,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateEmail(
         email: "email@example.com",
         password: "password",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "email": "email@example.com",
+        "password": "password",
+      });
       expect(response, isA<models.User>());
     });
 
@@ -272,10 +442,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await account.listIdentities();
+      final response = await account.listIdentities(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/identities",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.IdentityList>());
     });
 
@@ -283,12 +475,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.deleteIdentity(
         identityId: "<IDENTITY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/account/identities/%3CIDENTITY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method listMemberships()', () async {
@@ -298,10 +506,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await account.listMemberships();
+      final response = await account.listMemberships(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/memberships",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.MembershipList>());
     });
 
@@ -326,12 +556,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateMFA(
-        mfa: true,
+        mfa: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/mfa",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "mfa": false,
+      });
       expect(response, isA<models.User>());
     });
 
@@ -343,12 +591,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createMfaAuthenticator(
         type: enums.AuthenticatorType.totp,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/mfa/authenticators/totp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaType>());
     });
 
@@ -360,12 +624,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createMFAAuthenticator(
         type: enums.AuthenticatorType.totp,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/mfa/authenticators/totp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaType>());
     });
 
@@ -390,13 +670,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateMfaAuthenticator(
         type: enums.AuthenticatorType.totp,
         otp: "<OTP>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/mfa/authenticators/totp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "otp": "<OTP>",
+      });
       expect(response, isA<models.User>());
     });
 
@@ -421,13 +719,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateMFAAuthenticator(
         type: enums.AuthenticatorType.totp,
         otp: "<OTP>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/mfa/authenticators/totp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "otp": "<OTP>",
+      });
       expect(response, isA<models.User>());
     });
 
@@ -435,24 +751,56 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.deleteMfaAuthenticator(
         type: enums.AuthenticatorType.totp,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/account/mfa/authenticators/totp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method deleteMFAAuthenticator()', () async {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.deleteMFAAuthenticator(
         type: enums.AuthenticatorType.totp,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/account/mfa/authenticators/totp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method createMfaChallenge()', () async {
@@ -464,12 +812,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createMfaChallenge(
         factor: enums.AuthenticationFactor.email,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/mfa/challenges",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "factor": enums.AuthenticationFactor.email.value,
+      });
       expect(response, isA<models.MfaChallenge>());
     });
 
@@ -482,12 +848,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createMFAChallenge(
         factor: enums.AuthenticationFactor.email,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/mfa/challenges",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "factor": enums.AuthenticationFactor.email.value,
+      });
       expect(response, isA<models.MfaChallenge>());
     });
 
@@ -525,13 +909,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateMfaChallenge(
         challengeId: "<CHALLENGE_ID>",
         otp: "<OTP>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/mfa/challenges",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "challengeId": "<CHALLENGE_ID>",
+        "otp": "<OTP>",
+      });
       expect(response, isA<models.Session>());
     });
 
@@ -569,13 +972,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateMFAChallenge(
         challengeId: "<CHALLENGE_ID>",
         otp: "<OTP>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/mfa/challenges",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "challengeId": "<CHALLENGE_ID>",
+        "otp": "<OTP>",
+      });
       expect(response, isA<models.Session>());
     });
 
@@ -589,10 +1011,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.listMfaFactors();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/mfa/factors",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaFactors>());
     });
 
@@ -606,10 +1044,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.listMFAFactors();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/mfa/factors",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaFactors>());
     });
 
@@ -619,10 +1073,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.getMfaRecoveryCodes();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/mfa/recovery-codes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaRecoveryCodes>());
     });
 
@@ -632,10 +1102,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.getMFARecoveryCodes();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/mfa/recovery-codes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaRecoveryCodes>());
     });
 
@@ -645,10 +1131,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createMfaRecoveryCodes();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/mfa/recovery-codes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaRecoveryCodes>());
     });
 
@@ -658,10 +1160,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createMFARecoveryCodes();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/mfa/recovery-codes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaRecoveryCodes>());
     });
 
@@ -671,10 +1189,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateMfaRecoveryCodes();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/mfa/recovery-codes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaRecoveryCodes>());
     });
 
@@ -684,10 +1218,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateMFARecoveryCodes();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/mfa/recovery-codes",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.MfaRecoveryCodes>());
     });
 
@@ -712,12 +1262,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateName(
         name: "<NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/name",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+      });
       expect(response, isA<models.User>());
     });
 
@@ -728,10 +1296,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await account.listPasskeys();
+      final response = await account.listPasskeys(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/passkeys",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
       expect(response, isA<models.PasskeyList>());
     });
 
@@ -745,10 +1335,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await account.createPasskey();
+      final response = await account.createPasskey(
+        passkeyId: "<PASSKEY_ID>",
+        name: "<NAME>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/passkeys",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "passkeyId": "<PASSKEY_ID>",
+        "name": "<NAME>",
+      });
       expect(response, isA<models.PasskeyChallenge>());
     });
 
@@ -762,12 +1374,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.getPasskey(
         passkeyId: "<PASSKEY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/passkeys/%3CPASSKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Passkey>());
     });
 
@@ -781,13 +1409,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePasskey(
         passkeyId: "<PASSKEY_ID>",
         name: "<NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/passkeys/%3CPASSKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+      });
       expect(response, isA<models.Passkey>());
     });
 
@@ -795,12 +1441,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.deletePasskey(
         passkeyId: "<PASSKEY_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/account/passkeys/%3CPASSKEY_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updatePasskeyVerification()', () async {
@@ -813,13 +1475,31 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePasskeyVerification(
         passkeyId: "<PASSKEY_ID>",
         credential: {},
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/passkeys/%3CPASSKEY_ID%3E/verification",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "credential": isA<Map>(),
+      });
       expect(response, isA<models.Passkey>());
     });
 
@@ -844,12 +1524,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePassword(
         password: "password",
+        oldPassword: "password",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/password",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "password": "password",
+        "oldPassword": "password",
+      });
       expect(response, isA<models.User>());
     });
 
@@ -874,13 +1574,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePhone(
         phone: "+12065550100",
         password: "password",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/phone",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "phone": "+12065550100",
+        "password": "password",
+      });
       expect(response, isA<models.User>());
     });
 
@@ -888,10 +1607,26 @@ void main() {
       final Map<String, dynamic> data = {};
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.getPrefs();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/prefs",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Preferences>());
     });
 
@@ -916,12 +1651,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePrefs(
         prefs: {},
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/prefs",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "prefs": isA<Map>(),
+      });
       expect(response, isA<models.User>());
     });
 
@@ -936,13 +1689,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createRecovery(
         email: "email@example.com",
         url: "https://example.com",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/recovery",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "email": "email@example.com",
+        "url": "https://example.com",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -957,7 +1729,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateRecovery(
@@ -965,6 +1743,20 @@ void main() {
         secret: "<SECRET>",
         password: "password",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/recovery",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+        "password": "password",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -979,12 +1771,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createRecoveryOTP(
         email: "email@example.com",
+        phrase: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/recovery/otp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "email": "email@example.com",
+        "phrase": false,
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -999,7 +1811,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateRecoveryOTP(
@@ -1007,6 +1825,20 @@ void main() {
         secret: "<SECRET>",
         password: "password",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/recovery/otp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+        "password": "password",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1017,10 +1849,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await account.listSessions();
+      final response = await account.listSessions(
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/sessions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "total": false,
+      });
       expect(response, isA<models.SessionList>());
     });
 
@@ -1028,10 +1880,30 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await account.deleteSessions();
+      final response = await account.deleteSessions(
+        current: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/account/sessions",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "current": false,
+      });
     });
 
     test('test method createAnonymousSession()', () async {
@@ -1068,10 +1940,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createAnonymousSession();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/sessions/anonymous",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Session>());
     });
 
@@ -1109,13 +1997,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createEmailPasswordSession(
         email: "email@example.com",
         password: "password",
+        duration: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/sessions/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "email": "email@example.com",
+        "password": "password",
+        "duration": 1,
+      });
       expect(response, isA<models.Session>());
     });
 
@@ -1153,13 +2062,40 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createIdTokenSession(
         provider: enums.IdTokenProvider.apple,
         idToken: "<ID_TOKEN>",
+        nonce: "<NONCE>",
+        accessToken: "<ACCESS_TOKEN>",
+        accessTokenExpiry: 1,
+        name: "<NAME>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/sessions/id-token",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "provider": enums.IdTokenProvider.apple.value,
+        "idToken": "<ID_TOKEN>",
+        "nonce": "<NONCE>",
+        "accessToken": "<ACCESS_TOKEN>",
+        "accessTokenExpiry": 1,
+        "name": "<NAME>",
+      });
       expect(response, isA<models.Session>());
     });
 
@@ -1197,13 +2133,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateMagicURLSession(
         userId: "<USER_ID>",
         secret: "<SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/sessions/magic-url",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+      });
       expect(response, isA<models.Session>());
     });
 
@@ -1241,13 +2196,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePhoneSession(
         userId: "<USER_ID>",
         secret: "<SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/sessions/phone",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+      });
       expect(response, isA<models.Session>());
     });
 
@@ -1285,13 +2259,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createSession(
         userId: "<USER_ID>",
         secret: "<SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/sessions/token",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+      });
       expect(response, isA<models.Session>());
     });
 
@@ -1329,12 +2322,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.getSession(
         sessionId: "<SESSION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/account/sessions/%3CSESSION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Session>());
     });
 
@@ -1372,12 +2381,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateSession(
         sessionId: "<SESSION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/sessions/%3CSESSION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Session>());
     });
 
@@ -1385,12 +2410,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.deleteSession(
         sessionId: "<SESSION_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/account/sessions/%3CSESSION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
 
     test('test method updateStatus()', () async {
@@ -1414,10 +2455,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateStatus();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/account/status",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.User>());
     });
 
@@ -1432,13 +2489,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createEmailToken(
         userId: "<USER_ID>",
         email: "email@example.com",
+        phrase: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/tokens/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "email": "email@example.com",
+        "phrase": false,
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1453,13 +2531,36 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createMagicURLToken(
         userId: "<USER_ID>",
         email: "email@example.com",
+        url: "https://example.com",
+        phrase: false,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/tokens/magic-url",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "email": "email@example.com",
+        "url": "https://example.com",
+        "phrase": false,
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1470,7 +2571,16 @@ void main() {
 
       final response = await account.createOAuth2Token(
         provider: enums.OAuthProvider.amazon,
+        success: "https://example.com",
+        failure: "https://example.com",
+        scopes: [],
+        state: "<STATE>",
       );
+      final Uri url = verify(client.webAuth(captureAny)).captured.single;
+      expect(Uri.decodeFull(url.path), "/v1/account/tokens/oauth2/amazon");
+      expect(url.queryParameters["success"], "https://example.com");
+      expect(url.queryParameters["failure"], "https://example.com");
+      expect(url.queryParameters["state"], "<STATE>");
       expect(response, equals('done'));
     });
 
@@ -1484,10 +2594,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createPasskeyToken();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/tokens/passkey",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.PasskeyChallenge>());
     });
 
@@ -1502,13 +2628,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePasskeyToken(
         challengeId: "<CHALLENGE_ID>",
         credential: {},
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/tokens/passkey",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "challengeId": "<CHALLENGE_ID>",
+        "credential": isA<Map>(),
+      });
       expect(response, isA<models.TokenSecret>());
     });
 
@@ -1523,13 +2668,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createPhoneToken(
         userId: "<USER_ID>",
         phone: "+12065550100",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/tokens/phone",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "phone": "+12065550100",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1544,12 +2708,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createEmailVerification(
         url: "https://example.com",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/verifications/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "url": "https://example.com",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1564,12 +2746,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createVerification(
         url: "https://example.com",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/verifications/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "url": "https://example.com",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1584,13 +2784,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateEmailVerification(
         userId: "<USER_ID>",
         secret: "<SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/verifications/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1605,13 +2824,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateVerification(
         userId: "<USER_ID>",
         secret: "<SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/verifications/email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1626,10 +2864,30 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await account.createEmailVerificationOTP();
+      final response = await account.createEmailVerificationOTP(
+        phrase: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/verifications/email/otp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "phrase": false,
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1644,13 +2902,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updateEmailVerificationOTP(
         userId: "<USER_ID>",
         secret: "<SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/verifications/email/otp",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+      });
       expect(response, isA<models.Token>());
     });
 
@@ -1665,10 +2942,26 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.createPhoneVerification();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/account/verifications/phone",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.Token>());
     });
 
@@ -1683,13 +2976,32 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.put),
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await account.updatePhoneVerification(
         userId: "<USER_ID>",
         secret: "<SECRET>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/account/verifications/phone",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "userId": "<USER_ID>",
+        "secret": "<SECRET>",
+      });
       expect(response, isA<models.Token>());
     });
   });

@@ -2,11 +2,11 @@
 
 [![pub package](https://img.shields.io/pub/v/dart_appwrite.svg?style=flat-square)](https://pub.dartlang.org/packages/dart_appwrite)
 ![License](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg?style=flat-square)
-![Version](https://img.shields.io/badge/api%20version-2.5.x-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/api%20version-2.6.x-blue.svg?style=flat-square)
 [![X Account](https://img.shields.io/badge/follow-%40appwrite-000000?logo=x&style=flat-square)](https://x.com/appwrite)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
-**This SDK targets Appwrite server version 2.5.x as shipped on Appwrite Cloud.** Self-hosted releases can lag behind Cloud — if you run an older self-hosted build, use a matching older SDK from [previous releases](https://github.com/appwrite/sdk-for-dart/releases) when APIs differ.
+**This SDK targets Appwrite server version 2.6.x as shipped on Appwrite Cloud.** Self-hosted releases can lag behind Cloud — if you run an older self-hosted build, use a matching older SDK from [previous releases](https://github.com/appwrite/sdk-for-dart/releases) when APIs differ.
 
  > This is the Dart SDK for integrating with Appwrite from your Dart server-side code. If you're looking for the Flutter SDK you should check [appwrite/sdk-for-flutter](https://github.com/appwrite/sdk-for-flutter)
 
@@ -26,7 +26,7 @@ Or add it to your package's `pubspec.yaml` file and run `dart pub get`:
 
 ```yaml
 dependencies:
-  dart_appwrite: ^31.0.0
+  dart_appwrite: ^31.1.0
 ```
 
 ## Getting Started

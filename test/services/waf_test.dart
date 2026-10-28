@@ -14,13 +14,18 @@ class MockClient extends Mock implements Client {
   @override
   Future<Response> call(
     HttpMethod? method, {
-    String path = '',
-    Map<String, String> headers = const {},
-    Map<String, dynamic> params = const {},
+    String? path = '',
+    Map<String, String>? headers = const {},
+    Map<String, dynamic>? params = const {},
     ResponseType? responseType,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#call, [method]),
+      Invocation.method(#call, [method], {
+        #path: path,
+        #headers: headers,
+        #params: params,
+        #responseType: responseType,
+      }),
       returnValue: Response(),
     );
   }
@@ -42,16 +47,17 @@ class MockClient extends Mock implements Client {
     Map<String, String>? headers,
     Function(UploadProgress)? onProgress,
     ResponseType? responseType,
-    HttpMethod method = HttpMethod.post,
+    HttpMethod? method = HttpMethod.post,
   }) async {
     return super.noSuchMethod(
-      Invocation.method(#chunkedUpload, [
-        path,
-        params,
-        paramName,
-        idParamName,
-        headers,
-      ]),
+      Invocation.method(#chunkedUpload, [], {
+        #path: path,
+        #params: params,
+        #paramName: paramName,
+        #idParamName: idParamName,
+        #headers: headers,
+        #method: method,
+      }),
       returnValue: Response(data: {}),
     );
   }
@@ -74,10 +80,34 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
-      final response = await waf.listRules();
+      final response = await waf.listRules(
+        queries: [],
+        search: "<SEARCH>",
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/waf/rules",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "search": "<SEARCH>",
+        "total": false,
+      });
       expect(response, isA<models.WafRuleList>());
     });
 
@@ -100,14 +130,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.createBypassRule(
         ruleId: "<RULE_ID>",
         resourceType: "api",
         name: "<NAME>",
+        resourceId: "<RESOURCE_ID>",
+        description: "<DESCRIPTION>",
+        priority: 1,
+        enabled: false,
+        conditions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/waf/rules/bypass",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "ruleId": "<RULE_ID>",
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+      });
       expect(response, isA<models.WafRuleBypass>());
     });
 
@@ -130,12 +190,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.updateBypassRule(
         ruleId: "<RULE_ID>",
+        resourceType: "api",
+        resourceId: "<RESOURCE_ID>",
+        name: "<NAME>",
+        description: "<DESCRIPTION>",
+        priority: 1,
+        enabled: false,
+        conditions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/waf/rules/bypass/%3CRULE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+      });
       expect(response, isA<models.WafRuleBypass>());
     });
 
@@ -161,14 +252,50 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.createChallengeRule(
         ruleId: "<RULE_ID>",
         resourceType: "api",
         name: "<NAME>",
+        resourceId: "<RESOURCE_ID>",
+        description: "<DESCRIPTION>",
+        challengeType: "compute",
+        priority: 1,
+        enabled: false,
+        conditions: [],
+        difficulty: 1,
+        ttl: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/waf/rules/challenge",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "ruleId": "<RULE_ID>",
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "challengeType": "compute",
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+        "difficulty": 1,
+        "ttl": 1,
+      });
       expect(response, isA<models.WafRuleChallenge>());
     });
 
@@ -194,12 +321,49 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.updateChallengeRule(
         ruleId: "<RULE_ID>",
+        resourceType: "api",
+        resourceId: "<RESOURCE_ID>",
+        name: "<NAME>",
+        description: "<DESCRIPTION>",
+        challengeType: "compute",
+        priority: 1,
+        enabled: false,
+        conditions: [],
+        difficulty: 1,
+        ttl: 1,
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/waf/rules/challenge/%3CRULE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "challengeType": "compute",
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+        "difficulty": 1,
+        "ttl": 1,
+      });
       expect(response, isA<models.WafRuleChallenge>());
     });
 
@@ -222,14 +386,44 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.createDenyRule(
         ruleId: "<RULE_ID>",
         resourceType: "api",
         name: "<NAME>",
+        resourceId: "<RESOURCE_ID>",
+        description: "<DESCRIPTION>",
+        priority: 1,
+        enabled: false,
+        conditions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/waf/rules/deny",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "ruleId": "<RULE_ID>",
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+      });
       expect(response, isA<models.WafRuleDeny>());
     });
 
@@ -252,12 +446,43 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.updateDenyRule(
         ruleId: "<RULE_ID>",
+        resourceType: "api",
+        resourceId: "<RESOURCE_ID>",
+        name: "<NAME>",
+        description: "<DESCRIPTION>",
+        priority: 1,
+        enabled: false,
+        conditions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/waf/rules/deny/%3CRULE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+      });
       expect(response, isA<models.WafRuleDeny>());
     });
 
@@ -285,7 +510,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.createRateLimitRule(
@@ -294,7 +525,39 @@ void main() {
         name: "<NAME>",
         limit: 1,
         interval: 1,
+        resourceId: "<RESOURCE_ID>",
+        description: "<DESCRIPTION>",
+        key: "ip",
+        strategy: "fixedWindow",
+        maxBucketSize: 1,
+        priority: 1,
+        enabled: false,
+        conditions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/waf/rules/rate-limit",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "ruleId": "<RULE_ID>",
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "limit": 1,
+        "interval": 1,
+        "key": "ip",
+        "strategy": "fixedWindow",
+        "maxBucketSize": 1,
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+      });
       expect(response, isA<models.WafRuleRateLimit>());
     });
 
@@ -322,12 +585,51 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.updateRateLimitRule(
         ruleId: "<RULE_ID>",
+        resourceType: "api",
+        resourceId: "<RESOURCE_ID>",
+        name: "<NAME>",
+        description: "<DESCRIPTION>",
+        limit: 1,
+        interval: 1,
+        key: "ip",
+        maxBucketSize: 1,
+        priority: 1,
+        enabled: false,
+        conditions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/waf/rules/rate-limit/%3CRULE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "limit": 1,
+        "interval": 1,
+        "key": "ip",
+        "maxBucketSize": 1,
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+      });
       expect(response, isA<models.WafRuleRateLimit>());
     });
 
@@ -352,7 +654,13 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.post),
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.createRedirectRule(
@@ -361,7 +669,33 @@ void main() {
         name: "<NAME>",
         location: "<LOCATION>",
         statusCode: 1,
+        resourceId: "<RESOURCE_ID>",
+        description: "<DESCRIPTION>",
+        priority: 1,
+        enabled: false,
+        conditions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/waf/rules/redirect",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "ruleId": "<RULE_ID>",
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "location": "<LOCATION>",
+        "statusCode": 1,
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+      });
       expect(response, isA<models.WafRuleRedirect>());
     });
 
@@ -386,12 +720,47 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.patch),
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.updateRedirectRule(
         ruleId: "<RULE_ID>",
+        resourceType: "api",
+        resourceId: "<RESOURCE_ID>",
+        name: "<NAME>",
+        description: "<DESCRIPTION>",
+        location: "<LOCATION>",
+        statusCode: 1,
+        priority: 1,
+        enabled: false,
+        conditions: [],
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/waf/rules/redirect/%3CRULE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "resourceType": "api",
+        "resourceId": "<RESOURCE_ID>",
+        "name": "<NAME>",
+        "description": "<DESCRIPTION>",
+        "location": "<LOCATION>",
+        "statusCode": 1,
+        "priority": 1,
+        "enabled": false,
+        "conditions": isA<List>(),
+      });
       expect(response, isA<models.WafRuleRedirect>());
     });
 
@@ -416,12 +785,28 @@ void main() {
       };
 
       when(
-        client.call(HttpMethod.get),
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.getRule(
         ruleId: "<RULE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/waf/rules/%3CRULE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
       expect(response, isA<models.WafRuleRedirect>());
     });
 
@@ -429,12 +814,28 @@ void main() {
       final data = '';
 
       when(
-        client.call(HttpMethod.delete),
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
       ).thenAnswer((_) async => Response(data: data));
 
       final response = await waf.deleteRule(
         ruleId: "<RULE_ID>",
       );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/waf/rules/%3CRULE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
     });
   });
 }
