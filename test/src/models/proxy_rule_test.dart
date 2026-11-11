@@ -21,6 +21,8 @@ void main() {
         logs:
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         renewAt: "datetime",
+        expireAt: "2020-10-15T06:38:00.000+00:00",
+        certificateStatus: "issued",
         protocol: ProxyRuleProtocol.http,
       );
 
@@ -44,6 +46,8 @@ void main() {
         "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
       );
       expect(result.renewAt, "datetime");
+      expect(result.expireAt, "2020-10-15T06:38:00.000+00:00");
+      expect(result.certificateStatus, "issued");
       expect(result.protocol, ProxyRuleProtocol.http);
     });
   });

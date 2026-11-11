@@ -42,10 +42,10 @@ class ClientIO extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '31.1.0',
+      'x-sdk-version': '31.2.0',
       'user-agent':
-          'AppwriteDartSDK/31.1.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
-      'X-Appwrite-Response-Format': '2.6.2',
+          'AppwriteDartSDK/31.2.0 (${Platform.operatingSystem}; ${Platform.operatingSystemVersion})',
+      'X-Appwrite-Response-Format': '2.7.1',
     };
 
     config = {};
@@ -100,6 +100,14 @@ class ClientIO extends ClientBase with ClientMixin {
   ClientIO setLocale(value) {
     config['locale'] = value;
     addHeader('X-Appwrite-Locale', value);
+    return this;
+  }
+
+  /// The ID of the project environment to act in, alongside the project ID. Used with Appwrite Cloud projects that have environments.
+  @override
+  ClientIO setEnvironment(value) {
+    config['environment'] = value;
+    addHeader('X-Appwrite-Environment', value);
     return this;
   }
 

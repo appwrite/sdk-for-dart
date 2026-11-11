@@ -9,7 +9,7 @@ Client client = Client()
 
 Project project = Project(client);
 
-models.ProjectList result = await project.listEnvironments(
+models.EnvironmentList result = await project.listEnvironments(
     queries: [], // (optional)
     total: false, // (optional)
 );

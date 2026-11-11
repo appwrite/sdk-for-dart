@@ -22,5 +22,6 @@ models.WafRuleRateLimit result = await waf.updateRateLimitRule(
     priority: -100000, // (optional)
     enabled: false, // (optional)
     conditions: [], // (optional)
+    schedule: {}, // (optional)
 );
 ```

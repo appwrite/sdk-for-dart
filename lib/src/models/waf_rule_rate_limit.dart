@@ -44,6 +44,9 @@ class WafRuleRateLimit implements Model {
   /// Action specific configuration.
   final Map<String, dynamic> config;
 
+  /// When the rule is active: mode, days, interval, anchor, startTime, endTime and timezone. Null when the rule is always active.
+  final Map<String, dynamic>? schedule;
+
   /// Maximum number of matching requests allowed for the given interval.
   final int limit;
 
@@ -74,6 +77,7 @@ class WafRuleRateLimit implements Model {
     required this.enabled,
     required this.conditions,
     required this.config,
+    this.schedule,
     required this.limit,
     required this.interval,
     required this.key,
@@ -122,6 +126,7 @@ class WafRuleRateLimit implements Model {
       enabled: map['enabled'],
       conditions: List.from(map['conditions'] ?? []),
       config: map['config'],
+      schedule: map['schedule'],
       limit: map['limit'],
       interval: map['interval'],
       key: map['key'].toString(),
@@ -147,6 +152,7 @@ class WafRuleRateLimit implements Model {
       "enabled": enabled,
       "conditions": conditions,
       "config": config,
+      "schedule": schedule,
       "limit": limit,
       "interval": interval,
       "key": key,
