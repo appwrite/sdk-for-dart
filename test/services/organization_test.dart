@@ -82,6 +82,8 @@ void main() {
         'total': 7,
         'prefs': <String, dynamic>{},
         'budgetAlerts': [],
+        'budgetNotify': [],
+        'budgetCritical': [],
         'billingPlan': "tier-1",
         'billingPlanId': "tier-1",
         'billingPlanDetails': <String, dynamic>{
@@ -195,6 +197,8 @@ void main() {
         'total': 7,
         'prefs': <String, dynamic>{},
         'budgetAlerts': [],
+        'budgetNotify': [],
+        'budgetCritical': [],
         'billingPlan': "tier-1",
         'billingPlanId': "tier-1",
         'billingPlanDetails': <String, dynamic>{

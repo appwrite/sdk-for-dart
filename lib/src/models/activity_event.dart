@@ -89,6 +89,9 @@ class ActivityEvent implements Model {
   /// Version of the SDK that triggered the event.
   final String sdkVersion;
 
+  /// Why the actor made the request, as sent in the `X-Appwrite-Reason` header. Empty when no reason was given.
+  final String reason;
+
   ActivityEvent({
     required this.$id,
     required this.actorType,
@@ -119,6 +122,7 @@ class ActivityEvent implements Model {
     required this.hostname,
     required this.sdk,
     required this.sdkVersion,
+    required this.reason,
   });
   factory ActivityEvent.fromMap(
     Map<String, dynamic> map,
@@ -153,6 +157,7 @@ class ActivityEvent implements Model {
       'hostname': "",
       'sdk': "",
       'sdkVersion': "",
+      'reason': "",
       ...map,
     };
 
@@ -187,6 +192,7 @@ class ActivityEvent implements Model {
       hostname: map['hostname'].toString(),
       sdk: map['sdk'].toString(),
       sdkVersion: map['sdkVersion'].toString(),
+      reason: map['reason'].toString(),
     );
   }
 
@@ -222,6 +228,7 @@ class ActivityEvent implements Model {
       "hostname": hostname,
       "sdk": sdk,
       "sdkVersion": sdkVersion,
+      "reason": reason,
     };
   }
 }

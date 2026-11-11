@@ -19,7 +19,8 @@ enum ProjectPolicyId {
   denyFreeEmail(value: "deny-free-email"),
   denyCorporateEmail(value: "deny-corporate-email"),
   denyRealtimeGuests(value: "deny-realtime-guests"),
-  passkey(value: "passkey");
+  passkey(value: "passkey"),
+  accountDevices(value: "account-devices");
 
   const ProjectPolicyId({required this.value});
 

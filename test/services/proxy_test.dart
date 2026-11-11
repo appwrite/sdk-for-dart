@@ -166,6 +166,8 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
         'protocol': "http",
       };
 
@@ -214,6 +216,8 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
         'protocol': "http",
       };
 
@@ -266,6 +270,8 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
         'protocol': "http",
       };
 
@@ -322,6 +328,8 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
         'protocol': "http",
       };
 
@@ -374,6 +382,8 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
         'protocol': "http",
       };
 
@@ -426,6 +436,8 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
         'protocol': "http",
       };
 
@@ -483,6 +495,169 @@ void main() {
       expect(params, isEmpty);
     });
 
+    test('test method updateFunctionRule()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'domain': "appwrite.company.com",
+        'type': "deployment",
+        'trigger': "manual",
+        'redirectUrl': "https://appwrite.io/docs",
+        'redirectStatusCode': 301,
+        'deploymentId': "n3u9feiwmf",
+        'deploymentResourceId': "n3u9feiwmf",
+        'deploymentVcsProviderBranch': "main",
+        'status': "verified",
+        'logs':
+            "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
+        'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
+        'protocol': "http",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await proxy.updateFunctionRule(
+        ruleId: "<RULE_ID>",
+        functionId: "<FUNCTION_ID>",
+        branch: "<BRANCH>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/proxy/rules/%3CRULE_ID%3E/function",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "functionId": "<FUNCTION_ID>",
+        "branch": "<BRANCH>",
+      });
+      expect(response, isA<models.ProxyRule>());
+    });
+
+    test('test method updateRedirectRule()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'domain': "appwrite.company.com",
+        'type': "deployment",
+        'trigger': "manual",
+        'redirectUrl': "https://appwrite.io/docs",
+        'redirectStatusCode': 301,
+        'deploymentId': "n3u9feiwmf",
+        'deploymentResourceId': "n3u9feiwmf",
+        'deploymentVcsProviderBranch': "main",
+        'status': "verified",
+        'logs':
+            "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
+        'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
+        'protocol': "http",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await proxy.updateRedirectRule(
+        ruleId: "<RULE_ID>",
+        url: "https://example.com",
+        statusCode: enums.StatusCode.movedPermanently,
+        resourceId: "<RESOURCE_ID>",
+        resourceType: enums.ProxyResourceType.site,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/proxy/rules/%3CRULE_ID%3E/redirect",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "url": "https://example.com",
+        "statusCode": enums.StatusCode.movedPermanently.value,
+        "resourceId": "<RESOURCE_ID>",
+        "resourceType": enums.ProxyResourceType.site.value,
+      });
+      expect(response, isA<models.ProxyRule>());
+    });
+
+    test('test method updateSiteRule()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'domain': "appwrite.company.com",
+        'type': "deployment",
+        'trigger': "manual",
+        'redirectUrl': "https://appwrite.io/docs",
+        'redirectStatusCode': 301,
+        'deploymentId': "n3u9feiwmf",
+        'deploymentResourceId': "n3u9feiwmf",
+        'deploymentVcsProviderBranch': "main",
+        'status': "verified",
+        'logs':
+            "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
+        'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
+        'protocol': "http",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await proxy.updateSiteRule(
+        ruleId: "<RULE_ID>",
+        siteId: "<SITE_ID>",
+        branch: "<BRANCH>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/proxy/rules/%3CRULE_ID%3E/site",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "siteId": "<SITE_ID>",
+        "branch": "<BRANCH>",
+      });
+      expect(response, isA<models.ProxyRule>());
+    });
+
     test('test method updateRuleStatus()', () async {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
@@ -500,6 +675,8 @@ void main() {
         'logs':
             "Verification of DNS records failed with DNS resolver 8.8.8.8. Domain stage.myapp.com does not have DNS record.",
         'renewAt': "datetime",
+        'expireAt': "2020-10-15T06:38:00.000+00:00",
+        'certificateStatus': "issued",
         'protocol': "http",
       };
 

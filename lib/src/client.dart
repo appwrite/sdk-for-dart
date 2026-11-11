@@ -1,5 +1,6 @@
 import 'enums.dart';
 import 'client_stub.dart'
+    if (dart.library.js_interop) 'client_browser.dart'
     if (dart.library.html) 'client_browser.dart'
     if (dart.library.io) 'client_io.dart';
 import 'response.dart';
@@ -64,6 +65,11 @@ abstract class Client {
 
   /// Set Locale
   Client setLocale(String value);
+
+  /// Set Environment
+  ///
+  /// The ID of the project environment to act in, alongside the project ID. Used with Appwrite Cloud projects that have environments.
+  Client setEnvironment(String value);
 
   /// Set Session
   ///

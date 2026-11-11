@@ -59,6 +59,9 @@ class Project implements Model {
   /// Labels for the project.
   final List<String> labels;
 
+  /// Project preferences as a key-value object
+  final Preferences? prefs;
+
   /// Project status
   final String status;
 
@@ -85,6 +88,9 @@ class Project implements Model {
 
   /// ID of the project this environment belongs to. Null when the project is not an environment.
   final String? parentId;
+
+  /// ID of the environment, as passed in the X-Appwrite-Environment header, when the project is accessed as one. Null when the project is not an environment.
+  final String? environmentId;
 
   /// Billing limits reached
   final BillingLimits? billingLimits;
@@ -166,6 +172,7 @@ class Project implements Model {
     required this.pingCount,
     required this.pingedAt,
     required this.labels,
+    this.prefs,
     required this.status,
     required this.onboarding,
     required this.authMethods,
@@ -175,6 +182,7 @@ class Project implements Model {
     required this.consoleAccessedAt,
     this.wafEnabled,
     this.parentId,
+    this.environmentId,
     this.billingLimits,
     this.firstAccessedAt,
     this.mcpAccessedAt,
@@ -249,6 +257,11 @@ class Project implements Model {
       pingCount: map['pingCount'],
       pingedAt: map['pingedAt'].toString(),
       labels: List.from(map['labels'] ?? []),
+      prefs: map['prefs'] != null
+          ? Preferences.fromMap(
+              map['prefs'],
+            )
+          : null,
       status: map['status'].toString(),
       onboarding: map['onboarding'],
       authMethods: List<ProjectAuthMethod>.from(
@@ -266,6 +279,7 @@ class Project implements Model {
       consoleAccessedAt: map['consoleAccessedAt'].toString(),
       wafEnabled: map['wafEnabled'],
       parentId: map['parentId']?.toString(),
+      environmentId: map['environmentId']?.toString(),
       billingLimits: map['billingLimits'] != null
           ? BillingLimits.fromMap(
               map['billingLimits'],
@@ -323,6 +337,7 @@ class Project implements Model {
       "pingCount": pingCount,
       "pingedAt": pingedAt,
       "labels": labels,
+      "prefs": prefs?.toMap(),
       "status": status,
       "onboarding": onboarding,
       "authMethods": authMethods.map((p) => p.toMap()).toList(),
@@ -332,6 +347,7 @@ class Project implements Model {
       "consoleAccessedAt": consoleAccessedAt,
       "wafEnabled": wafEnabled,
       "parentId": parentId,
+      "environmentId": environmentId,
       "billingLimits": billingLimits?.toMap(),
       "firstAccessedAt": firstAccessedAt,
       "mcpAccessedAt": mcpAccessedAt,

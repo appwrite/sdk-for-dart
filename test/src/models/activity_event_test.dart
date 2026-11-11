@@ -35,6 +35,7 @@ void main() {
         hostname: "appwrite.io",
         sdk: "web",
         sdkVersion: "14.0.0",
+        reason: "Reported as spam by 25 users in the last 24 hours",
       );
 
       final map = model.toMap();
@@ -72,6 +73,10 @@ void main() {
       expect(result.hostname, "appwrite.io");
       expect(result.sdk, "web");
       expect(result.sdkVersion, "14.0.0");
+      expect(
+        result.reason,
+        "Reported as spam by 25 users in the last 24 hours",
+      );
     });
   });
 }

@@ -26,6 +26,12 @@ class Organization implements Model {
   /// Project budget limit
   final List<int> budgetAlerts;
 
+  /// Organization roles whose confirmed members are emailed when a budget alert fires.
+  final List<String> budgetNotify;
+
+  /// Budget alert percentages whose push notifications are critical.
+  final List<int> budgetCritical;
+
   /// Organization&#039;s billing plan ID.
   final String billingPlan;
 
@@ -89,6 +95,9 @@ class Organization implements Model {
   /// Program&#039;s discord channel URL.
   final String? programDiscordChannelUrl;
 
+  /// When the education plan ends, for an organization on it.
+  final String? educationExpiresAt;
+
   /// Billing limits reached
   final BillingLimits? billingLimits;
 
@@ -116,6 +125,8 @@ class Organization implements Model {
     required this.prefs,
     this.billingBudget,
     required this.budgetAlerts,
+    required this.budgetNotify,
+    required this.budgetCritical,
     required this.billingPlan,
     required this.billingPlanId,
     required this.billingPlanDetails,
@@ -137,6 +148,7 @@ class Organization implements Model {
     this.programManagerCalendar,
     this.programDiscordChannelName,
     this.programDiscordChannelUrl,
+    this.educationExpiresAt,
     this.billingLimits,
     this.billingPlanDowngrade,
     this.billingTaxId,
@@ -154,6 +166,8 @@ class Organization implements Model {
       'name': "",
       'total': 0,
       'budgetAlerts': [75],
+      'budgetNotify': ["owner", "billing"],
+      'budgetCritical': [],
       'billingPlan': "tier-0",
       'billingPlanId': "tier-0",
       'billingEmail': "",
@@ -175,6 +189,8 @@ class Organization implements Model {
       ),
       billingBudget: map['billingBudget'],
       budgetAlerts: List.from(map['budgetAlerts'] ?? []),
+      budgetNotify: List.from(map['budgetNotify'] ?? []),
+      budgetCritical: List.from(map['budgetCritical'] ?? []),
       billingPlan: map['billingPlan'].toString(),
       billingPlanId: map['billingPlanId'].toString(),
       billingPlanDetails: BillingPlan.fromMap(
@@ -198,6 +214,7 @@ class Organization implements Model {
       programManagerCalendar: map['programManagerCalendar']?.toString(),
       programDiscordChannelName: map['programDiscordChannelName']?.toString(),
       programDiscordChannelUrl: map['programDiscordChannelUrl']?.toString(),
+      educationExpiresAt: map['educationExpiresAt']?.toString(),
       billingLimits: map['billingLimits'] != null
           ? BillingLimits.fromMap(
               map['billingLimits'],
@@ -222,6 +239,8 @@ class Organization implements Model {
       "prefs": prefs.toMap(),
       "billingBudget": billingBudget,
       "budgetAlerts": budgetAlerts,
+      "budgetNotify": budgetNotify,
+      "budgetCritical": budgetCritical,
       "billingPlan": billingPlan,
       "billingPlanId": billingPlanId,
       "billingPlanDetails": billingPlanDetails.toMap(),
@@ -243,6 +262,7 @@ class Organization implements Model {
       "programManagerCalendar": programManagerCalendar,
       "programDiscordChannelName": programDiscordChannelName,
       "programDiscordChannelUrl": programDiscordChannelUrl,
+      "educationExpiresAt": educationExpiresAt,
       "billingLimits": billingLimits?.toMap(),
       "billingPlanDowngrade": billingPlanDowngrade,
       "billingTaxId": billingTaxId,

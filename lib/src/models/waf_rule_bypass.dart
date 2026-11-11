@@ -44,6 +44,9 @@ class WafRuleBypass implements Model {
   /// Action specific configuration.
   final Map<String, dynamic> config;
 
+  /// When the rule is active: mode, days, interval, anchor, startTime, endTime and timezone. Null when the rule is always active.
+  final Map<String, dynamic>? schedule;
+
   WafRuleBypass({
     required this.$id,
     required this.$createdAt,
@@ -59,6 +62,7 @@ class WafRuleBypass implements Model {
     required this.enabled,
     required this.conditions,
     required this.config,
+    this.schedule,
   });
   factory WafRuleBypass.fromMap(
     Map<String, dynamic> map,
@@ -97,6 +101,7 @@ class WafRuleBypass implements Model {
       enabled: map['enabled'],
       conditions: List.from(map['conditions'] ?? []),
       config: map['config'],
+      schedule: map['schedule'],
     );
   }
 
@@ -117,6 +122,7 @@ class WafRuleBypass implements Model {
       "enabled": enabled,
       "conditions": conditions,
       "config": config,
+      "schedule": schedule,
     };
   }
 }

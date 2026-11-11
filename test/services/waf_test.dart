@@ -148,6 +148,7 @@ void main() {
         priority: 1,
         enabled: false,
         conditions: [],
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -167,6 +168,7 @@ void main() {
         "priority": 1,
         "enabled": false,
         "conditions": isA<List>(),
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleBypass>());
     });
@@ -208,6 +210,7 @@ void main() {
         priority: 1,
         enabled: false,
         conditions: [],
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -226,6 +229,7 @@ void main() {
         "priority": 1,
         "enabled": false,
         "conditions": isA<List>(),
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleBypass>());
     });
@@ -273,6 +277,7 @@ void main() {
         conditions: [],
         difficulty: 1,
         ttl: 1,
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -295,6 +300,7 @@ void main() {
         "conditions": isA<List>(),
         "difficulty": 1,
         "ttl": 1,
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleChallenge>());
     });
@@ -342,6 +348,7 @@ void main() {
         conditions: [],
         difficulty: 1,
         ttl: 1,
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -363,6 +370,7 @@ void main() {
         "conditions": isA<List>(),
         "difficulty": 1,
         "ttl": 1,
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleChallenge>());
     });
@@ -404,6 +412,7 @@ void main() {
         priority: 1,
         enabled: false,
         conditions: [],
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -423,6 +432,7 @@ void main() {
         "priority": 1,
         "enabled": false,
         "conditions": isA<List>(),
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleDeny>());
     });
@@ -464,6 +474,7 @@ void main() {
         priority: 1,
         enabled: false,
         conditions: [],
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -482,6 +493,7 @@ void main() {
         "priority": 1,
         "enabled": false,
         "conditions": isA<List>(),
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleDeny>());
     });
@@ -533,6 +545,7 @@ void main() {
         priority: 1,
         enabled: false,
         conditions: [],
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -557,6 +570,7 @@ void main() {
         "priority": 1,
         "enabled": false,
         "conditions": isA<List>(),
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleRateLimit>());
     });
@@ -607,6 +621,7 @@ void main() {
         priority: 1,
         enabled: false,
         conditions: [],
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -629,6 +644,7 @@ void main() {
         "priority": 1,
         "enabled": false,
         "conditions": isA<List>(),
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleRateLimit>());
     });
@@ -674,6 +690,7 @@ void main() {
         priority: 1,
         enabled: false,
         conditions: [],
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -695,6 +712,7 @@ void main() {
         "priority": 1,
         "enabled": false,
         "conditions": isA<List>(),
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleRedirect>());
     });
@@ -740,6 +758,7 @@ void main() {
         priority: 1,
         enabled: false,
         conditions: [],
+        schedule: {},
       );
       final Map<String, dynamic> params = verify(
         client.call(
@@ -760,6 +779,7 @@ void main() {
         "priority": 1,
         "enabled": false,
         "conditions": isA<List>(),
+        "schedule": isA<Map>(),
       });
       expect(response, isA<models.WafRuleRedirect>());
     });

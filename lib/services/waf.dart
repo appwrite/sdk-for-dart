@@ -47,6 +47,7 @@ class Waf extends Service {
     int? priority,
     bool? enabled,
     List<String>? conditions,
+    Map? schedule,
   }) async {
     final String apiPath = '/waf/rules/bypass';
 
@@ -59,6 +60,7 @@ class Waf extends Service {
       if (priority != null) 'priority': priority,
       if (enabled != null) 'enabled': enabled,
       if (conditions != null) 'conditions': conditions,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -92,6 +94,7 @@ class Waf extends Service {
     int? priority,
     bool? enabled,
     List<String>? conditions,
+    Map? schedule,
   }) async {
     if (ruleId.isEmpty) {
       throw AppwriteException(
@@ -112,6 +115,7 @@ class Waf extends Service {
       if (priority != null) 'priority': priority,
       if (enabled != null) 'enabled': enabled,
       if (conditions != null) 'conditions': conditions,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -151,6 +155,7 @@ class Waf extends Service {
     List<String>? conditions,
     int? difficulty,
     int? ttl,
+    Map? schedule,
   }) async {
     final String apiPath = '/waf/rules/challenge';
 
@@ -166,6 +171,7 @@ class Waf extends Service {
       if (conditions != null) 'conditions': conditions,
       if (difficulty != null) 'difficulty': difficulty,
       if (ttl != null) 'ttl': ttl,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -205,6 +211,7 @@ class Waf extends Service {
     List<String>? conditions,
     int? difficulty,
     int? ttl,
+    Map? schedule,
   }) async {
     if (ruleId.isEmpty) {
       throw AppwriteException(
@@ -228,6 +235,7 @@ class Waf extends Service {
       if (conditions != null) 'conditions': conditions,
       if (difficulty != null) 'difficulty': difficulty,
       if (ttl != null) 'ttl': ttl,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -271,6 +279,7 @@ class Waf extends Service {
     int? priority,
     bool? enabled,
     List<String>? conditions,
+    Map? schedule,
   }) async {
     final String apiPath = '/waf/rules/deny';
 
@@ -283,6 +292,7 @@ class Waf extends Service {
       if (priority != null) 'priority': priority,
       if (enabled != null) 'enabled': enabled,
       if (conditions != null) 'conditions': conditions,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -326,6 +336,7 @@ class Waf extends Service {
     int? priority,
     bool? enabled,
     List<String>? conditions,
+    Map? schedule,
   }) async {
     if (ruleId.isEmpty) {
       throw AppwriteException(
@@ -346,6 +357,7 @@ class Waf extends Service {
       if (priority != null) 'priority': priority,
       if (enabled != null) 'enabled': enabled,
       if (conditions != null) 'conditions': conditions,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -386,6 +398,7 @@ class Waf extends Service {
     int? priority,
     bool? enabled,
     List<String>? conditions,
+    Map? schedule,
   }) async {
     final String apiPath = '/waf/rules/rate-limit';
 
@@ -403,6 +416,7 @@ class Waf extends Service {
       if (priority != null) 'priority': priority,
       if (enabled != null) 'enabled': enabled,
       if (conditions != null) 'conditions': conditions,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -442,6 +456,7 @@ class Waf extends Service {
     int? priority,
     bool? enabled,
     List<String>? conditions,
+    Map? schedule,
   }) async {
     if (ruleId.isEmpty) {
       throw AppwriteException(
@@ -466,6 +481,7 @@ class Waf extends Service {
       if (priority != null) 'priority': priority,
       if (enabled != null) 'enabled': enabled,
       if (conditions != null) 'conditions': conditions,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -501,6 +517,7 @@ class Waf extends Service {
     int? priority,
     bool? enabled,
     List<String>? conditions,
+    Map? schedule,
   }) async {
     final String apiPath = '/waf/rules/redirect';
 
@@ -515,6 +532,7 @@ class Waf extends Service {
       if (priority != null) 'priority': priority,
       if (enabled != null) 'enabled': enabled,
       if (conditions != null) 'conditions': conditions,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {
@@ -550,6 +568,7 @@ class Waf extends Service {
     int? priority,
     bool? enabled,
     List<String>? conditions,
+    Map? schedule,
   }) async {
     if (ruleId.isEmpty) {
       throw AppwriteException(
@@ -572,6 +591,7 @@ class Waf extends Service {
       if (priority != null) 'priority': priority,
       if (enabled != null) 'enabled': enabled,
       if (conditions != null) 'conditions': conditions,
+      if (schedule != null) 'schedule': schedule,
     };
 
     final Map<String, String> apiHeaders = {

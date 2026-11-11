@@ -18,5 +18,6 @@ models.WafRuleDeny result = await waf.createDenyRule(
     priority: -100000, // (optional)
     enabled: false, // (optional)
     conditions: [], // (optional)
+    schedule: {}, // (optional)
 );
 ```
