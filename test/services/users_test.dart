@@ -1764,6 +1764,7 @@ void main() {
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
         'userId': "5e5bb8c16897e",
+        'userName': "John Doe",
         'expire': "2020-10-15T06:38:00.000+00:00",
         'provider': "email",
         'providerUid': "user@example.com",

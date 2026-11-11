@@ -80,8 +80,9 @@ class Project extends Service {
   }
 
   /// Get a list of all environments of the project. You can use the query params
-  /// to filter your results.
-  Future<models.ProjectList> listEnvironments({
+  /// to filter your results. An environment is listed by its ID, the one passed
+  /// in the `X-Appwrite-Environment` header to act in it.
+  Future<models.EnvironmentList> listEnvironments({
     List<String>? queries,
     bool? total,
   }) async {
@@ -104,12 +105,16 @@ class Project extends Service {
       headers: apiHeaders,
     );
 
-    return models.ProjectList.fromMap(res.data);
+    return models.EnvironmentList.fromMap(res.data);
   }
 
   /// Create a new environment of the project. An environment is a separate
   /// project in the same organization and region, with its own resources and
-  /// users. Its usage is billed under the project it belongs to.
+  /// users. Its usage is billed under the project it belongs to. Requests act in
+  /// the environment when they carry the project's ID in the
+  /// `X-Appwrite-Project` header and the environment's ID in the
+  /// `X-Appwrite-Environment` header; the environment has no project ID of its
+  /// own to pass.
   ///
   /// Pass `resources` to copy the project into the environment. The environment
   /// is returned at once and the copy runs as a migration of the environment,
@@ -118,7 +123,7 @@ class Project extends Service {
   /// copied newest first and at most 90 of them, so the environment keeps room
   /// under its limit of 100 users for test accounts, and the memberships of
   /// users left behind are not copied.
-  Future<models.Project> createEnvironment({
+  Future<models.Environment> createEnvironment({
     required String environmentId,
     required String name,
     List<enums.EnvironmentResource>? resources,
@@ -145,11 +150,12 @@ class Project extends Service {
       headers: apiHeaders,
     );
 
-    return models.Project.fromMap(res.data);
+    return models.Environment.fromMap(res.data);
   }
 
-  /// Get an environment of the project by its unique ID.
-  Future<models.Project> getEnvironment({
+  /// Get an environment of the project by its ID, the one passed in the
+  /// `X-Appwrite-Environment` header to act in it.
+  Future<models.Environment> getEnvironment({
     required String environmentId,
   }) async {
     if (environmentId.isEmpty) {
@@ -177,11 +183,12 @@ class Project extends Service {
       headers: apiHeaders,
     );
 
-    return models.Project.fromMap(res.data);
+    return models.Environment.fromMap(res.data);
   }
 
-  /// Update the name of an environment of the project.
-  Future<models.Project> updateEnvironment({
+  /// Update the name of an environment of the project. The environment ID cannot
+  /// be changed.
+  Future<models.Environment> updateEnvironment({
     required String environmentId,
     required String name,
   }) async {
@@ -213,7 +220,7 @@ class Project extends Service {
       headers: apiHeaders,
     );
 
-    return models.Project.fromMap(res.data);
+    return models.Environment.fromMap(res.data);
   }
 
   /// Delete an environment of the project, with all of its resources and users.
@@ -2016,6 +2023,66 @@ class Project extends Service {
     return models.OAuth2Twitch.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Vipps MobilePay configuration.
+  Future<models.OAuth2Vipps> updateOAuth2Vipps({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/vipps';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Vipps.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Vipps MobilePay Sandbox configuration.
+  Future<models.OAuth2Vipps> updateOAuth2VippsSandbox({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/vippsSandbox';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Vipps.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Webflow configuration.
   Future<models.OAuth2Webflow> updateOAuth2Webflow({
     String? clientId,
@@ -2356,8 +2423,14 @@ class Project extends Service {
       if (response['\$id'] == "facebook") {
         return models.OAuth2Facebook.fromMap(response);
       }
+      if (response['\$id'] == "tradeshift") {
+        return models.OAuth2Tradeshift.fromMap(response);
+      }
       if (response['\$id'] == "tradeshiftBox") {
         return models.OAuth2Tradeshift.fromMap(response);
+      }
+      if (response['\$id'] == "paypal") {
+        return models.OAuth2Paypal.fromMap(response);
       }
       if (response['\$id'] == "paypalSandbox") {
         return models.OAuth2Paypal.fromMap(response);
@@ -2397,6 +2470,12 @@ class Project extends Service {
       }
       if (response['\$id'] == "kakao") {
         return models.OAuth2Kakao.fromMap(response);
+      }
+      if (response['\$id'] == "vipps") {
+        return models.OAuth2Vipps.fromMap(response);
+      }
+      if (response['\$id'] == "vippsSandbox") {
+        return models.OAuth2Vipps.fromMap(response);
       }
 
       throw StateError(
@@ -2911,6 +2990,35 @@ class Project extends Service {
     );
 
     return models.PolicyList.fromMap(res.data);
+  }
+
+  /// Update whether account devices are enabled for the project. When enabled, a
+  /// browser can create an account device that holds multiple sessions and
+  /// switch between them. When disabled, account devices can no longer be
+  /// created, so each browser is limited to a single active session.
+  Future<models.Project> updateAccountDevicesPolicy({
+    required bool enabled,
+  }) async {
+    final String apiPath = '/project/policies/account-devices';
+
+    final Map<String, dynamic> apiParams = {
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
   }
 
   /// Configures if aliased emails such as subaddresses and emails with suffixes
@@ -3597,11 +3705,64 @@ class Project extends Service {
       if (response['\$id'] == "passkey") {
         return models.PolicyPasskey.fromMap(response);
       }
+      if (response['\$id'] == "account-devices") {
+        return models.PolicyAccountDevices.fromMap(response);
+      }
 
       throw StateError(
         'Unable to match response to any expected response model.',
       );
     }();
+  }
+
+  /// Get the project preferences. Preferences are a key-value object stored on
+  /// the project for anyone working on it.
+  Future<models.Preferences> getPrefs() async {
+    final String apiPath = '/project/prefs';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Preferences.fromMap(res.data);
+  }
+
+  /// Update the project preferences. The object you pass is stored as is and
+  /// replaces any previous value. The maximum allowed prefs size is 64kB and
+  /// throws an error if exceeded.
+  Future<models.Preferences> updatePrefs({
+    required Map prefs,
+  }) async {
+    final String apiPath = '/project/prefs';
+
+    final Map<String, dynamic> apiParams = {
+      'prefs': prefs,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.put,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Preferences.fromMap(res.data);
   }
 
   /// Update properties of a specific protocol. Use this endpoint to enable or

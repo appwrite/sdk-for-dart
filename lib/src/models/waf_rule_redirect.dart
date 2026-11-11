@@ -44,6 +44,9 @@ class WafRuleRedirect implements Model {
   /// Action specific configuration.
   final Map<String, dynamic> config;
 
+  /// When the rule is active: mode, days, interval, anchor, startTime, endTime and timezone. Null when the rule is always active.
+  final Map<String, dynamic>? schedule;
+
   /// Target location for the redirect.
   final String location;
 
@@ -65,6 +68,7 @@ class WafRuleRedirect implements Model {
     required this.enabled,
     required this.conditions,
     required this.config,
+    this.schedule,
     required this.location,
     required this.statusCode,
   });
@@ -107,6 +111,7 @@ class WafRuleRedirect implements Model {
       enabled: map['enabled'],
       conditions: List.from(map['conditions'] ?? []),
       config: map['config'],
+      schedule: map['schedule'],
       location: map['location'].toString(),
       statusCode: map['statusCode'],
     );
@@ -129,6 +134,7 @@ class WafRuleRedirect implements Model {
       "enabled": enabled,
       "conditions": conditions,
       "config": config,
+      "schedule": schedule,
       "location": location,
       "statusCode": statusCode,
     };

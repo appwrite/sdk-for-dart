@@ -10,7 +10,7 @@ Client client = Client()
 
 Project project = Project(client);
 
-models.Project result = await project.createEnvironment(
+models.Environment result = await project.createEnvironment(
     environmentId: '<ENVIRONMENT_ID>',
     name: '<NAME>',
     resources: [enums.EnvironmentResource.database, enums.EnvironmentResource.table, enums.EnvironmentResource.column, enums.EnvironmentResource.xIndex, enums.EnvironmentResource.bucket, enums.EnvironmentResource.team, enums.EnvironmentResource.function, enums.EnvironmentResource.environmentVariable], // (optional)

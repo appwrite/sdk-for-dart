@@ -33,8 +33,8 @@ class ClientBrowser extends ClientBase with ClientMixin {
       'x-sdk-name': 'Dart',
       'x-sdk-platform': 'server',
       'x-sdk-language': 'dart',
-      'x-sdk-version': '31.1.0',
-      'X-Appwrite-Response-Format': '2.6.2',
+      'x-sdk-version': '31.2.0',
+      'X-Appwrite-Response-Format': '2.7.1',
     };
 
     config = {};
@@ -89,6 +89,14 @@ class ClientBrowser extends ClientBase with ClientMixin {
   ClientBrowser setLocale(value) {
     config['locale'] = value;
     addHeader('X-Appwrite-Locale', value);
+    return this;
+  }
+
+  /// The ID of the project environment to act in, alongside the project ID. Used with Appwrite Cloud projects that have environments.
+  @override
+  ClientBrowser setEnvironment(value) {
+    config['environment'] = value;
+    addHeader('X-Appwrite-Environment', value);
     return this;
   }
 

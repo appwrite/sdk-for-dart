@@ -44,6 +44,9 @@ class WafRuleChallenge implements Model {
   /// Action specific configuration.
   final Map<String, dynamic> config;
 
+  /// When the rule is active: mode, days, interval, anchor, startTime, endTime and timezone. Null when the rule is always active.
+  final Map<String, dynamic>? schedule;
+
   /// Challenge type enforced when the rule matches.
   final String challengeType;
 
@@ -68,6 +71,7 @@ class WafRuleChallenge implements Model {
     required this.enabled,
     required this.conditions,
     required this.config,
+    this.schedule,
     required this.challengeType,
     required this.difficulty,
     required this.ttl,
@@ -112,6 +116,7 @@ class WafRuleChallenge implements Model {
       enabled: map['enabled'],
       conditions: List.from(map['conditions'] ?? []),
       config: map['config'],
+      schedule: map['schedule'],
       challengeType: map['challengeType'].toString(),
       difficulty: map['difficulty'],
       ttl: map['ttl'],
@@ -135,6 +140,7 @@ class WafRuleChallenge implements Model {
       "enabled": enabled,
       "conditions": conditions,
       "config": config,
+      "schedule": schedule,
       "challengeType": challengeType,
       "difficulty": difficulty,
       "ttl": ttl,

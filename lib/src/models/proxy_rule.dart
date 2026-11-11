@@ -47,6 +47,12 @@ class ProxyRule implements Model {
   /// Certificate auto-renewal date in ISO 8601 format.
   final String renewAt;
 
+  /// Certificate expiry date in ISO 8601 format. Empty when unknown or not checked yet.
+  final String expireAt;
+
+  /// Certificate status, as last reported by the certificate provider. Possible values are &quot;pending&quot;, &quot;processing&quot;, &quot;issued&quot;, &quot;renewing&quot;, &quot;expiring&quot;, &quot;blocked&quot;, &quot;failed&quot;, or &quot;unknown&quot;. &quot;expiring&quot; means the certificate expires soon, or has already expired, and the provider has not renewed it yet, &quot;blocked&quot; means the provider waits on a DNS record from the domain owner, and &quot;failed&quot; means the provider stopped trying or the last issuance or renewal attempt failed. Empty until the certificate is next checked.
+  final String certificateStatus;
+
   /// Ingress protocol for the rule.
   final enums.ProxyRuleProtocol protocol;
 
@@ -66,6 +72,8 @@ class ProxyRule implements Model {
     required this.status,
     required this.logs,
     required this.renewAt,
+    required this.expireAt,
+    required this.certificateStatus,
     required this.protocol,
   });
   factory ProxyRule.fromMap(
@@ -85,6 +93,8 @@ class ProxyRule implements Model {
       'deploymentVcsProviderBranch': "",
       'status': "unverified",
       'logs': "",
+      'expireAt': "",
+      'certificateStatus': "",
       'protocol': "http",
       ...map,
     };
@@ -112,6 +122,8 @@ class ProxyRule implements Model {
       ),
       logs: map['logs'].toString(),
       renewAt: map['renewAt'].toString(),
+      expireAt: map['expireAt'].toString(),
+      certificateStatus: map['certificateStatus'].toString(),
       protocol: enums.ProxyRuleProtocol.values.firstWhere(
         (e) => e.value == map['protocol'],
       ),
@@ -136,6 +148,8 @@ class ProxyRule implements Model {
       "status": status.value,
       "logs": logs,
       "renewAt": renewAt,
+      "expireAt": expireAt,
+      "certificateStatus": certificateStatus,
       "protocol": protocol.value,
     };
   }

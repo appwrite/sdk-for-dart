@@ -298,10 +298,134 @@ class Proxy extends Service {
     return res.data;
   }
 
+  /// Update the function and VCS branch a function proxy rule executes. The rule
+  /// domain cannot be changed.
+  Future<models.ProxyRule> updateFunctionRule({
+    required String ruleId,
+    required String functionId,
+    String? branch,
+  }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
+    final String apiPath = '/proxy/rules/{ruleId}/function'.replaceAll(
+      '{ruleId}',
+      _encodePath(ruleId),
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'functionId': functionId,
+      if (branch != null) 'branch': branch,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ProxyRule.fromMap(res.data);
+  }
+
+  /// Update the target URL, status code and parent resource of a redirect proxy
+  /// rule. The rule domain cannot be changed.
+  Future<models.ProxyRule> updateRedirectRule({
+    required String ruleId,
+    required String url,
+    required enums.StatusCode statusCode,
+    required String resourceId,
+    required enums.ProxyResourceType resourceType,
+  }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
+    final String apiPath = '/proxy/rules/{ruleId}/redirect'.replaceAll(
+      '{ruleId}',
+      _encodePath(ruleId),
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'url': url,
+      'statusCode': statusCode.value,
+      'resourceId': resourceId,
+      'resourceType': resourceType.value,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ProxyRule.fromMap(res.data);
+  }
+
+  /// Update the site and VCS branch a site proxy rule serves. The rule domain
+  /// cannot be changed.
+  Future<models.ProxyRule> updateSiteRule({
+    required String ruleId,
+    required String siteId,
+    String? branch,
+  }) async {
+    if (ruleId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "ruleId"',
+      );
+    }
+
+    final String apiPath = '/proxy/rules/{ruleId}/site'.replaceAll(
+      '{ruleId}',
+      _encodePath(ruleId),
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'siteId': siteId,
+      if (branch != null) 'branch': branch,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.ProxyRule.fromMap(res.data);
+  }
+
   /// If not succeeded yet, retry verification process of a proxy rule domain.
   /// This endpoint triggers domain verification by checking DNS records. If
   /// verification is successful, a TLS certificate will be automatically
-  /// provisioned for the domain asynchronously in the background.
+  /// provisioned for the domain asynchronously in the background. A verified
+  /// rule whose certificate renewal failed or is blocked, or whose certificate
+  /// expired, is checked the same way, and its certificate renewed in the
+  /// background.
   Future<models.ProxyRule> updateRuleStatus({
     required String ruleId,
   }) async {

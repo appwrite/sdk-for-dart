@@ -9,7 +9,7 @@ Client client = Client()
 
 Project project = Project(client);
 
-models.Project result = await project.updateEnvironment(
+models.Environment result = await project.updateEnvironment(
     environmentId: '<ENVIRONMENT_ID>',
     name: '<NAME>',
 );

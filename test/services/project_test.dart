@@ -215,7 +215,7 @@ void main() {
     test('test method listEnvironments()', () async {
       final Map<String, dynamic> data = {
         'total': 5,
-        'projects': [],
+        'environments': [],
       };
 
       when(
@@ -245,37 +245,16 @@ void main() {
         "queries": isA<List>(),
         "total": false,
       });
-      expect(response, isA<models.ProjectList>());
+      expect(response, isA<models.EnvironmentList>());
     });
 
     test('test method createEnvironment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': "5e5ea5c16897e",
+        '\$id': "staging",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
-        'name': "New Project",
-        'teamId': "1592981250",
-        'region': "fra",
-        'smtpEnabled': true,
-        'smtpSenderName': "John Appwrite",
-        'smtpSenderEmail': "john@appwrite.io",
-        'smtpReplyToName': "Support Team",
-        'smtpReplyToEmail': "support@appwrite.io",
-        'smtpHost': "mail.appwrite.io",
-        'smtpPort': 25,
-        'smtpUsername': "emailuser",
-        'smtpPassword': "smtp-password",
-        'smtpSecure': "tls",
-        'pingCount': 1,
-        'pingedAt': "2020-10-15T06:38:00.000+00:00",
-        'labels': [],
-        'status': "active",
-        'onboarding': <String, dynamic>{},
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'blocks': [],
-        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+        'projectId': "5e5ea5c16897e",
+        'name': "Staging",
       };
 
       when(
@@ -307,37 +286,16 @@ void main() {
         "name": "<NAME>",
         "resources": isA<List>(),
       });
-      expect(response, isA<models.Project>());
+      expect(response, isA<models.Environment>());
     });
 
     test('test method getEnvironment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': "5e5ea5c16897e",
+        '\$id': "staging",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
-        'name': "New Project",
-        'teamId': "1592981250",
-        'region': "fra",
-        'smtpEnabled': true,
-        'smtpSenderName': "John Appwrite",
-        'smtpSenderEmail': "john@appwrite.io",
-        'smtpReplyToName': "Support Team",
-        'smtpReplyToEmail': "support@appwrite.io",
-        'smtpHost': "mail.appwrite.io",
-        'smtpPort': 25,
-        'smtpUsername': "emailuser",
-        'smtpPassword': "smtp-password",
-        'smtpSecure': "tls",
-        'pingCount': 1,
-        'pingedAt': "2020-10-15T06:38:00.000+00:00",
-        'labels': [],
-        'status': "active",
-        'onboarding': <String, dynamic>{},
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'blocks': [],
-        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+        'projectId': "5e5ea5c16897e",
+        'name': "Staging",
       };
 
       when(
@@ -363,37 +321,16 @@ void main() {
         ),
       ).captured.single;
       expect(params, isEmpty);
-      expect(response, isA<models.Project>());
+      expect(response, isA<models.Environment>());
     });
 
     test('test method updateEnvironment()', () async {
       final Map<String, dynamic> data = {
-        '\$id': "5e5ea5c16897e",
+        '\$id': "staging",
         '\$createdAt': "2020-10-15T06:38:00.000+00:00",
         '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
-        'name': "New Project",
-        'teamId': "1592981250",
-        'region': "fra",
-        'smtpEnabled': true,
-        'smtpSenderName': "John Appwrite",
-        'smtpSenderEmail': "john@appwrite.io",
-        'smtpReplyToName': "Support Team",
-        'smtpReplyToEmail': "support@appwrite.io",
-        'smtpHost': "mail.appwrite.io",
-        'smtpPort': 25,
-        'smtpUsername': "emailuser",
-        'smtpPassword': "smtp-password",
-        'smtpSecure': "tls",
-        'pingCount': 1,
-        'pingedAt': "2020-10-15T06:38:00.000+00:00",
-        'labels': [],
-        'status': "active",
-        'onboarding': <String, dynamic>{},
-        'authMethods': [],
-        'services': [],
-        'protocols': [],
-        'blocks': [],
-        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+        'projectId': "5e5ea5c16897e",
+        'name': "Staging",
       };
 
       when(
@@ -422,7 +359,7 @@ void main() {
       expect(params, {
         "name": "<NAME>",
       });
-      expect(response, isA<models.Project>());
+      expect(response, isA<models.Environment>());
     });
 
     test('test method deleteEnvironment()', () async {
@@ -2794,6 +2731,86 @@ void main() {
       expect(response, isA<models.OAuth2Twitch>());
     });
 
+    test('test method updateOAuth2Vipps()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e",
+        'clientSecret': "Ay1jb000000000000000000000000000000Vx3k",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Vipps(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/vipps",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Vipps>());
+    });
+
+    test('test method updateOAuth2VippsSandbox()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e",
+        'clientSecret': "Ay1jb000000000000000000000000000000Vx3k",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2VippsSandbox(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/vippsSandbox",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Vipps>());
+    });
+
     test('test method updateOAuth2Webflow()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -3084,10 +3101,9 @@ void main() {
     test('test method getOAuth2Provider()', () async {
       final Map<String, dynamic> data = {
         'enabled': true,
-        'clientId': "839ff5000000000000000000013206de",
-        'clientSecret': "jLNVOK00000000000000000000yJebea",
-        'prompt': [],
-        '\$id': "kakao",
+        'clientId': "9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e",
+        'clientSecret': "Ay1jb000000000000000000000000000000Vx3k",
+        '\$id': "vippsSandbox",
       };
 
       when(
@@ -3113,7 +3129,7 @@ void main() {
         ),
       ).captured.single;
       expect(params, isEmpty);
-      expect(response, isA<models.OAuth2Kakao>());
+      expect(response, isA<models.OAuth2Vipps>());
     });
 
     test('test method listPlatforms()', () async {
@@ -3671,6 +3687,64 @@ void main() {
         "total": false,
       });
       expect(response, isA<models.PolicyList>());
+    });
+
+    test('test method updateAccountDevicesPolicy()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "New Project",
+        'teamId': "1592981250",
+        'region': "fra",
+        'smtpEnabled': true,
+        'smtpSenderName': "John Appwrite",
+        'smtpSenderEmail': "john@appwrite.io",
+        'smtpReplyToName': "Support Team",
+        'smtpReplyToEmail': "support@appwrite.io",
+        'smtpHost': "mail.appwrite.io",
+        'smtpPort': 25,
+        'smtpUsername': "emailuser",
+        'smtpPassword': "smtp-password",
+        'smtpSecure': "tls",
+        'pingCount': 1,
+        'pingedAt': "2020-10-15T06:38:00.000+00:00",
+        'labels': [],
+        'status': "active",
+        'onboarding': <String, dynamic>{},
+        'authMethods': [],
+        'services': [],
+        'protocols': [],
+        'blocks': [],
+        'consoleAccessedAt': "2020-10-15T06:38:00.000+00:00",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateAccountDevicesPolicy(
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/policies/account-devices",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
+      expect(response, isA<models.Project>());
     });
 
     test('test method updateDenyAliasedEmailPolicy()', () async {
@@ -4791,9 +4865,8 @@ void main() {
 
     test('test method getPolicy()', () async {
       final Map<String, dynamic> data = {
-        'rpId': "example.com",
-        'origins': [],
-        '\$id': "passkey",
+        'enabled': true,
+        '\$id': "account-devices",
       };
 
       when(
@@ -4819,7 +4892,65 @@ void main() {
         ),
       ).captured.single;
       expect(params, isEmpty);
-      expect(response, isA<models.PolicyPasskey>());
+      expect(response, isA<models.PolicyAccountDevices>());
+    });
+
+    test('test method getPrefs()', () async {
+      final Map<String, dynamic> data = {};
+
+      when(
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.getPrefs();
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/prefs",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
+      expect(response, isA<models.Preferences>());
+    });
+
+    test('test method updatePrefs()', () async {
+      final Map<String, dynamic> data = {};
+
+      when(
+        client.call(
+          HttpMethod.put,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updatePrefs(
+        prefs: {},
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.put,
+          path: "/project/prefs",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "prefs": isA<Map>(),
+      });
+      expect(response, isA<models.Preferences>());
     });
 
     test('test method updateProtocol()', () async {

@@ -13,6 +13,8 @@ void main() {
         total: 7,
         prefs: Preferences(data: {}),
         budgetAlerts: [],
+        budgetNotify: [],
+        budgetCritical: [],
         billingPlan: "tier-1",
         billingPlanId: "tier-1",
         billingPlanDetails: BillingPlan(
@@ -102,6 +104,8 @@ void main() {
       expect(result.name, "VIP");
       expect(result.total, 7);
       expect(result.budgetAlerts, []);
+      expect(result.budgetNotify, []);
+      expect(result.budgetCritical, []);
       expect(result.billingPlan, "tier-1");
       expect(result.billingPlanId, "tier-1");
       expect(result.billingEmail, "billing@org.example");

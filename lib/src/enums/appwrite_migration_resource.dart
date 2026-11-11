@@ -37,6 +37,7 @@ enum AppwriteMigrationResource {
   projectVariable(value: "project-variable"),
   projectProtocols(value: "project-protocols"),
   projectLabels(value: "project-labels"),
+  projectPreferences(value: "project-preferences"),
   projectServices(value: "project-services"),
   projectEmailTemplate(value: "project-email-template"),
   projectEnvironment(value: "project-environment"),
