@@ -27,7 +27,10 @@ class ClientBrowser extends ClientBase with ClientMixin {
     String endPoint = 'https://cloud.appwrite.io/v1',
     bool selfSigned = false,
   }) : _endPoint = endPoint {
-    _httpClient = BrowserClient();
+    // Appwrite keeps the session in a cookie. A browser drops cookies from
+    // requests unless credentials are enabled on the underlying client, so a
+    // signed-in browser app would look anonymous to the API.
+    _httpClient = BrowserClient()..withCredentials = true;
     _headers = {
       'content-type': 'application/json',
       'x-sdk-name': 'Dart',
@@ -45,6 +48,12 @@ class ClientBrowser extends ClientBase with ClientMixin {
 
   @override
   String get endPoint => _endPoint;
+
+  /// Whether the browser sends cookies and other credentials with requests.
+  ///
+  /// Always enabled: the session cookie Appwrite sets when a user signs in has
+  /// to travel with every later request from the browser.
+  bool get withCredentials => _httpClient.withCredentials;
 
   /// Your project ID
   @override
