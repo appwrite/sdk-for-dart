@@ -316,6 +316,46 @@ class Sites extends Service {
     return res.data;
   }
 
+  /// Turn analytics on or off for a site. Turning it on links an analytics
+  /// property named after the site, creating one on first use, and injects the
+  /// tracker into pages served on the site's production domains. Turning it on
+  /// also needs the `analytics.write` scope. Turning it off stops the injection
+  /// and keeps the property and its data.
+  Future<models.Site> updateAnalytics({
+    required String siteId,
+    required bool enabled,
+  }) async {
+    if (siteId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "siteId"',
+      );
+    }
+
+    final String apiPath = '/sites/{siteId}/analytics'.replaceAll(
+      '{siteId}',
+      _encodePath(siteId),
+    );
+
+    final Map<String, dynamic> apiParams = {
+      'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Site.fromMap(res.data);
+  }
+
   /// Update the site active deployment. Use this endpoint to switch the code
   /// deployment that should be used when visitor opens your site.
   Future<models.Site> updateSiteDeployment({

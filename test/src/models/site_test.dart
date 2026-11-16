@@ -41,6 +41,8 @@ void main() {
         buildRuntime: "node-22",
         adapter: "static",
         fallbackFile: "index.html",
+        analyticsEnabled: true,
+        analyticsPropertyId: "5e5ea5c16897e",
       );
 
       final map = model.toMap();
@@ -82,6 +84,8 @@ void main() {
       expect(result.buildRuntime, "node-22");
       expect(result.adapter, "static");
       expect(result.fallbackFile, "index.html");
+      expect(result.analyticsEnabled, true);
+      expect(result.analyticsPropertyId, "5e5ea5c16897e");
     });
   });
 }

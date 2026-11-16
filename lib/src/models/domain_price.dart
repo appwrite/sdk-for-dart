@@ -26,6 +26,9 @@ class DomainPrice implements Model {
   /// Renewal price period in years.
   final int renewalPeriodYears;
 
+  /// Why the domain was not priced for the requested registration type, for example a transfer of an unregistered domain. Empty otherwise.
+  final String? reason;
+
   DomainPrice({
     required this.domain,
     required this.tld,
@@ -35,6 +38,7 @@ class DomainPrice implements Model {
     required this.premium,
     this.renewalPrice,
     required this.renewalPeriodYears,
+    this.reason,
   });
   factory DomainPrice.fromMap(
     Map<String, dynamic> map,
@@ -58,6 +62,7 @@ class DomainPrice implements Model {
       premium: map['premium'],
       renewalPrice: map['renewalPrice']?.toDouble(),
       renewalPeriodYears: map['renewalPeriodYears'],
+      reason: map['reason']?.toString(),
     );
   }
 
@@ -72,6 +77,7 @@ class DomainPrice implements Model {
       "premium": premium,
       "renewalPrice": renewalPrice,
       "renewalPeriodYears": renewalPeriodYears,
+      "reason": reason,
     };
   }
 }

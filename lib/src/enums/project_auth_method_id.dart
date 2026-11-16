@@ -8,7 +8,8 @@ enum ProjectAuthMethodId {
   invites(value: "invites"),
   jwt(value: "jwt"),
   phone(value: "phone"),
-  passkey(value: "passkey");
+  passkey(value: "passkey"),
+  ldap(value: "ldap");
 
   const ProjectAuthMethodId({required this.value});
 

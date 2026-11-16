@@ -36,6 +36,7 @@ part 'src/enums/supabase_migration_resource.dart';
 part 'src/enums/region.dart';
 part 'src/enums/project_auth_method_id.dart';
 part 'src/enums/environment_resource.dart';
+part 'src/enums/project_ldap_encryption.dart';
 part 'src/enums/project_o_auth2_auth0_prompt.dart';
 part 'src/enums/project_o_auth2_discord_prompt.dart';
 part 'src/enums/project_o_auth2_git_hub_prompt.dart';

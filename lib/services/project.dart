@@ -451,6 +451,99 @@ class Project extends Service {
     return models.Project.fromMap(res.data);
   }
 
+  /// Update the LDAP configuration for your project. Use this endpoint to
+  /// connect your project to an LDAP directory, such as OpenLDAP or Active
+  /// Directory, so users can sign in with their directory credentials. Omitted
+  /// parameters keep their stored value. Enabling LDAP connects to the directory
+  /// and binds as the service account, so a project cannot be left enabled with
+  /// a configuration that cannot sign anyone in.
+  Future<models.Project> updateLDAP({
+    bool? enabled,
+    List<String>? hosts,
+    int? port,
+    enums.ProjectLDAPEncryption? encryption,
+    bool? verification,
+    String? certificate,
+    int? timeout,
+    String? baseDn,
+    String? bindDn,
+    String? bindPassword,
+    String? userFilter,
+    String? requiredGroupDn,
+    String? idAttribute,
+    String? emailAttribute,
+    String? nameAttribute,
+    String? phoneAttribute,
+  }) async {
+    final String apiPath = '/project/ldap';
+
+    final Map<String, dynamic> apiParams = {
+      if (enabled != null) 'enabled': enabled,
+      if (hosts != null) 'hosts': hosts,
+      if (port != null) 'port': port,
+      if (encryption != null) 'encryption': encryption?.value,
+      if (verification != null) 'verification': verification,
+      if (certificate != null) 'certificate': certificate,
+      if (timeout != null) 'timeout': timeout,
+      if (baseDn != null) 'baseDn': baseDn,
+      if (bindDn != null) 'bindDn': bindDn,
+      if (bindPassword != null) 'bindPassword': bindPassword,
+      if (userFilter != null) 'userFilter': userFilter,
+      if (requiredGroupDn != null) 'requiredGroupDn': requiredGroupDn,
+      if (idAttribute != null) 'idAttribute': idAttribute,
+      if (emailAttribute != null) 'emailAttribute': emailAttribute,
+      if (nameAttribute != null) 'nameAttribute': nameAttribute,
+      if (phoneAttribute != null) 'phoneAttribute': phoneAttribute,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Project.fromMap(res.data);
+  }
+
+  /// Test the stored LDAP configuration against the directory without signing
+  /// anyone in. Connects to the directory, binds as the service account and
+  /// reads the base DN. Pass a username to also look the user up and check the
+  /// required group, and a password to also verify it. The error names the step
+  /// that failed.
+  Future createLDAPTest({
+    String? username,
+    String? password,
+  }) async {
+    final String apiPath = '/project/ldap/tests';
+
+    final Map<String, dynamic> apiParams = {
+      if (username != null) 'username': username,
+      if (password != null) 'password': password,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
+
   /// Get a list of all mock phones in the project. This endpoint returns an
   /// array of all mock phones and their OTPs.
   Future<models.MockNumberList> listMockPhones({
@@ -1552,6 +1645,36 @@ class Project extends Service {
     return models.OAuth2Microsoft.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Naver configuration.
+  Future<models.OAuth2Naver> updateOAuth2Naver({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/naver';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Naver.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Notion configuration.
   Future<models.OAuth2Notion> updateOAuth2Notion({
     String? oauthClientId,
@@ -2471,6 +2594,9 @@ class Project extends Service {
       if (response['\$id'] == "kakao") {
         return models.OAuth2Kakao.fromMap(response);
       }
+      if (response['\$id'] == "naver") {
+        return models.OAuth2Naver.fromMap(response);
+      }
       if (response['\$id'] == "vipps") {
         return models.OAuth2Vipps.fromMap(response);
       }
@@ -2482,6 +2608,35 @@ class Project extends Service {
         'Unable to match response to any expected response model.',
       );
     }();
+  }
+
+  /// Delete all passwords in the project, forcing every user to reset their
+  /// password. Any password set before this request stops working for email and
+  /// password sign-in immediately: signing in returns a
+  /// `user_password_reset_required` error until the user sets a new password
+  /// through password recovery, or until a new password is set for them with the
+  /// Users API. Existing sessions are not affected; call the delete sessions
+  /// endpoint to sign users out as well. Users without a password and API keys
+  /// are not affected by this action.
+  Future deletePasswords() async {
+    final String apiPath = '/project/passwords';
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
   }
 
   /// Get a list of all platforms in the project. This endpoint returns an array

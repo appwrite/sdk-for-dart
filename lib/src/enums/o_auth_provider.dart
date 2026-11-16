@@ -28,6 +28,7 @@ enum OAuthProvider {
   kick(value: "kick"),
   linkedin(value: "linkedin"),
   microsoft(value: "microsoft"),
+  naver(value: "naver"),
   notion(value: "notion"),
   oidc(value: "oidc"),
   okta(value: "okta"),
