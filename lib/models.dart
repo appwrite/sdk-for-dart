@@ -187,6 +187,7 @@ part 'src/models/o_auth2_microsoft.dart';
 part 'src/models/o_auth2_resend.dart';
 part 'src/models/o_auth2_tik_tok.dart';
 part 'src/models/o_auth2_kakao.dart';
+part 'src/models/o_auth2_naver.dart';
 part 'src/models/o_auth2_provider_list.dart';
 part 'src/models/policy_password_dictionary.dart';
 part 'src/models/policy_password_history.dart';

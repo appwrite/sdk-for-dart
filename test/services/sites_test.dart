@@ -149,6 +149,8 @@ void main() {
         'buildRuntime': "node-22",
         'adapter': "static",
         'fallbackFile': "index.html",
+        'analyticsEnabled': true,
+        'analyticsPropertyId': "5e5ea5c16897e",
       };
 
       when(
@@ -335,6 +337,8 @@ void main() {
         'buildRuntime': "node-22",
         'adapter': "static",
         'fallbackFile': "index.html",
+        'analyticsEnabled': true,
+        'analyticsPropertyId': "5e5ea5c16897e",
       };
 
       when(
@@ -401,6 +405,8 @@ void main() {
         'buildRuntime': "node-22",
         'adapter': "static",
         'fallbackFile': "index.html",
+        'analyticsEnabled': true,
+        'analyticsPropertyId': "5e5ea5c16897e",
       };
 
       when(
@@ -506,6 +512,77 @@ void main() {
       expect(params, isEmpty);
     });
 
+    test('test method updateAnalytics()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "My Site",
+        'description': "Marketing site for the spring launch.",
+        'enabled': true,
+        'live': true,
+        'logging': true,
+        'framework': "react",
+        'deploymentRetention': 7,
+        'deploymentId': "5e5ea5c16897e",
+        'deploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'deploymentScreenshotLight': "5e5ea5c16897e",
+        'deploymentScreenshotDark': "5e5ea5c16897e",
+        'latestDeploymentId': "5e5ea5c16897e",
+        'latestDeploymentCreatedAt': "2020-10-15T06:38:00.000+00:00",
+        'latestDeploymentStatus': "ready",
+        'scopes': [],
+        'vars': [],
+        'timeout': 300,
+        'installCommand': "npm install",
+        'buildCommand': "npm run build",
+        'startCommand': "node custom-server.mjs",
+        'outputDirectory': "build",
+        'installationId': "6m40at4ejk5h2u9s1hboo",
+        'providerRepositoryId': "appwrite",
+        'providerBranch': "main",
+        'providerRootDirectory': "sites/helloWorld",
+        'providerSilentMode': true,
+        'providerBranches': [],
+        'providerPaths': [],
+        'buildSpecification': "s-1vcpu-512mb",
+        'runtimeSpecification': "s-1vcpu-512mb",
+        'buildRuntime': "node-22",
+        'adapter': "static",
+        'fallbackFile': "index.html",
+        'analyticsEnabled': true,
+        'analyticsPropertyId': "5e5ea5c16897e",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await sites.updateAnalytics(
+        siteId: "<SITE_ID>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/sites/%3CSITE_ID%3E/analytics",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "enabled": false,
+      });
+      expect(response, isA<models.Site>());
+    });
+
     test('test method updateSiteDeployment()', () async {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
@@ -544,6 +621,8 @@ void main() {
         'buildRuntime': "node-22",
         'adapter': "static",
         'fallbackFile': "index.html",
+        'analyticsEnabled': true,
+        'analyticsPropertyId': "5e5ea5c16897e",
       };
 
       when(

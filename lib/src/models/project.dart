@@ -50,6 +50,54 @@ class Project implements Model {
   /// SMTP server secure protocol
   final String smtpSecure;
 
+  /// Status for LDAP sign-in
+  final bool ldapEnabled;
+
+  /// LDAP directory hosts, tried in order.
+  final List<String> ldapHosts;
+
+  /// LDAP directory port.
+  final int ldapPort;
+
+  /// LDAP transport encryption: none, ldaps or starttls.
+  final String ldapEncryption;
+
+  /// Whether the LDAP directory certificate is verified.
+  final bool ldapVerification;
+
+  /// Certificate in PEM format of the authority that signed the LDAP directory certificate, or the directory certificate itself when it is self-signed. Empty for the system trust store.
+  final String ldapCertificate;
+
+  /// Seconds to wait for the LDAP directory to connect and answer.
+  final int ldapTimeout;
+
+  /// LDAP subtree the user search starts from.
+  final String ldapBaseDn;
+
+  /// LDAP service account used to search for users, empty for anonymous search.
+  final String ldapBindDn;
+
+  /// LDAP service account password. This property is write-only and always returned empty.
+  final String ldapBindPassword;
+
+  /// LDAP filter that finds the user signing in, with {username} where the username they enter goes.
+  final String ldapUserFilter;
+
+  /// LDAP group a user must belong to in order to sign in, empty to allow every user.
+  final String ldapRequiredGroupDn;
+
+  /// LDAP attribute holding the identifier that stays the same when an entry is renamed or moved.
+  final String ldapIdAttribute;
+
+  /// LDAP attribute holding the email address.
+  final String ldapEmailAttribute;
+
+  /// LDAP attribute holding the display name.
+  final String ldapNameAttribute;
+
+  /// LDAP attribute holding the phone number, empty when unmapped.
+  final String ldapPhoneAttribute;
+
   /// Number of times the ping was received for this project.
   final int pingCount;
 
@@ -169,6 +217,22 @@ class Project implements Model {
     required this.smtpUsername,
     required this.smtpPassword,
     required this.smtpSecure,
+    required this.ldapEnabled,
+    required this.ldapHosts,
+    required this.ldapPort,
+    required this.ldapEncryption,
+    required this.ldapVerification,
+    required this.ldapCertificate,
+    required this.ldapTimeout,
+    required this.ldapBaseDn,
+    required this.ldapBindDn,
+    required this.ldapBindPassword,
+    required this.ldapUserFilter,
+    required this.ldapRequiredGroupDn,
+    required this.ldapIdAttribute,
+    required this.ldapEmailAttribute,
+    required this.ldapNameAttribute,
+    required this.ldapPhoneAttribute,
     required this.pingCount,
     required this.pingedAt,
     required this.labels,
@@ -224,6 +288,22 @@ class Project implements Model {
       'smtpUsername': "",
       'smtpPassword': "",
       'smtpSecure': "",
+      'ldapEnabled': false,
+      'ldapHosts': [],
+      'ldapPort': 636,
+      'ldapEncryption': "ldaps",
+      'ldapVerification': true,
+      'ldapCertificate': "",
+      'ldapTimeout': 10,
+      'ldapBaseDn': "",
+      'ldapBindDn': "",
+      'ldapBindPassword': "",
+      'ldapUserFilter': "(uid={username})",
+      'ldapRequiredGroupDn': "",
+      'ldapIdAttribute': "entryUUID",
+      'ldapEmailAttribute': "mail",
+      'ldapNameAttribute': "cn",
+      'ldapPhoneAttribute': "",
       'pingCount': 0,
       'pingedAt': "",
       'labels': [],
@@ -254,6 +334,22 @@ class Project implements Model {
       smtpUsername: map['smtpUsername'].toString(),
       smtpPassword: map['smtpPassword'].toString(),
       smtpSecure: map['smtpSecure'].toString(),
+      ldapEnabled: map['ldapEnabled'],
+      ldapHosts: List.from(map['ldapHosts'] ?? []),
+      ldapPort: map['ldapPort'],
+      ldapEncryption: map['ldapEncryption'].toString(),
+      ldapVerification: map['ldapVerification'],
+      ldapCertificate: map['ldapCertificate'].toString(),
+      ldapTimeout: map['ldapTimeout'],
+      ldapBaseDn: map['ldapBaseDn'].toString(),
+      ldapBindDn: map['ldapBindDn'].toString(),
+      ldapBindPassword: map['ldapBindPassword'].toString(),
+      ldapUserFilter: map['ldapUserFilter'].toString(),
+      ldapRequiredGroupDn: map['ldapRequiredGroupDn'].toString(),
+      ldapIdAttribute: map['ldapIdAttribute'].toString(),
+      ldapEmailAttribute: map['ldapEmailAttribute'].toString(),
+      ldapNameAttribute: map['ldapNameAttribute'].toString(),
+      ldapPhoneAttribute: map['ldapPhoneAttribute'].toString(),
       pingCount: map['pingCount'],
       pingedAt: map['pingedAt'].toString(),
       labels: List.from(map['labels'] ?? []),
@@ -334,6 +430,22 @@ class Project implements Model {
       "smtpUsername": smtpUsername,
       "smtpPassword": smtpPassword,
       "smtpSecure": smtpSecure,
+      "ldapEnabled": ldapEnabled,
+      "ldapHosts": ldapHosts,
+      "ldapPort": ldapPort,
+      "ldapEncryption": ldapEncryption,
+      "ldapVerification": ldapVerification,
+      "ldapCertificate": ldapCertificate,
+      "ldapTimeout": ldapTimeout,
+      "ldapBaseDn": ldapBaseDn,
+      "ldapBindDn": ldapBindDn,
+      "ldapBindPassword": ldapBindPassword,
+      "ldapUserFilter": ldapUserFilter,
+      "ldapRequiredGroupDn": ldapRequiredGroupDn,
+      "ldapIdAttribute": ldapIdAttribute,
+      "ldapEmailAttribute": ldapEmailAttribute,
+      "ldapNameAttribute": ldapNameAttribute,
+      "ldapPhoneAttribute": ldapPhoneAttribute,
       "pingCount": pingCount,
       "pingedAt": pingedAt,
       "labels": labels,

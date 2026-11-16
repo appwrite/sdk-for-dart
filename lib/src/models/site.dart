@@ -110,6 +110,12 @@ class Site implements Model {
   /// Name of fallback file to use instead of 404 page. If null, Appwrite 404 page will be displayed.
   final String fallbackFile;
 
+  /// Whether the analytics tracker is injected into pages served on the site&#039;s production domains.
+  final bool analyticsEnabled;
+
+  /// ID of the analytics property the site reports to. Kept when analytics is turned off, so turning it back on resumes the same property.
+  final String analyticsPropertyId;
+
   Site({
     required this.$id,
     required this.$createdAt,
@@ -147,6 +153,8 @@ class Site implements Model {
     required this.buildRuntime,
     required this.adapter,
     required this.fallbackFile,
+    required this.analyticsEnabled,
+    required this.analyticsPropertyId,
   });
   factory Site.fromMap(
     Map<String, dynamic> map,
@@ -186,6 +194,8 @@ class Site implements Model {
       'buildSpecification': "s-1vcpu-512mb",
       'runtimeSpecification': "s-1vcpu-512mb",
       'buildRuntime': "",
+      'analyticsEnabled': false,
+      'analyticsPropertyId': "",
       ...map,
     };
 
@@ -228,6 +238,8 @@ class Site implements Model {
       buildRuntime: map['buildRuntime'].toString(),
       adapter: map['adapter'].toString(),
       fallbackFile: map['fallbackFile'].toString(),
+      analyticsEnabled: map['analyticsEnabled'],
+      analyticsPropertyId: map['analyticsPropertyId'].toString(),
     );
   }
 
@@ -270,6 +282,8 @@ class Site implements Model {
       "buildRuntime": buildRuntime,
       "adapter": adapter,
       "fallbackFile": fallbackFile,
+      "analyticsEnabled": analyticsEnabled,
+      "analyticsPropertyId": analyticsPropertyId,
     };
   }
 }

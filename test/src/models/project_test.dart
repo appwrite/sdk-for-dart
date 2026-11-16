@@ -22,6 +22,22 @@ void main() {
         smtpUsername: "emailuser",
         smtpPassword: "smtp-password",
         smtpSecure: "tls",
+        ldapEnabled: true,
+        ldapHosts: [],
+        ldapPort: 636,
+        ldapEncryption: "ldaps",
+        ldapVerification: true,
+        ldapCertificate: "",
+        ldapTimeout: 10,
+        ldapBaseDn: "ou=people,dc=example,dc=com",
+        ldapBindDn: "cn=appwrite,ou=services,dc=example,dc=com",
+        ldapBindPassword: "ldap-password",
+        ldapUserFilter: "(uid={username})",
+        ldapRequiredGroupDn: "cn=staff,ou=groups,dc=example,dc=com",
+        ldapIdAttribute: "entryUUID",
+        ldapEmailAttribute: "mail",
+        ldapNameAttribute: "cn",
+        ldapPhoneAttribute: "mobile",
         pingCount: 1,
         pingedAt: "2020-10-15T06:38:00.000+00:00",
         labels: [],
@@ -53,6 +69,25 @@ void main() {
       expect(result.smtpUsername, "emailuser");
       expect(result.smtpPassword, "smtp-password");
       expect(result.smtpSecure, "tls");
+      expect(result.ldapEnabled, true);
+      expect(result.ldapHosts, []);
+      expect(result.ldapPort, 636);
+      expect(result.ldapEncryption, "ldaps");
+      expect(result.ldapVerification, true);
+      expect(result.ldapCertificate, "");
+      expect(result.ldapTimeout, 10);
+      expect(result.ldapBaseDn, "ou=people,dc=example,dc=com");
+      expect(result.ldapBindDn, "cn=appwrite,ou=services,dc=example,dc=com");
+      expect(result.ldapBindPassword, "ldap-password");
+      expect(result.ldapUserFilter, "(uid={username})");
+      expect(
+        result.ldapRequiredGroupDn,
+        "cn=staff,ou=groups,dc=example,dc=com",
+      );
+      expect(result.ldapIdAttribute, "entryUUID");
+      expect(result.ldapEmailAttribute, "mail");
+      expect(result.ldapNameAttribute, "cn");
+      expect(result.ldapPhoneAttribute, "mobile");
       expect(result.pingCount, 1);
       expect(result.pingedAt, "2020-10-15T06:38:00.000+00:00");
       expect(result.labels, []);
