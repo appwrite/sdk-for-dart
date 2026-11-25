@@ -894,6 +894,36 @@ class Project extends Service {
     return models.OAuth2Appwrite.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Atlassian configuration.
+  Future<models.OAuth2Atlassian> updateOAuth2Atlassian({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/atlassian';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Atlassian.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Auth0 configuration.
   Future<models.OAuth2Auth0> updateOAuth2Auth0({
     String? clientId,
@@ -1484,6 +1514,36 @@ class Project extends Service {
     return models.OAuth2HuggingFace.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Instagram configuration.
+  Future<models.OAuth2Instagram> updateOAuth2Instagram({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/instagram';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Instagram.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Kakao configuration.
   Future<models.OAuth2Kakao> updateOAuth2Kakao({
     String? clientId,
@@ -1580,6 +1640,66 @@ class Project extends Service {
     return models.OAuth2Kick.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 LINE configuration.
+  Future<models.OAuth2Line> updateOAuth2Line({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/line';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Line.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Linear configuration.
+  Future<models.OAuth2Linear> updateOAuth2Linear({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/linear';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Linear.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Linkedin configuration.
   Future<models.OAuth2Linkedin> updateOAuth2Linkedin({
     String? clientId,
@@ -1673,6 +1793,36 @@ class Project extends Service {
     );
 
     return models.OAuth2Naver.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Netlify configuration.
+  Future<models.OAuth2Netlify> updateOAuth2Netlify({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/netlify';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Netlify.fromMap(res.data);
   }
 
   /// Update the project OAuth2 Notion configuration.
@@ -1784,6 +1934,36 @@ class Project extends Service {
     return models.OAuth2Okta.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Patreon configuration.
+  Future<models.OAuth2Patreon> updateOAuth2Patreon({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/patreon';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Patreon.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Paypal configuration.
   Future<models.OAuth2Paypal> updateOAuth2Paypal({
     String? clientId,
@@ -1874,6 +2054,66 @@ class Project extends Service {
     return models.OAuth2Podio.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Railway configuration.
+  Future<models.OAuth2Railway> updateOAuth2Railway({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/railway';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Railway.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Reddit configuration.
+  Future<models.OAuth2Reddit> updateOAuth2Reddit({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/reddit';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Reddit.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Resend configuration.
   Future<models.OAuth2Resend> updateOAuth2Resend({
     String? clientId,
@@ -1902,6 +2142,36 @@ class Project extends Service {
     );
 
     return models.OAuth2Resend.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Roblox configuration.
+  Future<models.OAuth2Roblox> updateOAuth2Roblox({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/roblox';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Roblox.fromMap(res.data);
   }
 
   /// Update the project OAuth2 Salesforce configuration.
@@ -1994,6 +2264,36 @@ class Project extends Service {
     );
 
     return models.OAuth2Spotify.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 Strava configuration.
+  Future<models.OAuth2Strava> updateOAuth2Strava({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/strava';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Strava.fromMap(res.data);
   }
 
   /// Update the project OAuth2 Stripe configuration.
@@ -2146,6 +2446,36 @@ class Project extends Service {
     return models.OAuth2Twitch.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 Vercel configuration.
+  Future<models.OAuth2Vercel> updateOAuth2Vercel({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/vercel';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2Vercel.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Vipps MobilePay configuration.
   Future<models.OAuth2Vipps> updateOAuth2Vipps({
     String? clientId,
@@ -2206,6 +2536,36 @@ class Project extends Service {
     return models.OAuth2Vipps.fromMap(res.data);
   }
 
+  /// Update the project OAuth2 VK configuration.
+  Future<models.OAuth2VK> updateOAuth2VK({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/vk';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2VK.fromMap(res.data);
+  }
+
   /// Update the project OAuth2 Webflow configuration.
   Future<models.OAuth2Webflow> updateOAuth2Webflow({
     String? clientId,
@@ -2264,6 +2624,36 @@ class Project extends Service {
     );
 
     return models.OAuth2WordPress.fromMap(res.data);
+  }
+
+  /// Update the project OAuth2 WorkOS configuration.
+  Future<models.OAuth2WorkOS> updateOAuth2WorkOS({
+    String? clientId,
+    String? clientSecret,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/project/oauth2/workos';
+
+    final Map<String, dynamic> apiParams = {
+      if (clientId != null) 'clientId': clientId,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.OAuth2WorkOS.fromMap(res.data);
   }
 
   /// Update the project OAuth2 X configuration.
@@ -2524,6 +2914,45 @@ class Project extends Service {
       }
       if (response['\$id'] == "huggingface") {
         return models.OAuth2HuggingFace.fromMap(response);
+      }
+      if (response['\$id'] == "instagram") {
+        return models.OAuth2Instagram.fromMap(response);
+      }
+      if (response['\$id'] == "patreon") {
+        return models.OAuth2Patreon.fromMap(response);
+      }
+      if (response['\$id'] == "strava") {
+        return models.OAuth2Strava.fromMap(response);
+      }
+      if (response['\$id'] == "vk") {
+        return models.OAuth2VK.fromMap(response);
+      }
+      if (response['\$id'] == "netlify") {
+        return models.OAuth2Netlify.fromMap(response);
+      }
+      if (response['\$id'] == "railway") {
+        return models.OAuth2Railway.fromMap(response);
+      }
+      if (response['\$id'] == "reddit") {
+        return models.OAuth2Reddit.fromMap(response);
+      }
+      if (response['\$id'] == "vercel") {
+        return models.OAuth2Vercel.fromMap(response);
+      }
+      if (response['\$id'] == "atlassian") {
+        return models.OAuth2Atlassian.fromMap(response);
+      }
+      if (response['\$id'] == "line") {
+        return models.OAuth2Line.fromMap(response);
+      }
+      if (response['\$id'] == "linear") {
+        return models.OAuth2Linear.fromMap(response);
+      }
+      if (response['\$id'] == "roblox") {
+        return models.OAuth2Roblox.fromMap(response);
+      }
+      if (response['\$id'] == "workos") {
+        return models.OAuth2WorkOS.fromMap(response);
       }
       if (response['\$id'] == "resend") {
         return models.OAuth2Resend.fromMap(response);

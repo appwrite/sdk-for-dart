@@ -1278,6 +1278,47 @@ void main() {
       expect(response, isA<models.OAuth2Appwrite>());
     });
 
+    test('test method updateOAuth2Atlassian()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "uQ7mZ3s0000000000000000000000000",
+        'clientSecret':
+            "ATOA0000000000000000000000000000000000000000000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Atlassian(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/atlassian",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Atlassian>());
+    });
+
     test('test method updateOAuth2Auth0()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -2075,6 +2116,46 @@ void main() {
       expect(response, isA<models.OAuth2HuggingFace>());
     });
 
+    test('test method updateOAuth2Instagram()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "00000000000000000000000000000000",
+        'clientSecret': "00000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Instagram(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/instagram",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Instagram>());
+    });
+
     test('test method updateOAuth2Kakao()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -2205,6 +2286,86 @@ void main() {
       expect(response, isA<models.OAuth2Kick>());
     });
 
+    test('test method updateOAuth2Line()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "1650000000",
+        'clientSecret': "a1b2c3d4e5f600000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Line(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/line",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Line>());
+    });
+
+    test('test method updateOAuth2Linear()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "5e1c0000000000000000000000000000",
+        'clientSecret': "9f8e7d6c5b4a00000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Linear(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/linear",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Linear>());
+    });
+
     test('test method updateOAuth2Linkedin()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -2329,6 +2490,46 @@ void main() {
         "enabled": false,
       });
       expect(response, isA<models.OAuth2Naver>());
+    });
+
+    test('test method updateOAuth2Netlify()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "00000000000000000000000000000000",
+        'clientSecret': "00000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Netlify(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/netlify",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Netlify>());
     });
 
     test('test method updateOAuth2Notion()', () async {
@@ -2480,6 +2681,46 @@ void main() {
       expect(response, isA<models.OAuth2Okta>());
     });
 
+    test('test method updateOAuth2Patreon()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "00000000000000000000000000000000",
+        'clientSecret': "00000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Patreon(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/patreon",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Patreon>());
+    });
+
     test('test method updateOAuth2Paypal()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -2605,6 +2846,86 @@ void main() {
       expect(response, isA<models.OAuth2Podio>());
     });
 
+    test('test method updateOAuth2Railway()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "00000000000000000000000000000000",
+        'clientSecret': "00000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Railway(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/railway",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Railway>());
+    });
+
+    test('test method updateOAuth2Reddit()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "aBcD0000000000000000aB",
+        'clientSecret': "xYz00000000000000000000000000a",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Reddit(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/reddit",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Reddit>());
+    });
+
     test('test method updateOAuth2Resend()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -2644,6 +2965,47 @@ void main() {
         "enabled": false,
       });
       expect(response, isA<models.OAuth2Resend>());
+    });
+
+    test('test method updateOAuth2Roblox()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "1234567890123456789",
+        'clientSecret':
+            "RBX-0000000000000000000000000000000000000000000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Roblox(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/roblox",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Roblox>());
     });
 
     test('test method updateOAuth2Salesforce()', () async {
@@ -2768,6 +3130,46 @@ void main() {
         "enabled": false,
       });
       expect(response, isA<models.OAuth2Spotify>());
+    });
+
+    test('test method updateOAuth2Strava()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "00000000000000000000000000000000",
+        'clientSecret': "00000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Strava(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/strava",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Strava>());
     });
 
     test('test method updateOAuth2Stripe()', () async {
@@ -2971,6 +3373,46 @@ void main() {
       expect(response, isA<models.OAuth2Twitch>());
     });
 
+    test('test method updateOAuth2Vercel()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "cl_0000000000000000000000000000000",
+        'clientSecret': "vc_0000000000000000000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2Vercel(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/vercel",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2Vercel>());
+    });
+
     test('test method updateOAuth2Vipps()', () async {
       final Map<String, dynamic> data = {
         '\$id': "github",
@@ -3049,6 +3491,46 @@ void main() {
         "enabled": false,
       });
       expect(response, isA<models.OAuth2Vipps>());
+    });
+
+    test('test method updateOAuth2VK()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "00000000000000000000000000000000",
+        'clientSecret': "00000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2VK(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/vk",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2VK>());
     });
 
     test('test method updateOAuth2Webflow()', () async {
@@ -3132,6 +3614,47 @@ void main() {
         "enabled": false,
       });
       expect(response, isA<models.OAuth2WordPress>());
+    });
+
+    test('test method updateOAuth2WorkOS()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "github",
+        'enabled': true,
+        'clientId': "client_01H0000000000000000000000",
+        'clientSecret':
+            "wos0000000000000000000000000000000000000000000000000000000000000",
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateOAuth2WorkOS(
+        clientId: "<CLIENT_ID>",
+        clientSecret: "<CLIENT_SECRET>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/oauth2/workos",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "clientId": "<CLIENT_ID>",
+        "clientSecret": "<CLIENT_SECRET>",
+        "enabled": false,
+      });
+      expect(response, isA<models.OAuth2WorkOS>());
     });
 
     test('test method updateOAuth2X()', () async {

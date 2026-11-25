@@ -859,6 +859,174 @@ class Messaging extends Service {
     return models.Provider.fromMap(res.data);
   }
 
+  /// Create a new Bird email provider. It sends email through Bird's email API
+  /// with a workspace API key that holds the `emails:write` scope.
+  Future<models.Provider> createBirdEmailProvider({
+    required String providerId,
+    required String name,
+    String? apiKey,
+    String? fromName,
+    String? fromEmail,
+    String? replyToName,
+    String? replyToEmail,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/messaging/providers/bird-email';
+
+    final Map<String, dynamic> apiParams = {
+      'providerId': providerId,
+      'name': name,
+      if (apiKey != null) 'apiKey': apiKey,
+      if (fromName != null) 'fromName': fromName,
+      if (fromEmail != null) 'fromEmail': fromEmail,
+      if (replyToName != null) 'replyToName': replyToName,
+      if (replyToEmail != null) 'replyToEmail': replyToEmail,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Update a Bird email provider by its unique ID.
+  Future<models.Provider> updateBirdEmailProvider({
+    required String providerId,
+    String? name,
+    bool? enabled,
+    String? apiKey,
+    String? fromName,
+    String? fromEmail,
+    String? replyToName,
+    String? replyToEmail,
+  }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
+    final String apiPath =
+        '/messaging/providers/bird-email/{providerId}'.replaceAll(
+      '{providerId}',
+      _encodePath(providerId),
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (name != null) 'name': name,
+      if (enabled != null) 'enabled': enabled,
+      if (apiKey != null) 'apiKey': apiKey,
+      if (fromName != null) 'fromName': fromName,
+      if (fromEmail != null) 'fromEmail': fromEmail,
+      if (replyToName != null) 'replyToName': replyToName,
+      if (replyToEmail != null) 'replyToEmail': replyToEmail,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Create a new Bird SMS provider. It sends SMS through Bird with a workspace
+  /// API key that holds the `sms:write` scope.
+  Future<models.Provider> createBirdSMSProvider({
+    required String providerId,
+    required String name,
+    String? from,
+    String? apiKey,
+    bool? enabled,
+  }) async {
+    final String apiPath = '/messaging/providers/bird-sms';
+
+    final Map<String, dynamic> apiParams = {
+      'providerId': providerId,
+      'name': name,
+      if (from != null) 'from': from,
+      if (apiKey != null) 'apiKey': apiKey,
+      if (enabled != null) 'enabled': enabled,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
+  /// Update a Bird SMS provider by its unique ID.
+  Future<models.Provider> updateBirdSMSProvider({
+    required String providerId,
+    String? name,
+    bool? enabled,
+    String? apiKey,
+    String? from,
+  }) async {
+    if (providerId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "providerId"',
+      );
+    }
+
+    final String apiPath =
+        '/messaging/providers/bird-sms/{providerId}'.replaceAll(
+      '{providerId}',
+      _encodePath(providerId),
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (name != null) 'name': name,
+      if (enabled != null) 'enabled': enabled,
+      if (apiKey != null) 'apiKey': apiKey,
+      if (from != null) 'from': from,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Provider.fromMap(res.data);
+  }
+
   /// Create a new Firebase Cloud Messaging provider.
   @Deprecated(
     'This API has been deprecated since 1.8.0. Please use `Messaging.createFCMProvider` instead.',

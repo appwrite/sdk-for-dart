@@ -1075,6 +1075,208 @@ void main() {
       expect(response, isA<models.Provider>());
     });
 
+    test('test method createBirdEmailProvider()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Mailgun",
+        'provider': "mailgun",
+        'enabled': true,
+        'type': "sms",
+        'credentials': <String, dynamic>{},
+      };
+
+      when(
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await messaging.createBirdEmailProvider(
+        providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        apiKey: "<API_KEY>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "email@example.com",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/bird-email",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "apiKey": "<API_KEY>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "email@example.com",
+        "enabled": false,
+      });
+      expect(response, isA<models.Provider>());
+    });
+
+    test('test method updateBirdEmailProvider()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Mailgun",
+        'provider': "mailgun",
+        'enabled': true,
+        'type': "sms",
+        'credentials': <String, dynamic>{},
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await messaging.updateBirdEmailProvider(
+        providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        apiKey: "<API_KEY>",
+        fromName: "<FROM_NAME>",
+        fromEmail: "email@example.com",
+        replyToName: "<REPLY_TO_NAME>",
+        replyToEmail: "email@example.com",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/bird-email/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "apiKey": "<API_KEY>",
+        "fromName": "<FROM_NAME>",
+        "fromEmail": "email@example.com",
+        "replyToName": "<REPLY_TO_NAME>",
+        "replyToEmail": "email@example.com",
+      });
+      expect(response, isA<models.Provider>());
+    });
+
+    test('test method createBirdSMSProvider()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Mailgun",
+        'provider': "mailgun",
+        'enabled': true,
+        'type': "sms",
+        'credentials': <String, dynamic>{},
+      };
+
+      when(
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await messaging.createBirdSMSProvider(
+        providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        from: "<FROM>",
+        apiKey: "<API_KEY>",
+        enabled: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/messaging/providers/bird-sms",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "providerId": "<PROVIDER_ID>",
+        "name": "<NAME>",
+        "from": "<FROM>",
+        "apiKey": "<API_KEY>",
+        "enabled": false,
+      });
+      expect(response, isA<models.Provider>());
+    });
+
+    test('test method updateBirdSMSProvider()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Mailgun",
+        'provider': "mailgun",
+        'enabled': true,
+        'type': "sms",
+        'credentials': <String, dynamic>{},
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await messaging.updateBirdSMSProvider(
+        providerId: "<PROVIDER_ID>",
+        name: "<NAME>",
+        enabled: false,
+        apiKey: "<API_KEY>",
+        from: "<FROM>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/messaging/providers/bird-sms/%3CPROVIDER_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "enabled": false,
+        "apiKey": "<API_KEY>",
+        "from": "<FROM>",
+      });
+      expect(response, isA<models.Provider>());
+    });
+
     test('test method createFcmProvider()', () async {
       final Map<String, dynamic> data = {
         '\$id': "5e5ea5c16897e",
