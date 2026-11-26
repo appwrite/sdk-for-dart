@@ -74,6 +74,185 @@ class Organization extends Service {
     return res.data;
   }
 
+  /// Get a list of your organization's escalations. Use `Query.search('search',
+  /// term)` to search escalation IDs and names.
+  Future<models.EscalationList> listEscalations({
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/organization/escalations';
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.EscalationList.fromMap(res.data);
+  }
+
+  /// Create an escalation for your organization. A monitor using it notifies the
+  /// escalation's steps one after another while its alert fires, each by email,
+  /// push and in the console, until a member acknowledges the alert or it
+  /// resolves. Each step waits its `delay` in seconds, after the alert fires for
+  /// the first step and after the previous step for the others, then notifies
+  /// the members holding its `roles` and those named in `userIds`. With
+  /// `repeat`, the steps run again from the first, a monitor's cooldown after
+  /// the last step.
+  Future<models.Escalation> createEscalation({
+    required String escalationId,
+    required String name,
+    required List<Map> steps,
+    int? repeat,
+  }) async {
+    final String apiPath = '/organization/escalations';
+
+    final Map<String, dynamic> apiParams = {
+      'escalationId': escalationId,
+      'name': name,
+      'steps': steps,
+      if (repeat != null) 'repeat': repeat,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Escalation.fromMap(res.data);
+  }
+
+  /// Get one of your organization's escalations by its ID.
+  Future<models.Escalation> getEscalation({
+    required String escalationId,
+  }) async {
+    if (escalationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "escalationId"',
+      );
+    }
+
+    final String apiPath =
+        '/organization/escalations/{escalationId}'.replaceAll(
+      '{escalationId}',
+      _encodePath(escalationId),
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Escalation.fromMap(res.data);
+  }
+
+  /// Update an escalation's name, steps or repeats; what you leave out stays as
+  /// it is. Alerts already escalating keep the steps they started with; the next
+  /// alert uses the new ones.
+  Future<models.Escalation> updateEscalation({
+    required String escalationId,
+    String? name,
+    List<Map>? steps,
+    int? repeat,
+  }) async {
+    if (escalationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "escalationId"',
+      );
+    }
+
+    final String apiPath =
+        '/organization/escalations/{escalationId}'.replaceAll(
+      '{escalationId}',
+      _encodePath(escalationId),
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (name != null) 'name': name,
+      if (steps != null) 'steps': steps,
+      if (repeat != null) 'repeat': repeat,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.Escalation.fromMap(res.data);
+  }
+
+  /// Delete an escalation. An escalation that a monitor uses cannot be deleted:
+  /// move the monitor to another escalation or to `notify` roles first. Open
+  /// alerts keep the steps they started with.
+  Future deleteEscalation({
+    required String escalationId,
+  }) async {
+    if (escalationId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "escalationId"',
+      );
+    }
+
+    final String apiPath =
+        '/organization/escalations/{escalationId}'.replaceAll(
+      '{escalationId}',
+      _encodePath(escalationId),
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
+
   /// List app installations on the organization. Any organization member can
   /// read installations.
   Future<models.AppInstallationList> listInstallations({
