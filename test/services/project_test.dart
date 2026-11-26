@@ -6674,5 +6674,211 @@ void main() {
       ).captured.single;
       expect(params, isEmpty);
     });
+
+    test('test method listVideoProfiles()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'profiles': [],
+      };
+
+      when(
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.listVideoProfiles(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/videos/profiles",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
+      expect(response, isA<models.VideoProfileList>());
+    });
+
+    test('test method createVideoProfile()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "360p",
+        'codec': "h264",
+        'videoBitRate': 890000,
+        'audioBitRate': 64000,
+        'width': 640,
+        'height': 360,
+      };
+
+      when(
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.createVideoProfile(
+        profileId: "<PROFILE_ID>",
+        name: "<NAME>",
+        videoBitRate: 1,
+        audioBitRate: 1,
+        width: 1,
+        height: 1,
+        codec: enums.VideoCodecId.h264,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/project/videos/profiles",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "profileId": "<PROFILE_ID>",
+        "name": "<NAME>",
+        "videoBitRate": 1,
+        "audioBitRate": 1,
+        "width": 1,
+        "height": 1,
+        "codec": enums.VideoCodecId.h264.value,
+      });
+      expect(response, isA<models.VideoProfile>());
+    });
+
+    test('test method getVideoProfile()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "360p",
+        'codec': "h264",
+        'videoBitRate': 890000,
+        'audioBitRate': 64000,
+        'width': 640,
+        'height': 360,
+      };
+
+      when(
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.getVideoProfile(
+        profileId: "<PROFILE_ID>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/project/videos/profiles/%3CPROFILE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
+      expect(response, isA<models.VideoProfile>());
+    });
+
+    test('test method updateVideoProfile()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "360p",
+        'codec': "h264",
+        'videoBitRate': 890000,
+        'audioBitRate': 64000,
+        'width': 640,
+        'height': 360,
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.updateVideoProfile(
+        profileId: "<PROFILE_ID>",
+        name: "<NAME>",
+        videoBitRate: 1,
+        audioBitRate: 1,
+        width: 1,
+        height: 1,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/project/videos/profiles/%3CPROFILE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "videoBitRate": 1,
+        "audioBitRate": 1,
+        "width": 1,
+        "height": 1,
+      });
+      expect(response, isA<models.VideoProfile>());
+    });
+
+    test('test method deleteVideoProfile()', () async {
+      final data = '';
+
+      when(
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await project.deleteVideoProfile(
+        profileId: "<PROFILE_ID>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/project/videos/profiles/%3CPROFILE_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
+    });
   });
 }

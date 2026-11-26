@@ -65,6 +65,7 @@ part 'services/teams.dart';
 part 'services/tokens.dart';
 part 'services/users.dart';
 part 'services/vectors_db.dart';
+part 'services/videos.dart';
 part 'services/waf.dart';
 part 'services/webhooks.dart';
 

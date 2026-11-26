@@ -4777,4 +4777,194 @@ class Project extends Service {
 
     return res.data;
   }
+
+  /// Get a list of video profiles in the current project (`GET
+  /// /v1/project/videos/profiles`). Every profile is returned regardless of
+  /// codec. Filter with `queries`, for example `Query.equal('codec', ['h264'])`
+  /// for one encode ladder, or on `name`, `width`, `height`, `videoBitRate` and
+  /// `audioBitRate`. Search with `Query.search()` on the `search` attribute.
+  Future<models.VideoProfileList> listVideoProfiles({
+    List<String>? queries,
+    bool? total,
+  }) async {
+    final String apiPath = '/project/videos/profiles';
+
+    final Map<String, dynamic> apiParams = {
+      if (queries != null) 'queries': queries,
+      if (total != null) 'total': total,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.VideoProfileList.fromMap(res.data);
+  }
+
+  /// Create a video profile (`POST /v1/project/videos/profiles`) describing an
+  /// encoding target: output dimensions, video/audio bitrates, and encode codec.
+  /// Only codecs enabled on this instance are accepted; the default is `h264`. A
+  /// disabled codec is rejected. Creating a profile with the same width, height,
+  /// bitrates, and codec fails with `video_profile_already_exists`. Bitrates are
+  /// in bits per second and must be multiples of 1000. Renditions are encoded
+  /// against a profile.
+  Future<models.VideoProfile> createVideoProfile({
+    required String profileId,
+    required String name,
+    required int videoBitRate,
+    required int audioBitRate,
+    required int width,
+    required int height,
+    enums.VideoCodecId? codec,
+  }) async {
+    final String apiPath = '/project/videos/profiles';
+
+    final Map<String, dynamic> apiParams = {
+      'profileId': profileId,
+      'name': name,
+      'videoBitRate': videoBitRate,
+      'audioBitRate': audioBitRate,
+      'width': width,
+      'height': height,
+      if (codec != null) 'codec': codec?.value,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.post,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.VideoProfile.fromMap(res.data);
+  }
+
+  /// Get a video profile by its unique ID (`GET
+  /// /v1/project/videos/profiles/:profileId`).
+  Future<models.VideoProfile> getVideoProfile({
+    required String profileId,
+  }) async {
+    if (profileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "profileId"',
+      );
+    }
+
+    final String apiPath = '/project/videos/profiles/{profileId}'.replaceAll(
+      '{profileId}',
+      _encodePath(profileId),
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.get,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.VideoProfile.fromMap(res.data);
+  }
+
+  /// Update a video profile by its unique ID (`PATCH
+  /// /v1/project/videos/profiles/:profileId`). Existing renditions are not
+  /// re-encoded. Changing the profile onto the same width, height, bitrates, and
+  /// codec as another profile fails with `video_profile_already_exists`.
+  Future<models.VideoProfile> updateVideoProfile({
+    required String profileId,
+    String? name,
+    int? videoBitRate,
+    int? audioBitRate,
+    int? width,
+    int? height,
+  }) async {
+    if (profileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "profileId"',
+      );
+    }
+
+    final String apiPath = '/project/videos/profiles/{profileId}'.replaceAll(
+      '{profileId}',
+      _encodePath(profileId),
+    );
+
+    final Map<String, dynamic> apiParams = {
+      if (name != null) 'name': name,
+      if (videoBitRate != null) 'videoBitRate': videoBitRate,
+      if (audioBitRate != null) 'audioBitRate': audioBitRate,
+      if (width != null) 'width': width,
+      if (height != null) 'height': height,
+    };
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.patch,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return models.VideoProfile.fromMap(res.data);
+  }
+
+  /// Delete a video profile by its unique ID (`DELETE
+  /// /v1/project/videos/profiles/:profileId`). Renditions already encoded
+  /// against it are left in place.
+  Future deleteVideoProfile({
+    required String profileId,
+  }) async {
+    if (profileId.isEmpty) {
+      throw AppwriteException(
+        'Missing required parameter: "profileId"',
+      );
+    }
+
+    final String apiPath = '/project/videos/profiles/{profileId}'.replaceAll(
+      '{profileId}',
+      _encodePath(profileId),
+    );
+
+    final Map<String, dynamic> apiParams = {};
+
+    final Map<String, String> apiHeaders = {
+      'X-Appwrite-Project': client.config['project'] ?? '',
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    final res = await client.call(
+      HttpMethod.delete,
+      path: apiPath,
+      params: apiParams,
+      headers: apiHeaders,
+    );
+
+    return res.data;
+  }
 }
