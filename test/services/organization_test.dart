@@ -333,6 +333,193 @@ void main() {
       expect(params, isEmpty);
     });
 
+    test('test method listEscalations()', () async {
+      final Map<String, dynamic> data = {
+        'total': 5,
+        'escalations': [],
+      };
+
+      when(
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.listEscalations(
+        queries: [],
+        total: false,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/escalations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "queries": isA<List>(),
+        "total": false,
+      });
+      expect(response, isA<models.EscalationList>());
+    });
+
+    test('test method createEscalation()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Platform",
+        'steps': [],
+        'repeat': 2,
+      };
+
+      when(
+        client.call(
+          HttpMethod.post,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.createEscalation(
+        escalationId: "<ESCALATION_ID>",
+        name: "<NAME>",
+        steps: [],
+        repeat: 1,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.post,
+          path: "/organization/escalations",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "escalationId": "<ESCALATION_ID>",
+        "name": "<NAME>",
+        "steps": isA<List>(),
+        "repeat": 1,
+      });
+      expect(response, isA<models.Escalation>());
+    });
+
+    test('test method getEscalation()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Platform",
+        'steps': [],
+        'repeat': 2,
+      };
+
+      when(
+        client.call(
+          HttpMethod.get,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.getEscalation(
+        escalationId: "<ESCALATION_ID>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.get,
+          path: "/organization/escalations/%3CESCALATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
+      expect(response, isA<models.Escalation>());
+    });
+
+    test('test method updateEscalation()', () async {
+      final Map<String, dynamic> data = {
+        '\$id': "5e5ea5c16897e",
+        '\$createdAt': "2020-10-15T06:38:00.000+00:00",
+        '\$updatedAt': "2020-10-15T06:38:00.000+00:00",
+        'name': "Platform",
+        'steps': [],
+        'repeat': 2,
+      };
+
+      when(
+        client.call(
+          HttpMethod.patch,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.updateEscalation(
+        escalationId: "<ESCALATION_ID>",
+        name: "<NAME>",
+        steps: [],
+        repeat: 1,
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.patch,
+          path: "/organization/escalations/%3CESCALATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, {
+        "name": "<NAME>",
+        "steps": isA<List>(),
+        "repeat": 1,
+      });
+      expect(response, isA<models.Escalation>());
+    });
+
+    test('test method deleteEscalation()', () async {
+      final data = '';
+
+      when(
+        client.call(
+          HttpMethod.delete,
+          path: anyNamed('path'),
+          headers: anyNamed('headers'),
+          params: anyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).thenAnswer((_) async => Response(data: data));
+
+      final response = await organization.deleteEscalation(
+        escalationId: "<ESCALATION_ID>",
+      );
+      final Map<String, dynamic> params = verify(
+        client.call(
+          HttpMethod.delete,
+          path: "/organization/escalations/%3CESCALATION_ID%3E",
+          headers: anyNamed('headers'),
+          params: captureAnyNamed('params'),
+          responseType: anyNamed('responseType'),
+        ),
+      ).captured.single;
+      expect(params, isEmpty);
+    });
+
     test('test method listInstallations()', () async {
       final Map<String, dynamic> data = {
         'total': 5,
