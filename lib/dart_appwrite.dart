@@ -36,6 +36,7 @@ part 'operator.dart';
 part 'services/account.dart';
 part 'services/activities.dart';
 part 'services/alerts.dart';
+part 'services/analytics.dart';
 part 'services/apps.dart';
 part 'services/avatars.dart';
 part 'services/backups.dart';
